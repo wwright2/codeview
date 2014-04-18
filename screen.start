@@ -1,0 +1,33 @@
+#
+#    screeen.start wwindow tail -f /var/log/syslog
+#
+# Start a screen disconnected from the window named = wwindow
+#   run the command "tail -f /var/log/syslog
+#
+#
+
+name=$1
+shift
+command=$*
+
+echo $name
+echo $command
+
+screen -d -m -S $name
+screen -X -S $name screen -t x1 1
+screen -X -S $name -p 1 stuff "$command
+"
+
+
+#----------------------------------------
+#which adds a screen (called x1, with the index 1) to the screen called "miner" (like "ctrl-a c")
+# and invokes cgminer (using config file 'cgminep') in it.
+# You know the newline between 'cgminep' and ' " ' is deliberate, right?
+
+# re-attach
+#   screen -r
+#
+# detach
+#    ctl-a d
+
+# screen -X -S miner quit
