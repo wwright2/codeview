@@ -3,7 +3,7 @@ PROGRAM = inotify
 
 
 # list of source files
-CXXSOURCES := main.cpp
+CXXSOURCES := inotify.cpp
 
 CXXOBJECTS = $(CXXSOURCES:.cpp=.o)  # expands to list of object files
 
