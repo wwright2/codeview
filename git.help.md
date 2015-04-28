@@ -66,9 +66,19 @@ echo # tisdk.daisy.1.6 >> README.md
 git init
 git add README.md
 git commit -m "first commit"
-git remote add origin https://github.com/wwright2/tisdk.daisy.1.6.git
-git push -u origin master
+
+git add .
+git status
+git commit -m " commit recently added files "
+git remote add github https://github.com/wwright2/tisdk.daisy.1.6.git
+git commit -m 'start a clone of tisdk that I can update'
+git remote -v
+git push github master
+
 ```
+**Since:** 'origin' existed as a ti github project changed name to github for my gh repo.
+
+
 …or push an existing repository from the command line  
 ```
 git remote add origin https://github.com/wwright2/tisdk.daisy.1.6.git
