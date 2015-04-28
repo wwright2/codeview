@@ -89,3 +89,28 @@ git push -u origin master
 
 You can initialize this repository with code from a Subversion, Mercurial, or TFS project.
 
+
+###Push Remote1, Pull Remote2
+```
+git config remote.origin.pushurl user@user.com:repo.git
+```
+Configure a Seperate push url.   Now, git pull, will pull from the original clone URL but git push will push to the other.
+
+
+###Git Remote
+```
+usage: git remote [-v | --verbose]
+   or: git remote add [-t <branch>] [-m <master>] [-f] [--tags|--no-tags] [--mirror=<fetch|push>] <name> <url>
+   or: git remote rename <old> <new>
+   or: git remote remove <name>
+   or: git remote set-head <name> (-a | --auto | -d | --delete |<branch>)
+   or: git remote [-v | --verbose] show [-n] <name>
+   or: git remote prune [-n | --dry-run] <name>
+   or: git remote [-v | --verbose] update [-p | --prune] [(<group> | <remote>)...]
+   or: git remote set-branches [--add] <name> <branch>...
+   or: git remote set-url [--push] <name> <newurl> [<oldurl>]
+   or: git remote set-url --add <name> <newurl>
+   or: git remote set-url --delete <name> <url>
+
+    -v, --verbose         be verbose; must be placed before a subcommand
+```
