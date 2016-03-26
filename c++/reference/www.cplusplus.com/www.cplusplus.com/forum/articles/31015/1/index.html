@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Why we are a bunch of tough lovers. - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/articles/">Articles</a></li>
+<li class="here">Why we are a bunch of tough lovers.</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico comment" title="comment">&nbsp;</div> Why we are a bunch of tough lovers.</h3><span id="CH_edttl"></span><div class="C_pages">Pages: <span title="Current page">1</span><a href="/forum/articles/31015/2/">2</a><a href="/forum/articles/31015/3/">3</a></div><span class="rootdatPost" title="31015,root,0,-1,46,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg167901"><span title="167901,19724,5119,4176,1"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg167901" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm1233760686" title="Thu, 04 Nov 2010 04:33:33 +0000"></span><script type="text/javascript">WhenId('CH_zTm1233760686');</script><noscript>Nov 4, 2010 at 4:33am UTC</noscript></div>
+<div class="dwho"><a href="/user/TheRabbitologist/"><b>TheRabbitologist</b> (4176)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i167901">
+<small>Tee hee hee... I called us lovers! O_o</small><br>
+<br>
+Hello females, males, transsexuals, natural hermaphrodites, and unsexed...<br>
+ <br>
+This is an article about our refusal to answer homework questions and solve homework problems.<br>
+<br>
+I expect the majority of the people who have posted something along the lines of...<br>
+ <table class="quote"><tr><td class="qd">Hey pplz:<br>
+ <i><b>Write a program that implements Eratosthenes's sieve. The program should take in from the console the upper limit for the range 1-n to be searched for primes and output the number of prime numbers.</b></i></td></tr></table><br>
+<br>
+ ...were flat-out denied the problem's solution, and those who got the solution might have seen the solution giver reprimanded for giving the solution. If you are either a solution-giver or a solution-seeker, then I'm sorry but there's a difference between the easy way out and the right way out, and in this article I hope to explain why we are so set against giving out problem solutions.<br>
+ <br>
+Say that for the above problem, I posted the solution of:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;iostream.h&gt;</dfn>
+<dfn>#include &lt;iomanip.h&gt;</dfn>
+<dfn>#include &lt;stdlib.h&gt;</dfn>
+<dfn>#include &lt;math.h&gt;</dfn>
+
+<var>using</var> <var>namespace</var> std;
+<var>int</var> size;
+<var>int</var>* primes;
+<var>bool</var> checkprimeness(<var>int</var> i)
+{
+	<var>for</var> (<var>int</var> j = 0; j &lt; size; j++) 
+		<var>if</var> (i % primes[j] == 0) <var>return</var> <var>false</var>;
+	<var>return</var> <var>true</var>;
+}
+
+<var>void</var> main()
+{
+    <var>int</var> max;
+    printf(<kbd>"Enter your number: "</kbd>);
+    cin &gt;&gt; max;
+	system(<kbd>"cls"</kbd>);
+	
+    <var>if</var> (max &lt; 2) {
+	printf(<kbd>"What the fortran do you take me for?\nThere are no positive primes here!\n"</kbd>);
+		exit(0);
+    }
+	<var>else</var> {
+		primes = (<var>int</var>*)malloc(4*max);
+		size = 0;
+		primes[size] = 2, size++;
+	}
+	
+	<var>int</var> i;
+    <var>for</var> (i = 2; i &lt; max+1; i++) {
+		<var>if</var> (checkprimeness(i))
+			primes[size] = i, size++; 
+	}
+	
+	cout &lt;&lt; <kbd>"\n"</kbd>;
+    <var>for</var> (i = 0; i &lt; size; i++) 
+		cout &lt;&lt; primes[i] &lt;&lt; <kbd>"\n"</kbd>;
+	
+    system(<kbd>"pause"</kbd>);
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Off the top of my head, there are five problems with doing this.<br>
+<br>
+<b>1: The OP may not read through the code.</b> <br>
+We have no guarantee that the OP will not do some really quick foot-kissing and run off with this solution, presenting it to the instructor as his/her own without examining it first. This is a problem because:<br>
+<br>
+<b>1.1:</b> We will have wasted our time creating the solution (the above took me about 5 minutes, but it's still time wasted), as the OP will have learned nothing positive and unless it's good practice for you, you just spent some time writing a bit of code that won't teach anything positive. :)<br>
+<br>
+<b>1.2:</b> Those of us who were paying close attention will notice that <i>this code is not in fact the solution to the problem</i>. Misreads happen, and if the student doesn't pay close enough attention, he/she won't notice that I "accidentally" made the program output the list of prime numbers instead of the demanded number of prime numbers.<br>
+    Also, as tition correctly noticed 3 months later, the algorithm I used is not Eratosthenes's sieve; it never strikes out any numbers from a complete list. Though I deliberately implemented the wrong algorithm and did not state it, if this were in a solution I gave to the OP it might easily have gone unnoticed, and he/she might lose a substantial amount of credit on the problem if this piece of code was given in as a solution.<br>
+<br>
+<b>1.3:</b> In the event that someone tried to turn this example in for credit, they might lose stunning amounts of credit just because of the ugly style I wrote it in. More on this in point 5.<br>
+<br>
+<b>2: This enforces laziness during college.</b> <br>
+The OP might in some cases learn that others will do his/her work for him/her, possibly leading to some... unfortunate changes, as well as reinforcing laziness. This is only a possibility, like the above, but it still exists; I've seen it happen.<br>
+<br>
+<b>3: No comment(s).</b> <br>
+If the OP actually did try to learn from my example, it could be hard to follow due to the lack of explanatory comments. Some of us will put in the comments, but I recognize that others may not, so when the given solution doesn't have explanatory comments it's time wasted for the OP, and possibly simply doing the problem would have taken less time to do and would have lead to a better understanding.<br>
+<br>
+<b>4: This enforces laziness after college.</b> <br>
+(inspired by a response by cnoeval) If somehow the OP managed to get through college cheating and obtain a reasonable degree to work in the computer science industry, then he/she would have both wasted at least two good years of his/her life, and also have great trouble being able to actually work. Some people might help them in that area as well, possibly for years, but everyone has a limit and eventually that limit would be reached if the pattern of laziness were to continue for all those years.<br>
+<br>
+<b>5: It spreads bad coding habits like a disease.</b> <br>
+The style of this piece of code is actually quite horrific, but what's worse is that I could see someone without much experience in C++ giving this to someone as a solution to turn in. I'd congratulate the effort, but in the event that the OP does try to learn from the code, he/she might develop habits that in C++ are not only quite bad, but also very hard to unlearn. Usually we try to check these habits, but we aren't everywhere and we aren't active all the time. Please don't give out solutions, just in case!<br>
+<br>
+NOTE: The example won't even compile if one closely follows the C++ standard. In addition, the program has a memory leak, as a result of the memory primes points to never being freed. I do NOT recommend running this program without fixing the memory leak first!<br>
+<br>
+If you learn better by seeing a problem and its solution side by side, ask a forum member if they can create a similar problem and solve it so that you can see the problem and the solution side by side. If one of us has the time, we will happily do that or link to an already done example. :)<br>
+<br>
+For a few guidelines in creating a good question, see this article here:<br>
+<a href="http://www.cplusplus.com/forum/articles/1295/">http://www.cplusplus.com/forum/articles/1295/</a><br>
+<br>
+Happy coding!<br>
+<br>
+-Albatross<br>
+<br>
+EDIT1: Made a slight change to the problem description to make it somewhat more realistic and added point #4. Also made the console pause slightly more elegant but slightly harder to understand.<br>
+EDIT2: Added point 1.2.1 (now a part of 1.2)<br>
+EDIT3: Made a few minor changes.<br>
+EDIT4: Doused the example with a bucket of unadulterated evil, and added point 5.<br>
+EDIT5: A few anti-refinements to the example were added.
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm4fd70e534e" title="Thu, 14 Apr 2011 05:33:03 +0000"></span><script type="text/javascript">WhenId('CH_zTm4fd70e534e');</script><noscript>Apr 14, 2011 at 5:33am UTC</noscript></span>
+<span class="dbtn" id="CH_btn167901"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg167902"><span title="167902,11103,1023,4532,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg167902" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm9d6e95de8f" title="Thu, 04 Nov 2010 04:38:00 +0000"></span><script type="text/javascript">WhenId('CH_zTm9d6e95de8f');</script><noscript>Nov 4, 2010 at 4:38am UTC</noscript></div>
+<div class="dwho"><a href="/user/Zhuge/"><b>Zhuge</b> (4532)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i167902">
+These are pretty much my views on the homework situation.<br>
+<br>
+Albatross++
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn167902"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg167954"><span title="167954,15588,0,2731,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg167954" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm8b7edacc32" title="Thu, 04 Nov 2010 13:24:43 +0000"></span><script type="text/javascript">WhenId('CH_zTm8b7edacc32');</script><noscript>Nov 4, 2010 at 1:24pm UTC</noscript></div>
+<div class="dwho">closed account (<i><a href="/user/closed_account_S6k9GNh0/">S6k9GNh0</a></i>)</div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i167954">
+Bravo!
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn167954"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg168039"><span title="168039,21799,1023,7398,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg168039" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmcf8ca7e21e" title="Thu, 04 Nov 2010 18:01:49 +0000"></span><script type="text/javascript">WhenId('CH_zTmcf8ca7e21e');</script><noscript>Nov 4, 2010 at 6:01pm UTC</noscript></div>
+<div class="dwho"><a href="/user/chrisname/"><b>chrisname</b> (7398)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i168039">
+This is good.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn168039"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg168043"><span title="168043,28666,1023,1929,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg168043" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm17ff6cfa51" title="Thu, 04 Nov 2010 18:11:07 +0000"></span><script type="text/javascript">WhenId('CH_zTm17ff6cfa51');</script><noscript>Nov 4, 2010 at 6:11pm UTC</noscript></div>
+<div class="dwho"><a href="/user/moorecm/"><b>moorecm</b> (1929)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i168043">
+<table class="quote"><tr><td class="qd">1.1: We will have wasted our time creating the solution (the above took me about 5 minutes, but it's still time wasted), as the OP will have learned nothing positive.</td></tr></table><br>
+The OP may not have learned anything but you certainly have!  It can be a great way to stay sharp answering questions.<br>
+<br>
+Regardless, the questions that really get me are the ones that are plastered all over the first page of a Google search...  Many of the posters should google "How to Google" and learn how to find their answers.
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm6e82a9fc9d" title="Thu, 04 Nov 2010 18:12:40 +0000"></span><script type="text/javascript">WhenId('CH_zTm6e82a9fc9d');</script><noscript>Nov 4, 2010 at 6:12pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn168043"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg168118"><span title="168118,36260,1023,912,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg168118" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm7549b4eb2d" title="Thu, 04 Nov 2010 23:11:17 +0000"></span><script type="text/javascript">WhenId('CH_zTm7549b4eb2d');</script><noscript>Nov 4, 2010 at 11:11pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Kyon/"><b>Kyon</b> (912)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i168118">
+Hah, stupid Albatross. The most obvious solution is of course:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;cstdio&gt;</dfn>
+<var>bool</var> _(<var>unsigned</var> __, <var>unsigned</var> ___=2) {<var>return</var> ___&lt;__?__%___==___-___?___-___:_(___,__+___/___):__/__+___-___;}
+<var>unsigned</var> i(<var>unsigned</var> ii, <var>unsigned</var> iii=2) {<var>return</var> iii&lt;ii?_(iii)+i(ii,iii+ii/ii):_(ii);}
+main(){<var>unsigned</var> m(NULL);printf(<kbd>"%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c"</kbd>,69,110,116,101,114,32,121,111,117,114,32,110,117,109,98,101,114,58);scanf(<kbd>"%u"</kbd>,&amp;m);printf(<kbd>"%u"</kbd>,i(m));<var>return</var> 0;}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn168118"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg168122"><span title="168122,19724,5119,4176,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg168122" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTma11429829f" title="Thu, 04 Nov 2010 23:35:38 +0000"></span><script type="text/javascript">WhenId('CH_zTma11429829f');</script><noscript>Nov 4, 2010 at 11:35pm UTC</noscript></div>
+<div class="dwho"><a href="/user/TheRabbitologist/"><b>TheRabbitologist</b> (4176)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i168122">
+What the fortran is that demonic piece of code? Out! OUT! <b><i><u>OUT!!!</u></i></b><br>
+<br>
+No, but seriously. If I wanted to write a better piece of code than that, I would've. ;)<br>
+<br>
+-Albatross
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn168122"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg168398"><span title="168398,27106,1023,637,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg168398" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm4a2d5737c8" title="Fri, 05 Nov 2010 22:05:29 +0000"></span><script type="text/javascript">WhenId('CH_zTm4a2d5737c8');</script><noscript>Nov 5, 2010 at 10:05pm UTC</noscript></div>
+<div class="dwho"><a href="/user/cnoeval/"><b>cnoeval</b> (637)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i168398">
+4.  The student that you help to cheat today...  May become the co-worker you have to coddle for years.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn168398"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg169003"><span title="169003,36260,1023,912,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg169003" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm5dabdd1523" title="Mon, 08 Nov 2010 13:47:59 +0000"></span><script type="text/javascript">WhenId('CH_zTm5dabdd1523');</script><noscript>Nov 8, 2010 at 1:47pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Kyon/"><b>Kyon</b> (912)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i169003">
+More obvious codes:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;cstdio&gt;</dfn>
+<var>float</var> _(<var>float</var>*__,<var>unsigned</var> ___,<var>unsigned</var> ____=NULL){<var>return</var> ____&lt;___?__[____]+_(__,___,____+___):__[___];}
+main(){<var>float</var>* l = <var>new</var> <var>float</var>[010&gt;&gt;1&gt;&gt;1];scanf(<kbd>"%f"</kbd>,l),printf(<kbd>"%c"</kbd>,0x2B),scanf(<kbd>"%f"</kbd>,l+(010&gt;&gt;(01&lt;&lt;01)&gt;&gt;01)),printf(<kbd>"%c"</kbd>,0x3D),printf(<kbd>"%f"</kbd>,_(l,(010&gt;&gt;(01&lt;&lt;01)&gt;&gt;01)));<var>delete</var> [] l;}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;cstdio&gt;</dfn>
+<var>unsigned</var> _(<var>unsigned</var> ___,<var>unsigned</var> __=0.f){__&lt;___?printf(<kbd>"%d\n"</kbd>,__),_(___,__+___/___):__-__;}main(){_(011);<var>for</var>(;,;);}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Shouldn't be too hard to figure out that they do.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn169003"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg169067"><span title="169067,21946,1023,948,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg169067" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm58ec3c49b6" title="Mon, 08 Nov 2010 16:21:48 +0000"></span><script type="text/javascript">WhenId('CH_zTm58ec3c49b6');</script><noscript>Nov 8, 2010 at 4:21pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Null/"><b>Null</b> (948)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i169067">
+<table class="quote"><tr><td class="qd">Shouldn't be too hard to figure out that they do.</td></tr></table><br>
+The simplest way is to compile and run....
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn169067"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg169070"><span title="169070,36260,1023,912,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg169070" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm4e56dc6546" title="Mon, 08 Nov 2010 16:28:08 +0000"></span><script type="text/javascript">WhenId('CH_zTm4e56dc6546');</script><noscript>Nov 8, 2010 at 4:28pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Kyon/"><b>Kyon</b> (912)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i169070">
+Which is my whole point. ;)<br>
+<br>
+Off-topic: Getting my iMac next week. :D
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn169070"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg180107"><span title="180107,19724,5119,4176,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg180107" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm08eb16275a" title="Fri, 24 Dec 2010 04:46:30 +0000"></span><script type="text/javascript">WhenId('CH_zTm08eb16275a');</script><noscript>Dec 24, 2010 at 4:46am UTC</noscript></div>
+<div class="dwho"><a href="/user/TheRabbitologist/"><b>TheRabbitologist</b> (4176)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i180107">
+I took my sweet time replying to this thread! O_o<br>
+<br>
+Kyon: I see your point, but the fact is that even after compilation, you would need to look at least somewhat carefully at the problem description to see the difference in what the code does and what it should do per assignment, and some people rush. :)<br>
+<br>
+-Albatross
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn180107"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg180302"><span title="180302,27329,1023,1426,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg180302" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmd51b79746c" title="Sat, 25 Dec 2010 15:47:23 +0000"></span><script type="text/javascript">WhenId('CH_zTmd51b79746c');</script><noscript>Dec 25, 2010 at 3:47pm UTC</noscript></div>
+<div class="dwho"><a href="/user/blackcoder41/"><b>blackcoder41</b> (1426)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i180302">
+What if someone posted a code like Kyon's with malicious content, I mean something like a virus or a prank. I just wonder what the reaction of that student would be after compiling and running it.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn180302"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg181822"><span title="181822,19724,5119,4176,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg181822" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmf304ff5b1c" title="Sat, 01 Jan 2011 05:41:54 +0000"></span><script type="text/javascript">WhenId('CH_zTmf304ff5b1c');</script><noscript>Jan 1, 2011 at 5:41am UTC</noscript></div>
+<div class="dwho"><a href="/user/TheRabbitologist/"><b>TheRabbitologist</b> (4176)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i181822">
+That's another problem, but I kinda hope that even the complete beginners will have some amount of common sense.<br>
+<br>
+-Albatross<br>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn181822"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg181916"><span title="181916,27329,1023,1426,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg181916" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm327743edbc" title="Sat, 01 Jan 2011 16:16:02 +0000"></span><script type="text/javascript">WhenId('CH_zTm327743edbc');</script><noscript>Jan 1, 2011 at 4:16pm UTC</noscript></div>
+<div class="dwho"><a href="/user/blackcoder41/"><b>blackcoder41</b> (1426)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i181916">
+This guy tries one. <a href="http://cplusplus.com/forum/general/33594/#msg181779">http://cplusplus.com/forum/general/33594/#msg181779</a>
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn181916"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg182031"><span title="182031,34531,1023,38,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg182031" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm375cdd4f25" title="Sun, 02 Jan 2011 01:44:09 +0000"></span><script type="text/javascript">WhenId('CH_zTm375cdd4f25');</script><noscript>Jan 2, 2011 at 1:44am UTC</noscript></div>
+<div class="dwho"><a href="/user/Gene/"><b>Gene</b> (38)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i182031">
+@ moorecm<br>
+I was bored and tried that only to find this <a href="http://www.googleguide.com/">http://www.googleguide.com/</a> it is, and I qoute a<br>
+"online interactive tutorial and reference for experienced users, novices, and everyone in between"
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn182031"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg193492"><span title="193492,46368,1023,42,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg193492" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm2f7ad9ef08" title="Wed, 02 Feb 2011 22:19:04 +0000"></span><script type="text/javascript">WhenId('CH_zTm2f7ad9ef08');</script><noscript>Feb 2, 2011 at 10:19pm UTC</noscript></div>
+<div class="dwho"><a href="/user/pwnedu46/"><b>pwnedu46</b> (42)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i193492">
+While compiling to give to my instructor without reading the code (Joke intended), I have come to the conclusion that my compler is retarded... It says <div class="auto"><table class="snippet"><tr><td class="output"><pre><samp> `cout' is not a member of `std' </samp></pre></td></tr></table></div> and also a similar error message for all the cin lines.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn193492"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg193524"><span title="193524,42771,1023,468,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg193524" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmd6612009c1" title="Wed, 02 Feb 2011 23:48:56 +0000"></span><script type="text/javascript">WhenId('CH_zTmd6612009c1');</script><noscript>Feb 2, 2011 at 11:48pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Browni3141/"><b>Browni3141</b> (468)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i193524">
+That happened to me once when I accidentally put #incluse&lt;iostream&gt;<br>
+Actually, that was today.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn193524"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg193629"><span title="193629,17960,1023,867,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg193629" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm4021703e24" title="Thu, 03 Feb 2011 10:30:00 +0000"></span><script type="text/javascript">WhenId('CH_zTm4021703e24');</script><noscript>Feb 3, 2011 at 10:30am UTC</noscript></div>
+<div class="dwho"><a href="/user/tition/"><b>tition</b> (867)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i193629">
+Umm, actually your code is *not* eratosthenes' sieve; in fact, eratosthenes sieve method works *much* faster than your code, *however* consumes *much* more RAM. <br>
+<br>
+To make erathosthenes sieve, you make a boolean vector. A 0 entry in the vector indicates that the number with the corresponding index in the vector is prime, a 1 entry - that it is composite.<br>
+<br>
+You pick the first number P marked as prime that is not 1. <br>
+<br>
+Then you mark in a cycle all numbers divisible by P (no division here: just a for cycle is good).<br>
+<br>
+Then you pick the next number larger than P that is <del>not</del> marked as prime and repeat, and so on.<br>
+<br>
+<a href="http://en.wikipedia.org/wiki/Sieve_of_Eratosthenes">http://en.wikipedia.org/wiki/Sieve_of_Eratosthenes</a><br>
+<br>
+
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTmef653ffc29" title="Thu, 24 Mar 2011 01:23:16 +0000"></span><script type="text/javascript">WhenId('CH_zTmef653ffc29');</script><noscript>Mar 24, 2011 at 1:23am UTC</noscript></span>
+<span class="dbtn" id="CH_btn193629"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg193694"><span title="193694,19724,5119,4176,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg193694" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm1226bbcd07" title="Thu, 03 Feb 2011 15:40:57 +0000"></span><script type="text/javascript">WhenId('CH_zTm1226bbcd07');</script><noscript>Feb 3, 2011 at 3:40pm UTC</noscript></div>
+<div class="dwho"><a href="/user/TheRabbitologist/"><b>TheRabbitologist</b> (4176)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i193694">
+Look again at point 1.2, tition. This code is not necessarily the solution to the problem and I deliberately meant it not to be, although I admit I didn't state that I took some liberties with the primes algorithm. ;)<br>
+<br>
+I guess the cat's out of the bag, though. Time to mention it in the article.<br>
+<br>
+-Albatross
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm5f17428ffc" title="Thu, 03 Feb 2011 16:06:35 +0000"></span><script type="text/javascript">WhenId('CH_zTm5f17428ffc');</script><noscript>Feb 3, 2011 at 4:06pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn193694"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div id="CH_insNew"></div><div id="CH_subscription"></div><div class="rootedtNew"></div><div class="C_pages right">Pages: <span title="Current page">1</span><a href="/forum/articles/31015/2/">2</a><a href="/forum/articles/31015/3/">3</a></div><script type="text/javascript">new for_PostList(31015,1,19724,0,'CH_PostList','CH_subscription',false,'CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+<script type="text/javascript">
+    google_ad_client = "ca-pub-1444228343479937";
+    google_ad_slot = "9701143201";
+    google_ad_width = 728;
+    google_ad_height = 90;
+</script>
+<!-- leaderboard -->
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li><a href="/forum/beginner/"><b>Beginners</b></a></li><li><a href="/forum/windows/"><b>Windows Programming</b></a></li><li><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li><a href="/forum/general/"><b>General C++ Programming</b></a></li><li><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Farticles%2F31015%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

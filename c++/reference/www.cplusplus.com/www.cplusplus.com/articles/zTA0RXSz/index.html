@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>DLL Symbols - C++ Articles</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/articles/">Articles</a></li>
+<li class="here">DLL Symbols</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div id="I_content">
+<div class="C_art">
+<div id="I_author">Published by <b><a href="/user/closed_account_S6k9GNh0/" rel="author">closed account S6k9GNh0</a></b></div>
+<div id="I_date">Nov 5, 2009 (last update: Nov 9, 2009)</div>
+<h1>DLL Symbols</h1>
+<div id="I_score">Score: 3.6/5 (65 votes)</div>
+<div id="I_stars"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-half.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"></div>
+<div id="I_content">
+<i><b>What is a DLL?</b></i>
+A DLL is a dynamic-linking library. It acts as a shared object in which multiple programs can call the same DLL more than once.<br>
+<br>
+<i><b>Why use a DLL?</b></i>
+It's not much different from the concept of Linux shared objects and libraries. A little bit different in design though. In short terms, it saves space and allows extensive code reuse.<br>
+<br>
+<b><i>Facts about the DLL:</i></b>
+When a DLL is compiled, it's functions are referenced by symbols. These symbols directly relate to the functions name (the symbols are represented by visible and readable strings), its return type, and it's parameters. The symbols can actually be read directly through a text editor although difficult to find in large DLLs. These symbols may also be extracted using functions from the WinAPI. BREAKPOINT: Insert screenshot or example here. DEF files also come in use for reference although these maybe avoided. Also, with a DLL, an implementation exists. Using the DLL, we may generate a .lib file provided you have the DLL at least. Now using the symbols and the libary that you may generate from the DLL, you can actually create your own simple headers to call functions implicity from the DLL. Cool huh?<br>
+<br>
+<b><i>Why should I care?</i></b>
+Normally you wouldn't. It's often used in basic hacking. But it may also be used as a good reference and a good recovery tool, especially if you know how you designed the DLL. Say you have a DLL that you implemented a while back. It's simple, has four or five functions to it. But you no longer have the headers, the library, and you don't remember the function names. Using this method, you can easily recover all of this. Although this can also be true for DLLs that are not yours and weren't meant to have third-parties call. <br>
+<br>
+<b><i>I don't care about all that! I never implement DLLs anyways!</i></b>
+You say that, but in a sense you do. DLLs are very similar to a Windows executable file. As a result, you can actually load an executable and explicitly call an executable the same you do a DLL (thanks Null). You may also implecitly call a executable as well but we do that every time we make an executable. BREAKPOINT: Do executables use the symbol system?<br>
+<br>
+<b><i>Your a liar!</i></b>
+Oh yeah? When ever I tried making a UT2004 anti-cheat by manipulating the DLLs, I failed miserably and I noticed that a lot of people thought it was because you can't use this method as it doesn't work at all. Well, they are wrong! As a response to this, I will implement a basic DLL, delete any reference to it except the DLL itself, and recover everything use step by step instructions in this article. BREAKPOINT: Should I use C for clear symbols or C++ even though a little bit longer in steps?<br>
+<br>
+<b><i>The Process!</b></i>
+<br>
+The DLL to hack: <a href="http://computerquip.com/BasicDLL.dll">http://computerquip.com/BasicDLL.dll</a>
+<br>
+The process of doing this is simple. First we need to extract the public functions that are callable by the client. Now don't get me wrong guys, symbols are complex and they aren't there just for the exported functions. So as a result, we simply need to extract the functions we want which coincidentally are 90% of the time publicly exported functions. For example of all symbols:<br>
+<br>
+<a href="http://img38.imageshack.us/img38/7575/exportedsymbols.png">http://img38.imageshack.us/img38/7575/exportedsymbols.png</a> <br>
+<br>
+First we need to make a .DEF file. In MinGW, this is done using pexports which even gives it in a format compatible with DEF files. We can place it in a file using <span class="auto"><code class="source">pexports BasicDLL.dll</code></span>. In VC++ console you can use <span class="auto"><code class="source">dumpbin /exports</code></span> (I could have sworn  you could export def files with dumpbin) shown:<br>
+<br>
+<a href="http://img682.imageshack.us/img682/5596/symbols.png">http://img682.imageshack.us/img682/5596/symbols.png</a>
+This is just what I knew off hand. I spent nearly an hour yesterday getting my Windows environment setup without success. I was trying to avoid Code::Blocks but I guess that won't be the case.<br>
+<br>
+Though I've done a lot of research on how to hack into and take advantage of a common DLL, I don't know much about it's background or internals. I'm currently researching that and posting as I go.</div></div><div id="CH_bb"></div><div id="CH_scoreapp"></div><script type="text/javascript">new Score('CH_scoreapp','/articles/score.cgi','zTA0RXSz');</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder selected articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/articles/">Articles</a></b></h3>
+<ul>
+<li><a href="/articles/algorithms/">Algorithms</a></li><li><a href="/articles/cpp11/">C++ 11</a></li><li><a href="/articles/graphics/">Graphics and multimedia</a></li><li><a href="/articles/howto/">How-To</a></li><li><a href="/articles/language/">Language Features</a></li><li><a href="/articles/linux/">Unix/Linux programming</a></li><li><a href="/articles/sourcecode/">Source Code</a></li><li><a href="/articles/standard_library/">Standard Library</a></li><li><a href="/articles/tips/">Tips and Tricks</a></li><li><a href="/articles/tools/">Tools and Libraries</a></li><li><a href="/articles/visualcpp/">Visual C++</a></li><li><a href="/articles/winapi/">Windows API</a></li></ul>
+</div>
+<div id="I_subnav"></div>
+</div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Farticles%2FzTA0RXSz%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+onSession(function(us) {
+		document.getElementById('I_subnav').innerHTML=
+			us.ok?
+				'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul>'+
+				'<li><a href="/articles/myitems.cgi">My items</a></li>'+
+				(us.auth(32768)?'<li><a href="/articles/adminitems.cgi">Admin items</a></li>':'')+
+				'</ul></div>'
+			:'';
+	}); onSession(function (us) {
+		var el=document.getElementById('CH_bb'); el.innerHTML='';
+		if ( (us.auth(32768)) || ((us.uniqid=='S6k9GNh0')&&(us.auth(128))) ) {
+			el.appendChild(btn('Edit article','Edit this version of the article','edit','/articles/edit.cgi?a=zTA0RXSz'));
+	
+			if (us.auth(32768)) {
+				el.appendChild(btn('Delete article','Delete this article','delete','javascript:artdel()'));
+			}
+	
+		}
+	});
+	function artdel() { if (confirm('WARNING: You are about to delete this page. Confirm?')) window.location='/articles/delete.cgi?a=zTA0RXSz'; }
+	ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>std::vectors, not dynamic arrays! - C++ Articles</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/articles/">Articles</a></li>
+<li class="here">std::vectors, not dynamic arrays!</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div id="I_content">
+<div class="C_art">
+<div id="I_author">Published by <b><a href="/user/TheRabbitologist/" rel="author">TheRabbitologist</a></b></div>
+<div id="I_date">Dec 24, 2013 (last update: Jul 25, 2014)</div>
+<h1>std::vectors, not dynamic arrays!</h1>
+<div id="I_score">Score: 4.1/5 (99 votes)</div>
+<div id="I_stars"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"></div>
+<div id="I_content">
+Yo.<br>
+<br>
+This forum often sees questions about programs in which programmers would like to store a series of elements at runtime, but don't know how large the series will be ahead of time.<br>
+<br>
+The classic C solution to this problem involves dynamically allocating an array and "resizing" it as needed by allocating a new array and copying elements over from the previous one. However, such strategies can not only be cumbersome for newer programmers to implement but also require manual memory management which can open up risks of memory leaks.<br>
+<br>
+To this end, this article will introduce the Standard Template Library (STL) class template <a href="http://www.cplusplus.com/reference/vector/vector/size/"><tt>std::vector</tt></a> as a potential solution to the problem of resizable arrays. std::vectors offer member functions for most common tasks that involve array resizing, can serve in many cases as a drop-in replacement for arrays, and a handy size optimization for storing boolean values.<br>
+<br>
+This article may be easier to understand if you (the reader) are familiar with the following:<br>
+<ul>
+<li>The use of arrays (C or C++ style).<br>
+<li>The use of functions.<br>
+<li>The instantiation of classes and use of their members.<br>
+<li>The instantiation of class templates (optional).<br>
+</ul>
+<br>
+<h3>The Absolute Basics</h3>
+<br>
+A misconception that many beginners have is that std::vectors are like n-dimensional vectors from mathematics or physics. While this is an understandable misunderstanding, it's better to think of std::vector as a bit of code (a wrapper) that manages an array that can change its size.<br>
+<br>
+Let's begin with the creation of a vector. Like any element of the standard library, one needs to include a header to use vectors. The header in question is quite intuitively named: it's "vector".<br>
+<span class="auto"><code class="source"><dfn>#include &lt;vector&gt; </dfn></code></span>
+<br>
+<br>
+To instantiate a vector, all one needs to do is this:<br>
+<span class="auto"><code class="source">std::vector&lt;value_type&gt; variable_name;</code></span>
+<br>
+<br>
+This creates an empty vector. To have the vector start at a certain size, this will work as well:<br>
+<span class="auto"><code class="source">std::vector&lt;value_type&gt; variable_name(number_of_elements);</code></span>
+<br>
+<br>
+Each element in that vector will be initialized to its default value. If the programmer wishes to initialize them all to some value other than the default, then there is yet another option:<br>
+<span class="auto"><code class="source">std::vector&lt;value_type&gt; variable_name(number_of_elements, value);</code></span>
+<br>
+<br>
+The full list of ways to initialize a vector can be found <a href="http://www.cplusplus.com/reference/vector/vector/vector/">here</a>. <br>
+<br>
+Vectors can be used much like arrays can. They support the [] operator for element access much like arrays do (and their indices are the same, remember that the range of indices is [0,size-1]), and can therefore serve, in many cases, as drop-in replacements for arrays. One notation that doesn't work, however, is this:<br>
+<span class="auto"><code class="source">*(ptr_to_first_element_of_array_this_name_is_really_long+offset)</code></span>
+<br>
+<br>
+Just as a warning.<br>
+<br>
+<h3>A Selection of Member Functions</h3>
+<br>
+Vectors offer a member function to get the number of elements they contain, namely <a href="http://www.cplusplus.com/reference/vector/vector/size/"><tt>std::vector::size</tt></a>. Its return type, size_t, is an unsigned integer that is large enough to represent the size of any object in bytes. On 32-bit systems, it's at least 32 bits large. On 64-bit systems, it's at least 64.<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br></code></pre></td>
+<td class="source"><pre><code><var>for</var>(size_t i = 0; i &lt; a_vector.size(); ++i)
+    std::cout &lt;&lt; a_vector[i] &lt;&lt; std::endl;</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Alternatively, if you simply wish to test to see if the vector is empty, the <a href="http://www.cplusplus.com/reference/vector/vector/empty/"><tt>std::vector::empty</tt></a> function returns a bool that is true if the vector has no elements in it, and false otherwise.<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br></code></pre></td>
+<td class="source"><pre><code><var>if</var>(a_vector.empty())
+    std::cout &lt;&lt; <kbd>"The vector wishes to be an Equalist."</kbd> &lt;&lt; std::endl;
+<var>else</var>
+    std::cout &lt;&lt; <kbd>"This vector wishes to become Mendeleev."</kbd> &lt;&lt; std::endl;</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+In addition to the [] operator, vectors also provide the <a href="http://www.cplusplus.com/reference/vector/vector/at/"><tt>std::vector::at</tt></a> member function. It takes the same arguments as the operator and returns a reference just like the operator does. The difference, however, is that it checks to make sure that the provided index is less than the size of the vector. If it's not, it throws an exception, whereas the [] operator could literally do anything. Usually, it will either access memory that the program hasn't reserved, or cause a segmentation fault which will likely crash the program. at() is very slightly slower as a result, but easier to debug if something does go wrong.<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br></code></pre></td>
+<td class="source"><pre><code>a_vector[a_vector.size()]; <cite>//Herp. Undefined.</cite>
+a_vector.at(a_vector.size()); <cite>//Herp. Exception. </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+For convenience, vectors also provide functions to get the element at index 0 (the front of the vector) and the element at index size-1 (the back of the vector). They're intuitively named.<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br></code></pre></td>
+<td class="source"><pre><code>an_int_vector.front() = 3; <cite>//Sets the first element equal 5... I mean 3.</cite>
+a_char_vector.back() = <kbd>'\n'</kbd>; <cite>//Sets the last element equal to a newline. </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<br>
+Adding a new element to the end of a vector is quite easy. Vectors offer the <a href="http://www.cplusplus.com/reference/vector/vector/push_back/"><tt>std::vector::push_back</tt></a> function, which takes a single element that gets copied (or moved) onto the back (remember: back = largest index) of the vector, expanding it by one.<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br></code></pre></td>
+<td class="source"><pre><code>a_vector_of_ints.push_back(7); <cite>//Add 7 onto the end of the vector.</cite>
+a_vector_of_ints.push_back(3); <cite>//Add 3 onto the end of the vector, after 7.</cite>
+a_vector_of_ints.push_back(-2); <cite>//Add -2 onto the end of the vector, after 3. </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+.<br>
+<br>
+Similarly, vectors also have a <a href="http://www.cplusplus.com/reference/vector/vector/pop_back/"><tt>std::vector::pop_back</tt></a> function which takes no arguments and removes the last element of the vector, shrinking it by one. This destroys the removed element, if applicable.<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br></code></pre></td>
+<td class="source"><pre><code>a_vector_with_elements.pop_back(); <cite>//Remove the last element from the vector.</cite>
+a_vector_with_elements.pop_back(); <cite>//Remove the new last element from the vector. </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+.<br>
+<br>
+Clearing the vector of all its elements is also easy. One call to <a href="http://www.cplusplus.com/reference/vector/vector/clear/"><tt>std::vector::clear</tt></a> removes and destroys all the elements of a vector, setting its size to 0.<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br></code></pre></td>
+<td class="source"><pre><code>a_vector_with_elements.clear(); <cite>//Now a misnomer!</cite>
+<var>if</var>(!a_vector_with_elements.empty())
+    std::cout &lt;&lt; <kbd>"This line should never print."</kbd> &lt;&lt; std::endl;</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+To easily resize a vector, one can use <a href="http://www.cplusplus.com/reference/vector/vector/resize/"><tt>std::vector::resize</tt></a>. It takes two arguments, though the second has a default value. The first is the number of elements to resize the vector to. If this is smaller than the current size, then the extra elements at the end (greater indices) get destroyed. The second parameter is what to initialize the new elements to if the first argument is larger than the current size.<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br></code></pre></td>
+<td class="source"><pre><code>std::vector&lt;Bunny&gt; bunnies(20);
+bunnies.resize(50); <cite>//More bunnies!</cite>
+bunnies.resize(70, montyPythonKillerRabbit); <cite>//More killer bunnies!</cite>
+bunnies.resize(20); <cite>//Herp, ran out of carrots (and humans). </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+If there is ever a need to exchange the contents of vectors, there's another simple function in the form of <a href="http://www.cplusplus.com/reference/vector/vector/swap/"><tt>std::vector::swap</tt></a>. It takes a vector as an argument which is passed by reference, and the vectors have their contents exchanged. The vector passed in shouldn't, therefore, be const.<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br></code></pre></td>
+<td class="source"><pre><code>a_vector.swap(a_different_vector); <cite>//Vector contents are swapped.</cite>
+a_vector.swap(a_different_vector); <cite>//Vectors are back to the way they were.</cite>
+a_different_vector.swap(a_vector); <cite>//Same as line 1.</cite>
+a_different_vector.swap(a_vector); <cite>//Same as line 2. </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+These are not all the member functions of vectors. There are others that may be of interest some of those require some prerequisite knowledge about iterators. And that... is a topic for another article.<br>
+<br>
+<h3>vector&lt;bool&gt;</h3>
+<br>
+Vectors behave slightly differently when they're storing bools.<br>
+<br>
+Normally, a bool gets stored in one byte of memory. This is generally quite wasteful (8 bits used to store 1 bit), and implementations of the C++ standard library are allowed to internally change things to reduce wastefulness. This may have a trivial impact on performance.<br>
+<br>
+More importantly, this means that operator [], at(), front(), and back() do not actually return references to booleans (unless the vector is const). Instead, they return an instance of a member class that behaves in the same way as a bool reference would, namely <a href="http://www.cplusplus.com/reference/vector/vector-bool/reference/"><tt>std::vector&lt;bool&gt;:reference</tt></a>. While they can cast implicitly to bool, it is important to note that they are not bools. If you are doing anything with the &lt;type_traits&gt; header, this is critical.<br>
+<br>
+The reference class additionally provides the flip() member function to flip the value of the bool an instance refers to.<br>
+<span class="auto"><code class="source">bool_vec.at(3).flip();</code></span>
+<br>
+<br>
+Although iterators were not discussed in this document, for those who know about them, the iterators for this specialization are also different internally. Non-const iterators will return an instance of that reference class. Otherwise their behavior in normal use should be the same.<br>
+<br>
+Additionally, <a href="http://www.cplusplus.com/reference/vector/vector-bool/swap/"><tt>std::vector&lt;bool&gt;::swap</tt></a> gets an extra static version of itself with different functionality. This static version can be used to switch the values of two bits in std::vector&lt;bool&gt;s. Note that as arguments it takes the aforementioned bool references that std::vector uses, meaning that this is only really practical for swapping bit values within the same vector or between different vectors.<br>
+<span class="auto"><code class="source">vector_1::flip(vector_1.front(),vector_2.back()); <cite>//Switcheroo! </cite></code></span>
+<br>
+<br>
+Finally, one extra member function is added: <a href="http://www.cplusplus.com/reference/vector/vector-bool/flip/"><tt>std::vector&lt;bool&gt;::flip</tt></a>. Its only purpose is to flip all the values in the vector.<br>
+<span class="auto"><code class="source">a_vector_of_false_values.flip(); <cite>//Now a misnomer! </cite></code></span>
+<br>
+<br>
+If for any reason you don't want to use this specialization, consider using std::vector&lt;char&gt; instead and simply assign boolean values to its elements.<br>
+<br>
+<h3>In conclusion</h3>
+<br>
+Vectors are not a one-size fits all solution to sequential data storage, however they are quite capable as convenient resizable arrays.<br>
+<br>
+-Albatross<br>
+<br>
+<i>Technical fine print: This article is meant as a non-technical article suitable for beginning programmers, and to that end, may make assumptions about the template parameters used and may use technically imprecise language.</i>
+<br>
+<br>
+</div></div><div id="CH_bb"></div><div id="CH_scoreapp"></div><script type="text/javascript">new Score('CH_scoreapp','/articles/score.cgi','37Mf92yv');</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder selected articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/articles/">Articles</a></b></h3>
+<ul>
+<li><a href="/articles/algorithms/">Algorithms</a></li><li><a href="/articles/cpp11/">C++ 11</a></li><li><a href="/articles/graphics/">Graphics and multimedia</a></li><li><a href="/articles/howto/">How-To</a></li><li><a href="/articles/language/">Language Features</a></li><li><a href="/articles/linux/">Unix/Linux programming</a></li><li><a href="/articles/sourcecode/">Source Code</a></li><li><a href="/articles/standard_library/">Standard Library</a></li><li><a href="/articles/tips/">Tips and Tricks</a></li><li><a href="/articles/tools/">Tools and Libraries</a></li><li><a href="/articles/visualcpp/">Visual C++</a></li><li><a href="/articles/winapi/">Windows API</a></li></ul>
+</div>
+<div id="I_subnav"></div>
+</div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Farticles%2F37Mf92yv%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+onSession(function(us) {
+		document.getElementById('I_subnav').innerHTML=
+			us.ok?
+				'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul>'+
+				'<li><a href="/articles/myitems.cgi">My items</a></li>'+
+				(us.auth(32768)?'<li><a href="/articles/adminitems.cgi">Admin items</a></li>':'')+
+				'</ul></div>'
+			:'';
+	}); onSession(function (us) {
+		var el=document.getElementById('CH_bb'); el.innerHTML='';
+		if ( (us.auth(32768)) || ((us.uniqid=='N17f92yv')&&(us.auth(128))) ) {
+			el.appendChild(btn('Edit article','Edit this version of the article','edit','/articles/edit.cgi?a=37Mf92yv'));
+	
+			if (us.auth(32768)) {
+				el.appendChild(btn('Delete article','Delete this article','delete','javascript:artdel()'));
+			}
+	
+		}
+	});
+	function artdel() { if (confirm('WARNING: You are about to delete this page. Confirm?')) window.location='/articles/delete.cgi?a=37Mf92yv'; }
+	ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Begginers excercises  - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/beginner/">Beginners</a></li>
+<li class="here">Begginers excercises </li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico default" title="post">&nbsp;</div> Begginers excercises </h3><span id="CH_edttl"></span><div class="C_pages">Pages: <span title="Current page">1</span><a href="/forum/beginner/73868/2/">2</a></div><span class="rootdatPost" title="73868,root,0,-1,30,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg394928"><span title="394928,88521,1023,16,1"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg394928" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm6a8ba1bf39" title="Sat, 23 Jun 2012 12:18:36 +0000"></span><script type="text/javascript">WhenId('CH_zTm6a8ba1bf39');</script><noscript>Jun 23, 2012 at 12:18pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Yasar/"><b>Yasar</b> (16)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i394928">
+hello , i have started to do the beginners excercises , also if any1 could tell me if any of my codes are going wrong in any place it is much appreciated :)<br>
+<br>
+here is what i came up with when doing the grading programme :<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br></code></pre></td>
+<td class="source"><pre><code>        <var>int</var> grade=0;
+
+	cout &lt;&lt; <kbd>"Please type in grade from programming class i.e 0-100: "</kbd>;
+	cin &gt;&gt; grade;
+
+	<var>if</var> (grade==100)
+	{
+		cout &lt;&lt; <kbd>" you got a perfect score "</kbd>;
+	}
+	<var>else</var> <var>if</var> ((grade&gt;=90)
+	{
+		cout &lt;&lt; <kbd>" you got a grade A "</kbd>;
+	}
+	<var>else</var> <var>if</var> (grade&gt;=80)
+	{
+		cout &lt;&lt; <kbd>" you got a grade B "</kbd>;
+	}
+	<var>else</var> <var>if</var> (grade&gt;=70)
+	{
+		cout &lt;&lt; <kbd>" you got a grade C "</kbd>;
+	}
+	<var>else</var> <var>if</var> (grade&gt;=60)
+	{
+		cout &lt;&lt; <kbd>" you got a grade D "</kbd>;
+	}
+	<var>else</var> <var>if</var> (grade&gt;=0)
+	{
+		cout &lt;&lt; <kbd>" you got a grade F"</kbd> ;
+	} </code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+in regards to your question Moschops i think this code should surfice however i cant seem to get somthing that isnt a number to work but it works for unwanted numbers :<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br></code></pre></td>
+<td class="source"><pre><code>      <var>if</var> ((grade &lt;0) || (grade&gt;100))
+	{
+		cout &lt;&lt; <kbd>" you have typed in the wrong values please retype the values please : "</kbd>;
+		cin &gt;&gt; grade;
+	} </code></pre></td><td class="C_btnholder"></td></tr></table></div>
+ <br>
+a hint as to the direction of screening out non-numbers can be helpful 
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm78ffd77e1a" title="Sat, 23 Jun 2012 14:58:13 +0000"></span><script type="text/javascript">WhenId('CH_zTm78ffd77e1a');</script><noscript>Jun 23, 2012 at 2:58pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn394928"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg394929"><span title="394929,49329,1023,6375,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg394929" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm24eea10d52" title="Sat, 23 Jun 2012 12:27:57 +0000"></span><script type="text/javascript">WhenId('CH_zTm24eea10d52');</script><noscript>Jun 23, 2012 at 12:27pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Moschops/"><b>Moschops</b> (6375)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i394929">
+<span class="auto"><code class="source">((grade&gt;=90)</code></span><br>
+You've got an extra <span class="auto"><code class="source">(</code></span> there.<br>
+<br>
+To make it more advanced, what happens if someone enters a number greater than 100, or a negative number, or they enter something that isn't a number at all? Can you write code to handle that situation?
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn394929"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg394930"><span title="394930,88521,1023,16,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg394930" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm6150ebe34b" title="Sat, 23 Jun 2012 12:34:50 +0000"></span><script type="text/javascript">WhenId('CH_zTm6150ebe34b');</script><noscript>Jun 23, 2012 at 12:34pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Yasar/"><b>Yasar</b> (16)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i394930">
+i also have done the beverages excercise the if else style : <br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br></code></pre></td>
+<td class="source"><pre><code>        <var>int</var> beverage =0;
+
+	cout &lt;&lt; <kbd>" here are your choices of beverages: "</kbd> &lt;&lt; endl;
+	cout &lt;&lt; <kbd>" 1. water \n"</kbd> &lt;&lt; <kbd>" 2. coca cola \n"</kbd> &lt;&lt; <kbd>" 3. vimto \n"</kbd>
+                &lt;&lt; <kbd>" 4. Pespsi \n"</kbd> &lt;&lt; <kbd>"  5. Ribena \n"</kbd> ;
+	cout&lt;&lt; <kbd>"Please choose beverage: "</kbd> &lt;&lt; endl;
+	cin&gt;&gt; beverage;
+
+	<var>if</var> (beverage ==1)
+	{
+		cout &lt;&lt; <kbd>" here is your water "</kbd>;
+	}
+	<var>else</var> <var>if</var> (beverage ==2)
+	{
+		cout &lt;&lt; <kbd>" here is your: coca cola "</kbd> ; 
+	}
+	<var>else</var> <var>if</var> (beverage ==3)
+	{
+		cout &lt;&lt; <kbd>" here is your Vimto "</kbd>; 
+	}
+	<var>else</var> <var>if</var> (beverage ==4)
+	{
+		cout &lt;&lt; <kbd>" here is your Pepsi "</kbd> ; 
+	}
+	<var>else</var> <var>if</var> (beverage ==5)
+	{
+		cout &lt;&lt; <kbd>" here is your ribena "</kbd> ; 
+	}
+	<var>else</var> <var>if</var> ((beverage&gt;=6) || (beverage&lt;=100))
+	{
+		cout &lt;&lt; <kbd>" error choice is invalid here is your money back "</kbd> ;
+	}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+ <br>
+<br>
+i  have also done it in a switch statement style :<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br></code></pre></td>
+<td class="source"><pre><code>             <var>switch</var> (beverage){
+		<var>case</var> 1:
+			cout &lt;&lt; <kbd>" Water "</kbd>;
+			<var>break</var>;
+		<var>case</var> 2:
+			cout &lt;&lt; <kbd>" Coca Cola "</kbd>;
+			<var>break</var>;
+		<var>case</var> 3:
+			cout &lt;&lt; <kbd>" Vimto "</kbd>;
+			<var>break</var>;
+		<var>case</var> 4:
+			cout &lt;&lt; <kbd>" Pepsi "</kbd>;
+			<var>break</var>;
+		<var>case</var> 5: 
+			cout &lt;&lt; <kbd>" Ribena "</kbd>;
+			<var>break</var>;
+		<var>default</var>:
+			cout &lt;&lt; <kbd>" Error choice invalid, here is your money back. "</kbd>;
+			<var>break</var>;
+	}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm49b1eeaa32" title="Sat, 23 Jun 2012 16:08:09 +0000"></span><script type="text/javascript">WhenId('CH_zTm49b1eeaa32');</script><noscript>Jun 23, 2012 at 4:08pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn394930"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg394951"><span title="394951,88521,1023,16,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg394951" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm4090602ff4" title="Sat, 23 Jun 2012 13:55:22 +0000"></span><script type="text/javascript">WhenId('CH_zTm4090602ff4');</script><noscript>Jun 23, 2012 at 1:55pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Yasar/"><b>Yasar</b> (16)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i394951">
+here is the first part of while excercise :<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br></code></pre></td>
+<td class="source"><pre><code>   <var>while</var> (user !=5)
+	{
+		cout &lt;&lt; <kbd>" enter any number other than 5 "</kbd>;
+		cin &gt;&gt; user;
+	}
+
+	<var>if</var> (user ==5)
+	{
+		cout &lt;&lt; <kbd>" u wasn't supposed to enter 5 "</kbd>;
+	}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+the 2nd task :<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br></code></pre></td>
+<td class="source"><pre><code>    <var>for</var> (<var>int</var> limit=0; limit&lt;10; limit++)
+	{
+		cout &lt;&lt; <kbd>" enter any number other than 5 "</kbd>;
+		cin &gt;&gt; user;
+		
+		<var>if</var> (user ==5)
+		{
+			cout &lt;&lt; <kbd>" u wasn't supposed to enter 5 "</kbd>;<var>break</var>;
+		}
+	}
+
+	<var>if</var> (user != 5)
+	{
+		cout &lt;&lt; <kbd>" you are patient you win :) "</kbd>;
+	}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+here is the third task :<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br></code></pre></td>
+<td class="source"><pre><code>    <var>for</var> (limit=0; limit&lt;10; limit++)
+	{
+		cout &lt;&lt; <kbd>" enter any number other than 0 + 1 after each iteration "</kbd>;
+		cin &gt;&gt; user;
+		<var>if</var> (user==limit)
+		{
+			cout &lt;&lt; <kbd>" u wasn't supposed to enter "</kbd> &lt;&lt; limit;<var>break</var>;
+		}
+	}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm5ecff6757d" title="Sat, 23 Jun 2012 14:56:16 +0000"></span><script type="text/javascript">WhenId('CH_zTm5ecff6757d');</script><noscript>Jun 23, 2012 at 2:56pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn394951"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg394958"><span title="394958,88558,1023,709,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg394958" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmfd52913412" title="Sat, 23 Jun 2012 14:20:50 +0000"></span><script type="text/javascript">WhenId('CH_zTmfd52913412');</script><noscript>Jun 23, 2012 at 2:20pm UTC</noscript></div>
+<div class="dwho"><a href="/user/fg109/"><b>fg109</b> (709)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i394958">
+I started doing them two days ago.  I'm having real trouble with the tic-tac-toe exercise.  Can't figure out how to know when the player is about to win and have the computer block him/her without listing every winning combination.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn394958"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg394993"><span title="394993,88521,1023,16,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg394993" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm2dbcc47efa" title="Sat, 23 Jun 2012 16:05:38 +0000"></span><script type="text/javascript">WhenId('CH_zTm2dbcc47efa');</script><noscript>Jun 23, 2012 at 4:05pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Yasar/"><b>Yasar</b> (16)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i394993">
+here is the 1st task of the Pancack excercise :<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br></code></pre></td>
+<td class="source"><pre><code>  <var>const</var> <var>int</var> PAN = 10;
+            <var>int</var> Number_Eaten[PAN];
+
+<var>int</var> main()
+{
+	<var>int</var> max = 0;
+
+	<var>for</var> (<var>int</var> i=0; i&lt;PAN; i++)
+	{
+		cout &lt;&lt; <kbd>" How many pancakes you eat today "</kbd> ;
+		cin &gt;&gt; Number_Eaten[i];
+		
+		<var>if</var> (Number_Eaten[i]&gt;max)
+		{
+			max = Number_Eaten[i];
+		}
+	}
+	cout &lt;&lt; max;
+	
+	cin.get();
+
+	<var>return</var> 0;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+like this ? , i dont know why i didnt do that in the first place lol
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm83dd1fe83b" title="Mon, 25 Jun 2012 16:22:40 +0000"></span><script type="text/javascript">WhenId('CH_zTm83dd1fe83b');</script><noscript>Jun 25, 2012 at 4:22pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn394993"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg395188"><span title="395188,13114,1023,6281,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg395188" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm6396adc3ab" title="Sat, 23 Jun 2012 22:24:28 +0000"></span><script type="text/javascript">WhenId('CH_zTm6396adc3ab');</script><noscript>Jun 23, 2012 at 10:24pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Bazzy/"><b>Bazzy</b> (6281)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i395188">
+You should use a loop instead of all these cin/cout in the last program
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn395188"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg395189"><span title="395189,76212,1023,38,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg395189" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmc8dc25f91e" title="Sat, 23 Jun 2012 22:37:22 +0000"></span><script type="text/javascript">WhenId('CH_zTmc8dc25f91e');</script><noscript>Jun 23, 2012 at 10:37pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Torin/"><b>Torin</b> (38)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i395189">
+Where exactly are these beginner exercises?
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn395189"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg395194"><span title="395194,88654,1023,4208,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg395194" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm9e2fa62d09" title="Sat, 23 Jun 2012 22:53:42 +0000"></span><script type="text/javascript">WhenId('CH_zTm9e2fa62d09');</script><noscript>Jun 23, 2012 at 10:53pm UTC</noscript></div>
+<div class="dwho"><a href="/user/TheIdeasMan/"><b>TheIdeasMan</b> (4208)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i395194">
+Hi all,<br>
+<br>
+Here are some things I have noticed:<br>
+<br>
+Switch statements are much better than a long list of else if's, as long as the case expressions are constant ( which is the case here - the beverages program).<br>
+<br>
+The grades program relies on the order of the else if statements, the program could be broken if this is messed up somehow - can you think of a better way to do it? Hint: You might need to do two tests to determine the grade ( although these can both be done in 1 line of code).<br>
+<br>
+TheIdeasMan
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTmfb46ccf4d1" title="Sat, 23 Jun 2012 22:59:33 +0000"></span><script type="text/javascript">WhenId('CH_zTmfb46ccf4d1');</script><noscript>Jun 23, 2012 at 10:59pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn395194"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg395217"><span title="395217,88558,1023,709,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg395217" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmdd548851af" title="Sun, 24 Jun 2012 00:02:54 +0000"></span><script type="text/javascript">WhenId('CH_zTmdd548851af');</script><noscript>Jun 24, 2012 at 12:02am UTC</noscript></div>
+<div class="dwho"><a href="/user/fg109/"><b>fg109</b> (709)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i395217">
+Beginner Exercises:<br>
+<a href="http://www.cplusplus.com/forum/articles/12974/">http://www.cplusplus.com/forum/articles/12974/</a><br>
+<br>
+The beverages program can be even shorter if a string array was used.  Then there would be no need for any selection structures.<br>
+<br>
+And for the grade program, I guess you can say it would be broken if the user enters a negative number.  I have mine as a switch statement because I divide the inputted score by 10 (which leaves me an integer from 0 to 10).<br>
+<br>
+This is my code for the guessing game:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br></code></pre></td>
+<td class="source"><pre><code><cite>// This program is supposed to guess a number you picked. //</cite>
+
+<dfn>#include &lt;iostream&gt;</dfn>
+<dfn>#include &lt;stdio.h&gt;</dfn>
+<dfn>#include &lt;time.h&gt;</dfn>
+
+<var>using</var> <var>namespace</var> std;
+
+<var>int</var> main(<var>void</var>)
+{
+	<var>int</var> Guess = 50, Min = 0, Max = 100, Tries = 0, Response;
+	
+	cout &lt;&lt; <kbd>"Think of a number between 1 and 100.\n"</kbd>;
+	cout &lt;&lt; <kbd>"I'll guess it in 7 tries or less.\n"</kbd>;
+	cout &lt;&lt; <kbd>"Press ENTER when you're ready.\n"</kbd>;
+	
+	cin.ignore();
+	
+	cout &lt;&lt; <kbd>"Press 0 if correct, 1 if too high, 2 if too low.\n"</kbd>;
+	
+	<var>while</var> (<var>true</var>)
+	{
+		Tries++;
+		cout &lt;&lt; <kbd>"\nIs it "</kbd> &lt;&lt; Guess &lt;&lt; <kbd>"? "</kbd>;
+		cin &gt;&gt; Response;
+		<var>if</var> (Response == 0)
+			<var>break</var>;
+		<var>else</var>
+		{
+			<var>if</var> (Response == 1)
+			{
+				Max = Guess - 1;
+				Guess = (Max + Min) / 2;
+			}
+			<var>else</var>
+			{
+				Min = Guess + 1;
+				Guess = (Max + Min) / 2;
+			}
+		}
+		
+	}
+	
+	cin.ignore();	<cite>//eat the '\n'</cite>
+	
+	cout &lt;&lt; <kbd>"\n\nI told you!  I guessed it in "</kbd> &lt;&lt; Tries &lt;&lt; <kbd>" tries!"</kbd>;
+	
+	cout &lt;&lt; <kbd>"\n\nPress ENTER to exit the program."</kbd>;
+	cin.ignore( numeric_limits&lt;streamsize&gt;::max(), <kbd>'\n'</kbd> );
+	<var>return</var> 0;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+And this is my code for the tic-tac-toe game:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br>59<br>60<br>61<br>62<br>63<br>64<br>65<br>66<br>67<br>68<br>69<br>70<br>71<br>72<br>73<br>74<br>75<br>76<br>77<br>78<br>79<br>80<br>81<br>82<br>83<br>84<br>85<br>86<br>87<br>88<br>89<br>90<br>91<br>92<br>93<br>94<br>95<br>96<br>97<br>98<br>99<br>100<br>101<br>102<br>103<br>104<br>105<br>106<br>107<br>108<br>109<br>110<br>111<br>112<br>113<br>114<br>115<br>116<br>117<br>118<br>119<br>120<br>121<br>122<br>123<br>124<br>125<br>126<br>127<br>128<br>129<br>130<br>131<br>132<br>133<br>134<br>135<br>136<br>137<br>138<br>139<br>140<br>141<br>142<br>143<br>144<br>145<br>146<br>147<br>148<br>149<br>150<br>151<br>152<br>153<br>154<br>155<br>156<br>157<br>158<br>159<br>160<br>161<br>162<br>163<br>164<br>165<br>166<br>167<br>168<br>169<br>170<br>171<br>172<br>173<br>174<br>175<br>176<br>177<br>178<br>179<br>180<br>181<br>182<br>183<br>184<br>185<br>186<br>187<br>188<br>189<br>190<br>191<br></code></pre></td>
+<td class="source"><pre><code><cite>//A poorly made tic tac toe game</cite>
+
+<dfn>#include &lt;iostream&gt;</dfn>
+<dfn>#include &lt;stdlib.h&gt;</dfn>
+<dfn>#include &lt;time.h&gt;</dfn>
+<dfn>#include &lt;string.h&gt;</dfn>
+
+<var>using</var> <var>namespace</var> std;
+
+<var>void</var> ClearBoard();
+<var>void</var> ShowBoard();
+<var>void</var> PlayerMove();
+<var>void</var> CompMove();
+<var>bool</var> IsValidMove(<var>int</var> Move);
+<var>bool</var> IsGameOver();
+
+<var>char</var> Board[3][4];
+
+<var>int</var> main()
+{
+    <var>char</var> PlayAgain;
+    <var>do</var>
+    {
+        ClearBoard();
+        <var>for</var> (<var>int</var> Turn = 0; !IsGameOver(); Turn++)
+        {
+            ShowBoard();
+            <var>if</var> (Turn &gt;= 9)
+            {
+                cout &lt;&lt; <kbd>"Cat's game.  It's a tie."</kbd>;
+                <var>break</var>;
+            }
+            <var>else</var> <var>if</var> (Turn % 2)
+            {
+                CompMove();
+            }
+            <var>else</var>
+            {
+                PlayerMove();
+            }
+        }
+        cout &lt;&lt; <kbd>"\n\nPlay again? (Y/N) "</kbd>;
+        cin &gt;&gt; PlayAgain;
+    } <var>while</var> (PlayAgain == <kbd>'Y'</kbd> || PlayAgain == <kbd>'y'</kbd>);
+    <var>return</var> 0;
+}
+
+<var>void</var> ClearBoard()
+{
+    <var>char</var> NewBoard[][4] = {<kbd>"123"</kbd>, <kbd>"456"</kbd>, <kbd>"789"</kbd>};
+    <var>for</var> (<var>int</var> i = 0; i &lt; 3; i++)
+        <var>for</var> (<var>int</var> j = 0; j &lt; 3; j++)
+            Board[i][j] = NewBoard[i][j];
+}
+
+<var>void</var> ShowBoard()
+{
+    cout &lt;&lt; string(25, <kbd>'\n'</kbd>);
+    <var>for</var> (<var>int</var> i = 0; i &lt; 3; i++)
+    {
+        cout &lt;&lt; <kbd>"\t"</kbd>;
+        <var>for</var> (<var>int</var> j = 0; j &lt; 3; j++)
+        {
+            cout &lt;&lt; <kbd>' '</kbd> &lt;&lt; Board[i][j] &lt;&lt; <kbd>' '</kbd>;
+        }
+        cout &lt;&lt; <kbd>'\n'</kbd> &lt;&lt; endl;
+    }
+    cout &lt;&lt; string(5, <kbd>'\n'</kbd>);
+}
+
+<var>void</var> PlayerMove()
+{
+    <var>int</var> PMove;
+    cout &lt;&lt; <kbd>"Player's move: "</kbd>;
+    cin &gt;&gt; PMove;
+    PMove--;
+    <var>while</var> (!IsValidMove(PMove))
+    {
+        cout &lt;&lt; <kbd>"\nInvalid move.  Try again."</kbd>;
+        cin.clear();
+        cin.sync();
+        cin.ignore();
+        ShowBoard();
+        cout &lt;&lt; <kbd>"Player's move: "</kbd>;
+        cin &gt;&gt; PMove;
+        PMove--;
+    }
+    Board[PMove / 3][PMove % 3] = <kbd>'X'</kbd>;
+}
+
+<var>void</var> CompMove()
+{
+    <var>int</var> CMove = -1;
+    <var>for</var> (<var>int</var> i = 0; i &lt; 3; i++)
+    {
+        <cite>//Obviously not all 3 are the same, or else the game would be over</cite>
+        <cite>//But just because it's not the same, does not mean it's a free spot</cite>
+        <var>if</var> (Board[i][0] == Board[i][1] &amp;&amp; Board[i][2] &lt; 64) <cite>//check the rows</cite>
+            CMove = 3 * i + 2;
+        <var>else</var> <var>if</var> (Board[i][0] == Board[i][2] &amp;&amp; Board[i][1] &lt; 64)
+            CMove = 3 * i + 1;
+        <var>else</var> <var>if</var> (Board[i][1] == Board[i][2] &amp;&amp; Board[i][0] &lt; 64)
+            CMove = 3 * i;
+        <var>else</var> <var>if</var> (Board[0][i] == Board[1][i] &amp;&amp; Board[2][i] &lt; 64) <cite>//check the columns</cite>
+            CMove = 3 * 2 + i;
+        <var>else</var> <var>if</var> (Board[0][i] == Board[2][i] &amp;&amp; Board[1][i] &lt; 64)
+            CMove = 3 * 1 + i;
+        <var>else</var> <var>if</var> (Board[1][i] == Board[2][i] &amp;&amp; Board[0][i] &lt; 64)
+            CMove = 3 * 0 + i;
+    }
+    <cite>//check the diagonals</cite>
+    <var>if</var> (CMove &lt; 0)
+    {
+        <var>if</var> (Board[0][0] == Board[2][2] &amp;&amp; Board[1][1] &lt; 64)
+            CMove = 4;
+        <var>else</var> <var>if</var> (Board[0][2] == Board[2][0] &amp;&amp; Board[1][1] &lt; 64)
+            CMove = 4;
+        <var>else</var> <var>if</var> (Board[1][1] == Board[2][2] &amp;&amp; Board[0][0] &lt; 64)
+            CMove = 0;
+        <var>else</var> <var>if</var> (Board[2][0] == Board[1][1] &amp;&amp; Board[0][2] &lt; 64)
+            CMove = 2;
+        <var>else</var> <var>if</var> (Board[0][2] == Board[1][1] &amp;&amp; Board[2][0] &lt; 64)
+            CMove = 6;
+        <var>else</var> <var>if</var> (Board[0][0] == Board[1][1] &amp;&amp; Board[2][2] &lt; 64)
+            CMove = 8;
+    }
+    <cite>//occupy center if free</cite>
+    <var>if</var> (CMove &lt; 0 &amp;&amp; Board[1][1] &lt; 64)
+        CMove = 4;
+    <var>if</var> (CMove &lt; 0)
+    {
+        <var>int</var> FreeTiles = 0;
+        <var>for</var> (<var>int</var> i = 0; i &lt; 3; i++)
+        {
+            <var>for</var> (<var>int</var> j = 0; j &lt; 3; j++)
+            {
+                <var>if</var> (Board[i][j] &lt; 64)
+                    FreeTiles++;
+            }
+        }
+        srand(time(NULL));
+        CMove = rand() % FreeTiles;
+        <var>while</var> (!IsValidMove(CMove))
+        {
+            <var>if</var> (CMove == 8)
+                CMove = 0;
+            <var>else</var>
+                CMove++;
+        }
+    }
+    Board[CMove / 3][CMove % 3] = <kbd>'O'</kbd>;
+}
+
+<var>bool</var> IsValidMove(<var>int</var> Move)
+{
+    <var>return</var> (Board[Move / 3][Move % 3] &lt; 64);
+}
+
+<var>bool</var> IsGameOver()
+{
+    <var>if</var> ((Board[1][1] == Board[0][0] &amp;&amp; Board[1][1] == Board[2][2])
+      || (Board[1][1] == Board[0][2] &amp;&amp; Board[1][1] == Board[2][0]))
+    {
+        <var>if</var> (Board[1][1] == <kbd>'X'</kbd>)
+            cout &lt;&lt; <kbd>"Player wins!"</kbd>;
+        <var>else</var>
+            cout &lt;&lt; <kbd>"Computer wins!"</kbd>;
+        <var>return</var> <var>true</var>;
+    }
+    <var>else</var>
+        <var>for</var> (<var>int</var> i = 0; i &lt; 3; i++)
+        {
+            <var>if</var> (Board[i][0] == Board[i][1] &amp;&amp; Board[i][0] == Board[i][2])
+            {
+                <var>if</var> (Board[i][0] == <kbd>'X'</kbd>)
+                    cout &lt;&lt; <kbd>"Player wins!"</kbd>;
+                <var>else</var>
+                    cout &lt;&lt; <kbd>"Computer wins!"</kbd>;
+                <var>return</var> <var>true</var>;
+            }
+            <var>else</var> <var>if</var> (Board[0][i] == Board[1][i] &amp;&amp; Board[0][i] == Board[2][i])
+            {
+                <var>if</var> (Board[0][i] == <kbd>'X'</kbd>)
+                    cout &lt;&lt; <kbd>"Player wins!"</kbd>;
+                <var>else</var>
+                    cout &lt;&lt; <kbd>"Computer wins!"</kbd>;
+                <var>return</var> <var>true</var>;
+            }
+        }
+    <var>return</var> <var>false</var>;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+I haven't finished the dungeon crawl game yet.  I think I will need to learn to create and use classes first.
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm3611ddb00c" title="Sun, 24 Jun 2012 00:05:17 +0000"></span><script type="text/javascript">WhenId('CH_zTm3611ddb00c');</script><noscript>Jun 24, 2012 at 12:05am UTC</noscript></span>
+<span class="dbtn" id="CH_btn395217"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg395299"><span title="395299,88558,1023,709,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg395299" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm04a5392ae9" title="Sun, 24 Jun 2012 06:43:41 +0000"></span><script type="text/javascript">WhenId('CH_zTm04a5392ae9');</script><noscript>Jun 24, 2012 at 6:43am UTC</noscript></div>
+<div class="dwho"><a href="/user/fg109/"><b>fg109</b> (709)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i395299">
+I've spent the past two hours working on the dungeon crawler game, but there is a bug that I can't figure out.<br>
+<br>
+The program doesn't respond to player control correctly.  For example, I tell it to go right, but it goes up.  I tell it to up, and it goes to the lower right.  But sometimes it works correctly.<br>
+<br>
+I have no idea which part of my code is responsible for it.  Below is all of the code for the program.  The lines relevant to player input is 120 to 151.<br>
+<br>
+EDIT:  I figured it out...  I didn't initialize the a and b variables in the function that controls the player.  That meant it worked fine when I was moving diagonally, because I was setting both their values since I was moving in two axes.  But when I was moving in a single axis, I was only setting one variable and ignoring the other one, which means it had random garbage and led to unpredictable movement.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br>59<br>60<br>61<br>62<br>63<br>64<br>65<br>66<br>67<br>68<br>69<br>70<br>71<br>72<br>73<br>74<br>75<br>76<br>77<br>78<br>79<br>80<br>81<br>82<br>83<br>84<br>85<br>86<br>87<br>88<br>89<br>90<br>91<br>92<br>93<br>94<br>95<br>96<br>97<br>98<br>99<br>100<br>101<br>102<br>103<br>104<br>105<br>106<br>107<br>108<br>109<br>110<br>111<br>112<br>113<br>114<br>115<br>116<br>117<br>118<br>119<br>120<br>121<br>122<br>123<br>124<br>125<br>126<br>127<br>128<br>129<br>130<br>131<br>132<br>133<br>134<br>135<br>136<br>137<br>138<br>139<br>140<br>141<br>142<br>143<br>144<br>145<br>146<br>147<br>148<br>149<br>150<br>151<br>152<br>153<br>154<br>155<br>156<br>157<br>158<br>159<br>160<br>161<br>162<br>163<br>164<br>165<br>166<br>167<br>168<br>169<br>170<br>171<br>172<br>173<br>174<br>175<br>176<br>177<br>178<br>179<br>180<br>181<br>182<br>183<br>184<br>185<br>186<br>187<br>188<br>189<br>190<br>191<br>192<br>193<br>194<br>195<br>196<br>197<br>198<br>199<br>200<br>201<br>202<br>203<br>204<br>205<br>206<br>207<br>208<br>209<br>210<br>211<br>212<br>213<br>214<br>215<br>216<br>217<br>218<br>219<br>220<br>221<br>222<br>223<br></code></pre></td>
+<td class="source"><pre><code><cite>//WIP: Dungeon Crawler Game</cite>
+
+<dfn>#include &lt;iostream&gt;</dfn>
+<dfn>#include &lt;stdlib.h&gt;</dfn>
+<dfn>#include &lt;time.h&gt;</dfn>
+<dfn>#include &lt;vector&gt;</dfn>
+
+<dfn>#define HEIGHT 10</dfn>
+<dfn>#define WIDTH 10</dfn>
+
+<var>using</var> <var>namespace</var> std;
+
+<var>class</var> MapObject
+{
+    <var>public</var>:
+        <var>int</var> x, y;
+        <var>char</var> icon;
+        MapObject(<var>int</var> type);
+        <var>void</var> MoveRandom();
+        <var>bool</var> MovePlayer(<var>int</var> PMove);
+};
+
+<var>void</var> NewMap();
+<var>void</var> DisplayMap();
+<var>bool</var> IsGameOver();
+<var>bool</var> IsValid(<var>int</var> x, <var>int</var> y);
+<var>int</var> IsOccupied(<var>int</var> x, <var>int</var> y);
+
+<var>int</var> Map[HEIGHT][WIDTH];
+
+<var>int</var> main()
+{
+    <var>int</var> PMove;
+    <var>char</var> PlayAgain;
+    <var>do</var>
+    {
+        <cite>//Set up for a new game</cite>
+        srand(time(NULL));
+        NewMap();
+        
+        <cite>//Create the player and other 'sprites'</cite>
+        vector&lt;MapObject&gt; MySprites;
+        MySprites.push_back(MapObject(80));    <cite>//80 is the ascii code for 'P'</cite>
+        MySprites.push_back(MapObject(88));    <cite>//88 is the ascii code for 'X'</cite>
+        <var>for</var> (<var>int</var> i = rand() % 3 + 2; i &gt; 0; i--)
+        {
+            MySprites.push_back(MapObject(84));    <cite>//84 is the ascii code for 'T'</cite>
+        }
+        <var>for</var> (<var>int</var> i = rand() % 3 + 2; i &gt; 0; i--)
+        {
+            MySprites.push_back(MapObject(69));    <cite>//69 is the ascii code for 'E'</cite>
+        }
+        vector&lt;MapObject&gt;::size_type VecSize = MySprites.size();
+        DisplayMap();
+        
+        <cite>//Loop until the game is over</cite>
+        <var>do</var>
+        {
+            std::cout &lt;&lt; std::string(4, <kbd>'\n'</kbd>);
+            <cite>//Loop until we get some valid input</cite>
+            <var>do</var>
+            {
+                std::cout &lt;&lt; std::endl &lt;&lt; <kbd>"Enter a number to move (check your numpad): "</kbd>;
+                cin &gt;&gt; PMove;
+            } <var>while</var> (!MySprites[0].MovePlayer(PMove));
+            <cite>//Move the enemies</cite>
+            <var>for</var> (<var>int</var> i = 1; i &lt; VecSize; i++)
+            {
+                MySprites[i].MoveRandom();
+            }
+            DisplayMap();
+        } <var>while</var> (!IsGameOver());
+        cout &lt;&lt; <kbd>"Play again? (Y/N) "</kbd>;
+        cin &gt;&gt; PlayAgain;
+    } <var>while</var> (PlayAgain == <kbd>'Y'</kbd> || PlayAgain == <kbd>'y'</kbd>);
+    <var>return</var> 0;
+}
+
+<cite>//Constructor for map object class</cite>
+MapObject::MapObject(<var>int</var> type)
+{
+    icon = type;
+    <var>do</var>
+    {
+        x = rand() % WIDTH;
+        y = rand() % HEIGHT;
+    } <var>while</var> (IsOccupied(x, y));
+    Map[y][x] += type - 42;
+}
+
+<cite>//Map object function to move to a random adjacent spot</cite>
+<var>void</var> MapObject::MoveRandom()
+{
+    <cite>//return if not enemy object</cite>
+    <var>if</var> (icon != 69)
+        <var>return</var>;
+    
+    <cite>//count and store available spots</cite>
+    <var>int</var> GoodSpots = 0, PosX[8], PosY[8];
+    <var>for</var> (<var>int</var> i = y - 1; i &lt; y + 2; i++)
+        <var>for</var> (<var>int</var> j = x - 1; j &lt; x + 2; j++)
+            <var>if</var> (IsValid(j, i))
+                <var>if</var> (IsOccupied(j, i) &lt; 2)
+                {
+                    PosX[GoodSpots] = j;
+                    PosY[GoodSpots] = i;
+                    GoodSpots++;
+                }
+    <cite>//pick one of the available spots</cite>
+    <cite>//and 'move' to it</cite>
+    <var>int</var> MyPos = rand() % GoodSpots;
+    Map[PosY[MyPos]][PosX[MyPos]] += 69 - 42;
+    Map[y][x] -= 69 - 42;
+    x = PosX[MyPos];
+    y = PosY[MyPos];
+}
+
+<cite>//Function that handles the player input</cite>
+<cite>//Only returns true if the player can move to the indicated spot</cite>
+<var>bool</var> MapObject::MovePlayer(<var>int</var> PMove)
+{
+    <var>int</var> a, b;
+    
+    <cite>//return if not player...</cite>
+    <var>if</var> (icon != 80)
+        <var>return</var> <var>false</var>;
+    
+    <cite>//check for valid input</cite>
+    <var>if</var> (PMove &lt; 1 || PMove &gt; 9 || PMove == 5)
+        <var>return</var> <var>false</var>;
+    
+    <cite>//change the input to coordinates</cite>
+    <var>if</var> (PMove &gt; 6)
+        b = y - 1;
+    <var>else</var> <var>if</var> (PMove &lt; 4)
+        b = y + 1;
+    
+    <var>if</var> (PMove % 3 == 0)
+        a = x + 1;
+    <var>else</var> <var>if</var> (PMove % 3 == 1)
+        a = x - 1;
+    
+    <var>if</var> (!IsValid(a, b))
+        <var>return</var> <var>false</var>;
+    
+    Map[b][a] += 80 - 42;
+    Map[y][x] -= 80 - 42;
+    x = a;
+    y = b;
+    <var>return</var> <var>true</var>;
+}
+
+<cite>//Clears the 'map', resetting it to default</cite>
+<var>void</var> NewMap()
+{
+    <var>for</var> (<var>int</var> i = 0; i &lt; HEIGHT; i++)
+        <var>for</var> (<var>int</var> j = 0; j &lt; WIDTH; j++)
+            Map[i][j] = 42;
+}
+
+<cite>//Displays the 'map' on the screen</cite>
+<var>void</var> DisplayMap()
+{
+    <var>char</var> ch;
+    std::cout &lt;&lt; std::string(50, <kbd>'\n'</kbd>);
+    <var>for</var> (<var>int</var> i = 0; i &lt; HEIGHT; i++)
+    {
+        std::cout &lt;&lt; <kbd>"\t"</kbd>;
+        <var>for</var> (<var>int</var> j = 0; j &lt; WIDTH; j++)
+        {
+            ch = Map[i][j];
+            std::cout &lt;&lt; <kbd>" "</kbd> &lt;&lt; ch &lt;&lt; <kbd>" "</kbd>;
+        }
+        std::cout &lt;&lt; std::endl;
+    }
+}
+
+<cite>//Checks if the game is over</cite>
+<cite>//Outputs appropriate messages</cite>
+<var>bool</var> IsGameOver()
+{
+    <var>for</var> (<var>int</var> i = 0; i &lt; HEIGHT; i++)
+        <var>for</var> (<var>int</var> j = 0; j &lt; WIDTH; j++)
+            <var>if</var> (Map[i][j] &gt; 100)
+            {
+                <var>if</var> (Map[i][j] == 80 + 88 - 42)
+                    std::cout &lt;&lt; <kbd>"\n\nYou won!  "</kbd>;
+                <var>else</var> <var>if</var> (Map[i][j] == 80 + 84 - 42)
+                    std::cout &lt;&lt; <kbd>"\n\nWatch out for those traps!  "</kbd>;
+                <var>else</var>
+                    std::cout &lt;&lt; <kbd>"\n\nYou were eaten!  "</kbd>;
+                <var>return</var> <var>true</var>;
+            }
+    <var>return</var> <var>false</var>;
+}
+
+<cite>//Check if the coordinates are within the bounds of the map</cite>
+<var>bool</var> IsValid(<var>int</var> x, <var>int</var> y)
+{
+    <var>if</var> (x &gt;= WIDTH || x &lt; 0 || y &gt;= HEIGHT || y &lt; 0)
+        <var>return</var> <var>false</var>;
+    <var>else</var>
+        <var>return</var> <var>true</var>;
+}
+
+<cite>//Check if the coordinates are occupied</cite>
+<cite>//returns an int indicating occupied by what</cite>
+<var>int</var> IsOccupied(<var>int</var> x, <var>int</var> y)
+{
+    <var>switch</var> (Map[y][x])
+    {
+        <var>case</var> 80:    <cite>//'P' for player</cite>
+            <var>return</var> 1;
+        <var>case</var> 69:    <cite>//'E' for enemy</cite>
+            <var>return</var> 2;
+        <var>case</var> 84:    <cite>//'T' for trap</cite>
+            <var>return</var> 3;
+        <var>case</var> 88:    <cite>//'X' for goal</cite>
+            <var>return</var> 4;
+        <var>default</var>:
+            <var>return</var> 0;
+    }
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm083811665f" title="Sun, 24 Jun 2012 07:14:16 +0000"></span><script type="text/javascript">WhenId('CH_zTm083811665f');</script><noscript>Jun 24, 2012 at 7:14am UTC</noscript></span>
+<span class="dbtn" id="CH_btn395299"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg395312"><span title="395312,88654,1023,4208,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg395312" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmc9c9b0c952" title="Sun, 24 Jun 2012 08:29:20 +0000"></span><script type="text/javascript">WhenId('CH_zTmc9c9b0c952');</script><noscript>Jun 24, 2012 at 8:29am UTC</noscript></div>
+<div class="dwho"><a href="/user/TheIdeasMan/"><b>TheIdeasMan</b> (4208)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i395312">
+<table class="quote"><tr><td class="qd">And for the grade program, I guess you can say it would be broken if the user enters a negative number. I have mine as a switch statement because I divide the inputted score by 10 (which leaves me an integer from 0 to 10).</td></tr></table><br>
+<br>
+Dividing by 10 might seem aggod idea, but what if things change in the future?<br>
+<br>
+Imagine the school wants to give addittional grades like A+,A-, B+, B-, C+,C-.<br>
+Dividing by 20 now, and the code is tarting to be messy.<br>
+<br>
+So, see if you can work out a better way given my clue in an earlier post.<br>
+<br>
+<table class="quote"><tr><td class="qd">Hint: You might need to do two tests to determine the grade ( although these can both be done in 1 line of code).</td></tr></table><br>
+<br>
+TheIdeasMan
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn395312"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg395816"><span title="395816,88521,1023,16,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg395816" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmb280154bab" title="Mon, 25 Jun 2012 16:17:36 +0000"></span><script type="text/javascript">WhenId('CH_zTmb280154bab');</script><noscript>Jun 25, 2012 at 4:17pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Yasar/"><b>Yasar</b> (16)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i395816">
+here is the 2nd task for the pancake excercise i had to find the min value as well as max :<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br></code></pre></td>
+<td class="source"><pre><code> <var>int</var> Number_Eaten[PAN];
+
+<var>int</var> main()
+{
+	<var>int</var> max = Number_Eaten[PAN];
+	<var>int</var> min = Number_Eaten[PAN];
+	
+	<var>for</var> (<var>int</var> i=0; i&lt;PAN; i++)
+	{
+		cout &lt;&lt; <kbd>"How many pancakes you eat today "</kbd>;
+		cin &gt;&gt; Number_Eaten[i];
+		
+		<var>if</var> (Number_Eaten[i] &gt; max)
+		{
+			max = Number_Eaten[i];
+		}
+		<var>else</var> <var>if</var> (Number_Eaten[i] &lt; min)
+		{
+			min = Number_Eaten[i];
+		}
+
+	}
+	cout &lt;&lt; max &lt;&lt; endl;
+	cout &lt;&lt; min;</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+the min algorith seems sound to me however i cannot get it to work <br>
+any pointers as to what is going wrong would be appreciated :)
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn395816"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg395840"><span title="395840,88521,1023,16,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg395840" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmec90d28cae" title="Mon, 25 Jun 2012 16:56:22 +0000"></span><script type="text/javascript">WhenId('CH_zTmec90d28cae');</script><noscript>Jun 25, 2012 at 4:56pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Yasar/"><b>Yasar</b> (16)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i395840">
+i have done the first task for the bracket search excercise if u see anything <br>
+that i can improve upon let me know :)<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br></code></pre></td>
+<td class="source"><pre><code> <var>int</var> main()
+{
+	<var>int</var> guess=0;
+	<var>int</var> user =0;
+
+	srand( time(NULL) );
+
+	guess = rand() % 100 + 1;
+
+	<var>while</var>(user != guess)
+	{
+		cout &lt;&lt; <kbd>" Guess the number from 1 - 100 : "</kbd>;
+		cin &gt;&gt; user;
+
+		<var>if</var> (user&gt;guess)
+		{
+			cout &lt;&lt; <kbd>" high "</kbd>;
+		}
+		<var>else</var> <var>if</var> (user &lt;guess)
+		{
+			cout &lt;&lt; <kbd>" lower "</kbd>;
+		}
+	}
+
+	<var>if</var> (user == guess)
+	{
+		cout &lt;&lt; <kbd>" great u guessed it :) "</kbd>;
+	}
+
+	cin.get();
+	cin.get();
+	<var>return</var> 0;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+for the second task here is the source code :<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br></code></pre></td>
+<td class="source"><pre><code><var>int</var> main()
+{
+	<var>int</var> guess=0;
+	<var>int</var> user =0;
+	<var>int</var> count =0;
+
+	srand( time(NULL) );
+
+	guess = rand() % 100 + 1;
+
+	<var>while</var>(user != guess)
+	{
+		cout &lt;&lt; <kbd>" Guess the number from 1 - 100 : "</kbd>;
+		cin &gt;&gt; user;
+
+		<var>if</var> (user&gt;guess)
+		{
+			cout &lt;&lt; <kbd>" high "</kbd>;
+		}
+		<var>else</var> <var>if</var> (user &lt;guess)
+		{
+			cout &lt;&lt; <kbd>" lower "</kbd>;
+		}
+		count = count +1;
+	}
+
+	<var>if</var> (user == guess)
+	{
+		cout &lt;&lt; <kbd>" great u guessed it :) "</kbd> &lt;&lt; endl;
+		cout &lt;&lt; <kbd>" it took "</kbd> &lt;&lt; count &lt;&lt; <kbd>" guesses to get the answer "</kbd>;
+	}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm51ed9c1054" title="Mon, 25 Jun 2012 17:04:22 +0000"></span><script type="text/javascript">WhenId('CH_zTm51ed9c1054');</script><noscript>Jun 25, 2012 at 5:04pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn395840"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg395855"><span title="395855,88558,1023,709,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg395855" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm76755f4bed" title="Mon, 25 Jun 2012 17:12:49 +0000"></span><script type="text/javascript">WhenId('CH_zTm76755f4bed');</script><noscript>Jun 25, 2012 at 5:12pm UTC</noscript></div>
+<div class="dwho"><a href="/user/fg109/"><b>fg109</b> (709)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i395855">
+For your pancake problem, I'm assuming that you have a <span class="auto"><code class="source"><dfn>#define PAN 10 </dfn></code></span> somewhere.<br>
+<br>
+What you did first was to declare an array called Number_Eaten that contains 10 elements.  This means the array has elements Number_Eaten[0], Number_Eaten[1], ... , Number_Eaten[9].<br>
+<br>
+Then in your main function, you set max and min to Number_Eaten[10] which doesn't exist.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn395855"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg396287"><span title="396287,88521,1023,16,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg396287" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmb589ce06ab" title="Tue, 26 Jun 2012 15:20:23 +0000"></span><script type="text/javascript">WhenId('CH_zTmb589ce06ab');</script><noscript>Jun 26, 2012 at 3:20pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Yasar/"><b>Yasar</b> (16)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i396287">
+yh i picked up on that but i cant seem to set it to start from the begining of an array , you see what i did was set an element of array i.e <div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br></code></pre></td>
+<td class="source"><pre><code> <var>const</var> <var>int</var> PAN = 10;
+<var>int</var> Number_Eaten[PAN];</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+ <br>
+than with the loop after each iteration the user enters a number of pancakes they have eaten which is stored in the array <span class="auto"><code class="source">Number_Eaten[PAN]</code></span><br>
+<br>
+i have also tried placing the max and min like this : <div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br></code></pre></td>
+<td class="source"><pre><code> <var>int</var> max = Number_Eaten[0];
+<var>int</var> min = Number_Eaten[0];</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+but no luck <br>
+<br>
+here is full code any advice is helpfull and fg109 thnx for yor reply:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br></code></pre></td>
+<td class="source"><pre><code><var>const</var> <var>int</var> PAN = 10;
+<var>int</var> Number_Eaten[PAN];
+
+<var>int</var> main()
+{
+	<var>int</var> max = Number_Eaten[0];
+	<var>int</var> min = Number_Eaten[0];
+
+	<var>for</var> (<var>int</var> i=0; i&lt;PAN; i++)
+	{	
+		cout &lt;&lt; <kbd>"How many pancakes you eat today "</kbd>;
+		cin &gt;&gt; Number_Eaten[i];
+
+		<var>if</var> (Number_Eaten[i]&gt;max)
+		{
+			max = Number_Eaten[i];
+		}
+		<var>else</var> <var>if</var> (Number_Eaten[i]&lt;min)
+		{
+			min = Number_Eaten[i];
+		}
+	}
+
+	cout &lt;&lt; max &lt;&lt; endl;
+	cout &lt;&lt; min;</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm615dd62c07" title="Tue, 26 Jun 2012 15:25:51 +0000"></span><script type="text/javascript">WhenId('CH_zTm615dd62c07');</script><noscript>Jun 26, 2012 at 3:25pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn396287"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg396308"><span title="396308,88558,1023,709,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg396308" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm433fbcd28c" title="Tue, 26 Jun 2012 16:08:52 +0000"></span><script type="text/javascript">WhenId('CH_zTm433fbcd28c');</script><noscript>Jun 26, 2012 at 4:08pm UTC</noscript></div>
+<div class="dwho"><a href="/user/fg109/"><b>fg109</b> (709)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i396308">
+When you assign values for max and min, you haven't input any values into your array yet.  I'm not sure whether Number_Eaten[0] is 0 or some random garbage at that point.  Either way, it will mess up your program.<br>
+<br>
+What you can do is ask for and take input for Person1 outside of the loop, then initialize your max/min variables to Person1, and enter the loop afterwards.<br>
+<br>
+You could also just try initializing max to 0 and min to 99999, and change the if-else-if to two ifs instead.  But depending on what values are input, that might not work so well.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn396308"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg396315"><span title="396315,88521,1023,16,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg396315" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmd64ed1a365" title="Tue, 26 Jun 2012 16:26:09 +0000"></span><script type="text/javascript">WhenId('CH_zTmd64ed1a365');</script><noscript>Jun 26, 2012 at 4:26pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Yasar/"><b>Yasar</b> (16)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i396315">
+yup it is working now here is the code :<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br></code></pre></td>
+<td class="source"><pre><code><var>const</var> <var>int</var> PAN = 10;
+<var>int</var> Number_Eaten[PAN];
+
+<var>int</var> main()
+{
+	cout &lt;&lt; <kbd>"How many pancakes you eat today "</kbd>;
+	cin &gt;&gt; Number_Eaten[0];
+
+	<var>int</var> max = Number_Eaten[0];
+	<var>int</var> min = Number_Eaten[0];
+
+	<var>for</var> (<var>int</var> i=1; i&lt;PAN; i++)
+	{	
+		cout &lt;&lt; <kbd>"How many pancakes you eat today "</kbd>;
+		cin &gt;&gt; Number_Eaten[i];
+
+		<var>if</var> (Number_Eaten[i]&gt;max)
+		{
+			max = Number_Eaten[i];
+		}
+		<var>else</var> <var>if</var> (Number_Eaten[i]&lt;min)
+		{
+			min = Number_Eaten[i];
+		}
+	}
+
+	cout &lt;&lt; max &lt;&lt; endl;
+	cout &lt;&lt; min;</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm7c78140d9e" title="Wed, 27 Jun 2012 14:03:47 +0000"></span><script type="text/javascript">WhenId('CH_zTm7c78140d9e');</script><noscript>Jun 27, 2012 at 2:03pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn396315"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg396316"><span title="396316,88558,1023,709,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg396316" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm0b617725d4" title="Tue, 26 Jun 2012 16:27:08 +0000"></span><script type="text/javascript">WhenId('CH_zTm0b617725d4');</script><noscript>Jun 26, 2012 at 4:27pm UTC</noscript></div>
+<div class="dwho"><a href="/user/fg109/"><b>fg109</b> (709)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i396316">
+Since you've taken the 1st person out of the loop, you should start the loop with i = 1.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn396316"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg396775"><span title="396775,88521,1023,16,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg396775" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm6f963c75e2" title="Wed, 27 Jun 2012 14:49:04 +0000"></span><script type="text/javascript">WhenId('CH_zTm6f963c75e2');</script><noscript>Jun 27, 2012 at 2:49pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Yasar/"><b>Yasar</b> (16)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i396775">
+since i forgot to add peoples names in i did that just now :<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br></code></pre></td>
+<td class="source"><pre><code> <var>const</var> <var>int</var> PAN = 10;
+string Names[PAN]; 
+<var>int</var> Number_Eaten[PAN];
+
+<var>int</var> main()
+{
+	cout &lt;&lt; <kbd>" enter name : "</kbd>;
+	cin &gt;&gt; Names[0];
+	cout &lt;&lt; <kbd>"How many pancakes you eat today "</kbd>;
+	cin &gt;&gt; Number_Eaten[0];
+
+	<var>int</var> max = Number_Eaten[0];
+	<var>int</var> min = Number_Eaten[0];
+	string name_max = Names[0];
+	string name_min = Names[0];
+
+	<var>for</var> (<var>int</var> i=1; i&lt;PAN; i++)
+	{	
+		cout &lt;&lt; <kbd>" enter name : "</kbd>;
+		cin &gt;&gt; Names[i];
+		cout &lt;&lt; <kbd>"How many pancakes you eat today "</kbd>;
+		cin &gt;&gt; Number_Eaten[i];
+
+		<var>if</var> (Number_Eaten[i]&gt;max)
+		{
+			max = Number_Eaten[i];
+			name_max = Names[i];
+		}
+		<var>else</var> <var>if</var> (Number_Eaten[i]&lt;min)
+		{
+			min = Number_Eaten[i];
+			name_min = Names[i];
+		}
+	}
+
+	cout &lt;&lt; name_max &lt;&lt; <kbd>" "</kbd> &lt;&lt; max &lt;&lt; endl; 
+	cout &lt;&lt; name_min &lt;&lt; <kbd>" "</kbd> &lt;&lt; min;</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn396775"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div id="CH_insNew"></div><div id="CH_subscription"></div><div class="rootedtNew"></div><div class="C_pages right">Pages: <span title="Current page">1</span><a href="/forum/beginner/73868/2/">2</a></div><script type="text/javascript">new for_PostList(73868,1,88521,0,'CH_PostList','CH_subscription',false,'CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+<script type="text/javascript">
+    google_ad_client = "ca-pub-1444228343479937";
+    google_ad_slot = "9701143201";
+    google_ad_width = 728;
+    google_ad_height = 90;
+</script>
+<!-- leaderboard -->
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li class="selected"><a href="/forum/beginner/"><b>Beginners</b></a></li><li><a href="/forum/windows/"><b>Windows Programming</b></a></li><li><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li><a href="/forum/general/"><b>General C++ Programming</b></a></li><li><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Fbeginner%2F73868%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

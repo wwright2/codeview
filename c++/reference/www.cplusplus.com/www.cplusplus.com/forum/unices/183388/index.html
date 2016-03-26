@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>text is visible in compiled script - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/unices/">UNIX/Linux Programming</a></li>
+<li class="here">text is visible in compiled script</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico default" title="post">&nbsp;</div> text is visible in compiled script</h3><span id="CH_edttl"></span><span class="rootdatPost" title="183388,root,0,-1,19,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg897701"><span title="897701,209172,1023,12,1"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg897701" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm2a30757cd1" title="Wed, 27 Jan 2016 08:41:01 +0000"></span><script type="text/javascript">WhenId('CH_zTm2a30757cd1');</script><noscript>Jan 27, 2016 at 8:41am UTC</noscript></div>
+<div class="dwho"><a href="/user/TomT/"><b>TomT</b> (12)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i897701">
+Hi<br>
+<br>
+I only started looking at c++ yesterday.. <br>
+<br>
+I've written a simple script that downloads files from different URL's and writes them to the correct locations on my Linux PC.<br>
+<br>
+I've compiled the script using :<br>
+[code]g++ test.cpp -o new -lcurl[code]<br>
+<br>
+If I cat the file I can see the individual URL's in the output. They are bit obscure but you can still make out whats going on.<br>
+<br>
+I also run a system command from the script, and again that is quiet easy to read if you cat the compiled script.<br>
+<br>
+I want to give this to a couple of colleagues, but I'd like to make it hard for the casual user to see the actual URL's or system command.<br>
+<br>
+Any way to stop that ? or to hide / obscure the plain text ?<br>
+<br>
+Thanks :D
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn897701"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg898587"><span title="898587,140309,1023,149,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg898587" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmab3db23868" title="Sun, 31 Jan 2016 13:40:11 +0000"></span><script type="text/javascript">WhenId('CH_zTmab3db23868');</script><noscript>Jan 31, 2016 at 1:40pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Shadowwolf/"><b>Shadowwolf</b> (149)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i898587">
+If you're viewing the finished binary as a plain text file, you might see the string constants stored in the file, as you see. The compiler has to store these values somewhere, so they end up unencrypted in the output binary.<br>
+<br>
+What you're looking for is encryption. For the simplest of cases, you can use bitwise-xor encryption. In your code, you use the encrypted version and decrypt the strings before you use them. A decryption function:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br></code></pre></td>
+<td class="source"><pre><code><var>void</var> decrypt(<var>char</var>* buffer, <var>const</var> <var>char</var>* key, size_t bufsize)
+{
+    <var>for</var>(size_t i = 0; i &lt; bufsize; ++i)
+    {
+        buffer[i]= ^= key[i];
+    }
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+The good thing about bitwise-xor encryption, is that the decryption and encryptions functions are exactly the same. Now for an example:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br></code></pre></td>
+<td class="source"><pre><code><var>int</var> main()
+{
+    <var>char</var> encrypted[] = {106, 77, 102, 105, 104}; <cite>//"hello" encrypted using the key</cite>
+    <var>const</var> <var>char</var> key[] = {2, 40, 10, 5, 7}; <cite>//Our key</cite>
+    decrypt(encrypted, key, 5); <cite>//Decrypt our string</cite>
+    std::cout &lt;&lt; encrypted &lt;&lt; std::endl; <cite>//Prints "hello"</cite>
+    <var>return</var> 0;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+You simply use the encrypted values in your binary, which will then be stored in the resulting executable. Then just before you use the values, you decrypt them. Note that this isn't a very good security measure (anyone with a disassembler can pause the code just after the decryption function, showing the decrypted string), but the strings surely won't show up in the resulting executable directly.
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm1af48b2cae" title="Sun, 31 Jan 2016 13:40:53 +0000"></span><script type="text/javascript">WhenId('CH_zTm1af48b2cae');</script><noscript>Jan 31, 2016 at 1:40pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn898587"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg899823"><span title="899823,209172,1023,12,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg899823" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmda457ea1dc" title="Fri, 05 Feb 2016 13:41:34 +0000"></span><script type="text/javascript">WhenId('CH_zTmda457ea1dc');</script><noscript>Feb 5, 2016 at 1:41pm UTC</noscript></div>
+<div class="dwho"><a href="/user/TomT/"><b>TomT</b> (12)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i899823">
+Thanks for the reply.<br>
+I've added this in to test with and I get an error when I try to compile it :<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br></code></pre></td>
+<td class="source"><pre><code>test.cpp: In function ‘<var>void</var> decrypt(<var>char</var>*, <var>const</var> <var>char</var>*, size_t)’:
+test.cpp:23:20: error: expected primary-expression before ‘^=’ token</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Any ideas ? Thanks<br>
+<br>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn899823"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg899845"><span title="899845,11103,1023,4532,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg899845" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm71a97f7235" title="Fri, 05 Feb 2016 15:18:25 +0000"></span><script type="text/javascript">WhenId('CH_zTm71a97f7235');</script><noscript>Feb 5, 2016 at 3:18pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Zhuge/"><b>Zhuge</b> (4532)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i899845">
+There is a simple syntax error typo'd on that line. Take a look at the provided code and see if you can figure it out.
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm07c7d4d692" title="Fri, 05 Feb 2016 15:18:39 +0000"></span><script type="text/javascript">WhenId('CH_zTm07c7d4d692');</script><noscript>Feb 5, 2016 at 3:18pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn899845"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg899863"><span title="899863,209172,1023,12,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg899863" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmde6edb0f1a" title="Fri, 05 Feb 2016 16:22:29 +0000"></span><script type="text/javascript">WhenId('CH_zTmde6edb0f1a');</script><noscript>Feb 5, 2016 at 4:22pm UTC</noscript></div>
+<div class="dwho"><a href="/user/TomT/"><b>TomT</b> (12)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i899863">
+Thanks sorted that !<br>
+<br>
+changed <br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br></code></pre></td>
+<td class="source"><pre><code>        buffer[i]= ^= key[i];
+to
+        buffer[i] ^= key[i];</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+When I run this I get:<br>
+<table class="quote"><tr><td class="qd">hello{�</td></tr></table><br>
+<br>
+Why do I get the extra characters ?<br>
+Thanks<br>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn899863"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg899888"><span title="899888,111189,1023,4867,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg899888" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm0e0893e90f" title="Fri, 05 Feb 2016 17:37:03 +0000"></span><script type="text/javascript">WhenId('CH_zTm0e0893e90f');</script><noscript>Feb 5, 2016 at 5:37pm UTC</noscript></div>
+<div class="dwho"><a href="/user/keskiverto/"><b>keskiverto</b> (4867)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i899888">
+Do you know the difference between these two:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br></code></pre></td>
+<td class="source"><pre><code><var>char</var> foo[] = {<kbd>'w'</kbd>, <kbd>'o'</kbd>, <kbd>'r'</kbd>, <kbd>'l'</kbd>, <kbd>'d'</kbd> };
+<var>char</var> bar[] = <kbd>"world"</kbd>;</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn899888"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg899901"><span title="899901,209172,1023,12,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg899901" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm8476bb2237" title="Fri, 05 Feb 2016 18:18:45 +0000"></span><script type="text/javascript">WhenId('CH_zTm8476bb2237');</script><noscript>Feb 5, 2016 at 6:18pm UTC</noscript></div>
+<div class="dwho"><a href="/user/TomT/"><b>TomT</b> (12)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i899901">
+Possibly :)<br>
+<br>
+foo[] is an array and bar[] a string ?
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn899901"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg899920"><span title="899920,11103,1023,4532,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg899920" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmfcb46df672" title="Fri, 05 Feb 2016 19:28:51 +0000"></span><script type="text/javascript">WhenId('CH_zTmfcb46df672');</script><noscript>Feb 5, 2016 at 7:28pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Zhuge/"><b>Zhuge</b> (4532)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i899920">
+What does that mean for the two of them?
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn899920"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg899921"><span title="899921,209172,1023,12,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg899921" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm7b4b4c6310" title="Fri, 05 Feb 2016 19:41:05 +0000"></span><script type="text/javascript">WhenId('CH_zTm7b4b4c6310');</script><noscript>Feb 5, 2016 at 7:41pm UTC</noscript></div>
+<div class="dwho"><a href="/user/TomT/"><b>TomT</b> (12)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i899921">
+One is a string of characters, the other is an array of individual letters. 
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn899921"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg899929"><span title="899929,94088,1023,5090,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg899929" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmed26eff1cd" title="Fri, 05 Feb 2016 20:26:11 +0000"></span><script type="text/javascript">WhenId('CH_zTmed26eff1cd');</script><noscript>Feb 5, 2016 at 8:26pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Chervil/"><b>Chervil</b> (5090)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i899929">
+What are the sizes of <span class="auto"><code class="source">foo[]</code></span> and of <span class="auto"><code class="source">bar[]</code></span> ?
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn899929"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg900128"><span title="900128,207254,1023,178,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg900128" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm83656e26f1" title="Sat, 06 Feb 2016 18:03:58 +0000"></span><script type="text/javascript">WhenId('CH_zTm83656e26f1');</script><noscript>Feb 6, 2016 at 6:03pm UTC</noscript></div>
+<div class="dwho"><a href="/user/RUNNER_PRO_AGARIO/"><b>RUNNER PRO AGARIO</b> (178)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i900128">
+the same, i think
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn900128"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg900133"><span title="900133,78419,1023,7174,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg900133" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmb423fcf504" title="Sat, 06 Feb 2016 18:13:43 +0000"></span><script type="text/javascript">WhenId('CH_zTmb423fcf504');</script><noscript>Feb 6, 2016 at 6:13pm UTC</noscript></div>
+<div class="dwho"><a href="/user/cire/"><b>cire</b> (7174)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i900133">
+Think again.
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm8db71099ef" title="Sat, 06 Feb 2016 18:13:53 +0000"></span><script type="text/javascript">WhenId('CH_zTm8db71099ef');</script><noscript>Feb 6, 2016 at 6:13pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn900133"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg900140"><span title="900140,207254,1023,178,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg900140" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm2539d08181" title="Sat, 06 Feb 2016 19:02:01 +0000"></span><script type="text/javascript">WhenId('CH_zTm2539d08181');</script><noscript>Feb 6, 2016 at 7:02pm UTC</noscript></div>
+<div class="dwho"><a href="/user/RUNNER_PRO_AGARIO/"><b>RUNNER PRO AGARIO</b> (178)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i900140">
+hmmmmmmm................
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn900140"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg900142"><span title="900142,207254,1023,178,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg900142" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm409ec7c51a" title="Sat, 06 Feb 2016 19:02:39 +0000"></span><script type="text/javascript">WhenId('CH_zTm409ec7c51a');</script><noscript>Feb 6, 2016 at 7:02pm UTC</noscript></div>
+<div class="dwho"><a href="/user/RUNNER_PRO_AGARIO/"><b>RUNNER PRO AGARIO</b> (178)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i900142">
+They both act the same basically, I guess the array needs an explicit null termination sequence.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn900142"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg900341"><span title="900341,88654,1023,4208,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg900341" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmb20f8f0663" title="Sun, 07 Feb 2016 08:51:57 +0000"></span><script type="text/javascript">WhenId('CH_zTmb20f8f0663');</script><noscript>Feb 7, 2016 at 8:51am UTC</noscript></div>
+<div class="dwho"><a href="/user/TheIdeasMan/"><b>TheIdeasMan</b> (4208)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i900341">
+<table class="quote"><tr><td class="qd">I've compiled the script using :<br>
+g++ test.cpp -o new -lcurl</td></tr></table><br>
+<br>
+@<b>TomT</b><br>
+<br>
+Just some advice not related to your problem, always compile with the warning level set high:<br>
+<br>
+<span class="auto"><code class="source">g++ -std=c++14 -Wall -Wextra -pedantic-errors test.cpp -o <var>new</var> -lcurl</code></span><br>
+<br>
+Warnings are a good thing, they tell you where you may have problems with your code. <br>
+<br>
+Good Luck !!
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn900341"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg900358"><span title="900358,111189,1023,4867,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg900358" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm2b215bff27" title="Sun, 07 Feb 2016 10:46:00 +0000"></span><script type="text/javascript">WhenId('CH_zTm2b215bff27');</script><noscript>Feb 7, 2016 at 10:46am UTC</noscript></div>
+<div class="dwho"><a href="/user/keskiverto/"><b>keskiverto</b> (4867)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i900358">
+Another hint:<br>
+the output (that produces mysterious characters) is calling one of these functions: <a href="http://www.cplusplus.com/reference/ostream/ostream/operator-free/">http://www.cplusplus.com/reference/ostream/ostream/operator-free/</a><br>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn900358"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg900628"><span title="900628,209172,1023,12,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg900628" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm4a9ce704ab" title="Mon, 08 Feb 2016 09:45:08 +0000"></span><script type="text/javascript">WhenId('CH_zTm4a9ce704ab');</script><noscript>Feb 8, 2016 at 9:45am UTC</noscript></div>
+<div class="dwho"><a href="/user/TomT/"><b>TomT</b> (12)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i900628">
+I've got this working using:<br>
+<a href="http://kylewbanks.com/blog/Simple-XOR-Encryption-Decryption-in-Cpp">http://kylewbanks.com/blog/Simple-XOR-Encryption-Decryption-in-Cpp</a>
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn900628"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg900646"><span title="900646,111189,1023,4867,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg900646" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm19e8439304" title="Mon, 08 Feb 2016 11:14:00 +0000"></span><script type="text/javascript">WhenId('CH_zTm19e8439304');</script><noscript>Feb 8, 2016 at 11:14am UTC</noscript></div>
+<div class="dwho"><a href="/user/keskiverto/"><b>keskiverto</b> (4867)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i900646">
+Good. Do you understand the (minute) difference of the solutions?<br>
+<br>
+Recap:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br></code></pre></td>
+<td class="source"><pre><code><var>char</var> foo[] = {<kbd>'w'</kbd>, <kbd>'o'</kbd>, <kbd>'r'</kbd>, <kbd>'l'</kbd>, <kbd>'d'</kbd> };
+<var>char</var> bar[] = <kbd>"world"</kbd>;
+std:.string gaz = <kbd>"world"</kbd>;</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+The foo is an array of characters.<br>
+The bar is an array of characters.<br>
+The gaz is a std::string object.<br>
+<br>
+The foo is initialized with an array of characters. The initilizer array has 5 characters and thus the foo has 5 elements.<br>
+The bar is initialized with an array of characters. The initilizer array has 6 characters and thus the foo has 6 elements.<br>
+The gaz is initialized with an array of characters. The initilizer array has 6 characters but string stores only the first 5 non-null elements.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br></code></pre></td>
+<td class="source"><pre><code>std::cout &lt;&lt; gaz;
+std::cout &lt;&lt; bar;
+std::cout &lt;&lt; foo;</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+The string gaz has its own output operator that correctly outputs the 5 characters of "world".<br>
+The bar outputs exactly "world", because there is a null character after the 'd'.<br>
+We have no idea what prints after the 'd' of foo, because those memory locations can have anything.<br>
+<br>
+In other words, the <span class="auto"><code class="source"><kbd>"world"</kbd></code></span> is a shorthand for writing <span class="auto"><code class="source">{<kbd>'w'</kbd>, <kbd>'o'</kbd>, <kbd>'r'</kbd>, <kbd>'l'</kbd>, <kbd>'d'</kbd>, 0 }</code></span><br>
+<br>
+The array used in <b>Shadowwolf</b>'s program did not include a terminating null. Hence, it does print random characters after the hello.<br>
+<br>
+<br>
+The use of <span class="auto"><code class="source">std::string</code></span> cunningly avoids many issues that one encounters with plain array.
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm4694222a2c" title="Mon, 08 Feb 2016 11:15:12 +0000"></span><script type="text/javascript">WhenId('CH_zTm4694222a2c');</script><noscript>Feb 8, 2016 at 11:15am UTC</noscript></span>
+<span class="dbtn" id="CH_btn900646"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg900668"><span title="900668,209172,1023,12,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg900668" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm3508c44012" title="Mon, 08 Feb 2016 12:40:20 +0000"></span><script type="text/javascript">WhenId('CH_zTm3508c44012');</script><noscript>Feb 8, 2016 at 12:40pm UTC</noscript></div>
+<div class="dwho"><a href="/user/TomT/"><b>TomT</b> (12)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i900668">
+Thanks for this explanation.<br>
+That make sense.. sort of :)
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn900668"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div class="rootbtnNew"></div><div id="CH_insNew"></div><div id="CH_reply">Registered users can post here. <a href="/user/">Sign in or register</a> to post.</div><div id="CH_subscription"></div><div class="rootedtNew"></div><script type="text/javascript">new for_PostList(183388,0,209172,0,'CH_PostList','CH_subscription','CH_reply','CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+<script type="text/javascript">
+    google_ad_client = "ca-pub-1444228343479937";
+    google_ad_slot = "9701143201";
+    google_ad_width = 728;
+    google_ad_height = 90;
+</script>
+<!-- leaderboard -->
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li><a href="/forum/beginner/"><b>Beginners</b></a></li><li><a href="/forum/windows/"><b>Windows Programming</b></a></li><li class="selected"><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li><a href="/forum/general/"><b>General C++ Programming</b></a></li><li><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Funices%2F183388%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

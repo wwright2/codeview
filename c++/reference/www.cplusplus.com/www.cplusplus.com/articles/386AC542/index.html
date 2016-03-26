@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>How To Learn The Basics Of C++ Part 2/5 - C++ Articles</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/articles/">Articles</a></li>
+<li class="here">How To Learn The Basics Of C++ Part 2/5</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div id="I_content">
+<div class="C_art">
+<div id="I_author">Published by <b><a href="/user/Code_Assassin/" rel="author">Code Assassin</a></b></div>
+<div id="I_date">Oct 8, 2011 (last update: Oct 8, 2011)</div>
+<h1>How To Learn The Basics Of C++ Part 2/5</h1>
+<div id="I_score">Score: 3.9/5 (285 votes)</div>
+<div id="I_stars"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-half.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"></div>
+<div id="I_content">
+Greetings Fellow Programmers,<br>
+<br>
+So far we've learned about the basic components of starting and running a basic program:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;iostream&gt;</dfn>
+<var>using</var> <var>namespace</var> std;
+<var>int</var> main (<var>void</var>){
+
+<cite>// Code Goes Here</cite>
+
+<var>return</var> 0;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+In this tutorial we'll be learning about basic input and output statements, and the types of variables you can use when you make a program. This will make our programs a little bit more "user-interactive", instead of just displaying text(or prompts) on the screen. <br>
+<br>
+To start off, make sure you have the basic starting components to your program:<br>
+ <br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;iostream&gt;</dfn>
+<var>using</var> <var>namespace</var> std;
+<var>int</var> main (<var>void</var>){
+
+<cite>// Code Goes Here (You do not need to put this, it's optional)</cite>
+
+<var>return</var> 0;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Withing the two curly braces, delete the comment (It was acting as a placeholder, it's useless to us now), and type the following:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>&nbsp;</code></pre></td>
+<td class="source"><pre><code>cout &lt;&lt; <kbd>"Please enter a number."</kbd> &lt;&lt; endl;</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+Your probably wondering what <span class="auto"><code class="source"> endl </code></span> is. Well, it just tells the compiler that, after this piece of text (or statement) is executed, I want a brand new line(Basically, going to the next line under the previous line executed).<br>
+<br>
+After you've entered the code above proceed to writing:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>&nbsp;</code></pre></td>
+<td class="source"><pre><code>cin &gt;&gt; number;</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+right underneath the cout (CEE-OUT) statement you've just made. <br>
+<br>
+Your code should look exactly like this:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;iostream&gt;</dfn>
+<var>using</var> <var>namespace</var> std;
+<var>int</var> main (<var>void</var>){
+
+cout &lt;&lt; <kbd>"Please enter a number"</kbd> &lt;&lt; endl;
+cin &gt;&gt; number;
+
+<var>return</var> 0;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<span class="auto"><code class="source">cin</code></span>, is the statement you use to collect user-input from the user. It's a great way to keep your program exciting. <br>
+<br>
+Our program is still not complete though. We have yet to tell the compiler what data type "number is". Well, this is a bit complicated and it would be best if you could commit these terms to memory:<br>
+<br>
+VARIABLE TYPES:<br>
+<br>
+1. Boolean  (bool): This keyword is generally used for variables that are equal to true or false in your program.<br>
+<br>
+2. Character (char): This keyword is used for characters. It can only hold one character such as an "A".<br>
+<br>
+3. Integer (int): This keyword is used for numbers like 5,455, and so on. There are some regulations (which I will explain in the next tutorial), but for now just know the definition and context of when to use it.<br>
+<br>
+These are the basic variable types and I highly suggest that you memorize them.<br>
+Go ahead and add, right before your "cout" statement:<br>
+<span class="auto"><code class="source"><var>int</var> number;</code></span>
+After you've added this go right under your "cin" statement and put:<br>
+<br>
+<span class="auto"><code class="source">cout &lt;&lt; <kbd>"You typed in "</kbd> &lt;&lt; number &lt;&lt; <kbd>"!"</kbd> &lt;&lt; endl;</code></span>
+<br>
+Be sure to write that "cout" statement just like that. Also, whenever you want to display a variable on screen you type:<br>
+<br>
+<span class="auto"><code class="source">cout &lt;&lt; (Whatever your variable name is)&lt;&lt; endl;</code></span>
+<br>
+So now your program should look like this:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;iostream&gt;</dfn>
+<var>using</var> <var>namespace</var> std;
+<var>int</var> main (<var>void</var>){
+<var>int</var> number;
+
+cout &lt;&lt; <kbd>"Please enter a number"</kbd> &lt;&lt; endl;
+cin &gt;&gt; number;
+cout &lt;&lt; <kbd>"You typed in "</kbd> &lt;&lt; number &lt;&lt; <kbd>"!"</kbd> &lt;&lt; endl;
+<var>return</var> 0;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+When you run your program you should get:<br>
+<div class="auto"><table class="snippet"><tr><td class="output"><pre><samp>
+Please enter a number
+(It'll wait for your number here...)
+40
+You typed in 40 (It displays your number here!)
+</samp></pre></td></tr></table></div>
+<br>
+Stay Tuned for Part 3! :)<br>
+May the code be with you...<br>
+<br>
+<br>
+<br>
+</div></div><div id="CH_bb"></div><div id="CH_scoreapp"></div><script type="text/javascript">new Score('CH_scoreapp','/articles/score.cgi','386AC542');</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder selected articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/articles/">Articles</a></b></h3>
+<ul>
+<li><a href="/articles/algorithms/">Algorithms</a></li><li><a href="/articles/cpp11/">C++ 11</a></li><li><a href="/articles/graphics/">Graphics and multimedia</a></li><li><a href="/articles/howto/">How-To</a></li><li><a href="/articles/language/">Language Features</a></li><li><a href="/articles/linux/">Unix/Linux programming</a></li><li><a href="/articles/sourcecode/">Source Code</a></li><li><a href="/articles/standard_library/">Standard Library</a></li><li><a href="/articles/tips/">Tips and Tricks</a></li><li><a href="/articles/tools/">Tools and Libraries</a></li><li><a href="/articles/visualcpp/">Visual C++</a></li><li><a href="/articles/winapi/">Windows API</a></li></ul>
+</div>
+<div id="I_subnav"></div>
+</div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Farticles%2F386AC542%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+onSession(function(us) {
+		document.getElementById('I_subnav').innerHTML=
+			us.ok?
+				'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul>'+
+				'<li><a href="/articles/myitems.cgi">My items</a></li>'+
+				(us.auth(32768)?'<li><a href="/articles/adminitems.cgi">Admin items</a></li>':'')+
+				'</ul></div>'
+			:'';
+	}); onSession(function (us) {
+		var el=document.getElementById('CH_bb'); el.innerHTML='';
+		if ( (us.auth(32768)) || ((us.uniqid=='N8bC5Di1')&&(us.auth(128))) ) {
+			el.appendChild(btn('Edit article','Edit this version of the article','edit','/articles/edit.cgi?a=386AC542'));
+	
+			if (us.auth(32768)) {
+				el.appendChild(btn('Delete article','Delete this article','delete','javascript:artdel()'));
+			}
+	
+		}
+	});
+	function artdel() { if (confirm('WARNING: You are about to delete this page. Confirm?')) window.location='/articles/delete.cgi?a=386AC542'; }
+	ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

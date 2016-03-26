@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>what is cmake, and where can I get a com - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/windows/">Windows Programming</a></li>
+<li class="here">what is cmake, and where can I get a com</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico default" title="post">&nbsp;</div> what is cmake, and where can I get a compatible version for tdm GCC 5.1.0?</h3><span id="CH_edttl"></span><span class="rootdatPost" title="183682,root,0,-1,3,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg898842"><span title="898842,208550,1023,11,1"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg898842" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm1cb694ac27" title="Mon, 01 Feb 2016 18:56:43 +0000"></span><script type="text/javascript">WhenId('CH_zTm1cb694ac27');</script><noscript>Feb 1, 2016 at 6:56pm UTC</noscript></div>
+<div class="dwho"><a href="/user/demon6552/"><b>demon6552</b> (11)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i898842">
+I may just switch to visual studio to use precompiled libraries, but I wanted to build sfml with my GCC 5.1.0, all pre built versions are for older versions of GCC or the main mingw build, not TDM.<br>
+<br>
+so I have to build it from source. <br>
+<br>
+unfortunately this isnt using the classic make or mingw32-make, its using some cmake system ive never heard of or seen before, which clearly is not included in the mingw package anywhere.<br>
+<br>
+so I dont know where to get or build it.<br>
+<br>
+I could just continue my project in SDL -- which is already set up fine, but I have to do a lot of grunt work that is too difficult for me to resonably accomplish with SDL that is already done for me in SFML (functions to load from sprite sheets, tiles, collision detection, etc.)<br>
+<br>
+yes, its lazy for me to switch over instead of coding my own game engine, and yes I will learn less, but I also want to succeed in writing this clone game im working on, and right now im up against a design wall of how to implement drawing the map and having constant collision detection on walls. while in theory I can come up with ideas, in practice, its very hard for me to start without the proper background knowledge.<br>
+<br>
+I feel like SFML can, at the moment, get me up and running much faster. I could just start writing objects like a class or struct wall with collision properties and start drawing the sprite instead of having to worry about getting basic stuff going first.<br>
+<br>
+but I cant even try if there is a non-standard build tool required that I cant get.<br>
+<br>
+all googling results in is people having problems building it on windows... why not just use a standard makefile huh?
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn898842"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg899248"><span title="899248,17129,1023,7936,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg899248" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm2a91891b68" title="Wed, 03 Feb 2016 10:58:52 +0000"></span><script type="text/javascript">WhenId('CH_zTm2a91891b68');</script><noscript>Feb 3, 2016 at 10:58am UTC</noscript></div>
+<div class="dwho"><a href="/user/kbw/"><b>kbw</b> (7936)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i899248">
+CMake is a 3rd party build tool.  It generates a makefile for specific platforms from a platform independent makefile.  It's industry standard, in that lots of projects use it.<br>
+<a href="https://cmake.org/">https://cmake.org/</a><br>
+<br>
+A common alternative is the GNU Autotools.  Like CMake, it's a royal pain in the ... keyboard.<br>
+<br>
+<table class="quote"><tr><td class="qd">why not just use a standard makefile huh?</td></tr></table>Because there's no such thing as a standard makefile.  What you call a standard makefile may be a GNU Make makefile.  And there's nothing in GNU Make that specifically deals with platform differences (Linux vs Windows for example).<br>
+<br>
+Dunno what TDM is.<br>
+
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm546c0d9ca1" title="Wed, 03 Feb 2016 11:03:08 +0000"></span><script type="text/javascript">WhenId('CH_zTm546c0d9ca1');</script><noscript>Feb 3, 2016 at 11:03am UTC</noscript></span>
+<span class="dbtn" id="CH_btn899248"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg899353"><span title="899353,29924,1023,5406,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg899353" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTme2f1043dd6" title="Wed, 03 Feb 2016 19:30:28 +0000"></span><script type="text/javascript">WhenId('CH_zTme2f1043dd6');</script><noscript>Feb 3, 2016 at 7:30pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Computergeek01/"><b>Computergeek01</b> (5406)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i899353">
+<table class="quote"><tr><th class="qh"><strong>OP</strong> wrote:</th></tr><tr><td class="qd">but I cant even try if there is a non-standard build tool required that I cant get.</td></tr></table><br>
+Why can't you get it? It's free, it's still being developed, the site is up, <b>kbw</b> gave you the link... I literally can't see the problem that you are purportedly having here.<br>
+<br>
+<table class="quote"><tr><th class="qh"><strong>OP</strong> wrote:</th></tr><tr><td class="qd">all googling results in is people having problems building it on windows...</td></tr></table><br>
+You'll learn pretty quickly that most people in this world have trouble following written directions like these here: <a href="http://www.sfml-dev.org/tutorials/2.3/compile-with-cmake.php">http://www.sfml-dev.org/tutorials/2.3/compile-with-cmake.php</a><br>
+While for some of them the reason is that English is a second or third language, others are just thick headed and don't try. Give it a shot, if you run into trouble and get stuck the chances are someone here at this site will be able to help you out. SFML's forum community can be helpful to if you're looking for a wider support base than just us. 
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn899353"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div class="rootbtnNew"></div><div id="CH_insNew"></div><div id="CH_reply">Registered users can post here. <a href="/user/">Sign in or register</a> to post.</div><div id="CH_subscription"></div><div class="rootedtNew"></div><script type="text/javascript">new for_PostList(183682,0,208550,0,'CH_PostList','CH_subscription','CH_reply','CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li><a href="/forum/beginner/"><b>Beginners</b></a></li><li class="selected"><a href="/forum/windows/"><b>Windows Programming</b></a></li><li><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li><a href="/forum/general/"><b>General C++ Programming</b></a></li><li><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Fwindows%2F183682%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

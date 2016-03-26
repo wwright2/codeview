@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Console Closing Down - C++ Forum (Page 6)</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/beginner/">Beginners</a></li>
+<li><a href="/forum/beginner/1988/">Console Closing Down</a></li>
+<li class="here">Page 6</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico question" title="question">&nbsp;</div> Console Closing Down</h3><span id="CH_edttl"></span><div class="C_pages">Pages: <a href="/forum/beginner/1988/1/">1</a>... <a href="/forum/beginner/1988/4/">4</a><a href="/forum/beginner/1988/5/">5</a><span title="Current page">6</span><a href="/forum/beginner/1988/7/">7</a></div><span class="rootdatPost" title="1988,root,0,-1,121,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg20920"><span title="20920,13683,1023,31,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg20920" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm503e23f7fc" title="Sun, 12 Oct 2008 00:39:32 +0000"></span><script type="text/javascript">WhenId('CH_zTm503e23f7fc');</script><noscript>Oct 12, 2008 at 12:39am UTC</noscript></div>
+<div class="dwho"><a href="/user/chu121su12/"><b>chu121su12</b> (31)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i20920">
+Sorry I'm late to this topic. But I found this thread is interesting.<br>
+The things I can think of:<br>
+<br>
+@salman (pg.2)<br>
+<table class="quote"><tr><td class="qd">What makes them think of putting 80?</td></tr></table><br>
+Maybe because the default console width is 80 chars (windows).<br>
+<br>
+@Duoas (pg.3)<br>
+<table class="quote"><tr><td class="qd"><i>your post with a long code</i></td></tr></table><br>
+What are the use of <b>int argc</b>, <b>char **argv</b> (and maybe the others) ?<br>
+I've seen them in some codes unused except in your code.<br>
+<br>
+Currently, I'm using function for pause. I'll upgrade to class ASAP.<br>
+For Duoas, thank you very much for your explanations. I learned so much.<br>
+<br>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn20920"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg20967"><span title="20967,13114,1023,6281,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg20967" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmcc2f96469e" title="Sun, 12 Oct 2008 15:08:59 +0000"></span><script type="text/javascript">WhenId('CH_zTmcc2f96469e');</script><noscript>Oct 12, 2008 at 3:08pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Bazzy/"><b>Bazzy</b> (6281)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i20967">
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>&nbsp;</code></pre></td>
+<td class="source"><pre><code><var>int</var> main(<var>int</var> argc, <var>char</var> *argv[]);</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<tt>argc</tt> is the nubmer of arguments that the application got when started,<br>
+<tt>*argv[]</tt> is an array of C-style string whict contains the arguments<br>
+(eg: when launching a program from a file argc[0] is the program path and argc[1] is the file path)
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn20967"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg20972"><span title="20972,13683,1023,31,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg20972" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmf2424771fe" title="Sun, 12 Oct 2008 16:21:23 +0000"></span><script type="text/javascript">WhenId('CH_zTmf2424771fe');</script><noscript>Oct 12, 2008 at 4:21pm UTC</noscript></div>
+<div class="dwho"><a href="/user/chu121su12/"><b>chu121su12</b> (31)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i20972">
+I'm still blur for the <tt>argc</tt>...<br>
+<br>
+In the code:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;algorithm&gt;</dfn>
+<dfn>#include &lt;string&gt;</dfn>
+<dfn>#include &lt;windows.h&gt;</dfn>
+<var>using</var> <var>namespace</var> std;
+
+<var>int</var> main( <var>int</var> argc, <var>char</var> **argv )
+  {
+  TCHAR*              exepath;
+  TCHAR*              cmdline;
+  STARTUPINFO         startup_info;
+  PROCESS_INFORMATION process_info;
+
+  <var>if</var> (argc &lt; 2) <var>return</var> 1;
+  <cite>//... </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+How would you expect <tt>argc</tt> is less than 2?
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn20972"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg21040"><span title="21040,10651,1023,324,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg21040" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmd90d1164be" title="Mon, 13 Oct 2008 13:19:47 +0000"></span><script type="text/javascript">WhenId('CH_zTmd90d1164be');</script><noscript>Oct 13, 2008 at 1:19pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Faldrax/"><b>Faldrax</b> (324)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i21040">
+The check is there because argc should not be less than 2.<br>
+If it is, then the program regards that as an error, and exits with an error code if 1.<br>
+This is why main() is of type int. The return value can be detected by the OS, and typically 0 is OK, non-zero is an error of some sort (what non-zero error code mean is up to the programmer).<br>
+If you do not have a return in main, the compiler will automatically add a 'return 0' at then end.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn21040"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg21058"><span title="21058,9110,5119,10130,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg21058" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmf6c5d1215a" title="Mon, 13 Oct 2008 17:40:22 +0000"></span><script type="text/javascript">WhenId('CH_zTmf6c5d1215a');</script><noscript>Oct 13, 2008 at 5:40pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Duoas/"><b>Duoas</b> (10130)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i21058">
+Wow, miss a few weeks...<br>
+<br>
+<b>Umz</b><br>
+I don't know if you noticed what caused the problem, but <span class="auto"><code class="source">cin.ignore(...)</code></span> only works if your input stream is completely read and waiting for the user to type something. After using <span class="auto"><code class="source">cin &gt;&gt; foo;</code></span> that is not the case. Try <b>thecoolguy98</b>'s method and see if that helps:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br></code></pre></td>
+<td class="source"><pre><code><var>void</var> pause()
+  {
+  cout &lt;&lt; <kbd>"Press ENTER to continue..."</kbd>;
+  cin.sync();
+  cin.ignore( numeric_limits &lt;streamsize&gt; ::max(), <kbd>'\n'</kbd> );
+  }</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<b>chu121su12</b><br>
+Don't worry so much about all the TCHAR and PROCESS_INFORMATION and the like --it's all Windows boiler-plate.<br>
+<br>
+The <b>main</b>() functions arguments are<br>
+<tt>    </tt> <span class="auto"><code class="source"><var>int</var> argc</code></span> The number of c-strings in the <b>argv</b> array<br>
+<tt>    </tt> <span class="auto"><code class="source"><var>char</var>* argv[]</code></span> Each piece of the command-line that invoked your program.<br>
+<br>
+The first item (index 0) is the name of your program.<br>
+The second item (index 1) is the first argument to your program.<br>
+Etc.<br>
+<br>
+Try playing around with it:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;iostream&gt;</dfn>
+<var>using</var> <var>namespace</var> std;
+
+<var>int</var> main( <var>int</var> argc, <var>char</var>* argv[] )
+  {
+  cout &lt;&lt; <kbd>"arguments:\n"</kbd>;
+  <var>for</var> (<var>int</var> cntr = 0; cntr &lt; argc; cntr++)
+    cout &lt;&lt; cntr &lt;&lt; <kbd>": "</kbd> &lt;&lt; argv[ cntr ] &lt;&lt; <kbd>'\n'</kbd>;
+  <var>return</var> 0;
+  }</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+The program name is also considered an 'argument' because it is part of the command used to invoke your program. Try running your program from different directories to see how it affects argv[0].<br>
+<tt><br>
+    D:\prog\cc\foo\args&gt; <b>a.exe one two three</b><br>
+    arguments:<br>
+    0: a.exe<br>
+    1: one<br>
+    2: two<br>
+    3: three<br>
+<br>
+    D:\prog\cc\foo\args&gt; <b>a Hello world!</b><br>
+    arguments:<br>
+    0: a<br>
+    1: Hello<br>
+    2: world!<br>
+<br>
+    D:\prog\cc\foo\args&gt; <b>cd ..</b><br>
+<br>
+    D:\prog\cc\foo&gt; <b>args\a "John Jacob Jingleheimer Schmidt"</b><br>
+    arguments:<br>
+    0: args\a<br>
+    1: John Jacob Jingleheimer Schmidt<br>
+</tt><br>
+When you are done playing with the command-line, try double-clicking the executable from Explorer (or from the window manager if you are using Linux or Mac).<br>
+[edit] Oh, you'll have to add that pause function and use <span class="auto"><code class="source">pause();</code></span> before <span class="auto"><code class="source"><var>return</var> 0;</code></span> before you try it from your WM. heh.[/edit]<br>
+<br>
+Hope this helps.<br>
+<br>
+[edit] Added "using namespace std" to the example. (Sorry I forgot that last time.) [/edit]
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm74e42ffb23" title="Thu, 16 Oct 2008 16:07:02 +0000"></span><script type="text/javascript">WhenId('CH_zTm74e42ffb23');</script><noscript>Oct 16, 2008 at 4:07pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn21058"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg21074"><span title="21074,15467,255,1,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg21074" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmf225d82963" title="Mon, 13 Oct 2008 20:56:47 +0000"></span><script type="text/javascript">WhenId('CH_zTmf225d82963');</script><noscript>Oct 13, 2008 at 8:56pm UTC</noscript></div>
+<div class="dwho"><a href="/user/bugaboo/"><b>bugaboo</b> (1)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i21074">
+Hi!<br>
+I'm a C++ programming student, and I read through parts of this thread (if that bothers some people... I'm sorry)<br>
+I'm writing a program that ends by prompting the user to press any key, circumventing the normal “Press any key to continue…” prompt. So it doesn't have to wait for the newline - any key can terminate it.  <br>
+Can anyone help me?<br>
+Thank you so much!
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn21074"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg21124"><span title="21124,15181,1023,38,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg21124" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmc7f0286424" title="Tue, 14 Oct 2008 10:06:42 +0000"></span><script type="text/javascript">WhenId('CH_zTmc7f0286424');</script><noscript>Oct 14, 2008 at 10:06am UTC</noscript></div>
+<div class="dwho"><a href="/user/Hazer/"><b>Hazer</b> (38)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i21124">
+Answer is in pg.5.<br>
+And please end this discusion because it is about "how to keep console runing", not about "argc[]" and "how to display a string".
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn21124"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg21303"><span title="21303,13683,1023,31,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg21303" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm56e6236b7d" title="Thu, 16 Oct 2008 00:50:14 +0000"></span><script type="text/javascript">WhenId('CH_zTm56e6236b7d');</script><noscript>Oct 16, 2008 at 12:50am UTC</noscript></div>
+<div class="dwho"><a href="/user/chu121su12/"><b>chu121su12</b> (31)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i21303">
+Sorry Hazer, but I'd want to ask one more oot questions.<br>
+<br>
+Duoas, I understand (*very) your example. But I want to make sure the result in linux, since I'm not anywhere inside linux-user territory.<br>
+<br>
+What will be the result of this code in linux?<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;iostream&gt;</dfn>
+
+<var>int</var> main( <var>int</var> argc, <var>char</var>* argv[] )
+  {
+  cout &lt;&lt; <kbd>"arguments:\n"</kbd>;
+  <var>for</var> (<var>int</var> cntr = 0; cntr &lt; argc; cntr++)
+    cout &lt;&lt; cntr &lt;&lt; <kbd>": "</kbd> &lt;&lt; argv[ cntr ] &lt;&lt; <kbd>'\n'</kbd>;
+  <var>return</var> 0;
+  }</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn21303"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg21332"><span title="21332,15181,1023,38,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg21332" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm33d0ed19c3" title="Thu, 16 Oct 2008 07:24:24 +0000"></span><script type="text/javascript">WhenId('CH_zTm33d0ed19c3');</script><noscript>Oct 16, 2008 at 7:24am UTC</noscript></div>
+<div class="dwho"><a href="/user/Hazer/"><b>Hazer</b> (38)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i21332">
+I tested your example and it works. Result on linux:<br>
+arguments: 0: /tmp/testfile<br>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn21332"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg21371"><span title="21371,9110,5119,10130,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg21371" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmd3bafe5780" title="Thu, 16 Oct 2008 16:11:24 +0000"></span><script type="text/javascript">WhenId('CH_zTmd3bafe5780');</script><noscript>Oct 16, 2008 at 4:11pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Duoas/"><b>Duoas</b> (10130)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i21371">
+I presented the example being used on Windows because that is one of the assumptions behind this particular thread, but the code will work identically on Linux, OS X, Plan 9, whatever. (If it doesn't then your compiler is broken.)<br>
+<br>
+(I also fixed an accidental omission above: namespace using std for cout.)<br>
+<br>
+Don't forget the newlines\n.<br>
+<br>
+:-)
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn21371"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg21393"><span title="21393,13683,1023,31,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg21393" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmf48bc3e1ed" title="Thu, 16 Oct 2008 19:34:32 +0000"></span><script type="text/javascript">WhenId('CH_zTmf48bc3e1ed');</script><noscript>Oct 16, 2008 at 7:34pm UTC</noscript></div>
+<div class="dwho"><a href="/user/chu121su12/"><b>chu121su12</b> (31)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i21393">
+hmm... Now I see..<br>
+Thanks!
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn21393"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg23962"><span title="23962,15985,1023,91,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg23962" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmb223a7fc40" title="Sat, 08 Nov 2008 08:36:02 +0000"></span><script type="text/javascript">WhenId('CH_zTmb223a7fc40');</script><noscript>Nov 8, 2008 at 8:36am UTC</noscript></div>
+<div class="dwho"><a href="/user/Timbo1/"><b>Timbo1</b> (91)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i23962">
+Just start without debugging in the debugging menu
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn23962"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg25845"><span title="25845,16695,255,3,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg25845" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTme699cd0d77" title="Sat, 22 Nov 2008 09:43:50 +0000"></span><script type="text/javascript">WhenId('CH_zTme699cd0d77');</script><noscript>Nov 22, 2008 at 9:43am UTC</noscript></div>
+<div class="dwho"><a href="/user/fme/"><b>fme</b> (3)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i25845">
+use conio.h as follow:<br>
+include&lt;iostream.h&gt;<br>
+include&lt;conio.h&gt;<br>
+int main(){<br>
+       cout&lt;&lt;"Hello world";<br>
+       return 0;<br>
+}<br>
+getch();
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn25845"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg25865"><span title="25865,13171,1023,12617,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg25865" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm6252398310" title="Sat, 22 Nov 2008 12:42:28 +0000"></span><script type="text/javascript">WhenId('CH_zTm6252398310');</script><noscript>Nov 22, 2008 at 12:42pm UTC</noscript></div>
+<div class="dwho"><a href="/user/helios/"><b>helios</b> (12617)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i25865">
+ಠ_ಠ<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br></code></pre></td>
+<td class="source"><pre><code>}
+<cite>//(global scope)</cite>
+getch();</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+I think I developed three new clots in my brain just by looking at that.<br>
+I'm thinking this thread is already long enough, and it's pretty much covered all the possible solutions to this problem. Including the half-assed ones and the ones that just don't work. Maybe it'd be a good idea to lock it, already?
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn25865"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg25905"><span title="25905,9110,5119,10130,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg25905" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm3f10f0e663" title="Sat, 22 Nov 2008 17:29:45 +0000"></span><script type="text/javascript">WhenId('CH_zTm3f10f0e663');</script><noscript>Nov 22, 2008 at 5:29pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Duoas/"><b>Duoas</b> (10130)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i25905">
+<sub>agreed</sub>
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn25905"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg25917"><span title="25917,9863,1023,6190,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg25917" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm6f112f85b1" title="Sat, 22 Nov 2008 18:55:38 +0000"></span><script type="text/javascript">WhenId('CH_zTm6f112f85b1');</script><noscript>Nov 22, 2008 at 6:55pm UTC</noscript></div>
+<div class="dwho"><a href="/user/firedraco/"><b>firedraco</b> (6190)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i25917">
+*cough* Especially considering he returned 0 from main before he even got to the global scope (if that was even possible)...
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn25917"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg26261"><span title="26261,9110,5119,10130,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg26261" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmf5f18cb6df" title="Mon, 24 Nov 2008 22:39:48 +0000"></span><script type="text/javascript">WhenId('CH_zTmf5f18cb6df');</script><noscript>Nov 24, 2008 at 10:39pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Duoas/"><b>Duoas</b> (10130)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i26261">
+LOL, this works (but not in the way it reads):<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;iostream&gt;</dfn>
+<dfn>#include &lt;conio.h&gt;</dfn>
+<var>using</var> <var>namespace</var> std;
+
+<var>int</var> main()
+  {
+  cout &lt;&lt; <kbd>"Hello world"</kbd>;
+  <var>return</var> 0;
+  }
+
+<var>int</var> c = getch();</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+X-)
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm763f8e7e17" title="Mon, 24 Nov 2008 22:40:08 +0000"></span><script type="text/javascript">WhenId('CH_zTm763f8e7e17');</script><noscript>Nov 24, 2008 at 10:40pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn26261"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg26654"><span title="26654,9410,1023,5,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg26654" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm2381d1ea8f" title="Fri, 28 Nov 2008 02:26:20 +0000"></span><script type="text/javascript">WhenId('CH_zTm2381d1ea8f');</script><noscript>Nov 28, 2008 at 2:26am UTC</noscript></div>
+<div class="dwho"><a href="/user/Tsuruya/"><b>Tsuruya</b> (5)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i26654">
+<table class="quote"><tr><td class="qd">include&lt;iostream.h&gt;</td></tr></table><br>
+<br>
+I lol'd.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn26654"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg26769"><span title="26769,14210,1023,298,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg26769" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm3fd0b36924" title="Sat, 29 Nov 2008 13:28:02 +0000"></span><script type="text/javascript">WhenId('CH_zTm3fd0b36924');</script><noscript>Nov 29, 2008 at 1:28pm UTC</noscript></div>
+<div class="dwho"><a href="/user/bluezor/"><b>bluezor</b> (298)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i26769">
+<table class="quote"><tr><td class="qd">#include &lt;iostream&gt;<br>
+#include &lt;conio.h&gt;<br>
+using namespace std;<br>
+<br>
+int main()<br>
+  {<br>
+  cout &lt;&lt; "Hello world";<br>
+  return 0;<br>
+  }<br>
+<br>
+int c = getch();</td></tr></table><br>
+<br>
+Hello Duoas,<br>
+<br>
+I have tried that and it worked. But the problem was, it didn't display Hello World. I'm wondering though, how did that work? <span class="auto"><code class="source">c</code></span> wasn't mentioned anywhere in the code at all. :O
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn26769"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg26771"><span title="26771,13114,1023,6281,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg26771" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm053b29d5aa" title="Sat, 29 Nov 2008 13:33:10 +0000"></span><script type="text/javascript">WhenId('CH_zTm053b29d5aa');</script><noscript>Nov 29, 2008 at 1:33pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Bazzy/"><b>Bazzy</b> (6281)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i26771">
+I think that <span class="auto"><code class="source"><var>int</var> c = getch();</code></span> (as it is a declaration) is executed before <tt>main()</tt>
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn26771"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div id="CH_insNew"></div><div id="CH_subscription"></div><div class="rootedtNew"></div><div class="C_pages right">Pages: <a href="/forum/beginner/1988/1/">1</a>... <a href="/forum/beginner/1988/4/">4</a><a href="/forum/beginner/1988/5/">5</a><span title="Current page">6</span><a href="/forum/beginner/1988/7/">7</a></div><script type="text/javascript">new for_PostList(1988,1,11631,0,'CH_PostList','CH_subscription',false,'CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+<script type="text/javascript">
+    google_ad_client = "ca-pub-1444228343479937";
+    google_ad_slot = "9701143201";
+    google_ad_width = 728;
+    google_ad_height = 90;
+</script>
+<!-- leaderboard -->
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li class="selected"><a href="/forum/beginner/"><b>Beginners</b></a></li><li><a href="/forum/windows/"><b>Windows Programming</b></a></li><li><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li><a href="/forum/general/"><b>General C++ Programming</b></a></li><li><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Fbeginner%2F1988%2F6%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

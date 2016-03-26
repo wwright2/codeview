@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>What is C++ inline functions - C++ Articles</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/articles/">Articles</a></li>
+<li class="here">What is C++ inline functions</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div id="I_content">
+<div class="C_art">
+<div id="I_author">Published by <b><a href="/user/GMann/" rel="author">GMann</a></b></div>
+<div id="I_date">May 6, 2014 (last update: May 6, 2014)</div>
+<h1>What is C++ inline functions</h1>
+<div id="I_score">Score: 3.8/5 (795 votes)</div>
+<div id="I_stars"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-half.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"></div>
+<div id="I_content">
+In C, we have used Macro function an optimized technique used by compiler to reduce the execution time etc. So Question comes in mind that what’s there in C++ for that and in what all better ways? Inline function is introduced which is an optimization technique used by the compilers especially to reduce the execution time. We will cover “what, why, when & how” of inline functions.<br>
+<br>
+<B>What is inline function :</B><br>
+The inline functions are a C++ enhancement feature to increase the execution time of a program. Functions can be instructed to compiler to make them inline so that compiler can replace those function definition wherever those are being called. Compiler replaces the definition of inline functions at compile time instead of referring function definition at runtime.  <br>
+NOTE- This is just a suggestion to compiler to make the function inline, if function is big (in term of executable instruction etc) then, compiler can ignore the “inline” request and treat the function as normal function.<br>
+<br>
+<B>How to make function inline:</B><br>
+To make any function as inline, start its definitions with the keyword “inline”.<br>
+<br>
+Example –<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br></code></pre></td>
+<td class="source"><pre><code>Class A
+{
+ Public:
+    <var>inline</var> <var>int</var> add(<var>int</var> a, <var>int</var> b)
+    {
+       <var>return</var> (a + b);
+    };
+}
+
+Class A
+{
+ Public:
+    <var>int</var> add(<var>int</var> a, <var>int</var> b);
+};
+
+<var>inline</var> <var>int</var> A::add(<var>int</var> a, <var>int</var> b)
+{
+   <var>return</var> (a + b);
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<B>Why to use –</B><br>
+In many places we create the functions for small work/functionality which contain simple and less number of executable instruction. Imagine their calling overhead each time they are being called by callers.<br>
+When a normal function call instruction is encountered, the program stores the memory address of the instructions immediately following the function call statement, loads the function being called into the memory, copies argument values, jumps to the memory location of the called function, executes the function codes, stores the return value of the function, and then jumps back to the address of the instruction that was saved just before executing the called function. Too much run time overhead.<br>
+The C++ inline function provides an alternative. With inline keyword, the compiler replaces the function call statement with the function code itself (process called expansion) and then compiles the entire code. Thus, with inline functions, the compiler does not have to jump to another location to execute the function, and then jump back as the code of the called function is already available to the calling program.<br>
+With below pros, cons and performance analysis, you will be able to understand the “why” for inline keyword<br>
+<B>Pros</B> :- <br>
+1.	It speeds up your program by avoiding function calling overhead.<br>
+2.	It save overhead of variables push/pop on the stack, when function calling happens.<br>
+3.	It save overhead of return call from a function.<br>
+4.	It increases locality of reference by utilizing instruction cache.<br>
+5.	By marking it as inline, you can put a function definition in a header file (i.e. it can be included in multiple compilation unit, without the linker complaining)<br>
+<br>
+<B>Cons </B>:-<br>
+1.	It increases the executable size due to code expansion. <br>
+2.	C++ inlining is resolved at compile time. Which means if you change the code of the inlined function, you would need to recompile all the code using it to make sure it will be updated<br>
+3.	When used in a header, it makes your header file larger with information which users don’t care.<br>
+4.	As mentioned above it increases the executable size, which may cause thrashing in memory. More number of page fault bringing down your program performance.<br>
+5.	Sometimes not useful for example in embedded system where large executable size is not preferred at all due to memory constraints.<br>
+<br>
+<B>When to use - </B><br>
+Function can be made as inline as per programmer need. Some useful recommendation are mentioned below-<br>
+1. Use inline function when performance is needed.<br>
+2. Use inline function over macros.<br>
+3. Prefer to use inline keyword outside the class with the function definition to hide implementation details.<br>
+<br>
+<B>Key Points - </B><br>
+1.	It’s just a suggestion not compulsion. Compiler may or may not inline the functions you marked as inline. It may also decide to inline functions not marked as inline at compilation or linking time.<br>
+2.	Inline works like a copy/paste controlled by the compiler, which is quite different from a pre-processor macro: The macro will be forcibly inlined, will pollute all the namespaces and code, won't be easy to debug.<br>
+3.	All the member function declared and defined within class are Inline by default. So no need to define explicitly.<br>
+4.	Virtual methods are not supposed to be inlinable. Still, sometimes, when the compiler can know for sure the type of the object (i.e. the object was declared and constructed inside the same function body), even a virtual function will be inlined because the compiler knows exactly the type of the object.<br>
+5.	Template methods/functions are not always inlined (their presence in an header will not make them automatically inline).<br>
+6.	Most of the compiler would do in-lining for recursive functions but some compiler provides #pragmas- <br>
+microsoft c++ compiler - inline_recursion(on) and once can also control its limit with inline_depth.<br>
+In gcc, you can also pass this in from the command-line with --max-inline-insns-recursive<br>
+</div></div><div id="CH_bb"></div><div id="CH_scoreapp"></div><script type="text/javascript">new Score('CH_scoreapp','/articles/score.cgi','2LywvCM9');</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder selected articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/articles/">Articles</a></b></h3>
+<ul>
+<li><a href="/articles/algorithms/">Algorithms</a></li><li><a href="/articles/cpp11/">C++ 11</a></li><li><a href="/articles/graphics/">Graphics and multimedia</a></li><li><a href="/articles/howto/">How-To</a></li><li><a href="/articles/language/">Language Features</a></li><li><a href="/articles/linux/">Unix/Linux programming</a></li><li><a href="/articles/sourcecode/">Source Code</a></li><li><a href="/articles/standard_library/">Standard Library</a></li><li><a href="/articles/tips/">Tips and Tricks</a></li><li><a href="/articles/tools/">Tools and Libraries</a></li><li><a href="/articles/visualcpp/">Visual C++</a></li><li><a href="/articles/winapi/">Windows API</a></li></ul>
+</div>
+<div id="I_subnav"></div>
+</div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Farticles%2F2LywvCM9%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+onSession(function(us) {
+		document.getElementById('I_subnav').innerHTML=
+			us.ok?
+				'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul>'+
+				'<li><a href="/articles/myitems.cgi">My items</a></li>'+
+				(us.auth(32768)?'<li><a href="/articles/adminitems.cgi">Admin items</a></li>':'')+
+				'</ul></div>'
+			:'';
+	}); onSession(function (us) {
+		var el=document.getElementById('CH_bb'); el.innerHTML='';
+		if ( (us.auth(32768)) || ((us.uniqid=='iLNwb7Xj')&&(us.auth(128))) ) {
+			el.appendChild(btn('Edit article','Edit this version of the article','edit','/articles/edit.cgi?a=2LywvCM9'));
+	
+			if (us.auth(32768)) {
+				el.appendChild(btn('Delete article','Delete this article','delete','javascript:artdel()'));
+			}
+	
+		}
+	});
+	function artdel() { if (confirm('WARNING: You are about to delete this page. Confirm?')) window.location='/articles/delete.cgi?a=2LywvCM9'; }
+	ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

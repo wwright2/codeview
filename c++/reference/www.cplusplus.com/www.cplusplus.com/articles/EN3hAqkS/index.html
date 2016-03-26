@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Pointers - C++ Articles</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/articles/">Articles</a></li>
+<li class="here">Pointers</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div id="I_content">
+<div class="C_art">
+<div id="I_author">Published by <b><a href="/user/Moschops/" rel="author">Moschops</a></b></div>
+<div id="I_date">Nov 12, 2011 (last update: Nov 12, 2011)</div>
+<h1>Pointers</h1>
+<div id="I_score">Score: 4.1/5 (292 votes)</div>
+<div id="I_stars"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"></div>
+<div id="I_content">
+You are familiar with an int? An int is an object that takes up an amount of memory (commonly 4 bytes, sometimes 8) and stores a single numerical value.<br>
+<br>
+A pointer looks exactly the same as that. It takes up the same amount of memory as an int, and stores a single numerical value. All pointers look the same, whether they are pointers to int or pointers to double or whatever. They take up the same space and store a single numerical value.<br>
+<br>
+With me so far?<br>
+<br>
+Now, you know how to create an int? Like this:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>&nbsp;</code></pre></td>
+<td class="source"><pre><code><var>int</var> a;</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+You create a pointer exactly the same way; <br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br></code></pre></td>
+<td class="source"><pre><code><var>int</var>* a; <cite>// This create a pointer to an int</cite>
+<var>double</var>* b; <cite>// This creates a pointer to a double  </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Like any object, you have to create a pointer before you can use it. <br>
+<br>
+You can create a pointer to any kind of object you can think of using this syntax, but don't be fooled - the pointers all take up 4 (sometimes 8) bytes and store a single numerical value.<br>
+<br>
+You know that if you create an int without assigning it a value, it'll be just some garbage value? Just whatever happens to be in the memory at the time.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>&nbsp;</code></pre></td>
+<td class="source"><pre><code><var>int</var> b; <cite>// This int could have any value at all  </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Same thing with pointers<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>&nbsp;</code></pre></td>
+<td class="source"><pre><code><var>int</var>* b; <cite>// This int pointer could have any value at all  </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Of course, the same rules for naming things apply, so this:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br></code></pre></td>
+<td class="source"><pre><code><var>int</var> a;
+<var>int</var>* a;</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+would refuse to compile, as I have two objects with the same name.<br>
+<br>
+So far, so simple, yes?<br>
+<br>
+There is one special thing a pointer can do. You recall that the pointer stores a single numerical value? I can carry out an operation called "dereferencing" on the pointer, and that simply means I get back whatever object is in the memory location of that single numerical value. So, if my pointer stores the value 0x22334455 (I've used hex here, but it's just a number), when I dereference the pointer, I get back whatever is at memory location 0x22334455. We sometimes say that the pointer is pointing at the object in memory location 0x22334455.<br>
+<br>
+How do we know what numerical value to put into a pointer (or, put another way, how do we know what the memory address of an object is, so that we can store than memory address in the pointer)? Fortunately, there exists an operator "&" which will return the address of any object (i.e. the numerical value of the place in memory where that object is).<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br></code></pre></td>
+<td class="source"><pre><code><var>int</var> a; <cite>// an integer</cite>
+&amp;a; <cite>// the address of that integer </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+So here's how we could use that:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br></code></pre></td>
+<td class="source"><pre><code><var>int</var>* p; <cite>// a new pointer, with some garbage value - could be pointing anywhere</cite>
+p = &amp;a; <cite>// now we've stored the address of a in the pointer, so now the pointer is pointing at the object a  </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+There are circumstances where you might need to manually enter the address location yourself, and you can do that. Say you knew for sure that a value of interest was at address location 0x2323FFFF. You can manually set it, and we'll cover that a bit later.<br>
+<br>
+If all pointers are the same size and store a single numerical value, why do we have int* and double* and string* and all the rest? Because we need to know what kind of object we will get back when we dereference them. That's all. If we were being awkward, we could make an int*, and then force it to point to a double, because the pointer just stores a number - it does not store anything about what kind of thing it's pointing to. That's a bit more advanced, though.<br>
+<br>
+We do this dereferencing operation with the "*". So, if I had a pointer called MrPointer, and I wanted to get what it was pointing at, I would do this:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>&nbsp;</code></pre></td>
+<td class="source"><pre><code>*MrPointer;</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Let's say it points at an int. I could do this:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>&nbsp;</code></pre></td>
+<td class="source"><pre><code><var>int</var> someInt = *MrPointer;</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+or I can just use it in an expression<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>&nbsp;</code></pre></td>
+<td class="source"><pre><code><var>int</var> anotherInt = 4 + *MrPointer;</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+I'll expand.<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br></code></pre></td>
+<td class="source"><pre><code><var>int</var> a = 7; <cite>// Make an int, give it the value 7</cite>
+<var>int</var>* MrPointer; <cite>// Make a pointer. Don't give it a value - it's got some garbage value</cite>
+            <cite>//      if I try to use it, I deserve everything I get!</cite>
+
+MrPointer = &amp;a; <cite>// Now, MrPointer contains the memory address of the int a</cite>
+
+*MrPointer; <cite>// This means "get me the int at the memory address you're pointing to" - we know the value</cite>
+          <cite>//    of that int will be 7. I'm not doing anything with it, so this is a bit of a waste of code!</cite>
+
+<var>int</var> b = *MrPointer; <cite>// Now I've made a new int, and set it to the value of whatever MrPointer points at. </cite>
+                   <cite>//    We know MrPointer holds the memory address of a, so the value returned is 7,</cite>
+                   <cite>//     so the value of b will be 7.  </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+So, on to pointer arithmetic.<br>
+<br>
+You are happy with regular arithmetic? Let's recap with an int.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br></code></pre></td>
+<td class="source"><pre><code><var>int</var> a = 7;
+a++; <cite>// Now, a holds the value 8</cite>
+a = a+4; <cite>// Now, a holds the value 12  </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Pretty simple. What about pointers? First, take a step back and recall what pointers are all about. The idea is that they hold a memory address, and that memory address is the address of some object somewhere in memory.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>&nbsp;</code></pre></td>
+<td class="source"><pre><code><var>int</var>* b = &amp;a; <cite>// the pointer b holds the memory address of our int a, from above  </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+So b will have some value, lets say it's 0x22334455.<br>
+<br>
+Pointer arithmetic is the arithmetic of adding (and subtracting) values from a pointer. Recall that a pointer holds a memory address, so pointer arithmetic is the arithmetic of adding (and subtracting) values from a memory address. If we add the value 1 to a pointer, we don't mean "add 1 to that memory address you're holding". We mean "add enough to your memory to point at the next object along". <br>
+<br>
+An int is commonly 4 bytes. If the address of b is 0x22334455, then the int will be occupying the bytes 0x22334455 and 0x22334456 an 0x22334457 an 0x22334458 (on some systems, it will be 0x22334455 and 0x22334454 and 0x22334453 and 0x22334452 - doesn't matter which, as your compiler will keep track of all that sort of thing for you and will adjust the pointer correctly). So if we have a pointer to an int, like b above, when we add 1 to that pinter, the memory address will change by 4 so that it now holds the memory address of the next int along in memory. It is up to us to make sure that there actually is an int there! The compiler will trust us to do it right.<br>
+<br>
+So, imagine we had two int values next to each other in memory. We could have done this by making an array<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br></code></pre></td>
+<td class="source"><pre><code><var>int</var> c[2]; <cite>// This will make two int values in memory, right next to each other</cite>
+<var>int</var>* p = &amp;(c[0]); <cite>// This makes a pointer p, and gives it the value of the address of c[0], which is the first int  </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Note that this would also work;<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br></code></pre></td>
+<td class="source"><pre><code><var>int</var>*p = c; <cite>// This makes a pointer p, and gives it the value of the address of c, which is itself a pointer,</cite>
+            <cite>// pointing at the start of the array.  </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Now, let's add 1 to the pointer.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>&nbsp;</code></pre></td>
+<td class="source"><pre><code>p = p+1; <cite>// Now, the pointer holds the value of the next int along, c[1].  </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Pretty clever, eh? When you add 1 to a pointer, the value it holds does not change by one; it changes by exactly the right amount so that it will point to the next object along. It knows how far that is because when you made it, you specified what kind of object it will point to. If it is an int pointer, the value it holds will change by 4 (sometimes 8) bytes. If it points to some crazy object that is 40 bytes long, the value will change by 40 bytes. You don't need to worry about how much the memory address actually changes by; you can trust the compiler to handle it for you.<br>
+<br>
+If you added 2 to a pointer, the value of the pointer would change exactly the right amount to point at the object 2 along, and so on. If you subtract 1 from a pointer, it will point to the previous object along in memory.<br>
+<br>
+So, check this:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br></code></pre></td>
+<td class="source"><pre><code><var>double</var> x[10]; <cite>// an array of 10 doubles</cite>
+<var>double</var>* p = x; <cite>// p is a pointer, now pointing at the first double</cite>
+<var>for</var> (<var>int</var> i=0;i&lt;10;i++)
+{
+  std::cout &lt;&lt; *p &lt;&lt; std::endl;  <cite>// output the double value</cite>
+  p++; <cite>// make the pointer point to the next one</cite>
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+This code outputs the (garbage) values of an array of doubles, and demonstrates pointer arithmetic.<br>
+<br>
+As you'll realise, this opens itself to all sorts of neat stuff. How about if you had an int, and just for the fun of it, you wanted to look at each byte individually? A char is by definition one byte long, so if you had a char pointer, and made it point at that int, and then you added one to the char pointer, you'd be looking at the very next byte - inside the int!<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;iostream&gt;</dfn>
+
+<var>int</var> main()
+{
+
+  <var>int</var> a = 34;
+  <var>char</var>* p = (<var>char</var>*)&amp;a; <cite>// Make a char*, and force the compiler to treat the address of a as a char pointer.</cite>
+  <var>for</var> (<var>int</var> i =0;i&lt;4;i++)
+    {std::cout &lt;&lt; (<var>int</var>)(*p) &lt;&lt; std::endl; p++;} <cite>// Cycle through the 4 bytes of the int, outputting each byte as if it were an int</cite>
+  <var>return</var> 0;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+This one is a tiny bit more interesting<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;iostream&gt;</dfn>
+<var>int</var> main()
+{
+  <var>int</var> a = 256;
+  <var>char</var>* p = (<var>char</var>*)&amp;a; <cite>// Make a char*, and force the compiler to treat the address of a as a char pointer.</cite>
+  <var>for</var> (<var>int</var> i =0;i&lt;4;i++)
+    {std::cout &lt;&lt; (<var>int</var>)(*p) &lt;&lt; std::endl; p++;} <cite>// Cycle through the 4 bytes of the int, outputting each byte as if it were an int</cite>
+  <var>return</var> 0;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+You can get an insight into exactly what numbers are in the memory and you should be able to work out how the number 256 is being represented using the 4 bytes.<br>
+<br>
+As you could guess, we could do lots of crazy stuff with this kind of power to directly interfere with individual bytes. Welcome to the low-level power of C and C++!<br>
+<br>
+<br>
+<u>The difference uses of the "*" when dealing with pointers</u>
+<br>
+The * has two meanings.<br>
+<br>
+<br>
+Let's cover the first meaning:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br></code></pre></td>
+<td class="source"><pre><code><var>int</var> b; <cite>// Make a new object. The new object is to be an int.</cite>
+<var>int</var>* a; <cite>// Make a new object. The new object is to be an int-pointer  </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+When we create objects, the "*" is just part of the description of what kind of object we want to make. Once we've made the object, we just use the name of the object.<br>
+<br>
+Here's how we pass the object b that we just made:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>&nbsp;</code></pre></td>
+<td class="source"><pre><code>someFunction(b);</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+We don't need to specify that b is an int when we actually use it.<br>
+<br>
+So here's how we pass the pointer we just made:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>&nbsp;</code></pre></td>
+<td class="source"><pre><code>someOtherFunction(a);</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+We don't need to specify that a is an int-pointer when we actually use it.<br>
+<br>
+The other use of "*" is as the dereference operator. We use it on a pointer when we don't want the actual pointer; we want what it is pointing at.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br></code></pre></td>
+<td class="source"><pre><code><var>int</var>* c; <cite>// Here, "*" is part of the kind of object we want to make</cite>
+*c; <cite>// Here, "*" means dereference the pointer and give us what it points at  </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+They are two different uses, with two different meanings. If you see int* or double* or string* or any other such &lt;object-type&gt;* it is describing a kind of object. If you see *pointer, it means dereference.<br>
+<br>
+You will see the "describing a kind of object" use in making pointers, and in specifying what kind of objects a function takes (and returns), as in this example function prototype:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>&nbsp;</code></pre></td>
+<td class="source"><pre><code><var>void</var> DealDamage(<var>int</var> *EnemyHpPointer, <var>int</var> damage, string EnemyName);</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+DealDamage takes a pointer to an int, an int, and a string. It could be used like this:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br></code></pre></td>
+<td class="source"><pre><code><var>int</var>* somePointer;
+<var>int</var> someValue;
+string someString;
+
+<cite>// and then, after these have been given values, use the function</cite>
+DealDamage(somePointer, someValue, someString);</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+</div></div><div id="CH_bb"></div><div id="CH_scoreapp"></div><script type="text/javascript">new Score('CH_scoreapp','/articles/score.cgi','EN3hAqkS');</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder selected articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/articles/">Articles</a></b></h3>
+<ul>
+<li><a href="/articles/algorithms/">Algorithms</a></li><li><a href="/articles/cpp11/">C++ 11</a></li><li><a href="/articles/graphics/">Graphics and multimedia</a></li><li><a href="/articles/howto/">How-To</a></li><li><a href="/articles/language/">Language Features</a></li><li><a href="/articles/linux/">Unix/Linux programming</a></li><li><a href="/articles/sourcecode/">Source Code</a></li><li><a href="/articles/standard_library/">Standard Library</a></li><li><a href="/articles/tips/">Tips and Tricks</a></li><li><a href="/articles/tools/">Tools and Libraries</a></li><li><a href="/articles/visualcpp/">Visual C++</a></li><li><a href="/articles/winapi/">Windows API</a></li></ul>
+</div>
+<div id="I_subnav"></div>
+</div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Farticles%2FEN3hAqkS%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+onSession(function(us) {
+		document.getElementById('I_subnav').innerHTML=
+			us.ok?
+				'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul>'+
+				'<li><a href="/articles/myitems.cgi">My items</a></li>'+
+				(us.auth(32768)?'<li><a href="/articles/adminitems.cgi">Admin items</a></li>':'')+
+				'</ul></div>'
+			:'';
+	}); onSession(function (us) {
+		var el=document.getElementById('CH_bb'); el.innerHTML='';
+		if ( (us.auth(32768)) || ((us.uniqid=='413pX9L8')&&(us.auth(128))) ) {
+			el.appendChild(btn('Edit article','Edit this version of the article','edit','/articles/edit.cgi?a=EN3hAqkS'));
+	
+			if (us.auth(32768)) {
+				el.appendChild(btn('Delete article','Delete this article','delete','javascript:artdel()'));
+			}
+	
+		}
+	});
+	function artdel() { if (confirm('WARNING: You are about to delete this page. Confirm?')) window.location='/articles/delete.cgi?a=EN3hAqkS'; }
+	ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

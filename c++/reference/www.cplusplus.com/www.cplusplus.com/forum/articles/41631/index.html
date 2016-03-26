@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Networking - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/articles/">Articles</a></li>
+<li class="here">Networking</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico default" title="post">&nbsp;</div> Networking</h3><span id="CH_edttl"></span><span class="rootdatPost" title="41631,root,0,-1,10,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg224621"><span title="224621,15588,0,2731,1"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg224621" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmc8cbb97996" title="Mon, 25 Apr 2011 18:15:52 +0000"></span><script type="text/javascript">WhenId('CH_zTmc8cbb97996');</script><noscript>Apr 25, 2011 at 6:15pm UTC</noscript></div>
+<div class="dwho">closed account (<i><a href="/user/closed_account_S6k9GNh0/">S6k9GNh0</a></i>)</div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i224621">
+<b>Networking</b><br>
+What is networking? It's a collection of something that send data from one something to another. This could apply even to humans if you consider sound a type of data, business, etc.. However, we all have to learn how to properly communicate with one another. It's no different with computers; you have to sit down and learn the specifics, it's like learning a language all on its own. However, with computers, we can screw up and be okay (unlike in real life) and as a result, we can use that to test and experiment to speed up the learning process! We continue on to interfacing with the network...<br>
+<br>
+<b>Just following Protocol...</b><br>
+Networking... has *never* been more simple than it is today (:D). Generally, your specific OS will provide you with some sort of basic API to use. Before I move on to that, I'd like to explain the internet really fast.<br>
+<br>
+http://tinyurl.com/42bn2s4<br>
+<br>
+This is your common "internet". Please note this is usually for general areas and isn't concerning the big picture. However, I'm not worrying about that in this tutorial as this information isn't needed while "networking". This is just to help wrap your mind around it. When you think about how data gets to one another, you can think of this structure.<br>
+<br>
+Also, data isn't just sent out to the internet to explore for a few hours until it reaches its destination. No, it uses something called the "internet" layer to route where it is going. Generally, you'll see use of the Internet Protocol here (please note that an IP address is of course part of the IP protocol). <br>
+<br>
+Overall, we can picture a packet (a packet is simply a structure of data) with four layers. These layers are generally called the link (hardware) layer, the internet (routing) layer, the transport (control) layer, and the application layer. Together, this makes up for the Internet Protocol Suite. The packing of these packets are almost *always* abstract to us. We can program without knowing about this entirely. Most of these layers are self explanatory. To clarify though, the hardware layer helps a packet come back into a network of computers, the routing layer helps a packet reach the network at all, the control layer adds rules to the packet to help a programmer assure a packet presense, and an application layer filters the data that came with the packet to be useful to the client in some way. <br>
+<br>
+When we program, we generally create the application layer (whether we know it or not). However, all that's required for a packet to be sent is the routing layer (so it knows where to go). The transport layer and application is not actually required at all! However, without the transport layer, there is a possibility that our data will get to its destination corrupt, out of order, or just not at all! The control layer "fixes" this to some extent, usually by providing some type of rules that we can follow (depending on the protocol used). Without an application layer, there would be no purpose to the packet.<br>
+<br>
+More here in a bit... I might need to post this up elsewhere as the word limit might be reached :/<br>
+<br>
+4/29/2011 EDIT: I'm still working on it. Windows 7 decided to blue screen me then not want to do anything else... I have absolutely no idea what happened, it doesn't seem to be a hardware issue (other partitions function fine), and I just decided a fresh install was in need (losing my example... since I forgot that I could just fetch the file from another functioning partition...)
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTmb03193ad5a" title="Fri, 29 Apr 2011 08:10:26 +0000"></span><script type="text/javascript">WhenId('CH_zTmb03193ad5a');</script><noscript>Apr 29, 2011 at 8:10am UTC</noscript></span>
+<span class="dbtn" id="CH_btn224621"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg224737"><span title="224737,21799,1023,7398,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg224737" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm64647fe6bc" title="Mon, 25 Apr 2011 21:55:24 +0000"></span><script type="text/javascript">WhenId('CH_zTm64647fe6bc');</script><noscript>Apr 25, 2011 at 9:55pm UTC</noscript></div>
+<div class="dwho"><a href="/user/chrisname/"><b>chrisname</b> (7398)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i224737">
+Definitely use SFML's Network library.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn224737"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg224836"><span title="224836,19724,5119,4176,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg224836" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmf843307f29" title="Tue, 26 Apr 2011 01:08:17 +0000"></span><script type="text/javascript">WhenId('CH_zTmf843307f29');</script><noscript>Apr 26, 2011 at 1:08am UTC</noscript></div>
+<div class="dwho"><a href="/user/TheRabbitologist/"><b>TheRabbitologist</b> (4176)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i224836">
+Will comment when the (EDIT: whole) article is written.<br>
+<br>
+-Albatross
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTme3d66fa352" title="Tue, 26 Apr 2011 23:14:01 +0000"></span><script type="text/javascript">WhenId('CH_zTme3d66fa352');</script><noscript>Apr 26, 2011 at 11:14pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn224836"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg224866"><span title="224866,27535,1023,1446,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg224866" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm2c7000d100" title="Tue, 26 Apr 2011 02:52:32 +0000"></span><script type="text/javascript">WhenId('CH_zTm2c7000d100');</script><noscript>Apr 26, 2011 at 2:52am UTC</noscript></div>
+<div class="dwho"><a href="/user/ultifinitus/"><b>ultifinitus</b> (1446)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i224866">
+*good heavens, I totally the whole article
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn224866"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg225313"><span title="225313,29924,1023,5406,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg225313" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm3f874a3b5c" title="Tue, 26 Apr 2011 22:57:49 +0000"></span><script type="text/javascript">WhenId('CH_zTm3f874a3b5c');</script><noscript>Apr 26, 2011 at 10:57pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Computergeek01/"><b>Computergeek01</b> (5406)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i225313">
+<table class="quote"><tr><td class="qd">More here in a bit... I might need to post this up elsewhere as the word limit might be reached</td></tr></table><br>
+This wouldn't matter if you use a new post instead of trying to edit your old one.<br>
+<br>
+That image is FAR too neat to be an actual representation of the internet. You don't even try to show how the different Tiers of telecom service providers interact with eachother, how DNS works. I guess we'll keep it introductory so as not to lose people.<br>
+<br>
+If you're continuing one this route by the way (That is from the perspective of a programmer) you should specify that you'll ignoring the infrastructure behind the transport layer. Otherwise I think trying to explain EVERYTHING that is involved would require a Wikipedia sized article.<br>
+<br>
+Good start though, I'm interested to see where this leads.
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTmba3710dd0a" title="Tue, 26 Apr 2011 23:00:48 +0000"></span><script type="text/javascript">WhenId('CH_zTmba3710dd0a');</script><noscript>Apr 26, 2011 at 11:00pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn225313"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg225319"><span title="225319,15588,0,2731,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg225319" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmf9dc8387da" title="Tue, 26 Apr 2011 23:18:16 +0000"></span><script type="text/javascript">WhenId('CH_zTmf9dc8387da');</script><noscript>Apr 26, 2011 at 11:18pm UTC</noscript></div>
+<div class="dwho">closed account (<i><a href="/user/closed_account_S6k9GNh0/">S6k9GNh0</a></i>)</div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i225319">
+Computergeek01, I do mention that the tutorial isn't quite based on the internet itself. Wikipedia actually has images for both of those but I wanted to keep it simple :D.<br>
+<br>
+As for the second comment, it's required that you have some knowledge of how the transport layer works or else the obvious question between which protocol to use would be there (the routing layer often isn't in question as in almost all cases, this is the IP protocol) . For instance, the official minecraft server uses TCP when it's rather obvious that was a mistake. People often ask me why does it matter and often argue it doesn't matter at all, when it's rather apparent to me that it does. I want to make apparent the purpose of the protocol for that reason alone. I don't plan on going in depth, simply what the difference is and in which case to use what (generally though, only TCP and UDP are used. I'll discuss raw sockets a little bit).
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm1e6d6b32a4" title="Wed, 27 Apr 2011 00:12:53 +0000"></span><script type="text/javascript">WhenId('CH_zTm1e6d6b32a4');</script><noscript>Apr 27, 2011 at 12:12am UTC</noscript></span>
+<span class="dbtn" id="CH_btn225319"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg225385"><span title="225385,15588,0,2731,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg225385" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmcbbc0e552d" title="Wed, 27 Apr 2011 03:45:48 +0000"></span><script type="text/javascript">WhenId('CH_zTmcbbc0e552d');</script><noscript>Apr 27, 2011 at 3:45am UTC</noscript></div>
+<div class="dwho">closed account (<i><a href="/user/closed_account_S6k9GNh0/">S6k9GNh0</a></i>)</div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i225385">
+Can someone explain why Windows did not follow BSD (or POSIX) sockets API? It's incredibly frustrating trying to make a "cross-platform" example simply because I'm trying to adapt to how winsock does things as compared to POSIX sockets through macro defines, etc.
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm109b78e9a3" title="Wed, 27 Apr 2011 03:47:08 +0000"></span><script type="text/javascript">WhenId('CH_zTm109b78e9a3');</script><noscript>Apr 27, 2011 at 3:47am UTC</noscript></span>
+<span class="dbtn" id="CH_btn225385"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg225388"><span title="225388,38911,1023,1236,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg225388" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmb3f4e4b379" title="Wed, 27 Apr 2011 03:51:04 +0000"></span><script type="text/javascript">WhenId('CH_zTmb3f4e4b379');</script><noscript>Apr 27, 2011 at 3:51am UTC</noscript></div>
+<div class="dwho"><a href="/user/sohguanh/"><b>sohguanh</b> (1236)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i225388">
+Windows has a long history of being different from standards. Due to their size and market share, they sometimes come out with their "own" standards and hope other market players follow "their" standards. I do see this behavoir in Apple isn't it ? :P<br>
+<br>
+Just think of IE in the early days, they come out with lotsa features that are not even in the standards but to their credit, some of those features later become part of the standard.<br>
+<br>
+So to follow or not to follow standards for implementation has it's pros and cons.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn225388"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg225399"><span title="225399,15588,0,2731,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg225399" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmce32debfd4" title="Wed, 27 Apr 2011 04:31:01 +0000"></span><script type="text/javascript">WhenId('CH_zTmce32debfd4');</script><noscript>Apr 27, 2011 at 4:31am UTC</noscript></div>
+<div class="dwho">closed account (<i><a href="/user/closed_account_S6k9GNh0/">S6k9GNh0</a></i>)</div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i225399">
+Hmmm... I can understand that. <br>
+<br>
+Btw, I have this rather lanky macro-ridden BSD-sockets based example to show. However, I don't really like it as it's difficult to relate to pure networking. The abstraction from the OS isn't really there which when using some C++ library, will almost ALWAYS be there. I can't tell if that's a bad thing or good thing. But, due to the lack of readability and my inability to have an understanding reader without explaining unnecessary things such as file descriptors, the different API's, poor error handling, etc. I'm thinking about using a library that better represents networking with abstraction such as Boost ASIO or perhaps even SFML sockets. I can see why Beej didn't include error checking in his basic examples which I might do myself but I'm kinda scared to do so.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn225399"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg225647"><span title="225647,29924,1023,5406,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg225647" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmc83a798d71" title="Wed, 27 Apr 2011 18:16:11 +0000"></span><script type="text/javascript">WhenId('CH_zTmc83a798d71');</script><noscript>Apr 27, 2011 at 6:16pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Computergeek01/"><b>Computergeek01</b> (5406)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i225647">
+@ <b>sohguanh</b>: Apple and Microsoft business patterns are so simular because Bill Gates used to work for Steve Jobs. I think I remeber something about them growing up together but I can't remeber if that was true or not.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn225647"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div class="rootbtnNew"></div><div id="CH_insNew"></div><div id="CH_reply">Topic archived. No new replies allowed.</div><div id="CH_subscription"></div><div class="rootedtNew"></div><script type="text/javascript">new for_PostList(41631,1,15588,0,'CH_PostList','CH_subscription','CH_reply','CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+<script type="text/javascript">
+    google_ad_client = "ca-pub-1444228343479937";
+    google_ad_slot = "9701143201";
+    google_ad_width = 728;
+    google_ad_height = 90;
+</script>
+<!-- leaderboard -->
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li><a href="/forum/beginner/"><b>Beginners</b></a></li><li><a href="/forum/windows/"><b>Windows Programming</b></a></li><li><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li><a href="/forum/general/"><b>General C++ Programming</b></a></li><li><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Farticles%2F41631%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

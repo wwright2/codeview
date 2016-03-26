@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Turbo C++ 3.1 Code Example For A List Bo - C++ Articles</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/articles/">Articles</a></li>
+<li class="here">Turbo C++ 3.1 Code Example For A List Bo</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div id="I_content">
+<div class="C_art">
+<div id="I_author">Published by <b><a href="/user/analyzoh/" rel="author">analyzoh</a></b></div>
+<div id="I_date">Mar 5, 2014 (last update: Jun 13, 2014)</div>
+<h1>Turbo C++ 3.1 Code Example For A List Box</h1>
+<div id="I_score">Score: 3.2/5 (55 votes)</div>
+<div id="I_stars"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"></div>
+<div id="I_content">
+<b>INTRODUCTION</b><br>
+<br>
+Many moons ago in the 1990s, when I was <a href="http://www.analyzohiosoftware.com/programming-article-archive-cleveland-ohio.html">programming</a> business <a href="http://www.analyzohiosoftware.com/application-development-cleveland-ohio.html">application development</a> in the old Borland Turbo C++ 3.1 platform for the Windows OS, I frequently had a need to create “list boxes”. I used them to hold a variety of things such as customers, inventory items, bookkeeping transactions, invoices and more. <br>
+<br>
+<br><IMG SRC="turboc++31_logo.jpg" alt=""><br>
+<br>
+Below I have illustrated an example of how I created one. This particular one will hold a list of vendors in a single selection list box control. And yes, it’s crude in comparison to the <a href="http://www.analyzohiosoftware.com/best-developer-cleveland-ohio.html">best developer</a> platforms like Microsoft Visual Studio, but it does work!<br>
+<br>
+<b>DECLARE THE NEEDED CLASSES</b><br>
+<br>
+First, here is the class declaration from one of the project’s C++ source code files for the “TVendDlg” class that will create the data entry screen for the vendors.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br></code></pre></td>
+<td class="source"><pre><code>
+<cite>// declare “TvendDlg”, a TDialog descendant</cite>
+<var>class</var> TVendDlg : <var>public</var> TDialog {
+<var>public</var>:
+    <var>virtual</var> <var>void</var> SetupWindow();
+    <var>virtual</var> <var>void</var> VendDel(RTMessage Msg)
+      = [ID_FIRST + ID_DELX_];
+    <var>virtual</var> <var>void</var> VendChs(RTMessage Msg)
+      = [ID_FIRST + ID_CHS1_];
+    <var>virtual</var> <var>void</var> VendPrn(RTMessage Msg)
+      = [ID_FIRST + ID_VPRN_];
+    <var>char</var> Vncode[MAXCCODE];
+    <var>char</var> Vnname[MAXCNAME];
+    <var>char</var> Vnstreet[MAXCSTREET];
+    <var>char</var> Vnstreet2[MAXCSTREET];
+    <var>char</var> Vncity[MAXCCITY];
+    <var>char</var> Vnstate[MAXCSTATE];
+    <var>char</var> Vnzip[MAXCZIP];
+    <var>char</var> VnTell1[MAXCTF1];
+    <var>char</var> VnFax1[MAXCTF1];
+    <var>char</var> Vnatt[MAXATT];
+    <var>char</var> VnPaytrm[MAXTERM];
+    <var>char</var> VnNote1[MAXNOTE];
+    <var>char</var> VnNote2[MAXNOTE];
+
+TEdit *Edit1,*Edit2,*Edit3,*Edit4,*Edit5,*Edit6,*Edit7,*Edit8,*Edit9,*Edit10,
+*Edit11,*Edit12,*Edit13;
+
+    TVendDlg(PTWindowsObject AParent, LPSTR name);
+    <var>virtual</var> BOOL CanClose();
+};
+</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Next, you see the “ListBoxDialog” class that will be used to populate the list box and retrieve the user’s selection from it.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br></code></pre></td>
+<td class="source"><pre><code>
+<cite>// declare “ListBoxDialog”, a TDialog descendant</cite>
+<var>class</var> ListBoxDialog : <var>public</var> TDialog
+{
+<var>public</var>:
+  ListBoxDialog(PTWindowsObject AParent, LPSTR AName)
+    : TDialog(AParent, AName) {};
+  <var>virtual</var> <var>void</var> SetupWindow();
+  <var>virtual</var> <var>void</var> HandleListBoxMsg(RTMessage Msg)
+    = [ID_FIRST + ID_LISTBOX];
+};
+</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<b>CLICK THE “CHOOSE” BUTTON TO ACTIVATE THE LIST BOX</b><br>
+<br>
+This member function of the “TVendDlg” class will be fired upon clicking the “Choose” button in the vendor data entry screen. The command under the “Choose” button, “GetApplication()-&gt;ExecDialog(new ListBoxDialog(this, "VENDORDIALOG"));”, will instantiate the “ListBoxDialog” class that is used to help populate the list box.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br>59<br>60<br>61<br>62<br>63<br>64<br>65<br>66<br>67<br>68<br>69<br>70<br>71<br>72<br>73<br>74<br>75<br>76<br>77<br>78<br>79<br>80<br>81<br>82<br></code></pre></td>
+<td class="source"><pre><code>
+<var>void</var> TVendDlg::VendChs(RTMessage)
+{
+  <var>int</var>       a;
+  streambuf *inn = cin.rdbuf();
+  ifpstream ifile;
+  Globalvar = 0;
+  GetApplication()-&gt;ExecDialog(<var>new</var> ListBoxDialog(<var>this</var>, <kbd>"VENDORDIALOG"</kbd>));
+
+  	<cite>// if the Global variable, “Globalvar” is set to 1 from the</cite>
+	<cite>// “ListBoxDialog::HandleListBoxMsg(RTMessage Msg)” member</cite>
+	<cite>// function, then proceed.</cite>
+  	<var>if</var>( Globalvar == 1) {
+
+  	<cite>// set the global flag, “hasbeenselected”, to signal a vendor</cite>
+	<cite>// has been selected from the list box.</cite>
+  	hasbeenselected = 1;
+
+  		<cite>// display the retrieved vendor data in the vendor data entry</cite>
+  		<cite>// screen after the selection in the list box has been clicked</cite>
+  		<cite>// by the user. the data for the selected vendor will be </cite>
+                <cite>// assigned to the edit controls in the vendor data entry </cite>
+                <cite>// screen.</cite>
+  		ifile.open(<kbd>"vend.txt"</kbd>, ios::in | ios::binary);
+  		inn = ifile.rdbuf();
+		<cite>// position the filestream ofthe binary vendor</cite>
+		<cite>// data file to the calculated filestream offset</cite>
+		<cite>// value of the selected list box item.</cite>
+  		inn -&gt; seekpos(offsetvar, ios::in);
+  		<var>for</var>(a=0; a&lt;MAXCCODE-1; a++) Vncode[a] = ifile.readByte();
+  		Vncode[MAXCCODE-1] = 0;
+  		Edit1-&gt;SetText(Vncode);
+  		<var>for</var>(a=0; a&lt;MAXCNAME-1; a++) Vnname[a] = ifile.readByte();
+  		Vnname[MAXCNAME-1] = 0;
+  		Edit2-&gt;SetText(Vnname);
+  		<var>for</var>(a=0; a&lt;MAXCSTREET-1; a++) Vnstreet[a] = ifile.readByte();
+  		Vnstreet[MAXCSTREET-1] = 0;
+  		Edit3-&gt;SetText(Vnstreet);
+  		<var>for</var>(a=0; a&lt;MAXCSTREET-1; a++) Vnstreet2[a] = ifile.readByte();
+  		Vnstreet2[MAXCSTREET-1] = 0;
+  		Edit4-&gt;SetText(Vnstreet2);
+  		<var>for</var>(a=0; a&lt;MAXCCITY-1; a++) Vncity[a] = ifile.readByte();
+  		Vncity[MAXCCITY-1] = 0;
+  		Edit5-&gt;SetText(Vncity);
+  		<var>for</var>(a=0; a&lt;MAXCSTATE-1; a++) Vnstate[a] = ifile.readByte();
+  		Vnstate[MAXCSTATE-1] = 0;
+  		Edit6-&gt;SetText(Vnstate);
+  		<var>for</var>(a=0; a&lt;MAXCZIP-1; a++) Vnzip[a] = ifile.readByte();
+  		Vnzip[MAXCZIP-1] = 0;
+  		Edit7-&gt;SetText(Vnzip);
+  		<var>for</var>(a=0; a&lt;3; a++) VnTell1[a] = ifile.readByte();
+  		VnTell1[3] = <kbd>'-'</kbd>;
+  		<var>for</var>(a=0; a&lt;3; a++) VnTell1[4+a] = ifile.readByte();
+  		VnTell1[7] = <kbd>'-'</kbd>;
+  		<var>for</var>(a=0; a&lt;4; a++) VnTell1[8+a] = ifile.readByte();
+  		VnTell1[MAXCTF1-1] = 0;
+  		Edit8-&gt;SetText(VnTell1);
+  		<var>for</var>(a=0; a&lt;3; a++) VnFax1[a] = ifile.readByte();
+  		VnFax1[3] = <kbd>'-'</kbd>;
+  		<var>for</var>(a=0; a&lt;3; a++) VnFax1[4+a] = ifile.readByte();
+  		VnFax1[7] = <kbd>'-'</kbd>;
+  		<var>for</var>(a=0; a&lt;4; a++) VnFax1[8+a] = ifile.readByte();
+  		VnFax1[MAXCTF1-1] = 0;
+  		Edit9-&gt;SetText(VnFax1);
+  		<var>for</var>(a=0; a&lt;MAXATT-1; a++) Vnatt[a] = ifile.readByte();
+  		Vnatt[MAXATT-1] = 0;
+  		Edit10-&gt;SetText(Vnatt);
+  		<var>for</var>(a=0; a&lt;MAXTERM-1; a++) VnPaytrm[a] = ifile.readByte();
+  		VnPaytrm[MAXTERM-1] = 0;
+  		Edit11-&gt;SetText(VnPaytrm);
+  		<var>for</var>(a=0; a&lt;MAXNOTE-1; a++) VnNote1[a] = ifile.readByte();
+  		VnNote1[MAXNOTE-1] = 0;
+  		Edit12-&gt;SetText(VnNote1);
+  		<var>for</var>(a=0; a&lt;MAXNOTE-1; a++) VnNote2[a] = ifile.readByte();
+  		VnNote2[MAXNOTE-1] = 0;
+  		Edit13-&gt;SetText(VnNote2);
+  		ifile.close();
+
+  	}
+
+  }
+</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<b>CONSTRUCT THE LIST BOX AND POPULATE IT</b><br>
+<br>
+This is from the project’s resource file, which constructs the layout for the vendors list box. The resource is named “VENDORDIALOG”. Notice that it uses the fixed width courier font, which will make the columns display nice and even. <br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br></code></pre></td>
+<td class="source"><pre><code>
+VENDORDIALOG DIALOG DISCARDABLE LOADONCALL PURE MOVEABLE 30, 18, 208, 108
+STYLE WS_POPUP | WS_DLGFRAME
+FONT 10, <kbd>"COURIER"</kbd>
+BEGIN
+  CONTROL <kbd>"Vendor Name                   Vend. Code   "</kbd>, 10055, <kbd>"static"</kbd>, SS_LEFT | WS_CHILD, 20, 3, 188, 8
+  CONTROL <kbd>"&amp;Exit"</kbd> IDCANCEL, <kbd>"BUTTON"</kbd>, WS_CHILD | WS_VISIBLE | WS_TABSTOP, 20, 93, 48, 12
+  CONTROL <kbd>"Vendor Listing"</kbd>, 10056, <kbd>"static"</kbd>, SS_LEFT | WS_CHILD, 75, 93, 200, 8
+  CONTROL <kbd>"LISTBOX"</kbd> ID_LISTBOX, <kbd>"LISTBOX"</kbd>, WS_CHILD | WS_VISIBLE | WS_BORDER | WS_VSCROLL | 0x3L, 20, 15, 168, 73
+END
+</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Next, I present the “SetupWindow”  member function of the “ListBoxDialog” class that will populate the list box with data from the vendors binary data file, “vend.txt”. The command “SendDlgItemMsg(ID_LISTBOX, LB_ADDSTRING, 0, (LONG)char_array);”, adds each vendor name and vendor code pair as a row to the list box identified by the defined constant, “ID_LISTBOX”.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br></code></pre></td>
+<td class="source"><pre><code>
+<var>void</var> ListBoxDialog::SetupWindow()
+{
+  <var>long</var> <var>int</var>   fileoffset, sizeofdatafile;
+  <var>int</var>        a,fileinfo,t;
+  streambuf  *inn = cin.rdbuf();
+  ifpstream  ifile;
+
+  <cite>// this will loop around the “vend.txt” binary data file of</cite>
+  <cite>// vendors and add a data record to the list box, which includes</cite>
+  <cite>// vendor name and vendor code.</cite>
+  fileinfo = open(<kbd>"vend.txt"</kbd>, ios::in | ios::binary);
+  sizeofdatafile = filelength(fileinfo);
+  close(fileinfo);
+  ifile.open(<kbd>"vend.txt"</kbd>, ios::in | ios::binary);
+  inn = ifile.rdbuf();
+  fileoffset  = 0;
+  <var>do</var> {
+
+        <cite>// initialize the char array, “char_array”, with space characters.	</cite>
+     	<var>for</var>(a=0; a&lt;100; a++) char_array[a] = 32;
+
+		<cite>// read the vendor name and vendor code from the file stream.</cite>
+  		inn -&gt; seekpos(fileoffset, ios::in);
+    		<var>for</var>(a=0; a&lt;MAXCCODE-1; a++) char_array[32+a] = ifile.readByte();
+  		inn -&gt; seekpos(fileoffset+MAXCCODE-1, ios::in);
+  		<var>for</var>(a=0; a&lt;MAXCNAME-1; a++) char_array[a] = ifile.readByte();
+
+			<cite>// mask out white space characters.</cite>
+  			<var>for</var>(a=0; a&lt;100; a++) {
+  			<var>if</var>(char_array[a]&lt;33 || char_array[a]&gt;126) char_array[a] = 32;
+  			}
+
+				<cite>// read the sequential position of the record in the binary text file.</cite>
+  				inn -&gt; seekpos(fileoffset+VENDLEN-5, ios::in);
+  				<var>for</var>(a=0; a&lt;5; a++) char_array[70+a] = ifile.readByte();
+				<cite>// null space the end of the char array to  suppress trailing random chars.</cite>
+  				char_array[99] = 0;
+
+					<cite>// convert the char array to lower case.</cite>
+  					strlwr(char_array);
+
+						<cite>// add the vendor name and vendor code pair to the list box control.</cite>
+  						SendDlgItemMsg(ID_LISTBOX, LB_ADDSTRING, 0, (LONG) char_array);
+
+  <cite>// advance to the next record in the binary text file.		</cite>
+  fileoffset = fileoffset + VENDLEN;
+
+  } <var>while</var>(fileoffset&lt;sizeofdatafile);
+
+  ifile.close();
+
+}
+</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Finally, the “HandleListBoxMsg” member function of the “ListBoxDialog” class will fire with a click by the user on the selected row in the list box. At this point, the list box will disappear and the file stream offset of the selected vendor record will be calculated with help from the selection’s “index” component . This offset will then be used in the data retrieval portion of the “VendChs” member function of the “TVendDlg” class mentioned previously.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br></code></pre></td>
+<td class="source"><pre><code>
+<var>void</var> ListBoxDialog::HandleListBoxMsg(RTMessage Msg)
+{
+  <var>long</var> <var>int</var>   a, convert_to_number[5];
+  DWORD      Idx;
+ 
+  <cite>// if the exit button is clicked, then exit and reset global variable to 0.</cite>
+  <var>if</var> ( Msg.LP.Hi == LBN_SELCANCEL ) Globalvar = 0;
+
+  	<cite>// if a selection is made, then reset the global variable to 1 and proceed to calculate the</cite>
+  	<cite>// filestream offset after getting the list box index of the selection, “Idx”.</cite>
+  	<var>if</var> ( Msg.LP.Hi == LBN_SELCHANGE ) {
+
+        <cite>// initialize the char array, “char_array”, with space characters.	</cite>
+    	<var>for</var>(a=0; a&lt;80; a++) char_array[a] = 32;
+
+    	Globalvar = 1;
+
+    	<cite>// get the index of the selected list box item.</cite>
+    	Idx = SendDlgItemMsg(ID_LISTBOX, LB_GETCURSEL, 0, 0L);
+
+    	char_array[79] = 0;
+
+    	<cite>// use the index to retrieve the contents of the selected list box row into a char array, “char_array”.</cite>
+    	SendDlgItemMsg(ID_LISTBOX, LB_GETTEXT, (WORD)Idx, (DWORD) char_array);
+
+    	<cite>// close the list box window after retrieving info into the char array from above.</cite>
+    	CloseWindow();
+
+    			<cite>// this will take the auto-generated sequential</cite>
+			<cite>// position of the vendor record stored in each record of the binary text file, “vend.txt” </cite>
+			<cite>// from the char array and convert it to a numerical value to be multiplied by the defined constant,</cite>
+			<cite>// “VENDLEN”. this will produce the filestream offset I call “offsetvar”, which is used to locate the</cite>
+			<cite>// vendor data in the member function “VendChs” of the “TVendDlg” dialog class, which will populate</cite>
+			<cite>// the edit controls in the vendor data entry screen. </cite>
+    			<var>for</var>(a=0; a&lt;5; a++) {
+    			convert_to_number[a] = 0;
+    			<var>if</var>(char_array[70+a] == 48) convert_to_number[a] = 0;
+    			<var>if</var>(char_array[70+a] == 49) convert_to_number[a] = 1;
+    			<var>if</var>(char_array[70+a] == 50) convert_to_number[a] = 2;
+    			<var>if</var>(char_array[70+a] == 51) convert_to_number[a] = 3;
+    			<var>if</var>(char_array[70+a] == 52) convert_to_number[a] = 4;
+    			<var>if</var>(char_array[70+a] == 53) convert_to_number[a] = 5;
+    			<var>if</var>(char_array[70+a] == 54) convert_to_number[a] = 6;
+    			<var>if</var>(char_array[70+a] == 55) convert_to_number[a] = 7;
+    			<var>if</var>(char_array[70+a] == 56) convert_to_number[a] = 8;
+    			<var>if</var>(char_array[70+a] == 57) convert_to_number[a] = 9;
+		  	}
+    			offsetvar = ( (convert_to_number[0] * 10000) + (convert_to_number[1] * 1000) + (convert_to_number [2] * 100) + (convert_to_number [3] * 10 ) + (convert_to_number[4] * 1) ) * VENDLEN;
+
+  	}
+
+}
+</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<b>THE ABOVE C++ CODE IN PICTURES</b><br>
+<br>
+Here is the vendor data entry screen created from the “TVendDlg” class.<br>
+<br>
+<br><IMG SRC="vendor_data_entry.jpg" alt=""><br>
+<br>
+After clicking the "Choose" button, this list box appears with a vendor record I entered.<br>
+<br>
+<br><IMG SRC="vendor_list_box.jpg" alt=""><br>
+<br>
+After clicking on the vendor in the list box, it will go away and the internal programming I made will populate the vendors data entry screen with the selected vendor as shown here.<br>
+<br>
+<br><IMG SRC="filled_vendor_data_entry.jpg" alt=""><br>	<br>
+		<br>
+<b>CONCLUSION</b><br>
+<br>
+As you can see, this can be challenging to follow if you don’t possess the <a href=" http://www.analyzohiosoftware.com/developer-skills-cleveland-ohio.html">developer skills</a> needed for object oriented programming. My <a href="http://analyzohiosoftware.com/index.html">software</a> design techniques can be a bit drawn out, but all this does function to quickly achieve its intended purpose without Windows exception screens, wide eyes, elevated blood pressure and the like. If anything, it makes one appreciate the modern coding platforms of today that are utilized for <a href="http://www.analyzohiosoftware.com/software-development-archive-cleveland-ohio.html">custom software</a> design. <br>
+</div></div><div id="CH_bb"></div><div id="CH_scoreapp"></div><script type="text/javascript">new Score('CH_scoreapp','/articles/score.cgi','2bqpX9L8');</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder selected articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/articles/">Articles</a></b></h3>
+<ul>
+<li><a href="/articles/algorithms/">Algorithms</a></li><li><a href="/articles/cpp11/">C++ 11</a></li><li><a href="/articles/graphics/">Graphics and multimedia</a></li><li><a href="/articles/howto/">How-To</a></li><li><a href="/articles/language/">Language Features</a></li><li><a href="/articles/linux/">Unix/Linux programming</a></li><li><a href="/articles/sourcecode/">Source Code</a></li><li><a href="/articles/standard_library/">Standard Library</a></li><li><a href="/articles/tips/">Tips and Tricks</a></li><li><a href="/articles/tools/">Tools and Libraries</a></li><li><a href="/articles/visualcpp/">Visual C++</a></li><li><a href="/articles/winapi/">Windows API</a></li></ul>
+</div>
+<div id="I_subnav"></div>
+</div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Farticles%2F2bqpX9L8%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+onSession(function(us) {
+		document.getElementById('I_subnav').innerHTML=
+			us.ok?
+				'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul>'+
+				'<li><a href="/articles/myitems.cgi">My items</a></li>'+
+				(us.auth(32768)?'<li><a href="/articles/adminitems.cgi">Admin items</a></li>':'')+
+				'</ul></div>'
+			:'';
+	}); onSession(function (us) {
+		var el=document.getElementById('CH_bb'); el.innerHTML='';
+		if ( (us.auth(32768)) || ((us.uniqid=='yvkjE3v7')&&(us.auth(128))) ) {
+			el.appendChild(btn('Edit article','Edit this version of the article','edit','/articles/edit.cgi?a=2bqpX9L8'));
+	
+			if (us.auth(32768)) {
+				el.appendChild(btn('Delete article','Delete this article','delete','javascript:artdel()'));
+			}
+	
+		}
+	});
+	function artdel() { if (confirm('WARNING: You are about to delete this page. Confirm?')) window.location='/articles/delete.cgi?a=2bqpX9L8'; }
+	ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

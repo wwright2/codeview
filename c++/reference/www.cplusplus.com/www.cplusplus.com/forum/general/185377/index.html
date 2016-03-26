@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Problem with Function - Crazy Error mess - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/general/">General C++ Programming</a></li>
+<li class="here">Problem with Function - Crazy Error mess</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico solved" title="solved">&nbsp;</div> Problem with Function - Crazy Error message</h3><span id="CH_edttl"></span><span class="rootdatPost" title="185377,root,0,-1,4,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg905137"><span title="905137,213863,255,11,1"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg905137" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm2b7c7bb405" title="Thu, 25 Feb 2016 04:08:02 +0000"></span><script type="text/javascript">WhenId('CH_zTm2b7c7bb405');</script><noscript>Feb 25, 2016 at 4:08am UTC</noscript></div>
+<div class="dwho"><a href="/user/Frenzy/"><b>Frenzy</b> (11)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i905137">
+Hey guys. I just started learning about functions in my class recently. I've been getting some really strange error messages when I try to compile. I can't even decipher what it's saying really. If someone could please point me in the right direction, I'd really appreciate it.<br>
+<br>
+The assignment is to rewrite our Rock, Paper, Scissors game by incorporating some Functions my professor listed. I'm sure there's a lot wrong with it, but I've truly done my best to research it and figure it out on my own. Thanks again.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br>59<br>60<br>61<br>62<br>63<br>64<br>65<br>66<br>67<br>68<br>69<br>70<br>71<br>72<br>73<br>74<br>75<br>76<br>77<br>78<br>79<br>80<br>81<br>82<br>83<br>84<br>85<br>86<br>87<br>88<br>89<br>90<br>91<br>92<br>93<br>94<br>95<br>96<br>97<br>98<br>99<br>100<br>101<br>102<br>103<br>104<br>105<br>106<br>107<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;iostream&gt;</dfn>
+<dfn>#include &lt;iomanip&gt;</dfn>
+<dfn>#include &lt;stdlib.h&gt;</dfn>
+<dfn>#include &lt;time.h&gt;</dfn>
+<dfn>#include &lt;stdio.h&gt;</dfn>
+<var>using</var> <var>namespace</var> std;  
+
+<cite>//Prototype declarations</cite>
+<var>int</var> getPlayerTurn ();
+<var>int</var> doComputerTurn ();
+<var>void</var> showOutcome (<var>int</var>, <var>int</var>);
+
+<cite>// The main function</cite>
+<var>int</var> main () {
+<var>int</var> choice = getPlayerTurn();
+<var>int</var> comp = doComputerTurn();
+showOutcome(choice, comp);
+            }
+
+
+<cite>//</cite>
+<cite>// getPlayerTurn</cite>
+<cite>//    Reads in the players choice and displays what they chose.</cite>
+<cite>//</cite>
+<cite>// Parameters:</cite>
+<cite>//    There are no parameters for this function.</cite>
+<cite>// Returns:</cite>
+<cite>//    Returns the players choice.</cite>
+<cite>//</cite>
+<var>int</var> getPlayerTurn (){
+   <var>int</var> choice;
+   cout &lt;&lt; <kbd>"************ Rock, Paper, Scissors ************ \n"</kbd>;
+   cout &lt;&lt; <kbd>"Enter 1 for Rock, 2 for Paper, 3 for Scissors: "</kbd>;
+   cin &gt;&gt; choice;
+   cout &lt;&lt; <kbd>"You chose "</kbd>;
+       <var>if</var> (choice == 1)
+        cout &lt;&lt; <kbd>"Rock. \n"</kbd>;
+   <var>else</var> <var>if</var> (choice == 2)
+        cout &lt;&lt; <kbd>"Paper. \n"</kbd>;
+   <var>else</var> <var>if</var> (choice == 3)
+        cout &lt;&lt; <kbd>"Scissors. \n"</kbd>;
+   <var>return</var> (choice);
+                    }
+<cite>// doComputerTurn</cite>
+<cite>//    Calculates the computer turn and displays what it chose.</cite>
+<cite>//</cite>
+<cite>// Parameters:</cite>
+<cite>//    There are no parameters for this function.</cite>
+<cite>//</cite>
+<cite>// Returns:</cite>
+<cite>//    Returns the computers choice.</cite>
+<cite>//</cite>
+<var>int</var> doComputerTurn(){
+   <var>int</var> comp;
+   comp = rand() % 3 + 1;
+   cout &lt;&lt; <kbd>"The computer chose "</kbd>;
+   <var>if</var> (comp == 1)
+        cout &lt;&lt; <kbd>"Rock. \n"</kbd>;
+   <var>else</var> <var>if</var> (comp == 2)
+        cout &lt;&lt; <kbd>"Paper. \n"</kbd>;
+   <var>else</var> <var>if</var> (comp == 3)
+        cout &lt;&lt; <kbd>"Scissors. \n"</kbd>;
+   <var>return</var> (comp);
+                    }
+<cite>//</cite>
+<cite>// showOutcome</cite>
+<cite>//    Calculates and displays the winner of the current game as well as the current score.</cite>
+<cite>//</cite>
+<cite>// Parameters:</cite>
+<cite>//    choice - The game selection made by the player.</cite>
+<cite>//    comp - The game selection made by the computer.</cite>
+<cite>//</cite>
+<cite>// Returns:</cite>
+<cite>//    This function does not have a return value.</cite>
+<cite>//</cite>
+<var>void</var> showOutcome (<var>int</var> choice, <var>int</var> comp){
+<var>int</var> lose=0, win=0,tie=0;
+   <var>if</var> (choice == comp){
+        cout &lt;&lt; <kbd>"It's a tie! \n"</kbd>;
+        tie++;
+                      }
+   <var>else</var> <var>if</var> ((choice == 1)&amp;&amp;(comp == 2)){
+        cout &lt;&lt; <kbd>"Paper beats Rock, you lose. \n"</kbd>;
+        lose++;
+                                      }
+   <var>else</var> <var>if</var> ((choice == 1)&amp;&amp;(comp == 3)){
+        cout &lt;&lt; <kbd>"Rock beats Scissors, you win! \n"</kbd> ;
+        win++;
+                                      }
+   <var>else</var> <var>if</var> ((choice == 2)&amp;&amp;(comp == 1)){
+        cout &lt;&lt; <kbd>"Paper beats Rock, you win! \n"</kbd> ;
+        win++;
+                                      }
+   <var>else</var> <var>if</var> ((choice == 2)&amp;&amp;(comp == 3)){
+        cout &lt;&lt; <kbd>"Scissors beats Paper, you lose. \n"</kbd>;
+        lose++;
+                                      }
+   <var>else</var> <var>if</var> ((choice == 3)&amp;&amp;(comp == 1)){
+        cout &lt;&lt; <kbd>"Rock beats Scissors, you lose. \n"</kbd>;
+        lose++;
+                                      }
+   <var>else</var> <var>if</var> ((choice == 3)&amp;&amp;(comp == 2)){
+        cout &lt;&lt; <kbd>"Scissors beats Paper, you win! \n"</kbd>;
+        win++;
+                                   }
+cout &lt;&lt; <kbd>"Wins: "</kbd> &lt;&lt; win &lt;&lt; <kbd>"   Ties: "</kbd> &lt;&lt; tie &lt;&lt; <kbd>"   Losses: "</kbd> &lt;&lt; lose &lt;&lt; endl;
+                                        }</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn905137"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg905144"><span title="905144,13171,1023,12617,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg905144" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm72478c68d5" title="Thu, 25 Feb 2016 04:43:57 +0000"></span><script type="text/javascript">WhenId('CH_zTm72478c68d5');</script><noscript>Feb 25, 2016 at 4:43am UTC</noscript></div>
+<div class="dwho"><a href="/user/helios/"><b>helios</b> (12617)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i905144">
+Don't just say "there's an error". Actually post the error message.<br>
+<br>
+Anyway, your program compiles fine for me.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn905144"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg905152"><span title="905152,213863,255,11,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg905152" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmebb164746b" title="Thu, 25 Feb 2016 05:08:46 +0000"></span><script type="text/javascript">WhenId('CH_zTmebb164746b');</script><noscript>Feb 25, 2016 at 5:08am UTC</noscript></div>
+<div class="dwho"><a href="/user/Frenzy/"><b>Frenzy</b> (11)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i905152">
+The error message is over 65,000 characters long... hence why I said it was hard to decipher and did not post it... but here you go...<br>
+Week7-RPS.cpp:1:1: error: expected unqualified-id before ‘/’ token<br>
+ /<br>
+ ^<br>
+In file included from /usr/include/c++/4.8.2/iosfwd:40:0,<br>
+                 from /usr/include/c++/4.8.2/ios:38,<br>
+                 from /usr/include/c++/4.8.2/ostream:38,<br>
+                 from /usr/include/c++/4.8.2/iostream:39,<br>
+                 from Week7-RPS.cpp:10:<br>
+/usr/include/c++/4.8.2/bits/postypes.h:98:11: error: ‘ptrdiff_t’ does not name a type<br>
+   typedef ptrdiff_t streamsize; // Signed integral type<br>
+           ^<br>
+In file included from /usr/include/c++/4.8.2/bits/stl_algobase.h:65:0,<br>
+                 from /usr/include/c++/4.8.2/bits/char_traits.h:39,<br>
+                 from /usr/include/c++/4.8.2/ios:40,<br>
+                 from /usr/include/c++/4.8.2/ostream:38,<br>
+                 from /usr/include/c++/4.8.2/iostream:39,<br>
+                 from Week7-RPS.cpp:10:<br>
+/usr/include/c++/4.8.2/bits/stl_iterator_base_types.h:116:67: error: expected type-specifier before ‘ptrdiff_t’<br>
+   template&lt;typename _Category, typename _Tp, typename _Distance = ptrdiff_t,<br>
+                                                                   ^<br>
+/usr/include/c++/4.8.2/bits/stl_iterator_base_types.h:116:67: error: expected ‘’ before ‘ptrdiff_t’<br>
+/usr/include/c++/4.8.2/bits/stl_iterator_base_types.h:127:15: error: ‘_Pointer’ does not name a type<br>
+       typedef _Pointer   pointer;<br>
+               ^<br>
+/usr/include/c++/4.8.2/bits/stl_iterator_base_types.h:129:15: error: ‘_Referenc’ does not name a type<br>
+       typedef _Reference reference;<br>
+               ^<br>
+/usr/include/c++/4.8.2/bits/stl_iterator_base_types.h:179:15: error: ‘ptrdiff_t’ does not name a type<br>
+       typedef ptrdiff_t                   difference_type;<br>
+               ^<br>
+/usr/include/c++/4.8.2/bits/stl_iterator_base_types.h:190:15: error: ‘ptrdiff_t’ does not name a type<br>
+       typedef ptrdiff_t                   difference_type;<br>
+               ^<br>
+In file included from /usr/include/c++/4.8.2/bits/stl_algobase.h:67:0,<br>
+                 from /usr/include/c++/4.8.2/bits/char_traits.h:39,<br>
+                 from /usr/include/c++/4.8.2/ios:40,<br>
+                 from /usr/include/c++/4.8.2/ostream:38,<br>
+                 from /usr/include/c++/4.8.2/iostream:39,<br>
+                 from Week7-RPS.cpp:10:<br>
+/usr/include/c++/4.8.2/bits/stl_iterator.h:101:69: error: wrong number of template arguments (5, should be 3)<br>
+                       typename iterator_traits&lt;_Iterator&gt;::reference&gt;<br>
+                                                                     ^<br>
+In file included from /usr/include/c++/4.8.2/bits/stl_algobase.h:65:0,<br>
+                 from /usr/include/c++/4.8.2/bits/char_traits.h:39,<br>
+                 from /usr/include/c++/4.8.2/ios:40,<br>
+                 from /usr/include/c++/4.8.2/ostream:38,<br>
+                 from /usr/include/c++/4.8.2/iostream:39,<br>
+                 from Week7-RPS.cpp:10:<br>
+/usr/include/c++/4.8.2/bits/stl_iterator_base_types.h:118:12: error: provided for ‘template&lt;class _Category, class _Tp, class _Distance&gt; struct std::iterator’<br>
+     struct iterator<br>
+            ^<br>
+In file included from /usr/include/c++/4.8.2/bits/stl_algobase.h:67:0,<br>
+                 from /usr/include/c++/4.8.2/bits/char_traits.h:39,<br>
+                 from /usr/include/c++/4.8.2/ios:40,<br>
+                 from /usr/include/c++/4.8.2/ostream:38,<br>
+                 from /usr/include/c++/4.8.2/iostream:39,<br>
+                 from Week7-RPS.cpp:10:<br>
+/usr/include/c++/4.8.2/bits/stl_iterator.h:403:66: error: wrong number of template arguments (5, should be 3)<br>
+     : public iterator&lt;output_iterator_tag, void, void, void, void&gt;<br>
+                                                                  ^<br>
+In file included from /usr/include/c++/4.8.2/bits/stl_algobase.h:65:0,<br>
+                 from /usr/include/c++/4.8.2/bits/char_traits.h:39,<br>
+                 from /usr/include/c++/4.8.2/ios:40,<br>
+                 from /usr/include/c++/4.8.2/ostream:38,<br>
+                 from /usr/include/c++/4.8.2/iostream:39,<br>
+                 from Week7-RPS.cpp:10:<br>
+/usr/include/c++/4.8.2/bits/stl_iterator_base_types.h:118:12: error: provided for ‘template&lt;class _Category, class _Tp, class _Distance&gt; struct std::iterator’<br>
+     struct iterator<br>
+            ^<br>
+In file included from /usr/include/c++/4.8.2/bits/stl_algobase.h:67:0,<br>
+                 from /usr/include/c++/4.8.2/bits/char_traits.h:39,<br>
+                 from /usr/include/c++/4.8.2/ios:40,<br>
+                 from /usr/include/c++/4.8.2/ostream:38,<br>
+                 from /usr/include/c++/4.8.2/iostream:39,<br>
+                 from Week7-RPS.cpp:10:<br>
+/usr/include/c++/4.8.2/bits/stl_iterator.h:494:66: error: wrong number of template arguments (5, should be 3)<br>
+     : public iterator&lt;output_iterator_tag, void, void, void, void&gt;<br>
+                                                                  ^<br>
+In file included from /usr/include/c++/4.8.2/bits/stl_algobase.h:65:0,<br>
+                 from /usr/include/c++/4.8.2/bits/char_traits.h:39,<br>
+                 from /usr/include/c++/4.8.2/ios:40,<br>
+                 from /usr/include/c++/4.8.2/ostream:38,<br>
+                 from /usr/include/c++/4.8.2/iostream:39,<br>
+                 from Week7-RPS.cpp:10:<br>
+/usr/include/c++/4.8.2/bits/stl_iterator_base_types.h:118:12: error: provided for ‘template&lt;class _Category, class _Tp, class _Distance&gt; struct std::iterator’<br>
+     struct iterator<br>
+            ^<br>
+In file included from /usr/include/c++/4.8.2/bits/stl_algobase.h:67:0,<br>
+                 from /usr/include/c++/4.8.2/bits/char_traits.h:39,<br>
+                 from /usr/include/c++/4.8.2/ios:40,<br>
+                 from /usr/include/c++/4.8.2/ostream:38,<br>
+                 from /usr/include/c++/4.8.2/iostream:39,<br>
+                 from Week7-RPS.cpp:10:<br>
+/usr/include/c++/4.8.2/bits/stl_iterator.h:588:66: error: wrong number of template arguments (5, should be 3)<br>
+     : public iterator&lt;output_iterator_tag, void, void, void, void&gt;<br>
+                                                                  ^<br>
+In file included from /usr/include/c++/4.8.2/bits/stl_algobase.h:65:0,<br>
+                 from /usr/include/c++/4.8.2/bits/char_traits.h:39,<br>
+                 from /usr/include/c++/4.8.2/ios:40,<br>
+                 from /usr/include/c++/4.8.2/ostream:38,<br>
+                 from /usr/include/c++/4.8.2/iostream:39,<br>
+                 from Week7-RPS.cpp:10:<br>
+/usr/include/c++/4.8.2/bits/stl_iterator_base_types.h:118:12: error: provided for ‘template&lt;class _Category, class _Tp, class _Distance&gt; struct std::iterator’<br>
+     struct iterator<br>
+            ^<br>
+In file included from /usr/include/c++/4.8.2/bits/char_traits.h:39:0,<br>
+                 from /usr/include/c++/4.8.2/ios:40,<br>
+                 from /usr/include/c++/4.8.2/ostream:38,<br>
+                 from /usr/include/c++/4.8.2/iostream:39,<br>
+                 from Week7-RPS.cpp:10:<br>
+/usr/include/c++/4.8.2/bits/stl_algobase.h: In static member function ‘static _Tp* std::__copy_move&lt;_IsMove, true, std::random_access_iterator_tag&gt;::__copy_m(const _Tp*, const _Tp*, _Tp*)’:<br>
+/usr/include/c++/4.8.2/bits/stl_algobase.h:370:10: error: ‘ptrdiff_t’ does not name a type<br>
+    const ptrdiff_t _Num = __last - __first;<br>
+          ^<br>
+/usr/include/c++/4.8.2/bits/stl_algobase.h:371:8: error: ‘_Num’ was not declared in this scope<br>
+    if (_Num)<br>
+        ^<br>
+/usr/include/c++/4.8.2/bits/stl_algobase.h:373:22: error: ‘_Num’ was not declared in this scope<br>
+    return __result + _Num;<br>
+                      ^<br>
+/usr/include/c++/4.8.2/bits/stl_algobase.h: In static member function ‘static _Tp* std::__copy_move_backward&lt;_IsMove, true, std::random_access_iterator_tag&gt;::__copy_move_b(const _Tp*, const _Tp*, _Tp*)’:<br>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn905152"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg905153"><span title="905153,13171,1023,12617,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg905153" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmb9cce2a48a" title="Thu, 25 Feb 2016 05:16:14 +0000"></span><script type="text/javascript">WhenId('CH_zTmb9cce2a48a');</script><noscript>Feb 25, 2016 at 5:16am UTC</noscript></div>
+<div class="dwho"><a href="/user/helios/"><b>helios</b> (12617)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i905153">
+It's some kind of bug or installation problem in your standard library implementation.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn905153"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div class="rootbtnNew"></div><div id="CH_insNew"></div><div id="CH_reply">Registered users can post here. <a href="/user/">Sign in or register</a> to post.</div><div id="CH_subscription"></div><div class="rootedtNew"></div><script type="text/javascript">new for_PostList(185377,0,213863,1,'CH_PostList','CH_subscription','CH_reply','CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+<script type="text/javascript">
+    google_ad_client = "ca-pub-1444228343479937";
+    google_ad_slot = "9701143201";
+    google_ad_width = 728;
+    google_ad_height = 90;
+</script>
+<!-- leaderboard -->
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li><a href="/forum/beginner/"><b>Beginners</b></a></li><li><a href="/forum/windows/"><b>Windows Programming</b></a></li><li><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li class="selected"><a href="/forum/general/"><b>General C++ Programming</b></a></li><li><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Fgeneral%2F185377%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

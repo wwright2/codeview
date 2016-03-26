@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>WinAPI source codes - C++ Articles</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/articles/">Articles</a></li>
+<li class="here">WinAPI source codes</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div id="I_content">
+<div class="C_art">
+<div id="I_author">Published by <b><a href="/user/Null/" rel="author">Null</a></b></div>
+<div id="I_date">Jan 21, 2012 (last update: Jan 28, 2012)</div>
+<h1>WinAPI source codes</h1>
+<div id="I_score">Score: 4.0/5 (32 votes)</div>
+<div id="I_stars"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"></div>
+<div id="I_content">
+I present you a small collection of miscellaneous WinAPI source codes . Feel free to PM me If you have any suggestions or spotted a bug in the code. <br>
+<h3>Contents</h3>
+<ul>
+<li> Dll injection </li>
+<li> Get disk size</li>
+<li> Drive letter changer </li>
+<li> Associate file extension with a program </li>
+<li> NtQuerySystemInformation </li>
+</ul>
+<br>
+<h3> DLL injection example </h3>
+Shows how to inject a DLL into process. Project includes a simple DLL and a HelloWorld application for testing.<br>
+<br>
+<a href="CodeInject.zip"> Download (CodeBlocks project) </a>
+<br>
+<br>
+<h3> Get disk size</h3>
+This simple application shows how to use DeviceIOControl() and IOCTL_DISK_GET_LENGTH_INFO to get disk or partition size.<br>
+If you don't need a fully working app, you can use this function:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br></code></pre></td>
+<td class="source"><pre><code><cite>//</cite>
+<cite>// GetDisk or or partition size</cite>
+<cite>// dsk can be \\\\.\\PhysicalDrive0 or \\\\.\\C:</cite>
+<cite>//</cite>
+uint64_t GetDiskLengthIoctl(<var>const</var> <var>char</var> *dsk)
+{
+  HANDLE hDisk=CreateFile(dsk,GENERIC_READ,FILE_SHARE_VALID_FLAGS,0,OPEN_EXISTING,0,0);
+  <var>if</var>(hDisk==INVALID_HANDLE_VALUE)
+    {
+      cerr&lt;&lt;<kbd>"Could not open the disk. GetLastError() returned "</kbd>&lt;&lt;GetLastError()&lt;&lt;endl;
+      <var>return</var> 0;
+    }
+  GET_LENGTH_INFORMATION gli;
+  DWORD ret;
+
+  DeviceIoControl(hDisk,IOCTL_DISK_GET_LENGTH_INFO,0,0,&amp;gli,<var>sizeof</var>(gli),&amp;ret,0);
+
+  CloseHandle(hDisk);
+  <var>return</var> gli.Length.QuadPart;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<a href="get_disk_size.zip"> Download (CodeBlocks project) </a>
+<br>
+<h3> Drive letter changer </h3>
+A simple program that shows how to use SetVolumeMountPoint to change drive letters<br>
+<br>
+<a href="drive_letter_changer.zip"> Download (CodeBlocks project) </a>
+<br>
+<h3>Associate file extension with a program </h3>
+<a href="ext_assoc.zip"> Download (CodeBlocks project) </a>
+<br>
+<h3> NtQuerySystemInformation examples </h3>
+.zip file includes three separate projects that show how to use NtQuerySystemInformation() function to..<br>
+<ul>
+<li> get list of all running processes</li>
+<li> display some information about physical memory (page size, number of physical pages) and number of processors<br>
+<li> display number of disks, serial ports, CdRoms<br>
+</ul>
+<br>
+<a href="nt_query_system_information.zip"> Download (CodeBlocks projects) </a>
+<br>
+<p>Attachments:
+	[<a href="CodeInject.zip">CodeInject.zip</a>]
+	[<a href="drive_letter_changer.zip">drive_letter_changer.zip</a>]
+	[<a href="ext_assoc.zip">ext_assoc.zip</a>]
+	[<a href="get_disk_size.zip">get_disk_size.zip</a>]
+	[<a href="nt_query_system_information.zip">nt_query_system_information.zip</a>]
+</p>
+</div></div><div id="CH_bb"></div><div id="CH_scoreapp"></div><script type="text/javascript">new Score('CH_scoreapp','/articles/score.cgi','SLN36Up4');</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder selected articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/articles/">Articles</a></b></h3>
+<ul>
+<li><a href="/articles/algorithms/">Algorithms</a></li><li><a href="/articles/cpp11/">C++ 11</a></li><li><a href="/articles/graphics/">Graphics and multimedia</a></li><li><a href="/articles/howto/">How-To</a></li><li><a href="/articles/language/">Language Features</a></li><li><a href="/articles/linux/">Unix/Linux programming</a></li><li><a href="/articles/sourcecode/">Source Code</a></li><li><a href="/articles/standard_library/">Standard Library</a></li><li><a href="/articles/tips/">Tips and Tricks</a></li><li><a href="/articles/tools/">Tools and Libraries</a></li><li><a href="/articles/visualcpp/">Visual C++</a></li><li><a href="/articles/winapi/">Windows API</a></li></ul>
+</div>
+<div id="I_subnav"></div>
+</div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Farticles%2FSLN36Up4%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+onSession(function(us) {
+		document.getElementById('I_subnav').innerHTML=
+			us.ok?
+				'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul>'+
+				'<li><a href="/articles/myitems.cgi">My items</a></li>'+
+				(us.auth(32768)?'<li><a href="/articles/adminitems.cgi">Admin items</a></li>':'')+
+				'</ul></div>'
+			:'';
+	}); onSession(function (us) {
+		var el=document.getElementById('CH_bb'); el.innerHTML='';
+		if ( (us.auth(32768)) || ((us.uniqid=='EAR4jE8b')&&(us.auth(128))) ) {
+			el.appendChild(btn('Edit article','Edit this version of the article','edit','/articles/edit.cgi?a=SLN36Up4'));
+	
+			if (us.auth(32768)) {
+				el.appendChild(btn('Delete article','Delete this article','delete','javascript:artdel()'));
+			}
+	
+		}
+	});
+	function artdel() { if (confirm('WARNING: You are about to delete this page. Confirm?')) window.location='/articles/delete.cgi?a=SLN36Up4'; }
+	ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

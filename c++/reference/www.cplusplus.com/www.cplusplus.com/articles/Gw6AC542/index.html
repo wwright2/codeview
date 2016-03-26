@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Headers and Includes:  Why and How - C++ Articles</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/articles/">Articles</a></li>
+<li class="here">Headers and Includes:  Why and How</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div id="I_content">
+<div class="C_art">
+<div id="I_author">Published by <b><a href="/user/Disch/" rel="author">Disch</a></b></div>
+<div id="I_date">May 2, 2009 (last update: May 2, 2009)</div>
+<h1>Headers and Includes:  Why and How</h1>
+<div id="I_score">Score: 4.6/5 (186 votes)</div>
+<div id="I_stars"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-half.png" width="16" height="16" alt="*"></div>
+<div id="I_content">
+<tt>*************************************************<br>
+**  0)  Introduction                           **<br>
+*************************************************</tt>
+<br>
+This article is meant to address a common newbie problem regarding failure to understand #include, headers, and source file interaction.  Several good practices are outlined and explained to show how to avoid some ugly snags.  Later sections get into more advanced topics (inlining and templates), so even C++ coders with some experience under their belt might benefit from a read!<br>
+<br>
+If you are already familiar with the basics, feel free to skip ahead to section 4.  That is where practices and design strategies are discussed.<br>
+<br>
+<tt>*************************************************<br>
+**  1)  Why we need header files.              **<br>
+*************************************************</tt>
+<br>
+If you're just starting out in C++, you might be wondering why you need to #include files and why you would want to have multiple .cpp files for a program.  The reasons for this are simple:<br>
+<br>
+<b>(1)</b>  It speeds up compile time.  As your program grows, so does your code, and if everything is in a single file, then everything must be fully recompiled every time you make any little change.  This might not seem like a big deal for small programs (and it isn't), but when you have a reasonable size project, compile times can take <i>several minutes</i> to compile the entire program.  Can you imagine having to wait that long between every minor change?<br>
+<br>
+Compile / wait 8 minutes / "oh crap, forgot a semicolon" / compile / wait 8 minutes / debug / compile / wait 8 minutes / etc<br>
+<br>
+<b>(2)</b>  It keeps your code more organized.  If you seperate concepts into specific files, it's easier to find the code you are looking for when you want to make modifications (or just look at it to remember how to use it and/or how it works).<br>
+<br>
+<b>(3)</b>  It allows you to separate <i>interface</i> from <i>implementation</i>.  If you don't understand what that means, don't worry, we'll see it in action throughout this article.<br>
+<br>
+<br>
+Those are the upsides, but the big, obvious downside is that is makes things a little more complicated if you don't understand how it all works (in reality, though, it's simpler than the alternatives as the project gets larger)<br>
+<br>
+C++ programs are built in a two stage process.  First, each source file is <i>compiled</i> on its own.  The compiler generates intermediate files for each compiled source file.  These intermediate files are often called <i>object files</i> -- but they are not to be confused with objects in your code.  Once all the files have been individually compiled, it then <i>links</i> all the object files together, which generates the final binary (the program).<br>
+<br>
+This means that <i>each source file is compiled separately</i> from other source files.  As a result of this, in terms of compiling, "a.cpp" is clueless as to what's going on inside of "b.cpp".  Here's a quick example to illustrate:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br></code></pre></td>
+<td class="source"><pre><code><cite>// in myclass.cpp</cite>
+
+<var>class</var> MyClass
+{
+<var>public</var>:
+  <var>void</var> foo();
+  <var>int</var> bar;
+};
+
+<var>void</var> MyClass::foo()
+{
+  <cite>// do stuff</cite>
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br></code></pre></td>
+<td class="source"><pre><code><cite>// in main.cpp</cite>
+
+<var>int</var> main()
+{
+  MyClass a; <cite>// Compiler error: 'MyClass' is unidentified</cite>
+  <var>return</var> 0;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Even though MyClass is declared <i>in your program</i>, it is not declared <i>in main.cpp</i>, and therefore when you compile main.cpp you get that error.<br>
+<br>
+This is where header files come in.  Header files allow you to make the <i>interface</i> (in this case, the class MyClass) visible to other .cpp files, while keeping the <i>implementation</i> (in this case, MyClass's member function bodies) in its own .cpp file.  That same example again, but tweaked slightly:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br></code></pre></td>
+<td class="source"><pre><code><cite>// in myclass.h</cite>
+
+<var>class</var> MyClass
+{
+<var>public</var>:
+  <var>void</var> foo();
+  <var>int</var> bar;
+};</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br></code></pre></td>
+<td class="source"><pre><code><cite>// in myclass.cpp</cite>
+<dfn>#include "myclass.h"</dfn>
+
+<var>void</var> MyClass::foo()
+{
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br></code></pre></td>
+<td class="source"><pre><code><cite>//in main.cpp</cite>
+<dfn>#include "myclass.h"  </dfn><cite>// defines MyClass</cite>
+
+<var>int</var> main()
+{
+  MyClass a; <cite>// no longer produces an error, because MyClass is defined</cite>
+  <var>return</var> 0;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+The #include statement is basically like a copy/paste operation.  The compiler will "replace" the #include line with the actual contents of the file you're including when it compiles the file.<br>
+<br>
+<tt>***************************************************************<br>
+**  2)  What is the difference between .h/.cpp/.hpp/.cc/etc  **<br>
+***************************************************************</tt>
+<br>
+All files are fundamentally the same in that they're all text files, however different kinds of files should have different extensions:<br>
+<br>
+- <i>Header files</i> should use a .h__ extension (.h / .hpp / .hxx).  Which of those you use doesn't matter.<br>
+- <i>C++ Source files</i> should use a .c__ extention (.cpp / .cxx / .cc).  Which of those you use doesn't matter.<br>
+- <i>C Source files</i> should use .c (.c only).<br>
+<br>
+The reason C and C++ source files are seperated here is because it makes a difference in some compilers.  In all likelyhood (since you're reading this on a C++ site), you'll be using C++ code, so refrain from using the .c extension.  Also, files with header extensions might be ignored by the compiler if you try to compile them.<br>
+<br>
+So what's the difference between Header files and Source files?  Basically, header files are #included and not compiled, whereas source files are compiled and not #included.  You can try to side-step these conventions and make a file with a source extension behave like a header or vice-versa, but you shouldn't.  I won't list the many reasons why you shouldn't (other than the few I already have) -- just don't.<br>
+<br>
+The one exception is that it is sometimes (although <i>very rarely</i>) useful to include a source file.  This scenario has to do with instantiating templates and is outside the scope of this article.  For now... just put it in your brain:  <i>"do not #include source files"</i>
+<tt>*****************************************************<br>
+**  3)  Include guards                             **<br>
+*****************************************************</tt>
+<br>
+C++ compilers do not have brains of their own, and so they will do exactly what you tell them to.  If you tell them to include the same file more than once, then that is exactly what they will do.  And if you don't handle it properly, you'll get some crazy errors as a result:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br></code></pre></td>
+<td class="source"><pre><code><cite>// myclass.h</cite>
+
+<var>class</var> MyClass
+{
+  <var>void</var> DoSomething() { }
+};</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br></code></pre></td>
+<td class="source"><pre><code><cite>// main.cpp</cite>
+<dfn>#include "myclass.h"   </dfn><cite>// define MyClass</cite>
+<dfn>#include "myclass.h"   </dfn><cite>// Compiler error - MyClass already defined </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Now you might be saying to yourself "well that's stupid, why would I include the same file twice?"  Believe it or not, it will happen a lot.  Not quite as illustrated above, though.  Usually it happens when you include two files that each include the same file.  Example:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br></code></pre></td>
+<td class="source"><pre><code><cite>// x.h</cite>
+<var>class</var> X { };</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br></code></pre></td>
+<td class="source"><pre><code><cite>// a.h</cite>
+<dfn>#include "x.h"</dfn>
+
+<var>class</var> A { X x; };</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br></code></pre></td>
+<td class="source"><pre><code><cite>// b.h</cite>
+<dfn>#include "x.h"</dfn>
+
+<var>class</var> B { X x; };</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br></code></pre></td>
+<td class="source"><pre><code><cite>// main.cpp</cite>
+
+<dfn>#include "a.h"  </dfn><cite>// also includes "x.h"</cite>
+<dfn>#include "b.h"  </dfn><cite>// includes x.h again!  ERROR </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Because of this scenario, many people are told not to put #include in header files.  However <i>this is bad advice and you should not listen to it</i>.  Sadly, some people are actually <i>taught</i> this in C++ courses that they are <i>paying money for</i>.  If your C++ instructor tells you not to #include in header files, then [grudgingly] follow his instructions in order to pass the course, but once you're out of his/her class, shake that habit.<br>
+<br>
+The truth is there is nothing wrong with putting #include in header files -- and in fact it is very benefitial.  <i>Provided you take two precautions</i>:<br>
+<br>
+1)  Only #include things you <i>need</i> to include (covered next section)<br>
+2)  Guard against incidental multiple includes with include guards.<br>
+<br>
+An Include Guard is a technique which uses a unique identifier that you #define at the top of the file.  Here's an example:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br></code></pre></td>
+<td class="source"><pre><code><cite>//x.h</cite>
+
+<dfn>#ifndef __X_H_INCLUDED__   </dfn><cite>// if x.h hasn't been included yet...</cite>
+<dfn>#define __X_H_INCLUDED__   </dfn><cite>//   #define this so the compiler knows it has been included</cite>
+
+<var>class</var> X { };
+
+<dfn>#endif </dfn></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+This works by skipping over the entire header if it was already included.  __X_H_INCLUDED__ is #defined the first time x.h is included -- and if x.h is included a second time, the compiler will skip over the header because the #ifndef check will fail.<br>
+<br>
+<i>Always</i> guard your headers.  Always always always.  It doesn't hurt anything to do it, and it will save you some headaches.  For the rest of this article, it is assumed all header files are include guarded (even if I don't explicitly put it in the example).<br>
+<br>
+You do not need to guard your .cpp files, because they are not #included (Or at least they shouldn't be... right?  <i>RIGHT?</i>)<br>
+<br>
+<tt>*****************************************************<br>
+**  4)  The "right way" to include                 **<br>
+*****************************************************</tt>
+<br>
+Classes you create will often have dependencies on other classes.  A derived class, for example, will always be dependent on its parent, because in order to be derived from the parent, it must be aware of its parent at compile time.<br>
+<br>
+There are two basic kinds of dependencies you need to be aware of:<br>
+1)  stuff that can be forward declared<br>
+2)  stuff that needs to be #included<br>
+<br>
+If, for example, class A uses class B, then class B is one of class A's dependencies.  Whether it can be forward declared or needs to be included depends on how B is used within A:<br>
+<br>
+<tt>
+- do nothing if:         A makes no references at all to B<br>
+- do nothing if:         The only reference to B is in a friend declaration<br>
+- forward declare B if:  A contains a B pointer or reference:  B* myb;<br>
+- forward declare B if:  one or more functions has a B object/pointer/reference<br>
+                           as a parementer, or as a return type:  B MyFunction(B myb);<br>
+- #include "b.h" if:     B is a parent class of A<br>
+- #include "b.h" if:     A contains a B object:   B  myb;<br>
+</tt>
+<br>
+You want to do the least drastic option possible.  Do nothing if you can, but if you can't, forward declare if you can.  But if it's necessary, then #include the other header.<br>
+<br>
+Ideally, the dependencies for the class should be layed out in the header.  Here is a typical outline of how a "right way" header might look:<br>
+<br>
+myclass.h<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br></code></pre></td>
+<td class="source"><pre><code><cite>//=================================</cite>
+<cite>// include guard</cite>
+<dfn>#ifndef __MYCLASS_H_INCLUDED__</dfn>
+<dfn>#define __MYCLASS_H_INCLUDED__</dfn>
+
+<cite>//=================================</cite>
+<cite>// forward declared dependencies</cite>
+<var>class</var> Foo;
+<var>class</var> Bar;
+
+<cite>//=================================</cite>
+<cite>// included dependencies</cite>
+<dfn>#include &lt;vector&gt;</dfn>
+<dfn>#include "parent.h"</dfn>
+
+<cite>//=================================</cite>
+<cite>// the actual class</cite>
+<var>class</var> MyClass : <var>public</var> Parent  <cite>// Parent object, so #include "parent.h"</cite>
+{
+<var>public</var>:
+  std::vector&lt;<var>int</var>&gt; avector;    <cite>// vector object, so #include &lt;vector&gt;</cite>
+  Foo* foo;                    <cite>// Foo pointer, so forward declare Foo</cite>
+  <var>void</var> Func(Bar&amp; bar);         <cite>// Bar reference, so forward declare Bar</cite>
+
+  <var>friend</var> <var>class</var> MyFriend;       <cite>// friend declaration is not a dependency</cite>
+                               <cite>//   don't do anything about MyFriend</cite>
+};
+
+<dfn>#endif </dfn><cite>// __MYCLASS_H_INCLUDED__ </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+This shows the two different kinds of dependencies and how to handle them.  Because MyClass only uses a pointer to Foo and not a full Foo object, we can forward declare Foo, and don't need to #include "foo.h".  <i>You should always forward declare what you can -- don't #include unless it's necessary</i>.  Unnecessary #includes can lead to trouble.<br>
+<br>
+If you stick to this system, you will bulletproof yourself, and will minimize #include related hazards.<br>
+<br>
+<tt>*****************************************************<br>
+**  5)  Why that is the "right way" to include     **<br>
+*****************************************************</tt>
+<br>
+Note:  in this section I refer to the "right way" method outlined above as "mine".  While I did come up with it on my own (after struggling through the mucky muck for a while) -- I can't say I was the first person who ever thought of it, so it isn't really "mine".  But for purposes of this article, I call it "mine" for simplicity.<br>
+<br>
+You:  "So-and-so says that #including in a header is dangerous, but you say it's not!  Why is your way so much better than what so-and-so says?"<br>
+<br>
+So-and-so is partially right, but is explaining it wrong.  Frivilous and careless #includes <i>can</i> lead to trouble.  And one way to avoid those troubles <i>is</i> to never #include inside a header file.  So yeah, so-and-so's heart is in the right place.  But ultimately, using so-and-so's approach is going to give yourself TONS of additional work and headaches.<br>
+<br>
+The concept I'm illustrating is very OO, and enhances encapsulation.  The general idea is that it makes "myclass.h" fully self-contained and doesn't require any other area of the program (other than MyClass's implementation/source file) to know how MyClass works internally.  If some other class needs to use MyClass, it can just #include "myclass.h" and be done with it!<br>
+<br>
+The alternative (so-and-so's method), would require you to #include all of MyClass's dependencies <i>before</i> #including "myclass.h", since myclass.h can't include its dependencies itself.  This is headache city, because now using a class isn't so straightforward.<br>
+<br>
+Here is an example of why my method is good:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br></code></pre></td>
+<td class="source"><pre><code><cite>//example.cpp</cite>
+
+<cite>//  I want to use MyClass</cite>
+<dfn>#include "myclass.h"   </dfn><cite>// will always work, no matter what MyClass looks like.</cite>
+                       <cite>// You're done</cite>
+               <cite>//  (provided myclass.h follows my outline above and does</cite>
+               <cite>//   not make unnecessary #includes) </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Here is an example of why so-and-so's method is bad:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br></code></pre></td>
+<td class="source"><pre><code><cite>//example.cpp</cite>
+
+<cite>//  I want to use MyClass</cite>
+<dfn>#include "myclass.h"</dfn>
+   <cite>// ERROR 'Parent' undefined </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+so-and-so:  "Hrm... okay...."<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include "parent.h"</dfn>
+<dfn>#include "myclass.h"</dfn>
+   <cite>// ERROR 'std::vector' undefined </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include "parent.h"</dfn>
+<dfn>#include &lt;vector&gt;</dfn>
+<dfn>#include "myclass.h"</dfn>
+   <cite>// ERROR 'Support' undefined </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+so-and-so:  "WTF?  MyClass doesn't even <i>use</i> Support!  But alright..."<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include "parent.h"</dfn>
+<dfn>#include &lt;vector&gt;</dfn>
+<dfn>#include "support.h"</dfn>
+<dfn>#include "myclass.h"</dfn>
+   <cite>// ERROR 'Support' undefined </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+so-and-so:  "Give me a break!  I'm including it!  What else do you want!"<br>
+<br>
+Believe it or not, the above <i>does</i> happen.  Little did poor so-and-so know, but "parent.h" uses Support, and therefore you must #include "support.h" <i>before</i> "parent.h".<br>
+<br>
+And what happens if support.h needs something else?  What if <i>that something else</i> needs something else?  We're already up to 4 #includes just to use a single class!  With so-and-so's method, not only do you have to remember which includes are needed for each class, but also <i>the order in which you need to #include them</i>.  This becomes a <i>huge</i> nightmare <i>very</i> quickly.<br>
+<br>
+And what happens if you want to tweak MyClass?  Let's say you decide that it would be better to use std::list instead of std::vector.  With so-and-so's method, you now have to go back and change <i>every single file</i> that #includes "myclass.h" and change it to include &lt;list&gt; instead of &lt;vector&gt; (which might be dozens of files depending on the size of the project and how often MyClass is used), whereas with my method you only have to change "myclass.h", and maybe "myclass.cpp".<br>
+<br>
+The "right way" I illustrated above is all about encapsulation.  Files that want to use MyClass don't need to be aware of what MyClass uses in order for it to work, and don't need to #include any MyClass dependencies.  All you need to do to get MyClass to work is #include "myclass.h".  Period.  The header file is set up to be completely self contained.  It's all very OO friendly, very easy to use, and very easy to maintain.<br>
+<br>
+<tt>*****************************************************<br>
+**  6)  Circular Dependencies                      **<br>
+*****************************************************</tt>
+<br>
+A circular dependency is when two (or more) classes depend on each other.  For example, class A depends on class B, and class B depends on class A.  <i>If you stick to "the right way"</i> and forward declare when you can instead of #including needlessly, this usually isn't a problem.  As long as the circle is broken with a forward declaration at some point, you're fine.<br>
+<br>
+Here's the perfect example of why you should only #include what is necessary:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br></code></pre></td>
+<td class="source"><pre><code><cite>// a.h -- assume it's guarded</cite>
+<dfn>#include "b.h"</dfn>
+
+<var>class</var> A { B* b; };</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br></code></pre></td>
+<td class="source"><pre><code><cite>// b.h -- assume it's guarded</cite>
+<dfn>#include "a.h"</dfn>
+
+<var>class</var> B { A* a };</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+An initial glance might see nothing wrong with this.  B is a dependency of A, so you include it, and A is a dependency of B, so you include it.  So what's wrong with this?<br>
+<br>
+This is a circular inclusion (also called an infinite inclusion) and is the result of one or more includes that shouldn't be there.  Say for example you compile "a.cpp":<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br></code></pre></td>
+<td class="source"><pre><code><cite>// a.cpp</cite>
+<dfn>#include "a.h" </dfn></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+The compiler will do the following:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include "a.h"</dfn>
+
+   <cite>// start compiling a.h</cite>
+   <dfn>#include "b.h"</dfn>
+
+      <cite>// start compiling b.h</cite>
+      <dfn>#include "a.h"</dfn>
+
+         <cite>// compilation of a.h skipped because it's guarded</cite>
+
+      <cite>// resume compiling b.h</cite>
+      <var>class</var> B { A* a };        <cite>// &lt;--- ERROR, A is undeclared </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Even though you're #including "a.h", the compiler is not seeing the A class until after the B class gets compiled.  This is because of the circular inclusion problem.  This is why you should <i>always forward declare</i> when you're only using a pointer or reference.  Here, "a.h" should not be #including b.h, but instead should just be forward declaring B.  Likwise, b.h should be forward declaring A.  If you make those changes, the problem is solved.<br>
+<br>
+The circular inclusion problem may persist if both dependencies are #include dependencies (ie:  they can't be forward declared).  Here's an example:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br></code></pre></td>
+<td class="source"><pre><code><cite>// a.h (guarded)</cite>
+
+<dfn>#include "b.h"</dfn>
+
+<var>class</var> A
+{
+  B b;   <cite>// B is an object, can't be forward declared</cite>
+};</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br></code></pre></td>
+<td class="source"><pre><code><cite>// b.h (guarded)</cite>
+
+<dfn>#include "a.h"</dfn>
+
+<var>class</var> B
+{
+  A a;   <cite>// A is an object, can't be forward declared</cite>
+};</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+You may note, however, that this situation is <i>conceptually impossible</i>.  There is a fundamental design flaw.  If A has a B object, and B has an A object, then A contains a B, which contains another A, which contains another B, which contains another A, which contains another B, etc, etc.  You have an infinite recursion problem, and either class is simply impossible to instantiate. The solution is to have one or both classes contain a <i>pointer or reference</i> to the other, rather than a full object.  Then you can forward declare, and then you can get around the circular inclusion problem.<br>
+<br>
+<tt>*****************************************************<br>
+**  7)  Function inlining                          **<br>
+*****************************************************</tt>
+<br>
+The catch-22 with inline functions is that their function body needs to exist in every cpp file which calls them, otherwise you get linker errors (since they can't be linked during the linker process -- they need to be compiled into the code during the compiler process).<br>
+<br>
+This might open circular reference holes or other scenarios that might complicate the "right way" outline.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br></code></pre></td>
+<td class="source"><pre><code><var>class</var> B
+{
+<var>public</var>:
+  <var>void</var> Func(<var>const</var> A&amp; a)   <cite>// parameter, so forward declare is okay</cite>
+  {
+    a.DoSomething();      <cite>// but now that we've dereferenced it, it</cite>
+                          <cite>//  becomes an #include dependency</cite>
+               <cite>// = we now have a potential circular inclusion</cite>
+  }
+};</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+The key is that while inline function need to exist in the header, they <i>do not</i> need to exist in the class definition itself.  This lets us exploit a loophole:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br></code></pre></td>
+<td class="source"><pre><code><cite>// b.h  (assume its guarded)</cite>
+
+<cite>//------------------</cite>
+<var>class</var> A;  <cite>// forward declared dependency</cite>
+
+<cite>//------------------</cite>
+<var>class</var> B
+{
+<var>public</var>:
+  <var>void</var> Func(<var>const</var> A&amp; a);  <cite>// okay, A is forward declared</cite>
+};
+
+<cite>//------------------</cite>
+<dfn>#include "a.h"        </dfn><cite>// A is now an include dependency</cite>
+
+<var>inline</var> <var>void</var> B::Func(<var>const</var> A&amp; a)
+{
+  a.DoSomething();    <cite>// okay!  a.h has been included</cite>
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+While you might not think so at first glance... this is <i>perfectly safe</i>.  The circular inclusion problem is avoided completely, even if a.h includes b.h.  This is because the additional #includes don't come up until AFTER class B is fully defined, and they are therefore harmless.<br>
+<br>
+You:  "But putting function bodies at the end of my header is ugly.  Isn't there a way to avoid that?"<br>
+<br>
+Me:  Yep!  Just move the function bodies to another header:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br></code></pre></td>
+<td class="source"><pre><code><cite>// b.h</cite>
+
+    <cite>// blah blah</cite>
+
+<var>class</var> B { <cite>/* blah blah */</cite> };
+
+<dfn>#include "b_inline.h"  </dfn><cite>// or I sometimes use "b.hpp" </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br></code></pre></td>
+<td class="source"><pre><code><cite>// b_inline.h (or b.hpp -- whatever)</cite>
+
+<dfn>#include "a.h"</dfn>
+<dfn>#include "b.h"  </dfn><cite>// not necessary, but harmless</cite>
+                <cite>//  you can do this to make this "feel" like a source</cite>
+                <cite>//  file, even though it isn't</cite>
+
+<var>inline</var> <var>void</var> B::Func(<var>const</var> A&amp; a)
+{
+  a.DoSomething();
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+This seperates the interface from the implementation, while still allowing the implementation to be inlined.  You can also have a normal "b.cpp" file for the implementation that isn't inlined.<br>
+<br>
+<tt>*****************************************************<br>
+** 8) Forward declaring templates                  **<br>
+*****************************************************</tt>
+<br>
+Forward declaring is pretty straight-forward when it comes to simple classes, but when dealing with template classes, things aren't so simple.  Consider the following scenario:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br></code></pre></td>
+<td class="source"><pre><code><cite>// a.h</cite>
+
+<cite>// included dependencies</cite>
+<dfn>#include "b.h"</dfn>
+
+<cite>// the class template</cite>
+<var>template</var> &lt;<var>typename</var> T&gt;
+<var>class</var> Tem
+{
+ <cite>/*...*/</cite>
+  B b;
+};
+
+<cite>// class most commonly used with 'int'</cite>
+<var>typedef</var> Tem&lt;<var>int</var>&gt; A;  <cite>// typedef'd as 'A' </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br></code></pre></td>
+<td class="source"><pre><code><cite>// b.h</cite>
+
+<cite>// forward declared dependencies</cite>
+<var>class</var> A;  <cite>// error!</cite>
+
+<cite>// the class</cite>
+<var>class</var> B
+{
+ <cite>/* ... */</cite>
+  A* ptr;
+};</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+While this seems perfectly logical, it doesn't work!  (Although, logically you really think it should.  This is an irritation of the language).  Because 'A' isn't really a class, but rather a typedef, the compiler will bark at you.  Also notice that we can't just #include "a.h" here because of a circular dependency problem.<br>
+<br>
+In order to forward declare 'A', we need to typedef it.  Which means we need to forward declare what it's typedef'd as.  The way to forward declare it is like so:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br></code></pre></td>
+<td class="source"><pre><code><var>template</var> &lt;<var>typename</var> T&gt; <var>class</var> Tem;  <cite>// forward declare our template</cite>
+<var>typedef</var> Tem&lt;<var>int</var>&gt; A;               <cite>// then typedef 'A' </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+This is quite a bit uglier than <span class="auto"><code class="source"><var>class</var> A;</code></span>, but nonetheless is a necessary evil.  This, however, makes templated classes hard to encapsulate, because it requires every class which forward declares them to know exactly how the template is layed out.  If that ever changes you have a big mess to clean up.<br>
+<br>
+A practical solution to this problem is to create an alternative header which has the forward declarations of your templated classes and their typedefs.  Here's a more elegant way to approach the above example:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br></code></pre></td>
+<td class="source"><pre><code><cite>//a.h</cite>
+
+<dfn>#include "b.h"</dfn>
+
+<var>template</var> &lt;<var>typename</var> T&gt;
+<var>class</var> Tem
+{
+ <cite>/*...*/</cite>
+  B b;
+};</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br></code></pre></td>
+<td class="source"><pre><code><cite>//a_fwd.h</cite>
+
+<var>template</var> &lt;<var>typename</var> T&gt; <var>class</var> Tem;
+<var>typedef</var> Tem&lt;<var>int</var>&gt; A;</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br></code></pre></td>
+<td class="source"><pre><code><cite>//b.h</cite>
+
+<dfn>#include "a_fwd.h"</dfn>
+
+<var>class</var> B
+{
+ <cite>/*...*/</cite>
+  A* ptr;
+};</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+This allows B to include a header which forward declares A without including the entire class definition.<br>
+</div></div><div id="CH_bb"></div><div id="CH_scoreapp"></div><script type="text/javascript">new Score('CH_scoreapp','/articles/score.cgi','Gw6AC542');</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder selected articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/articles/">Articles</a></b></h3>
+<ul>
+<li><a href="/articles/algorithms/">Algorithms</a></li><li><a href="/articles/cpp11/">C++ 11</a></li><li><a href="/articles/graphics/">Graphics and multimedia</a></li><li><a href="/articles/howto/">How-To</a></li><li><a href="/articles/language/">Language Features</a></li><li><a href="/articles/linux/">Unix/Linux programming</a></li><li><a href="/articles/sourcecode/">Source Code</a></li><li><a href="/articles/standard_library/">Standard Library</a></li><li><a href="/articles/tips/">Tips and Tricks</a></li><li><a href="/articles/tools/">Tools and Libraries</a></li><li><a href="/articles/visualcpp/">Visual C++</a></li><li><a href="/articles/winapi/">Windows API</a></li></ul>
+</div>
+<div id="I_subnav"></div>
+</div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Farticles%2FGw6AC542%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+onSession(function(us) {
+		document.getElementById('I_subnav').innerHTML=
+			us.ok?
+				'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul>'+
+				'<li><a href="/articles/myitems.cgi">My items</a></li>'+
+				(us.auth(32768)?'<li><a href="/articles/adminitems.cgi">Admin items</a></li>':'')+
+				'</ul></div>'
+			:'';
+	}); onSession(function (us) {
+		var el=document.getElementById('CH_bb'); el.innerHTML='';
+		if ( (us.auth(32768)) || ((us.uniqid=='2TRDSL3A')&&(us.auth(128))) ) {
+			el.appendChild(btn('Edit article','Edit this version of the article','edit','/articles/edit.cgi?a=Gw6AC542'));
+	
+			if (us.auth(32768)) {
+				el.appendChild(btn('Delete article','Delete this article','delete','javascript:artdel()'));
+			}
+	
+		}
+	});
+	function artdel() { if (confirm('WARNING: You are about to delete this page. Confirm?')) window.location='/articles/delete.cgi?a=Gw6AC542'; }
+	ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

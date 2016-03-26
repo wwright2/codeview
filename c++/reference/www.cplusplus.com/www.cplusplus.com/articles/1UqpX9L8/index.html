@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>A string with the split() method - C++ Articles</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/articles/">Articles</a></li>
+<li class="here">A string with the split() method</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div id="I_content">
+<div class="C_art">
+<div id="I_author">Published by <b><a href="/user/core_dumped/" rel="author">core dumped</a></b></div>
+<div id="I_date">Sep 6, 2012 (last update: Sep 6, 2012)</div>
+<h1>A string with the split() method</h1>
+<div id="I_score">Score: 3.3/5 (265 votes)</div>
+<div id="I_stars"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"></div>
+<div id="I_content">
+<p>
+One common usage when processing text is to see it as a series of columns,<br>
+like those of a system's log, to extract one or more and use them<br>
+in different ways while discarding others. Surprisingly, C++ strings<br>
+lack a method to split themselves. The alternative (strtok()) is not really<br>
+a C++ solution, since it involves using C arrays. Another problem is its<br>
+low-level nature: the user must send a pointer to help<br>
+strtok().<br>
+</p>
+<p>
+In this example I have derived a class splitstring from<br>
+string. If you have a splitstring and you want to use it as a string, you<br>
+can, because it is one. But if you need to split the string, you can split<br>
+it too. The output of running method split() of a splitstring is a vector<br>
+of strings. This is more similar to high level languages where strings have<br>
+a split() method.<br>
+Possible expansions would be methods that split based on regular expressions<br>
+or constant strings.</p>
+<br>
+<p>To use as part of a larger project, the class declaration should be placed<br>
+in a separate file to be included in this and your code (but I am assuming<br>
+you already know that). The define MAIN directive should be commented out as well./p&gt;<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br>59<br>60<br>61<br>62<br>63<br></code></pre></td>
+<td class="source"><pre><code><cite>// Class splitstring which adds method split()</cite>
+
+<cite>// define MAIN if this is a standalone program</cite>
+<dfn>#define MAIN 1</dfn>
+
+<dfn>#include &lt;string&gt;</dfn>
+<dfn>#include &lt;vector&gt;</dfn>
+<dfn>#include &lt;iostream&gt;</dfn>
+<var>using</var> <var>namespace</var> std;
+
+
+<var>class</var> splitstring : <var>public</var> string {
+    vector&lt;string&gt; flds;
+<var>public</var>:
+    splitstring(<var>char</var> *s) : string(s) { };
+    vector&lt;string&gt;&amp; split(<var>char</var> delim, <var>int</var> rep=0);
+};
+
+<cite>// split: receives a char delimiter; returns a vector of strings</cite>
+<cite>// By default ignores repeated delimiters, unless argument rep == 1.</cite>
+vector&lt;string&gt;&amp; splitstring::split(<var>char</var> delim, <var>int</var> rep) {
+    <var>if</var> (!flds.empty()) flds.clear();  <cite>// empty vector if necessary</cite>
+    string work = data();
+    string buf = <kbd>""</kbd>;
+    <var>int</var> i = 0;
+    <var>while</var> (i &lt; work.length()) {
+        <var>if</var> (work[i] != delim)
+            buf += work[i];
+        <var>else</var> <var>if</var> (rep == 1) {
+            flds.push_back(buf);
+            buf = <kbd>""</kbd>;
+        } <var>else</var> <var>if</var> (buf.length() &gt; 0) {
+            flds.push_back(buf);
+            buf = <kbd>""</kbd>;
+        }
+        i++;
+    }
+    <var>if</var> (!buf.empty())
+        flds.push_back(buf);
+    <var>return</var> flds;
+}
+
+<dfn>#ifdef MAIN</dfn>
+main()
+{
+    <cite>// we define a string</cite>
+    splitstring s(<kbd>"Humpty Dumpty sat on a wall.   Humpty Dumpty had a great fall"</kbd>);
+    cout &lt;&lt; s &lt;&lt; endl;
+
+    <cite>// splits and displays the vector of strings</cite>
+    vector&lt;string&gt; flds = s.split(<kbd>' '</kbd>);
+    <var>for</var> (<var>int</var> k = 0; k &lt; flds.size(); k++)
+        cout &lt;&lt; k &lt;&lt; <kbd>" =&gt; "</kbd> &lt;&lt; flds[k] &lt;&lt; endl;
+
+    <cite>// now taking account of repeated delimiters</cite>
+    cout &lt;&lt; endl &lt;&lt; <kbd>"with repeated delimiters:"</kbd> &lt;&lt; endl;
+    vector&lt;string&gt; flds2 = s.split(<kbd>' '</kbd>, 1);
+    <var>for</var> (<var>int</var> k = 0; k &lt; flds2.size(); k++)
+        cout &lt;&lt; k &lt;&lt; <kbd>" =&gt; "</kbd> &lt;&lt; flds2[k] &lt;&lt; endl;
+
+}
+<dfn>#endif</dfn>
+</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+</div></div><div id="CH_bb"></div><div id="CH_scoreapp"></div><script type="text/javascript">new Score('CH_scoreapp','/articles/score.cgi','1UqpX9L8');</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder selected articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/articles/">Articles</a></b></h3>
+<ul>
+<li><a href="/articles/algorithms/">Algorithms</a></li><li><a href="/articles/cpp11/">C++ 11</a></li><li><a href="/articles/graphics/">Graphics and multimedia</a></li><li><a href="/articles/howto/">How-To</a></li><li><a href="/articles/language/">Language Features</a></li><li><a href="/articles/linux/">Unix/Linux programming</a></li><li><a href="/articles/sourcecode/">Source Code</a></li><li><a href="/articles/standard_library/">Standard Library</a></li><li><a href="/articles/tips/">Tips and Tricks</a></li><li><a href="/articles/tools/">Tools and Libraries</a></li><li><a href="/articles/visualcpp/">Visual C++</a></li><li><a href="/articles/winapi/">Windows API</a></li></ul>
+</div>
+<div id="I_subnav"></div>
+</div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Farticles%2F1UqpX9L8%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+onSession(function(us) {
+		document.getElementById('I_subnav').innerHTML=
+			us.ok?
+				'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul>'+
+				'<li><a href="/articles/myitems.cgi">My items</a></li>'+
+				(us.auth(32768)?'<li><a href="/articles/adminitems.cgi">Admin items</a></li>':'')+
+				'</ul></div>'
+			:'';
+	}); onSession(function (us) {
+		var el=document.getElementById('CH_bb'); el.innerHTML='';
+		if ( (us.auth(32768)) || ((us.uniqid=='NCS1hbRD')&&(us.auth(128))) ) {
+			el.appendChild(btn('Edit article','Edit this version of the article','edit','/articles/edit.cgi?a=1UqpX9L8'));
+	
+			if (us.auth(32768)) {
+				el.appendChild(btn('Delete article','Delete this article','delete','javascript:artdel()'));
+			}
+	
+		}
+	});
+	function artdel() { if (confirm('WARNING: You are about to delete this page. Confirm?')) window.location='/articles/delete.cgi?a=1UqpX9L8'; }
+	ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

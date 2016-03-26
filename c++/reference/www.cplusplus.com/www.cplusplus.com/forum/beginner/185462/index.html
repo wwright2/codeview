@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Please help with this program. - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/beginner/">Beginners</a></li>
+<li class="here">Please help with this program.</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico default" title="post">&nbsp;</div> Please help with this program.</h3><span id="CH_edttl"></span><span class="rootdatPost" title="185462,root,0,-1,2,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg905433"><span title="905433,212927,1023,3,1"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg905433" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm735350ee59" title="Fri, 26 Feb 2016 08:15:08 +0000"></span><script type="text/javascript">WhenId('CH_zTm735350ee59');</script><noscript>Feb 26, 2016 at 8:15am UTC</noscript></div>
+<div class="dwho"><a href="/user/YamiFrankc/"><b>YamiFrankc</b> (3)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i905433">
+Hello.<br>
+<br>
+I have to write a program that registers information about a n number of people, categorize them depending on how much they donated and finally outputs all the info to a txt file.<br>
+<br>
+I found someone else doing something similar on this forum and im trying to analyze that code to do what i need but the objetive is not the same and im lost.<br>
+<br>
+Right now the problem is that  the program skips some of the necessary user inputs and then enters in a infinite loop.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;iostream&gt;</dfn>
+<dfn>#include &lt;string&gt;</dfn>
+<dfn>#include &lt;cstring&gt;</dfn>
+
+<var>using</var> <var>namespace</var> std;
+
+<var>int</var> main()
+{
+
+	<var>int</var> contributors, money;
+	string name;
+	string phone;
+	cout &lt;&lt; <kbd>"How many contributors? "</kbd>;
+	cin &gt;&gt; contributors;
+
+	<var>int</var> counter = 0;
+	<var>int</var> counter1 = 0;
+	<var>int</var> counter2 = 0;
+
+	<var>while</var> (counter &lt; contributors)
+	{
+		cout &lt;&lt; <kbd>"\nContributor #"</kbd> &lt;&lt; counter + 1 &lt;&lt; <kbd>"\nEnter name: "</kbd>;
+		getline(cin, name);
+
+		cout &lt;&lt; <kbd>"\nEnter amount of contribution: "</kbd>;
+		cin &gt;&gt; money;
+
+		<var>if</var> (money &lt; 500) 
+		{
+			cout &lt;&lt; <kbd>"Please enter a donation between 500 and 20000."</kbd>;
+		}
+		<var>else</var>  <var>if</var> (money &gt; 20000)
+		{
+			cout &lt;&lt; <kbd>"Please enter a donation between 500 and 20000."</kbd>;
+		}
+		<var>else</var>
+		{
+			cout &lt;&lt; <kbd>"Please enter phone number(10 digits): "</kbd>; <cite>//Should only accept a string of 10 numbers</cite>
+			getline(cin, phone);
+
+
+		}
+
+
+	}
+
+
+		<var>return</var> 0;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm715b7e32fa" title="Fri, 26 Feb 2016 08:19:33 +0000"></span><script type="text/javascript">WhenId('CH_zTm715b7e32fa');</script><noscript>Feb 26, 2016 at 8:19am UTC</noscript></span>
+<span class="dbtn" id="CH_btn905433"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg905445"><span title="905445,199131,1023,610,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg905445" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm346af8bb6e" title="Fri, 26 Feb 2016 09:59:09 +0000"></span><script type="text/javascript">WhenId('CH_zTm346af8bb6e');</script><noscript>Feb 26, 2016 at 9:59am UTC</noscript></div>
+<div class="dwho"><a href="/user/Thomas1965/"><b>Thomas1965</b> (610)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i905445">
+Since you didn't increment the counter variable you had an infite loop. <br>
+<span class="auto"><code class="source"><var>while</var> (counter &lt; contributors)</code></span><br>
+I quickly hacked together a little skeleton, maybe you want/can complete it.<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br>59<br>60<br>61<br>62<br>63<br>64<br>65<br>66<br>67<br>68<br>69<br>70<br>71<br>72<br>73<br>74<br>75<br>76<br>77<br>78<br>79<br>80<br>81<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;iostream&gt;</dfn>
+<dfn>#include &lt;string&gt;</dfn>
+<dfn>#include &lt;fstream&gt;</dfn>
+<dfn>#include &lt;vector&gt;</dfn>
+
+<var>using</var> <var>namespace</var> std;
+
+<var>struct</var> Contributer
+{
+  string name;
+  string phone;
+  <var>int</var> amount;
+};
+
+<var>const</var> <var>int</var> MIN_AMOUNT = 500;
+<var>const</var> <var>int</var> MAX_AMOUNT = 20000;
+
+<var>int</var> get_num_contributers ();
+<var>void</var> get_contributers (<var>const</var> <var>int</var> count, vector&lt;Contributer&gt; &amp;contributers);
+<var>void</var> save_contributers (string filename, vector&lt;Contributer&gt; &amp;contributers);
+<var>bool</var> valid_phonenumber (string phone);
+
+
+<var>int</var> main (<var>void</var>)
+{
+  <var>try</var>
+  {
+    <var>int</var> num_contributers = get_num_contributers ();
+    vector&lt;Contributer&gt; contributers (num_contributers);
+    get_contributers (num_contributers, contributers);
+    <cite>// maybe some output or processing needs to be done here</cite>
+    save_contributers (<kbd>"contributers"</kbd>, contributers);
+  }
+  <var>catch</var> (exception &amp;ex)
+  {
+    cerr &lt;&lt; <kbd>"ERROR - "</kbd> &lt;&lt; ex.what ();
+    exit (EXIT_FAILURE);
+  }
+  system (<kbd>"pause"</kbd>);
+  exit (EXIT_SUCCESS);
+}
+
+<var>int</var> get_num_contributers ()
+{
+  <var>int</var> count;
+  cout &lt;&lt; <kbd>"How many contributors? "</kbd>;
+  cin &gt;&gt; count;
+  
+  <var>return</var> count;
+}
+
+<var>void</var> get_contributers (<var>const</var> <var>int</var> count, vector&lt;Contributer&gt; &amp;contributers)
+{
+  <var>for</var> (<var>int</var> i = 0; i &lt; count; i++)
+  {
+    Contributer con = {<kbd>"N/A"</kbd>, <kbd>"N/A"</kbd>, 0};
+    cout &lt;&lt; <kbd>"Name: "</kbd>;
+    cin &gt;&gt; con.name;
+    <var>do</var>
+    {
+      cout &lt;&lt; <kbd>"\nAmount between "</kbd> &lt;&lt; MIN_AMOUNT &lt;&lt; <kbd>" and "</kbd> &lt;&lt; MAX_AMOUNT &lt;&lt; <kbd>": "</kbd>;
+      cin &gt;&gt; con.amount;
+    } <var>while</var> (con.amount &lt; MIN_AMOUNT &amp;&amp; con.amount &gt; MAX_AMOUNT);
+
+    <var>do</var>
+    {
+      cout &lt;&lt; <kbd>"\nPhone (max 10 digits) : "</kbd>;
+      cin &gt;&gt; con.phone;
+    } <var>while</var> (!valid_phonenumber (con.phone));    
+  }
+}
+<var>void</var> save_contributers (string filename, vector&lt;Contributer&gt; &amp;contributers)
+{
+  <cite>//TODO - place your code here</cite>
+}
+
+<var>bool</var> valid_phonenumber (string phone)
+{
+  <cite>//TODO - place your code here</cite>
+  <var>return</var> <var>true</var>;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn905445"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div class="rootbtnNew"></div><div id="CH_insNew"></div><div id="CH_reply">Registered users can post here. <a href="/user/">Sign in or register</a> to post.</div><div id="CH_subscription"></div><div class="rootedtNew"></div><script type="text/javascript">new for_PostList(185462,0,212927,0,'CH_PostList','CH_subscription','CH_reply','CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li class="selected"><a href="/forum/beginner/"><b>Beginners</b></a></li><li><a href="/forum/windows/"><b>Windows Programming</b></a></li><li><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li><a href="/forum/general/"><b>General C++ Programming</b></a></li><li><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Fbeginner%2F185462%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

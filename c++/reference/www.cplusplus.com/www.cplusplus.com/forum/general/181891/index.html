@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>For loop - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/general/">General C++ Programming</a></li>
+<li class="here">For loop</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico question" title="question">&nbsp;</div><div class="C_ico solved" title="solved">&nbsp;</div> For loop</h3><span id="CH_edttl"></span><span class="rootdatPost" title="181891,root,0,-1,4,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg891825"><span title="891825,205312,1023,2,1"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg891825" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmc2faf63c22" title="Tue, 29 Dec 2015 07:16:16 +0000"></span><script type="text/javascript">WhenId('CH_zTmc2faf63c22');</script><noscript>Dec 29, 2015 at 7:16am UTC</noscript></div>
+<div class="dwho"><a href="/user/JeremyOlsen/"><b>JeremyOlsen</b> (2)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i891825">
+#include &lt;iostream&gt;<br>
+using namespace std;<br>
+int main()<br>
+<br>
+{<br>
+cout&lt;&lt;"ABC 123\n";<br>
+cout&lt;&lt;"Select the number that coincides with the alphabet.\n";<br>
+cout&lt;&lt;"For example, the number 7 should display the letter G.\n";<br>
+int number;<br>
+for (0 = ?; 1 = A; 2 = B; 3 = C; 4 = D; 5 = E; 6 = F; 7 = G; 8 = H; 9 = I; 10 = J; 11 = K; 12 = L; 13 = M; 14 = N; 15 = O; 16 = P; 17 = Q; 18 = R; 19 = S; 20 = T; 21 = U; 22 = V; 23 = W; 24 = X; 25 = Y; 26 = Z);<br>
+cout&lt;&lt;"Enter a number between 1 and 26: " &lt;&lt; cin &lt;&lt; number;<br>
+cout&lt;&lt;"number";<br>
+return 0;<br>
+} <br>
+I have been reading everything I can to fix this for days and I cannot find the answer. Someone please help me.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn891825"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg891839"><span title="891839,170851,1023,218,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg891839" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmf5a6fe9e37" title="Tue, 29 Dec 2015 09:47:53 +0000"></span><script type="text/javascript">WhenId('CH_zTmf5a6fe9e37');</script><noscript>Dec 29, 2015 at 9:47am UTC</noscript></div>
+<div class="dwho"><a href="/user/chicofeo/"><b>chicofeo</b> (218)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i891839">
+If this is an assignment, could you post the full question? Nevertheless, below is a quick info on for loops.<br>
+<br>
+A for loop repeats a specific number of times. For example, if a loop asks the user to enter the sales amounts for each month in the year, it will iterate twelve times. In essence, the loop counts to twelve and asks the user to enter a sales amount each time it makes a count. A count-controlled loop must possess three elements:<br>
+1. It must initialize a counter variable to a starting value.<br>
+2. It must test the counter variable by comparing it to a maximum value. When the<br>
+counter variable reaches its maximum value, the loop terminates.<br>
+3. It must update the counter variable during each iteration. This is usually done by<br>
+incrementing the variable.<br>
+<br>
+Here is an example of a simple for loop that prints “Hello” five times:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br></code></pre></td>
+<td class="source"><pre><code><var>for</var> (count = 0; count &lt; 5; count++)
+      cout &lt;&lt; <kbd>"Hello"</kbd> &lt;&lt; endl;</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+In this loop, the initialization expression is <span class="auto"><code class="source">count = 0</code></span> , the test expression is <span class="auto"><code class="source">count &lt; 5</code></span> , and the update expression is <span class="auto"><code class="source">count++</code></span>.The body of the loop has one statement, which is the cout statement.<br>
+<br>
+<br>
+In the code below, I use an array and a  do-while loop to identify the letter based on the user's input.<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;iostream&gt;</dfn>
+<dfn>#include &lt;cctype&gt; </dfn><cite>// For toupper function.</cite>
+
+<var>int</var> main()
+{
+    <var>const</var> <var>int</var> SIZE{ 26 };
+    <var>int</var> number{ 0 };
+    <var>char</var> tryAgain{ <kbd>'Y'</kbd> };
+    <var>char</var> alphabet[SIZE] = {<kbd>'A'</kbd>, <kbd>'B'</kbd>, <kbd>'C'</kbd>, <kbd>'D'</kbd>, <kbd>'E'</kbd>, <kbd>'F'</kbd>,
+	   <kbd>'G'</kbd>, <kbd>'H'</kbd>, <kbd>'I'</kbd>, <kbd>'J'</kbd>, <kbd>'K'</kbd>,
+	   <kbd>'L'</kbd>, <kbd>'M'</kbd>, <kbd>'N'</kbd>, <kbd>'O'</kbd>, <kbd>'P'</kbd>, <kbd>'Q'</kbd>,
+	   <kbd>'R'</kbd>, <kbd>'S'</kbd>, <kbd>'T'</kbd>, <kbd>'U'</kbd>, <kbd>'V'</kbd>, <kbd>'W'</kbd>,
+	   <kbd>'X'</kbd>, <kbd>'Y'</kbd>, <kbd>'Z'</kbd> };
+
+    <var>do</var>
+    {
+
+	   std::cout &lt;&lt; <kbd>"ABC 123\n"</kbd>;
+	   std::cout &lt;&lt; <kbd>"Select the number that coincides with the alphabet.\n"</kbd>;
+	   std::cout &lt;&lt; <kbd>"For example, the number 7 should display the letter G.\n"</kbd>;
+
+	   std::cin &gt;&gt; number;
+	   <var>while</var> (number &lt; 0 || number &gt; SIZE)
+	   {
+		  std::cout &lt;&lt; <kbd>"Your input "</kbd> &lt;&lt; number &lt;&lt; <kbd>" is not valid\n"</kbd>;
+		  std::cout &lt;&lt; <kbd>"Try again\n"</kbd>;
+		  std::cin &gt;&gt; number;
+	   }
+	   std::cout &lt;&lt; alphabet[number - 1] &lt;&lt; std::endl; <cite>// Arrays element begins with 0 (Off-by-one rule).</cite>
+
+	   std::cout &lt;&lt; <kbd>"Would you like to try again?\n"</kbd>;
+	   std::cin &gt;&gt; tryAgain;
+
+    } <var>while</var> (toupper(tryAgain) == <kbd>'Y'</kbd>);
+
+
+    <var>return</var> 0;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn891839"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg891840"><span title="891840,199131,1023,610,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg891840" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm31e1d0c941" title="Tue, 29 Dec 2015 09:50:32 +0000"></span><script type="text/javascript">WhenId('CH_zTm31e1d0c941');</script><noscript>Dec 29, 2015 at 9:50am UTC</noscript></div>
+<div class="dwho"><a href="/user/Thomas1965/"><b>Thomas1965</b> (610)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i891840">
+I would do it like this:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;iostream&gt;</dfn>
+
+<var>using</var> <var>namespace</var> std;
+
+<var>int</var> main()
+{
+  <var>int</var> number;
+  
+  cout&lt;&lt;<kbd>"ABC 123\n"</kbd>;
+  cout&lt;&lt;<kbd>"Select the number that coincides with the alphabet.\n"</kbd>;
+  cout&lt;&lt;<kbd>"For example, the number 7 should display the letter G.\n"</kbd>;
+  
+  cout&lt;&lt;<kbd>"Enter a number between 1 and 26: "</kbd>;
+  cin &gt;&gt; number;
+  cout &lt;&lt; <kbd>"\ncharacter: "</kbd> &lt;&lt; (<var>char</var>) (number + 64) &lt;&lt; <kbd>"\n\n"</kbd>;
+
+  system(<kbd>"pause"</kbd>);
+  <var>return</var> 0;
+} </code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn891840"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg892458"><span title="892458,205312,1023,2,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892458" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmf1d76d6956" title="Sat, 02 Jan 2016 08:22:23 +0000"></span><script type="text/javascript">WhenId('CH_zTmf1d76d6956');</script><noscript>Jan 2, 2016 at 8:22am UTC</noscript></div>
+<div class="dwho"><a href="/user/JeremyOlsen/"><b>JeremyOlsen</b> (2)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892458">
+Thank you very much Thomas1965. This solved my problem and taught me another way of doing it that I would never have thought of myself. You were a bigger help than you could have possibly imagined.<br>
+<br>
+On another note, if you know anyone into the ide meteor I would like to email him/her.
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm05da565cd5" title="Sat, 02 Jan 2016 08:31:36 +0000"></span><script type="text/javascript">WhenId('CH_zTm05da565cd5');</script><noscript>Jan 2, 2016 at 8:31am UTC</noscript></span>
+<span class="dbtn" id="CH_btn892458"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div class="rootbtnNew"></div><div id="CH_insNew"></div><div id="CH_reply">Registered users can post here. <a href="/user/">Sign in or register</a> to post.</div><div id="CH_subscription"></div><div class="rootedtNew"></div><script type="text/javascript">new for_PostList(181891,0,205312,1,'CH_PostList','CH_subscription','CH_reply','CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li><a href="/forum/beginner/"><b>Beginners</b></a></li><li><a href="/forum/windows/"><b>Windows Programming</b></a></li><li><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li class="selected"><a href="/forum/general/"><b>General C++ Programming</b></a></li><li><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Fgeneral%2F181891%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

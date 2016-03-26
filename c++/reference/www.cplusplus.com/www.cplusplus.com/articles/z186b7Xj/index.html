@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Pointer craft - C++ Articles</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/articles/">Articles</a></li>
+<li class="here">Pointer craft</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div id="I_content">
+<div class="C_art">
+<div id="I_author">Published by <b><a href="/user/Catfish/" rel="author">Catfish</a></b></div>
+<div id="I_date">Nov 14, 2011 (last update: Nov 19, 2011)</div>
+<h1>Pointer craft</h1>
+<div id="I_score">Score: 4.1/5 (100 votes)</div>
+<div id="I_stars"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"></div>
+<div id="I_content">
+<H3>About this article</H3>
+I believe that competition leads to improvement.<br>
+There are <A HREF="http://cplusplus.com/articles/ihTbqMoL/">three</A> <A HREF="http://cplusplus.com/articles/NUCRko23/">other</A> <A HREF="http://cplusplus.com/articles/2TA0RXSz/">articles</A> on pointers and how they relate to arrays, besides mine and <A HREF="http://www.cplusplus.com/articles/EN3hAqkS/">Moschops'</A>.<br>
+Then there's the dedicated section in the <A HREF="http://cplusplus.com/doc/tutorial/pointers/">Documentation</A>.<br>
+So I'll try to keep this as short and to the pointer as possible.<br>
+(This article assumes you know the basics of C++ programming.)<br>
+<br>
+<H3>Pointer facts</H3>
+A pointer is a variable. It stores a number. That number represents a memory address.<br>
+Therefore we say it points to some data.<br>
+Pointers can have a type (e.g. <CODE>int</CODE>, <CODE>char</CODE>) or they can be <CODE>void</CODE>.<br>
+The type will hint what you want to interpret the data that is pointed to, as.<br>
+If you use <CODE>void</CODE>, you may need to specify a type later.<br>
+<br>
+<H3>Declaring a pointer</H3>
+You declare a pointer just like how you would any variable, but add an asterisk (<CODE>*</CODE>) in between the type and the name.<br>
+<br>
+<I>Example:</I>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br></code></pre></td>
+<td class="source"><pre><code><var>void</var> * function(<var>int</var> *i)
+{
+    <var>void</var> *v;     <cite>// we don't know what type of data v will point to</cite>
+    v = i + 500; <cite>// pointer arithmetic</cite>
+    <var>return</var> v;    <cite>// return the resulting memory address</cite>
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+The <CODE>function()</CODE> above takes a pointer as parameter.<br>
+The value of <CODE>i</CODE> is the memory address it contains.<br>
+After we do the pointer arithmetic we'll have a new memory address.<br>
+We use <CODE>void</CODE> as type because we're undecided what to treat the data that <CODE>v</CODE> points to as.<br>
+<br>
+<H3>Pointer arithmetic</H3>
+Pointer arithmetic refers to addition or subtraction between a pointer and an integer.<br>
+The value of a pointer is the memory address it holds. It is expressed in bytes.<br>
+Most types occupy more than one byte in memory. (e.g. <CODE>float</CODE> uses four bytes.)<br>
+The integer represents how many elements of the pointer's type we're shifting the address by.<br>
+Finally the address shifts by the number of bytes needed to store that number of elements.<br>
+<br>
+<I>Example:</I>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br></code></pre></td>
+<td class="source"><pre><code><var>float</var> *pf = <var>reinterpret_cast</var>&lt;<var>float</var> *&gt; (100);
+<cite>// force pf to contain the value 100 (0x64 in hexadecimal)</cite>
+<cite>// notice that (sizeof (float) == 4) bytes</cite>
+
+pf += 1; <cite>// shift pf forward by one float</cite>
+<cite>// pf is now 104 (0x68)</cite>
+pf -= 2; <cite>// shift pf backward by two floats</cite>
+<cite>// pf is now 96 (0x60)</cite>
+
+<var>void</var> *pv = <var>reinterpret_cast</var>&lt;<var>void</var> *&gt; (100); <cite>// pv is 100 (0x64)</cite>
+<cite>// notice that (sizeof (void) == 1) byte</cite>
+
+pv += 1; <cite>// pv is now 101 (0x65)</cite>
+pv -= 2; <cite>// pv is now 99 (0x63)</cite>
+
+<cite>// caution, you should never assign a custom address to a pointer </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<H3><CODE>NULL</CODE> and <CODE>nullptr</CODE></H3>
+The rule of initializing variables applies to pointers as well.<br>
+The convention is to use <CODE>NULL</CODE> (or <CODE>nullptr</CODE> in C++11) to give the pointer a neutral value.<br>
+<br>
+<I>Example:</I>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br></code></pre></td>
+<td class="source"><pre><code><var>int</var> *i1;        <cite>// caution, i1 has a junk value</cite>
+<var>int</var> *i2 = NULL; <cite>// we mark i2 as unused</cite>
+i1 = NULL;      <cite>// same for i1 </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<CODE>NULL</CODE> most often is the value <CODE>0</CODE>.<br>
+Well-designed functions should check if a given pointer is <CODE>NULL</CODE> before using it.<br>
+In the latest standard of C++ (named C++11), <CODE>nullptr</CODE> replaces <CODE>NULL</CODE>.<br>
+<br>
+<H3>Reference facts</H3>
+While pointers are a concept inherited from C, references were introduced by C++.<br>
+A reference can be described as an alias for an existing variable of the same type.<br>
+References do not contain a memory address you can change.<br>
+References cannot be re-aliased to another variable.<br>
+<br>
+<H3>Declaring a reference</H3>
+You declare a reference how you would a pointer but by using an ampersand (<CODE>&</CODE>) instead of an asterisk (<CODE>*</CODE>).<br>
+<br>
+<I>Example:</I>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br></code></pre></td>
+<td class="source"><pre><code><var>int</var> a;       <cite>// regular variable a</cite>
+<var>int</var> &amp;ra = a; <cite>// reference, must be initialized at declaration</cite>
+ra = -1;     <cite>// now a is -1, too</cite>
+a = 55;      <cite>// now ra is 55, too </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<H3>What's a reference good for?</H3>
+It can serve as a better pointer. References cannot be made invalid as easily as pointers can.<br>
+A typical use for references is as a safer alternative to pointers in functions parameters.<br>
+<br>
+<I>Example:</I>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br></code></pre></td>
+<td class="source"><pre><code><var>void</var> die_string_die(std::string &amp;s)
+{
+    s.clear();
+}
+<cite>// notice that the real string is not copied as a local variable,</cite>
+<cite>// so when we change s inside our function, the real string changes as well </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Using a reference is tempting because not having to make a copy will conserve memory and time.<br>
+So in order to prevent any accidental changes to the original variable, programmers will declare the reference as <CODE>const</CODE>.<br>
+<br>
+Old school C programmers will do the same for pointers, but they still have to check if their pointer is <CODE>NULL</CODE>.<br>
+And even if it isn't, they still have no guarantees it is valid.<br>
+<br>
+<I>Example:</I>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br></code></pre></td>
+<td class="source"><pre><code><var>void</var> safe(<var>const</var> std::string &amp;s) {}
+
+<var>void</var> still_unsafe(<var>const</var> std::string *s)
+{
+    <var>if</var> (s == NULL); <cite>// we surely can't use s now</cite>
+
+    <var>else</var>; <cite>// but what if it's still invalid?</cite>
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<H3>The dereference (<CODE>*</CODE>) and reference (<CODE>&</CODE>) operators</H3>
+The reason why I wrote the previous sections is because both C and C++ made the uninspired choice of recycling the asterisk (<CODE>*</CODE>) and ampersand (<CODE>&</CODE>) as operators.<br>
+So I wanted to clear up their role in declarations, before moving on to operations.<br>
+<br>
+The dereference operator (<CODE>*</CODE>) is used on pointers, to manipulate the data at the memory location they contain.<br>
+The reference operator (<CODE>&</CODE>) is used on regular variables, to get their memory address.<br>
+You can reference a pointer to get its own memory address. Which is why you can have pointers to pointers.<br>
+But dereferencing a regular variable will most likely cause a crash.<br>
+<br>
+<I>Example:</I>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br></code></pre></td>
+<td class="source"><pre><code><var>int</var> i;       <cite>// regular variable i</cite>
+<var>int</var> *pi;     <cite>// pointer to int</cite>
+<var>int</var> **ppi;   <cite>// pointer to pointer to int</cite>
+<var>int</var> ***pppi; <cite>// this is ridiculous, avoid doing things like this</cite>
+
+pi = &amp;i;     <cite>// apply reference to i, to get i's memory address</cite>
+ppi = &amp;pi;   <cite>// apply reference to pi, to get pi's own memory address</cite>
+pppi = &amp;ppi; <cite>// apply reference to ppi, to get ppi's own memory address</cite>
+
+*pi = 5;     <cite>// apply dereference to pi, to change the data pointed to by pi</cite>
+
+<cite>// i has the value 5</cite>
+
+**ppi = -17; <cite>// apply dereference to ppi twice, i is now -17</cite>
+***pppi = 9; <cite>// apply dereference to pppi three times, i is now 9 </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<H3>C array facts</H3>
+Arrays can be described as a chain with a known number of elements, of the same type.<br>
+They are sometimes described as "constant pointers", because using their name returns the memory address of the first element, but that address cannot be changed.<br>
+The size of an array cannot be changed, either.<br>
+<br>
+The old limitation in using arrays was that their size had to be known at compile time.<br>
+This isn't the case anymore in the latest C standard (named C99) but the designers of C++ decided not to implement VLAs (Variable-Length Array) in C++.<br>
+The "variable" in VLA means that the size is <I>a variable</I>, and not that the size <I>is variable</I>.<br>
+<br>
+<H3>Declaring an array</H3>
+A simple one-dimensional array is declared by using square brackets.<br>
+The size can be deduced if you provide an initializer list, otherwise you need to specify the size yourself.<br>
+<br>
+<I>Example:</I>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br></code></pre></td>
+<td class="source"><pre><code><var>int</var> ia1[] = {0, 1, 2, 3};     <cite>// size deduced to be 4</cite>
+<var>int</var> ia2[4] = {5};             <cite>// size is 4, contents are {5, 0, 0, 0}</cite>
+<var>int</var> ia3[40];                  <cite>// caution, size is 40 but elements are junk</cite>
+<var>int</var> ia4[40] = {};             <cite>// size is 40, all elements are 0</cite>
+<var>char</var> ca1[] = <kbd>"car"</kbd>;           <cite>// caution, a '\0' character is added to the end, size is 4</cite>
+<var>char</var> ca2[] = {<kbd>'c'</kbd>, <kbd>'a'</kbd>, <kbd>'r'</kbd>}; <cite>// size is 3</cite>
+<cite>// and so on...</cite>
+
+<var>char</var> *pc = ca1; <cite>// no need to reference ca1, because it returns a memory address</cite>
+
+ia1[1] = -3; <cite>// changes second element in ia1 (counting starts from 0) </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<H3>Dynamic memory allocation</H3>
+In the absence of VLAs and if for some reason we don't want to use the STL containers, we can allocate memory dynamically.<br>
+We do this for cases when it's unknown how many elements we need to store, at compile time.<br>
+<br>
+The preferred use for pointers remains pointing to a given variable.<br>
+But they can also be used to construct chains containing an arbitrary number of elements.<br>
+<br>
+<I>Example:</I>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;cstddef&gt;</dfn>
+<cite>// for size_t (which is an unsigned integral type, like unsigned int)</cite>
+
+size_t ne=0; <cite>// number of elements</cite>
+
+std::cin &gt;&gt; ne; <cite>// let the user input desired length</cite>
+
+<var>double</var> *pd; <cite>// declare a pointer to double</cite>
+
+pd = <var>new</var> <var>double</var>[ne]; <cite>// new[] allocates memory to store ne doubles,</cite>
+                     <cite>// and returns the starting memory address</cite>
+
+<cite>// ... pd now acts as a doubles array of size ne ...</cite>
+<cite>// caution, the memory address contained in pd must not be changed</cite>
+
+<var>delete</var>[] pd; <cite>// delete[] frees the memory new[] allocated</cite>
+             <cite>// caution, omitting this step can cause a memory leak </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<H3>Function pointers</H3>
+Since functions have addresses too, we can have a pointer to a function.<br>
+The use for this is a primitive implementation of polymorphism.<br>
+The following example highlights the use of Dispatch Tables.<br>
+<br>
+<I>Example:</I>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;iostream&gt;</dfn>
+<dfn>#include &lt;cstdlib&gt;</dfn>
+<dfn>#include &lt;cstddef&gt;</dfn>
+
+<var>void</var> good(<var>int</var> i)
+{
+    std::cout &lt;&lt; <kbd>"I fed "</kbd> &lt;&lt; i &lt;&lt; <kbd>" little kittens today."</kbd> &lt;&lt; std::endl;
+}
+
+<var>void</var> neutral(<var>int</var> i)
+{
+    std::cout &lt;&lt; <kbd>"I drove "</kbd> &lt;&lt; i &lt;&lt; <kbd>" miles yesterday."</kbd> &lt;&lt; std::endl;
+}
+
+<var>void</var> evil(<var>int</var> i)
+{
+    std::cout &lt;&lt; <kbd>"I steal public toilet paper rolls every day."</kbd> &lt;&lt; std::endl;
+}
+
+<cite>// notice that the "type" of a function is its signature,</cite>
+<cite>// and all the functions above have the same signature: void name(int )</cite>
+
+<var>int</var> main()
+{
+    <var>void</var> (*wondering[])(<var>int</var> ) = {good, neutral, evil};
+    <cite>// on the left we have an array of pointers to a function of signature: void name(int )</cite>
+    <cite>// on the right we have the initializer list with the three functions</cite>
+
+    size_t user_input = 0;
+
+    std::cout &lt;&lt; <kbd>"GOOD\t== 0\nNEUTRAL\t== 1\nEVIL\t== 2\n\nYour choice is:"</kbd> &lt;&lt; std::endl;
+    std::cin &gt;&gt; user_input;
+
+    <var>if</var> (user_input &gt; 2)
+        user_input = 2; <cite>// just in case...</cite>
+
+    (*wondering[user_input])(10);
+    <cite>// notice how we don't call a specific function for the user</cite>
+
+    system(<kbd>"PAUSE"</kbd>); <cite>// you may remove this line if on Linux</cite>
+    <var>return</var> EXIT_SUCCESS;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<H3>Conclusion</H3>
+If you're a C programmer, pointers and arrays can be useful tools.<br>
+<br>
+However, since you're most likely a C++ programmer, you should leave pointer hackery alone.<br>
+Use pointers to point to an existing variable (object), and only doing so for the benefits of speed and lower memory usage.<br>
+And remember that in some cases, you can use references instead of pointers.<br>
+<br>
+As for C arrays, you should avoid using them, as well. C++11 provides <CODE>std::array</CODE> which is an excellent replacement.<br>
+</div></div><div id="CH_bb"></div><div id="CH_scoreapp"></div><script type="text/javascript">new Score('CH_scoreapp','/articles/score.cgi','z186b7Xj');</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder selected articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/articles/">Articles</a></b></h3>
+<ul>
+<li><a href="/articles/algorithms/">Algorithms</a></li><li><a href="/articles/cpp11/">C++ 11</a></li><li><a href="/articles/graphics/">Graphics and multimedia</a></li><li><a href="/articles/howto/">How-To</a></li><li><a href="/articles/language/">Language Features</a></li><li><a href="/articles/linux/">Unix/Linux programming</a></li><li><a href="/articles/sourcecode/">Source Code</a></li><li><a href="/articles/standard_library/">Standard Library</a></li><li><a href="/articles/tips/">Tips and Tricks</a></li><li><a href="/articles/tools/">Tools and Libraries</a></li><li><a href="/articles/visualcpp/">Visual C++</a></li><li><a href="/articles/winapi/">Windows API</a></li></ul>
+</div>
+<div id="I_subnav"></div>
+</div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Farticles%2Fz186b7Xj%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+onSession(function(us) {
+		document.getElementById('I_subnav').innerHTML=
+			us.ok?
+				'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul>'+
+				'<li><a href="/articles/myitems.cgi">My items</a></li>'+
+				(us.auth(32768)?'<li><a href="/articles/adminitems.cgi">Admin items</a></li>':'')+
+				'</ul></div>'
+			:'';
+	}); onSession(function (us) {
+		var el=document.getElementById('CH_bb'); el.innerHTML='';
+		if ( (us.auth(32768)) || ((us.uniqid=='z0qL1hU5')&&(us.auth(128))) ) {
+			el.appendChild(btn('Edit article','Edit this version of the article','edit','/articles/edit.cgi?a=z186b7Xj'));
+	
+			if (us.auth(32768)) {
+				el.appendChild(btn('Delete article','Delete this article','delete','javascript:artdel()'));
+			}
+	
+		}
+	});
+	function artdel() { if (confirm('WARNING: You are about to delete this page. Confirm?')) window.location='/articles/delete.cgi?a=z186b7Xj'; }
+	ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

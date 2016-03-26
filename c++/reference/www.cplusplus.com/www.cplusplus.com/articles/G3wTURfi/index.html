@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Inline function Advantages, Disadvantage - C++ Articles</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/articles/">Articles</a></li>
+<li class="here">Inline function Advantages, Disadvantage</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div id="I_content">
+<div class="C_art">
+<div id="I_author">Published by <b><a href="/user/tajendra/" rel="author">tajendra</a></b></div>
+<div id="I_date">Mar 8, 2010 (last update: Sep 28, 2011)</div>
+<h1>Inline function Advantages, Disadvantages, Performance and User Guidelines ?</h1>
+<div id="I_score">Score: 3.5/5 (94 votes)</div>
+<div id="I_stars"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-half.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"></div>
+<div id="I_content">
+Inline function is the optimization technique used by the compilers. One can simply prepend inline keyword to function prototype to make a function inline. Inline function instruct compiler to insert complete body of the function wherever that function got used in code.<br>
+<br>
+<b>Advantages :- </b>
+1) It does not require function calling overhead.<br>
+2) It also save overhead of variables push/pop on the stack, while function calling.<br>
+3) It also save overhead of return call from a function.<br>
+4) It increases locality of reference by utilizing instruction cache.<br>
+5) After in-lining compiler can also apply intraprocedural optmization if specified. This is the most important one, in this way compiler can now focus on dead code elimination, can give more stress on branch prediction, induction variable elimination etc..<br>
+<br>
+<b>Disadvantages</b> :-<br>
+1) May increase function size so that it may not fit on the cache, causing lots of cahce miss.<br>
+2) After in-lining function if variables number which are going to use register increases than they may create overhead on register variable resource utilization.<br>
+3) It may cause compilation overhead as if some body changes code inside inline function than all calling location will also be compiled.<br>
+4) If used in header file, it will make your header file size large and may also make it unreadable.<br>
+5) If somebody used too many inline function resultant in a larger code size than it may cause thrashing in memory. More and more number of page fault bringing down your program performance.<br>
+6) Its not useful for embeded system where large binary size is not preferred at all due to memory size constraints.<br>
+<br>
+<b>Performance</b> : -<br>
+Now covering the topic which most the people are interested in the "Performance".<br>
+In most of the cases Inline function boost performance if used cautiously as it saves lots of overhead as discussed in our Advantages section above but as we have also discussed  its disadvantages one need to be very cautious while using them. Today's modern compiler inline functions automatically, so no need to specify explicitly in most of the cases. Although placing inline keyword only gives compiler a hint that this function can be optimized by doing in-lining, its ultimately compiler decision to make it inline. Though there are ways to instruct compiler too, for making a function call inline like one can use __forceinline to instruct compiler to inline a function while working with microsoft visual c++. I suggest not to use this keyword until you are very sure about performance gain. Making a function inline may or may not give you performance boost, it all depends on your code flows too. Don't expect a magical performance boost by prepending inline keyword before a function to your code as most of the compiler nowadays does that automatically.<br>
+<br>
+As we have seen inline function serves in terms of performacen but one has to use it with extreme cautions.<br>
+<br>
+I have prepared a few guidelines for its use.<br>
+<b>Uses Guidelines</b> :-<br>
+1) Always use inline function when your are sure it will give performance.<br>
+2) Always prefer inline function over macros.<br>
+3) Don't inline function with larger code size, one should always inline small code size function to get performance.<br>
+4) If you want to inline a function in class, then prefer to use inkine keyword outside the class with the function definition.<br>
+5) In c++, by default member function declared and defined within class get linlined. So no use to specify for such cases.<br>
+6) Your function will not be inlined in case there is differences between exception handling model. Like if caller function follows c++ structure handling and your inline function follows structured exception handling.<br>
+7) For recursive function most of the compiler would not do in-lining but microsoft visual c++ compiler provides a special pragma for it i.e. pragma inline_recursion(on) and once can also control its limit with pragma  inline_depth.<br>
+8) If the function is virtual and its called virtually then it would not be inlined. So take care for such cases, same hold true for the use of function pointers.<br>
+<br>
+For more such info please visit my technical blog :- <br>
+<i><a href="http://www.tajendrasengar.blogspot.com/2010/03/what-is-inline-function-in-cc.html">http://www.tajendrasengar.blogspot.com/2010/03/what-is-inline-function-in-cc.html</a></i>
+<br>
+That's it from my side, I hope you enjoyed reading the post.<br>
+</div></div><div id="CH_bb"></div><div id="CH_scoreapp"></div><script type="text/javascript">new Score('CH_scoreapp','/articles/score.cgi','G3wTURfi');</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder selected articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/articles/">Articles</a></b></h3>
+<ul>
+<li><a href="/articles/algorithms/">Algorithms</a></li><li><a href="/articles/cpp11/">C++ 11</a></li><li><a href="/articles/graphics/">Graphics and multimedia</a></li><li><a href="/articles/howto/">How-To</a></li><li><a href="/articles/language/">Language Features</a></li><li><a href="/articles/linux/">Unix/Linux programming</a></li><li><a href="/articles/sourcecode/">Source Code</a></li><li><a href="/articles/standard_library/">Standard Library</a></li><li><a href="/articles/tips/">Tips and Tricks</a></li><li><a href="/articles/tools/">Tools and Libraries</a></li><li><a href="/articles/visualcpp/">Visual C++</a></li><li><a href="/articles/winapi/">Windows API</a></li></ul>
+</div>
+<div id="I_subnav"></div>
+</div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Farticles%2FG3wTURfi%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+onSession(function(us) {
+		document.getElementById('I_subnav').innerHTML=
+			us.ok?
+				'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul>'+
+				'<li><a href="/articles/myitems.cgi">My items</a></li>'+
+				(us.auth(32768)?'<li><a href="/articles/adminitems.cgi">Admin items</a></li>':'')+
+				'</ul></div>'
+			:'';
+	}); onSession(function (us) {
+		var el=document.getElementById('CH_bb'); el.innerHTML='';
+		if ( (us.auth(32768)) || ((us.uniqid=='Sj6Rko23')&&(us.auth(128))) ) {
+			el.appendChild(btn('Edit article','Edit this version of the article','edit','/articles/edit.cgi?a=G3wTURfi'));
+	
+			if (us.auth(32768)) {
+				el.appendChild(btn('Delete article','Delete this article','delete','javascript:artdel()'));
+			}
+	
+		}
+	});
+	function artdel() { if (confirm('WARNING: You are about to delete this page. Confirm?')) window.location='/articles/delete.cgi?a=G3wTURfi'; }
+	ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>LZW file compressor - C++ Articles</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/articles/">Articles</a></li>
+<li class="here">LZW file compressor</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div id="I_content">
+<div class="C_art">
+<div id="I_author">Published by <b><a href="/user/Catfish3/" rel="author">Catfish3</a></b></div>
+<div id="I_date">Feb 23, 2013 (last update: Mar 18, 2013)</div>
+<h1>LZW file compressor</h1>
+<div id="I_score">Score: 4.3/5 (62 votes)</div>
+<div id="I_stars"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"></div>
+<div id="I_content">
+<UL>
+<LI><A HREF="#LZFam">The LZ family of algorithms</A></LI>
+<LI><A HREF="#Goal">Goal</A></LI>
+<LI><A HREF="#Language">Language</A></LI>
+<LI><A HREF="#LossCoVsExp">Lossless compression versus expansion</A></LI>
+<LI><A HREF="#Entropy">Entropy, and dictionary coders</A></LI>
+<LI><A HREF="#LZWAlgo">The LZW algorithm</A></LI>
+<LI><A HREF="#Version1">Version 1</A></LI>
+<LI><A HREF="#Version2">Version 2</A></LI>
+<LI><A HREF="#Version3">Version 3</A></LI>
+<LI><A HREF="#Version4">Version 4</A></LI>
+<LI><A HREF="#Version5">Version 5</A></LI>
+<LI><A HREF="#Version6">Version 6</A></LI>
+<LI><A HREF="#EndingNotes">Ending notes</A></LI>
+<LI><A HREF="#UsefulLinks">Useful links</A></LI>
+<LI><A HREF="#Thanks">Thanks go to</A></LI>
+</UL>
+<br>
+<H3 ID="LZFam">The LZ family of algorithms</H3>
+Abraham Lempel and Jacob Ziv published two compression algorithms: LZ77 in 1977 and LZ78 in 1978.<br>
+<br>
+Terry Welch published the LZW algorithm in 1984 as an improvement of LZ78.<br>
+<br>
+LZW is just one of the original LZ algorithms' many derivatives, the more famous ones being LZSS (used in RAR), LZMA (used in 7z), and Deflate (used in ZIP).<br>
+<br>
+This article is about LZW because:<br>
+<UL>
+<LI>it's easy to understand and to code, yet</LI>
+<LI>it offers decent compression ratios and speed, and</LI>
+<LI>its patents have expired</LI>
+</UL>
+<br>
+<H3 ID="Goal">Goal</H3>
+The goal is to implement an LZW file compressor, and gradually improve it.<br>
+<br>
+<EM>Alpha versions:</EM>
+<UL>
+<LI><STRONG>Version 1</STRONG> [ <A HREF="#Version1">Jump</A> ] [ <A HREF="lzw_v1.zip">Download</A> ]<BR>
+Straightforward but slow implementation. The encoder uses a plain map. The decoder uses a string vector.<br>
+</LI>
+<br>
+<LI><STRONG>Version 2</STRONG> [ <A HREF="#Version2">Jump</A> ] [ <A HREF="lzw_v2.zip">Download</A> ]<BR>
+Faster compression. The encoder uses a hash map. The decoder is reused from <EM>Version 1</EM>.<br>
+</LI>
+<br>
+<LI><STRONG>Version 3</STRONG> [ <A HREF="#Version3">Jump</A> ] [ <A HREF="lzw_v3.zip">Download</A> ]<BR>
+Faster compression and decompression. Both the encoder and the decoder do pair mapping, instead of string mapping.<br>
+</LI>
+<br>
+<LI><STRONG>Version 4</STRONG> [ <A HREF="#Version4">Jump</A> ] [ <A HREF="lzw_v4.zip">Download</A> ]<BR>
+Faster compression and very fast decompression. The encoder uses a custom memory allocator. The decoder is optimized.<br>
+</LI>
+<br>
+<LI><STRONG>Version 5</STRONG> [ <A HREF="#Version5">Jump</A> ] [ <A HREF="lzw_v5.zip">Download</A> ]<BR>
+Very fast compression and decompression. The encoder uses a vector-based binary search tree. The decoder is reused from <EM>Version 4</EM>.<br>
+</LI>
+</UL>
+<br>
+<EM>Beta versions:</EM>
+<UL>
+<LI><STRONG>Version 6</STRONG> [ <A HREF="#Version6">Jump</A> ] [ <A HREF="lzw_v6.zip">Download</A> ]<BR>
+Uses variable width codes. Compared to <EM>Version 5</EM>, it's significantly slower but compresses better.<br>
+</LI>
+</UL>
+<br>
+The above programs are command-line utilities. Their source code is attached to this article as ZIP archives.<br>
+<br>
+<EM>Notes:</EM>
+<UL>
+<LI>The programs perform better if compiled with optimizations turned on.</LI>
+<br>
+<LI>I currently use MinGW (GCC 4.7.2) and compile by running:<BR>
+<CODE>g++ -Wall -Wextra -pedantic -std=c++11 -O3 lzw_vX.cpp -o lzw_vX.exe</CODE></LI>
+</UL>
+<br>
+<H3 ID="Language">Language</H3>
+The source code is written in C++11, the 2011 version of the C++ language's standard.<br>
+<br>
+Your C++ compiler must support lambda functions, range-based <CODE>for()</CODE> loops, and initializer lists, for to successfully compile the source code snippets in this article, and the full programs attached.<br>
+<br>
+<H3 ID="LossCoVsExp">Lossless compression versus expansion</H3>
+Given data D of size S<SUB>D</SUB>, the intent is to encode it as data E of size S<SUB>E</SUB>, such that:<br>
+<UL>
+<LI>S<SUB>E</SUB> &lt; S<SUB>D</SUB></LI>
+<LI>E can be decoded as D</LI>
+</UL>
+<br>
+If S<SUB>E</SUB> is less than S<SUB>D</SUB>, compression was achieved.<br>
+If, in addition, the original data D can be reconstructed from E, the compression is lossless.<br>
+<br>
+<EM>Notes:</EM>
+<UL>
+<LI>The compression ratio is computed with S<SUB>E</SUB> / S<SUB>D</SUB>.</LI>
+</UL>
+<br>
+Expansion is the opposite of compression, with S<SUB>E</SUB> &gt; S<SUB>D</SUB>.<br>
+<br>
+Expansion occurs because it is mathematically impossible for a lossless compression algorithm to compress all files. This is proven with the counting argument, which you can learn more about by following the designated link at the bottom of this article.<br>
+<br>
+<EM>A simplified, crude example:</EM>
+<div class="auto"><table class="snippet"><tr><td class="output"><pre><samp>Suppose we have a lossless compression algorithm LCA that can compress all files.
+For simplicity, let's consider that the files to be compressed are made of bits.
+A bit can only hold either 1 or 0.
+
+Let's take all files consisting of at most two bits:
+
+""    (empty file)
+"00"
+"01"
+"10"
+"11"
+"0"
+"1"
+
+Now let's compress them:
+
+LCA("")   = ""    // the empty file naturally compresses to itself
+LCA("00") = "0"   // successfully compressed!
+LCA("01") = "1"   // successfully compressed!
+LCA("10") =       // uh-oh
+LCA("11") =       // uh-oh
+LCA("0")  =       // major uh-oh
+LCA("1")  =       // major uh-oh
+</samp></pre></td></tr></table></div>
+<br>
+The example above shows that, because a lossless compression algorithm needs to produce a distinct encoded file for each data file, not all data files can be compressed -- and in fact, some of them will be expanded.<br>
+<br>
+For instance, what can <CODE>"0"</CODE> be compressed to? We cannot reuse the outputs for <CODE>""</CODE>, or <CODE>"00"</CODE>, or <CODE>"01"</CODE> because then how will the decoder know which file to decode?<br>
+<br>
+This is the crux of the counting argument: if <EM>all files</EM> can be compressed, the total number of unique compressed files will be less than the number of uncompressed files, which means there's no one-to-one correspondence between them, which means the compression algorithm is not lossless.<br>
+<br>
+<H3 ID="Entropy">Entropy, and dictionary coders</H3>
+For our purposes, <EM>entropy</EM> is a measurement of the unpredictability of data. Data with low entropy tends to have repeating sequences. Data with high entropy tends to be random.<br>
+<br>
+A <EM>dictionary coder</EM> is a lossless compression algorithm that takes advantage of low entropy. It associates sequences of data with codes (which use up less space) in a "dictionary". Compression is achieved by substituting repeating sequences with their corresponding codes. The longer the sequences replaced, and the higher their frequency, the better the compression.<br>
+<br>
+<EM>Notes:</EM>
+<UL>
+<LI>Text files tend to have low entropy.</LI>
+<LI>Multimedia data files and archives tend to have high entropy.</LI>
+</UL>
+<br>
+<H3 ID="LZWAlgo">The LZW algorithm</H3>
+LZW is a dictionary coder. It starts with a dictionary that has entries for all one-byte sequences, associating them with codes. The dictionary is updated with multiple byte sequences, as the data file DF is read. The encoded file EF will consist entirely of codes.<br>
+<br>
+For simplicity, byte sequences will be referred to as "strings".<br>
+<br>
+The type used to store codes will be <CODE>CodeType</CODE>.<br>
+<br>
+<EM>Notes:</EM>
+<UL>
+<LI>In the C++ language, <CODE>char</CODE> is defined to be a byte.</LI>
+<br>
+<LI>On most computers, a byte has a width of eight bits.</LI>
+<br>
+<LI>A bit can hold a value of either 1, or 0.</LI>
+<br>
+<LI>The <CODE>CodeType</CODE> can be anything wider than a byte.</LI>
+<br>
+<LI>A map is a data structure that associates a value, "key", with another value, "element".</LI>
+<br>
+<LI>Arrays are a special case of map, where a numerical code (index) is associated with an element, e.g.:<BR>
+<CODE>dictionary[14] == "cat"</CODE></LI>
+<br>
+<LI>The encoder's dictionary is a map that associates a string with a numerical code, e.g.:<BR>
+<CODE>dictionary["cat"] == 14</CODE></LI>
+</UL>
+<br>
+<EM>Encoder pseudocode:</EM>
+<div class="auto"><table class="snippet"><tr><td class="output"><pre><samp>dictionary  : map of string to CodeType
+S           : empty string
+c           : byte
+DF          : the data file
+EF          : the encoded file
+
+dictionary = entries for all strings consisting of a single, unique byte
+
+while ( could read a new byte from DF into c )
+{
+    S = S + c       // append c to S
+
+    if ( dictionary doesn't contain S )
+    {
+        dictionary[S] = next unused code
+        // if the dictionary had entries for codes 0 to 17,
+        // this would add an entry for code 18, with the key S
+
+        S = S - $   // remove last byte from S
+        write dictionary[S] to EF
+        S = c       // S now contains only c
+    }
+}
+
+if ( S isn't empty )
+    write dictionary[S] to EF
+</samp></pre></td></tr></table></div>
+<br>
+<EM>Simplified run of the encoder:</EM>
+<div class="auto"><table class="snippet"><tr><td class="output"><pre><samp>dictionary["a"] = 0
+dictionary["b"] = 1
+
+DF: "abababab"
+
+while() begins
+read 'a', S = "a", -
+read 'b', S = "ab", dictionary["ab"] = 2, S = "a", EF: {0}, S = "b"
+read 'a', S = "ba", dictionary["ba"] = 3, S = "b", EF: {0 1}, S = "a"
+read 'b', S = "ab", -
+read 'a', S = "aba", dictionary["aba"] = 4, S = "ab", EF: {0 1 2}, S = "a"
+read 'b', S = "ab", -
+read 'a', S = "aba", -
+read 'b', S = "abab", dictionary["abab"] = 5, S = "aba", EF: {0 1 2 4}, S = "b"
+while() ends
+
+EF: {0 1 2 4 1}
+
+dictionary["a"] = 0
+dictionary["b"] = 1
+dictionary["ab"] = 2
+dictionary["ba"] = 3
+dictionary["aba"] = 4
+dictionary["abab"] = 5
+</samp></pre></td></tr></table></div>
+<br>
+It stands to reason that the decoder must use the same dictionary that the encoder had used, otherwise DF cannot be recovered from EF. To solve this problem, DF is encoded incrementally, the encoder thereby ensuring that the decoder will have enough information to rebuild the dictionary.<br>
+<br>
+<EM>Decoder pseudocode:</EM>
+<div class="auto"><table class="snippet"><tr><td class="output"><pre><samp>dictionary  : array of string (equivalent to: map of CodeType to string)
+S           : empty string
+k           : CodeType
+DF          : the data file
+EF          : the encoded file
+
+dictionary = entries for all strings consisting of a single byte
+
+while ( could read a new CodeType from EF into k )
+{
+    if ( k &gt; dictionary size )
+        cannot decode!
+    else
+    if ( k == dictionary size ) // special case
+        dictionary[next unused code] = S + S[0]
+    else
+    if ( S isn't empty )
+        dictionary[next unused code] = S + dictionary[k][0]
+
+    write dictionary[k] to DF
+    S = dictionary[k]
+}
+</samp></pre></td></tr></table></div>
+<br>
+<EM>Simplified run of the decoder:</EM>
+<div class="auto"><table class="snippet"><tr><td class="output"><pre><samp>dictionary[0] = "a"
+dictionary[1] = "b"
+
+EF: {0 1 2 4 1}
+
+while() begins
+read 0, -, -, -, DF = "a", S = "a"
+read 1, -, -, dictionary[2] = "ab", DF = "ab", S = "b"
+read 2, -, -, dictionary[3] = "ba", DF = "abab", S = "ab"
+read 4, -, dictionary[4] = "aba", DF = "abababa", S = "aba"     // special case
+read 1, -, -, dictionary[5] = "abab", DF = "abababab", S = "b"
+while() ends
+
+DF: "abababab"
+
+dictionary[0] = "a"
+dictionary[1] = "b"
+dictionary[2] = "ab"
+dictionary[3] = "ba"
+dictionary[4] = "aba"
+dictionary[5] = "abab"
+</samp></pre></td></tr></table></div>
+<br>
+The decoder first has to deal with bad input. Because DF is encoded incrementally, a valid code can never exceed the dictionary's current size. Therefore if such a code was read, the decoder must give up.<br>
+<br>
+Then the decoder has to deal with the special case, of being given the code for the very string it's supposed to add in the dictionary.<br>
+<br>
+This artifact only occurs when the encoder deals with the pattern <STRONG>cScSc</STRONG>, where <STRONG>c</STRONG> is a byte and <STRONG>S</STRONG> is a string, and the encoder already has <STRONG>cS</STRONG> in the dictionary. The code for <STRONG>cS</STRONG> will be written to EF, and <STRONG>cSc</STRONG> will be added to the dictionary, and in the next iteration the code for <STRONG>cSc</STRONG> will be written to EF. The decoder deals with this situation as shown in the pseudocode: an entry is added for <STRONG>cS + c</STRONG>, where <STRONG>cS</STRONG> is the previously decoded string and <STRONG>c</STRONG> is its first byte.<br>
+<br>
+<H3 ID="Version1">Version 1</H3>
+The pseudocode above paves the way for a straightforward implementation. There is, however, one missing detail: what type should <CODE>CodeType</CODE> be? The only remark so far was that it must be wider than a byte. The reason for this is that the dictionary still has to be able to grow, after it is filled with codes for all strings consisting of a single byte (256 entries). If <CODE>CodeType</CODE> were a byte, the dictionary could hold exactly 256 entries, all of which would be filled in at the beginning, and then the dictionary couldn't grow.<br>
+<br>
+A sensible type to use is one with a width of 16 bits, such as <CODE>unsigned short int</CODE>, or <CODE>uint16_t</CODE> for clarity. Now the dictionary can accommodate a total of 65,536 entries, out of which 65,536 - 256 = 65,280 are new entries.<br>
+<br>
+One may be tempted to use a 32-bit (or a 64-bit) type such as <CODE>uint32_t</CODE> (<CODE>uint64_t</CODE>), which would allow the dictionary to store a humongous number of entries. In practice, this degrades compression because each code written to EF would require 32 (or 64) bits to store, and a lot of those bits wouldn't be used anyway. In addition, the dictionary would keep growing until it used up all of the computer's memory.<br>
+<br>
+Speaking of dictionary growth, at some point the 16-bit dictionary will become full. This can be dealt with by resetting it to its initial state of the first 256 entries. The encoder and decoder are merely added a check at the beginning:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="output"><pre><samp>if ( dictionary is full )
+    reset dictionary
+</samp></pre></td></tr></table></div>
+<br>
+In the C++ source, the resetting is done by a named lambda function (they are usually anonymous). The reason behind using a lambda function, embedded into the encoder, is that the dictionary reset function must be custom made for the dictionary, and will never be used outside the encoder.<br>
+<br>
+[ <A HREF="lzw_v1.zip">Download Version 1</A> ]<br>
+<br>
+<H3 ID="Version2">Version 2</H3>
+The first version has a performance issue: it takes too long to compress and decompress big files.<br>
+<br>
+Let's assume that the cause of the slowdown is input and output, that is, file reading and writing. C++ file streams are already buffered internally, so let's assume that the buffers are not large enough. Because the streams allow custom buffers to be used, we proceed to use two 1 MB buffers, one for the input file, the other for the output file.<br>
+<br>
+<EM>Example code:</EM>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;cstddef&gt;</dfn>
+<dfn>#include &lt;fstream&gt;</dfn>
+<dfn>#include &lt;ios&gt;</dfn>
+<dfn>#include &lt;memory&gt;</dfn>
+
+<cite>// ...</cite>
+
+<var>const</var> std::size_t one_mb {1024 * 1024}; <cite>// one megabyte (or "mebibyte", more accurately)</cite>
+<var>const</var> std::unique_ptr&lt;<var>char</var>[]&gt; custom_buffer(<var>new</var> <var>char</var>[one_mb]);
+std::fstream f; <cite>// must set the custom buffer before opening the file</cite>
+
+f.rdbuf()-&gt;pubsetbuf(custom_buffer.get(), one_mb);
+f.open(<kbd>"file.txt"</kbd>, std::ios_base::in | std::ios_base::binary);</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+This indeed has the effect of reading and writing files in 1 MB chunks, greatly decreasing the total number of reads and writes. However, the program remains slow. It appears that the original assumption was wrong, and I/O isn't the bottleneck.<br>
+<br>
+Due to the simplicity of the program, it can be deduced that the slowdown occurs in the encoder and decoder.<br>
+Both the encoder and decoder make heavy use of strings. Appending bytes to a string is likely to trigger memory reallocation and the subsequent copying of data to the new location.<br>
+<br>
+The encoder can be improved by using something other than <CODE>std::map</CODE>. The C++11 standard added <CODE>std::unordered_map</CODE>, which behaves like <CODE>std::map</CODE>, with the exception that it hashes the key (which is what makes it a "hash table"). Hashing can be summarized as follows: transform something (in our case, the string) into a hash code (a number) unique to it.<br>
+<br>
+When a hash function obtains the same hash code for two different inputs, that is called a hash collision. Good hash functions have few collisions, bad hash functions has many collisions, and perfect hash functions have no collisions. The latter are outside our reach, because each possible string encountered must turn into its own unique hash code, and we can't use a hash code type wide enough to accommodate for that.<br>
+<br>
+The purpose of the previous paragraph was to serve as a prelude to saying that this version of the program can theoretically corrupt data. Although the 16-bit dictionary's limit of 65,536 entries should make collisions very unlikely, they are still possible. What we get in return for this is faster code retrieval, which means faster compression.<br>
+<br>
+Before we can use <CODE>std::unordered_map</CODE>, a hash functor must be written to handle <CODE>std::vector&lt;char&gt;</CODE>.<br>
+<br>
+Fortunately, there already exists an <CODE>std::hash</CODE> functor to deal with <CODE>std::basic_string&lt;char&gt;</CODE> (more commonly known as <CODE>std::string</CODE>), that can be reused. The rest of the code remains unchanged.<br>
+<br>
+<EM>Example code:</EM>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;cstddef&gt;</dfn>
+<dfn>#include &lt;functional&gt;</dfn>
+<dfn>#include &lt;string&gt;</dfn>
+<dfn>#include &lt;vector&gt;</dfn>
+
+<var>struct</var> HashCharVector {
+    std::size_t <var>operator</var> () (<var>const</var> std::vector&lt;<var>char</var>&gt; &amp;vc) <var>const</var>
+    {
+        <var>return</var> std::hash&lt;std::string&gt;()(std::string(vc.cbegin(), vc.cend()));
+    }
+};
+
+<cite>// ...</cite>
+
+<dfn>#include &lt;unordered_map&gt;</dfn>
+
+std::unordered_map&lt;std::vector&lt;<var>char</var>&gt;, CodeType, HashCharVector&gt; dictionary;</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+[ <A HREF="lzw_v2.zip">Download Version 2</A> ]<br>
+<br>
+<H3 ID="Version3">Version 3</H3>
+So far, not much was done for the encoder, and nothing at all was done for the decoder. Clearly, it's time for a change; if the algorithm and the associated data structures produce a slow program, what's the point in trying to optimize the program?<br>
+<br>
+Let us consider what we've learned so far:<br>
+<UL>
+<LI>The encoder isn't required to store the actual strings in the dictionary.</LI>
+<LI>The LZW encoder pseudocode shows that any new string added is the result of appending a byte to an already existing string.</LI>
+</UL>
+<br>
+Plain English translation: goodbye strings!<br>
+<br>
+The plan is as follows: the encoder's dictionary will no longer map a string to a <CODE>CodeType</CODE>. It will map a pair (<CODE>CodeType</CODE>, byte) to a <CODE>CodeType</CODE> instead.<br>
+<br>
+The initial single-byte strings will be represented as a pair of an invalid <CODE>CodeType</CODE> and the given byte. That "invalid" code must be a value that can never appear in EF. A fine choice is the dictionary size limit, which in the source is <VAR>globals::dms</VAR>. Because the dictionary is reset when it reaches that size, an entry mapping to that code will never be generated.<br>
+<br>
+<EM>Encoder pseudocode:</EM>
+<div class="auto"><table class="snippet"><tr><td class="output"><pre><samp>dictionary  : map of pair (CodeType, byte) to CodeType
+c           : byte
+i           : CodeType
+DF          : the data file
+EF          : the encoded file
+
+i = invalid_code
+
+reset_dictionary : lambda function {
+    dictionary = entries for all pairs consisting of the invalid_code and a unique byte
+}
+
+while ( could read a new byte from DF into c )
+{
+    if ( dictionary is full )
+        reset_dictionary()
+
+    if ( dictionary doesn't contain pair (i, c) )
+    {
+        dictionary[pair (i, c)] = next unused code
+        write i to EF
+        i = dictionary[pair (invalid_code, c)]
+    }
+    else
+        i = dictionary[pair (i, c)]
+}
+
+if ( i != invalid_code )
+    write i to EF
+</samp></pre></td></tr></table></div>
+<br>
+On most computers, this pair-based algorithm will run faster than the previous string-based ones.<br>
+<br>
+Now we have two choices with regards to the decoder.<br>
+<OL>
+<LI>leave it as it is</LI>
+<LI>try to remove strings from it as well</LI>
+</OL>
+<br>
+The first option is possible because all three programs so far generate an identical EF out of the same DF (and vice versa). So the decoder could be left as it is, and the program would still decompress files correctly. However, the promise of faster decompression speeds is tempting.<br>
+<br>
+We start with an array consisting of all the pairs of <VAR>invalid_code</VAR> and a unique byte, which will be the dictionary. As EF is read, new entries will be added, consisting of a valid code and a byte, the code representing the existing string to which the new byte is appended.<br>
+<br>
+At this point it should be obvious that to reconstruct the strings, we will use the code information to chain together the attached bytes. This is done by a new lambda function named <CODE>rebuild_string()</CODE>.<br>
+<br>
+<EM>Simplified dictionary mechanics:</EM>
+<div class="auto"><table class="snippet"><tr><td class="output"><pre><samp>// `i_c' is an alias for `invalid_code'
+
+                  0           1          2         3         4         5         6         7
+dictionary = {(i_c, 'b'), (i_c, 'c'), (0, 'l'), (1, 'o'), (3, 'w'), (2, 'u'), (5, 'e'), (4, 's')}
+
+rebuild_string(6) == "blue"
+rebuild_string(7) == "cows"
+</samp></pre></td></tr></table></div>
+<br>
+Notice that the rebuilt strings will be reversed.<br>
+<br>
+<EM>Decoder pseudocode:</EM>
+<div class="auto"><table class="snippet"><tr><td class="output"><pre><samp>dictionary  : array of pair (CodeType, byte)
+i           : CodeType
+k           : CodeType
+DF          : the data file
+EF          : the encoded file
+
+i = invalid_code
+
+reset_dictionary : lambda function {
+    dictionary = entries for all pairs consisting of the invalid_code and a unique byte
+}
+
+rebuild_string(CodeType k) : lambda function {
+    build the string S by chaining all bytes starting at k and ending at invalid_code
+}
+
+while ( could read a new CodeType from EF into k )
+{
+    if ( dictionary is full )
+        reset_dictionary()
+
+    if ( k &gt; dictionary size )
+        cannot decode!
+    else
+    if ( k == dictionary size )
+        dictionary[next unused code] = pair (i, rebuild_string(i)[0])
+    else
+    if ( i != invalid_code )
+        dictionary[next unused code] = pair (i, rebuild_string(k)[0])
+
+    write rebuild_string(k) to DF
+    i = k
+}
+</samp></pre></td></tr></table></div>
+<br>
+The source code for the above decoder is structured differently in the actual program, because a string variable was introduced, to ensure that the <VAR>k</VAR> string is only "rebuilt" once.<br>
+<br>
+[ <A HREF="lzw_v3.zip">Download Version 3</A> ]<br>
+<br>
+<H3 ID="Version4">Version 4</H3>
+The decoder is still slow because the string that the <CODE>rebuild_string()</CODE> lambda function produces is passed by value. This means the <VAR>s</VAR> variable has to be allocated space for, as it copies the contents of whatever string the lambda function returns.<br>
+<br>
+The optimization in the decoder becomes clear: <VAR>s</VAR> becomes a string pointer, and <CODE>rebuild_string()</CODE> returns the memory address of the now <CODE>static</CODE> string it produces internally. The only thing that's copied is the string's memory address (basically a number), which is a very cheap operation.<br>
+<br>
+Because of this change, the decoder becomes extremely fast, and personally, I feel it's finally optimal.<br>
+<br>
+The encoder, however, still has a long way to go. In its current form, the best that can be done is to try and cut down on <CODE>std::map</CODE>'s repeated internal memory allocations. This is achieved by using a custom memory pool allocator.<br>
+<br>
+An allocator is a class that manages memory. Containers such as <CODE>std::map</CODE> normally use the default built-in allocator, but can be given a custom one to use instead.<br>
+<br>
+The goal is to allocate memory as rarely as possible. An allocator with this goal would get a big chunk of memory (the pool), then give out smaller chunks of this pre-allocated memory when the container requests them, instead of actually getting new memory.<br>
+<br>
+Writing our own allocator is no picnic, and pretty soon we'd be in deep, trying to optimize <EM>it</EM>.<br>
+<br>
+So we'll just use a ready-made allocator instead. <EM>FSBAllocator</EM> by Juha Nieminen is an excellent choice (see the links for more information). <EM>Version 4</EM> bundles this library so a separate download isn't required.<br>
+<br>
+[ <A HREF="lzw_v4.zip">Download Version 4</A> ]<br>
+<br>
+<H3 ID="Version5">Version 5</H3>
+In <EM>Version 4</EM>, the custom allocator alleviates the performance penalty induced by memory allocation. Therefore, if the program is still slow, it can only be that <CODE>std::map</CODE> is still slow.<br>
+<br>
+The standard library's <CODE>std::map</CODE> served us well, but if encoding speed is to become optimal, a custom dictionary data structure has to be coded, designed for the LZW algorithm.<br>
+<br>
+There's nothing wrong with the actual encoder algorithm. What we set out to do is write an <CODE>EncoderDictionary</CODE> class that functions faster than the current <CODE>std::map&lt;std::pair&lt;CodeType, char&gt;, CodeType&gt;</CODE>.<br>
+<br>
+The encoder can be simplified by adding extra functionality to the <CODE>EncoderDictionary</CODE> class. Two obvious improvements would be:<br>
+<OL>
+<LI>Make it so that the dictionary resets itself automatically.</LI>
+<LI>Search for and insert a new element in a single pass.</LI>
+</OL>
+<br>
+Thus, the encoder pseudocode is much simplified:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="output"><pre><samp>ed    : EncoderDictionary // custom dictionary type
+i     : CodeType
+temp  : CodeType          // will be used to temporarily save i
+c     : byte
+DF    : the data file
+EF    : the encoded file
+
+i = invalid_code
+
+while ( could read a new byte from DF into c )
+{
+    temp = i
+    i = ed.search_and_insert(c, i)
+
+    if ( i == invalid_code )
+    {
+        write temp to EF
+        i = ed.search(c, invalid_value)
+    }
+    //
+    // else
+    //     i = ed.search(c, i)
+    //
+}
+
+if ( i != invalid_code )
+    write i to EF
+</samp></pre></td></tr></table></div>
+<br>
+The above algorithm should look familiar because it's based on the pair encoder of <EM>Version 4</EM>.<br>
+<br>
+The commented <CODE>else</CODE> branch isn't needed because <CODE>ed.search_and_insert()</CODE> already updates <VAR>i</VAR> to the index of (c, i) if the pair was found, otherwise sets <VAR>i</VAR> to <VAR>invalid_code</VAR>.<br>
+<br>
+The new dictionary also initializes itself and resets when full, so the lambda function <CODE>reset_dictionary()</CODE> isn't needed anymore, either.<br>
+<br>
+With this out of the way, we can focus on implementing <CODE>EncoderDictionary</CODE>.<br>
+<br>
+Everybody seems to be using binary search trees to improve the performance of their LZW encoder. I've attempted an index-based solution (no searching, at the price of greater memory consumption), but I was disappointed with the performance, although it was still faster than <EM>Version 4</EM>.<br>
+<br>
+In the end, I decided to implement <CODE>EncoderDictionary</CODE> as a vector-based unbalanced binary search tree, with much inspiration from Juha Nieminen's article.<br>
+<br>
+A binary search tree (BST) is a data structure which consists of linked nodes. Any node has one parent node, and at most two children nodes. (The root node is the exception, in that it doesn't have a parent.)<br>
+<br>
+A node contains data, in our case a byte. The left child node will contain a byte of lesser value than the parent node's. The right child node will contain a byte of higher value.<br>
+<br>
+The tree is unbalanced if its branches vary in depth with more than one level. This degrades search performance in big trees, which is why usually an extra effort is made to balance the tree. In our case, the tree will be too small for the performance to significantly worsen.<br>
+<br>
+Finally, being vector-based means that nodes are stored in an <CODE>std::vector</CODE> which pre-allocates the needed memory, as opposed to the nodes spawning their children via dynamic memory allocation. The effect is comparable to using <EM>FSBAllocator</EM> in <CODE>std::map</CODE>.<br>
+<br>
+<EM>Figure of an unbalanced BST:</EM>
+<br>
+<IMG SRC="bst.gif" alt="">
+<br>
+Notice how all the left-hand descendants (left subtree) of a node contain lesser values, and the right-hand descendants (right subtree) contain higher values, than that of their ascendent node.<br>
+<br>
+Let's search the tree for the value 65.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="output"><pre><samp>start at root, 65 &gt; 32, go right
+65 &gt; 35, go right
+65 &lt; 70, go left
+65 &gt; 60, go right
+65 == 65, found it!
+</samp></pre></td></tr></table></div>
+<br>
+It took 5 comparisons to find a value in a tree that has 10 nodes. On such a small scale it's hard to see the search speed improvement, but it will become very obvious when we'll use the program on multi-megabyte files.<br>
+<br>
+<EM>Figure of a balanced BST:</EM>
+<br>
+<IMG SRC="bst-b.gif" alt="">
+<br>
+This is how the unbalanced tree could look if it was balanced. Notice the depth of the branches (levels).<br>
+<br>
+To reiterate, balancing the tree is an extra effort in our case, it is not truly warranted and will therefore not be pursued.<br>
+<br>
+Back to <CODE>EncoderDictionary</CODE>, it's obvious that the member function <CODE>search_and_insert()</CODE> is very important. It has three chores:<br>
+<OL>
+<LI>If the vector of nodes is full, reset it.</LI>
+<LI>If the pair (c, i) was found, return its index.</LI>
+<LI>If the pair (c, i) wasn't found, add it to the vector of nodes and return <EM>invalid_code</EM>.</LI>
+</OL>
+<br>
+The vector of nodes is an <CODE>std::vector&lt;Node&gt;</CODE> where <CODE>Node</CODE> is a structure defined inside <CODE>EncoderDictionary</CODE>:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br></code></pre></td>
+<td class="source"><pre><code><var>struct</var> Node {
+
+    <cite>///</cite>
+    <cite>/// @brief Default constructor.</cite>
+    <cite>/// @param c    byte that the Node will contain</cite>
+    <cite>///</cite>
+    <var>explicit</var> Node(<var>char</var> c): first(globals::dms), c(c), left(globals::dms), right(globals::dms)
+    {
+    }
+
+    CodeType    first;  <cite>///&lt; Code of first child string.</cite>
+    <var>char</var>        c;      <cite>///&lt; Byte.</cite>
+    CodeType    left;   <cite>///&lt; Code of child node with byte &lt; `c`.</cite>
+    CodeType    right;  <cite>///&lt; Code of child node with byte &gt; `c`.</cite>
+};</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+The comment for <VAR>first</VAR> may be misleading, as it doesn't refer to children nodes, but to the index of the first node to use the current node's data as a prefix string.<br>
+<br>
+Remember how in <EM>Version 4</EM>, a pair (<CODE>CodeType</CODE>, byte) was mapped to a <CODE>CodeType</CODE>? This is what happens here as well, with the twist that the codes are linked to each other by the nodes, which increases the search speed.<br>
+<br>
+<EM>EncoderDictionary::search_and_insert() code:</EM>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br></code></pre></td>
+<td class="source"><pre><code>CodeType search_and_insert(CodeType i, <var>char</var> c)
+{
+    <cite>// dictionary's maximum size was reached</cite>
+    <var>if</var> (vn.size() == globals::dms)
+        reset();
+
+    <var>if</var> (i == globals::dms)
+        <var>return</var> search_initials(c);
+
+    <var>const</var> CodeType vn_size = vn.size();
+    CodeType ci {vn[i].first}; <cite>// Current Index</cite>
+
+    <var>if</var> (ci != globals::dms)
+    {
+        <var>while</var> (<var>true</var>)
+            <var>if</var> (c &lt; vn[ci].c)
+            {
+                <var>if</var> (vn[ci].left == globals::dms)
+                {
+                    vn[ci].left = vn_size;
+                    <var>break</var>;
+                }
+                <var>else</var>
+                    ci = vn[ci].left;
+            }
+            <var>else</var>
+            <var>if</var> (c &gt; vn[ci].c)
+            {
+                <var>if</var> (vn[ci].right == globals::dms)
+                {
+                    vn[ci].right = vn_size;
+                    <var>break</var>;
+                }
+                <var>else</var>
+                    ci = vn[ci].right;
+            }
+            <var>else</var> <cite>// c == vn[ci].c</cite>
+                <var>return</var> ci;
+    }
+    <var>else</var>
+        vn[i].first = vn_size;
+
+    vn.push_back(Node(c));
+    <var>return</var> globals::dms;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+It should be obvious what <CODE>reset()</CODE> does.<br>
+<br>
+<CODE>search_initials(c)</CODE> is essentially an optimized equivalent of a possible <CODE>search(c, globals::dms)</CODE> function, returning the index of initial one-byte strings.<br>
+<br>
+[ <A HREF="lzw_v5.zip">Download Version 5</A> ]<br>
+<br>
+<H3 ID="Version6">Version 6</H3>
+A decent compression rate (speed) was attained in <EM>Version 5</EM>. Now the focus will shift on improving the compression ratio.<br>
+<br>
+Theoretically, if we allow the dictionary to hold more than 64 Ki entries, we'll get better compression. But then <CODE>CodeType</CODE> will need to be widened from 16 bits in order to access those entries.<br>
+<br>
+Let's remember why we settled for a 16-bit code type in the previous five versions (which will be called "alpha versions" from now on). The reason was that the codes written to EF would waste more space than they'd save, and thereby worsen compression. Space would be wasted because the codes would be wider than needed, leaving bits unused.<br>
+<br>
+To illustrate this, consider the encoding of a <CODE>CodeType</CODE> with the value 375:<br>
+<div class="auto"><table class="snippet"><tr><td class="output"><pre><samp>375 in base 10 == 101110111 in base 2
+
+CodeType =  8 bits: not enough bits
+CodeType = 16 bits: 00000001 01110111
+CodeType = 32 bits: 00000000 00000000 00000001 01110111
+</samp></pre></td></tr></table></div>
+<br>
+<EM>Technical accuracy disclaimer:</EM>
+<UL>
+<LI>Endianness isn't the topic of this article.</LI>
+</UL>
+<br>
+Notice that while 8 bits can't store the value 375, a <CODE>CodeType</CODE> of 16 bits would waste 7 bits, and a <CODE>CodeType</CODE> of 32 bits would waste 23 bits. The ideal width to store the value 375 is obviously 9 bits.<br>
+<br>
+The plan is as follows: use a 32-bit <CODE>CodeType</CODE>, and a dictionary holding at most 16 Mi (16 * 1024 * 1024) entries, while at the same time only reading and writing as many bits as needed for the codes.<br>
+<br>
+<EM>Notes:</EM>
+<UL>
+<LI>A dictionary holding 16 Mi entries will use more than 16 MiB.</LI>
+<LI>The reason for this is that an entry consists of more than a mere byte.</LI>
+<LI>The encoder will use about 256 MiB, if <CODE>sizeof (Node)</CODE> == 16 bytes.</LI>
+<LI>The decoder will use about 128 MiB, if <CODE>sizeof (std::pair&lt;CodeType, char&gt;)</CODE> == 8 bytes.</LI>
+</UL>
+<br>
+This approach of using variable width codes is feasible because we can we can always verify how many bits are needed to encode the largest code in the dictionary, and adjust the code input/output width accordingly.<br>
+<br>
+The tricky part will be implementing the custom I/O system, on top of the old one which only understands bytes and things that you get by putting bytes together.<br>
+<br>
+The goal is writing custom <CODE>CodeWriter</CODE> and <CODE>CodeReader</CODE> components, that the encoder and the decoder will be adapted to use instead of bare <CODE>std::ostream</CODE> and <CODE>std::istream</CODE>.<br>
+<br>
+<HR>
+<EM>A few days pass, as I struggle with the custom I/O system, and it struggles with me.</EM>
+<HR>
+<br>
+Reading and writing variable width codes is a fair amount of work, which involves shifting and masking bits, and saving the current incomplete byte until enough bits are read/written.<br>
+<br>
+I had to choose between two code splitting layouts: LSB-First (least significant bit first) and MSB-First (most significant bit first). See the Wikipedia article on LZW for more information on packing order.<br>
+<br>
+<EM>Notes:</EM>
+<UL>
+<LI>MSB-First is easier to visualize and is more intuitive.</LI>
+<LI>LSB-First is less intuitive but I found it can run faster than MSB-First, and it <EM>seemed</EM> easier to implement.</LI>
+</UL>
+<br>
+There's no reason to list the source code of <CODE>CodeWriter</CODE> and <CODE>CodeReader</CODE> here. The classes are ugly, cryptic, and just barely work. They also uglify the <CODE>compress()</CODE> and <CODE>decompress()</CODE> functions, because of the extra code that is needed to synchronize the bit widths.<br>
+<br>
+The essence of <CODE>CodeWriter</CODE> and <CODE>CodeReader</CODE> is that they can write and read codes of variable binary width, ranging from a minimum of 9 bits up to a theoretical maximum of 32 bits, which will never be reached because of the dictionary limit.<br>
+<br>
+The plan involving the huge dictionary had changed. Nobody stops you from changing <CODE>globals::dms</CODE> back to 16 Mi, but if you want my advice, 16 Mi is too much.<br>
+<br>
+A big dictionary can degrade the compression ratio, which might seem illogical, yet is expectable if code widths grow so much that it becomes cheaper to use shorter codes from a smaller dictionary.<br>
+<br>
+Using a big dictionary will give better results for files with high entropy, but in that usage scenario the given file will most likely be expanded anyway.<br>
+<br>
+I have decided that a sensible dictionary entry limit is that of 512 Ki (512 * 1024). The program remains reasonably fast, although is obviously slower than <EM>Version 5</EM>, while almost always providing better compression ratios. At least this version can finally compress <EM>license.txt</EM> in case you didn't notice that the alpha versions can't.<br>
+<br>
+You are welcome to try different limits. Obviously, a low limit such as 64 Ki will create a program that consumes roughly twice as much memory as <EM>Version 5</EM>, while being quite fast. Reverting to a 16-bit <CODE>CodeType</CODE> and using a limit below 64 Ki will further improve speeds, but worsen compression.<br>
+<br>
+In my tests, <EM>Version 6</EM> with a 32 Ki dictionary limit and 16-bit <CODE>CodeType</CODE> outperformed <EM>Version 5</EM> in both compression speed and ratio.<br>
+<br>
+A higher dictionary limit will slow down the program, yet it doesn't mean that better compression will <EM>always</EM> be achieved, although it <EM>usually</EM> is. It all revolves around the nature of the file to be compressed.<br>
+<br>
+<EM>Notes:</EM>
+<UL>
+<LI>Should you experiment with different dictionary sizes, please remember that for an encoded file EF you should decompress it with the same program that you used to compress it.</LI>
+<br>
+<LI>Otherwise, decompression will probably fail.</LI>
+</UL>
+<br>
+[ <A HREF="lzw_v6.zip">Download Version 6</A> ]<br>
+<br>
+<H3 ID="EndingNotes">Ending notes</H3>
+I apologize that toward the end, this article became wordy. I intend to keep updating it, and to add new versions, while compacting the text.<br>
+<br>
+Remember that these programs are merely toys which will misbehave for data with high entropy (such as compressed archives, MP3s, AVIs, and other media). In fact, one should expect the resulting archive to be much larger than the original file, in this usage scenario. Best compression ratios are usually achieved for text files.<br>
+<br>
+The programs compile with nuwen's MinGW distro 9.5 (GCC 4.7.2), see the links below for download.<br>
+<br>
+The attached ZIP archives bundle the program's source code and its Doxygen documentation.<br>
+<br>
+Please let me know (via PM) if you find bugs, spot mistakes, or otherwise have suggestions for improving this article and the attached programs. Thank you.<br>
+<br>
+<H3 ID="UsefulLinks">Useful links</H3>
+<br>
+<EM>LZW and compression in general</EM>
+<UL>
+<LI><A HREF="http://en.wikipedia.org/wiki/Lempel%E2%80%93Ziv%E2%80%93Welch">http://en.wikipedia.org/wiki/Lempel%E2%80%93Ziv%E2%80%93Welch</A></LI>
+<LI><A HREF="http://marknelson.us/2011/11/08/lzw-revisited/">http://marknelson.us/2011/11/08/lzw-revisited/</A></LI>
+<LI><A HREF="http://www.cs.duke.edu/csed/curious/compression/">http://www.cs.duke.edu/csed/curious/compression/</A></LI>
+<LI><A HREF="http://warp.povusers.org/EfficientLZW/index.html">http://warp.povusers.org/EfficientLZW/index.html</A></LI>
+<LI><A HREF="http://en.wikibooks.org/wiki/Data_Compression">http://en.wikibooks.org/wiki/Data_Compression</A></LI>
+<LI><A HREF="http://mattmahoney.net/dc/dce.html">http://mattmahoney.net/dc/dce.html</A></LI>
+<LI><A HREF="http://www.data-compression.com/index.shtml">http://www.data-compression.com/index.shtml</A></LI>
+</UL>
+<br>
+<EM>The counting argument</EM>
+<UL>
+<LI><A HREF="http://www.faqs.org/faqs/compression-faq/part1/section-8.html">http://www.faqs.org/faqs/compression-faq/part1/section-8.html</A></LI>
+</UL>
+<br>
+<EM>C++11</EM>
+<UL>
+<LI><A HREF="http://en.wikipedia.org/wiki/C%2B%2B11">http://en.wikipedia.org/wiki/C%2B%2B11</A></LI>
+<LI><A HREF="http://wiki.apache.org/stdcxx/C%2B%2B0xCompilerSupport">http://wiki.apache.org/stdcxx/C%2B%2B0xCompilerSupport</A></LI>
+</UL>
+<br>
+<EM>Software</EM>
+<UL>
+<LI><A HREF="http://nuwen.net/mingw.html">http://nuwen.net/mingw.html</A></LI>
+<LI><A HREF="http://warp.povusers.org/FSBAllocator/">http://warp.povusers.org/FSBAllocator/</A></LI>
+</UL>
+<br>
+<EM>Miscellaneous</EM>
+<UL>
+<LI><A HREF="http://en.wikipedia.org/wiki/Mebibyte">http://en.wikipedia.org/wiki/Mebibyte</A></LI>
+</UL>
+<br>
+<H3 ID="Thanks">Thanks go to</H3>
+<UL>
+<LI><A HREF="http://cplusplus.com/user/cire/">cire</A></LI>
+<LI><A HREF="http://cplusplus.com/user/Cubbi/">Cubbi</A></LI>
+<LI><A HREF="http://cplusplus.com/user/Duoas/">Duoas</A></LI>
+<LI><A HREF="http://cplusplus.com/user/JLBorges/">JLBorges</A></LI>
+<LI><A HREF="http://cplusplus.com/user/Peter87/">Peter87</A></LI>
+<LI><A HREF="http://cplusplus.com/user/Velnias75/">Velnias75</A></LI>
+</UL>
+<p>Attachments:
+	[<a href="lzw_v1.zip">lzw_v1.zip</a>]
+	[<a href="lzw_v2.zip">lzw_v2.zip</a>]
+	[<a href="lzw_v3.zip">lzw_v3.zip</a>]
+	[<a href="lzw_v4.zip">lzw_v4.zip</a>]
+	[<a href="lzw_v5.zip">lzw_v5.zip</a>]
+	[<a href="lzw_v6.zip">lzw_v6.zip</a>]
+</p>
+</div></div><div id="CH_bb"></div><div id="CH_scoreapp"></div><script type="text/javascript">new Score('CH_scoreapp','/articles/score.cgi','iL18T05o');</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder selected articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/articles/">Articles</a></b></h3>
+<ul>
+<li><a href="/articles/algorithms/">Algorithms</a></li><li><a href="/articles/cpp11/">C++ 11</a></li><li><a href="/articles/graphics/">Graphics and multimedia</a></li><li><a href="/articles/howto/">How-To</a></li><li><a href="/articles/language/">Language Features</a></li><li><a href="/articles/linux/">Unix/Linux programming</a></li><li><a href="/articles/sourcecode/">Source Code</a></li><li><a href="/articles/standard_library/">Standard Library</a></li><li><a href="/articles/tips/">Tips and Tricks</a></li><li><a href="/articles/tools/">Tools and Libraries</a></li><li><a href="/articles/visualcpp/">Visual C++</a></li><li><a href="/articles/winapi/">Windows API</a></li></ul>
+</div>
+<div id="I_subnav"></div>
+</div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Farticles%2FiL18T05o%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+onSession(function(us) {
+		document.getElementById('I_subnav').innerHTML=
+			us.ok?
+				'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul>'+
+				'<li><a href="/articles/myitems.cgi">My items</a></li>'+
+				(us.auth(32768)?'<li><a href="/articles/adminitems.cgi">Admin items</a></li>':'')+
+				'</ul></div>'
+			:'';
+	}); onSession(function (us) {
+		var el=document.getElementById('CH_bb'); el.innerHTML='';
+		if ( (us.auth(32768)) || ((us.uniqid=='N74NwA7f')&&(us.auth(128))) ) {
+			el.appendChild(btn('Edit article','Edit this version of the article','edit','/articles/edit.cgi?a=iL18T05o'));
+	
+			if (us.auth(32768)) {
+				el.appendChild(btn('Delete article','Delete this article','delete','javascript:artdel()'));
+			}
+	
+		}
+	});
+	function artdel() { if (confirm('WARNING: You are about to delete this page. Confirm?')) window.location='/articles/delete.cgi?a=iL18T05o'; }
+	ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

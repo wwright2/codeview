@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Android Kernel: Lacking in Modularity - C++ Articles</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/articles/">Articles</a></li>
+<li class="here">Android Kernel: Lacking in Modularity</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div id="I_content">
+<div class="C_art">
+<div id="I_author">Published by <b><a href="/user/Securb/" rel="author">Securb</a></b></div>
+<div id="I_date">Jan 8, 2015 (last update: Jan 8, 2015)</div>
+<h1>Android Kernel: Lacking in Modularity</h1>
+<div id="I_score">Score: 3.4/5 (129 votes)</div>
+<div id="I_stars"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"></div>
+<div id="I_content">
+We selected the panda configuration for no particular reason - any other configuration would have worked just as well. The kernel code is written in C and it is derived from the Linux kernel. So, our approach will work on any configuration of the generic Linux kernel, as well.<br>
+<br>
+Now we all know that C/C++ is a complex language and so we expect the analysis to be hard. But that difficulty just refers to the parser. Armed with the Clang parser we felt confident and were pleased that we didn't run into any issues. Our goal was to examine all the C/C++ source files that go in the panda configuration and to understand their inter-relationships. To do this, it was necessary to figure out what files are included or excluded from the panda build. And then there were issues dealing with how all the files were compiled, included and linked. That all took effort. The resulting picture showed how coupled the Linux kernel is.<br>
+<br>
+<br>
+<IMG SRC="Analyzing%20the%20Android%20Kernel.png" alt="">
+<br>
+<br>
+First, let's acknowledge that the Linux kernel is well-written. What goes into it is tightly controlled. Given its importance in the IT infrastructure of the world, that is just what one would hope. Let us also remember that many of the modularity mechanisms in use today were invented in Unix. The notion of device drivers that plug into an Operating System was popularized by Unix and is commonplace today. Application pipes were pioneered by Unix. And yet, the Linux kernel itself has poor modularity.<br>
+<br>
+Part of the problem is that that when Unix/Linux kernels were developed programming language support for modularity was poor. For instance, C does not have the notion of an interface and so dependency inversion is not naturally supported (it is possible, however). And, Linux has no real modularity mechanisms to verify or enforce modularity<br>
+<br>
+A few things become apparent after a partitioning algorithm is applied. This partitioning algorithm reorders the subsystems based on dependencies, revealing what is "lower" and what is "higher." In an ideal implementation, the developers of the higher layer need only understand the API of the lower layers, while the developers of the lower layers need to worry about the higher layers only when an interface is affected. In a coupled system developers need to understand both layers making the job of understanding the impact of change considerably harder. Indeed, in the Android kernel where nearly all the layers are coupled, developers may sometimes have to understand thousands of files to feel confident about their changes.<br>
+<br>
+This also means is that the intent behind the decomposition has been lost. For instance, 'arch.arm' is so strongly coupled with 'kernel' that it is hard for developers to understand one without understanding the other. Notice how even the 'drivers' are coupled to rest of the system. I experimented by creating a separate layer for the base layer of the drivers and I even moved some of the basic drivers such as 'char' and 'tty' and yet the coupling remained. Sadly, even some of the newer drivers are also coupled to the kernel.<br>
+<br>
+All this goes to show that unless there is a focus on architecture definition and validation, even the best managed software systems will experience architectural erosion over time.<p>Attachments:
+	[<a href="Analyzing the Android Kernel.png">Analyzing the Android Kernel.png</a>]
+</p>
+</div></div><div id="CH_bb"></div><div id="CH_scoreapp"></div><script type="text/javascript">new Score('CH_scoreapp','/articles/score.cgi','oy6AC542');</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder selected articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/articles/">Articles</a></b></h3>
+<ul>
+<li><a href="/articles/algorithms/">Algorithms</a></li><li><a href="/articles/cpp11/">C++ 11</a></li><li><a href="/articles/graphics/">Graphics and multimedia</a></li><li><a href="/articles/howto/">How-To</a></li><li><a href="/articles/language/">Language Features</a></li><li><a href="/articles/linux/">Unix/Linux programming</a></li><li><a href="/articles/sourcecode/">Source Code</a></li><li><a href="/articles/standard_library/">Standard Library</a></li><li><a href="/articles/tips/">Tips and Tricks</a></li><li><a href="/articles/tools/">Tools and Libraries</a></li><li><a href="/articles/visualcpp/">Visual C++</a></li><li><a href="/articles/winapi/">Windows API</a></li></ul>
+</div>
+<div id="I_subnav"></div>
+</div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Farticles%2Foy6AC542%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+onSession(function(us) {
+		document.getElementById('I_subnav').innerHTML=
+			us.ok?
+				'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul>'+
+				'<li><a href="/articles/myitems.cgi">My items</a></li>'+
+				(us.auth(32768)?'<li><a href="/articles/adminitems.cgi">Admin items</a></li>':'')+
+				'</ul></div>'
+			:'';
+	}); onSession(function (us) {
+		var el=document.getElementById('CH_bb'); el.innerHTML='';
+		if ( (us.auth(32768)) || ((us.uniqid=='4E0fjE8b')&&(us.auth(128))) ) {
+			el.appendChild(btn('Edit article','Edit this version of the article','edit','/articles/edit.cgi?a=oy6AC542'));
+	
+			if (us.auth(32768)) {
+				el.appendChild(btn('Delete article','Delete this article','delete','javascript:artdel()'));
+			}
+	
+		}
+	});
+	function artdel() { if (confirm('WARNING: You are about to delete this page. Confirm?')) window.location='/articles/delete.cgi?a=oy6AC542'; }
+	ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

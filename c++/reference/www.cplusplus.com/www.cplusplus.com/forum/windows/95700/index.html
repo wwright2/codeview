@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Windows raw input api - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/windows/">Windows Programming</a></li>
+<li class="here">Windows raw input api</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico question" title="question">&nbsp;</div> Windows raw input api</h3><span id="CH_edttl"></span><span class="rootdatPost" title="95700,root,0,-1,9,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg513662"><span title="513662,109061,1023,3,1"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg513662" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm68debd6007" title="Thu, 14 Mar 2013 13:39:05 +0000"></span><script type="text/javascript">WhenId('CH_zTm68debd6007');</script><noscript>Mar 14, 2013 at 1:39pm UTC</noscript></div>
+<div class="dwho"><a href="/user/aMuis/"><b>aMuis</b> (3)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i513662">
+hi,<br>
+<br>
+im working with a scanner to get barcodes. it is a plug and play device but i want to data process the data myself.<br>
+<br>
+to catch al the data i am using windows raw input api.<br>
+when i can a couple of barcodes my calback function is never called. but i dont understand why.<br>
+<br>
+using windows 7 and qt 5.<br>
+<br>
+My code: <br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br>59<br>60<br>61<br>62<br>63<br>64<br>65<br>66<br>67<br>68<br>69<br>70<br>71<br>72<br>73<br>74<br>75<br>76<br>77<br>78<br>79<br>80<br>81<br>82<br>83<br>84<br>85<br>86<br>87<br>88<br>89<br>90<br>91<br>92<br>93<br>94<br>95<br>96<br>97<br>98<br>99<br>100<br>101<br>102<br>103<br>104<br>105<br>106<br>107<br>108<br>109<br>110<br>111<br>112<br>113<br>114<br>115<br>116<br>117<br>118<br>119<br>120<br>121<br>122<br>123<br>124<br>125<br>126<br>127<br>128<br>129<br>130<br>131<br>132<br>133<br>134<br>135<br>136<br>137<br>138<br>139<br>140<br>141<br>142<br>143<br>144<br>145<br>146<br>147<br>148<br>149<br>150<br>151<br>152<br>153<br>154<br>155<br>156<br>157<br>158<br>159<br>160<br>161<br>162<br>163<br>164<br>165<br>166<br>167<br>168<br>169<br>170<br>171<br>172<br>173<br>174<br>175<br>176<br>177<br>178<br>179<br>180<br>181<br>182<br>183<br>184<br>185<br>186<br>187<br>188<br>189<br>190<br>191<br>192<br>193<br>194<br>195<br>196<br>197<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include "mainwindow.h"</dfn>
+<dfn>#include &lt;QApplication&gt;</dfn>
+
+<dfn>#include &lt;windows.h&gt;</dfn>
+<dfn>#include &lt;QDebug&gt;</dfn>
+
+<cite>// register Scanner</cite>
+<var>void</var> InitRawInput(HWND hWnd){
+
+    RAWINPUTDEVICE Rid[1];
+    Rid[0].usUsagePage = 0x01;
+    Rid[0].usUsage = 0x06;
+    Rid[0].dwFlags = RIDEV_INPUTSINK;
+    Rid[0].hwndTarget = hWnd;
+    <var>if</var> (RegisterRawInputDevices(Rid,1,<var>sizeof</var>(Rid[0])) == <var>false</var>)
+        {
+        qDebug() &lt;&lt; <kbd>"Registration failed"</kbd>;
+        <var>return</var>;
+        }
+    qDebug() &lt;&lt; <kbd>"Registration updated"</kbd>;
+}
+
+<cite>/*
+ * Function that receives messages from OS
+ *
+ * LRESULT --&gt; returns a 32-bit number (64 for 64 OS)
+ * CALLBACK --&gt; specifies how in assembly parameters will get passed
+ * 				and returned from the function
+ * HWND --&gt; Handle to the window that is receiving messages from the OS
+ * UINT --&gt; Says what type of message is being sent
+ * WPARAM/LPARAM --&gt; es. X and Y mouse position
+*/</cite>
+LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
+
+    qDebug() &lt;&lt; <kbd>"calback"</kbd>;
+    LPBYTE lpb;
+    UINT dwSize;
+    RAWINPUT *raw;
+        <var>switch</var>(msg)
+        {
+        <var>case</var> WM_DESTROY:
+            PostQuitMessage(0);
+            <var>return</var> 0;
+            <var>break</var>;
+
+        <var>case</var> WM_INPUT:
+            {
+
+            GetRawInputData((HRAWINPUT)lParam, RID_INPUT, NULL, &amp;dwSize, <var>sizeof</var>(RAWINPUTHEADER));
+
+            lpb = <var>new</var> BYTE[dwSize];
+
+            <var>if</var> (lpb == NULL)
+                <var>return</var> 0;
+
+            <var>if</var> (GetRawInputData((HRAWINPUT)lParam,
+                RID_INPUT,
+                lpb,
+                &amp;dwSize,
+                <var>sizeof</var>(RAWINPUTHEADER)) != dwSize)
+                {
+                qDebug() &lt;&lt; <kbd>"GetRawInputData doesn't return correct siz"</kbd>;
+                <cite>//OutputDebugStr(TEXT("GetRawInputData doesn't return correct size\n"));</cite>
+                }
+
+            raw = (RAWINPUT*) lpb;
+
+            qDebug() &lt;&lt; <kbd>"whaa"</kbd>;
+            <var>if</var> (raw-&gt;header.dwType == RIM_TYPEKEYBOARD)
+                {
+                <var>if</var> (raw-&gt;data.keyboard.Message == WM_KEYDOWN ||
+                    raw-&gt;data.keyboard.Message == WM_SYSKEYDOWN)
+                    {
+                        USHORT usKey;
+                        usKey = raw-&gt;data.keyboard.VKey;
+                        CHAR szTest[4];
+                        _itoa_s((<var>int</var>)usKey,szTest,4,10);
+
+                        WCHAR str[4];
+                        MultiByteToWideChar( 0,0, szTest, 4, str, 4);
+
+<cite>//                        SetWindowText(hWnd,szTest);</cite>
+                       SetWindowText(hWnd,str);
+                    }
+                }
+
+            <var>delete</var>[] lpb;
+            <var>return</var> 0;
+            }
+        }
+
+    <var>return</var> DefWindowProc(hWnd, msg, wParam, lParam);
+}
+
+<var>int</var> main(<var>int</var> argc, <var>char</var> *argv[])
+{
+    QApplication a(argc, argv);
+    MainWindow w;
+    w.show();
+
+       <cite>// TODO: code your application's behavior here.</cite>
+
+       UINT nDevices;
+       PRAWINPUTDEVICELIST pRawInputDeviceList;
+
+       <var>if</var> (GetRawInputDeviceList(NULL, &amp;nDevices, <var>sizeof</var>(RAWINPUTDEVICELIST)) != 0)
+       {
+          qDebug() &lt;&lt; <kbd>"Errors..."</kbd>;
+          <var>return</var> 1;
+       }
+
+       <var>if</var> ((pRawInputDeviceList = (PRAWINPUTDEVICELIST)malloc(<var>sizeof</var>(RAWINPUTDEVICELIST) * nDevices)) == NULL)
+       {
+          qDebug() &lt;&lt; <kbd>"Initialization failed..."</kbd>;
+          <var>return</var> 1;
+       }
+
+       <var>int</var> nNoOfDevices = 0;
+       <var>if</var> ((nNoOfDevices = GetRawInputDeviceList(pRawInputDeviceList, &amp;nDevices, <var>sizeof</var>(RAWINPUTDEVICELIST))) == ((UINT) - 1))
+       {
+          <cite>// Error</cite>
+          <var>return</var> 1;
+       }
+
+       RID_DEVICE_INFO rdi;
+       rdi.cbSize = <var>sizeof</var>(RID_DEVICE_INFO);
+
+       <var>for</var>(<var>int</var> i = 0; i &lt; nNoOfDevices; i++)
+       {
+          UINT size = 256;
+          TCHAR tBuffer[256] = {0};
+          tBuffer[0] = <kbd>'\0'</kbd>;
+          <var>if</var>(GetRawInputDeviceInfo(pRawInputDeviceList[i].hDevice, RIDI_DEVICENAME, tBuffer, &amp;size) &lt; 0)
+          {
+             <cite>// Error in reading device name</cite>
+              qDebug() &lt;&lt; <kbd>"error reading device name"</kbd>;
+          }
+
+           qDebug() &lt;&lt; <kbd>"Device Name: "</kbd> &lt;&lt; tBuffer;
+          <cite>//_tprintf(L"Device Name: %s\n", tBuffer);</cite>
+
+          UINT cbSize = rdi.cbSize;
+          <var>if</var>(GetRawInputDeviceInfo(pRawInputDeviceList[i].hDevice, RIDI_DEVICEINFO, &amp;rdi, &amp;cbSize) &lt; 0)
+          {
+             <cite>// Error in reading information</cite>
+          }
+
+          <var>if</var>(rdi.dwType == RIM_TYPEMOUSE)
+          {
+             qDebug() &lt;&lt; <kbd>"ID for Mouse:"</kbd> &lt;&lt; rdi.mouse.dwId;
+             qDebug() &lt;&lt; <kbd>"Number of Buttons:"</kbd> &lt;&lt; rdi.mouse.dwNumberOfButtons;
+             qDebug() &lt;&lt; <kbd>"Sample rate(Number of data points):"</kbd> &lt;&lt; rdi.mouse.dwSampleRate;
+             qDebug() &lt;&lt; <kbd>"**************************"</kbd>;
+          }
+
+          <var>if</var>(rdi.dwType == RIM_TYPEKEYBOARD)
+          {
+             qDebug() &lt;&lt; <kbd>"Keyboard Mode:"</kbd> &lt;&lt; rdi.keyboard.dwKeyboardMode;
+             qDebug() &lt;&lt; <kbd>"Number of function keys:"</kbd> &lt;&lt; rdi.keyboard.dwNumberOfFunctionKeys;
+             qDebug() &lt;&lt; <kbd>"Number of indicators:"</kbd> &lt;&lt; rdi.keyboard.dwNumberOfIndicators;
+             qDebug() &lt;&lt; <kbd>"Number of keys total: "</kbd> &lt;&lt; rdi.keyboard.dwNumberOfKeysTotal;
+             qDebug() &lt;&lt; <kbd>"Type of the keyboard: "</kbd> &lt;&lt; rdi.keyboard.dwType;
+             qDebug() &lt;&lt; <kbd>"Subtype of the keyboard: "</kbd> &lt;&lt; rdi.keyboard.dwSubType;
+             qDebug() &lt;&lt; <kbd>"***********************"</kbd>;
+          }
+
+          <var>if</var>(rdi.dwType == RIM_TYPEHID)
+          {
+             qDebug() &lt;&lt; <kbd>"Vendor Id:"</kbd> &lt;&lt; rdi.hid.dwVendorId;
+             qDebug() &lt;&lt; <kbd>"Product Id:"</kbd> &lt;&lt; rdi.hid.dwProductId;
+             qDebug() &lt;&lt; <kbd>"Version No:"</kbd> &lt;&lt; rdi.hid.dwVersionNumber;
+             qDebug() &lt;&lt; <kbd>"Usage for the device: "</kbd> &lt;&lt; rdi.hid.usUsage;
+             qDebug() &lt;&lt; <kbd>"Usage Page for the device: "</kbd> &lt;&lt; rdi.hid.usUsagePage;
+             qDebug() &lt;&lt; <kbd>"***********************"</kbd>;
+          }
+       }
+
+       free(pRawInputDeviceList);
+
+       HWND temper = (HWND)w.effectiveWinId();
+       InitRawInput(temper);
+
+<cite>//        //Struct to hold windows event messages</cite>
+<cite>//        MSG msg;</cite>
+
+<cite>//        while (GetMessage(&amp;msg, NULL,0,0))</cite>
+<cite>//        {</cite>
+<cite>//            qDebug() &lt;&lt; "testersa";</cite>
+<cite>//            TranslateMessage(&amp;msg);</cite>
+<cite>//            DispatchMessage(&amp;msg);</cite>
+<cite>//        }</cite>
+
+<cite>//    return msg.wParam;</cite>
+    <var>return</var> a.exec();
+}
+
+</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="output"><pre><samp>Device Name:  0x28fa10 
+Keyboard Mode: 1 
+Number of function keys: 12 
+Number of indicators: 3 
+Number of keys total:  101 
+Type of the keyboard:  81 
+Subtype of the keyboard:  0 
+*********************** 
+Device Name:  0x28fa10 
+Keyboard Mode: 1 
+Number of function keys: 12 
+Number of indicators: 3 
+Number of keys total:  264 
+Type of the keyboard:  81 
+Subtype of the keyboard:  0 
+*********************** 
+Device Name:  0x28fa10 
+ID for Mouse: 2 
+Number of Buttons: 2 
+Sample rate(Number of data points): 60 
+************************** 
+Device Name:  0x28fa10 
+ID for Mouse: 256 
+Number of Buttons: 8 
+Sample rate(Number of data points): 0 
+************************** 
+
+// + Scanner
+Device Name:  0x28fa10 
+Keyboard Mode: 1 
+Number of function keys: 12 
+Number of indicators: 3 
+Number of keys total:  154 
+Type of the keyboard:  81 
+Subtype of the keyboard:  0 
+*********************** 
+Device Name:  0x28fa10 
+Vendor Id: 1035 
+Product Id: 25923 
+Version No: 256 
+Usage for the device:  1 
+Usage Page for the device:  65280 
+***********************
+Registration updated </samp></pre></td></tr></table></div>
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn513662"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg514557"><span title="514557,56179,1023,60,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg514557" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm84a9f49b13" title="Sat, 16 Mar 2013 00:34:22 +0000"></span><script type="text/javascript">WhenId('CH_zTm84a9f49b13');</script><noscript>Mar 16, 2013 at 12:34am UTC</noscript></div>
+<div class="dwho"><a href="/user/methodos/"><b>methodos</b> (60)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i514557">
+Have you tried uncommenting the messageloop? The DispatchMessage function is probably the one that calls your CALLBACK function WndProc.<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br></code></pre></td>
+<td class="source"><pre><code><cite>//        //Struct to hold windows event messages</cite>
+<cite>//        MSG msg;</cite>
+
+<cite>//        while (GetMessage(&amp;msg, NULL,0,0))</cite>
+<cite>//        {</cite>
+<cite>//            qDebug() &lt;&lt; "testersa";</cite>
+<cite>//            TranslateMessage(&amp;msg);</cite>
+<cite>//            DispatchMessage(&amp;msg);</cite>
+<cite>//        }</cite>
+
+<cite>//    return msg.wParam; </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTmf7d9d12dba" title="Sat, 16 Mar 2013 00:34:57 +0000"></span><script type="text/javascript">WhenId('CH_zTmf7d9d12dba');</script><noscript>Mar 16, 2013 at 12:34am UTC</noscript></span>
+<span class="dbtn" id="CH_btn514557"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg514748"><span title="514748,108433,1023,138,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg514748" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmfb80d30250" title="Sat, 16 Mar 2013 05:46:19 +0000"></span><script type="text/javascript">WhenId('CH_zTmfb80d30250');</script><noscript>Mar 16, 2013 at 5:46am UTC</noscript></div>
+<div class="dwho"><a href="/user/thejman250/"><b>thejman250</b> (138)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i514748">
+- and i suppose that you use a main() function in Qt instead of a WinMain() function as you would in regular WinAPI?
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTmc767962d11" title="Sat, 16 Mar 2013 05:46:35 +0000"></span><script type="text/javascript">WhenId('CH_zTmc767962d11');</script><noscript>Mar 16, 2013 at 5:46am UTC</noscript></span>
+<span class="dbtn" id="CH_btn514748"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg514904"><span title="514904,109061,1023,3,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg514904" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm0960312afd" title="Sat, 16 Mar 2013 15:53:18 +0000"></span><script type="text/javascript">WhenId('CH_zTm0960312afd');</script><noscript>Mar 16, 2013 at 3:53pm UTC</noscript></div>
+<div class="dwho"><a href="/user/aMuis/"><b>aMuis</b> (3)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i514904">
+the message loop is not calling WndProc. it is commented for that reason. <br>
+<br>
+I think that the WndProc function is not going to work under QT. 
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn514904"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg514905"><span title="514905,11146,1023,2942,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg514905" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm5de5ff29b6" title="Sat, 16 Mar 2013 15:55:12 +0000"></span><script type="text/javascript">WhenId('CH_zTm5de5ff29b6');</script><noscript>Mar 16, 2013 at 3:55pm UTC</noscript></div>
+<div class="dwho"><a href="/user/guestgulkan/"><b>guestgulkan</b> (2942)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i514905">
+<table class="quote"><tr><th class="qh"><strong>thejman250</strong> wrote:</th></tr><tr><td class="qd">- and i suppose that you use a main() function in Qt instead of a WinMain() function as you would in regular WinAPI? </td></tr></table><br>
+<br>
+Yes, If you make a QT project - the winmain is provided by QT - and that winmain calls your main function.<br>
+<br>
+----But just taking a normal   windows  or console project and adding some QT headers to it does not make it a QT project if you see what I mean----.<br>
+<br>
+In the original  post - the windows procedure is never going to get called by Windows - I think the original poster is very confused
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn514905"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg514972"><span title="514972,39669,1023,2056,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg514972" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm86b9da597b" title="Sat, 16 Mar 2013 18:26:23 +0000"></span><script type="text/javascript">WhenId('CH_zTm86b9da597b');</script><noscript>Mar 16, 2013 at 6:26pm UTC</noscript></div>
+<div class="dwho"><a href="/user/modoran/"><b>modoran</b> (2056)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i514972">
+You should override  QCoreApplication::winEventFilter  in your Qt application to be able to receive normal windows messages:<br>
+<a href="http://qt-project.org/doc/qt-4.8/qcoreapplication.html#winEventFilter">http://qt-project.org/doc/qt-4.8/qcoreapplication.html#winEventFilter</a>
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn514972"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg515892"><span title="515892,109061,1023,3,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg515892" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmb95912297c" title="Mon, 18 Mar 2013 11:37:56 +0000"></span><script type="text/javascript">WhenId('CH_zTmb95912297c');</script><noscript>Mar 18, 2013 at 11:37am UTC</noscript></div>
+<div class="dwho"><a href="/user/aMuis/"><b>aMuis</b> (3)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i515892">
+@guestgulkan Yes i was really confused.<br>
+<br>
+i have something working now. i am using the function NativeEvent from qt 5 now. <br>
+<br>
+But there is a new problem, i want to catch the data from 1 device and not from both. both are keyboards. but in the message i cant find the device where it originated from. <br>
+<br>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn515892"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg516369"><span title="516369,108433,1023,138,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg516369" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm94d96ae55a" title="Tue, 19 Mar 2013 01:08:02 +0000"></span><script type="text/javascript">WhenId('CH_zTm94d96ae55a');</script><noscript>Mar 19, 2013 at 1:08am UTC</noscript></div>
+<div class="dwho"><a href="/user/thejman250/"><b>thejman250</b> (138)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i516369">
+<table class="quote"><tr><th class="qh"><strong>guestgulkan</strong> wrote:</th></tr><tr><td class="qd">Yes, If you make a QT project - the winmain is provided by QT - and that winmain calls your main function.<br>
+<br>
+----But just taking a normal windows or console project and adding some QT headers to it does not make it a QT project if you see what I mean----.<br>
+<br>
+In the original post - the windows procedure is never going to get called by Windows - I think the original poster is very confused</td></tr></table><br>
+<br>
+- Thanks for explaining that, and yes i understand.<br>
+<br>
+- If this were WinAPI, the <span class="auto"><code class="source">DispatchMessage()</code></span> function would result in windows calling the windows procedure as far as i know, but i have no clue about Qt.
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm5bdec817b7" title="Tue, 19 Mar 2013 01:08:24 +0000"></span><script type="text/javascript">WhenId('CH_zTm5bdec817b7');</script><noscript>Mar 19, 2013 at 1:08am UTC</noscript></span>
+<span class="dbtn" id="CH_btn516369"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg525623"><span title="525623,110739,255,1,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg525623" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm09a493be70" title="Thu, 04 Apr 2013 03:05:16 +0000"></span><script type="text/javascript">WhenId('CH_zTm09a493be70');</script><noscript>Apr 4, 2013 at 3:05am UTC</noscript></div>
+<div class="dwho"><a href="/user/xgrlab/"><b>xgrlab</b> (1)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i525623">
+You can create Application:QApplication. And then reimplement this function if you want to process window messages msg that are not processed by Qt.<br>
+<br>
+Like This:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br></code></pre></td>
+<td class="source"><pre><code><var>bool</var> Application::winEventFilter(MSG *msg, <var>long</var> *result)
+{
+    LPARAM lParam = msg-&gt;lParam;
+    LPBYTE lpb;
+    UINT dwSize;
+    RAWINPUT *raw;
+    <var>if</var> (msg-&gt;message == WM_INPUT) {
+
+        GetRawInputData((HRAWINPUT)lParam, RID_INPUT, NULL, &amp;dwSize, <var>sizeof</var>(RAWINPUTHEADER));
+
+        lpb = <var>new</var> BYTE[dwSize];
+
+        <var>if</var> (lpb == NULL)
+            <var>return</var> 0;
+        <var>if</var> (GetRawInputData((HRAWINPUT)lParam,
+                            RID_INPUT,
+                            lpb,
+                            &amp;dwSize,
+                            <var>sizeof</var>(RAWINPUTHEADER)) != dwSize)
+        {
+            qDebug() &lt;&lt; <kbd>"GetRawInputData doesn't return correct siz"</kbd>;
+            <cite>//OutputDebugStr(TEXT("GetRawInputData doesn't return correct size\n"));</cite>
+        }
+
+        raw = (RAWINPUT*) lpb;
+        <var>if</var> (Application::m_deviceId == raw-&gt;header.hDevice) {
+            <var>if</var> (raw-&gt;header.dwType == RIM_TYPEKEYBOARD) {
+                <var>if</var> (raw-&gt;data.keyboard.Message == WM_KEYDOWN ||
+                        raw-&gt;data.keyboard.Message == WM_SYSKEYDOWN)
+                {
+                    USHORT usKey;
+                    usKey = raw-&gt;data.keyboard.VKey;
+                    qDebug() &lt;&lt; usKey;
+<cite>//                    qDebug() &lt;&lt; "hDevice" &lt;&lt; raw-&gt;header.hDevice;</cite>
+                }
+
+            }
+            result = 0;
+            msg = 0;
+            <var>return</var> <var>true</var>;
+        }
+        qDebug() &lt;&lt; <kbd>"id"</kbd> &lt;&lt; raw-&gt;header.dwType &lt;&lt; raw-&gt;data.keyboard.VKey;
+        <var>delete</var>[] lpb;
+
+    }
+    <var>return</var> QApplication::winEventFilter(msg,result);
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Application::m_deviceId is scanner device id.<br>
+<br>
+But  I have a problem  .When I return true, the message still pass to the text edit widget.  And I don't know why?   <br>
+If you done,please let me know. (<span class="auto"><code class="source">xgrlab@126.com</code></span>) 
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn525623"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div class="rootbtnNew"></div><div id="CH_insNew"></div><div id="CH_reply">Topic archived. No new replies allowed.</div><div id="CH_subscription"></div><div class="rootedtNew"></div><script type="text/javascript">new for_PostList(95700,1,109061,0,'CH_PostList','CH_subscription','CH_reply','CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+<script type="text/javascript">
+    google_ad_client = "ca-pub-1444228343479937";
+    google_ad_slot = "9701143201";
+    google_ad_width = 728;
+    google_ad_height = 90;
+</script>
+<!-- leaderboard -->
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li><a href="/forum/beginner/"><b>Beginners</b></a></li><li class="selected"><a href="/forum/windows/"><b>Windows Programming</b></a></li><li><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li><a href="/forum/general/"><b>General C++ Programming</b></a></li><li><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Fwindows%2F95700%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

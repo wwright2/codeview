@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>How would you utilize Enumeration? - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/beginner/">Beginners</a></li>
+<li class="here">How would you utilize Enumeration?</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico solved" title="solved">&nbsp;</div> How would you utilize Enumeration?</h3><span id="CH_edttl"></span><span class="rootdatPost" title="181969,root,0,-1,7,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg892127"><span title="892127,202770,1023,66,1"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892127" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmaf91151f50" title="Wed, 30 Dec 2015 21:08:18 +0000"></span><script type="text/javascript">WhenId('CH_zTmaf91151f50');</script><noscript>Dec 30, 2015 at 9:08pm UTC</noscript></div>
+<div class="dwho"><a href="/user/mpark4656/"><b>mpark4656</b> (66)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892127">
+I'm new to C++. I've read my first programming book. I've decided to revisit enumeration chapter. And honestly, I don't see why enumeration is useful at all.<br>
+<br>
+Everything you can do with enumeration can also be done with int, double, bool, string, etc without any added difficulty.<br>
+<br>
+I've created the code below to understand how enumeration works, and I gotta say, I am not impressed. <br>
+<br>
+The only advantage I see is possible readability of the code, but other than that, I think enumeration is pretty useless. Of course, I could be wrong.<br>
+<br>
+Do you know of any brilliant ways to utilize enumeration?<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;iostream&gt;</dfn>
+
+<var>enum</var> colors { BROWN, BLUE, RED, GREEN, YELLOW };
+<var>enum</var> coins { PENNY, NICKETL, DIME, HALFDOLLAR, DOLLAR };
+
+colors returnColorForCoin ( coins coin );
+
+<var>int</var> main() {
+    colors color;
+
+    color = BROWN;
+
+    std::cout &lt;&lt; color &lt;&lt; std::endl; <cite>// Notice that it only prints the value stored for BROWN, not the string</cite>
+
+    <var>if</var> ( color == BROWN )            <cite>// You can indirectly prints the actual string of ENUM this way</cite>
+        std::cout &lt;&lt; <kbd>"BROWN"</kbd> &lt;&lt; std::endl;
+
+    <cite>// color ++;       // This is illegal. ENUM variables can't be incremented this way.</cite>
+
+    color = <var>static_cast</var> &lt; colors &gt; ( color + 1 );   <cite>// This is how you increment ENUM variable</cite>
+    std::cout &lt;&lt; color &lt;&lt; std::endl;
+
+    <cite>// Indirectly print the value of ENUM color. The value of ENUM can't be printed directly</cite>
+    <var>if</var> ( color == BLUE )
+        std::cout &lt;&lt; <kbd>"BLUE"</kbd> &lt;&lt; std::endl;
+
+    <cite>// This is true. ENUM values can be used in relational operations</cite>
+    <var>if</var> ( BROWN &lt; BLUE )
+        std::cout &lt;&lt; <kbd>"BROWN &lt; BLUE is true"</kbd> &lt;&lt; std::endl;
+
+    <cite>// This is how you utilize ENUM in a loop. Supposedly, this increases the readability</cite>
+    <var>for</var> ( color = BROWN ; color &lt;= YELLOW ; color = <var>static_cast</var> &lt; colors &gt; ( color + 1) )
+        std::cout &lt;&lt; color &lt;&lt; <kbd>' '</kbd>;
+
+    <cite>// ENUM can be used as a parameter to a function and a function can return ENUM type variable</cite>
+    std::cout &lt;&lt; std::endl &lt;&lt; returnColorForCoin ( PENNY ) &lt;&lt; std::endl;
+
+
+    <cite>// This is Anonymous Data Types. Variable can be declared without the name of Data Type</cite>
+    <var>enum</var> { BASKETBALL, FOOTBALL, BASEBALL, HOCKEY } mySport;
+
+    mySport = FOOTBALL;
+
+    std::cout &lt;&lt; mySport &lt;&lt; std::endl;
+
+    <var>return</var> 0;
+}
+
+colors returnColorForCoin ( coins coin ) {
+    colors color;
+
+    color = <var>static_cast</var> &lt; colors &gt; ( coin );
+
+    <var>return</var> color;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm2974f9d748" title="Wed, 30 Dec 2015 21:11:20 +0000"></span><script type="text/javascript">WhenId('CH_zTm2974f9d748');</script><noscript>Dec 30, 2015 at 9:11pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn892127"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg892143"><span title="892143,151681,1023,2488,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892143" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmd6c6f7585b" title="Wed, 30 Dec 2015 22:42:02 +0000"></span><script type="text/javascript">WhenId('CH_zTmd6c6f7585b');</script><noscript>Dec 30, 2015 at 10:42pm UTC</noscript></div>
+<div class="dwho"><a href="/user/TarikNeaj/"><b>TarikNeaj</b> (2488)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892143">
+First of all. What you're using is C-style Enumirations, use c++ enumirations - <a href="https://www.youtube.com/watch?v=Pxvvr5FAWxg">https://www.youtube.com/watch?v=Pxvvr5FAWxg</a><br>
+<br>
+Enums can and are very useful. One way it is useful for me, as someone who wants to develop games, is something called the game-loop.<br>
+<br>
+<span class="auto"><code class="source"><var>enum</var> <var>class</var> GameState {PLAY, EXIT, MAINMENU, OPTIONS};</code></span><br>
+<br>
+In the game loop. I can do something like this.<br>
+<br>
+This is just psuedo code so you can't compile this.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br></code></pre></td>
+<td class="source"><pre><code>While GameState == PLAY.
+
+If (user closes the window)
+      GameState == EXIT
+
+<var>else</var> <var>if</var> (user opens main menu)
+           GameState == MAINMENU</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+and so on. Enums are basically inetegers, but in the form of Text/Names. Bool can hold only true or false, that's 2 states, I want more, a game usually has many more states than the ones I presented.
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTma6c708e81c" title="Wed, 30 Dec 2015 22:42:16 +0000"></span><script type="text/javascript">WhenId('CH_zTma6c708e81c');</script><noscript>Dec 30, 2015 at 10:42pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn892143"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg892145"><span title="892145,143106,1023,319,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892145" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm6dedf8f75b" title="Wed, 30 Dec 2015 22:44:01 +0000"></span><script type="text/javascript">WhenId('CH_zTm6dedf8f75b');</script><noscript>Dec 30, 2015 at 10:44pm UTC</noscript></div>
+<div class="dwho"><a href="/user/koothkeeper/"><b>koothkeeper</b> (319)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892145">
+One great usage is for a list for unique values -- which are very useful in switch statements.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn892145"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg892147"><span title="892147,78419,1023,7174,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892147" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm8bbbe9ae20" title="Wed, 30 Dec 2015 22:47:55 +0000"></span><script type="text/javascript">WhenId('CH_zTm8bbbe9ae20');</script><noscript>Dec 30, 2015 at 10:47pm UTC</noscript></div>
+<div class="dwho"><a href="/user/cire/"><b>cire</b> (7174)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892147">
+<table class="quote"><tr><td class="qd">The only advantage I see is possible readability of the code</td></tr></table><br>
+And who wants that?
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn892147"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg892149"><span title="892149,156650,1023,564,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892149" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm56864d8e8b" title="Wed, 30 Dec 2015 23:29:21 +0000"></span><script type="text/javascript">WhenId('CH_zTm56864d8e8b');</script><noscript>Dec 30, 2015 at 11:29pm UTC</noscript></div>
+<div class="dwho"><a href="/user/FurryGuy/"><b>FurryGuy</b> (564)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892149">
+<table class="quote"><tr><td class="qd">The only advantage I see is possible readability of the code</td></tr></table><br>
+<br>
+Wait until you have to debug a million line code base written with nothing but single character variable names and magic numbers.  Oh, whee. :|
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn892149"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg892158"><span title="892158,29169,1023,501,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892158" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm858e6be985" title="Thu, 31 Dec 2015 00:27:12 +0000"></span><script type="text/javascript">WhenId('CH_zTm858e6be985');</script><noscript>Dec 31, 2015 at 12:27am UTC</noscript></div>
+<div class="dwho"><a href="/user/admkrk/"><b>admkrk</b> (501)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892158">
+If you ever write a program that takes command line arguments, you will be very glad for enums. For one or two arguments it is not bad, but with more than that, and optional arguments, it is difficult to keep track of which one is which. I recently had to do this in Java where it is not possible to make a simple enum. I worked around it with a long list of constants, but that is pretty sloppy. 
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn892158"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg892169"><span title="892169,202770,1023,66,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892169" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmbf75104caf" title="Thu, 31 Dec 2015 03:12:34 +0000"></span><script type="text/javascript">WhenId('CH_zTmbf75104caf');</script><noscript>Dec 31, 2015 at 3:12am UTC</noscript></div>
+<div class="dwho"><a href="/user/mpark4656/"><b>mpark4656</b> (66)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892169">
+@TarikNeaj<br>
+Thanks for the video. It makes sense. <br>
+<br>
+@koothkeeper<br>
+I tried it with Switch and it does work nicely.<br>
+<br>
+And thanks everyone.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn892169"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div class="rootbtnNew"></div><div id="CH_insNew"></div><div id="CH_reply">Topic archived. No new replies allowed.</div><div id="CH_subscription"></div><div class="rootedtNew"></div><script type="text/javascript">new for_PostList(181969,1,202770,1,'CH_PostList','CH_subscription','CH_reply','CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+<script type="text/javascript">
+    google_ad_client = "ca-pub-1444228343479937";
+    google_ad_slot = "9701143201";
+    google_ad_width = 728;
+    google_ad_height = 90;
+</script>
+<!-- leaderboard -->
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li class="selected"><a href="/forum/beginner/"><b>Beginners</b></a></li><li><a href="/forum/windows/"><b>Windows Programming</b></a></li><li><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li><a href="/forum/general/"><b>General C++ Programming</b></a></li><li><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Fbeginner%2F181969%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

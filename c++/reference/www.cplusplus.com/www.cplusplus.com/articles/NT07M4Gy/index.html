@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Finding Skype's Default Account Name - C++ Articles</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/articles/">Articles</a></li>
+<li class="here">Finding Skype's Default Account Name</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div id="I_content">
+<div class="C_art">
+<div id="I_author">Published by <b><a href="/user/Michael_Haephrati/" rel="author">Michael Haephrati</a></b></div>
+<div id="I_date">Oct 20, 2014 (last update: Oct 20, 2014)</div>
+<h1>Finding Skype's Default Account Name</h1>
+<div id="I_score">Score: 3.5/5 (16 votes)</div>
+<div id="I_stars"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-half.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"></div>
+<div id="I_content">
+<BLOCKQUOTE>
+<br>
+<UL>
+<LI><a href="source_code.zip"target="_blank">Download source - 30.3 KB</a></LI></UL>
+<br>
+<br>
+<h2>Introduction</h2>
+The purpose of this tip is to show you how to find the default Skype's account name.<br>
+<br>
+<h2>The Problem</h2>
+I needed to code a function that extracts data from the default Skype account on a given computer. To do so, I first needed to locate the default account name. I found a simple way of doing so.<br>
+<br>
+<h2>The Solution</h2>
+The Skype default account’s name is stored in a file named “<B><I>shared.xml</I></B>”. This file is stored in <B><I>C:\users\username\AppData\Roaming\Skype\</I></B>.<br>
+<br>
+First, we need to find this location as the exact path we need to access varies based on username.<br>
+<br>
+To do so, we use:<br>
+<br>
+<span class="auto"><code class="source">SHGetSpecialFolderPath</code></span>
+<P>
+and pass <a href="http://msdn.microsoft.com/en-gb/library/windows/desktop/bb762494(v=vs.85).aspx"target="_blank"><strong>CSIDL_APPDATA </strong></a> as its parameter.<br>
+</P>
+According to MSDB, "The file system directory that serves as a common repository for application-specific data.".<br>
+<br>
+So to get that path, we call:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br></code></pre></td>
+<td class="source"><pre><code>TCHAR szFileName[MAX_PATH + 1];
+SHGetSpecialFolderPath(0, szFileName, CSIDL_APPDATA, 0);</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+This file is obviously an <a href="http://en.wikipedia.org/wiki/XML"target="_blank"><code>XML file</code></a>. So the next step is to open <I>"shared.xml"</I> located in that path and extract from it the desired information.<br>
+<br>
+To do so, we need an XML parser and <a href="http://rapidxml.sourceforge.net/"target="_blank">RapidXML </a> is the one I recommend. RapidXml is a very fast, open source XML parser which preserves its usability, is portable, is <a href="http://www.w3.org/standards/"target="_blank">W3C compatible</a> compatible. It is an in-situ parser written in modern C++, with parsing speed approaching that of strlen function executed on the same data.<br>
+<br>
+In order to find the default account's name, we first need to find in this file the “Account” element and inside of it to find the “default” element where the account name will be found.<br>
+<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br></code></pre></td>
+<td class="source"><pre><code>rapidxml::xml_node&lt;<var>char</var>&gt;* node_account = 0;
+<var>if</var> (GetNodeByElementName(root, <kbd>"Account"</kbd>, &amp;node_account) == <var>true</var>)
+{
+      rapidxml::xml_node&lt;<var>char</var>&gt;* node_default = 0;
+      <var>if</var> (GetNodeByElementName(node_account, <kbd>"default"</kbd>, &amp;node_default) == <var>true</var>)
+
+      {
+             swprintf(result, 100, L<kbd>"%hs"</kbd>, node_default-&gt;value());
+             free(xmlData);
+             <var>return</var> <var>true</var>;
+       }
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<h2>Points of Interest</h2>
+I have taken the opportunity to demonstrate a minimal MFC application, created by scratch and not using the Visual Studio Wizard, whilst containing only the necessary definitions and include files.<br>
+<br>
+The source code which accompanies this tip was created and compiled under <B>Visual Studio 2013 Ultimate</B>.<br>
+<br>
+Since this tip was published I was asked to add further instructions for obtaining stored Skype chat logs and other stored information and I plan to do that in my next tip or article.<br>
+<br>
+<h2 id="ctl00_AboutHeading">About the Author</h2>
+<BLOCKQUOTE><IMG SRC="Mr.M.png" alt=""></BLOCKQUOTE>
+<a href="/Members/mhaephrati"><B>Michael N. Haephrati</B></a>, is an entrepreneur, inventor and a musician. Haephrati worked on many ventures starting from HarmonySoft, designing Rashumon, the first Graphical Multi-lingual word processor for Amiga computer. During 1995-1996 he worked as a Contractor with <A REL="nofollow"href="http://www.apple.com"target="_blank">Apple</A> at Cupertino. Worked at a research institute made the fist steps developing the credit scoring field in Israel. He founded Target Scoring and developed a credit scoring system named ThiS, based on geographical statistical data, participating VISA CAL, Isracard, Bank Leumi and Bank Discount (Target Scoring, being the VP Business Development of a large Israeli institute).<br>
+During 2000, he founded Target Eye, and developed the first remote PC surveillance and monitoring system, named <a rel="nofollow" title="Target Eye"href="http://www.targeteye.biz"target="_blank">Target Eye</a>.<br>
+<br>
+Other ventures included: <a rel="nofollow" title="Data Optimization"href="http://dataoptimisation.wordpress.com/"target="_blank">Data Cleansing</a> (as part of the <a rel="nofollow"title="DataTune by Michael Haephrati" href="http://datatune.wordpress.com/"target="_blank">DataTune&nbsp;</a> system which was implemented in many organizations. <br>
+<br>
+<br>
+<A REL="nofollow" href="https://twitter.com/haephrati"class="twitter-follow-button"data-show-count="false"data-size="large"target"_blank">Follow @haephrati</A>
+<P>
+Follow on <a href="http://www.twitter.com/haephrati?rel=author"rel="author"class="small-text"target"_blank">Twitter</a>, <a href="https://plus.google.com/103057860647722688896"rel="author"class="small-text"target"_blank">Google</a>, <a href="http:///www.linkedin.com/profile/view?id=344149159"rel="author"class="small-text">LinkedIn</a>       <br>
+</P>
+<br>
+<br>
+<p>
+<a href="http://www.cplusplus.com/articles/NT07M4Gy/">Article Top</a>
+</p>
+<br>
+<br>
+<br>
+<br>
+<br>
+</BLOCKQUOTE><p>Attachments:
+	[<a href="source_code.zip">source_code.zip</a>]
+</p>
+</div></div><div id="CH_bb"></div><div id="CH_scoreapp"></div><script type="text/javascript">new Score('CH_scoreapp','/articles/score.cgi','NT07M4Gy');</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder selected articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/articles/">Articles</a></b></h3>
+<ul>
+<li><a href="/articles/algorithms/">Algorithms</a></li><li><a href="/articles/cpp11/">C++ 11</a></li><li><a href="/articles/graphics/">Graphics and multimedia</a></li><li><a href="/articles/howto/">How-To</a></li><li><a href="/articles/language/">Language Features</a></li><li><a href="/articles/linux/">Unix/Linux programming</a></li><li><a href="/articles/sourcecode/">Source Code</a></li><li><a href="/articles/standard_library/">Standard Library</a></li><li><a href="/articles/tips/">Tips and Tricks</a></li><li><a href="/articles/tools/">Tools and Libraries</a></li><li><a href="/articles/visualcpp/">Visual C++</a></li><li><a href="/articles/winapi/">Windows API</a></li></ul>
+</div>
+<div id="I_subnav"></div>
+</div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Farticles%2FNT07M4Gy%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+onSession(function(us) {
+		document.getElementById('I_subnav').innerHTML=
+			us.ok?
+				'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul>'+
+				'<li><a href="/articles/myitems.cgi">My items</a></li>'+
+				(us.auth(32768)?'<li><a href="/articles/adminitems.cgi">Admin items</a></li>':'')+
+				'</ul></div>'
+			:'';
+	}); onSession(function (us) {
+		var el=document.getElementById('CH_bb'); el.innerHTML='';
+		if ( (us.auth(32768)) || ((us.uniqid=='Lhv7X9L8')&&(us.auth(128))) ) {
+			el.appendChild(btn('Edit article','Edit this version of the article','edit','/articles/edit.cgi?a=NT07M4Gy'));
+	
+			if (us.auth(32768)) {
+				el.appendChild(btn('Delete article','Delete this article','delete','javascript:artdel()'));
+			}
+	
+		}
+	});
+	function artdel() { if (confirm('WARNING: You are about to delete this page. Confirm?')) window.location='/articles/delete.cgi?a=NT07M4Gy'; }
+	ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

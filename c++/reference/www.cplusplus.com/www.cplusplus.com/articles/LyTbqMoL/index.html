@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Sierpinski Triangle Fractal - The easies - C++ Articles</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/articles/">Articles</a></li>
+<li class="here">Sierpinski Triangle Fractal - The easies</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div id="I_content">
+<div class="C_art">
+<div id="I_author">Published by <b><a href="/user/bilalCh213/" rel="author">bilalCh213</a></b></div>
+<div id="I_date">Oct 13, 2015 (last update: Oct 13, 2015)</div>
+<h1>Sierpinski Triangle Fractal - The easiest way to produce randomness</h1>
+<div id="I_score">Score: 4.2/5 (169 votes)</div>
+<div id="I_stars"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"></div>
+<div id="I_content">
+<H3>What is Sierpinski Triangle?</H3>
+<br>
+Sierpinski Triangle is a group of multiple(or <EM>infinite</EM>) triangles. Just see the Sierpinski Triangle below to find out how <EM>infinite</EM> it may look.<br>
+<br>
+<IMG SRC="SierpinskiInfinite.gif" alt="">
+<br>
+The concept behind this is the fact that the filled triangle is filled by an empty equilateral triangle in the center in such a way that this triangular space is congruent to the three triangles being formed around it.<br>
+<br>
+<IMG SRC="serpinskiTriangles.jpg" alt="">
+<br>
+If you see my previous article which is given <A HREF="http://www.cplusplus.com/articles/iE86b7Xj/">here</A>, you see that there was a triangle which I just break into further triangles without a base, in a kind of brute manner. This time it will be done in a technical manner! In other words, we don't make a triangle and then, break it into three, but we will do something else in order to produce randomness as well.<br>
+<br>
+The concept that we will use, is simple. It will have tiles! If there are one or more than one tiles and, not three tiles above the tile space then, we will put a tile in that space or else, no tiles!<br>
+<br>
+<H3>The Implementation</H3>
+<br>
+First thing, you should know basics of C++ as well as a bit of SDL2 and basic trigonometry to understand it.<br>
+We are going to use <STRONG>SDL2</STRONG> to have some graphics. We will only use some of its basic primitive drawing methods for drawing lines. So, we are going to include only SDL2 header. This time, it will be multiple file project.<br>
+<br>
+<STRONG>Files:</STRONG> main.cpp, SierpinskiTile.h, SierpinskiTile.cpp<br>
+<br>
+<STRONG>In SierpinskiTile.h:</STRONG>
+<br>
+We need to include SDL.h for drawing and list to have a list of <EM>SDL_Rect*</EM> or tiles.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;SDL.h&gt;</dfn>
+<dfn>#include &lt;list&gt; </dfn></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Now, here's the class with preprocessor directives:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br></code></pre></td>
+<td class="source"><pre><code><dfn>#ifndef _SIERPINSKI_TILE_</dfn>
+<dfn>#define _SIERPINSKI_TILE_</dfn>
+
+<var>class</var> SierpinskiTile
+{
+<var>public</var>:
+	SierpinskiTile(<var>int</var> scrW, <var>int</var> scrH, <var>int</var> w, <var>int</var> h)
+		: scrW(scrW), scrH(scrH), tileW(w), tileH(h) {};
+	~SierpinskiTile();
+	<var>void</var> setTile(<var>int</var> x_index, <var>int</var> y_index);
+	<var>bool</var> isThereTile(<var>int</var> x_index, <var>int</var> y_index);
+	<var>void</var> calculate(<var>int</var> y_index = -1);
+	<var>void</var> draw(SDL_Renderer*&amp; renderer, <var>int</var> r, <var>int</var> g, <var>int</var> b, <var>int</var> y_index);
+
+<var>private</var>:
+	<var>int</var> scrW, scrH;
+	<var>int</var> tileW, tileH;
+	std::list&lt;SDL_Rect*&gt; rects;
+};
+
+<dfn>#endif </dfn></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<STRONG>In SierpinskiTile.cpp:</STRONG>
+<br>
+Here's the implementation with some comments to have understanding:<br>
+<br>
+Destructor:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include "SierpinskiTile.h"</dfn>
+
+SierpinskiTile::~SierpinskiTile() <cite>//Deleting all resources in destructor</cite>
+{
+	<var>for</var> (<var>auto</var> itr : rects)
+		<var>delete</var> itr;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+setTile() method to set tile on the tile index position:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br></code></pre></td>
+<td class="source"><pre><code><var>void</var> SierpinskiTile::setTile(<var>int</var> x_index, <var>int</var> y_index) <cite>//Setting tile on the tile index position</cite>
+{
+	SDL_Rect* rectToAdd = <var>new</var> SDL_Rect;
+	rectToAdd-&gt;x = x_index * tileW;
+	rectToAdd-&gt;y = y_index * tileH;
+	rectToAdd-&gt;w = tileW;
+	rectToAdd-&gt;h = tileH;
+
+	rects.push_back(rectToAdd);
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+isThereTile() method to find out whether given tile index position have a tile there or not:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br></code></pre></td>
+<td class="source"><pre><code><var>bool</var> SierpinskiTile::isThereTile(<var>int</var> x_index, <var>int</var> y_index) <cite>//Finding out whether a tile is here or not</cite>
+{
+	<var>for</var> (<var>auto</var> itr : rects)
+		<var>if</var> (itr-&gt;x == tileW * x_index
+			&amp;&amp; itr-&gt;y == tileH * y_index)
+			<var>return</var> <var>true</var>;
+
+	<var>return</var> <var>false</var>;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+The most important -&gt; calculate() method to find out tiles arrangement for the next row, default parameter is -1 which will cause calculate() method to calculate all the rows' tile arrangement:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br></code></pre></td>
+<td class="source"><pre><code><var>void</var> SierpinskiTile::calculate(<var>int</var> y_index) <cite>//Calculating where to put tiles in the next row</cite>
+<cite>//by the tile arrangement present in the previous row</cite>
+{
+	<cite>/////////////////////////////////////////////////</cite>
+	<cite>//Conditions for putting a tile below the upper tile (or tile space):</cite>
+	<cite>// 1- Tile is at that spot, 0- Tile is not at that spot, X- Unknown (can be 0 or 1)</cite>
+
+	<cite>/////////////////////////////////////////////////</cite>
+	<cite>// Case 1: 0 1 0, Case 2: 1 0 0, Case 3: 0 0 1,</cite>
+	<cite>// Case 4: 1 1 0, Case 5: 1 0 1, Case 6: 0 1 1</cite>
+
+	<cite>// Output for Cases 1-6: X 1 X</cite>
+
+	<cite>/////////////////////////////////////////////////</cite>
+	<cite>// Case 7: 0 0 0, Case 8: 1 1 1</cite>
+
+	<cite>// Output for Cases 7-8: X 0 X</cite>
+
+	<var>int</var> y = 0;
+	<var>if</var> (y_index &gt; -1)
+	{
+		y = y_index;
+
+		<var>for</var> (<var>int</var> x = 0; x &lt; scrW / tileW; x++)
+		{
+			<var>if</var> ((isThereTile(x, y) || isThereTile(x + 1, y) || isThereTile(x - 1, y))
+				&amp;&amp; !(isThereTile(x, y) &amp;&amp; isThereTile(x + 1, y) &amp;&amp; isThereTile(x - 1, y))
+				)
+				setTile(x, y + 1);
+		}
+	}
+	<var>else</var>
+	{
+		<var>for</var> (; y &lt; scrH / tileH; y++)
+			<var>for</var> (<var>int</var> x = 0; x &lt; scrW / tileW; x++)
+			{
+				<var>if</var> ((isThereTile(x, y) || isThereTile(x + 1, y) || isThereTile(x - 1, y))
+					&amp;&amp; !(isThereTile(x, y) &amp;&amp; isThereTile(x + 1, y) &amp;&amp; isThereTile(x - 1, y))
+					)
+					setTile(x, y + 1);
+			}
+	}
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+The ahhh... second most important -&gt; draw() method which actually draws only a row and deletes all the tiles in all the previous rows:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br></code></pre></td>
+<td class="source"><pre><code><var>void</var> SierpinskiTile::draw(SDL_Renderer*&amp; renderer, <var>int</var> r, <var>int</var> g, <var>int</var> b, <var>int</var> y_index)
+{
+	SDL_SetRenderDrawColor(renderer, r, g, b, 255); <cite>//Setting renderer's color</cite>
+
+	std::list&lt;SDL_Rect*&gt; deleteRects; <cite>//For getting a list of rectangles/tiles to be deleted</cite>
+	<var>for</var> (<var>auto</var> itr : rects)
+	{
+		SDL_RenderFillRect(renderer, itr); <cite>//Draw all tiles present in the rects which</cite>
+		<cite>//will be just all tiles in the particular row</cite>
+
+		<var>if</var> (itr-&gt;y &lt;= tileH * y_index) <cite>//Put all tiles of rows before the given row</cite>
+			<cite>//to deleteRects for deleting</cite>
+			deleteRects.push_back(itr);
+	}
+
+	<var>for</var> (<var>auto</var> itr : deleteRects) <cite>//Delete all collected tiles and clear them</cite>
+	{
+		rects.remove(itr);
+		<var>delete</var> itr;
+	}
+	deleteRects.clear();
+
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); <cite>//Resetting renderer's color</cite>
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<STRONG>In main.cpp:</STRONG>
+<br>
+First, we need some necessary constants along with <STRONG>SDL_Window*</STRONG>, <STRONG>SDL_Renderer*</STRONG> and <STRONG>SDL_Event</STRONG>. We also need a boolean as well.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;SDL.h&gt;</dfn>
+<dfn>#include "SierpinskiTile.h"</dfn>
+
+<dfn>#undef main </dfn><cite>//Solution to the problem: No entry point defined.</cite>
+
+<var>const</var> <var>int</var> SCR_W = 640;
+<var>const</var> <var>int</var> SCR_H = 480;
+<var>const</var> <var>int</var> TILE_W = 5; <cite>//Each tile's width</cite>
+<var>const</var> <var>int</var> TILE_H = 5; <cite>//Each tile's height</cite>
+
+SDL_Window* window = NULL;
+SDL_Renderer* renderer = NULL;
+SDL_Event event;
+
+<var>bool</var> quit = <var>false</var>;
+
+SierpinskiTile* generator = NULL;</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Time for action here, every thing is all fine and main() method is now, easy to implement!<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br></code></pre></td>
+<td class="source"><pre><code><var>int</var> main(<var>int</var> argc, <var>char</var>** args)
+{
+	SDL_Init(SDL_INIT_VIDEO); <cite>//Initializing SDL2</cite>
+
+	window = SDL_CreateWindow(<kbd>"Koch Fractal"</kbd>, SDL_WINDOWPOS_UNDEFINED,
+		SDL_WINDOWPOS_UNDEFINED, SCR_W, SCR_H, SDL_WINDOW_SHOWN); <cite>//Creating window</cite>
+	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED); <cite>//Creating renderer</cite>
+
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); <cite>//Setting default screen color</cite>
+
+	generator = <var>new</var> SierpinskiTile(SCR_W, SCR_H, TILE_W, TILE_H); <cite>//Creating fractal generator</cite>
+	generator-&gt;setTile((SCR_W / TILE_W) / 2, 0); <cite>//Setting a tile at the top middle of the screen</cite>
+
+	<var>int</var> row = 0;
+	<var>while</var> (!quit)
+	{
+		<var>while</var> (SDL_PollEvent(&amp;event) &gt; 0) <cite>//Minimal event polling for proper quitting</cite>
+			<var>if</var> (event.type == SDL_QUIT)
+				quit = <var>true</var>;
+
+		<cite>//***NOTE: Screen must not be cleaned as the draw() method draws a row only</cite>
+		<cite>//and deletes all tiles of the previous rows***</cite>
+		<cite>//SDL_RenderClear(renderer);</cite>
+
+		<var>if</var> (row &lt; SCR_H / TILE_H) <cite>//Draw and calculate until the last row</cite>
+		{
+			generator-&gt;draw(renderer, 0, 255, 0, row-1); <cite>//Drawing the row in green color</cite>
+
+			SDL_RenderPresent(renderer); <cite>//Updating screen</cite>
+
+			generator-&gt;calculate(row++); <cite>//Calculating the next row</cite>
+		}
+	}
+
+	<var>delete</var> generator; <cite>//Deallocating fractal generator</cite>
+
+	SDL_DestroyRenderer(renderer);
+	SDL_DestroyWindow(window);
+	SDL_Quit(); <cite>//Clearing all SDL resources</cite>
+
+	<var>return</var> 0;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+It's pretty much straight forward and I hope that you understand that...<br>
+<br>
+<H3>The Results</H3>
+Following images show the result. It was executed on a mobile device using C4Droid, a program for running C++ programs on Android.<br>
+<br>
+I hope that this excites you for more programming, algorithms and fractals. For more such things, visit my blog <A HREF="http://bacprogramming.wordpress.com">bacprogramming.wordpress.com</A>.<br>
+<br>
+The detailing depends on the constants TILE_W and TILE_H. The lesser the values, the more detailing the fractal shows.<br>
+<br>
+Less details:-<br>
+<br>
+<IMG SRC="1detail.png" alt="">
+<br>
+Average details:-<br>
+<br>
+<IMG SRC="2detail.png" alt="">
+<br>
+More details:-<br>
+<br>
+<IMG SRC="3detail.png" alt="">
+<br>
+Most details:-<br>
+<br>
+<IMG SRC="4detail.png" alt="">
+<br>
+I ran it on PC as well. Here is another extremely detailed fractal:-<br>
+<br>
+<IMG SRC="st.png" alt="">
+<br>
+<H3>The Randomness!</H3>
+With setting a tile at the top corner, we can see that the fractal produces confused and hardly understandable patterns of triangles which looks <EM>random</EM> in nature.<br>
+<br>
+The same code with different setTile() at start can produce this:<br>
+<br>
+<IMG SRC="Screenshot_2015-10-12-23-42-38.p" alt="">
+</div></div><div id="CH_bb"></div><div id="CH_scoreapp"></div><script type="text/javascript">new Score('CH_scoreapp','/articles/score.cgi','LyTbqMoL');</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder selected articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/articles/">Articles</a></b></h3>
+<ul>
+<li><a href="/articles/algorithms/">Algorithms</a></li><li><a href="/articles/cpp11/">C++ 11</a></li><li><a href="/articles/graphics/">Graphics and multimedia</a></li><li><a href="/articles/howto/">How-To</a></li><li><a href="/articles/language/">Language Features</a></li><li><a href="/articles/linux/">Unix/Linux programming</a></li><li><a href="/articles/sourcecode/">Source Code</a></li><li><a href="/articles/standard_library/">Standard Library</a></li><li><a href="/articles/tips/">Tips and Tricks</a></li><li><a href="/articles/tools/">Tools and Libraries</a></li><li><a href="/articles/visualcpp/">Visual C++</a></li><li><a href="/articles/winapi/">Windows API</a></li></ul>
+</div>
+<div id="I_subnav"></div>
+</div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Farticles%2FLyTbqMoL%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+onSession(function(us) {
+		document.getElementById('I_subnav').innerHTML=
+			us.ok?
+				'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul>'+
+				'<li><a href="/articles/myitems.cgi">My items</a></li>'+
+				(us.auth(32768)?'<li><a href="/articles/adminitems.cgi">Admin items</a></li>':'')+
+				'</ul></div>'
+			:'';
+	}); onSession(function (us) {
+		var el=document.getElementById('CH_bb'); el.innerHTML='';
+		if ( (us.auth(32768)) || ((us.uniqid=='Di3k92yv')&&(us.auth(128))) ) {
+			el.appendChild(btn('Edit article','Edit this version of the article','edit','/articles/edit.cgi?a=LyTbqMoL'));
+	
+			if (us.auth(32768)) {
+				el.appendChild(btn('Delete article','Delete this article','delete','javascript:artdel()'));
+			}
+	
+		}
+	});
+	function artdel() { if (confirm('WARNING: You are about to delete this page. Confirm?')) window.location='/articles/delete.cgi?a=LyTbqMoL'; }
+	ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

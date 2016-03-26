@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>A Google Docs based backup application - C++ Articles</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/articles/">Articles</a></li>
+<li class="here">A Google Docs based backup application</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div id="I_content">
+<div class="C_art">
+<div id="I_author">Published by <b><a href="/user/Michael_Haephrati/" rel="author">Michael Haephrati</a></b></div>
+<div id="I_date">Aug 7, 2014 (last update: Aug 28, 2014)</div>
+<h1>A Google Docs based backup application</h1>
+<div id="I_score">Score: 3.9/5 (13 votes)</div>
+<div id="I_stars"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-half.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"></div>
+<div id="I_content">
+<BLOCKQUOTE>
+<I><STRONG>A C++ client for uploading documents to your Google Docs account.</STRONG></I>
+<UL>
+<LI><A HREF="one.zip">Download demo - 123 KB</A></LI>
+<LI><A HREF="two.zip">Download source code - 80.1 KB</A> </LI>
+</UL>
+<h2>Introduction</h2>
+<p>
+My name is Michael Haephrati and this is my first article here. I wanted to write a small application which allows dragging and dropping multiple files and folders into a container in order to send them to an online storage. This article was written before Google introduced Google Drive, but it is still practical to use it for quick upload of multiple files to your Google Drive. <br>
+</P>
+This article explains how to develop such an application that will use the free and the paid GoogleDocs service of storing documents and files online, allowing the end user to drag and drop files and entire folders and by doing so, backing up the selected files to a pre-defined GoogleDocs account.<br>
+<br>
+Google Docs allows users to create and upload documents and files, work on them, and store them online. The service is free of charge; however, there are limitations which don’t exist when the paid service is used.<br>
+<br>
+<h2>Google Docs Account Types</h2>
+<br>
+<P>As described here, the free account type has its limitations when it comes to the types of files allowed to be uploaded. These limitations apply to the programmatic usage of the service, as opposed to using the online interface <a href="http://docs.google.com"target="_blank">docs.google.com</a>.<br>
+<br>
+To lift some of the limitations, the end user should hold a Premier account. Users of the free account can only upload HTML, PDF, Word, Excel, PowerPoint, OpenOffice, text, and images.</P>
+<br>
+<br>
+<h2>Implementation</h2>
+<br>
+As a base, we have developed a class library named SmartHTTP.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br></code></pre></td>
+<td class="source"><pre><code><dfn>#define HTTP_POST_VERB                      L"POST"</dfn>
+<dfn>#define HTTP_CONTENT_LENGTH                 L"Content-Length"</dfn>
+<dfn>#define HTTP_CONTENT_TYPE                   L"Content-Type"</dfn>
+<dfn>#define HTTP_MIME_BINARY                    L"application/octet-stream"</dfn>
+<dfn>#define HTTP_MIME_FORM_URL_ENCODED          L"application/x-www-form-urlencoded" </dfn></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+Connecting to the GoogleDocs server is done by using:<br>
+<br>
+<br>
+<span class="auto"><code class="source">BOOL Connect(LPCTSTR szServerName, INTERNET_PORT nServerPort = INTERNET_DEFAULT_HTTP_PORT);</code></span> <br>
+<br>
+and the call:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br></code></pre></td>
+<td class="source"><pre><code><var>if</var> (!m_internet.Connect(GOOGLE_LOGIN_SERVER, INTERNET_DEFAULT_HTTPS_PORT))
+    SetWinInetError(m_internet.GetError());
+<var>else</var>
+{
+<cite>//... here we upload the documents, etc. </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+The Google Docs server is defined here:<br>
+<br>
+<span class="auto"><code class="source">GOOGLE_LOGIN_SERVER is L”www.google.com”</code></span>
+<br>
+<P>You may need to open an account with Google. A GMail account will do. If you are logged in, just go to <a href="http://docs.google.com"target="_blank">http://docs.google.com</a>
+<P>
+<IMG SRC="google.jpg" alt=""> <br>
+</P>
+Basically, my application is a container to which files and entire folders can be dragged and dropped, causing all files within them, including files inside subfolders, to be sent to the GoogleDocs server. When the application is started, the container appears.<br>
+<br>
+<IMG SRC="DocsOnline1.jpg" alt="">
+<P>
+Closing it will send it to the IconTray. The Icon application's Tray Icon is used to display status messages during runtime. For example, when a file is dragged to the container, it is being added to the queue, and the following message appears:<br>
+</P>
+<br>
+<IMG SRC="DocsOnline3.jpg" alt="">
+<br>
+<br>
+<P><STRONG>About the conversion to Google Docs format</STRONG></P>
+Google Docs offers documents uploaded to be converted to Google Docs format. This conversion is explained here. From my experience, some types of documents may get corrupted as a result of such conversion, especially Word documents in right to left languages (Arabic, Hebrew, etc.).<br>
+<br>
+For that reason, I have added a checkbox to allow the end user to decide whether to convert or not.<br>
+<br>
+But before the first file can be copied, the Settings dialog pops up allowing the end user to enter the Google Docs account details. In addition, the following options can be set:<br>
+<BLOCKQUOTE>
+<P><LI><STRONG>Google Apps Premier Account</STRONG>- allows indicating the type of the account.</LI></P>
+<P><LI><STRONG>List of Mirror Folders</STRONG>- allows adding (or deleting) local folders which will be mirrored at the server side keeping the structure of the files and folders under the given path.</LI></P>
+<P><LI><STRONG>Recreate Folder Structure in Google Docs</STRONG>- when this option is set, documents are copied to a folder with the same name as the local one.</LI></P>
+<P><LI><STRONG>Upload all Documents to the Root Google Docs folder</STRONG>- when this option is set, documents are copied to the root directory at the server side.</LI></P>
+<P><li><STRONG>Start Program on Windows Startup</STRONG>- launches DocsOnline when Windows starts.</LI></P>
+</BLOCKQUOTE>
+<IMG SRC="DocsOnline2.jpg" alt="">
+<br>
+Premier account holders can copy more types of files which are restricted for regular (free) accounts.<br>
+<br>
+<STRONG>The logic behind my intuitive backup</STRONG>
+<P>I believe applications and utilities should be intuitive and easy to use. For example, my application allows dragging and dropping folders, and by doing so, all files, and files within all subfolders, are backed up, after checking against previous copies already on the server. The logic I use for such "intuitive backup" is done using an examination of each file and a calculation of a hash which represents its contents. This logic addresses the following scenarios:</P>
+<BLOCKQUOTE>
+    <P>1. <STRONG>Different files having the same name</STRONG> - copy, but automatically generate a new name. Add a log entry.</P>
+     <P>2. <STRONG>Identical files having different names</STRONG> - add a log entry (in a later version, we shall unite such files in to a single one with a single name).</P>
+     <P>3. <STRONG>Identical files having the same name</STRONG> - skip.</P>
+</BLOCKQUOTE>
+<br>
+<h2>Credits</h2>
+The <a href="http://www.codeproject.com/Articles/74/Adding-Icons-to-the-System-Tray"target="_blank">SystemTraySDK class</a> class by <a href="http://www.codeproject.com/script/Membership/View.aspx?mid=1"target="_blank">Chris Maunder</a>, used in my application, is a light wrapper around the Windows system tray stuff. It adds an icon to the system tray with the specified tooltip text and callback notification value, which is sent back to the parent window.<br>
+<br>
+<br>
+<h2>License</h2>
+<br>
+This article, along with any associated source code and files, is licensed under <a href="http://www.codeproject.com/info/cpol10.aspx"rel="license"target="_blank">The Code Project Open License (CPOL)</a>
+<br>
+<br>
+<h2 id="ctl00_AboutHeading">About the Author</h2>
+<BLOCKQUOTE><IMG SRC="Mr.M.png" alt=""></BLOCKQUOTE>
+<a href="http://www.codeproject.com/Members/mhaephrati"target="_blank"><B>Michael N. Haephrati</B></a>, is an entrepreneur, inventor and a musician. Haephrati worked on many ventures starting from HarmonySoft, designing Rashumon, the first Graphical Multi-lingual word processor for Amiga computer. During 1995-1996 he worked as a Contractor with <a rel="nofollow"href="http://www.apple.com"target="_blank">Apple </a> at Cupertino. Worked at a research institute made the fist steps developing the credit scoring field in Israel. He founded Target Scoring and developed a credit scoring system named ThiS, based on geographical statistical data, participating VISA CAL, Isracard, Bank Leumi and Bank Discount (Target Scoring, being the VP Business Development of a large Israeli institute).<br>
+During 2000, he founded Target Eye, and developed the first remote PC surveillance and monitoring system, named <a rel="nofollow" title="Target Eye" href="http://www.targeteye.biz"target="_blank">Target Eye</a>.<br>
+<br>
+Other ventures included: <a rel="nofollow" title="Data Optimization" href="http://dataoptimisation.wordpress.com/"target="_blank">Data Cleansing</a> (as part of the <a rel="nofollow" title="DataTune by Michael Haephrati" href="http://datatune.wordpress.com/"target="_blank">DataTune&nbsp;</a> system which was implemented in many organizations. <br>
+<br>
+<br>
+<br>
+<a rel="nofollow" href="https://twitter.com/haephrati"class="twitter-follow-button"data-show-count="false"data-size="large"target="_blank">Follow @haephrati</a>
+<br>
+<br>
+Follow on   <a href="http://www.twitter.com/haephrati?rel=author"rel="author" class="small-text"target="_blank">Twitter</a>, <a href="https://plus.google.com/103057860647722688896?rel=author"rel="author" class="small-text"target="_blank">Google</a>, <a href="http://www.linkedin.com/profile/view?id=344149159"rel="author" class="small-text"target="_blank">LinkedIn</a>   <br>
+<br>
+<br>
+<br>
+<a href="http://www.cplusplus.com/articles/L8vU7k9E/">Article Top</a>
+<br>
+</BLOCKQUOTE><p>Attachments:
+	[<a href="DocsOnlinebyMichaelHaephratiSrc ">DocsOnlinebyMichaelHaephratiSrc </a>]
+	[<a href="one.zip">one.zip</a>]
+	[<a href="two.zip">two.zip</a>]
+</p>
+</div></div><div id="CH_bb"></div><div id="CH_scoreapp"></div><script type="text/javascript">new Score('CH_scoreapp','/articles/score.cgi','L3TbqMoL');</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder selected articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/articles/">Articles</a></b></h3>
+<ul>
+<li><a href="/articles/algorithms/">Algorithms</a></li><li><a href="/articles/cpp11/">C++ 11</a></li><li><a href="/articles/graphics/">Graphics and multimedia</a></li><li><a href="/articles/howto/">How-To</a></li><li><a href="/articles/language/">Language Features</a></li><li><a href="/articles/linux/">Unix/Linux programming</a></li><li><a href="/articles/sourcecode/">Source Code</a></li><li><a href="/articles/standard_library/">Standard Library</a></li><li><a href="/articles/tips/">Tips and Tricks</a></li><li><a href="/articles/tools/">Tools and Libraries</a></li><li><a href="/articles/visualcpp/">Visual C++</a></li><li><a href="/articles/winapi/">Windows API</a></li></ul>
+</div>
+<div id="I_subnav"></div>
+</div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Farticles%2FL3TbqMoL%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+onSession(function(us) {
+		document.getElementById('I_subnav').innerHTML=
+			us.ok?
+				'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul>'+
+				'<li><a href="/articles/myitems.cgi">My items</a></li>'+
+				(us.auth(32768)?'<li><a href="/articles/adminitems.cgi">Admin items</a></li>':'')+
+				'</ul></div>'
+			:'';
+	}); onSession(function (us) {
+		var el=document.getElementById('CH_bb'); el.innerHTML='';
+		if ( (us.auth(32768)) || ((us.uniqid=='Lhv7X9L8')&&(us.auth(128))) ) {
+			el.appendChild(btn('Edit article','Edit this version of the article','edit','/articles/edit.cgi?a=L3TbqMoL'));
+	
+			if (us.auth(32768)) {
+				el.appendChild(btn('Delete article','Delete this article','delete','javascript:artdel()'));
+			}
+	
+		}
+	});
+	function artdel() { if (confirm('WARNING: You are about to delete this page. Confirm?')) window.location='/articles/delete.cgi?a=L3TbqMoL'; }
+	ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

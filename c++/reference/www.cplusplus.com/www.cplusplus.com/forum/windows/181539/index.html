@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Debug Assertion Failed! (Binary Search t - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/windows/">Windows Programming</a></li>
+<li class="here">Debug Assertion Failed! (Binary Search t</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico question" title="question">&nbsp;</div> Debug Assertion Failed! (Binary Search tree)</h3><span id="CH_edttl"></span><span class="rootdatPost" title="181539,root,0,-1,19,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg890471"><span title="890471,152022,1023,16,1"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg890471" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmb4db3b6375" title="Sun, 20 Dec 2015 20:51:50 +0000"></span><script type="text/javascript">WhenId('CH_zTmb4db3b6375');</script><noscript>Dec 20, 2015 at 8:51pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Paragon/"><b>Paragon</b> (16)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i890471">
+I've asked the same Question here <a href="http://stackoverflow.com/questions/34422852/debug-assertion-failed-binary-search-tree">http://stackoverflow.com/questions/34422852/debug-assertion-failed-binary-search-tree</a><br>
+<br>
+IM IN DESPERATE NEED OF HELP.<br>
+<br>
+Im working on a project, What I want is to get data from a database (MySql) and store it in a Tree. And be able to do insertion, deletion or updates on the nodes, if any of these commands are performed on a tree then changes must reflect on the database as well. (via Windows Form)<br>
+**UPDATED**<br>
+This error shows up when I do the search Via search button<br>
+<br>
+Debug Assertion Failed!<br>
+<br>
+ here's my tree code:<br>
+ just showing the insertion module.<br>
+  <br>
+&gt; Btree.cpp<br>
+<br>
+        <div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br>59<br>60<br>61<br>62<br>63<br>64<br>65<br>66<br>67<br>68<br>69<br>70<br>71<br>72<br>73<br>74<br>75<br>76<br>77<br>78<br>79<br>80<br>81<br>82<br>83<br>84<br>85<br>86<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include "Btree.h"</dfn>
+        
+        Btree::Btree()
+        {
+        	root = NULL;
+        	rootnum = NULL;
+        }
+        
+        Btree::~Btree(){
+        	<var>delete</var> root;
+        }
+        <var>bool</var> Btree::isEmpty() <var>const</var> { 
+        	<var>return</var> root == NULL; 
+        }
+        <var>bool</var> Btree::isnumEmpty() <var>const</var> {
+        	<var>return</var> rootnum == NULL;
+        }
+        string Btree::treeSearch(string name){
+  
+        	<var>bool</var> found = <var>false</var>;
+        	<var>if</var> (isEmpty())
+        	{
+        		MessageBox::Show( <kbd>" This Tree is empty! "</kbd> );
+                        <var>return</var> 0;
+        	}
+        
+        	node* curr;
+        	node* parent;
+        	curr = root;
+        
+        	<var>while</var> (curr != NULL)
+        	{
+        		<var>if</var> (curr-&gt;strname == name)
+        		{
+        			found = <var>true</var>;
+        			<var>return</var> name;
+        			<var>break</var>;
+        		}
+        		<var>else</var>
+        		{
+        			parent = curr;
+        			<var>if</var> (name&gt;curr-&gt;strname) curr = curr-&gt;right;
+        			<var>else</var> curr = curr-&gt;left;
+        		}
+        	}
+        	<var>if</var> (!found)
+        	{
+        		MessageBox::Show(<kbd>" Data not found! "</kbd>);
+                        <var>return</var> 0;
+        	}
+        }
+        
+        <var>void</var> Btree::insert(string d)
+        {
+        	node* t = <var>new</var> node;
+        	node* parent;
+        	t-&gt;strname = d;
+        	t-&gt;left = NULL;
+        	t-&gt;right = NULL;
+        	parent = NULL;
+        	MessageBox::Show(<kbd>" pointer is in insert "</kbd>);
+        	<cite>// is this a new tree?</cite>
+        	<var>if</var> (isEmpty()){
+        		root = t;
+        		MessageBox::Show(<kbd>" Root sval chngd "</kbd>);
+        }
+        	<var>else</var>
+        	{
+        		MessageBox::Show(<kbd>" storing val "</kbd>);
+        		<cite>//Note: ALL insertions are as leaf nodes</cite>
+        		node* curr;
+        		curr = root;
+        		<cite>// Find the Node's parent</cite>
+        		<var>while</var> (curr)
+        		{
+        			parent = curr;
+        			<var>if</var> (t-&gt;strname &gt; curr-&gt;strname) curr = curr-&gt;right;
+        			<var>else</var> curr = curr-&gt;left;
+        		}
+        
+        		<var>if</var> (t-&gt;strname &lt; parent-&gt;strname)
+        			parent-&gt;left = t;
+        		<var>else</var>
+        			parent-&gt;right = t;
+        	}
+        }</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+    <br>
+        <br>
+    <br>
+    &gt; Btree.h<br>
+    <br>
+   <div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br></code></pre></td>
+<td class="source"><pre><code> <dfn>#include &lt;iostream&gt;</dfn>
+    <dfn>#include &lt;string&gt;</dfn>
+    
+    <var>using</var> <var>namespace</var> std;
+    <var>using</var> <var>namespace</var> System;
+    <var>using</var> <var>namespace</var> System::ComponentModel;
+    <var>using</var> <var>namespace</var> System::Collections;
+    <var>using</var> <var>namespace</var> System::Windows::Forms;
+    <var>using</var> <var>namespace</var> System::Data;
+    <var>using</var> <var>namespace</var> System::Drawing;
+    
+    <dfn>#ifndef Btree_H</dfn>
+    <dfn>#define Btree_H</dfn>
+    <var>class</var> Btree{
+    
+    <var>private</var>:
+    	<var>typedef</var> <var>struct</var> node{
+    		string strname;
+    		string strnum;
+    		node* left;
+    		node* right;
+    		node* Lnum;
+    		node* Rnum;
+    	};
+    	node* root;
+    	node* rootnum;
+    <var>public</var>:
+    	<cite>//constructor</cite>
+    	Btree();
+    	~Btree();
+    <var>public</var>:	
+    		<var>void</var> insert(string);
+    		<var>void</var> remove(string);
+    		string treeSearch(string);
+    	<cite>//void insertnum(string);</cite>
+    		<var>bool</var> isEmpty() <var>const</var>;
+    		<var>bool</var> isnumEmpty() <var>const</var>;
+    };
+    
+    
+    
+    <dfn>#endif </dfn></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+&gt; my Form's coding FOR **INSERTION**:<br>
+<br>
+    <br>
+   <div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br></code></pre></td>
+<td class="source"><pre><code> <var>private</var>: System::Void FetchData_Click(System::Object^  sender, System::EventArgs^  e) {
+    Btree t;
+    <cite>//String^ a;</cite>
+    String^ c = <kbd>"Syed"</kbd>;
+    std::string ststring = msclr::interop::marshal_as&lt;std::string&gt;(c);
+    t.insert(ststring);
+    }</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+&gt; For Search Button coding:<br>
+<br>
+    <div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br></code></pre></td>
+<td class="source"><pre><code><var>private</var>: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
+    	String^ name = namep-&gt;Text;
+    	<cite>//String^ st = namep-&gt;Text;</cite>
+    	Btree t;
+    	<cite>//conversion</cite>
+    	std::string ststring = msclr::interop::marshal_as&lt;std::string&gt;(name);
+    	string iftrue = t.treeSearch(ststring);
+    	<cite>//string iftrue = "Syed";</cite>
+    	String^ str2 = gcnew String(iftrue.c_str());
+    	<var>if</var> (str2 != <kbd>"n"</kbd>){
+    		String^ constring = L<kbd>"datasource=localhost;port=3306;username=root;password=bu123"</kbd>;
+    		MySqlConnection^ conDataBase = gcnew MySqlConnection(constring);
+    		MySqlCommand^ cmdDataBase = gcnew MySqlCommand(<kbd>"select * from telephone.phonebook where PName = '"</kbd> + str2 + <kbd>"';"</kbd>, conDataBase);
+    		MySqlDataReader^ myReader;
+    		<var>try</var>{
+    			conDataBase-&gt;Open();
+    			myReader = cmdDataBase-&gt;ExecuteReader();
+    			<var>if</var> (myReader-&gt;Read()){
+    				String^ phone = myReader-&gt;GetString(<kbd>"PhoneNumber"</kbd>);
+    				PN-&gt;Text = phone;
+    				String^ phone1 = myReader-&gt;GetString(<kbd>"PhoneNumber1"</kbd>);
+    				PN1-&gt;Text = phone1;
+    				String^ phone2 = myReader-&gt;GetString(<kbd>"PhoneNumber2"</kbd>);
+    				PN2-&gt;Text = phone2;
+    				String^ phonety = myReader-&gt;GetString(<kbd>"PhoneNumberType"</kbd>);
+    				pt-&gt;Text = phonety;
+    				String^ phonety1 = myReader-&gt;GetString(<kbd>"PhoneNumberType1"</kbd>);
+    				pt1-&gt;Text = phonety1;
+    				String^ phonety2 = myReader-&gt;GetString(<kbd>"PhoneNumberType2"</kbd>);
+    				pt2-&gt;Text = phonety2;
+    				String^ cat = myReader-&gt;GetString(<kbd>"Category"</kbd>);
+    				category-&gt;Text = cat;
+    				String^ Gender = myReader-&gt;GetString(<kbd>"Gender"</kbd>);
+    				gender-&gt;Text = Gender;
+    				String^ Email = myReader-&gt;GetString(<kbd>"Email"</kbd>);
+    				email-&gt;Text = Email;
+    				String^ Adres = myReader-&gt;GetString(<kbd>"Address"</kbd>);
+    				address-&gt;Text = Adres;
+    				String^ ct = myReader-&gt;GetString(<kbd>"City"</kbd>);
+    				city-&gt;Text = ct;
+    			}
+    			<var>else</var> <var>if</var> (!myReader-&gt;Read()){
+    				MessageBox::Show(<kbd>"No such Name found!"</kbd>);
+    			}
+    
+    		}
+    		<var>catch</var> (Exception^ex){
+    			MessageBox::Show(ex-&gt;Message);
+    		}
+    	}
+    	<var>else</var> 
+    		MessageBox::Show(<kbd>"No record"</kbd>);
+    }</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTmad3a0f2025" title="Wed, 23 Dec 2015 15:08:03 +0000"></span><script type="text/javascript">WhenId('CH_zTmad3a0f2025');</script><noscript>Dec 23, 2015 at 3:08pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn890471"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg890882"><span title="890882,183677,1023,92,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg890882" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmef5e949c61" title="Tue, 22 Dec 2015 19:02:59 +0000"></span><script type="text/javascript">WhenId('CH_zTmef5e949c61');</script><noscript>Dec 22, 2015 at 7:02pm UTC</noscript></div>
+<div class="dwho"><a href="/user/oren_drobitsky/"><b>oren drobitsky</b> (92)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i890882">
+Setting MySQL On windows took me 4 hours and i still failed with it, i just gave up with it.<br>
+You may try to use a differnet database.. such as SQLite.<br>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn890882"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg890884"><span title="890884,152022,1023,16,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg890884" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmb55bd562f2" title="Tue, 22 Dec 2015 19:07:28 +0000"></span><script type="text/javascript">WhenId('CH_zTmb55bd562f2');</script><noscript>Dec 22, 2015 at 7:07pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Paragon/"><b>Paragon</b> (16)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i890884">
+My problem is not with the MYSQL, its working perfectly fine in my program.<br>
+<br>
+My problem is with tree implementation and its driving me nuts, <b>Debug Assertion Failed!</b> is the Error.<br>
+
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm1123df0e9f" title="Tue, 22 Dec 2015 19:08:10 +0000"></span><script type="text/javascript">WhenId('CH_zTm1123df0e9f');</script><noscript>Dec 22, 2015 at 7:08pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn890884"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg890898"><span title="890898,78419,1023,7174,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg890898" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm5544c6b190" title="Tue, 22 Dec 2015 19:57:28 +0000"></span><script type="text/javascript">WhenId('CH_zTm5544c6b190');</script><noscript>Dec 22, 2015 at 7:57pm UTC</noscript></div>
+<div class="dwho"><a href="/user/cire/"><b>cire</b> (7174)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i890898">
+Have you tried using the debugger?  Inspecting the call stack would let you pinpoint where the assertion is failed.<br>
+<br>
+One thing that stands out is that <tt>Btree::TreeSearch</tt> does not always return a value, although it promises to.  Hello, undefined behavior.
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTmeaa05a0d74" title="Tue, 22 Dec 2015 20:01:57 +0000"></span><script type="text/javascript">WhenId('CH_zTmeaa05a0d74');</script><noscript>Dec 22, 2015 at 8:01pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn890898"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg890908"><span title="890908,152022,1023,16,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg890908" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm135ace005d" title="Tue, 22 Dec 2015 21:34:50 +0000"></span><script type="text/javascript">WhenId('CH_zTm135ace005d');</script><noscript>Dec 22, 2015 at 9:34pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Paragon/"><b>Paragon</b> (16)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i890908">
+Nope, i didn't.  (bcz i really dont know how) Im just a Noob+<br>
+<br>
+<br>
+search func does always return a value i have removed it with this MessageBox::Show just to know that whether my program is reaching at that point or not.<br>
+<br>
+it returns a <b>string falseCondi</b> which I have initialiez as falseCondi="b". <br>
+<br>
+but still it gives me this Error.
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTme132190be1" title="Tue, 22 Dec 2015 21:35:33 +0000"></span><script type="text/javascript">WhenId('CH_zTme132190be1');</script><noscript>Dec 22, 2015 at 9:35pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn890908"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg890952"><span title="890952,78419,1023,7174,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg890952" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm66df194884" title="Wed, 23 Dec 2015 01:32:57 +0000"></span><script type="text/javascript">WhenId('CH_zTm66df194884');</script><noscript>Dec 23, 2015 at 1:32am UTC</noscript></div>
+<div class="dwho"><a href="/user/cire/"><b>cire</b> (7174)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i890952">
+<table class="quote"><tr><td class="qd">search func does always return a value i have removed it with this MessageBox::Show just to know that whether my program is reaching at that point or not.</td></tr></table><br>
+In the code you have supplied, <tt>treeSearch</tt> does not always return a value.  If you're showing us significantly different code than you're using, how are we supposed to make intelligent observations about it?
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTmb88218dcbf" title="Wed, 23 Dec 2015 01:33:59 +0000"></span><script type="text/javascript">WhenId('CH_zTmb88218dcbf');</script><noscript>Dec 23, 2015 at 1:33am UTC</noscript></span>
+<span class="dbtn" id="CH_btn890952"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg891003"><span title="891003,199131,1023,610,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg891003" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm9d0a3eb4e1" title="Wed, 23 Dec 2015 09:28:34 +0000"></span><script type="text/javascript">WhenId('CH_zTm9d0a3eb4e1');</script><noscript>Dec 23, 2015 at 9:28am UTC</noscript></div>
+<div class="dwho"><a href="/user/Thomas1965/"><b>Thomas1965</b> (610)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i891003">
+This line looks a bit suspious to me. Where did you get it?<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>&nbsp;</code></pre></td>
+<td class="source"><pre><code>std::string ststring = msclr::interop::marshal_as&lt;std::string&gt;(c);</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Maybe you can test it in a separate program.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn891003"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg891035"><span title="891035,152022,1023,16,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg891035" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmc4f05afa89" title="Wed, 23 Dec 2015 15:09:17 +0000"></span><script type="text/javascript">WhenId('CH_zTmc4f05afa89');</script><noscript>Dec 23, 2015 at 3:09pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Paragon/"><b>Paragon</b> (16)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i891035">
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>&nbsp;</code></pre></td>
+<td class="source"><pre><code>In the code you have supplied, treeSearch does not always <var>return</var> a value. If you<kbd>'re showing us significantly different code than you'</kbd>re <var>using</var>, how are we supposed to make intelligent observations about it?</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+I have Edited the code.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn891035"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg891036"><span title="891036,152022,1023,16,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg891036" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm48ccc716c1" title="Wed, 23 Dec 2015 15:11:49 +0000"></span><script type="text/javascript">WhenId('CH_zTm48ccc716c1');</script><noscript>Dec 23, 2015 at 3:11pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Paragon/"><b>Paragon</b> (16)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i891036">
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br></code></pre></td>
+<td class="source"><pre><code>This line looks a bit suspious to me. Where did you get it?
+ 
+std::string ststring = msclr::interop::marshal_as&lt;std::string&gt;(c);
+
+
+Maybe you can test it in a separate program.</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+its conversion <br>
+<tt><br>
+<a href="https://msdn.microsoft.com/en-us/library/bb384865.aspx">https://msdn.microsoft.com/en-us/library/bb384865.aspx</a></tt><br>
+<br>
+taken from here<br>
+<a href="http://stackoverflow.com/questions/946813/c-cli-converting-from-systemstring-to-stdstring">http://stackoverflow.com/questions/946813/c-cli-converting-from-systemstring-to-stdstring</a>
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn891036"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg891051"><span title="891051,39669,1023,2056,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg891051" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmbc4cd3504f" title="Wed, 23 Dec 2015 16:03:50 +0000"></span><script type="text/javascript">WhenId('CH_zTmbc4cd3504f');</script><noscript>Dec 23, 2015 at 4:03pm UTC</noscript></div>
+<div class="dwho"><a href="/user/modoran/"><b>modoran</b> (2056)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i891051">
+You should stick with one form of strings. Sure, not related with your problem, but why mix 2 different programming language together in the same application ?
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn891051"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg891065"><span title="891065,199131,1023,610,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg891065" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm48e3526d3f" title="Wed, 23 Dec 2015 16:35:13 +0000"></span><script type="text/javascript">WhenId('CH_zTm48e3526d3f');</script><noscript>Dec 23, 2015 at 4:35pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Thomas1965/"><b>Thomas1965</b> (610)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i891065">
+@paragon,<br>
+<br>
+thanks I didn't know that the conversion is so simple. All the other examples I have seen were more complicated.<br>
+<br>
+@modoran<br>
+<table class="quote"><tr><td class="qd">but why mix 2 different programming language together in the same application ? </td></tr></table><br>
+<br>
+How else would you like to build a GUI? MFC, Qt, wxWidgets have all their own string types and you need to convert your normal std::strings.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn891065"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg891251"><span title="891251,152022,1023,16,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg891251" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmcfbc342bed" title="Thu, 24 Dec 2015 13:43:06 +0000"></span><script type="text/javascript">WhenId('CH_zTmcfbc342bed');</script><noscript>Dec 24, 2015 at 1:43pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Paragon/"><b>Paragon</b> (16)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i891251">
+<span class="auto"><code class="source">You should stick with one form of strings. Sure, not related with your problem, but why mix 2 different programming language together in the same application ?</code></span><br>
+<br>
+1. That's the the problem I'm sure of it, because i have tested passing the converted variable into a a standard string variable (in the search method) and its working perfectly, but when i do it with nodes it becomes pain in the a**   <span class="auto"><code class="source">Debug Assertion Failed! </code></span><br>
+<br>
+2. Because it was my project requirement.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn891251"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg891253"><span title="891253,152022,1023,16,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg891253" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmc8c97dab2b" title="Thu, 24 Dec 2015 13:50:27 +0000"></span><script type="text/javascript">WhenId('CH_zTmc8c97dab2b');</script><noscript>Dec 24, 2015 at 1:50pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Paragon/"><b>Paragon</b> (16)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i891253">
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br></code></pre></td>
+<td class="source"><pre><code>@paragon,
+
+thanks I didn<kbd>'t know that the conversion is so simple. All the other examples I have seen were more complicated. </kbd></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+My Pleasure. 
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn891253"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg891267"><span title="891267,199131,1023,610,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg891267" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm0191a1b912" title="Thu, 24 Dec 2015 16:04:46 +0000"></span><script type="text/javascript">WhenId('CH_zTm0191a1b912');</script><noscript>Dec 24, 2015 at 4:04pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Thomas1965/"><b>Thomas1965</b> (610)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i891267">
+Why don't you split your program in two parts - only for testing ?<br>
+<br>
+One part could be a program that creates a few CLR strings, converts them to std::strings, insert, removes and searches the tree.<br>
+<br>
+The other program would be a CLR program that just reads the data from the DB and prints it on the screen.<br>
+<br>
+It might me more evident where the problem is.<br>
+<br>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn891267"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg891357"><span title="891357,152022,1023,16,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg891357" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm6f2056826b" title="Fri, 25 Dec 2015 17:03:53 +0000"></span><script type="text/javascript">WhenId('CH_zTm6f2056826b');</script><noscript>Dec 25, 2015 at 5:03pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Paragon/"><b>Paragon</b> (16)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i891357">
+Already did ^ <br>
+that's why i need some experienced person to solve this, because I cannot find the cause. 
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn891357"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg891359"><span title="891359,199131,1023,610,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg891359" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm27c14d27d0" title="Fri, 25 Dec 2015 17:45:05 +0000"></span><script type="text/javascript">WhenId('CH_zTm27c14d27d0');</script><noscript>Dec 25, 2015 at 5:45pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Thomas1965/"><b>Thomas1965</b> (610)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i891359">
+In what part does it actually crash?<br>
+<br>
+I did a little experiment and couldn't find a problem with your tree part.<br>
+Since I used VS 2005 I could not use <span class="auto"><code class="source">msclr::interop::marshal_as&lt;std::string&gt;(c);</code></span><br>
+and had to use a different conversion method. If you want to try it...<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;iostream&gt;</dfn>
+<dfn>#include &lt;string&gt;</dfn>
+<dfn>#include &lt;stdlib.h&gt;</dfn>
+<dfn>#include "btree.h"</dfn>
+
+<var>using</var> <var>namespace</var> std;
+<var>using</var> <var>namespace</var> System;
+<var>using</var> <var>namespace</var> System::Runtime::InteropServices; 
+
+<dfn>#define TRACE(...) { printf(__VA_ARGS__); }</dfn>
+
+string ClrToStd(String^ in)
+{
+  IntPtr ptr = Marshal::StringToHGlobalAnsi(in-&gt;ToString());
+  string str = <var>reinterpret_cast</var>&lt;<var>char</var>*&gt;(<var>static_cast</var>&lt;<var>void</var>*&gt;(ptr));
+  Marshal::FreeHGlobal(ptr);                   
+  <var>return</var> str;
+}
+
+<var>void</var> main(<var>void</var>)
+{
+  <var>char</var> *names[] = {<kbd>"Anna"</kbd>, <kbd>"Lisa"</kbd>, <kbd>"Tammy"</kbd>, <kbd>"Ellie"</kbd>, <kbd>"Debbie"</kbd>};
+
+  Btree tree;
+
+  TRACE(<kbd>"** Testing insert into tree **\n\n"</kbd>);
+
+  <var>for</var> (<var>int</var> i = 0; i &lt; 5; i++)
+  {
+    TRACE(<kbd>"Creating CLR string with the name %s\n"</kbd>, names[i]);
+    String^ n = gcnew String(names[i]);
+    TRACE(<kbd>"Converting CLR string to std string\n"</kbd>);
+    string s = ClrToStd(n);
+    TRACE(<kbd>"Going to insert name %s into tree.\n"</kbd>, s.c_str());
+    tree.insert(s);
+  }
+
+  TRACE(<kbd>"\n** Testing search for a name in tree **\n\n"</kbd>);
+  <var>for</var> (<var>int</var> i = 0; i &lt; 5; i++)
+  {
+    TRACE(<kbd>"Search for %s\n"</kbd>, names[i]);
+    string search = tree.treeSearch(names[i]);  
+    TRACE(<kbd>"Search for %s resulted in %s **\n"</kbd>, names[i], search.c_str());
+  }
+  system(<kbd>"pause"</kbd>);  
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn891359"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg891427"><span title="891427,39415,1023,5467,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg891427" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm745ff641de" title="Sat, 26 Dec 2015 10:40:22 +0000"></span><script type="text/javascript">WhenId('CH_zTm745ff641de');</script><noscript>Dec 26, 2015 at 10:40am UTC</noscript></div>
+<div class="dwho"><a href="/user/coder777/"><b>coder777</b> (5467)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i891427">
+The problem is of course this:<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br></code></pre></td>
+<td class="source"><pre><code>        	<var>if</var> (!found)
+        	{
+        		MessageBox::Show(<kbd>" Data not found! "</kbd>);
+                        <u><var>return</var> 0;</u>
+        	}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+See:<br>
+<a href="http://www.cplusplus.com/reference/string/string/string/">http://www.cplusplus.com/reference/string/string/string/</a><br>
+<br>
+The only constructor that takes one parameter is the one that takes a pointer to a c-string. In your case you pass 0 as a pointer which will crash. Return an empty string instead.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn891427"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg891440"><span title="891440,78419,1023,7174,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg891440" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmd793e8d3b1" title="Sat, 26 Dec 2015 13:19:42 +0000"></span><script type="text/javascript">WhenId('CH_zTmd793e8d3b1');</script><noscript>Dec 26, 2015 at 1:19pm UTC</noscript></div>
+<div class="dwho"><a href="/user/cire/"><b>cire</b> (7174)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i891440">
+<table class="quote"><tr><th class="qh"><strong>coder777</strong> wrote:</th></tr><tr><td class="qd">The problem is of course this:</td></tr></table><br>
+<br>
+Except, according to the OP that code is not representative of the actual code.  He said this when I mentioned the original code didn't always return a value:<br>
+<br>
+<table class="quote"><tr><td class="qd">search func does always return a value i have removed it with this MessageBox::Show just to know that whether my program is reaching at that point or not.<br>
+<br>
+it returns a string falseCondi which I have initialiez as falseCondi="b".</td></tr></table><br>
+<br>
+and edited the code to what you quoted... which clearly differs from his claim.  So, if he's unwilling to use a debugger (which will point him directly to the offending line), and he's unwilling to post code that isn't significantly different than what he's actually using, there isn't much that can be done for him on these forums.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn891440"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg891552"><span title="891552,39415,1023,5467,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg891552" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm31855cab61" title="Sun, 27 Dec 2015 10:28:37 +0000"></span><script type="text/javascript">WhenId('CH_zTm31855cab61');</script><noscript>Dec 27, 2015 at 10:28am UTC</noscript></div>
+<div class="dwho"><a href="/user/coder777/"><b>coder777</b> (5467)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i891552">
+Well, I should have read all the posts...
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn891552"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div class="rootbtnNew"></div><div id="CH_insNew"></div><div id="CH_reply">Topic archived. No new replies allowed.</div><div id="CH_subscription"></div><div class="rootedtNew"></div><script type="text/javascript">new for_PostList(181539,1,152022,0,'CH_PostList','CH_subscription','CH_reply','CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+<script type="text/javascript">
+    google_ad_client = "ca-pub-1444228343479937";
+    google_ad_slot = "9701143201";
+    google_ad_width = 728;
+    google_ad_height = 90;
+</script>
+<!-- leaderboard -->
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li><a href="/forum/beginner/"><b>Beginners</b></a></li><li class="selected"><a href="/forum/windows/"><b>Windows Programming</b></a></li><li><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li><a href="/forum/general/"><b>General C++ Programming</b></a></li><li><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Fwindows%2F181539%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

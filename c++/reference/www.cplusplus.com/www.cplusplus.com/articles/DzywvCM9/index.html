@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Disch's tutorial to good binary files - C++ Articles</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/articles/">Articles</a></li>
+<li class="here">Disch's tutorial to good binary files</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div id="I_content">
+<div class="C_art">
+<div id="I_author">Published by <b><a href="/user/viliml/" rel="author">viliml</a></b></div>
+<div id="I_date">Aug 8, 2012 (last update: Aug 8, 2012)</div>
+<h1>Disch's tutorial to good binary files</h1>
+<div id="I_score">Score: 4.3/5 (189 votes)</div>
+<div id="I_stars"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"></div>
+<div id="I_content">
+<STRONG>****===The right way to do binary file I/O===****</STRONG>
+<br>
+<br>
+<STRONG>1) Define your building blocks</STRONG>
+<br>
+Binary files are, at their core, nothing more than a series of bytes. This means that anything larger than a byte (read: nearly everything) needs to be defined in terms of bytes. For most basic types this is simple.<br>
+<br>
+C++ offers a few integral types that are commonly used. There's <span class="auto"><code class="source"><var>char</var></code></span>, <span class="auto"><code class="source"><var>short</var></code></span>, <span class="auto"><code class="source"><var>int</var></code></span> and <span class="auto"><code class="source"><var>long</var></code></span> (among others).<br>
+<br>
+The problem with these types is that their size is not well defined. int might be 8 bytes on one machine, but only 4 bytes on another. The only one that's consistent is char... which is guaranteed to always be 1 byte.<br>
+<br>
+For your files, you'll need to define your own integral types.<br>
+Here are some basics:<br>
+<br>
+u8 = unsigned 8-bit (1 byte) (ie: unsigned char)<br>
+u16 = unsigned 16-bit (2 bytes) (ie: unsigned short -- usually)<br>
+u32 = unsigned 32-bit (4 bytes) (ie: unsigned int -- usually)<br>
+s8, s16, s32 = signed version of the above<br>
+<br>
+u8 and s8 are both 1 byte, so they don't really need to be defined. They can just be stored "as is". But for larger types you need to pick an endianness.<br>
+<br>
+Let's go with little endian for this example, which means a 2-byte variable (u16) is going to be stored low byte first, and high byte second. So the value <span class="auto"><code class="source">0x1122</code></span> will be seen in the file as <span class="auto"><code class="source">22 11</code></span> when the file is examined in a hex editor.<br>
+<br>
+An example way to safely read/write u16's with iostream:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br></code></pre></td>
+<td class="source"><pre><code>u16 ReadU16(istream&amp; file)
+{
+  u16 val;
+  u8 bytes[2];
+
+  file.read( (<var>char</var>*)bytes, 2 );  <cite>// read 2 bytes from the file</cite>
+  val = bytes[0] | (bytes[1] &lt;&lt; 8);  <cite>// construct the 16-bit value from those bytes</cite>
+
+  <var>return</var> val;
+}
+
+<var>void</var> WriteU16(ostream&amp; file, u16 val)
+{
+  u8 bytes[2];
+
+  <cite>// extract the individual bytes from our value</cite>
+  bytes[0] = (val) &amp; 0xFF;  <cite>// low byte</cite>
+  bytes[1] = (val &gt;&gt; 8) &amp; 0xFF;  <cite>// high byte</cite>
+
+  <cite>// write those bytes to the file</cite>
+  file.write( (<var>char</var>*)bytes, 2 );
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+u32 would be the same way, but you would break it down and reconstruct it in 4 bytes rather than 2.<br>
+<br>
+<br>
+<STRONG>2) Define your complex types</STRONG>
+<br>
+Strings are the main one here, so that's what I'll go over.<br>
+<br>
+There are a few ways to store strings.<br>
+<br>
+1) You can say they are fixed width. IE: your strings will be stored with a width of 128 bytes. If the actual string is shorter, the file will be padded. If the actual string is longer, the data written to the file will be truncated (lost).<br>
+- advantages: easiest to implement<br>
+- cons: inefficient use of file space if you have lots of small strings, strings have a restrictive maximum length.<br>
+<br>
+2) You can use the c-string 'null terminator' to mark the end of the string<br>
+- advantages: strings of any length.<br>
+- disadvantages: cannot have null characters embedded in your strings. If your strings contain a null character when written, it will cause the file to be loaded incorrectly. Probably the most difficult to implement<br>
+<br>
+3) You can write a u32 specifying the length of the string, then write the string data after it.<br>
+- advantages: strings of any length, can contain any characters (even nulls).<br>
+- disadvantages: 4 extra bytes for each string makes it ever so slightly less space efficient than approach #2 (but not really).<br>
+<br>
+<br>
+I tend to prefer option #3. Here's an example of how to reliably read/write strings to a binary file:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br></code></pre></td>
+<td class="source"><pre><code>string ReadString(istream&amp; file)
+{
+  u32 len = ReadU32(file);
+
+  <var>char</var>* buffer = <var>new</var> <var>char</var>[len];
+  file.read(buffer, len);
+
+  string str( buffer, len );
+  <var>delete</var>[] buffer;
+
+  <var>return</var> str;
+}
+
+<var>void</var> WriteString(istream&amp; file, string str)
+{
+  u32 len = str.length();
+
+  WriteU32(file, len);
+  file.write( str.c_str(), len );
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+vectors/lists/etc could be handled same way. You start by writing the size as a u32, then you read/write that many individual elements to the file.<br>
+<br>
+<br>
+<STRONG>3) Define your file format</STRONG>
+<br>
+This is the meat. Now that you have your terms defined, you can construct how you want your file to look. I break out a text editor and outline it on a page that looks something like this:<br>
+	<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br></code></pre></td>
+<td class="source"><pre><code><var>char</var>[4]      header     <kbd>"MyFi"</kbd> - identifies <var>this</var> file as my kind of file
+u32          version    1 <var>for</var> <var>this</var> version of the spec
+
+u32          foo        some data
+string       bar        some more data
+vector&lt;u16&gt;  baz        some more data
+...</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+This outlines how the file will look/behave. Say for example you look at this file in a hex editor and you see this:<br>
+	<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br></code></pre></td>
+<td class="source"><pre><code>4D 79 46 69 01 00 00 00  06 94 00 00 03 00 00 00
+4D 6F 6F 02 00 00 00 EF  BE 0D F0</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Since the file format is so clearly defined, just examing this file will tell you exactly what the file contains.<br>
+<br>
+First 4 bytes: <span class="auto"><code class="source">4D 79 46 69</code></span> - these are the ascii codes for the string "MyFi", which identifies this file as our kind of file (as opposed to a wav or mp3 file or something, which would have a different header)<br>
+<br>
+Next 4 bytes: <span class="auto"><code class="source">01 00 00 00</code></span> - the literal value of 1, indicating this file is 'version 1'. Should you decide to revise this file format later, you can use this version number to support reading of older files.<br>
+<br>
+Next 4 bytes are for our 'foo' data: <span class="auto"><code class="source">06 94 00 00</code></span> means that foo==0x9406<br>
+<br>
+After that is a string ('bar'). string starts with 4 bytes to indicate the length: <span class="auto"><code class="source">03 00 00 00</code></span> indicating a length of 3. So the next 3 bytes <span class="auto"><code class="source">4D 6F 6F</code></span> form the ascii data for the string (in this case: "Moo")<br>
+<br>
+After that is our vector ('baz'). Same idea... start with 4 bytes to indicate length: <span class="auto"><code class="source">02 00 00 00</code></span>, indicating a length of 2<br>
+Then there are 2 u16's in the file. The first one is <span class="auto"><code class="source">EF BE</code></span> (0xBEEF), and the second one is <span class="auto"><code class="source">0D F0</code></span> (0xF00D)<br>
+<br>
+<br>
+You'll find that all common binary file formats like .zip, .rar, .mp3, .wav, .bmp, etc, etc are defined this way. It leaves absolutely nothing to chance. <br>
+<br>
+<br>
+<br>
+<br>
+Credits to Disch, who wrote all this, and I just copied it in here because:<br>
+(Disch wrote this in the post after the one with the above tutorial)<br>
+<br>
+<BLOCKQUOTE>I really should just make these articles instead of forum posts. Gargle. Anyone want to transcribe this to an article for me? I'm too lazy to do it now. </BLOCKQUOTE>
+Well Disch, I transcribed this to an article for you! Hope everyone likes it!</div></div><div id="CH_bb"></div><div id="CH_scoreapp"></div><script type="text/javascript">new Score('CH_scoreapp','/articles/score.cgi','DzywvCM9');</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder selected articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/articles/">Articles</a></b></h3>
+<ul>
+<li><a href="/articles/algorithms/">Algorithms</a></li><li><a href="/articles/cpp11/">C++ 11</a></li><li><a href="/articles/graphics/">Graphics and multimedia</a></li><li><a href="/articles/howto/">How-To</a></li><li><a href="/articles/language/">Language Features</a></li><li><a href="/articles/linux/">Unix/Linux programming</a></li><li><a href="/articles/sourcecode/">Source Code</a></li><li><a href="/articles/standard_library/">Standard Library</a></li><li><a href="/articles/tips/">Tips and Tricks</a></li><li><a href="/articles/tools/">Tools and Libraries</a></li><li><a href="/articles/visualcpp/">Visual C++</a></li><li><a href="/articles/winapi/">Windows API</a></li></ul>
+</div>
+<div id="I_subnav"></div>
+</div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Farticles%2FDzywvCM9%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+onSession(function(us) {
+		document.getElementById('I_subnav').innerHTML=
+			us.ok?
+				'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul>'+
+				'<li><a href="/articles/myitems.cgi">My items</a></li>'+
+				(us.auth(32768)?'<li><a href="/articles/adminitems.cgi">Admin items</a></li>':'')+
+				'</ul></div>'
+			:'';
+	}); onSession(function (us) {
+		var el=document.getElementById('CH_bb'); el.innerHTML='';
+		if ( (us.auth(32768)) || ((us.uniqid=='zb7X92yv')&&(us.auth(128))) ) {
+			el.appendChild(btn('Edit article','Edit this version of the article','edit','/articles/edit.cgi?a=DzywvCM9'));
+	
+			if (us.auth(32768)) {
+				el.appendChild(btn('Delete article','Delete this article','delete','javascript:artdel()'));
+			}
+	
+		}
+	});
+	function artdel() { if (confirm('WARNING: You are about to delete this page. Confirm?')) window.location='/articles/delete.cgi?a=DzywvCM9'; }
+	ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

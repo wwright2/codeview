@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>How to add more than 1 button ? C++ - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/windows/">Windows Programming</a></li>
+<li class="here">How to add more than 1 button ? C++</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico default" title="post">&nbsp;</div> How to add more than 1 button ? C++</h3><span id="CH_edttl"></span><span class="rootdatPost" title="183195,root,0,-1,9,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg896821"><span title="896821,208729,1023,4,1"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg896821" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm28aedeacfe" title="Sat, 23 Jan 2016 15:58:54 +0000"></span><script type="text/javascript">WhenId('CH_zTm28aedeacfe');</script><noscript>Jan 23, 2016 at 3:58pm UTC</noscript></div>
+<div class="dwho"><a href="/user/mythrillex/"><b>mythrillex</b> (4)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i896821">
+I'm starting in C ++ and I am trying to create a button .. so far so good I created a smooth button but adding more than one? I created one with single hmenu and another with another single hmenu but ends up not working .. only works if I create another CreateWindow ...<br>
+<br>
+Ex:<br>
+	hButton = CreateWindow(<br>
+		lpClassName,<br>
+		caption,<br>
+		WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,<br>
+		x, y,<br>
+		width, height,<br>
+		hWnd,<br>
+		(HMENU) BUTTON_ID,<br>
+		(HINSTANCE)GetWindowLong(hWnd, GWL_HINSTANCE), <br>
+		NULL<br>
+	);<br>
+<br>
+I did a 'sub' to create buttons with parameters but when i set the button_id and compile only create one button.. i have checked the button_id used with messagebox and seems to be all right... it is experiencing the unique id normally but the button is not created<br>
+<br>
+Sub Ex:<br>
+	case WM_CREATE:<br>
+		AddButton(1, hWnd, L"BUTTON", L"Label", 50, 20, 100, 100);<br>
+                AddButton(2, hWnd, L"ASDASD", L"123", 50, 20, 100, 100);<br>
+                AddButton(3, hWnd, L"QWEQWE", L"123", 50, 20, 100, 100);<br>
+<br>
+the first number is the unique id.. but dont work with HMENU<br>
+<br>
+And when I do more than one CreateWindow normally adds<br>
+Ex:<br>
+	hButton = CreateWindow(<br>
+		"Button1",<br>
+		"Label",<br>
+		WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,<br>
+		100, 120,<br>
+		50, 50,<br>
+		hWnd,<br>
+		(HMENU) 1,<br>
+		(HINSTANCE)GetWindowLong(hWnd, GWL_HINSTANCE), <br>
+		NULL<br>
+	);<br>
+	hButton = CreateWindow(<br>
+		"Button2",<br>
+		"Label",<br>
+		WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,<br>
+		100, 200,<br>
+		50, 50,<br>
+		hWnd,<br>
+		(HMENU) 2,<br>
+		(HINSTANCE)GetWindowLong(hWnd, GWL_HINSTANCE), <br>
+		NULL<br>
+	);<br>
+<br>
+Not to say I'm 'leeching', I've looked at various forums and just think tutorial to create only one button.. and what is difficult for everything to be in English<br>
+<br>
+Sorry for the english, i'm brazilian...
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm0daa491e67" title="Sat, 23 Jan 2016 16:08:37 +0000"></span><script type="text/javascript">WhenId('CH_zTm0daa491e67');</script><noscript>Jan 23, 2016 at 4:08pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn896821"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg896920"><span title="896920,156650,1023,564,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg896920" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm1d1a99b496" title="Sat, 23 Jan 2016 23:25:45 +0000"></span><script type="text/javascript">WhenId('CH_zTm1d1a99b496');</script><noscript>Jan 23, 2016 at 11:25pm UTC</noscript></div>
+<div class="dwho"><a href="/user/FurryGuy/"><b>FurryGuy</b> (564)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i896920">
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br></code></pre></td>
+<td class="source"><pre><code>LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
+{
+   <var>static</var> <var>int</var> cxChar;
+   <var>static</var> <var>int</var> cyChar;
+
+   <var>switch</var> (message)
+   {
+   <var>case</var> WM_CREATE:
+      cxChar = LOWORD(GetDialogBaseUnits());
+      cyChar = HIWORD(GetDialogBaseUnits());
+
+      CreateWindow(<kbd>"BUTTON"</kbd>, <kbd>"Button 1"</kbd>,
+                   WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,
+                   cxChar, cyChar * (1 + 2 * 0),
+                   20 * cxChar, 7 * cyChar / 4,
+                   hwnd, (HMENU) 1,
+                   (HINSTANCE)GetWindowLong(hwnd, GWL_HINSTANCE),
+                   NULL);
+
+      CreateWindow(<kbd>"BUTTON"</kbd>, <kbd>"Button 2"</kbd>,
+                   WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,
+                   cxChar, cyChar * (1 + 2 * 1),
+                   20 * cxChar, 7 * cyChar / 4,
+                   hwnd, (HMENU) 2,
+                   (HINSTANCE)GetWindowLong(hwnd, GWL_HINSTANCE),
+                   NULL);
+      <var>break</var>;
+
+   <var>case</var> WM_COMMAND:
+      <var>if</var> (LOWORD(wParam) == 1)
+      {
+         MessageBox(NULL, <kbd>"You pressed button 1!"</kbd>, <kbd>"Button 1"</kbd>, MB_OK);
+      }
+
+      <var>if</var> (LOWORD(wParam) == 2)
+      {
+         MessageBox(NULL, <kbd>"You pressed button 2!"</kbd>, <kbd>"Button 2"</kbd>, MB_OK);
+      }
+
+      <var>break</var>;
+
+   <var>case</var> WM_DESTROY:
+      PostQuitMessage(0);
+      <var>return</var> 0;
+   }
+
+   <var>return</var> DefWindowProc(hwnd, message, wParam, lParam);
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm6312cdd1ab" title="Sun, 24 Jan 2016 00:03:56 +0000"></span><script type="text/javascript">WhenId('CH_zTm6312cdd1ab');</script><noscript>Jan 24, 2016 at 12:03am UTC</noscript></span>
+<span class="dbtn" id="CH_btn896920"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg896960"><span title="896960,208729,1023,4,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg896960" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm7f7030b878" title="Sun, 24 Jan 2016 06:21:34 +0000"></span><script type="text/javascript">WhenId('CH_zTm7f7030b878');</script><noscript>Jan 24, 2016 at 6:21am UTC</noscript></div>
+<div class="dwho"><a href="/user/mythrillex/"><b>mythrillex</b> (4)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i896960">
+I do not think I explained well, what I really is and avoid using 2 create windows but 2 'subs' to call the createwindows to leave the smallest code, sorry.. google translate<br>
+<br>
+I've done the sub the problem is that it only makes the first button and the rest do not<br>
+<br>
+Oh, thx for the WM_COMMAND ! :)<br>
+<br>
+I want to make a system to simplify the creation of the buttons to not use so many createwindows<br>
+<br>
+This is a Example in VB.NET the ..... is the rest of the createwindow abbreviated<br>
+<br>
+Sub Load()<br>
+  CreateWindow("BUTTON", "Button 1".....)<br>
+  msgbox("button 1 created!") <br>
+  CreateWindow("BUTTON", "Button 2".....)<br>
+  msgbox("button 2 created!")<br>
+  CreateWindow("BUTTON", "Button 3".....)<br>
+  msgbox("button 3 created!")<br>
+  ' Etc..<br>
+End Sub<br>
+<br>
+####################################<br>
+Now the simplified system<br>
+<br>
+Function CreateButton(Byval ButtonID as integer)<br>
+      if CreateWindow("BUTTON", "Button " &amp; ButtonID  &amp;".....) then<br>
+           msgbox("button " &amp; ButtonID &amp; " created!")<br>
+      else<br>
+           msgbox("Error!")<br>
+           return false<br>
+      end if<br>
+End Function<br>
+<br>
+Sub Load()<br>
+  CreateButton(1)<br>
+  CreateButton(2)<br>
+  CreateButton(3)<br>
+  ' Etc..<br>
+End Sub
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm3843bc2e35" title="Sun, 24 Jan 2016 06:32:23 +0000"></span><script type="text/javascript">WhenId('CH_zTm3843bc2e35');</script><noscript>Jan 24, 2016 at 6:32am UTC</noscript></span>
+<span class="dbtn" id="CH_btn896960"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg897015"><span title="897015,13185,1023,1354,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg897015" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm0b7860ce6e" title="Sun, 24 Jan 2016 15:33:00 +0000"></span><script type="text/javascript">WhenId('CH_zTm0b7860ce6e');</script><noscript>Jan 24, 2016 at 3:33pm UTC</noscript></div>
+<div class="dwho"><a href="/user/freddie1/"><b>freddie1</b> (1354)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i897015">
+You simply need to auto-generate control ids.  Every time you call CreateWindow() you get a different HWND.  You can either save it or disgard it.  But you need a unique control id to tell the buttons apart.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn897015"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg897057"><span title="897057,208729,1023,4,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg897057" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm24d5147b9f" title="Sun, 24 Jan 2016 20:04:41 +0000"></span><script type="text/javascript">WhenId('CH_zTm24d5147b9f');</script><noscript>Jan 24, 2016 at 8:04pm UTC</noscript></div>
+<div class="dwho"><a href="/user/mythrillex/"><b>mythrillex</b> (4)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i897057">
+Yes, the unique id I know... the problem is how to automatically renew or generate this hWnd
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn897057"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg897121"><span title="897121,13185,1023,1354,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg897121" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm2250a3bd83" title="Mon, 25 Jan 2016 01:31:45 +0000"></span><script type="text/javascript">WhenId('CH_zTm2250a3bd83');</script><noscript>Jan 25, 2016 at 1:31am UTC</noscript></div>
+<div class="dwho"><a href="/user/freddie1/"><b>freddie1</b> (1354)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i897121">
+This is completely ridiculous!  The Windows Api is C based object oriented programming.  In C based object oriented programming there are no constructors like in C++.  What you have are functions which create an object, and such an object creation function usually returns a pointer to the object, very similiar to what is returned by C++'s new[].  That is EXACTLY what CreateWindow() or CreateWindowEx() does.  It constructs an object and returns a pointer to the object, which to be exact and using correct terminology is an 'opaque' pointer.  The Windows Api is handle based.  <br>
+<br>
+So when you are talking creating multiple objects with one CreateWindow() or CreateWindowEx() call you are talking utter nonsense.  FurryGuy's code is the way it is done, like it or not.
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm13d93d38c1" title="Mon, 25 Jan 2016 01:32:50 +0000"></span><script type="text/javascript">WhenId('CH_zTm13d93d38c1');</script><noscript>Jan 25, 2016 at 1:32am UTC</noscript></span>
+<span class="dbtn" id="CH_btn897121"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg897146"><span title="897146,156650,1023,564,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg897146" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm4585a90dc0" title="Mon, 25 Jan 2016 03:31:49 +0000"></span><script type="text/javascript">WhenId('CH_zTm4585a90dc0');</script><noscript>Jan 25, 2016 at 3:31am UTC</noscript></div>
+<div class="dwho"><a href="/user/FurryGuy/"><b>FurryGuy</b> (564)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i897146">
+<table class="quote"><tr><td class="qd">Yes, the unique id I know... <b>the problem is how to automatically renew or generate this hWnd</b></td></tr></table><br>
+With user created controls you don't need to use or "remember" the CreateWindow() generated handle.  You use a unique control ID, cast to an HMENU when creating the control.  And that control ID is used to determine which custom control was accessed.<br>
+<br>
+google traduzido:<br>
+Com controles de usuário criado você não precisa usar ou "lembrar" o CreateWindow () gerado manusear. Você usa um ID de controle único, convertida em uma HMENU ao criar o controle. E esse ID de controle é usado para determinar qual controle personalizado foi acessado.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn897146"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg897259"><span title="897259,13185,1023,1354,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg897259" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmb348922528" title="Mon, 25 Jan 2016 11:32:40 +0000"></span><script type="text/javascript">WhenId('CH_zTmb348922528');</script><noscript>Jan 25, 2016 at 11:32am UTC</noscript></div>
+<div class="dwho"><a href="/user/freddie1/"><b>freddie1</b> (1354)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i897259">
+I think this might be what you want...<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br>59<br>60<br>61<br>62<br>63<br>64<br>65<br>66<br>67<br>68<br>69<br>70<br>71<br>72<br>73<br>74<br>75<br>76<br>77<br>78<br>79<br>80<br></code></pre></td>
+<td class="source"><pre><code><cite>//Main.cpp</cite>
+<dfn>#ifndef UNICODE</dfn>
+    <dfn>#define  UNICODE</dfn>
+<dfn>#endif</dfn>
+<dfn>#ifndef _UNICODE</dfn>
+    <dfn>#define  _UNICODE</dfn>
+<dfn>#endif</dfn>
+<dfn>#include &lt;windows.h&gt;</dfn>
+<dfn>#define IDC_BUTTONS  1500</dfn>
+
+
+LRESULT CALLBACK fnWndProc(HWND hwnd, <var>unsigned</var> <var>int</var> msg, WPARAM wParam, LPARAM lParam)
+{
+ <var>switch</var>(msg)
+ {
+   <var>case</var> WM_CREATE:
+    {
+       HINSTANCE hIns=((LPCREATESTRUCT)lParam)-&gt;hInstance;
+       <var>wchar_t</var> szBuffer[64], szTmp[16];
+       <var>for</var>(size_t i=0; i&lt;10; i++)
+       {
+           wcscpy(szBuffer,L<kbd>"Program Activity #"</kbd>);
+           wsprintf(szTmp,L<kbd>"%u"</kbd>,i+1),  wcscat(szBuffer,szTmp);
+           CreateWindowEx(0,L<kbd>"button"</kbd>,L<kbd>""</kbd>,WS_CHILD|WS_VISIBLE,25,15+30*i,40,25,hwnd,(HMENU)(IDC_BUTTONS+i),hIns,0);
+           CreateWindowEx(0,L<kbd>"static"</kbd>,szBuffer,WS_CHILD|WS_VISIBLE,75,20+30*i,200,25,hwnd,(HMENU)-1,hIns,0);
+           memset(szBuffer,0,64);
+       }
+       <var>return</var> 0;
+    }
+   <var>case</var> WM_COMMAND:
+    {
+        <var>if</var>(LOWORD(wParam)&gt;=IDC_BUTTONS &amp;&amp; LOWORD(wParam)&lt;IDC_BUTTONS+10)
+        {
+           <var>if</var>(HIWORD(wParam)==BN_CLICKED)
+           {
+              <var>int</var> iCtrlId=LOWORD(wParam);
+              iCtrlId=iCtrlId-IDC_BUTTONS+1;
+              <var>wchar_t</var> szBuffer[64], szTmp[16];
+              wcscpy(szBuffer,L<kbd>"You Want Program Activity #"</kbd>);
+              wsprintf(szTmp,L<kbd>"%d"</kbd>,iCtrlId);
+              wcscat(szBuffer,szTmp);
+              MessageBox(hwnd,szBuffer,L<kbd>"Button Click Report"</kbd>,MB_OK);
+           }
+        }
+        <var>return</var> 0;
+    }
+   <var>case</var> WM_DESTROY:
+    {
+       PostQuitMessage(0);
+       <var>return</var> 0;
+    }
+ }
+
+ <var>return</var> (DefWindowProc(hwnd, msg, wParam, lParam));
+}
+
+
+<var>int</var> WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevIns, LPSTR lpszArgument, <var>int</var> iShow)
+{
+ TCHAR szClassName[]=L<kbd>"Form1"</kbd>;
+ WNDCLASSEX wc={};
+ MSG messages;
+ HWND hWnd;
+
+ wc.lpszClassName = szClassName;
+ wc.lpfnWndProc   = fnWndProc;
+ wc.cbSize        = <var>sizeof</var>(WNDCLASSEX);
+ wc.hbrBackground = (HBRUSH)COLOR_BTNSHADOW;
+ wc.hInstance     = hInstance;
+ RegisterClassEx(&amp;wc);
+ hWnd=CreateWindowEx(0,szClassName,L<kbd>"Only Three CreateWindowqEx() Calls"</kbd>,WS_OVERLAPPEDWINDOW,150,150,350,360,HWND_DESKTOP,0,hInstance,0);
+ ShowWindow(hWnd,iShow);
+ <var>while</var>(GetMessage(&amp;messages,NULL,0,0))
+ {
+    TranslateMessage(&amp;messages);
+    DispatchMessage(&amp;messages);
+ }
+
+ <var>return</var> messages.wParam;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Try running it.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn897259"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg900975"><span title="900975,208729,1023,4,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg900975" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmb7be06eac0" title="Tue, 09 Feb 2016 17:19:21 +0000"></span><script type="text/javascript">WhenId('CH_zTmb7be06eac0');</script><noscript>Feb 9, 2016 at 5:19pm UTC</noscript></div>
+<div class="dwho"><a href="/user/mythrillex/"><b>mythrillex</b> (4)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i900975">
+OMG!, explain something in another language sucks, forget it .. thanks to everyone who helped, what I wanted was to recycle the CreateWindow, ex: CreateButton(1) it creates a button with ID 1, then if I wanted to create another button I would use CreateButton(2) and it would create another button with a single id 2 .. not want to create several buttons with a createwindows only but anyway...
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn900975"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div class="rootbtnNew"></div><div id="CH_insNew"></div><div id="CH_reply">Registered users can post here. <a href="/user/">Sign in or register</a> to post.</div><div id="CH_subscription"></div><div class="rootedtNew"></div><script type="text/javascript">new for_PostList(183195,0,208729,0,'CH_PostList','CH_subscription','CH_reply','CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+<script type="text/javascript">
+    google_ad_client = "ca-pub-1444228343479937";
+    google_ad_slot = "9701143201";
+    google_ad_width = 728;
+    google_ad_height = 90;
+</script>
+<!-- leaderboard -->
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li><a href="/forum/beginner/"><b>Beginners</b></a></li><li class="selected"><a href="/forum/windows/"><b>Windows Programming</b></a></li><li><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li><a href="/forum/general/"><b>General C++ Programming</b></a></li><li><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Fwindows%2F183195%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

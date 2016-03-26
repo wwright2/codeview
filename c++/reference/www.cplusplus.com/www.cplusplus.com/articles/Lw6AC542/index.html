@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Linked Lists - C++ Articles</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/articles/">Articles</a></li>
+<li class="here">Linked Lists</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div id="I_content">
+<div class="C_art">
+<div id="I_author">Published by <b><a href="/user/closed_account_S6k9GNh0/" rel="author">closed account S6k9GNh0</a></b></div>
+<div id="I_date">Mar 2, 2010 (last update: Oct 12, 2011)</div>
+<h1>Linked Lists</h1>
+<div id="I_score">Score: 3.3/5 (332 votes)</div>
+<div id="I_stars"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"></div>
+<div id="I_content">
+<H1>Linked Lists</H1>
+<br>
+The linked list is used in many libraries/applications and for a good reason. The following are advantages it has over other containers, indirectly from the reference page on cplusplus.com: <br>
+<br>
+<UL>
+<LI>Efficient insertion and erasure of elements anywhere in the container (constant time).</LI>
+<LI>Iterating over the elements in forward order (linear time).</LI>
+<LI>Efficient moving elements and block of elements within the container or even between different containers (constant time).</LI>
+</UL>
+<br>
+The following only applies to a doubly linked list which I will explain later on:<br>
+<UL>
+<LI>Iterating over the elements in forward or reverse order (linear time).</LI>
+</UL>
+<br>
+Something the reference doesn't explain is how it's implemented. Why would you *want* to know about that? For me, simply curiosity. For others, perhaps they may create their own type of linked list container. Either way, it's knowledge that *someone* will eventually use hopefully. <br>
+<br>
+<br>
+<H3>Design</H3>
+The linked list is generally pictured as a list of linear nodes that are tethered together somehow. In C/++, you generally have a structure which contains data and a pointer to the next structure container which contains data and a pointer to the next structure container... and so on. The linked list's main advantage is that it doesn't contain data in a contiguous way and rather, a flexible way. This allows for fast insertion and better overall iteration. The linked list is often even used as the basis for other containers (such as queue or stack containers). <br>
+<br>
+There are several variations of the linked-list. Actually, the term "linked list" doesn't really refer to the implementation (thus, an abstract term), just the nature of how the data of the container is held (linked via references). The most common implementation of the linked list is probably the doubly linked list. The doubly linked list is a list that contains nodes that contains references to the previous *and* next link in the list. This allows for fast node erasure, faster fetching of end nodes, and more flexible iteration.<br>
+<br>
+At the cost of flexibility of the doubly-linked list, it generally costs more memory to use. In large lists, consider the idea of a node being twice the size as normal. This can affect the application quite a bit. In the case that you have no reason to iterate backwards, the doubly-linked list can be considered inefficient, simply by design. std::list is a doubly linked list. As a result, if I ever come about the need for a singly-linked list, I implement my own. A singly-linked list can only iterate forward simply because the node it holds only holds a reference to the next node in the list and not the previous but comes with the merit of one less reference. <br>
+<br>
+Another type of linked-list that's not used quite as often is the circular linked-list. All this is a singly/doubly-linked list where the end node iterates forward to the beginning node (and possibly vice versa). There aren't many uses for this as it generally has problems with iterating through the list but take, for instance, a list that iterates through the nodes until a given signal is received. Also, it's really a technique used with linked lists... not always in implementation although special list implementations can handle circular linked lists better than others: TODO: Add example...<br>
+<br>
+In embedded systems, the use of linked lists can be expensive. The holding of each reference can be so heavy that it's undesirable to use a linked-list with nodes that only hold one location of data. Instead, they generally used what's called unrolled linked lists. In an unrolled linked list, the node holds a reference to the next and previous, like normal, but each node holds arrays of data. When you iterate through each node, you iterate through the data in the array linearly, then move on to the next node. This way we can have three or four nodes of data in one while reducing the amount of nodes altogether (therefor saving memory). However, this generally uses contiguous memory to hold nodes so it becomes difficult to move nodes that are in the array. TODO: Give an example.<br>
+<br>
+Wikipedia has fantastic pictures: http://en.wikipedia.org/wiki/Linked_list#Linear_and_circular_lists<br>
+<br>
+<H3>Implementation</H3>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br></code></pre></td>
+<td class="source"><pre><code><var>template</var> &lt;<var>typename</var> T&gt;
+<var>struct</var> SNode <cite>//Singly-linked list node</cite>
+{
+  SNode () : _next(0) {}
+  SNode (T data) : _data(data), _next(0) {}
+  SNode (T data, Node&lt;T&gt;* next) : _data(data), _next(next){}
+  SNode (Node&lt;T&gt;* next) : _next(next) {}
+
+  T data;
+  Node&lt;T&gt;* next; <cite>//Only the next reference.</cite>
+}
+
+<var>template</var> &lt;<var>typename</var> T&gt;
+<var>struct</var> Node : <var>public</var> SNode&lt;T&gt;
+{
+  Node&lt;T&gt;* prev; <cite>//This is the only difference in structure!</cite>
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+This is probably the most basic form of a list structure. However, this doesn't show a list being useful in anyway. We can simplify the interface greatly by adding complexity to implementation. std::list uses a parent class while controlling nodes internally using abstract methods (iterators) for access to nodes. It's of my belief that the interface that std::list provides is good so I'll make something that resembles such a thing:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br>59<br>60<br>61<br>62<br>63<br>64<br>65<br>66<br>67<br>68<br>69<br>70<br>71<br>72<br>73<br>74<br>75<br>76<br>77<br>78<br>79<br>80<br>81<br>82<br>83<br>84<br>85<br>86<br>87<br>88<br>89<br>90<br>91<br>92<br>93<br>94<br>95<br>96<br>97<br>98<br>99<br>100<br>101<br>102<br>103<br>104<br>105<br>106<br>107<br>108<br>109<br>110<br>111<br>112<br>113<br>114<br>115<br>116<br>117<br>118<br>119<br>120<br>121<br>122<br>123<br>124<br>125<br>126<br>127<br>128<br>129<br>130<br>131<br>132<br>133<br>134<br>135<br>136<br>137<br>138<br>139<br>140<br>141<br>142<br>143<br>144<br>145<br>146<br>147<br>148<br>149<br>150<br>151<br>152<br>153<br>154<br>155<br>156<br>157<br>158<br>159<br>160<br>161<br>162<br>163<br>164<br>165<br>166<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;iostream&gt;</dfn>
+
+<var>template</var> &lt;<var>typename</var> T&gt;
+<var>class</var> List;
+
+<var>template</var> &lt;<var>class</var> TNode&gt;
+<var>class</var> Iterator
+{
+	<cite>/* Helper class to provide pointer like facilities around a node */</cite>
+	<var>friend</var> <var>class</var> List&lt;<var>typename</var> TNode::value_type&gt;;
+	TNode* pNode; <cite>//The node oriented with this instance of iterator.</cite>
+	
+	Iterator(TNode* _pNode) : pNode(_pNode) {}
+<var>public</var>:
+	<var>void</var> <var>operator</var>++(){ pNode = pNode-&gt;_next; }
+	<var>void</var> <var>operator</var>++(<var>int</var>){ pNode = pNode-&gt;_next; }
+	<var>bool</var> <var>operator</var>!=(Iterator&lt;TNode&gt; rval){ <var>return</var> !(pNode == rval.pNode); }
+	<var>bool</var> <var>operator</var>==(Iterator&lt;TNode&gt; rval){ <var>return</var> (pNode == rval.pNode); }
+	<var>typename</var> TNode::value_type <var>operator</var>*(){	<var>return</var> pNode-&gt;_data; }
+	Iterator&lt;TNode&gt; <var>operator</var>+(<var>int</var> _i)
+	{
+		Iterator&lt;TNode&gt; iter = *<var>this</var>;
+		<var>for</var> (<var>int</var> i = 0; i &lt; _i; ++i)
+		{
+			<var>if</var> (iter.pNode) <cite>//If there's something to move onto...</cite>
+				++iter;
+			<var>else</var>
+				<var>break</var>;
+		}
+		<var>return</var> iter; <cite>//Return regardless of whether its valid...</cite>
+	}
+};
+
+<var>template</var> &lt;<var>typename</var> T&gt;
+<var>class</var> Node
+{
+	<var>friend</var> <var>class</var> List&lt;T&gt;;
+	<var>friend</var> <var>class</var> Iterator&lt;Node&lt;T&gt; &gt;;
+	Node () : _next(0) {}
+	Node (T data) : _data(data), _next(0) {}
+	Node (T data, Node&lt;T&gt;* next) : _data(data), _next(next){}
+	Node (Node&lt;T&gt;* next) : _next(next) {}
+
+	T _data;
+	Node&lt;T&gt;* _next;
+<var>public</var>:
+	<var>typedef</var> T value_type;
+};
+
+<var>template</var> &lt;<var>typename</var> T&gt;
+<var>class</var> List
+{
+	Node&lt;T&gt;* first;
+	
+<var>public</var>: 
+	<var>typedef</var> Iterator&lt;Node&lt;T&gt; &gt; iterator;
+	<var>typedef</var> T 		  value_type;
+	
+	List () : first(0) {}
+	~List() 
+	{ 
+		<var>if</var> (first) 
+		{ 
+			Node&lt;T&gt; *iter = first;
+			<var>while</var> (iter != 0)
+			{
+				Node&lt;T&gt;* tmp = iter;
+				iter = iter-&gt;_next;
+				<var>delete</var> tmp;			
+			}
+		}
+	}
+
+	<var>void</var> push_back(T data)
+	{
+		<var>if</var> (first)
+		{
+			Node&lt;T&gt; *iter = first;
+			<var>for</var> (; iter-&gt;_next != 0; iter = iter-&gt;_next); <cite>//Iterate until we reach the end of our linked list.</cite>
+			iter-&gt;_next = <var>new</var> Node&lt;T&gt;(data);
+		}
+		<var>else</var>
+			first = <var>new</var> Node&lt;T&gt;(data);
+	}; 
+	
+	<var>void</var> push_front(T data)
+	{
+		<var>if</var> (first)
+		{
+			Node&lt;T&gt; * tmp = <var>new</var> Node&lt;T&gt;(data);
+			tmp-&gt;_next = first;
+			first = tmp;			
+		}
+		<var>else</var>
+			first = <var>new</var> Node&lt;T&gt;(data);
+	}
+	
+	iterator begin(){ <var>return</var> iterator(first); }
+	iterator end(){ <var>return</var> iterator(0); }
+	
+	<var>bool</var> erase(iterator&amp; _iNode) <cite>//True for success, vice versa</cite>
+	{
+		<cite>/* This is rather inneffecient. Maybe a better way to do this? */</cite>
+		<cite>/* Even then, it's *still* more effecient than a contiguous container */</cite>
+		<var>if</var> (_iNode.pNode == first)
+		{
+			first = first-&gt;_next;
+			<var>delete</var> _iNode.pNode;
+			<var>return</var> <var>true</var>;
+		}
+		<var>else</var>
+		{
+			<var>for</var> (Node&lt;T&gt;* iter = first; iter-&gt;_next; iter = iter-&gt;_next)
+			{
+				<var>if</var> (iter-&gt;_next == _iNode.pNode) <cite>//Find our node.</cite>
+				{
+					iter-&gt;_next = _iNode.pNode-&gt;_next;
+					<var>delete</var> _iNode.pNode;
+					<var>return</var> <var>true</var>;
+				}
+			}
+		}
+		
+		<var>return</var> <var>false</var>;
+	}
+};
+
+<var>int</var> main(<var>void</var>)
+{
+	List&lt;<var>int</var>&gt; list;
+	list.push_back(3);
+	list.push_back(4);
+	list.push_front(2);
+	list.push_front(1);
+	
+	<cite>/*Print all elements*/</cite>
+	<var>for</var> (List&lt;<var>int</var>&gt;::iterator iter = list.begin();
+	     iter != list.end(); ++iter)
+	{	
+		std::cout &lt;&lt; (*iter) &lt;&lt; std::endl;
+	}
+	
+	<cite>/*Delete second element and reprint*/</cite>
+	List&lt;<var>int</var>&gt;::iterator tmp = list.begin() + 1;
+	list.erase(tmp);
+
+	<var>for</var> (List&lt;<var>int</var>&gt;::iterator iter = list.begin();
+	     iter != list.end(); ++iter)
+	{	
+		std::cout &lt;&lt; (*iter) &lt;&lt; std::endl;
+	}
+	
+	<cite>/*Now delete first node and print again*/</cite>
+	tmp = list.begin();
+	list.erase(tmp);
+	
+	<var>for</var> (List&lt;<var>int</var>&gt;::iterator iter = list.begin();
+	     iter != list.end(); ++iter)
+	{	
+		std::cout &lt;&lt; (*iter) &lt;&lt; std::endl;
+	}
+	
+	std::cin.ignore();
+	<cite>//List object takes care of deletion for us.</cite>
+	<var>return</var> 0;	
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+ <br>
+<br>
+This is a huge improvement as far as feature goes. We now have (basic) memory management for our nodes, and ease-of-use iterators to iterate through our nodes without the dangers of pointers. What more could you possibly want?<br>
+<br>
+The above is a quick implementation of a singly linked list. If you look at the code, it's relatively straight-forward and self explanatory (through logic). What isn't, has been commented on. <br>
+<br>
+On the above, there are *plenty* of things that we can change and customize for our specific needs. For instance, (*)the iterator of the class can contain both the previous and current node to help make erasure a tad more efficient at the cost of memory and iteration time. For instance, if you have a large list and you keep moving in keep having to reiterate through the list, perhaps this isn't quite as efficient because of the added constant of reassigning multiple node references. If you are continuously erasing and/or swapping elements from the list then this would be highly efficient since you need to change the next reference held by the previous node of what is getting swapped or erased.<br>
+<br>
+There's also a way to reduce the cost of memory with a doubly-linked list called XOR linking which uses XOR encryption on the pointer to shrink the size of memory used. TODO: Provide example.<br>
+<br>
+</div></div><div id="CH_bb"></div><div id="CH_scoreapp"></div><script type="text/javascript">new Score('CH_scoreapp','/articles/score.cgi','Lw6AC542');</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder selected articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/articles/">Articles</a></b></h3>
+<ul>
+<li><a href="/articles/algorithms/">Algorithms</a></li><li><a href="/articles/cpp11/">C++ 11</a></li><li><a href="/articles/graphics/">Graphics and multimedia</a></li><li><a href="/articles/howto/">How-To</a></li><li><a href="/articles/language/">Language Features</a></li><li><a href="/articles/linux/">Unix/Linux programming</a></li><li><a href="/articles/sourcecode/">Source Code</a></li><li><a href="/articles/standard_library/">Standard Library</a></li><li><a href="/articles/tips/">Tips and Tricks</a></li><li><a href="/articles/tools/">Tools and Libraries</a></li><li><a href="/articles/visualcpp/">Visual C++</a></li><li><a href="/articles/winapi/">Windows API</a></li></ul>
+</div>
+<div id="I_subnav"></div>
+</div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Farticles%2FLw6AC542%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+onSession(function(us) {
+		document.getElementById('I_subnav').innerHTML=
+			us.ok?
+				'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul>'+
+				'<li><a href="/articles/myitems.cgi">My items</a></li>'+
+				(us.auth(32768)?'<li><a href="/articles/adminitems.cgi">Admin items</a></li>':'')+
+				'</ul></div>'
+			:'';
+	}); onSession(function (us) {
+		var el=document.getElementById('CH_bb'); el.innerHTML='';
+		if ( (us.auth(32768)) || ((us.uniqid=='S6k9GNh0')&&(us.auth(128))) ) {
+			el.appendChild(btn('Edit article','Edit this version of the article','edit','/articles/edit.cgi?a=Lw6AC542'));
+	
+			if (us.auth(32768)) {
+				el.appendChild(btn('Delete article','Delete this article','delete','javascript:artdel()'));
+			}
+	
+		}
+	});
+	function artdel() { if (confirm('WARNING: You are about to delete this page. Confirm?')) window.location='/articles/delete.cgi?a=Lw6AC542'; }
+	ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

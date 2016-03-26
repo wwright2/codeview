@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>c++ builder and export dll function name - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/general/">General C++ Programming</a></li>
+<li class="here">c++ builder and export dll function name</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico default" title="post">&nbsp;</div> c++ builder and export dll function name chaos</h3><span id="CH_edttl"></span><span class="rootdatPost" title="185261,root,0,-1,7,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg904716"><span title="904716,213617,255,3,1"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg904716" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm589f58ee5d" title="Tue, 23 Feb 2016 15:44:41 +0000"></span><script type="text/javascript">WhenId('CH_zTm589f58ee5d');</script><noscript>Feb 23, 2016 at 3:44pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Sany1984/"><b>Sany1984</b> (3)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i904716">
+Hello Guys,<br>
+<br>
+I have a Problem, i have this example Code:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br></code></pre></td>
+<td class="source"><pre><code><cite>// dllmain.cpp : Defines the entry point for the DLL application.</cite>
+<dfn>#define WIN32_LEAN_AND_MEAN             </dfn><cite>// Exclude rarely-used stuff from Windows headers</cite>
+<cite>// Windows Header Files:</cite>
+<dfn>#include &lt;windows.h&gt;</dfn>
+ 
+BOOL APIENTRY DllMain( HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReserved)
+{
+	<var>switch</var> (ul_reason_for_call)
+	{
+	<var>case</var> DLL_PROCESS_ATTACH:
+	<var>case</var> DLL_THREAD_ATTACH:
+	<var>case</var> DLL_THREAD_DETACH:
+	<var>case</var> DLL_PROCESS_DETACH:
+		<var>break</var>;
+	}
+	<var>return</var> TRUE;
+}
+ 
+<var>extern</var> <kbd>"C"</kbd>
+{
+  __declspec(dllexport) <var>void</var> __stdcall RVExtension(<var>char</var> *output, <var>int</var> outputSize, <var>const</var> <var>char</var> *function); 
+};
+ 
+<var>void</var> __stdcall RVExtension(<var>char</var> *output, <var>int</var> outputSize, <var>const</var> <var>char</var> *function)
+{
+  outputSize -= 1;
+  strncpy(output,function,outputSize);
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+When i Compile this with me XE10 C++ Builder, then i have the exported function "RVExtension" via depwalker.<br>
+<br>
+But my Problem is, the Program, thats load this DLL, require the name as "_RVExtension@12"<br>
+<br>
+With Delphi goes this with:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br></code></pre></td>
+<td class="source"><pre><code>exports
+  RVExtension name <kbd>'_RVExtension@12'</kbd>;</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+now, we can i change in C++ Builder the Exportname from the DLL to "_RVExtension@12" ? my defination file in the project is ignored :(<br>
+<br>
+Thanks :)
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm19a20e38e1" title="Tue, 23 Feb 2016 15:45:16 +0000"></span><script type="text/javascript">WhenId('CH_zTm19a20e38e1');</script><noscript>Feb 23, 2016 at 3:45pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn904716"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg904723"><span title="904723,29924,1023,5406,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg904723" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm6d80f043e8" title="Tue, 23 Feb 2016 16:08:44 +0000"></span><script type="text/javascript">WhenId('CH_zTm6d80f043e8');</script><noscript>Feb 23, 2016 at 4:08pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Computergeek01/"><b>Computergeek01</b> (5406)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i904723">
+It's because you're declaring the calling convention as '__stdcall'. Take a look here: " <a href="https://msdn.microsoft.com/en-us/library/zxk0tw93.aspx">https://msdn.microsoft.com/en-us/library/zxk0tw93.aspx</a> " ctrl + F for "Name-decoration convention". Make sense?
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn904723"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg904725"><span title="904725,39415,1023,5467,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg904725" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm5723e5cc6e" title="Tue, 23 Feb 2016 16:13:31 +0000"></span><script type="text/javascript">WhenId('CH_zTm5723e5cc6e');</script><noscript>Feb 23, 2016 at 4:13pm UTC</noscript></div>
+<div class="dwho"><a href="/user/coder777/"><b>coder777</b> (5467)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i904725">
+See:<br>
+<br>
+<a href="https://msdn.microsoft.com/en-us/library/zxk0tw93.aspx">https://msdn.microsoft.com/en-us/library/zxk0tw93.aspx</a><br>
+<br>
+Your export name should have this decoration.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn904725"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg904794"><span title="904794,213617,255,3,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg904794" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmf6e0ba8ac4" title="Tue, 23 Feb 2016 19:47:04 +0000"></span><script type="text/javascript">WhenId('CH_zTmf6e0ba8ac4');</script><noscript>Feb 23, 2016 at 7:47pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Sany1984/"><b>Sany1984</b> (3)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i904794">
+Thanks for this Info, this was my Problem the Name decoration conversion between C++ Borland and VC++<br>
+<br>
+Now, i compile my DLL in Borland, and the VC++ Application loads this as Plugin.<br>
+<br>
+Now i am confused, how must i change my code? <br>
+<br>
+The Same Code is compiled in Borland and exports the Name as "RVExtension" <br>
+The same Code in VC++ exports the Name as "_RVExtension@12"...<br>
+<br>
+How we must change my Code, to export my Borland C++ DLL Name-Convention to the Named Convention from VC++ ala "_RVExtension@12" ?<br>
+<br>
+Thanks :)
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn904794"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg904796"><span title="904796,29924,1023,5406,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg904796" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm83a4c16a71" title="Tue, 23 Feb 2016 19:58:55 +0000"></span><script type="text/javascript">WhenId('CH_zTm83a4c16a71');</script><noscript>Feb 23, 2016 at 7:58pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Computergeek01/"><b>Computergeek01</b> (5406)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i904796">
+Change the calling convention to '__cdecl' and leave the extern 'C' modifier: <a href="https://msdn.microsoft.com/en-us/library/zkwh89ks.aspx">https://msdn.microsoft.com/en-us/library/zkwh89ks.aspx</a>
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn904796"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg904798"><span title="904798,213617,255,3,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg904798" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm196b371891" title="Tue, 23 Feb 2016 20:30:04 +0000"></span><script type="text/javascript">WhenId('CH_zTm196b371891');</script><noscript>Feb 23, 2016 at 8:30pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Sany1984/"><b>Sany1984</b> (3)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i904798">
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br></code></pre></td>
+<td class="source"><pre><code>__declspec(dllexport) __cdecl RVExtension(<var>char</var> *output, <var>int</var> outputSize, <var>const</var> <var>char</var> *function);
+
+RVExtension(<var>char</var> *output, <var>int</var> outputSize, <var>const</var> <var>char</var> *function)
+{
+	outputSize -= 1;
+	strncpy(output,function,outputSize);
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+this Code Exports the Name as "@RVExtension$qpcipxc"
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn904798"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg904824"><span title="904824,29924,1023,5406,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg904824" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmc03baeec34" title="Tue, 23 Feb 2016 21:52:36 +0000"></span><script type="text/javascript">WhenId('CH_zTmc03baeec34');</script><noscript>Feb 23, 2016 at 9:52pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Computergeek01/"><b>Computergeek01</b> (5406)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i904824">
+Did you leave, as in maintain, the "extern 'C'" bracket in your code?
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn904824"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div class="rootbtnNew"></div><div id="CH_insNew"></div><div id="CH_reply">Registered users can post here. <a href="/user/">Sign in or register</a> to post.</div><div id="CH_subscription"></div><div class="rootedtNew"></div><script type="text/javascript">new for_PostList(185261,0,213617,0,'CH_PostList','CH_subscription','CH_reply','CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li><a href="/forum/beginner/"><b>Beginners</b></a></li><li><a href="/forum/windows/"><b>Windows Programming</b></a></li><li><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li class="selected"><a href="/forum/general/"><b>General C++ Programming</b></a></li><li><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Fgeneral%2F185261%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Reading from a text file - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/unices/">UNIX/Linux Programming</a></li>
+<li class="here">Reading from a text file</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico default" title="post">&nbsp;</div> Reading from a text file</h3><span id="CH_edttl"></span><span class="rootdatPost" title="184948,root,0,-1,6,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg903622"><span title="903622,162867,1023,88,1"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg903622" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmac17a2e662" title="Fri, 19 Feb 2016 19:55:42 +0000"></span><script type="text/javascript">WhenId('CH_zTmac17a2e662');</script><noscript>Feb 19, 2016 at 7:55pm UTC</noscript></div>
+<div class="dwho"><a href="/user/alexBB/"><b>alexBB</b> (88)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i903622">
+Hello there,<br>
+<br>
+It is Ubuntu 14.04 with g++14<br>
+<br>
+I need to read from a text file. I am posting a few first lines:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br></code></pre></td>
+<td class="source"><pre><code>!<dfn># The file contains calculations of the flat areas for the ALP's</dfn>
+ !<dfn># L-index  M-index  Angle (deg)</dfn>
+    1       0           0.21
+    1       1           8.17
+    2       0           0.63
+    2       1           3.39
+    2       2          15.83
+    3       0           0.36
+    3       1           4.13</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+This is a subroutine that does not work:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br></code></pre></td>
+<td class="source"><pre><code><var>public</var> : <var>void</var> readFlatAreas (<var>int</var> ll, <var>double</var> * flatAreas)
+  {
+    ifstream myFile;
+    <var>int</var> ll1, mm1, ii;
+    <var>char</var> *liner;
+    <var>double</var> val;
+    liner = (<var>char</var>*)std::malloc(100*<var>sizeof</var>(<var>char</var>)); 
+    myFile.open (<kbd>"flatAreas.dat"</kbd>,ios::out);
+    myFile.seekg(0, ios::beg);
+    myFile &gt;&gt; *liner;
+    myFile &gt;&gt; *liner;
+    ll1 = -100; 
+    <var>while</var> (ll1 != ll)
+    {
+      myFile &gt;&gt; ll1 &gt;&gt; mm1 &gt;&gt; val;
+      <var>if</var> (ll1 == ll)
+      {
+        ii = -1;
+        <var>while</var> (ll1 == ll &amp;&amp; !myFile.eof())
+        {
+          ii += 1;
+          flatAreas[ii] = val;
+          myFile &gt;&gt; ll1 &gt;&gt; mm1 &gt;&gt; val;
+        }
+        myFile.close();
+        <var>return</var>;
+      } 
+    }      </code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+The intent is to read lines corresponding to separate indexes L and M and store the value <b>val</b> in an array <b>flatAreas</b>. Something is wrong with the code. Everything compiles. I use <b>gdb</b> to step through it and can see that <b>there is no reading</b>. Please help.<br>
+<br>
+Thanks, - Alex
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm5091cf867c" title="Fri, 19 Feb 2016 20:00:49 +0000"></span><script type="text/javascript">WhenId('CH_zTm5091cf867c');</script><noscript>Feb 19, 2016 at 8:00pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn903622"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg903631"><span title="903631,111189,1023,4867,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg903631" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm0b67a7212d" title="Fri, 19 Feb 2016 20:24:57 +0000"></span><script type="text/javascript">WhenId('CH_zTm0b67a7212d');</script><noscript>Feb 19, 2016 at 8:24pm UTC</noscript></div>
+<div class="dwho"><a href="/user/keskiverto/"><b>keskiverto</b> (4867)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i903631">
+Are the L-M pairs unique?<br>
+<br>
+Malloc? Why? The istream has ignore() for skipping (e.g. a comment line)<br>
+See <a href="http://www.cplusplus.com/reference/istream/istream/ignore/">http://www.cplusplus.com/reference/istream/istream/ignore/</a><br>
+<br>
+What does the ios::out do for std::ifstream?<br>
+<br>
+"public :" A member function?<br>
+<br>
+Plain C-style array for flatAreas? C++ Standard Library has simple and <b>safe</b> containers.<br>
+<br>
+<br>
+It is hard to figure out what your loops attempt to do. I do presume that you want to read only the lines, where the L-index equals 'll' (which is a horrid name in the company of ii and ll1).<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br></code></pre></td>
+<td class="source"><pre><code>std::vector&lt;std::pair&lt;<var>int</var>,<var>double</var>&gt; foo( <var>int</var> bar,  std::string name ) {
+  std::vector&lt;std::pair&lt;<var>int</var>,<var>double</var>&gt;&gt; values;
+  std::ifstream file( name );
+  file.ignore( 256, <kbd>'\n'</kbd> );
+  file.ignore( 256, <kbd>'\n'</kbd> );
+  <var>int</var> il;
+  <var>int</var> im;
+  <var>double</var> val;
+  <var>while</var> ( file &gt;&gt; il &gt;&gt; im &gt;&gt; val ) {
+    <var>if</var> ( bar == il ) {
+      values.emplace_back( im, val );
+    }
+  }
+  <var>return</var> values;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn903631"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg903633"><span title="903633,162867,1023,88,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg903633" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm19e610f0df" title="Fri, 19 Feb 2016 20:44:26 +0000"></span><script type="text/javascript">WhenId('CH_zTm19e610f0df');</script><noscript>Feb 19, 2016 at 8:44pm UTC</noscript></div>
+<div class="dwho"><a href="/user/alexBB/"><b>alexBB</b> (88)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i903633">
+Thank you keskiverto. - Alex
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn903633"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg904131"><span title="904131,162867,1023,88,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg904131" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmfc73f6f76f" title="Sun, 21 Feb 2016 16:42:24 +0000"></span><script type="text/javascript">WhenId('CH_zTmfc73f6f76f');</script><noscript>Feb 21, 2016 at 4:42pm UTC</noscript></div>
+<div class="dwho"><a href="/user/alexBB/"><b>alexBB</b> (88)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i904131">
+Keskiverto, before I closed the topic I need to ask you a question. First this: I had to modify your code and get rid of the vector. Logically I don't have to retrieve M index. I know it varies from 0 to L-index anyway, thus the position in the array will determine M. So, I changed your code a little bit and it works well. Here it is:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br></code></pre></td>
+<td class="source"><pre><code><var>public</var> : <var>void</var> readFlatAreas_2 (<var>int</var> bar, <var>double</var> * vedro)
+  {
+    std::ifstream file (<kbd>"flatAreas.dat"</kbd>);    
+    <var>int</var> il, im, jj=-1;
+    <var>double</var> val;
+    file.ignore (256, <kbd>'\n'</kbd>);
+    file.ignore (256, <kbd>'\n'</kbd>);
+    <var>bool</var> started = <var>false</var>;
+    <var>while</var> ( file &gt;&gt; il &gt;&gt; im &gt;&gt; val ) 
+    {
+      <var>if</var> ( bar == il ) 
+      {
+        started = <var>true</var>;
+        jj++;
+        *(vedro + jj) = val;
+      }  
+      <var>if</var> (started &amp;&amp; bar != il)
+        <var>break</var>;    
+    } 
+    <var>return</var>; 
+  } </code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+This is the code I will most likely use, however, you intrigued me with the vector class (template?) and your code also worked. It is here:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br></code></pre></td>
+<td class="source"><pre><code><var>public</var> : <var>void</var> readFlatAreas (<var>int</var> bar, std::vector&lt;std::pair&lt;<var>int</var>,<var>double</var>&gt;&gt; values)
+  {
+    std::ifstream file (<kbd>"flatAreas.dat"</kbd>);    
+    <var>int</var> il, im;
+    <var>double</var> val;
+    file.ignore (256, <kbd>'\n'</kbd>);
+    file.ignore (256, <kbd>'\n'</kbd>);
+    <var>bool</var> started = <var>false</var>;
+    <var>while</var> ( file &gt;&gt; il &gt;&gt; im &gt;&gt; val ) 
+    {
+      <var>if</var> ( bar == il ) 
+      {
+        started = <var>true</var>;
+        values.emplace_back( im, val );
+      }  
+      <var>if</var> (started &amp;&amp; bar != il)
+        <var>break</var>;    
+    } 
+    <var>return</var>;         
+  }</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+However the problem for me is that I don't know how to retrieve individual values in the calling function. Anything I tried does not compile. For example:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br></code></pre></td>
+<td class="source"><pre><code><var>public</var> : <var>void</var> checkFlatAreas (<var>int</var> ll)
+  {  
+     RealWork rw;
+     std::vector&lt;std::pair&lt;<var>int</var>,<var>double</var>&gt;&gt; values;
+     rw.readFlatAreas (ll, values);
+     <var>for</var> (<var>int</var> jj = 0; jj &lt;= ll; jj++)
+       {
+         std::cout &lt;&lt; <kbd>"jj = "</kbd> &lt;&lt; jj &lt;&lt; values[jj] &lt;&lt; jj &lt;&lt; endl;   <cite>// &lt;== Compile error</cite>
+       }
+  }</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+I will appreciate if you explain to me how I can get my values back. I may use vectors in other applications. Thanks, - Alex
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTmdb567b8fc3" title="Sun, 21 Feb 2016 16:56:29 +0000"></span><script type="text/javascript">WhenId('CH_zTmdb567b8fc3');</script><noscript>Feb 21, 2016 at 4:56pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn904131"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg904142"><span title="904142,111189,1023,4867,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg904142" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm5b5b052b45" title="Sun, 21 Feb 2016 17:27:48 +0000"></span><script type="text/javascript">WhenId('CH_zTm5b5b052b45');</script><noscript>Feb 21, 2016 at 5:27pm UTC</noscript></div>
+<div class="dwho"><a href="/user/keskiverto/"><b>keskiverto</b> (4867)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i904142">
+My function creates and returns a copy of a vector object.<br>
+<br>
+Your function takes a vector object argument <i>by value</i>.<br>
+The function fills the copy with data, but the copy is destroyed when the function exits.<br>
+<br>
+In order for a function argument to serve as output, it should be <i>by reference</i>.<br>
+(Well, your other version has pointer, but you don't touch the pointer itself, just the dereferenced data.)<br>
+<br>
+<span class="auto"><code class="source"><var>void</var> readFlatAreas (<var>int</var> bar, std::vector&lt;std::pair&lt;<var>int</var>,<var>double</var>&gt;&gt; &amp; values)</code></span><br>
+<br>
+<br>
+As to the compile error, do note that an element in vector 'values' has type <span class="auto"><code class="source">std::pair&lt;<var>int</var>,<var>double</var>&gt;</code></span>.<br>
+Now you would jump to the manual <a href="http://www.cplusplus.com/reference/utility/pair/pair/">http://www.cplusplus.com/reference/utility/pair/pair/</a><br>
+An element in values has thus two member variables: first and second.<br>
+<br>
+<br>
+However, if you don't need the M, because it is implicitly in the element's index, then the vector does not need to store a pair. it can store plain double's instead.<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br></code></pre></td>
+<td class="source"><pre><code><var>void</var> readFlatAreas (<var>int</var> bar, std::vector&lt;<var>double</var>&gt; &amp; values)
+  {
+    std::ifstream file (<kbd>"flatAreas.dat"</kbd>);    
+    <var>int</var> il, im;
+    <var>double</var> val;
+    file.ignore (256, <kbd>'\n'</kbd>);
+    file.ignore (256, <kbd>'\n'</kbd>);
+    <var>bool</var> started = <var>false</var>;
+    <var>while</var> ( file &gt;&gt; il &gt;&gt; im &gt;&gt; val ) 
+    {
+      <var>if</var> ( bar == il ) 
+      {
+        started = <var>true</var>;
+        <cite>// assert( values.size() == im );</cite>
+        values.emplace_back( val );
+      }  
+      <var>if</var> (started &amp;&amp; bar != il)
+        <var>break</var>;    
+    } 
+    <var>return</var>;         
+  }</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<a href="http://www.cplusplus.com/reference/cassert/assert/">http://www.cplusplus.com/reference/cassert/assert/</a>
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn904142"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg904151"><span title="904151,162867,1023,88,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg904151" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm5d23a0261c" title="Sun, 21 Feb 2016 17:47:11 +0000"></span><script type="text/javascript">WhenId('CH_zTm5d23a0261c');</script><noscript>Feb 21, 2016 at 5:47pm UTC</noscript></div>
+<div class="dwho"><a href="/user/alexBB/"><b>alexBB</b> (88)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i904151">
+Thank you very much. I highly appreciate your help. - Alex
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn904151"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div class="rootbtnNew"></div><div id="CH_insNew"></div><div id="CH_reply">Registered users can post here. <a href="/user/">Sign in or register</a> to post.</div><div id="CH_subscription"></div><div class="rootedtNew"></div><script type="text/javascript">new for_PostList(184948,0,162867,0,'CH_PostList','CH_subscription','CH_reply','CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+<script type="text/javascript">
+    google_ad_client = "ca-pub-1444228343479937";
+    google_ad_slot = "9701143201";
+    google_ad_width = 728;
+    google_ad_height = 90;
+</script>
+<!-- leaderboard -->
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li><a href="/forum/beginner/"><b>Beginners</b></a></li><li><a href="/forum/windows/"><b>Windows Programming</b></a></li><li class="selected"><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li><a href="/forum/general/"><b>General C++ Programming</b></a></li><li><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Funices%2F184948%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>How I Used My C++ Programming Technique  - C++ Articles</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/articles/">Articles</a></li>
+<li class="here">How I Used My C++ Programming Technique </li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div id="I_content">
+<div class="C_art">
+<div id="I_author">Published by <b><a href="/user/analyzoh/" rel="author">analyzoh</a></b></div>
+<div id="I_date">Jun 24, 2012 (last update: Jun 13, 2014)</div>
+<h1>How I Used My C++ Programming Technique To Convert A Numerical Amount To A Verbal Amount</h1>
+<div id="I_score">Score: 2.7/5 (163 votes)</div>
+<div id="I_stars"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-half.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"></div>
+<div id="I_content">
+<b>INTRODUCTION</b><br>
+<br>
+I would like to discuss a <a href="http://www.analyzohiosoftware.com/programming-article-archive-cleveland-ohio.html">programming</a> technique I developed in C++ several years ago for converting a numerical amount to a verbal amount. I use this in a check book register program I made for a longtime customer in my hometown of Cleveland, Ohio USA. This technique is part of a module in a larger program that is used to compose and issue checks every week for payroll, taxes, shop materials, office supplies, utilities and more. It has proven to be very reliable over a period of years. This algorithm can also be implemented for assistance with printing legal contracts, loan documents, promissory notes and many more things where a verbal amount needs to be specified.<br>
+<br>
+<br><IMG SRC="verbal_amount_banner.jpg" alt=""><br>
+<br>
+The full C++ <a href="http://www.analyzohiosoftware.com/general_code_readout_template.php?var1=numercheck">program code</a> readout for this can be viewed on my website. Next, I will explain the logic flow so it can be easily understood.<br>
+<br>
+<b>GETTING SET UP</b><br>
+<br>
+At the beginning of the C++ source code, defined constants are declared so the rest of the code can reference them for various tasks. After clicking the “print check” button, the variables and objects are declared. Next, a simple if-then logic structure is used to test if a check book register record has been selected from the check book register screen. This is necessary because the check number from the check book register screen is needed to help create the printed check. Now initialize the variables for the check and check stub. Next, retrieve the following items from the controls on the currently displayed screen. These items include check number, vendor name, invoice description, check memorandum and paid date.<br>
+<br>
+For the next step, a file stream must be opened to the binary check book register data file, “cbook.txt”. Here, a do-while loop structure is entered to collect the data for each invoice to be paid. The check number for each check book register record will be matched to the one retrieved from the current data entry screen. Each matched record will retrieve the date, expense code, invoice number, invoice total, early payment discount, and net invoice amount for each specific vendor invoice to be paid with this check. There can be no more than 10 invoices on the check stub in this particular application. With each pass through the do-while loop structure, the matched check book register record will be marked as paid and the net invoice amount will be accumulated. This total will become the numerical amount that will be converted to a verbal amount.<br>
+<br>
+Upon verification that at least one matching check number was found in the do-while loop structure from above, the net invoice amount total will be specified in a character array called “totpay”. This character array will be extensively utilized in the conversion to a verbal amount momentarily. But first, a file stream must be opened to the vendor binary data file, “vendor.txt”. This will be another do-while loop structure that matches the retrieved vendor name from the currently displayed screen to what is in the data file for vendors. The vendor’s street, city, state and zip code are then retrieved upon a successful match and then formatted with some simple string operations to prepare for eventual printing on the check itself.<br>
+<br>
+<b>THE BRICK AND MORTAR</b><br>
+<br>
+Here are some sets of character arrays that define some of the verbal components used to construct the verbal amount for the check. Each of these character array sets will be assigned a specific name for the purpose of narrating the <a href="http://www.analyzohiosoftware.com/software-development-archive-cleveland-ohio.html">software development</a> algorithm that utilizes them for converting the numerical amount to a verbal amount.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br></code></pre></td>
+<td class="source"><pre><code>
+<var>char</var>      am1[] = <kbd>"NINETY"</kbd>;
+<var>char</var>      am2[] = <kbd>"EIGHTY"</kbd>;
+<var>char</var>      am3[] = <kbd>"SEVENTY"</kbd>;
+<var>char</var>      am4[] = <kbd>"SIXTY"</kbd>;
+<var>char</var>      am5[] = <kbd>"FIFTY"</kbd>;
+<var>char</var>      am6[] = <kbd>"FORTY"</kbd>;
+<var>char</var>      am7[] = <kbd>"THIRTY"</kbd>;
+<var>char</var>      am8[] = <kbd>"TWENTY"</kbd>;
+</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+The above character array contents are selectively concatenated to the verbal description variable depending on what numbers are in the second (2nd) and fifth (5th) positions to the left of the decimal point in the numerical amount to be converted. <b>THIS IS GROUP A</b>.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br></code></pre></td>
+<td class="source"><pre><code>
+<var>char</var>      am9[] = <kbd>"ONE"</kbd>;
+<var>char</var>      am10[] = <kbd>"TWO"</kbd>;
+<var>char</var>      am11[] = <kbd>"THREE"</kbd>;
+<var>char</var>      am12[] = <kbd>"FOUR"</kbd>;
+<var>char</var>      am13[] = <kbd>"FIVE"</kbd>;
+<var>char</var>      am14[] = <kbd>"SIX"</kbd>;
+<var>char</var>      am15[] = <kbd>"SEVEN"</kbd>;
+<var>char</var>      am16[] = <kbd>"EIGHT"</kbd>;
+<var>char</var>      am17[] = <kbd>"NINE"</kbd>;
+</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+The above character array contents are selectively concatenated to the verbal description variable depending on what numbers are in the first (1st), third (3rd) and fourth (4th) positions to the left of the decimal point in the numerical amount to be converted. <b>THIS IS GROUP B</b>.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br></code></pre></td>
+<td class="source"><pre><code>
+<var>char</var>      am18[] = <kbd>"THOUSAND"</kbd>;
+</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+This is concatenated to the verbal description variable after the “number of thousands figure” has been detected, which is the fourth (4th) position to the left of the decimal point in the numerical amount to be converted. <b>THIS IS THE THOUSANDS DESIGNATOR</b>.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br></code></pre></td>
+<td class="source"><pre><code>
+<var>char</var>      am19[] = <kbd>"HUNDRED"</kbd>;
+</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+This is concatenated to the verbal description variable after the “number of hundreds figure” has been detected, which is the third (3rd) position to the left of the decimal point in the numerical amount to be converted. <b>THIS IS THE HUNDREDS DESIGNATOR</b>.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br></code></pre></td>
+<td class="source"><pre><code>
+<var>char</var>      am0[] = <kbd>"ZERO"</kbd>;
+</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+This is not concatenated to the verbal description variable, but rather it is assigned after no other descriptors have been concatenated to the above variable at the end of processing. <b>THIS IS THE ZERO DESIGNATOR</b>.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br></code></pre></td>
+<td class="source"><pre><code>
+<var>char</var>      am210[] = <kbd>"TEN"</kbd>;
+<var>char</var>      am211[] = <kbd>"ELEVEN"</kbd>;
+<var>char</var>      am212[] = <kbd>"TWELVE"</kbd>;
+<var>char</var>      am213[] = <kbd>"THIRTEEN"</kbd>;
+<var>char</var>      am214[] = <kbd>"FOURTEEN"</kbd>;
+<var>char</var>      am215[] = <kbd>"FIFTEEN"</kbd>;
+<var>char</var>      am216[] = <kbd>"SIXTEEN"</kbd>;
+<var>char</var>      am217[] = <kbd>"SEVENTEEN"</kbd>;
+<var>char</var>      am218[] = <kbd>"EIGHTEEN"</kbd>;
+<var>char</var>      am219[] = <kbd>"NINETEEN"</kbd>;
+</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+The above character array contents are selectively concatenated to the verbal description variable depending on what numbers are in the first (1st) and fourth (4th) positions to the left of the decimal point in the numerical amount to be converted. <b>THIS IS GROUP C</b>.<br>
+<br>
+<b>STARTING CONSTRUCTION</b><br>
+<br>
+The first thing to do here is initialize the 70 character character array “verbal_amount” with space characters to prepare it for being updated by the algorithm that converts the numerical amount in the character array “totpay” to the verbal counterpart. A counter variable “aa” will also be used to count how many characters are appended to the char array “verbal_amount”.<br>
+<br>
+Next, check to see if the 5th digit to the left of the decimal point in the numerical character array “totpay” is greater than 0 (begin structure “a”). If true, then check to see if the 5th digit to the left of the decimal point in the numerical character array “totpay” is equal to 1 (begin structure “b”). If this is true, then use <b>GROUP C</b> to assign a descriptor to the verbal amount character array “verbal_amount” based on the number that is contained in the 4th digit to the left of the decimal place in the numerical character array “totpay” as shown here:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br>59<br>60<br>61<br>62<br></code></pre></td>
+<td class="source"><pre><code>
+<cite>// if the 4th digit to the left of the decimal point is 0, then append</cite>
+<cite>// "TEN" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[3] == 48) {
+<var>for</var>(f=0; f&lt;3; f++) verbal_amount[f] = am210[f];       
+aa=3;
+}
+<cite>// if the 4th digit to the left of the decimal point is 1, then append</cite>
+<cite>// "ELEVEN" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[3] == 49) {
+<var>for</var>(f=0; f&lt;6; f++) verbal_amount[f] = am211[f];       
+aa=6;
+}
+<cite>// if the 4th digit to the left of the decimal point is 2, then append</cite>
+<cite>// "TWELVE" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[3] == 50) {
+<var>for</var>(f=0; f&lt;6; f++) verbal_amount[f] = am212[f];       
+aa=6;
+}
+<cite>// if the 4th digit to the left of the decimal point is 3, then append</cite>
+<cite>// "THIRTEEN" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[3] == 51) {
+<var>for</var>(f=0; f&lt;8; f++) verbal_amount[f] = am213[f];       
+aa=8;
+}
+<cite>// if the 4th digit to the left of the decimal point is 4, then append</cite>
+<cite>// "FOURTEEN" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[3] == 52) {
+<var>for</var>(f=0; f&lt;8; f++) verbal_amount[f] = am214[f];       
+aa=8;
+}
+<cite>// if the 4th digit to the left of the decimal point is 5, then append</cite>
+<cite>// "FIFTEEN" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[3] == 53) {
+<var>for</var>(f=0; f&lt;7; f++) verbal_amount[f] = am215[f];       
+aa=7;
+}
+<cite>// if the 4th digit to the left of the decimal point is 6, then append</cite>
+<cite>// "SIXTEEN" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[3] == 54) {
+<var>for</var>(f=0; f&lt;7; f++) verbal_amount[f] = am216[f];        
+aa=7;
+}
+<cite>// if the 4th digit to the left of the decimal point is 7, then append</cite>
+<cite>// "SEVENTEEN" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[3] == 55) {
+<var>for</var>(f=0; f&lt;9; f++) verbal_amount[f] = am217[f];       
+aa=9;
+}
+<cite>// if the 4th digit to the left of the decimal point is 8, then append</cite>
+<cite>// "EIGHTEEN" // to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[3] == 56) {
+<var>for</var>(f=0; f&lt;8; f++) verbal_amount[f] = am218[f];       
+aa=8;
+}
+<cite>// if the 4th digit to the left of the decimal point is 9, then append</cite>
+<cite>// "NINETEEN" // to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[3] == 57) {
+<var>for</var>(f=0; f&lt;8; f++) verbal_amount[f] = am219[f];       
+aa=8;
+}
+</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+End structure “b”. Next, use <b>GROUP A</b> to assign a descriptor to the verbal amount character array “verbal_amount” based on the number that is contained in the 5th digit to the left of the decimal place in the numerical character array “totpay” as shown here:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br></code></pre></td>
+<td class="source"><pre><code>
+<cite>// if the 5th digit to the left of the decimal point is 2, then append</cite>
+<cite>// "TWENTY" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[2] == 50) {
+<var>for</var>(f=0; f&lt;6; f++) verbal_amount[f] = am8[f];         
+aa=6;
+}
+<cite>// if the 5th digit to the left of the decimal point is 3, then append</cite>
+<cite>// "THIRTY" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[2] == 51) {
+<var>for</var>(f=0; f&lt;6; f++) verbal_amount[f] = am7[f];         
+aa=6; 
+}
+<cite>// if the 5th digit to the left of the decimal point is 4, then append</cite>
+<cite>// "FORTY" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[2] == 52) {
+<var>for</var>(f=0; f&lt;5; f++) verbal_amount[f] = am6[f];         
+aa=5; 
+}
+<cite>// if the 5th digit to the left of the decimal point is 5, then append</cite>
+<cite>// "FIFTY" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[2] == 53) {
+<var>for</var>(f=0; f&lt;5; f++) verbal_amount[f] = am5[f];         
+aa=5;
+}
+<cite>// if the 5th digit to the left of the // decimal point is 6, then append</cite>
+<cite>// "SIXTY" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[2] == 54) {
+<var>for</var>(f=0; f&lt;5; f++) verbal_amount[f] = am4[f];         
+aa=5;
+}
+<cite>// if the 5th digit to the left of the decimal point is 7, then append</cite>
+<cite>// "SEVENTY" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[2] == 55) {
+<var>for</var>(f=0; f&lt;7; f++) verbal_amount[f] = am3[f];         
+aa=7;
+}
+<cite>// if the 5th digit to the left of the decimal point is 8, then append</cite>
+<cite>// "EIGHTY" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[2] == 56) {
+<var>for</var>(f=0; f&lt;6; f++) verbal_amount[f] = am2[f];         
+aa=6;
+}
+<cite>// if the 5th digit to the left of the decimal point is 9, then append</cite>
+<cite>// "NINETY" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[2] == 57) {
+<var>for</var>(f=0; f&lt;6; f++) verbal_amount[f] = am1[f];         
+aa=6;
+}
+</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Begin structure “c”. If the 5th digit to the left of the decimal point in the numerical character array “totpay” does not equal 1, then use <b>GROUP B</b> to assign a descriptor to the verbal amount character array “verbal_amount” based on the number that is contained in the 4th digit to the left of the decimal place in the numerical character array “totpay” as shown here:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br></code></pre></td>
+<td class="source"><pre><code>
+<cite>// if the 4th digit to the left of the decimal point is 1, then append</cite>
+<cite>// "ONE" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[3] == 49) {
+<var>for</var>(f=0; f&lt;3; f++) verbal_amount[f+aa+1] = am9[f];    
+aa=aa+4;
+}
+<cite>// if the 4th digit to the left of the decimal point is 2, then append</cite>
+<cite>// "TWO" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[3] == 50) {
+<var>for</var>(f=0; f&lt;3; f++) verbal_amount[f+aa+1] = am10[f];   
+aa=aa+4;
+}
+<cite>// if the 4th digit to the left of the decimal point is 3, then append</cite>
+<cite>// "THREE" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[3] == 51) {
+<var>for</var>(f=0; f&lt;5; f++) verbal_amount[f+aa+1] = am11[f];   
+aa=aa+6;
+}
+<cite>// if the 4th digit to the left of the decimal point is 4, then append</cite>
+<cite>// "FOUR" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[3] == 52) {
+<var>for</var>(f=0; f&lt;4; f++) verbal_amount[f+aa+1] = am12[f];   
+aa=aa+5;
+}
+<cite>// if the 4th digit to the left of the decimal point is 5, then append</cite>
+<cite>// "FIVE" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[3] == 53) {
+<var>for</var>(f=0; f&lt;4; f++) verbal_amount[f+aa+1] = am13[f];   
+aa=aa+5;
+}
+<cite>// if the 4th digit to the left of the decimal point is 6, then append</cite>
+<cite>// "SIX" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[3] == 54) {
+<var>for</var>(f=0; f&lt;3; f++) verbal_amount[f+aa+1] = am14[f];   
+aa=aa+4;
+}
+<cite>// if the 4th digit to the left of the decimal point is 7, then append</cite>
+<cite>// "SEVEN" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[3] == 55) {
+<var>for</var>(f=0; f&lt;5; f++) verbal_amount[f+aa+1] = am15[f];   
+aa=aa+6;
+}
+<cite>// if the 4th digit to the left of the decimal point is 8, then append</cite>
+<cite>// "EIGHT" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[3] == 56) {
+<var>for</var>(f=0; f&lt;5; f++) verbal_amount[f+aa+1] = am16[f];   
+aa=aa+6;
+}
+<cite>// if the 4th digit to the left of the decimal point is 9, then append</cite>
+<cite>//  "NINE" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[3] == 57) {
+<var>for</var>(f=0; f&lt;4; f++) verbal_amount[f+aa+1] = am17[f];   
+aa=aa+5;
+}
+</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+End structure “c”. Next, append "THOUSAND" to the character array “verbal_amount” and end structure “a”.<br>
+<br>
+Begin structure “d”. If the 5th digit to the left of the decimal point is less than 1 and the 4th digit to the left of the decimal point is greater than 0, then proceed. Use <b>GROUP B</b> to assign a descriptor to the verbal amount character array “verbal_amount” based on the number that is contained in the 4th digit to the left of the decimal place in the numerical character array “totpay” as shown here:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br></code></pre></td>
+<td class="source"><pre><code>
+<cite>// if the 4th digit to the left of the decimal point is 1, then append</cite>
+<cite>// "ONE" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[3] == 49) {
+<var>for</var>(f=0; f&lt;3; f++) verbal_amount[f+aa+1] = am9[f];     
+aa=aa+4;
+}
+<cite>// if the 4th digit to the left of the decimal point is 2, then append</cite>
+<cite>// "TWO" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[3] == 50) {
+<var>for</var>(f=0; f&lt;3; f++) verbal_amount[f+aa+1] = am10[f];    
+aa=aa+4;
+}
+<cite>// if the 4th digit to the left of the decimal point is 3, then append</cite>
+<cite>// "THREE" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[3] == 51) {
+<var>for</var>(f=0; f&lt;5; f++) verbal_amount[f+aa+1] = am11[f];    
+aa=aa+6;
+}
+<cite>// if the 4th digit to the left of the decimal point is 4, then append</cite>
+<cite>// "FOUR" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[3] == 52) {
+<var>for</var>(f=0; f&lt;4; f++) verbal_amount[f+aa+1] = am12[f];    
+aa=aa+5;
+}
+<cite>// if the 4th digit to the left of the decimal point is 5, then append</cite>
+<cite>// "FIVE" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[3] == 53) {
+<var>for</var>(f=0; f&lt;4; f++) verbal_amount[f+aa+1] = am13[f];    
+aa=aa+5;
+}
+<cite>// if the 4th digit to the left of the decimal point is 6, then append</cite>
+<cite>// "SIX" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[3] == 54) {
+<var>for</var>(f=0; f&lt;3; f++) verbal_amount[f+aa+1] = am14[f];    
+aa=aa+4;
+}
+<cite>// if the 4th digit to the left of the decimal point is 7, then append</cite>
+<cite>// "SEVEN" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[3] == 55) {
+<var>for</var>(f=0; f&lt;5; f++) verbal_amount[f+aa+1] = am15[f];    
+aa=aa+6;
+}
+<cite>// if the 4th digit to the left of the decimal point is 8, then append</cite>
+<cite>// "EIGHT" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[3] == 56) {
+<var>for</var>(f=0; f&lt;5; f++) verbal_amount[f+aa+1] = am16[f];    
+aa=aa+6;
+}
+<cite>// if the 4th digit to the left of the decimal point is 9, then append</cite>
+<cite>// "NINE" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[3] == 57) {
+<var>for</var>(f=0; f&lt;4; f++) verbal_amount[f+aa+1] = am17[f];    
+aa=aa+5;
+}
+</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Next, append "THOUSAND" to the character array “verbal_amount” and end structure “d”.<br>
+<br>
+Begin structure “e”. If the 3rd digit to the left of the decimal point is greater than 0, then proceed. Use <b>GROUP B</b> to assign a descriptor to the verbal amount character array “verbal_amount” based on the number that is contained in the 3rd digit to the left of the decimal place in the numerical character array “totpay” as shown here:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br></code></pre></td>
+<td class="source"><pre><code>	
+<cite>// if the 3rd digit to the left of the decimal point is 1, then append</cite>
+<cite>// "ONE" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[4] == 49) {
+<var>for</var>(f=0; f&lt;3; f++) verbal_amount[f+aa+1] = am9[f];    
+aa=aa+4;
+}
+<cite>// if the 3rd digit to the left of the decimal point is 2, then append</cite>
+<cite>// "TWO" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[4] == 50) {
+<var>for</var>(f=0; f&lt;3; f++) verbal_amount[f+aa+1] = am10[f];   
+aa=aa+4;
+}
+<cite>// if the 3rd digit to the left of the decimal point is 3, then append</cite>
+<cite>// "THREE" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[4] == 51) {
+<var>for</var>(f=0; f&lt;5; f++) verbal_amount[f+aa+1] = am11[f];   
+aa=aa+6;
+}
+<cite>// if the 3rd digit to the left of the decimal point is 4, then append</cite>
+<cite>// "FOUR" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[4] == 52) {
+<var>for</var>(f=0; f&lt;4; f++) verbal_amount[f+aa+1] = am12[f];   
+aa=aa+5;
+}
+<cite>// if the 3rd digit to the left of the decimal point is 5, then append</cite>
+<cite>// "FIVE" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[4] == 53) {
+<var>for</var>(f=0; f&lt;4; f++) verbal_amount[f+aa+1] = am13[f];   
+aa=aa+5;
+}
+<cite>// if the 3rd digit to the left of the decimal point is 6, then append</cite>
+<cite>// "SIX" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[4] == 54) {
+<var>for</var>(f=0; f&lt;3; f++) verbal_amount[f+aa+1] = am14[f];   
+aa=aa+4;
+}
+<cite>// if the 3rd digit to the left of the decimal point is 7, then append</cite>
+<cite>// "SEVEN" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[4] == 55) {
+<var>for</var>(f=0; f&lt;5; f++) verbal_amount[f+aa+1] = am15[f];   
+aa=aa+6;
+}
+<cite>// if the 3rd digit to the left of the decimal point is 8, then append</cite>
+<cite>// "EIGHT" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[4] == 56) {
+<var>for</var>(f=0; f&lt;5; f++) verbal_amount[f+aa+1] = am16[f];   
+aa=aa+6;
+}
+<cite>// if the 3rd digit to the left of the decimal point is 9, then append</cite>
+<cite>// "NINE" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[4] == 57) {
+<var>for</var>(f=0; f&lt;4; f++) verbal_amount[f+aa+1] = am17[f];   
+aa=aa+5;
+}
+</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Next, append "HUNDRED" to the character array “verbal_amount” and end structure “e”.<br>
+<br>
+Now check to see if the 2nd digit to the left of the decimal point in the numerical character array “totpay” is greater than 0 (begin structure “f”). If true, then check to see if the 2nd digit to the left of the decimal point in the numerical character array “totpay” is equal to 1 (begin structure “g”). If true, then use <b>GROUP C</b> to assign a descriptor to the verbal amount character array “verbal_amount” based on the number that is contained in the 1st digit to the left of the decimal place in the numerical character array “totpay” as shown here:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br>59<br>60<br>61<br>62<br></code></pre></td>
+<td class="source"><pre><code>
+<cite>// if the 1st digit to the left of the decimal point is 0, then append</cite>
+<cite>// "TEN" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[6] == 48) {
+<var>for</var>(f=0; f&lt;3; f++) verbal_amount[f+aa+1] = am210[f];  
+aa = aa + 4;
+}
+<cite>// if the 1st digit to the left of the decimal point is 1, then append</cite>
+<cite>// "ELEVEN" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[6] == 49) {
+<var>for</var>(f=0; f&lt;6; f++) verbal_amount[f+aa+1] = am211[f];  
+aa = aa + 7;
+}
+<cite>// if the 1st digit to the left of the decimal point is 2, then append</cite>
+<cite>// "TWELVE" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[6] == 50) {
+<var>for</var>(f=0; f&lt;6; f++) verbal_amount[f+aa+1] = am212[f];  
+aa = aa + 7;
+}
+<cite>// if the 1st digit to the left of the decimal point is 3, then append</cite>
+<cite>// "THIRTEEN" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[6] == 51) {
+<var>for</var>(f=0; f&lt;8; f++) verbal_amount[f+aa+1] = am213[f];  
+aa = aa + 9;
+}
+<cite>// if the 1st digit to the left of the decimal point is 4, then append</cite>
+<cite>// "FOURTEEN" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[6] == 52) {
+<var>for</var>(f=0; f&lt;8; f++) verbal_amount[f+aa+1] = am214[f];  
+aa = aa + 9;
+}
+<cite>// if the 1st digit to the left of the decimal point is 5, then append</cite>
+<cite>// "FIFTEEN" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[6] == 53) {
+<var>for</var>(f=0; f&lt;7; f++) verbal_amount[f+aa+1] = am215[f];  
+aa = aa + 8;
+}
+<cite>// if the 1st digit to the left of the decimal point is 6, then append</cite>
+<cite>// "SIXTEEN" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[6] == 54) {
+<var>for</var>(f=0; f&lt;7; f++) verbal_amount[f+aa+1] = am216[f];  
+aa = aa + 8;
+}
+<cite>// if the 1st digit to the left of the decimal point is 7, then append</cite>
+<cite>// "SEVENTEEN" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[6] == 55) {
+<var>for</var>(f=0; f&lt;9; f++) verbal_amount[f+aa+1] = am217[f];  
+aa = aa + 10;
+}
+<cite>// if the 1st digit to the left of the decimal point is 8, then append</cite>
+<cite>// "EIGHTEEN" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[6] == 56) {
+<var>for</var>(f=0; f&lt;8; f++) verbal_amount[f+aa+1] = am218[f];  
+aa = aa + 9;
+}
+<cite>// if the 1st digit to the left of the decimal point is 9, then append</cite>
+<cite>// "NINETEEN" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[6] == 57) {
+<var>for</var>(f=0; f&lt;8; f++) verbal_amount[f+aa+1] = am219[f];  
+aa = aa + 9;
+}
+</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+End structure “g”. Next, use <b>GROUP A</b> to assign a descriptor to the verbal amount character array “verbal_amount”  based on the number that is contained in the 2nd digit to the left of the decimal place in the numerical character array “totpay” as shown here:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br></code></pre></td>
+<td class="source"><pre><code>
+<cite>// if the 2nd digit to the left of the decimal point is 2, then append</cite>
+<cite>// "TWENTY" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[5] == 50) {
+<var>for</var>(f=0; f&lt;6; f++) verbal_amount[f+aa+1] = am8[f];    
+aa=aa+7;
+}
+<cite>// if the 2nd digit to the left of the decimal point is 3, then append</cite>
+<cite>// "THIRTY" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[5] == 51) {
+<var>for</var>(f=0; f&lt;6; f++) verbal_amount[f+aa+1] = am7[f];    
+aa=aa+7;
+}
+<cite>// if the 2nd digit to the left of the decimal point is 4, then append</cite>
+<cite>// "FORTY" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[5] == 52) {
+<var>for</var>(f=0; f&lt;5; f++) verbal_amount[f+aa+1] = am6[f];    
+aa=aa+6;
+}
+<cite>// if the 2nd digit to the left of the decimal point is 5, then append</cite>
+<cite>// "FIFTY" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[5] == 53) {
+<var>for</var>(f=0; f&lt;5; f++) verbal_amount[f+aa+1] = am5[f];    
+aa=aa+6;
+}
+<cite>// if the 2nd digit to the left of the decimal point is 6, then append</cite>
+<cite>// "SIXTY" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[5] == 54) {
+<var>for</var>(f=0; f&lt;5; f++) verbal_amount[f+aa+1] = am4[f];    
+aa=aa+6;
+}
+<cite>// if the 2nd digit to the left of the decimal point is 7, then append</cite>
+<cite>// "SEVENTY" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[5] == 55) {
+<var>for</var>(f=0; f&lt;7; f++) verbal_amount[f+aa+1] = am3[f];    
+aa=aa+8;
+}
+<cite>// if the 2nd digit to the left of the decimal point is 8, then append</cite>
+<cite>// "EIGHTY" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[5] == 56) {
+<var>for</var>(f=0; f&lt;6; f++) verbal_amount[f+aa+1] = am2[f];    
+aa=aa+7;
+}
+<cite>// if the 2nd digit to the left of the decimal point is 9, then append</cite>
+<cite>// "NINETY" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[5] == 57) {
+<var>for</var>(f=0; f&lt;6; f++) verbal_amount[f+aa+1] = am1[f];    
+aa=aa+7;
+}
+</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+End structure “f”. If the 1st digit to the left of the decimal point is greater than 0 and the 2nd digit to the left of the decimal point does not equal 1, then begin structure “h”. Use <b>GROUP B</b> to assign a descriptor to the verbal amount character array “verbal_amount”  based on the number that is contained in the 1st digit to the left of the decimal place in the numerical character array “totpay” as shown here:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br></code></pre></td>
+<td class="source"><pre><code>
+<cite>// if the 1st digit to the left of the decimal point is 1, then append</cite>
+<cite>// "ONE" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[6] == 49) {
+<var>for</var>(f=0; f&lt;3; f++) verbal_amount[f+aa+1] = am9[f];      
+aa=aa+4;
+}
+<cite>// if the 1st digit to the left of the decimal point is 2, then append</cite>
+<cite>// "TWO" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[6] == 50) {
+<var>for</var>(f=0; f&lt;3; f++) verbal_amount[f+aa+1] = am10[f];     
+aa=aa+4;
+}
+<cite>// if the 1st digit to the left of the decimal point is 3, then append</cite>
+<cite>// "THREE" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[6] == 51) {
+<var>for</var>(f=0; f&lt;5; f++) verbal_amount[f+aa+1] = am11[f];     
+aa=aa+6;
+}
+<cite>// if the 1st digit to the left of the decimal point is 4, then append</cite>
+<cite>// "FOUR" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[6] == 52) {
+<var>for</var>(f=0; f&lt;4; f++) verbal_amount[f+aa+1] = am12[f];     
+aa=aa+5;
+}
+<cite>// if the 1st digit to the left of the decimal point is 5, then append</cite>
+<cite>// "FIVE" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[6] == 53) {
+<var>for</var>(f=0; f&lt;4; f++) verbal_amount[f+aa+1] = am13[f];     
+aa=aa+5;
+}
+<cite>// if the 1st digit to the left of the decimal point is 6, then append</cite>
+<cite>// "SIX" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[6] == 54) {
+<var>for</var>(f=0; f&lt;3; f++) verbal_amount[f+aa+1] = am14[f];     
+aa=aa+4;
+}
+<cite>// if the 1st digit to the left of the decimal point is 7, then append</cite>
+<cite>// "SEVEN" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[6] == 55) {
+<var>for</var>(f=0; f&lt;5; f++) verbal_amount[f+aa+1] = am15[f];     
+aa=aa+6;
+}
+<cite>// if the 1st digit to the left of the decimal point is 8, then append</cite>
+<cite>// "EIGHT" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[6] == 56) {
+<var>for</var>(f=0; f&lt;5; f++) verbal_amount[f+aa+1] = am16[f];     
+aa=aa+6;
+}
+<cite>// if the 1st digit to the left of the decimal point is 9, then append</cite>
+<cite>// "NINE" to the 'verbal_amount' array.</cite>
+<var>if</var>(totpay[6] == 57) {
+<var>for</var>(f=0; f&lt;4; f++) verbal_amount[f+aa+1] = am17[f];     
+aa=aa+5;
+}
+</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+End structure “h”. If nothing was translated to a verbal amount from the above code (the “aa” counter variable is equal to 0 from not being incremented in the concatenation programming from above), then assign the <b>ZERO DESIGNATOR</b> to the verbal amount character array “verbal_amount”. Lastly, skip a space character in the verbal amount character array “verbal_amount” and append “AND”. Skip another space character and append the two (2) characters for cents in the numerical character array “totpay”  followed by “/100”.<br>
+<br>
+<b>CONCLUSION</b><br>
+<br>
+As seen from the above narrative, <a href="http://www.analyzohiosoftware.com/application-development-cleveland-ohio.html">application development</a> saves a lot of time and labor. When I create software, I don’t really care about making it aesthetically pleasing to the eye as long as it is easy to use, reliable and reasonably fast. This is what business people really care about. My <a href=" http://www.analyzohiosoftware.com/developer-skills-cleveland-ohio.html">developer skills</a> can be traced back to the early 1990s from designing business software. Please contact me through my <a href="http://www.analyzohiosoftware.com/index.html">software developer</a> website if you would like to learn more about the services I offer.<br>
+<br>
+</div></div><div id="CH_bb"></div><div id="CH_scoreapp"></div><script type="text/javascript">new Score('CH_scoreapp','/articles/score.cgi','i86AC542');</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder selected articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/articles/">Articles</a></b></h3>
+<ul>
+<li><a href="/articles/algorithms/">Algorithms</a></li><li><a href="/articles/cpp11/">C++ 11</a></li><li><a href="/articles/graphics/">Graphics and multimedia</a></li><li><a href="/articles/howto/">How-To</a></li><li><a href="/articles/language/">Language Features</a></li><li><a href="/articles/linux/">Unix/Linux programming</a></li><li><a href="/articles/sourcecode/">Source Code</a></li><li><a href="/articles/standard_library/">Standard Library</a></li><li><a href="/articles/tips/">Tips and Tricks</a></li><li><a href="/articles/tools/">Tools and Libraries</a></li><li><a href="/articles/visualcpp/">Visual C++</a></li><li><a href="/articles/winapi/">Windows API</a></li></ul>
+</div>
+<div id="I_subnav"></div>
+</div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Farticles%2Fi86AC542%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+onSession(function(us) {
+		document.getElementById('I_subnav').innerHTML=
+			us.ok?
+				'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul>'+
+				'<li><a href="/articles/myitems.cgi">My items</a></li>'+
+				(us.auth(32768)?'<li><a href="/articles/adminitems.cgi">Admin items</a></li>':'')+
+				'</ul></div>'
+			:'';
+	}); onSession(function (us) {
+		var el=document.getElementById('CH_bb'); el.innerHTML='';
+		if ( (us.auth(32768)) || ((us.uniqid=='yvkjE3v7')&&(us.auth(128))) ) {
+			el.appendChild(btn('Edit article','Edit this version of the article','edit','/articles/edit.cgi?a=i86AC542'));
+	
+			if (us.auth(32768)) {
+				el.appendChild(btn('Delete article','Delete this article','delete','javascript:artdel()'));
+			}
+	
+		}
+	});
+	function artdel() { if (confirm('WARNING: You are about to delete this page. Confirm?')) window.location='/articles/delete.cgi?a=i86AC542'; }
+	ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

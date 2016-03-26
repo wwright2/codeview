@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Problem inserting the break statement in - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/beginner/">Beginners</a></li>
+<li class="here">Problem inserting the break statement in</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico solved" title="solved">&nbsp;</div> Problem inserting the break statement in a do while loop.</h3><span id="CH_edttl"></span><span class="rootdatPost" title="185487,root,0,-1,9,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg905511"><span title="905511,214109,255,8,1"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg905511" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm4706cbc3df" title="Fri, 26 Feb 2016 15:39:15 +0000"></span><script type="text/javascript">WhenId('CH_zTm4706cbc3df');</script><noscript>Feb 26, 2016 at 3:39pm UTC</noscript></div>
+<div class="dwho"><a href="/user/jammes/"><b>jammes</b> (8)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i905511">
+I want the user to input any number and after that the program will tell if the number given by the user will be a positive, negative or both (0/zero). User can continue and input another number if he/she types Y/y character. My problem is that what if the user wants to stop or types N/n character? Help me please. :"(  <br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;iostream&gt;</dfn>
+<var>using</var> <var>namespace</var> std;
+
+<var>int</var> main(){
+	
+	<var>int</var> n; 
+	<var>char</var> choice = <kbd>'Y'</kbd> || <kbd>'y'</kbd>; 
+	
+	
+	<var>do</var> {
+		cout&lt;&lt;<kbd>"Enter #: "</kbd>;
+		cin&gt;&gt;n;
+		
+		<var>if</var> (n&lt;0){
+			cout&lt;&lt;<kbd>"You entered # "</kbd>&lt;&lt;n&lt;&lt;<kbd>"and it is a negative #. "</kbd>&lt;&lt;endl;
+		}
+		<var>else</var> <var>if</var> (n&gt;0){
+			cout&lt;&lt;<kbd>"You entered # "</kbd>&lt;&lt;n&lt;&lt;<kbd>"and it is a positive #. "</kbd>&lt;&lt;endl;
+		}
+		<var>else</var> {
+			cout&lt;&lt;<kbd>"You entered # "</kbd>&lt;&lt;n&lt;&lt;<kbd>"and it could be a positive nor negative #. "</kbd>&lt;&lt;endl;
+		}
+		
+		cout&lt;&lt;<kbd>"Do you want to enter another #? (Y/N): "</kbd>;
+		cin&gt;&gt;choice;
+		
+	} <var>while</var> (choice == <kbd>'Y'</kbd> || <kbd>'y'</kbd>);
+	
+	<var>if</var> (choice == <kbd>'N'</kbd> || <kbd>'n'</kbd>){
+		<var>break</var>;
+	}
+	
+}
+</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm3827c60cc1" title="Fri, 26 Feb 2016 17:20:19 +0000"></span><script type="text/javascript">WhenId('CH_zTm3827c60cc1');</script><noscript>Feb 26, 2016 at 5:20pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn905511"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg905512"><span title="905512,16990,1023,3160,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg905512" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmb74fd45b84" title="Fri, 26 Feb 2016 15:44:39 +0000"></span><script type="text/javascript">WhenId('CH_zTmb74fd45b84');</script><noscript>Feb 26, 2016 at 3:44pm UTC</noscript></div>
+<div class="dwho"><a href="/user/MikeyBoy/"><b>MikeyBoy</b> (3160)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i905512">
+1)  Please use code tags when posting code to make it readable:<br>
+<br>
+<a href="http://www.cplusplus.com/articles/z13hAqkS/">http://www.cplusplus.com/articles/z13hAqkS/</a><br>
+<br>
+2)  Your thread title mentions a "problem", and yet, strangely, there is no mention of any problem in your post.  Were you at some point going to tell us what the problem is?  Or are we just supposed to guess?
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn905512"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg905537"><span title="905537,213791,255,4,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg905537" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmf4551d254f" title="Fri, 26 Feb 2016 16:47:06 +0000"></span><script type="text/javascript">WhenId('CH_zTmf4551d254f');</script><noscript>Feb 26, 2016 at 4:47pm UTC</noscript></div>
+<div class="dwho"><a href="/user/brownflower/"><b>brownflower</b> (4)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i905537">
+Remove the OR operator from your variable assignment. <br>
+But also i'm just randomly guessing at your problem, because as stated above by Mikey you didn't specify the issue.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn905537"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg905540"><span title="905540,16990,1023,3160,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg905540" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmc0edbeee5e" title="Fri, 26 Feb 2016 16:56:44 +0000"></span><script type="text/javascript">WhenId('CH_zTmc0edbeee5e');</script><noscript>Feb 26, 2016 at 4:56pm UTC</noscript></div>
+<div class="dwho"><a href="/user/MikeyBoy/"><b>MikeyBoy</b> (3160)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i905540">
+<table class="quote"><tr><td class="qd"><span class="auto"><code class="source">It still does not work [...]</code></span></td></tr></table><br>
+Oh, well that makes everything <i>so</i> much clearer...<br>
+<br>
+Seriously, if you're going to put no effort at all into communicating with us about what the problem you're seeing is, how can you expect anyone else to put in any effort in helping you?
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn905540"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg905547"><span title="905547,214109,255,8,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg905547" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm7701a5e7f4" title="Fri, 26 Feb 2016 17:18:04 +0000"></span><script type="text/javascript">WhenId('CH_zTm7701a5e7f4');</script><noscript>Feb 26, 2016 at 5:18pm UTC</noscript></div>
+<div class="dwho"><a href="/user/jammes/"><b>jammes</b> (8)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i905547">
+I'm very sorry Mr. MikeyBoy for not following your instructions, I have edited all of the incorrect things I have done. hehe 
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn905547"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg905548"><span title="905548,35710,1023,4250,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg905548" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm176471e258" title="Fri, 26 Feb 2016 17:22:37 +0000"></span><script type="text/javascript">WhenId('CH_zTm176471e258');</script><noscript>Feb 26, 2016 at 5:22pm UTC</noscript></div>
+<div class="dwho"><a href="/user/AbstractionAnon/"><b>AbstractionAnon</b> (4250)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i905548">
+Line 7:  You can't initialize a variable like that.  Well, you can, but it's not going to give you the result you expect.  choice is going to be initialized to 1 (<span class="auto"><code class="source"><var>true</var></code></span>), which is the result of ('Y' OR 'y').  This is somewhat irrelevant, since you wipe out the value at line 25.<br>
+<br>
+Line 27, 29:  Your conditionals are bogus.  C++ does not support implied left hand side in conditionals.  You must fully specify the conditions.<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br></code></pre></td>
+<td class="source"><pre><code>  <var>while</var> (choice == <kbd>'Y'</kbd> || <u>choice ==</u> <kbd>'y'</kbd>);
+
+  <var>if</var> (choice == <kbd>'N'</kbd> || <u>choice ==</u> <kbd>'n'</kbd>)</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<span class="auto"><code class="source"><var>if</var> (ans == <kbd>'Y'</kbd> || <kbd>'y'</kbd>)</code></span> evaluates as <span class="auto"><code class="source"><var>if</var> (ans == (<kbd>'Y'</kbd> || <kbd>'y'</kbd>))</code></span><br>
+<br>
+<span class="auto"><code class="source">(<kbd>'Y'</kbd> || <kbd>'y'</kbd>)</code></span> evaluates to 1 (<span class="auto"><code class="source"><var>true</var></code></span>), before being compared to ans.<br>
+<br>
+
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTmc33008ba87" title="Fri, 26 Feb 2016 17:30:17 +0000"></span><script type="text/javascript">WhenId('CH_zTmc33008ba87');</script><noscript>Feb 26, 2016 at 5:30pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn905548"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg905551"><span title="905551,75536,1023,7545,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg905551" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmce2c15f4b6" title="Fri, 26 Feb 2016 17:31:35 +0000"></span><script type="text/javascript">WhenId('CH_zTmce2c15f4b6');</script><noscript>Feb 26, 2016 at 5:31pm UTC</noscript></div>
+<div class="dwho"><a href="/user/JLBorges/"><b>JLBorges</b> (7545)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i905551">
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;iostream&gt;</dfn>
+
+<var>int</var> main() {
+
+    <var>char</var> choice ;
+
+    <var>do</var> {
+
+        std::cout &lt;&lt; <kbd>"Enter a number: "</kbd>;
+        <var>int</var> n ;
+        std::cin &gt;&gt; n;
+        std::cout &lt;&lt; <kbd>"You entered "</kbd> &lt;&lt; n &lt;&lt; <kbd>" and it is "</kbd> ;
+
+        <var>if</var>( n &lt; 0 ) std::cout &lt;&lt; <kbd>"a negative number.\n"</kbd> ;
+        <var>else</var> <var>if</var>( n &gt; 0 ) std::cout &lt;&lt; <kbd>"a positive number.\n"</kbd> ;
+        <var>else</var> std::cout &lt;&lt; <kbd>"neither positive nor negative. (It is zero.)\n"</kbd> ;
+
+        std::cout &lt;&lt; <kbd>"Do you want to enter another number? (Y/N): "</kbd>;
+        std::cin &gt;&gt; choice;
+
+    <cite>// } while (choice == 'Y' || 'y');</cite>
+    } <var>while</var>( <b>choice == <kbd>'Y'</kbd> || choice == <kbd>'y'</kbd></b> ) ;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm5f7c26251c" title="Fri, 26 Feb 2016 17:32:27 +0000"></span><script type="text/javascript">WhenId('CH_zTm5f7c26251c');</script><noscript>Feb 26, 2016 at 5:32pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn905551"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg905557"><span title="905557,214109,255,8,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg905557" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm707be9c10d" title="Fri, 26 Feb 2016 17:48:32 +0000"></span><script type="text/javascript">WhenId('CH_zTm707be9c10d');</script><noscript>Feb 26, 2016 at 5:48pm UTC</noscript></div>
+<div class="dwho"><a href="/user/jammes/"><b>jammes</b> (8)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i905557">
+Thank you AbstractionAnon and JLBorges, I have now figured it out. :D<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;iostream&gt;</dfn>
+<var>using</var> <var>namespace</var> std;
+
+<var>int</var> main(){
+	
+	<var>int</var> n; 
+	<var>char</var> choice = <kbd>'Y'</kbd> || <kbd>'y'</kbd>;
+
+<var>do</var> {
+		cout&lt;&lt;<kbd>"Enter a number: "</kbd>;
+		cin&gt;&gt;n;
+		
+		<var>if</var> (n&lt;0){
+			cout&lt;&lt;<kbd>"You entered number "</kbd>&lt;&lt;n&lt;&lt;<kbd>" and it is a negative #. "</kbd>&lt;&lt;endl;
+		}
+		<var>else</var> <var>if</var> (n&gt;0){
+			cout&lt;&lt;<kbd>"You entered number "</kbd>&lt;&lt;n&lt;&lt;<kbd>" and it is a positive #. "</kbd>&lt;&lt;endl;
+		}
+		<var>else</var> {
+			cout&lt;&lt;<kbd>"You entered number "</kbd>&lt;&lt;n&lt;&lt;<kbd>" neither positive nor negative. "</kbd>&lt;&lt;endl;
+		}
+		
+		cout&lt;&lt;<kbd>"Do you want to enter another number? (Y(yes)/any letter(no)): "</kbd>;
+		cin&gt;&gt;choice;
+		
+	} <var>while</var> (choice == <kbd>'Y'</kbd> || choice == <kbd>'y'</kbd>); 
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTmea7cdd3454" title="Fri, 26 Feb 2016 17:49:24 +0000"></span><script type="text/javascript">WhenId('CH_zTmea7cdd3454');</script><noscript>Feb 26, 2016 at 5:49pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn905557"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg905582"><span title="905582,35710,1023,4250,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg905582" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm7c0df70d1e" title="Fri, 26 Feb 2016 18:46:51 +0000"></span><script type="text/javascript">WhenId('CH_zTm7c0df70d1e');</script><noscript>Feb 26, 2016 at 6:46pm UTC</noscript></div>
+<div class="dwho"><a href="/user/AbstractionAnon/"><b>AbstractionAnon</b> (4250)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i905582">
+Line 7 is still bogus.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn905582"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div class="rootbtnNew"></div><div id="CH_insNew"></div><div id="CH_reply">Registered users can post here. <a href="/user/">Sign in or register</a> to post.</div><div id="CH_subscription"></div><div class="rootedtNew"></div><script type="text/javascript">new for_PostList(185487,0,214109,1,'CH_PostList','CH_subscription','CH_reply','CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+<script type="text/javascript">
+    google_ad_client = "ca-pub-1444228343479937";
+    google_ad_slot = "9701143201";
+    google_ad_width = 728;
+    google_ad_height = 90;
+</script>
+<!-- leaderboard -->
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li class="selected"><a href="/forum/beginner/"><b>Beginners</b></a></li><li><a href="/forum/windows/"><b>Windows Programming</b></a></li><li><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li><a href="/forum/general/"><b>General C++ Programming</b></a></li><li><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Fbeginner%2F185487%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

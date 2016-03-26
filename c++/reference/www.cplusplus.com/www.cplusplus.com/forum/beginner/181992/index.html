@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Functions and Arrays - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/beginner/">Beginners</a></li>
+<li class="here">Functions and Arrays</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico default" title="post">&nbsp;</div> Functions and Arrays</h3><span id="CH_edttl"></span><span class="rootdatPost" title="181992,root,0,-1,7,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg892250"><span title="892250,205556,1023,13,1"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892250" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm6424b88b92" title="Thu, 31 Dec 2015 20:45:42 +0000"></span><script type="text/javascript">WhenId('CH_zTm6424b88b92');</script><noscript>Dec 31, 2015 at 8:45pm UTC</noscript></div>
+<div class="dwho"><a href="/user/jcelestin/"><b>jcelestin</b> (13)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892250">
+This is my first time really coding and i'm having a very hard time. My assignment is to use an array of integers an print the array out in five columns, find the largest and smallest value-print with labels, print the array out in five column starting at the highest index and going to the smallest index, calculate the mean, standard deviation, variance of the set of values, and print the answer calculated in step with appropriate labels. This is what i have.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br></code></pre></td>
+<td class="source"><pre><code>  <dfn>#include&lt;iostream&gt;</dfn>
+<dfn>#include&lt;iomanip&gt;</dfn>
+<dfn>#include&lt;fstream&gt;</dfn>
+<dfn>#include&lt;string&gt;</dfn>
+
+
+
+<var>using</var> <var>namespace</var> std;
+
+
+
+
+<var>int</var> main ()
+{
+    <var>int</var> array1[100][5];<cite>// array that can hole 100 numbers for column 1-5</cite>
+    <var>int</var> largest,smallest;
+
+
+    fstream textfile;
+    textfile,open(<kbd>"arrayfill.txt"</kbd>);
+
+{
+
+     <var>for</var>( <var>int</var> column=0; column&lt;6;column++)
+       cout &lt;&lt; array[100][5] &lt;&lt; <kbd>" "</kbd>;
+        }
+
+       cout &lt;&lt; endl;
+
+
+
+
+
+<var>return</var> 0;
+}
+</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn892250"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg892253"><span title="892253,120747,1023,379,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892253" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmd66fa18fd1" title="Thu, 31 Dec 2015 21:18:05 +0000"></span><script type="text/javascript">WhenId('CH_zTmd66fa18fd1');</script><noscript>Dec 31, 2015 at 9:18pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Bdanielz/"><b>Bdanielz</b> (379)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892253">
+So I think you need to start with a sort function...<br>
+Then then start working on the math stuff. <br>
+I would write the program out this way<br>
+and start working on one problem at a time.<br>
+<br>
+<br>
+ <div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br>59<br>60<br>61<br>62<br>63<br>64<br>65<br>66<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include&lt;iostream&gt;</dfn>
+
+
+<var>static</var> <var>const</var> <var>int</var> COL = 5;
+<var>static</var> <var>const</var> <var>int</var> ROW = 100;
+<var>using</var> <var>namespace</var> std;
+
+
+<var>int</var> main() {
+
+    <cite>// 1. use an array of integers</cite>
+    <var>int</var> array1[COL][ROW];
+
+
+    <cite>// filling array with loop (I do not have your text file)</cite>
+
+
+    <var>int</var> value = 0;
+    <var>for</var> (<var>int</var> i = 0; i &lt; COL; i++) {
+        <var>for</var> (<var>int</var> k = 0; k &lt; ROW; k++) {
+            array1[i][k] = rand() % 100; <cite>// for random values 0-99</cite>
+        }
+    }
+
+
+    <cite>// 2. print the array out in five column starting at the highest index </cite>
+            <cite>// first sort... </cite>
+            <cite>// you need a sort function.</cite>
+            <cite>// try bubble sort.</cite>
+            <cite>// <a href="https://en.wikipedia.org/wiki/Bubble_sort#Pseudocode_implementation">https://en.wikipedia.org/wiki/Bubble_sort#Pseudocode_implementation</a></cite>
+            <cite>// then print... </cite>
+          
+    <cite>// printing array only. </cite>
+    <var>for</var> (<var>int</var> i = 0; i &lt; COL; i++) {
+        <var>for</var> (<var>int</var> k = 0; k &lt; ROW; k++) {
+            cout &lt;&lt; array1[i][k] &lt;&lt; <kbd>" "</kbd>;
+        }
+
+        cout &lt;&lt; endl;
+    }
+
+
+    <cite>// 3. calculate the mean</cite>
+    <cite>// loop over array.</cite>
+    <cite>// do the math</cite>
+    <cite>// save answer to variables</cite>
+
+
+    <cite>// 4.  standard deviation</cite>
+    <cite>// loop over array</cite>
+    <cite>// do the math</cite>
+    <cite>// save answer to variables</cite>
+
+
+    <cite>// 5. variance of the set of values</cite>
+    <cite>// loop over array</cite>
+    <cite>// do the math</cite>
+    <cite>// save answer to variables</cite>
+
+
+    <cite>// 6. print the answer calculated in above with appropriate labels.</cite>
+   
+
+    <var>return</var> 0;
+}
+</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<br>
+So start with Bubble sort (or any one you choose)  and post any questions you have here. 
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTmbfa114af5b" title="Thu, 31 Dec 2015 21:31:08 +0000"></span><script type="text/javascript">WhenId('CH_zTmbfa114af5b');</script><noscript>Dec 31, 2015 at 9:31pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn892253"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg892258"><span title="892258,205556,1023,13,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892258" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm389c41c089" title="Thu, 31 Dec 2015 22:19:53 +0000"></span><script type="text/javascript">WhenId('CH_zTm389c41c089');</script><noscript>Dec 31, 2015 at 10:19pm UTC</noscript></div>
+<div class="dwho"><a href="/user/jcelestin/"><b>jcelestin</b> (13)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892258">
+This is what i got from your help but all it does is print out the whole array.<br>
+<br>
+<br>
+<br>
+<br>
+#include&lt;iostream&gt;<br>
+#include&lt;iomanip&gt;<br>
+#include&lt;fstream&gt;<br>
+#include&lt;string&gt;<br>
+<br>
+<br>
+static const int col = 5;<br>
+static const int row = 100;<br>
+using namespace std;<br>
+<br>
+<br>
+<br>
+<br>
+int main ()<br>
+{<br>
+    int array1[col][row];                   // array of  100 rows and 5 columns<br>
+<br>
+<br>
+    fstream textfile;<br>
+    textfile.open("arrayfill.txt");         // my text file<br>
+    textfile &lt;&lt; "writing this to a file.\n";<br>
+    textfile.close();<br>
+<br>
+<br>
+    int value =0;<br>
+    for (int i =0; i&lt;col; i++){<br>
+      for (int k = 0; k&lt;row; k++){<br>
+          array1[i][k]= rand()% 100;        // for random values 0-99<br>
+      }<br>
+}<br>
+<br>
+<br>
+     for(int i=0; i&lt;col; i++){<br>
+        for (int k = 0; k &lt; row; k++){<br>
+            cout &lt;&lt; array[i][k] &lt;&lt; " ";<br>
+<br>
+<br>
+<br>
+<br>
+     }<br>
+<br>
+    cout &lt;&lt; endl;<br>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn892258"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg892263"><span title="892263,201374,1023,8,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892263" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm647b8bef0f" title="Thu, 31 Dec 2015 23:36:03 +0000"></span><script type="text/javascript">WhenId('CH_zTm647b8bef0f');</script><noscript>Dec 31, 2015 at 11:36pm UTC</noscript></div>
+<div class="dwho"><a href="/user/teez/"><b>teez</b> (8)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892263">
+I don't think you need 2D Array for this. You can have an array that has 100 integers and then print that in 5 columns.<br>
+<br>
+like so:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br></code></pre></td>
+<td class="source"><pre><code>    <var>for</var> (<var>int</var> i = 0; i &lt; size; i++) {
+        <var>if</var> ( (i % 5) == 0)
+	    std::cout &lt;&lt; std::endl;
+
+        std::cout &lt;&lt; std::setw(5) &lt;&lt; arr[i];
+    }</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+ And if you must have a 2D Array, then you will probably be looking at array with dimension as array[5][20] or so..
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTmd90c87821b" title="Thu, 31 Dec 2015 23:45:27 +0000"></span><script type="text/javascript">WhenId('CH_zTmd90c87821b');</script><noscript>Dec 31, 2015 at 11:45pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn892263"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg892274"><span title="892274,205556,1023,13,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892274" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTma6b06aa1dc" title="Fri, 01 Jan 2016 00:34:52 +0000"></span><script type="text/javascript">WhenId('CH_zTma6b06aa1dc');</script><noscript>Jan 1, 2016 at 12:34am UTC</noscript></div>
+<div class="dwho"><a href="/user/jcelestin/"><b>jcelestin</b> (13)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892274">
+which for loop are you telling me to change ?
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn892274"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg892279"><span title="892279,120747,1023,379,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892279" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm3b5203c7a0" title="Fri, 01 Jan 2016 00:50:49 +0000"></span><script type="text/javascript">WhenId('CH_zTm3b5203c7a0');</script><noscript>Jan 1, 2016 at 12:50am UTC</noscript></div>
+<div class="dwho"><a href="/user/Bdanielz/"><b>Bdanielz</b> (379)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892279">
+Good point teez!<br>
+Reformatted my code to for 1d array. <br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br>59<br>60<br>61<br>62<br>63<br>64<br>65<br>66<br>67<br>68<br>69<br>70<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include&lt;iostream&gt;</dfn>
+
+
+<var>static</var> <var>const</var> <var>int</var> SIZE = 100;
+<var>static</var> <var>const</var> <var>int</var> ROW = 5;
+
+<var>using</var> <var>namespace</var> std;
+
+
+<var>int</var> main() {
+
+    <cite>// 1. use an array of integers</cite>
+    <var>int</var> array1[SIZE];
+
+
+    <cite>// filling array with loop (I do not have your text file)</cite>
+
+
+    <var>for</var> (<var>int</var> i = 0; i &lt; SIZE; i++) {
+        array1[i] = rand() % 100; <cite>// for random values 0-99</cite>
+    }
+
+
+
+    <cite>// 2. print the array out in five column starting at the highest index</cite>
+    <cite>// first sort...</cite>
+    <cite>// you need a sort function.</cite>
+
+    <cite>// then print...</cite>
+
+    <cite>// printing array only.</cite>
+    <var>int</var> k = 1;
+    <var>for</var> (<var>int</var> i = 0; i &lt; SIZE; i++, k++) {
+
+        cout &lt;&lt; array1[i] &lt;&lt; <kbd>" "</kbd>;
+        <cite>// every 5 iterations </cite>
+        <var>if</var> (k == ROW) {
+            <cite>// print new line</cite>
+            cout &lt;&lt; endl;
+            <cite>// reset </cite>
+            k = 0;
+        }
+    }
+
+
+
+    <cite>// 3. calculate the mean</cite>
+    <cite>// loop over array.</cite>
+    <cite>// do the math</cite>
+    <cite>// save answer to variables</cite>
+
+
+    <cite>// 4.  standard deviation</cite>
+    <cite>// loop over array</cite>
+    <cite>// do the math</cite>
+    <cite>// save answer to variables</cite>
+
+
+    <cite>// 5. variance of the set of values</cite>
+    <cite>// loop over array</cite>
+    <cite>// do the math</cite>
+    <cite>// save answer to variables</cite>
+
+
+    <cite>// 6. print the answer calculated in above with appropriate labels.</cite>
+
+
+    <var>return</var> 0;
+}
+</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<br>
+@jcelestin you should look into how to sort an array. <br>
+<br>
+Try bubble sort.<br>
+<a href="https://en.wikipedia.org/wiki/Bubble_sort">https://en.wikipedia.org/wiki/Bubble_sort</a><br>
+<br>
+Pseudocode<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br></code></pre></td>
+<td class="source"><pre><code>procedure bubbleSort( A : list of sortable items )
+   n = length(A)
+   repeat 
+     swapped = <var>false</var>
+     <var>for</var> i = 1 to n-1 inclusive <var>do</var>
+       <cite>/* if this pair is out of order */</cite>
+       <var>if</var> A[i-1] &gt; A[i] then
+         <cite>/* swap them and remember something changed */</cite>
+         swap( A[i-1], A[i] )
+         swapped = <var>true</var>
+       end <var>if</var>
+     end <var>for</var>
+   until not swapped
+end procedure</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+or<br>
+<br>
+Insertion sort.<br>
+<a href="https://en.wikipedia.org/wiki/Insertion_sort">https://en.wikipedia.org/wiki/Insertion_sort</a><br>
+<br>
+Pseudocode<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br></code></pre></td>
+<td class="source"><pre><code> <var>for</var> i = 1 to length(A) - 1
+    x = A[i]
+    j = i - 1
+    <var>while</var> j &gt;= 0 and A[j] &gt; x
+        A[j+1] = A[j]
+        j = j - 1
+    end <var>while</var>
+    A[j+1] = x[3]
+ end <var>for</var></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<br>
+Ask us for help if you get stuck <br>
+:)<br>
+Best<br>
+ 
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm2943cb9995" title="Fri, 01 Jan 2016 00:53:28 +0000"></span><script type="text/javascript">WhenId('CH_zTm2943cb9995');</script><noscript>Jan 1, 2016 at 12:53am UTC</noscript></span>
+<span class="dbtn" id="CH_btn892279"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg892457"><span title="892457,205556,1023,13,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892457" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmbed930d991" title="Sat, 02 Jan 2016 08:18:52 +0000"></span><script type="text/javascript">WhenId('CH_zTmbed930d991');</script><noscript>Jan 2, 2016 at 8:18am UTC</noscript></div>
+<div class="dwho"><a href="/user/jcelestin/"><b>jcelestin</b> (13)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892457">
+i been trying to figure out  bubblesorts but I'm not understanding do you have any other site or video i can read or watch to help me understand it. 
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn892457"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div class="rootbtnNew"></div><div id="CH_insNew"></div><div id="CH_reply">Registered users can post here. <a href="/user/">Sign in or register</a> to post.</div><div id="CH_subscription"></div><div class="rootedtNew"></div><script type="text/javascript">new for_PostList(181992,0,205556,0,'CH_PostList','CH_subscription','CH_reply','CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+<script type="text/javascript">
+    google_ad_client = "ca-pub-1444228343479937";
+    google_ad_slot = "9701143201";
+    google_ad_width = 728;
+    google_ad_height = 90;
+</script>
+<!-- leaderboard -->
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li class="selected"><a href="/forum/beginner/"><b>Beginners</b></a></li><li><a href="/forum/windows/"><b>Windows Programming</b></a></li><li><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li><a href="/forum/general/"><b>General C++ Programming</b></a></li><li><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Fbeginner%2F181992%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

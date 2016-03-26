@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>How to develop an operating system using - C++ Articles</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/articles/">Articles</a></li>
+<li class="here">How to develop an operating system using</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div id="I_content">
+<div class="C_art">
+<div id="I_author">Published by <b><a href="/user/heepoo/" rel="author">heepoo</a></b></div>
+<div id="I_date">Sep 20, 2013 (last update: Sep 22, 2013)</div>
+<h1>How to develop an operating system using C++?</h1>
+<div id="I_score">Score: 3.8/5 (862 votes)</div>
+<div id="I_stars"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-half.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"></div>
+<div id="I_content">
+<h2>how operating systems are developed?</h2>
+using C(or actually) C++, assembly and any programming languages like ada, fortran, pascal you can develop your own operating system<br>
+but you have to use assembly in some places<br>
+<h2>an intruduction to assembly language</h2>
+assembly is a low-level programming language that you can use it to control everything like adding something to CPU registers, control the memory and much more<br>
+<h2>how can i start to develop an operating system?</h2>
+firstly, you have to know everything of your programming language like pointers, functions (here i want to use C++)<br>
+secondly, you must have some knowledge of the assembly language<br>
+<h2>what tools i need to develop an operating system?</h2>
+to develop an operating system you must have these:<br>
+1. an assembler<br>
+assembler takes your assembly code and give's you the low-level outputs like an object containing your controls on CPU registers<br>
+the assembler here i want to use is nasm(netwide assembler)<br>
+you can download it from http://nasm.us<br>
+2. a cross-compiler<br>
+in order to develop an operating system, you must have a cross compiler because you must compile your kernel for it's executable format<br>
+here i use gcc(gnu compiler collection)<br>
+you can download it from http://gcc.gnu.org/<br>
+3. a linker<br>
+the linker take's your objects and link them to getter<br>
+here i use gnu binutils<br>
+you can download it from http://gnu.org/software/binutils<br>
+4. a virtual machine<br>
+in order to test your operating system, you must have a vm(virtual machine)<br>
+but it isn't necessary<br>
+here i use virtualbox<br>
+you can download it from http://virtualbox.org/<br>
+<h2>notes before you get started</h2>
+1. in developing an operating system, you cannot and cannot and cannot use &lt;iostream&gt;, &lt;fstream&gt;, &lt;memory&gt;, &lt;cstdio&gt;, &lt;cstdlib&gt;, &lt;windows.h&gt;, &lt;unistd.h&gt; and all the platform API's<br>
+you must create all of them yourself<br>
+2. you must very very be careful<br>
+when you are developing, you have control of everything<br>
+so, you can destroy one or some or all of your hardwares<br>
+in this case, i recommend to use a virtual machine to test your operating system instead of rebooting more and more times<br>
+<h2>the bootloader</h2>
+a bootloader is a bunch of code that is written in assembly language and must be 512 byets(1 sector)<br>
+it load's your operating system's kernel<br>
+we skip this section and use grub as are bootloader<br>
+you can download grub source code from http://gnu.org/software/grub<br>
+or actually you maybe want a compiled for floppy: searching in google will help you<br>
+<h2>a simple kernel</h2>
+we want to develop an operating system<br>
+so, we have to create the functions ourselves<br>
+firstly, we create a file boot.asm with these contents:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br></code></pre></td>
+<td class="source"><pre><code>;boot.<var>asm</var>:the bootloader to boot are operating system with grub
+[bits 32] ;we are in 32 bit
+global start ;start<kbd>'s the operating system:we call it in the linker script
+extern _kernel_main ;this is in are .cpp file and it is the main function of are kernel
+;do not modify these lines(these are needed by grub)!
+section .mbHeader
+
+align 0x4
+ 
+; setting up the Multiboot header - see GRUB docs for details
+MODULEALIGN equ  1&lt;&lt;0                   ; align loaded modules on page boundaries
+MEMINFO     equ  1&lt;&lt;1                   ; provide memory map
+FLAGS       equ  MODULEALIGN | MEMINFO  ; this is the Multiboot '</kbd>flag<kbd>' field
+MAGIC       equ    0x1BADB002           ; '</kbd>magic number<kbd>' lets bootloader find the header
+CHECKSUM    equ -(MAGIC + FLAGS)        ; checksum required
+ 
+MultiBootHeader:
+   dd MAGIC
+   dd FLAGS
+   dd CHECKSUM
+ 
+;you can modify these
+start:
+push ebx ;this is optional and load'</kbd>s the grub structure
+call _kernel_main</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+now create a file: kernel.cpp with these contents:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br>59<br>60<br>61<br>62<br>63<br>64<br>65<br>66<br>67<br>68<br>69<br>70<br>71<br>72<br>73<br>74<br>75<br>76<br>77<br>78<br>79<br>80<br>81<br>82<br>83<br>84<br>85<br>86<br>87<br>88<br>89<br>90<br>91<br>92<br>93<br>94<br>95<br>96<br>97<br>98<br>99<br>100<br>101<br>102<br>103<br>104<br>105<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;stddef.h&gt; </dfn><cite>//we can use it: it doesnt use any platform-related api functions</cite>
+<dfn>#include &lt;stdint.h&gt; </dfn><cite>//include it to get int16_t and some integer types</cite>
+
+<cite>/* Hardware text mode color constants. */</cite>
+<var>enum</var> vga_color
+{
+	COLOR_BLACK = 0,
+	COLOR_BLUE = 1,
+	COLOR_GREEN = 2,
+	COLOR_CYAN = 3,
+	COLOR_RED = 4,
+	COLOR_MAGENTA = 5,
+	COLOR_BROWN = 6,
+	COLOR_LIGHT_GREY = 7,
+	COLOR_DARK_GREY = 8,
+	COLOR_LIGHT_BLUE = 9,
+	COLOR_LIGHT_GREEN = 10,
+	COLOR_LIGHT_CYAN = 11,
+	COLOR_LIGHT_RED = 12,
+	COLOR_LIGHT_MAGENTA = 13,
+	COLOR_LIGHT_BROWN = 14,
+	COLOR_WHITE = 15,
+};
+ 
+uint8_t make_color(<var>enum</var> vga_color fg, <var>enum</var> vga_color bg)
+{
+	<var>return</var> fg | bg &lt;&lt; 4;
+}
+ 
+uint16_t make_vgaentry(<var>char</var> c, uint8_t color)
+{
+	uint16_t c16 = c;
+	uint16_t color16 = color;
+	<var>return</var> c16 | color16 &lt;&lt; 8;
+}
+ 
+size_t strlen(<var>const</var> <var>char</var>* str)
+{
+	size_t ret = 0;
+	<var>while</var> ( str[ret] != 0 )
+		ret++;
+	<var>return</var> ret;
+}
+ 
+<var>static</var> <var>const</var> size_t VGA_WIDTH = 80;
+<var>static</var> <var>const</var> size_t VGA_HEIGHT = 24;
+ 
+size_t terminal_row;
+size_t terminal_column;
+uint8_t terminal_color;
+uint16_t* terminal_buffer;
+ 
+<var>void</var> terminal_initialize()
+{
+	terminal_row = 0;
+	terminal_column = 0;
+	terminal_color = make_color(COLOR_LIGHT_GREY, COLOR_BLACK);
+	terminal_buffer = (uint16_t*) 0xB8000;
+	<var>for</var> ( size_t y = 0; y &lt; VGA_HEIGHT; y++ )
+	{
+		<var>for</var> ( size_t x = 0; x &lt; VGA_WIDTH; x++ )
+		{
+			<var>const</var> size_t index = y * VGA_WIDTH + x;
+			terminal_buffer[index] = make_vgaentry(<kbd>' '</kbd>, terminal_color);
+		}
+	}
+}
+ 
+<var>void</var> terminal_setcolor(uint8_t color)
+{
+	terminal_color = color;
+}
+ 
+<var>void</var> terminal_putentryat(<var>char</var> c, uint8_t color, size_t x, size_t y)
+{
+	<var>const</var> size_t index = y * VGA_WIDTH + x;
+	terminal_buffer[index] = make_vgaentry(c, color);
+}
+ 
+<var>void</var> terminal_putchar(<var>char</var> c)
+{
+	terminal_putentryat(c, terminal_color, terminal_column, terminal_row);
+	<var>if</var> ( ++terminal_column == VGA_WIDTH )
+	{
+		terminal_column = 0;
+		<var>if</var> ( ++terminal_row == VGA_HEIGHT )
+		{
+			terminal_row = 0;
+		}
+	}
+}
+ 
+<var>void</var> terminal_writestring(<var>const</var> <var>char</var>* data)
+{
+	size_t datalen = strlen(data);
+	<var>for</var> ( size_t i = 0; i &lt; datalen; i++ )
+		terminal_putchar(data[i]);
+}
+ 
+<var>void</var> kernel_main()
+{
+terminal_initialize();
+terminal_writestring(<kbd>"wellcome to my first operating system!"</kbd>);
+<var>for</var>(;;);
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<h2>the linker script</h2>
+create a file: linker.ld with these contents:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br></code></pre></td>
+<td class="source"><pre><code><cite>/* The bootloader will look at this image and start execution at the symbol
+   designated as the entry point. */</cite>
+ENTRY(start)
+
+<cite>/* Tell where the various sections of the object files will be put in the final
+   kernel image. */</cite>
+SECTIONS
+{
+	<cite>/* Begin putting sections at 1 MiB, a conventional place for kernels to be
+	   loaded at by the bootloader. */</cite>
+	. = 1M;
+
+	<cite>/* First put the multiboot header, as it is required to be put very early
+	   early in the image or the bootloader won't recognize the file format.
+	   Next we'll put the .text section. */</cite>
+	.text BLOCK(4K) : ALIGN(4K)
+	{
+		*(.mbHeader)
+		*(.text)
+	}
+
+	<cite>/* Read-only data. */</cite>
+	.rodata BLOCK(4K) : ALIGN(4K)
+	{
+		*(.rodata)
+	}
+
+	<cite>/* Read-write data (initialized) */</cite>
+	.data BLOCK(4K) : ALIGN(4K)
+	{
+		*(.data)
+	}
+
+	<cite>/* Read-write data (uninitialized) and stack */</cite>
+	.bss BLOCK(4K) : ALIGN(4K)
+	{
+		*(COMMON)
+		*(.bss)
+	}
+
+	<cite>/* The compiler may produce other sections, by default it will put them in
+	   a segment with the same name. Simply add stuff here as needed. */</cite>
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<h2>how to compile it</h2>
+go to the shell (on windows cygwin is required):<br>
+type these commands:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br></code></pre></td>
+<td class="source"><pre><code>nasm -f elf boot.<var>asm</var> -o boot.o
+g++ -c kernel.cpp -o kernel.o -ffreestandinng -fno-exceptions -fno-rtti
+gcc loader.o kernel.o -T linker.ld -o kern -nostdlib -nodefaultlibs -lgcc</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+kingratulations!<br>
+your first operating system has been compiled successfully!<br>
+now you can create an image using grub-mkrescue:<br>
+create a directory: iso<br>
+in that directory, create another directory: boot then in the boot directory, create a directory: grub and then create a file: grub.cfg with these contents(do not add the braces in a new line) in the grub directory:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br></code></pre></td>
+<td class="source"><pre><code>menuentry <kbd>"myOS"</kbd> {
+multiboot /boot/kern
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+then copy your kernel (kern) to iso/boot directory and run your shell again:<br>
+switch to the main directory of your kernel and type:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>&nbsp;</code></pre></td>
+<td class="source"><pre><code>grub-mkrescue iso --output=kern.iso</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+now you can boot and enjoy from your first operating system:: this simple kernel without anything</div></div><div id="CH_bb"></div><div id="CH_scoreapp"></div><script type="text/javascript">new Score('CH_scoreapp','/articles/score.cgi','zv07M4Gy');</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder selected articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/articles/">Articles</a></b></h3>
+<ul>
+<li><a href="/articles/algorithms/">Algorithms</a></li><li><a href="/articles/cpp11/">C++ 11</a></li><li><a href="/articles/graphics/">Graphics and multimedia</a></li><li><a href="/articles/howto/">How-To</a></li><li><a href="/articles/language/">Language Features</a></li><li><a href="/articles/linux/">Unix/Linux programming</a></li><li><a href="/articles/sourcecode/">Source Code</a></li><li><a href="/articles/standard_library/">Standard Library</a></li><li><a href="/articles/tips/">Tips and Tricks</a></li><li><a href="/articles/tools/">Tools and Libraries</a></li><li><a href="/articles/visualcpp/">Visual C++</a></li><li><a href="/articles/winapi/">Windows API</a></li></ul>
+</div>
+<div id="I_subnav"></div>
+</div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Farticles%2Fzv07M4Gy%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+onSession(function(us) {
+		document.getElementById('I_subnav').innerHTML=
+			us.ok?
+				'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul>'+
+				'<li><a href="/articles/myitems.cgi">My items</a></li>'+
+				(us.auth(32768)?'<li><a href="/articles/adminitems.cgi">Admin items</a></li>':'')+
+				'</ul></div>'
+			:'';
+	}); onSession(function (us) {
+		var el=document.getElementById('CH_bb'); el.innerHTML='';
+		if ( (us.auth(32768)) || ((us.uniqid=='3AqoGNh0')&&(us.auth(128))) ) {
+			el.appendChild(btn('Edit article','Edit this version of the article','edit','/articles/edit.cgi?a=zv07M4Gy'));
+	
+			if (us.auth(32768)) {
+				el.appendChild(btn('Delete article','Delete this article','delete','javascript:artdel()'));
+			}
+	
+		}
+	});
+	function artdel() { if (confirm('WARNING: You are about to delete this page. Confirm?')) window.location='/articles/delete.cgi?a=zv07M4Gy'; }
+	ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>How to I clean up my code? It's a mess!  - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/general/">General C++ Programming</a></li>
+<li class="here">How to I clean up my code? It's a mess! </li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico default" title="post">&nbsp;</div> How to I clean up my code? It's a mess! I can't even develop it further. </h3><span id="CH_edttl"></span><div class="C_pages">Pages: <span title="Current page">1</span><a href="/forum/general/184609/2/">2</a></div><span class="rootdatPost" title="184609,root,0,-1,34,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg902368"><span title="902368,119143,1023,310,1"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg902368" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm509655053e" title="Mon, 15 Feb 2016 02:39:32 +0000"></span><script type="text/javascript">WhenId('CH_zTm509655053e');</script><noscript>Feb 15, 2016 at 2:39am UTC</noscript></div>
+<div class="dwho"><a href="/user/RealGiganitris/"><b>RealGiganitris</b> (310)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i902368">
+I've been working on this project for a while and I've added quite a few features. The only problem is, the more I work on it the messier and more hackish the code gets. Now, it's so messy that I forgot about a function I wrote, I have trouble reading it and I can't develop it further. I've looked up guides for cleaner code but it's still a mess. How do I make my code cleaner and more flexible?
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn902368"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg902375"><span title="902375,102186,1023,747,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg902375" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm0f7d2a1713" title="Mon, 15 Feb 2016 03:08:17 +0000"></span><script type="text/javascript">WhenId('CH_zTm0f7d2a1713');</script><noscript>Feb 15, 2016 at 3:08am UTC</noscript></div>
+<div class="dwho"><a href="/user/xismn/"><b>xismn</b> (747)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i902375">
+Split things into files, keep naming conventions consistent, consider namespaces and be sure to remove "temporary" or "test" code as soon as you no longer need it - you shouldn't have to prematurely optimize things away, but try to find a more elegant solution that won't bloat the rest of your project.
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTmb0bc04e552" title="Mon, 15 Feb 2016 03:09:07 +0000"></span><script type="text/javascript">WhenId('CH_zTmb0bc04e552');</script><noscript>Feb 15, 2016 at 3:09am UTC</noscript></span>
+<span class="dbtn" id="CH_btn902375"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg902384"><span title="902384,119143,1023,310,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg902384" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmfb736d3515" title="Mon, 15 Feb 2016 03:55:21 +0000"></span><script type="text/javascript">WhenId('CH_zTmfb736d3515');</script><noscript>Feb 15, 2016 at 3:55am UTC</noscript></div>
+<div class="dwho"><a href="/user/RealGiganitris/"><b>RealGiganitris</b> (310)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i902384">
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br>59<br>60<br>61<br>62<br>63<br>64<br>65<br>66<br>67<br>68<br>69<br>70<br>71<br>72<br>73<br>74<br>75<br>76<br>77<br>78<br>79<br>80<br>81<br>82<br>83<br>84<br>85<br>86<br>87<br>88<br>89<br>90<br>91<br>92<br>93<br>94<br>95<br>96<br>97<br>98<br>99<br>100<br>101<br>102<br>103<br>104<br>105<br>106<br>107<br>108<br>109<br>110<br>111<br>112<br>113<br>114<br>115<br>116<br>117<br>118<br>119<br>120<br>121<br>122<br>123<br>124<br>125<br>126<br>127<br>128<br>129<br>130<br>131<br>132<br>133<br>134<br>135<br>136<br>137<br>138<br>139<br>140<br>141<br>142<br>143<br>144<br>145<br>146<br>147<br>148<br>149<br>150<br>151<br>152<br>153<br>154<br>155<br>156<br>157<br>158<br>159<br>160<br>161<br>162<br>163<br>164<br>165<br>166<br>167<br>168<br>169<br>170<br>171<br>172<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include&lt;cmath&gt;</dfn>
+<dfn>#include&lt;cstdio&gt;</dfn>
+<dfn>#include&lt;cstdlib&gt;</dfn>
+<dfn>#include&lt;cstdint&gt;</dfn>
+<dfn>#include&lt;cstring&gt;</dfn>
+<dfn>#include&lt;iostream&gt;</dfn>
+<dfn>#include"Portable.h"</dfn>
+
+FILE* ifile;
+FILE* ofile;
+int32_t IfileSize = 0;
+<cite>//Switches</cite>
+<var>bool</var> saving = 0;
+
+<var>long</var> <var>long</var> <var>int</var> handle_numbers(<var>char</var> NumbHandString[32])
+{
+<var>unsigned</var> <var>char</var> NumbHandPercent = 0;
+<var>long</var> <var>long</var> <var>double</var> NumbHandDec;
+<var>long</var> <var>long</var> <var>double</var> NumbHandInt;
+NumbHandOut[32];
+NumbHandPercent = strchr(NumbHandString[32],<kbd>'%'</kbd>);
+<var>if</var>(NumbHandPercent != NULL)
+	{
+	strncpy(NumbHandOut,NumbHandString,NumbHandPercent -1);
+	NumbHandDec = strtol(NumbHandOut,NULL,0);
+	NumbHandDec = NumbHandDec /100;
+	NumbHandDec = round(NumbHandDec *IfileSize);
+	NumbHandDec = NumbHandInt;
+	<cite>//NumbHandString = to_string(NumbHandInt);</cite>
+	}
+<var>return</var> strtol(NumbHandString, NULL, 0);
+}
+
+
+int32_t GetIfileSize()
+{
+int32_t getifilesizesize = 0;
+fseek(ifile, 0L, SEEK_SET);
+<var>while</var>(fgetc(ifile) != EOF){getifilesizesize = getifilesizesize +1;}
+fseek(ifile, 0L, SEEK_SET);
+<var>return</var> getifilesizesize;
+}
+
+<var>unsigned</var> <var>char</var> load_ifile(<var>char</var> LoadIfileName[32])
+{
+ifile = fopen(LoadIfileName,<kbd>"rb"</kbd>);
+<var>if</var>(ifile == NULL){printf(<kbd>"%s"</kbd>,<kbd>"ifile does not exist.\n"</kbd>);<var>return</var> 1;}
+IfileSize = GetIfileSize();
+<var>return</var> 0;
+}
+
+<var>unsigned</var> <var>char</var> load_ofile(<var>char</var> LoadOfileName[32])
+{
+ofile = fopen(LoadOfileName,<kbd>"wb"</kbd>);
+<var>if</var>(ofile == NULL){printf(<kbd>"%s"</kbd>,<kbd>"An error occoured with the primary output file.\n"</kbd>);<var>return</var> 1;}
+<var>return</var> 0;
+}
+
+<var>void</var> errormsg()
+{
+printf(<kbd>"%s"</kbd>,<kbd>"Syntax error. Syntax is:\n"</kbd>);
+printf(<kbd>"%s"</kbd>,<kbd>"corrupt [switches] &lt;ifile&gt; &lt;ofile&gt; &lt;start&gt; &lt;stop&gt; &lt;every&gt; &lt;operation&gt; &lt;additional&gt;\n"</kbd>);
+printf(<kbd>"%s"</kbd>,<kbd>"ifile is the path to the input file.\n"</kbd>);
+printf(<kbd>"%s"</kbd>,<kbd>"ofile is the path to the output file.\n"</kbd>);
+printf(<kbd>"%s"</kbd>,<kbd>"start is the position in the file to start corrupting.\n"</kbd>);
+printf(<kbd>"%s"</kbd>,<kbd>"stop is the position in the file to stop corrupting.\n"</kbd>);
+printf(<kbd>"%s"</kbd>,<kbd>"every is the frequency of memory to ignore.\n"</kbd>);
+printf(<kbd>"%s"</kbd>,<kbd>"\n"</kbd>);
+printf(<kbd>"%s"</kbd>,<kbd>"Operations:\n"</kbd>);
+printf(<kbd>"%s"</kbd>,<kbd>"add	Adds current byte to addative\n"</kbd>);
+printf(<kbd>"%s"</kbd>,<kbd>"sub	Subtracts current byte from addative\n"</kbd>);
+printf(<kbd>"%s"</kbd>,<kbd>"mul	Multiplies current byte by addative\n"</kbd>);
+printf(<kbd>"%s"</kbd>,<kbd>"div	Divides current byte by addative\n"</kbd>);
+printf(<kbd>"%s"</kbd>,<kbd>"mod	Modular current byte by addative\n"</kbd>);
+printf(<kbd>"%s"</kbd>,<kbd>"xor	Xor's current byte by addative\n"</kbd>);
+printf(<kbd>"%s"</kbd>,<kbd>"and	And's current byte by addative\n"</kbd>);
+printf(<kbd>"%s"</kbd>,<kbd>" or	Or's current byte by addative\n"</kbd>);
+printf(<kbd>"%s"</kbd>,<kbd>"ran	Randomizes current byte\n"</kbd>);
+printf(<kbd>"%s"</kbd>,<kbd>"not	Not's current byte\n"</kbd>);
+printf(<kbd>"%s"</kbd>,<kbd>"\n"</kbd>);
+printf(<kbd>"%s"</kbd>,<kbd>"Switches:\n"</kbd>);
+printf(<kbd>"%s"</kbd>,<kbd>"-l [file]	Load corruption from file\n"</kbd>);
+printf(<kbd>"%s"</kbd>,<kbd>"-v		Output corruptor version\n"</kbd>);
+printf(<kbd>"%s"</kbd>,<kbd>"-s [file]	Save corruption to file\n"</kbd>);
+
+exit(1);
+}
+
+<var>char</var> op(<var>char</var> oper[3],<var>char</var> a,<var>char</var> b)
+{
+<var>if</var>(strcmp(oper, <kbd>"add"</kbd>) == 0){<var>return</var> a+b;}
+<var>else</var> <var>if</var>(strcmp(oper, <kbd>"sub"</kbd>) == 0){<var>return</var> a-b;}
+<var>else</var> <var>if</var>(strcmp(oper, <kbd>"mul"</kbd>) == 0){<var>return</var> a*b;}
+<var>else</var> <var>if</var>(strcmp(oper, <kbd>"div"</kbd>) == 0){<var>return</var> a/b;}
+<var>else</var> <var>if</var>(strcmp(oper, <kbd>"ran"</kbd>) == 0){<var>return</var> rand() % 128 -64;}
+<var>else</var> <var>if</var>(strcmp(oper, <kbd>"xor"</kbd>) == 0){<var>return</var> a xor b;}
+<var>else</var> <var>if</var>(strcmp(oper, <kbd>"and"</kbd>) == 0){<var>return</var> a and b;}
+<var>else</var> <var>if</var>(strcmp(oper, <kbd>"or"</kbd>) == 0){<var>return</var> a or b;}
+<var>else</var> <var>if</var>(strcmp(oper, <kbd>"not"</kbd>) == 0){<var>return</var> not(a);}
+<var>else</var> <var>if</var>(strcmp(oper, <kbd>"mod"</kbd>) == 0){<var>return</var> a % b;}
+<var>else</var>{errormsg();}
+}
+
+<var>void</var> Old_Engine_While_Loop(<var>unsigned</var> <var>long</var> <var>long</var> <var>int</var> strt,<var>unsigned</var> <var>long</var> <var>long</var> <var>int</var> stop,<var>unsigned</var> <var>int</var> frequency,<var>char</var>* tempop,<var>char</var> addative)
+{
+<var>unsigned</var> <var>long</var> <var>long</var> <var>int</var> dimX = 0;
+<var>unsigned</var> <var>int</var> FreqCounter = 0;
+<var>int</var> regbyte;
+<var>while</var>((regbyte = fgetc(ifile)) != EOF) <cite>//While we haven't reached the end of the file...</cite>
+	{ 
+	<var>if</var>((FreqCounter &gt;= frequency) and ((dimX &gt;= strt) and (dimX &lt;= stop))) <cite>//And the conditions are juuust right...</cite>
+		{
+		regbyte = op(tempop,regbyte,addative);putc(regbyte, ofile);FreqCounter = 0; <cite>//corrupt dat byte!</cite>
+		}
+	<var>else</var>{putc(regbyte, ofile);} <cite>//Or don't...</cite>
+	FreqCounter = FreqCounter +1;dimX = dimX +1; <cite>//counting</cite>
+	} 
+printf(<kbd>"%s"</kbd>,<kbd>"The file seems to have been successfully corrupted...\n"</kbd>);
+}
+
+<var>int</var> main(<var>int</var> argc, <var>char</var>* argv[])
+{
+<var>char</var> loadarray[8][32];
+FILE* savefile;
+FILE* loadfile;
+<var>unsigned</var> <var>long</var> <var>long</var> <var>int</var> fsize;
+<var>unsigned</var> <var>char</var> arg = 1;
+<cite>//Start the REAL code here</cite>
+<var>if</var>(argc == 1){errormsg();<var>return</var> 1;}
+<var>if</var>(strcmp(argv[arg],<kbd>"-v"</kbd>) == 0){printf(<kbd>"%s"</kbd>,<kbd>"LAwl\n"</kbd>);arg = arg +1;<var>return</var> 0;}
+<var>if</var>(strcmp(argv[arg],<kbd>"-s"</kbd>) == 0)
+	{
+	saving = 1;arg = arg +1;
+	savefile = fopen(argv[arg],<kbd>"wb"</kbd>);arg = arg +1;
+	}
+<var>if</var>(strcmp(argv[arg],<kbd>"-l"</kbd>) == 0)
+	{
+	arg = arg +1;
+	loadfile = fopen(argv[arg],<kbd>"rb"</kbd>);arg = arg +1;
+	<var>if</var>(loadfile == NULL){printf(<kbd>"%s"</kbd>,<kbd>"loadfile does not exist.\n"</kbd>);<var>return</var> 1;}
+	<var>if</var>(load_ifile(argv[arg]) == 1){<var>return</var> 1;}arg = arg +1;
+	<var>if</var>(load_ofile(argv[arg]) == 1){<var>return</var> 1;}arg = arg +1;
+	fgets(loadarray[1],32,loadfile);
+	fgets(loadarray[2],32,loadfile);
+	fgets(loadarray[3],32,loadfile);
+	fgets(loadarray[4],32,loadfile);
+	fgets(loadarray[5],32,loadfile);loadarray[5][3] = <kbd>'\0'</kbd>;
+	fgets(loadarray[6],32,loadfile);
+	Old_Engine_While_Loop(atoi(loadarray[2]),atoi(loadarray[3]),atoi(loadarray[4]),loadarray[5],atoi(loadarray[6]));
+	<var>return</var> 0;
+	}
+<var>if</var>(load_ifile(argv[arg]) == 1){<var>return</var> 1;}arg = arg +1;
+<var>if</var>(load_ofile(argv[arg]) == 1){<var>return</var> 1;}arg = arg +1;
+<cite>//Onward</cite>
+<var>if</var>((argc-arg) != 5){errormsg();<var>return</var> 1;}
+Old_Engine_While_Loop(handle_numbers(argv[arg]),handle_numbers(argv[arg+1]),handle_numbers(argv[arg+2]),argv[arg+3],handle_numbers(argv[arg+4]));
+<var>if</var>(saving)
+	{
+	fputs(<kbd>"[A.0.2.2]\n"</kbd>,savefile);
+	fputs(argv[arg],savefile);
+	fputs(<kbd>"\n"</kbd>,savefile);
+	fputs(argv[arg+1],savefile);
+	fputs(<kbd>"\n"</kbd>,savefile);
+	fputs(argv[arg+2],savefile);
+	fputs(<kbd>"\n"</kbd>,savefile);
+	fputs(argv[arg+3],savefile);
+	fputs(<kbd>"\n"</kbd>,savefile);
+	fputs(argv[arg+4],savefile);
+	fputs(<kbd>"\n"</kbd>,savefile);
+	}
+<var>return</var> 0;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn902384"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg902402"><span title="902402,88654,1023,4208,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg902402" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm085597771d" title="Mon, 15 Feb 2016 06:00:28 +0000"></span><script type="text/javascript">WhenId('CH_zTm085597771d');</script><noscript>Feb 15, 2016 at 6:00am UTC</noscript></div>
+<div class="dwho"><a href="/user/TheIdeasMan/"><b>TheIdeasMan</b> (4208)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i902402">
+Hi,<br>
+<br>
+Just some general comments from a backyard dabbler, if I may :+)<br>
+<br>
+The code is C, with a few C++ things like <span class="auto"><code class="source"><var>bool</var></code></span> in there. IMO, don't mix the two styles. Either write C, or write C++.<br>
+<br>
+I like to put forward declarations before main with function definitions after main, so I don't have to go looking for main.<br>
+<br>
+With your indenting, I would like to see code in the body of a function indented. And braces should line up with the statement they are attached to. Maybe it's the way this site has formatted the code? If you change your editor to do 4 spaces say instead of tabs, it will display better here.<br>
+<br>
+<span class="auto"><code class="source"><var>long</var> <var>long</var> <var>int</var></code></span> Can you stick with the types in stdint.h (C) ?<br>
+<br>
+<span class="auto"><code class="source"><var>unsigned</var> <var>char</var> NumbHandPercent = 0;</code></span> Interesting type for a percentage.<br>
+<br>
+<span class="auto"><code class="source"><var>long</var> <var>long</var> <var>double</var></code></span> this type doesn't exist.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br></code></pre></td>
+<td class="source"><pre><code><var>unsigned</var> <var>char</var> load_ifile(<var>char</var> LoadIfileName[32])
+{
+ifile = fopen(LoadIfileName,<kbd>"rb"</kbd>);
+<var>if</var>(ifile == NULL){printf(<kbd>"%s"</kbd>,<kbd>"ifile does not exist.\n"</kbd>);<var>return</var> 1;}
+IfileSize = GetIfileSize();
+<var>return</var> 0;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Why return <span class="auto"><code class="source"><var>unsigned</var> <var>char</var></code></span>? C has a bool <span class="auto"><code class="source"><dfn>#include &lt;stdbool.h&gt; </dfn></code></span><br>
+<br>
+<span class="auto"><code class="source"><var>char</var> op(<var>char</var> oper[3],<var>char</var> a,<var>char</var> b)</code></span> I am sure you know what you are doing here, and have your own reasons. Curious as to why return type is char - does that play well with integer division?<br>
+<br>
+Line 104: If I have lots of arguments, I format them 1 per line like this:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br></code></pre></td>
+<td class="source"><pre><code><var>void</var> Old_Engine_While_Loop(<var>unsigned</var> <var>long</var> <var>long</var> <var>int</var> strt,
+                            <var>unsigned</var> <var>long</var> <var>long</var> <var>int</var> stop,
+                            <var>unsigned</var> <var>int</var> frequency,
+                            <var>char</var>* tempop,
+                            <var>char</var> addative)
+{</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+I find that easier to read. Could some of those parameters be <span class="auto"><code class="source"><var>const</var></code></span>?<br>
+<br>
+Hopefully this has been helpful, even a little bit :+)
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTmb5859d4386" title="Mon, 15 Feb 2016 06:02:35 +0000"></span><script type="text/javascript">WhenId('CH_zTmb5859d4386');</script><noscript>Feb 15, 2016 at 6:02am UTC</noscript></span>
+<span class="dbtn" id="CH_btn902402"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg902546"><span title="902546,119143,1023,310,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg902546" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm6046fe4cec" title="Mon, 15 Feb 2016 23:06:15 +0000"></span><script type="text/javascript">WhenId('CH_zTm6046fe4cec');</script><noscript>Feb 15, 2016 at 11:06pm UTC</noscript></div>
+<div class="dwho"><a href="/user/RealGiganitris/"><b>RealGiganitris</b> (310)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i902546">
+Thanks a lot, that's very helpful.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn902546"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg902548"><span title="902548,119143,1023,310,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg902548" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm08d8c5f37e" title="Mon, 15 Feb 2016 23:23:59 +0000"></span><script type="text/javascript">WhenId('CH_zTm08d8c5f37e');</script><noscript>Feb 15, 2016 at 11:23pm UTC</noscript></div>
+<div class="dwho"><a href="/user/RealGiganitris/"><b>RealGiganitris</b> (310)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i902548">
+I should also mention, that the language mixing is necessary. I'll try to stick to the types defined in the header, but I'm honestly new to it. Bool is definitely necessary.  Hmm, I've never thought about my type declaration for the percentage. When I wrote that, I thought, "I want it to be only positive, so unsigned. I want it to be close to 100, so char." Would you recommend double or float for percentages? I've also never thought of my return type for load_ifile either... Also, I assumed C had its own bool type in cstdlib. The return type is char because a char is extracted from a file, modified and then placed in a new file. I tested it out on a txt and it worked out fine. Thanks for the line 104 tip, I had no idea what to do with all those arguments, haha. You should've seen my face when I wrote that initialization. I believe tempop could be made const, but I don't know how that'd work... Can non chars be const?
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn902548"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg902642"><span title="902642,88654,1023,4208,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg902642" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmc9aa9f7287" title="Tue, 16 Feb 2016 05:55:13 +0000"></span><script type="text/javascript">WhenId('CH_zTmc9aa9f7287');</script><noscript>Feb 16, 2016 at 5:55am UTC</noscript></div>
+<div class="dwho"><a href="/user/TheIdeasMan/"><b>TheIdeasMan</b> (4208)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i902642">
+<table class="quote"><tr><td class="qd">I should also mention, that the language mixing is necessary.</td></tr></table><br>
+<br>
+It seems to me the only C++ thing is <span class="auto"><code class="source"><var>bool</var></code></span>, you could use the C bool <span class="auto"><code class="source"><dfn>#include &lt;stdbool.h&gt; </dfn></code></span> , along with compiling to the C11  C standard. Would have to change the headers to the C versions though.<br>
+<br>
+<table class="quote"><tr><td class="qd">Hmm, I've never thought about my type declaration for the percentage. When I wrote that, I thought, "I want it to be only positive, so unsigned. I want it to be close to 100, so char." </td></tr></table><br>
+<br>
+I am not so sure about an advantage of using small types like char to try and save memory. It is slower because the compiler has to unpack a machine word (mostly 64 bit these days) to get at the variable, and that is assuming that several of these variables were packed into 1 machine word in the first place. I am not sure how that packing is implemented though. The <span class="auto"><code class="source">stdint.h</code></span> and <span class="auto"><code class="source">&lt;cstdint&gt;</code></span> headers have "fast" types, which store variables in a way which allows for fast storage and retrieval. It's easy to look at the <span class="auto"><code class="source"><var>typedef</var></code></span>'s in <span class="auto"><code class="source">stdint.h</code></span> to see how it works.<br>
+<br>
+ <table class="quote"><tr><td class="qd">Would you recommend double or float for percentages? </td></tr></table><br>
+<br>
+I guess it depends on what you want to use it for. If it's a progress indicator say, then any unsigned integral type will do. If you need decimal places and are not worried about exceeding the precision of float, then float, otherwise double.<br>
+<br>
+<table class="quote"><tr><td class="qd"> I've also never thought of my return type for load_ifile either... Also, I assumed C had its own bool type in cstdlib. The return type is char because a char is extracted from a file, modified and then placed in a new file. I tested it out on a txt and it worked out fine.</td></tr></table><br>
+<br>
+I mentioned that because the function only ever returns 1 or 0.<br>
+<br>
+<table class="quote"><tr><td class="qd">I believe tempop could be made const, but I don't know how that'd work... Can non chars be const</td></tr></table><br>
+<br>
+I was just saying in general about making parameters const, as a part of const correctness, do it whenever you can. I am sure you know that const can apply to any built in type?<br>
+<br>
+Bleems ago, I remember using const pointers, in hindsight what I had was the same idea as a C++ reference, although the syntax wasn't as easy :+).<br>
+<br>
+<table class="quote"><tr><td class="qd">Also, I assumed C had its own bool type in cstdlib.</td></tr></table><br>
+<br>
+I couldn't find one in my system. If you are compiling with C++, it's probably using the C++ keyword.<br>
+<br>
+A bit of white-space might make your code easier to read, even the <span class="auto"><code class="source">load_ifile</code></span> function:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br></code></pre></td>
+<td class="source"><pre><code><var>unsigned</var> <var>char</var> load_ifile(<var>char</var> LoadIfileName[32])
+{
+    ifile = fopen(LoadIfileName,<kbd>"rb"</kbd>); 
+
+    <var>if</var>(ifile == NULL) {
+        printf(<kbd>"%s"</kbd>,<kbd>"ifile does not exist.\n"</kbd>);
+        <var>return</var> 1;
+    } 
+
+    IfileSize = GetIfileSize();
+
+    <var>return</var> 0;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+I know that having the if statement and two short statements all on one line, of itself is not a problem. But if one does that all the time, the code becomes dense.<br>
+<br>
+The main function has a lot of code to process the options, could you kick that into a function of it's own?<br>
+<br>
+Any way, we (or I?) might be getting bogged down in detail, I wonder what are some of the bigger things that are affecting your code? How many files of code do you have and how are they organised?
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn902642"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg903119"><span title="903119,119143,1023,310,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg903119" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm9dee346c2e" title="Wed, 17 Feb 2016 23:33:26 +0000"></span><script type="text/javascript">WhenId('CH_zTm9dee346c2e');</script><noscript>Feb 17, 2016 at 11:33pm UTC</noscript></div>
+<div class="dwho"><a href="/user/RealGiganitris/"><b>RealGiganitris</b> (310)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i903119">
+Sorry for getting back to you so late... I've never thought about using white-space to improve readability. I'll definitely break the switches down, I've thought about that before but I didn't know how to do it, so I left it. I don't mind the detail, I've never had anyone else really analize my code before. I think you've really helped me with a lot of the big stuff, I have a lot of writing to do. I currently have two files, but I'm only using the one. I'm going to rewrite it so it uses the functions in the other file. Also, when you ask how they're organized, what do you mean?
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm002e9b2d90" title="Wed, 17 Feb 2016 23:33:52 +0000"></span><script type="text/javascript">WhenId('CH_zTm002e9b2d90');</script><noscript>Feb 17, 2016 at 11:33pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn903119"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg903187"><span title="903187,88654,1023,4208,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg903187" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmf657dfeeee" title="Thu, 18 Feb 2016 05:18:47 +0000"></span><script type="text/javascript">WhenId('CH_zTmf657dfeeee');</script><noscript>Feb 18, 2016 at 5:18am UTC</noscript></div>
+<div class="dwho"><a href="/user/TheIdeasMan/"><b>TheIdeasMan</b> (4208)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i903187">
+<table class="quote"><tr><td class="qd">I don't mind the detail, I've never had anyone else really analize my code before. </td></tr></table><br>
+<br>
+No worries, I just wish some others might comment, I am just a backyard dabbler :+)<br>
+<br>
+<table class="quote"><tr><td class="qd">Also, when you ask how they're organized, what do you mean? </td></tr></table><br>
+<br>
+Well, just like C++ one organises the files into headers and implementation. When projects get even bigger, start  putting files into separate directories. Do you have Kernighan &amp; Ritchie's C programming book ? There is a simplified description of how to do this on pages 68 to 70.<br>
+<br>
+Here is a link to K&amp;R, if you don't already have the book. It's more moral IMO, if you were to buy that book, it shouldn't be that expensive. I still have my copy from 1987 :+)<br>
+<table class="quote"><tr><td class="qd"><a href="http://zanasi.chem.unisa.it/download/C.pdf">http://zanasi.chem.unisa.it/download/C.pdf</a></td></tr></table><br>
+<br>
+BTW, is there any particular reason why you are doing this in C?<br>
+<br>
+With the code formatting, your IDE should be able to do this for you. One can normally select which style you want, or make your own.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn903187"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg903190"><span title="903190,119143,1023,310,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg903190" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmd40582a7e4" title="Thu, 18 Feb 2016 05:27:19 +0000"></span><script type="text/javascript">WhenId('CH_zTmd40582a7e4');</script><noscript>Feb 18, 2016 at 5:27am UTC</noscript></div>
+<div class="dwho"><a href="/user/RealGiganitris/"><b>RealGiganitris</b> (310)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i903190">
+I don't have the book but I've always wanted a copy, thanks! You're awesome! Whoa, 1987? What sort of projects have you worked on in your life? Are you a hobbyist? <br>
+<br>
+I'm doing this in C because the headers are much smaller and the final compiled program is smaller on most OS's. The biggest feature of my program is its ability to run on "more than just Windows". I'm trying to keep everything minimal and small in a language I (sort of) know well. <br>
+<br>
+To be honest, I'm not using an IDE. I'm using gedit as an editor and gcc as my compiler, so I don't know what you mean. 
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn903190"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg903194"><span title="903194,68265,1023,1170,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg903194" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm27bf14b595" title="Thu, 18 Feb 2016 05:40:13 +0000"></span><script type="text/javascript">WhenId('CH_zTm27bf14b595');</script><noscript>Feb 18, 2016 at 5:40am UTC</noscript></div>
+<div class="dwho"><a href="/user/htirwin/"><b>htirwin</b> (1170)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i903194">
+<table class="quote"><tr><td class="qd">To be honest, I'm not using an IDE. I'm using gedit as an editor and gcc as my compiler, so I don't know what you mean. </td></tr></table><br>
+You can use astyle from the command line.<br>
+<div class="auto"><table class="snippet"><tr><td class="output"><pre><samp>
+&gt; astyle --style=allman headers/*.h*
+&gt; astyle --style=allman source/*.cpp
+</samp></pre></td></tr></table></div>
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn903194"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg903197"><span title="903197,119143,1023,310,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg903197" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm00a339cc92" title="Thu, 18 Feb 2016 06:04:49 +0000"></span><script type="text/javascript">WhenId('CH_zTm00a339cc92');</script><noscript>Feb 18, 2016 at 6:04am UTC</noscript></div>
+<div class="dwho"><a href="/user/RealGiganitris/"><b>RealGiganitris</b> (310)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i903197">
+What does astyle even do?
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn903197"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg903201"><span title="903201,88654,1023,4208,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg903201" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm548ddddaed" title="Thu, 18 Feb 2016 06:25:08 +0000"></span><script type="text/javascript">WhenId('CH_zTm548ddddaed');</script><noscript>Feb 18, 2016 at 6:25am UTC</noscript></div>
+<div class="dwho"><a href="/user/TheIdeasMan/"><b>TheIdeasMan</b> (4208)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i903201">
+<table class="quote"><tr><td class="qd">Whoa, 1987? What sort of projects have you worked on in your life? Are you a hobbyist? </td></tr></table><br>
+<br>
+Yep, just a hobbyist. Back in 1987, I used to stay at work until about 11pm learning C from K&amp;R on a UNIX machine. It was hard going, no internet or anyone to ask, just the book. I have been an Engineering Surveyor for the last 30 years and have had some exposure to UNIX shell scripting, awk (a UNIX pattern matching language) Fortran 77, Pascal, assembler (DOS 16bit), Relational Databases (Design and implementation), VBA (mainly AutoCAD), and finally C++. A lot of that I haven't used for years, so my memory of it is sketchy. <br>
+<br>
+And only sometimes did I actually get to implement something for work. The times I did were spectacular though, I often felt like writing a book called "Computers for Managers". One day my boss gave me a print out of 30 pages of GPS co-ordinates (10 figures XYZ) of electrical assets, highlighting pen and a ruler: I was to manually type them in, drawing a particular symbol at that position :+( I said I could write a short program to do that automatically. No, Not allowed: we don't do programming here - never see the end of it :+( So I sat there all day typing in co-ordinates, but after work I wrote a 6 line LISP routine. Next morning, at 8:05AM I went to my boss and said that I was finished !! :+D He was upset, he wanted to charge the client for about 3 weeks of my time. I said: "No reason why you can't still do that :+)" I used that program time and time again, was especially handy when we were given a wrong dataset.<br>
+<br>
+I did have an actual IT job for about 6 months: to be honest the system we were using I found to be a nightmare. The main problem for me was that fields had to have a unique name across the whole database, and there was a 40 char limit. The DB had 500 tables and some of them had 300 fields, so looking at some field names, they would all be the same except for the last 3 chars. So one can imagine how difficult it was to understand. I mentioned the idea of naming the fields with the table name, a delimiter, then the field name: thus having about 30 chars for the field name. But I got shouted down because that what MS Access does. To be fair, the DB had already been written (500KLOC) and had data so making those changes would not have been feasible.<br>
+<br>
+<table class="quote"><tr><td class="qd">I'm trying to keep everything minimal and small in a language I (sort of) know well. </td></tr></table><br>
+No worries :+)<br>
+<br>
+<table class="quote"><tr><td class="qd">To be honest, I'm not using an IDE. I'm using gedit as an editor and gcc as my compiler, so I don't know what you mean. </td></tr></table><br>
+<br>
+I strongly recommend you get hold of the clang compiler from llvm. It prints nice error messages, and has been a frontrunner in the implementation of new standards. Although <b>JLBorges</b> informed me the other day that MS is ahead of the game at the moment, and working hard to achieve c++17 compliance.<br>
+<br>
+llvm also has other utilities, one of them is llvm-format - you could use this from the shell. There are others like A-style which allows one to choose which style, and can be run from the shell.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn903201"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg903237"><span title="903237,127909,1023,2072,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg903237" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm18f61a4383" title="Thu, 18 Feb 2016 08:45:24 +0000"></span><script type="text/javascript">WhenId('CH_zTm18f61a4383');</script><noscript>Feb 18, 2016 at 8:45am UTC</noscript></div>
+<div class="dwho"><a href="/user/dhayden/"><b>dhayden</b> (2072)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i903237">
+Go through your functions and comment them: what are the inputs, what are the outputs? What do they do? What happens if there is an error?  Make sure they don't use globals unless absolutely necessary.  By doing this you'll make them much cleaner.<br>
+<br>
+Take handle_numbers for example.  The name isn't very meaningful.  Also, the only line that has any effect is line 31.  So what is this function really supposed to do?  Decide what it does and then do it.<br>
+<br>
+Here's a trick to writing well designed code: your functions/methods don't have to "do the work." They should "make doing the work easy."  For example, getIfileSize() currently gets the size of one file and one file only.  Change that to getFileSize(FILE *fp);  Now it can get the size of any file.  Also, you can get the size by simply seeking to the end of the file and then checking the position with ftell().  That's about a zillion times faster than reading every character.<br>
+<br>
+load_ifile is confusing. It opens the file AND gets the size, storing both in globals.  Load_ofile sounds like it should do the same thing but it doesn't.  I suggest a single function that opens a file and checks for errors. Something like:<br>
+FILE *openFile(const char *name, const char *mode)<br>
+{<br>
+    FILE *result = fopen(name, mode);<br>
+    if (result == NULL) {<br>
+        printf("Can't open %s: %s\n", name, strerror(errno));<br>
+    }<br>
+    return result;<br>
+}<br>
+<br>
+function op() doesn't look right. You say it takes a 3-character array (oper) but compare it like it's 4 characters (remember those 3-character strings have terminating null bytes).  It would be better to declare oper as <span class="auto"><code class="source"><var>const</var> <var>char</var> *</code></span>.<br>
+<span class="auto"><code class="source">Old_Engine_While_Loop()</code></span>?  What the heck is that supposed to do?  :) Choose a better name.<br>
+<br>
+Learn and use getopt() for command line processing. It's very common and easy to use.<br>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn903237"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg903238"><span title="903238,83425,255,5,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg903238" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmd987385e80" title="Thu, 18 Feb 2016 08:54:37 +0000"></span><script type="text/javascript">WhenId('CH_zTmd987385e80');</script><noscript>Feb 18, 2016 at 8:54am UTC</noscript></div>
+<div class="dwho"><a href="/user/Necip/"><b>Necip</b> (5)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i903238">
+If I would be faced with an unreadable sourcecode I would start to use my own classes and build em up with existing code. This technique is named as "facade": <br>
+<br>
+<a href="https://sourcemaking.com/design_patterns/facade">https://sourcemaking.com/design_patterns/facade</a><br>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn903238"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg903262"><span title="903262,88654,1023,4208,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg903262" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmbf3de9d2ba" title="Thu, 18 Feb 2016 11:20:05 +0000"></span><script type="text/javascript">WhenId('CH_zTmbf3de9d2ba');</script><noscript>Feb 18, 2016 at 11:20am UTC</noscript></div>
+<div class="dwho"><a href="/user/TheIdeasMan/"><b>TheIdeasMan</b> (4208)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i903262">
+<table class="quote"><tr><td class="qd">What does astyle even do? </td></tr></table><br>
+<br>
+It's a code formatter. There are all kind of rules about bracing styles, indenting, white space around operators and parentheses, and so on. One can choose an existing style, or make your own.<br>
+<br>
+@<b>Necip</b><br>
+<br>
+The OP is doing C. Is it possible to do DP without classes?
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn903262"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg903277"><span title="903277,83425,255,5,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg903277" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm0674c2f14b" title="Thu, 18 Feb 2016 12:43:59 +0000"></span><script type="text/javascript">WhenId('CH_zTm0674c2f14b');</script><noscript>Feb 18, 2016 at 12:43pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Necip/"><b>Necip</b> (5)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i903277">
+@TheIdeasMan, designpatterns are independed from languages, these are concepts to work with. <br>
+<br>
+I use the source navigator tool  (<a href="https://sourceforge.net/projects/sourcenav/)">https://sourceforge.net/projects/sourcenav/)</a><br>
+to get the overview of all functions and classes PLUS cross-referenzes!<br>
+<br>
+It's amazing to work with this open source tool!<br>
+<br>
+Control is nothing without knowing!
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn903277"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg903284"><span title="903284,88654,1023,4208,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg903284" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm67bf1447e7" title="Thu, 18 Feb 2016 13:27:57 +0000"></span><script type="text/javascript">WhenId('CH_zTm67bf1447e7');</script><noscript>Feb 18, 2016 at 1:27pm UTC</noscript></div>
+<div class="dwho"><a href="/user/TheIdeasMan/"><b>TheIdeasMan</b> (4208)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i903284">
+<table class="quote"><tr><th class="qh"><strong>Necip</strong> wrote:</th></tr><tr><td class="qd">@TheIdeasMan, designpatterns are independed from languages, these are concepts to work with. </td></tr></table><br>
+<br>
+But they require the OOP paradigm, the OP is using C, which isn't OOP.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn903284"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg903290"><span title="903290,83425,255,5,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg903290" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm987d18c153" title="Thu, 18 Feb 2016 13:59:12 +0000"></span><script type="text/javascript">WhenId('CH_zTm987d18c153');</script><noscript>Feb 18, 2016 at 1:59pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Necip/"><b>Necip</b> (5)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i903290">
+<table class="quote"><tr><td class="qd">The first C++ compiler ("C with classes") would actually generate C code, so that's definitely doable.<br>
+</td></tr></table><br>
+<br>
+<a href="http://stackoverflow.com/questions/524033/how-can-i-simulate-oo-style-polymorphism-in-c">http://stackoverflow.com/questions/524033/how-can-i-simulate-oo-style-polymorphism-in-c</a><br>
+<br>
+
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm3ee1e8f5d8" title="Thu, 18 Feb 2016 14:34:31 +0000"></span><script type="text/javascript">WhenId('CH_zTm3ee1e8f5d8');</script><noscript>Feb 18, 2016 at 2:34pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn903290"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg903292"><span title="903292,88654,1023,4208,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg903292" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmfec75b04b0" title="Thu, 18 Feb 2016 14:20:36 +0000"></span><script type="text/javascript">WhenId('CH_zTmfec75b04b0');</script><noscript>Feb 18, 2016 at 2:20pm UTC</noscript></div>
+<div class="dwho"><a href="/user/TheIdeasMan/"><b>TheIdeasMan</b> (4208)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i903292">
+<table class="quote"><tr><td class="qd">I like to chat with you! ^^</td></tr></table><br>
+<br>
+That may be so, but this is off topic and derailing the OP's topic - maybe you should start your own Topic?
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn903292"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div id="CH_insNew"></div><div id="CH_subscription"></div><div class="rootedtNew"></div><div class="C_pages right">Pages: <span title="Current page">1</span><a href="/forum/general/184609/2/">2</a></div><script type="text/javascript">new for_PostList(184609,0,119143,0,'CH_PostList','CH_subscription',false,'CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+<script type="text/javascript">
+    google_ad_client = "ca-pub-1444228343479937";
+    google_ad_slot = "9701143201";
+    google_ad_width = 728;
+    google_ad_height = 90;
+</script>
+<!-- leaderboard -->
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li><a href="/forum/beginner/"><b>Beginners</b></a></li><li><a href="/forum/windows/"><b>Windows Programming</b></a></li><li><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li class="selected"><a href="/forum/general/"><b>General C++ Programming</b></a></li><li><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Fgeneral%2F184609%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Privacy policy</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li class="here">Privacy policy</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+
+<h3>Privacy policy</h3>
+<p>
+The privacy of our visitors is important to us. This page represents our commitment
+on that issue and informs you how we use personal information collected on this site.
+</p>
+
+<h4>Personal information</h4>
+<p>
+The resources hosted in this website are generally provided to visitors anonimously -
+no personal information is required to access them.</p>
+<p>
+Nevertheless, some services that allow users to participate actively by submitting content require
+the user to be registered. All registered users need to provide at least the following
+information:
+<ul>
+<li><b>Login name:</b> Your login name is public and will be associated with any
+content you submit. It serves to identify you as the author and will appear alongside it.</li>
+<li><b>Email address:</b> Your email address is needed for identification purposes.
+It is only public if you choose so (by default it is not).</li>
+<li><b>Password:</b> We don't store your password, only a one-way hash value of it.</li>
+</ul>
+These fields are kept in our database for identification purposes, and are only used for
+the services provided in this website and those you opt-in voluntarily.
+</p>
+<p>
+Registered users have the option to fill a <i>Personal profile</i> with some additional
+personal information which can be partly or entirely made public.
+</p>
+
+<h4>Non-personal information</h4>
+<p>
+Some non-personal information is automatically logged by our servers as provided by
+internet protocols and the browser you use, this includes:
+<ul>
+<li>IP addresses</li>
+<li>Referer pages</li>
+<li>Cookies</li>
+<li>Browser information, such as name, version, operating system...</li>
+</ul>
+This information is temporarily stored in our servers for statistical and reviewing purposes.
+</p>
+<p>
+Most browser applications allow you to restrict the disclosure of some or all of the above information.
+Please check your browser's manual for more detail.
+</p>
+
+<h4>User-provided content</h4>
+<p>
+This site includes sections where users can submit their own content.
+Any information that is disclosed in these sections may become public information
+accessible by other visitors.
+</p>
+
+<h4>Advertisements</h4>
+<p>
+Some pages in our site include ads provided by third parties that may
+use their own technology (such as cookies or web beacons) to collect user information
+when they advertise on this site.</p>
+
+<h4>External links</h4>
+<p>
+This site contains links to other sites. We cannot be responsible
+for the privacy practices or the content of such web sites.
+</p>
+<p>
+We reserve the right to make changes to this policy. Any changes to this policy will be posted.
+</p>
+</div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fprivacy.do">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

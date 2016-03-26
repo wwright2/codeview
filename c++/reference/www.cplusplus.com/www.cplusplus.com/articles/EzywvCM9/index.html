@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>C++11 improvements over C++03 - C++ Articles</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/articles/">Articles</a></li>
+<li class="here">C++11 improvements over C++03</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div id="I_content">
+<div class="C_art">
+<div id="I_author">Published by <b><a href="/user/Catfish/" rel="author">Catfish</a></b></div>
+<div id="I_date">Sep 30, 2011 (last update: Nov 12, 2011)</div>
+<h1>C++11 improvements over C++03</h1>
+<div id="I_score">Score: 4.3/5 (360 votes)</div>
+<div id="I_stars"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"></div>
+<div id="I_content">
+<H3>About C++11</H3>
+C++11 aka C++0x is the new standard of the C++ language, published in late 2011.<br>
+It supersedes the older C++03 standard, which was published in 2003.<br>
+Naturally, it brings improvements over the old standard, some of which this article will outline.<br>
+<br>
+<H3>The revamped <CODE>auto</CODE> keyword</H3>
+Verbosity is bad, mainly because it makes your code less clear.<br>
+So the <CODE>auto</CODE> keyword, a leftover from C, got a new meaning in C++11: automatic type deduction.<br>
+<br>
+<I>Example:</I>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br></code></pre></td>
+<td class="source"><pre><code><cite>// the C++03 way</cite>
+<var>for</var> (std::vector&lt;<var>int</var>&gt;::const_iterator ci = v.begin(); ci != v.end(); ++ci);
+
+<cite>// the C++11 way</cite>
+<var>for</var> (<var>auto</var> ci = v.cbegin(); ci != v.cend(); ++ci);
+<cite>// notice the dedicated cbegin() and cend() member functions which return a const_iterator </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<I>Bad example:</I>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br></code></pre></td>
+<td class="source"><pre><code><var>auto</var> x = 10.0;
+<cite>// if a newbie programmer changes `10.0' to `10', x becomes an integral type</cite>
+<cite>// and code depending on it to be a floating point type will fail</cite>
+<cite>// advice 1: use auto against verbosity, not consistency</cite>
+
+<var>for</var> (<var>auto</var> i = 0ul; i &lt; v.size(); ++i);
+<cite>// this is just a clever way of writing `unsigned long int i=0'</cite>
+<cite>// advice 2: don't use auto if you specify the type, it defeats its purpose</cite>
+
+<cite>// advice 1+2=3: don't use auto with constants </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<H3>Range-based <CODE>for()</CODE></H3>
+Iterating over the contents of STL containers is a very common operation.<br>
+C++11 now provides a specialized <CODE>for()</CODE> which can iterate over anything that has a <CODE>begin()</CODE> and an <CODE>end()</CODE> member function, which return the expected iterators.<br>
+It also works on plain C arrays.<br>
+<br>
+<I>Example:</I>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br></code></pre></td>
+<td class="source"><pre><code><cite>// the C++03 way</cite>
+<var>for</var> (std::vector&lt;<var>int</var>&gt;::iterator i = v.begin(); i != v.end(); ++i);
+
+<cite>// the C++11 way</cite>
+<var>for</var> (<var>int</var> &amp;item: v);
+<cite>// item will become, in order, all the things stored in v</cite>
+<cite>// notice how we're referencing the item, that allows us to change it</cite>
+
+<var>for</var> (<var>const</var> <var>int</var> &amp;item: v); <cite>// can't change item, we reference it for speed</cite>
+<var>for</var> (<var>int</var> item: v); <cite>// can't change item, we're passing it by value </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<H3>Initializer lists</H3>
+The containers in C++03 could not be initialized as "naturally" as good old C-style arrays. That has changed.<br>
+<br>
+<I>Example:</I>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br></code></pre></td>
+<td class="source"><pre><code><cite>// C arrays</cite>
+<var>char</var>   array1[] = {<kbd>'A'</kbd>, <kbd>'B'</kbd>};
+<var>double</var> array2[] = {32.0, 6.003, -0.1};
+
+<cite>// C++03 vectors</cite>
+
+std::vector&lt;<var>char</var>&gt; cpp03vector1;
+cpp03vector1.push_back(<kbd>'A'</kbd>);
+cpp03vector1.push_back(<kbd>'B'</kbd>);
+
+std::vector&lt;<var>double</var>&gt; cpp03vector2(3);
+cpp03vector2[0] = 32.0;
+cpp03vector2[1] = 6.003;
+cpp03vector2[2] = -0.1;
+
+<cite>// C++11 vectors</cite>
+std::vector&lt;<var>char</var>&gt;   cpp11vector1 = {<kbd>'A'</kbd>, <kbd>'B'</kbd>};
+std::vector&lt;<var>double</var>&gt; cpp11vector2 = {32.0, 6.003, -0.1};
+<cite>// or...</cite>
+std::vector&lt;<var>char</var>&gt;   cpp11vector3{<kbd>'A'</kbd>, <kbd>'B'</kbd>};
+std::vector&lt;<var>double</var>&gt; cpp11vector4{32.0, 6.003, -0.1};
+<cite>// notice that this works for all other containers as well, not just std::vector </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Initializer lists can also be used for more complex structures.<br>
+<br>
+<I>Example:</I>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;map&gt;</dfn>
+<dfn>#include &lt;string&gt;</dfn>
+<dfn>#include &lt;vector&gt;</dfn>
+<dfn>#include &lt;utility&gt;</dfn>
+
+<var>using</var> <var>namespace</var> std;
+
+map&lt;string, vector&lt;pair&lt;string, <var>int</var>&gt;&gt;&gt; name_languages_year {
+    {<kbd>"Dennis Ritchie"</kbd>,    {{<kbd>"B"</kbd>,      1969}, {<kbd>"C"</kbd>,        1973}}},
+    {<kbd>"Niklaus Wirth"</kbd>,     {{<kbd>"Pascal"</kbd>, 1970}, {<kbd>"Modula-2"</kbd>, 1973}, {<kbd>"Oberon"</kbd>, 1986}}},
+    {<kbd>"Bjarne Stroustrup"</kbd>, {{<kbd>"C++"</kbd>,    1983}}},
+    {<kbd>"Walter Bright"</kbd>,     {{<kbd>"D"</kbd>,      1999}}}
+};
+<cite>// notice how the lists are nested to match the templates' parameters</cite>
+
+cout &lt;&lt; name_languages_year[<kbd>"Niklaus Wirth"</kbd>].at(0).first &lt;&lt; endl; <cite>// prints `Pascal'</cite>
+
+<cite>// adds a new entry to the map</cite>
+name_languages_year[<kbd>"John McCarthy"</kbd>] = {
+    {<kbd>"Lisp"</kbd>, 1958}
+};
+<cite>// notice the lack of explicit types </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<H3>C++ arrays</H3>
+<HR>
+<EM>This is more of an addition than an improvement, but I decided to include it in the article anyway.</EM>
+<HR>
+C++11 provides <CODE>std::array</CODE>, which has the purpose of replacing C arrays. It is a fixed-sized, lightweight alternative to the dynamically-sized <CODE>std::vector</CODE>.<br>
+<br>
+<I>Example:</I>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;array&gt;</dfn>
+
+<cite>// C arrays</cite>
+<var>char</var>  carray1[] = <kbd>"Abc"</kbd>; <cite>// caution, an unseen '\0' is added to the end</cite>
+<var>float</var> carray2[] = {0.2f, 33.33f};
+
+<cite>// C++ arrays</cite>
+std::array&lt;<var>char</var>, 3&gt;  cpparray1{{<kbd>'A'</kbd>, <kbd>'b'</kbd>, <kbd>'c'</kbd>}};
+std::array&lt;<var>float</var>, 2&gt; cpparray2{{0.2f, 33.33f}};
+<cite>// observation 1: the size must be deducible at compile time</cite>
+<cite>// observation 2: the array cannot be resized</cite>
+<cite>// observation 3: the inner braces are due to the nature of initializer lists,</cite>
+<cite>//  think of it as one list per template parameter</cite>
+
+<cite>// array test drive: the old versus the new</cite>
+
+std::cout &lt;&lt; <var>sizeof</var> carray1 - 1; <cite>// -1 because of the extra '\0'</cite>
+std::cout &lt;&lt; <var>sizeof</var> carray2 / <var>sizeof</var> (<var>float</var>); <cite>// because number of elements != number of bytes</cite>
+std::cout &lt;&lt; cpparray1.size();
+std::cout &lt;&lt; cpparray2.size();
+
+carray2[-5] = 0.1f; <cite>// do the moonwalk!</cite>
+cpparray2.at(-5) = 0.1f; <cite>// throws std::out_of_range exception</cite>
+
+<cite>// of course there are more reasons why C++ arrays are better than C arrays</cite>
+<cite>// but this example code section is already too big... </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<H3>Minor fixes</H3>
+C++03 had a bunch of minor glitches and design flaws which were fixed in C++11:<br>
+<UL>
+<LI>Things like <CODE>set&lt;vector&lt;int&gt;&gt;</CODE> finally compile.<br>
+Notice the lack of space between the last two angle brackets.</LI>
+<br>
+<LI><CODE>std::string</CODE> now has <CODE>front()</CODE> and <CODE>back()</CODE> member functions.</LI>
+<br>
+<LI>File streams now accept an <CODE>std::string</CODE> as filename.<br>
+This means one less use for the ridiculous <CODE>c_str()</CODE> member function.</LI>
+<br>
+<LI>Easy conversion of numerical values to <CODE>std::string</CODE> is now possible through the use of the overloaded functions:<br>
+<CODE>string to_string(int)</CODE>
+<br>
+<CODE>string to_string(float)</CODE>
+<br>
+<CODE>string to_string(double)</CODE>
+<br>
+<CODE>...</CODE>
+</LI>
+</UL>
+<br>
+<H3>Compiler support for C++11</H3>
+... <A HREF="http://wiki.apache.org/stdcxx/C++0xCompilerSupport">is not too bad</A>. But give it a year or two to set.<br>
+<br>
+The <A HREF="http://gcc.gnu.org/projects/cxx0x.html">GNU C++ compiler</A> requires the commandline parameter <I>-std=c++0x</I> to compile C++11 code.<br>
+<br>
+<A HREF="http://blogs.msdn.com/b/vcblog/archive/2010/04/06/c-0x-core-language-features-in-vc10-the-table.aspx">Microsoft Visual Studio 2010</A> has partial support for C++11 features, out of the box.<br>
+<A HREF="http://blogs.msdn.com/b/vcblog/archive/2011/09/12/10209291.aspx">Microsoft Visual Studio 201x (v11)</A> will still only have partial support for C++11 features.<br>
+</div></div><div id="CH_bb"></div><div id="CH_scoreapp"></div><script type="text/javascript">new Score('CH_scoreapp','/articles/score.cgi','EzywvCM9');</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder selected articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/articles/">Articles</a></b></h3>
+<ul>
+<li><a href="/articles/algorithms/">Algorithms</a></li><li><a href="/articles/cpp11/">C++ 11</a></li><li><a href="/articles/graphics/">Graphics and multimedia</a></li><li><a href="/articles/howto/">How-To</a></li><li><a href="/articles/language/">Language Features</a></li><li><a href="/articles/linux/">Unix/Linux programming</a></li><li><a href="/articles/sourcecode/">Source Code</a></li><li><a href="/articles/standard_library/">Standard Library</a></li><li><a href="/articles/tips/">Tips and Tricks</a></li><li><a href="/articles/tools/">Tools and Libraries</a></li><li><a href="/articles/visualcpp/">Visual C++</a></li><li><a href="/articles/winapi/">Windows API</a></li></ul>
+</div>
+<div id="I_subnav"></div>
+</div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Farticles%2FEzywvCM9%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+onSession(function(us) {
+		document.getElementById('I_subnav').innerHTML=
+			us.ok?
+				'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul>'+
+				'<li><a href="/articles/myitems.cgi">My items</a></li>'+
+				(us.auth(32768)?'<li><a href="/articles/adminitems.cgi">Admin items</a></li>':'')+
+				'</ul></div>'
+			:'';
+	}); onSession(function (us) {
+		var el=document.getElementById('CH_bb'); el.innerHTML='';
+		if ( (us.auth(32768)) || ((us.uniqid=='z0qL1hU5')&&(us.auth(128))) ) {
+			el.appendChild(btn('Edit article','Edit this version of the article','edit','/articles/edit.cgi?a=EzywvCM9'));
+	
+			if (us.auth(32768)) {
+				el.appendChild(btn('Delete article','Delete this article','delete','javascript:artdel()'));
+			}
+	
+		}
+	});
+	function artdel() { if (confirm('WARNING: You are about to delete this page. Confirm?')) window.location='/articles/delete.cgi?a=EzywvCM9'; }
+	ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

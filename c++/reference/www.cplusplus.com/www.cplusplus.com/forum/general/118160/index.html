@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Using C++ to INSERT INTO MySql Database - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/general/">General C++ Programming</a></li>
+<li class="here">Using C++ to INSERT INTO MySql Database</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico default" title="post">&nbsp;</div> Using C++ to INSERT INTO MySql Database</h3><span id="CH_edttl"></span><span class="rootdatPost" title="118160,root,0,-1,13,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg644354"><span title="644354,128094,1023,6,1"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg644354" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmd8f1ae987e" title="Wed, 27 Nov 2013 19:48:47 +0000"></span><script type="text/javascript">WhenId('CH_zTmd8f1ae987e');</script><noscript>Nov 27, 2013 at 7:48pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Animegato88/"><b>Animegato88</b> (6)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i644354">
+Hello all! I'm having trouble getting INSERT INTO to work properly for me. At first, I kept getting the "Unknown column 'myvariablename' in 'field list', but when I changed the string, I ended up getting the error "Duplicate entry ' ' for key 'Primary' ". Also, when I check the data in the table, there is no new data in the database. My infile does pull the data, and I know the data is going into the variables I specified, but the data from the variables aren't going into the database.<br>
+<br>
+This is my first time using C++ to access and enter data into a database, so please bear with me. By the way, sorry this thing is so lengthy. Any help would be GREATLY appreciated. <br>
+<br>
+My code is below:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br>59<br>60<br>61<br>62<br>63<br>64<br>65<br>66<br>67<br>68<br>69<br>70<br>71<br>72<br>73<br>74<br>75<br>76<br>77<br>78<br>79<br>80<br>81<br>82<br>83<br>84<br>85<br>86<br>87<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;mysql.h&gt;</dfn>
+<dfn>#include &lt;iostream&gt;</dfn>
+<dfn>#include &lt;iomanip&gt;</dfn>
+<dfn>#include &lt;fstream&gt;</dfn>
+
+<var>using</var> <var>namespace</var> std;
+
+MYSQL *conn, mysql;
+MYSQL_RES *res;
+MYSQL_ROW row;
+
+<var>int</var> query_state;
+
+<var>int</var> main()
+{
+   <var>const</var> <var>char</var> *server=<kbd>"students"</kbd>;
+   <var>const</var> <var>char</var> *user=<kbd>"*****"</kbd>;
+   <var>const</var> <var>char</var> *password=<kbd>"********"</kbd>;
+   <var>const</var> <var>char</var> *database=<kbd>"*****"</kbd>;
+
+   mysql_init(&amp;mysql);
+   conn=mysql_real_connect(&amp;mysql, server, user, password, database, 0, 0, 0);
+   <var>if</var>(conn==NULL)
+   {
+       cout&lt;&lt;mysql_error(&amp;mysql)&lt;&lt;endl&lt;&lt;endl;
+      <var>return</var> 1;
+   }
+   query_state=mysql_query(conn, <kbd>"select * from Instrument"</kbd>);
+   <var>if</var>(query_state!=0)
+   {
+      cout&lt;&lt;mysql_error(conn)&lt;&lt;endl&lt;&lt;endl;
+      <var>return</var> 1;
+   }
+   res=mysql_store_result(conn);
+   cout&lt;&lt;<kbd>"MySQL Tables in mysql database."</kbd>&lt;&lt;endl&lt;&lt;endl;
+   <var>while</var>((row=mysql_fetch_row(res))!=NULL)
+   {
+      cout&lt;&lt;left;
+      cout&lt;&lt;setw(18)&lt;&lt;row[0]
+          &lt;&lt;setw(18)&lt;&lt;row[1]
+          &lt;&lt;setw(18)&lt;&lt;row[2]
+          &lt;&lt;setw(18)&lt;&lt;row[3]&lt;&lt;endl;
+   }
+   cout&lt;&lt;endl&lt;&lt;endl;
+   ifstream infile;
+   infile.open(<kbd>"Instrument.txt"</kbd>);
+   <var>if</var>(infile.fail())
+   {
+      cout&lt;&lt;<kbd>"ERROR. Could not open file!"</kbd>&lt;&lt;endl;
+      <var>return</var> 1;
+   }
+   infile.seekg(0, infile.end);
+   <var>int</var> len=infile.tellg();
+   infile.seekg(0, infile.beg);
+   string instnum, insttype, maker, year, plID, name, salary, startdate;
+   string rating;
+   string instrument=<kbd>"INSERT INTO Instrument (InstrumentID, InstrumentType, MakerName, YearMade) VALUES ( '"</kbd>+instnum+<kbd>"', '"</kbd>+insttype+<kbd>"', '"</kbd>+maker+<kbd>"', '"</kbd>+year+<kbd>"')"</kbd>;
+   string player=<kbd>"INSERT INTO Player (PlayerID, Name, Salary, StartDate) values (plID, name, salary, startdate)"</kbd>;
+   string plays=<kbd>"INSERT INTO Plays (InstrumentID, PlayerID, Rating) values (instnum, plID, rating)"</kbd>;
+<cite>//   mysql_query(conn, "DELETE FROM Instrument WHERE MakerName='maker'");</cite>
+   <var>while</var>(infile)
+   {
+      infile&gt;&gt;instnum;
+      cout&lt;&lt;instnum&lt;&lt;endl;
+      infile&gt;&gt;insttype;
+      cout&lt;&lt;insttype&lt;&lt;endl;
+      infile&gt;&gt;maker;
+      cout&lt;&lt;maker&lt;&lt;endl;
+      infile&gt;&gt;year;
+      cout&lt;&lt;year&lt;&lt;endl;
+      query_state=mysql_query(conn, instrument.c_str());
+   }
+
+   <var>if</var>(query_state!=0)
+   {
+      cout&lt;&lt;mysql_error(conn)&lt;&lt;endl&lt;&lt;endl;
+      <var>return</var> 1;
+   }
+   cout&lt;&lt;endl&lt;&lt;endl;
+
+   mysql_free_result(res);
+   mysql_close(conn);
+
+   <var>return</var> 0;
+
+
+</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTma29deb14a7" title="Thu, 28 Nov 2013 03:15:59 +0000"></span><script type="text/javascript">WhenId('CH_zTma29deb14a7');</script><noscript>Nov 28, 2013 at 3:15am UTC</noscript></span>
+<span class="dbtn" id="CH_btn644354"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg644406"><span title="644406,113833,1023,337,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg644406" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm5f527f3d56" title="Wed, 27 Nov 2013 23:15:57 +0000"></span><script type="text/javascript">WhenId('CH_zTm5f527f3d56');</script><noscript>Nov 27, 2013 at 11:15pm UTC</noscript></div>
+<div class="dwho"><a href="/user/norm_b/"><b>norm b</b> (337)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i644406">
+Think about what the string instrument contains at line 71.<br>
+<br>
+Also, shouldn't line 28 have "show tables" instead of "select * from Instrument".
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn644406"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg644438"><span title="644438,130801,1023,3351,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg644438" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm3ac39860fb" title="Thu, 28 Nov 2013 00:41:29 +0000"></span><script type="text/javascript">WhenId('CH_zTm3ac39860fb');</script><noscript>Nov 28, 2013 at 12:41am UTC</noscript></div>
+<div class="dwho"><a href="/user/BHX/"><b>BHX</b> (3351)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i644438">
+Now, SHOW TABLES just lists all of them. SELECT * &lt;Table&gt; (Instrument in this case) will will return a list of everything in Instruments.<br>
+<br>
+For example, just logging into MySQL and doing SHOW DATASES will print all the Databases in mysql. SHOW TABLES will show all the tables in the database. SELECT * FROM will list all the data stored in the tables.<br>
+<br>
+SHOW DATABASES;<br>
+<div class="auto"><table class="snippet"><tr><td class="output"><pre><samp>
+mysql&gt; SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| local              |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+6 rows in set (0.31 sec)
+</samp></pre></td></tr></table></div><br>
+*I did USE local;*<br>
+SHOW TABLES;<br>
+<div class="auto"><table class="snippet"><tr><td class="output"><pre><samp>
+mysql&gt; USE local
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql&gt; SHOW TABLES;
++-----------------+
+| Tables_in_local |
++-----------------+
+| website         |
++-----------------+
+1 row in set (0.00 sec)
+</samp></pre></td></tr></table></div><br>
+SELECT * FROM website;<br>
+<div class="auto"><table class="snippet"><tr><td class="output"><pre><samp>
+mysql&gt; SELECT * FROM website;
++----+------------+----------+-----------------------------------+------------+
+| id | date       | time     | comments                          | username   |
++----+------------+----------+-----------------------------------+------------+
+|  1 | 2013-05-16 | 01:53:00 | This is a comment by yours truly! | BHXSpecter |
+|  2 | 2013-05-17 | 13:13:00 | COMMENT TESTING!!!!!              | BHXSpecter |
+|  3 | 0000-00-00 | 00:00:00 | Comments                          | BHXSpecter |
+|  4 | 2013-05-25 | 04:50:00 | I LOVE MY WIFE!!!!!!!!!!!         | BHXSpecter |
++----+------------+----------+-----------------------------------+------------+
+4 rows in set (0.00 sec)
+</samp></pre></td></tr></table></div><br>
+* <a href="http://prntscr.com/274jxo">http://prntscr.com/274jxo</a> ** pic of localhost website when I was messing with web design a few months back.<br>
+DESCRIBE website;<br>
+<div class="auto"><table class="snippet"><tr><td class="output"><pre><samp>
+mysql&gt; DESCRIBE website;
++----------+------------------+------+-----+---------+----------------+
+| Field    | Type             | Null | Key | Default | Extra          |
++----------+------------------+------+-----+---------+----------------+
+| id       | int(50) unsigned | NO   | PRI | NULL    | auto_increment |
+| date     | date             | YES  |     | NULL    |                |
+| time     | time             | YES  |     | NULL    |                |
+| comments | text             | YES  |     | NULL    |                |
+| username | varchar(50)      | YES  |     | NULL    |                |
++----------+------------------+------+-----+---------+----------------+
+5 rows in set (0.22 sec)
+</samp></pre></td></tr></table></div><br>
+<br>
+Here is my C++ code that prints out the data from website table<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;mysql.h&gt;</dfn>
+<dfn>#include &lt;cstdio&gt;</dfn>
+
+<var>int</var> main()
+{
+	MYSQL *conn;
+	MYSQL_RES *res;
+	MYSQL_ROW row;
+	<var>char</var> *server = <kbd>"server"</kbd>;
+	<var>char</var> *user = <kbd>"username"</kbd>;
+	<var>char</var> *password = <kbd>"password"</kbd>;
+	<var>char</var> *database = <kbd>"local"</kbd>;
+	conn = mysql_init(NULL);
+	mysql_real_connect(conn, server, user, password, database, 0, NULL, 0);
+	mysql_query(conn, <kbd>"SELECT * FROM website"</kbd>);
+	res = mysql_use_result(conn);
+	printf(<kbd>"id \t date\t time \t comments\t\t user\n"</kbd>);
+	<var>while</var> ((row = mysql_fetch_row(res)) != NULL)
+	{
+		printf(<kbd>"%s \t %s\t %s\t %s\t\t %s\n"</kbd>, row[0], row[1], row[2], row[3], row[4]);
+	}
+	mysql_free_result(res);
+	mysql_close(conn);
+	
+	<var>return</var> 0;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm105593b310" title="Thu, 28 Nov 2013 00:59:58 +0000"></span><script type="text/javascript">WhenId('CH_zTm105593b310');</script><noscript>Nov 28, 2013 at 12:59am UTC</noscript> by closed account z6A9GNh0</span>
+<span class="dbtn" id="CH_btn644438"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg644453"><span title="644453,128094,1023,6,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg644453" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmdccf99df77" title="Thu, 28 Nov 2013 01:38:27 +0000"></span><script type="text/javascript">WhenId('CH_zTmdccf99df77');</script><noscript>Nov 28, 2013 at 1:38am UTC</noscript></div>
+<div class="dwho"><a href="/user/Animegato88/"><b>Animegato88</b> (6)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i644453">
+Yeah, I understand how to connect to the server and print tables or show the values in a specific table. The problem I'm having is with adding data to the tables via C++. I know how to insert using sql by itself (and I think I did it using php as well, not sure off hand), but I'm having trouble getting it to work using C++. 
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn644453"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg644458"><span title="644458,113833,1023,337,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg644458" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm2c68fd5cfb" title="Thu, 28 Nov 2013 01:49:59 +0000"></span><script type="text/javascript">WhenId('CH_zTm2c68fd5cfb');</script><noscript>Nov 28, 2013 at 1:49am UTC</noscript></div>
+<div class="dwho"><a href="/user/norm_b/"><b>norm b</b> (337)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i644458">
+You initialize the string "instruments" outside of your loop with empty strings for values. You never put the data you read from your file into the string.<br>
+<br>
+Try outputting "instruments" just before your mysql_query() call. <br>
+<br>
+@BHXSpecter - the OP's line 35 was the reason for the "show tables" comment: <br>
+<span class="auto"><code class="source">cout&lt;&lt;<kbd>"MySQL Tables in mysql database."</kbd>&lt;&lt;endl&lt;&lt;endl;</code></span><br>
+<br>
+<br>
+Edit: cleaned up sloppy typing.
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm8cf4b15769" title="Thu, 28 Nov 2013 01:54:36 +0000"></span><script type="text/javascript">WhenId('CH_zTm8cf4b15769');</script><noscript>Nov 28, 2013 at 1:54am UTC</noscript></span>
+<span class="dbtn" id="CH_btn644458"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg644466"><span title="644466,128094,1023,6,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg644466" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm6da657847c" title="Thu, 28 Nov 2013 02:07:23 +0000"></span><script type="text/javascript">WhenId('CH_zTm6da657847c');</script><noscript>Nov 28, 2013 at 2:07am UTC</noscript></div>
+<div class="dwho"><a href="/user/Animegato88/"><b>Animegato88</b> (6)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i644466">
+Ok, I'm guessing adding the instruments string in the while loop did work, because now, I have some new values in the table. Thank you sooo much! Now, I have an issue of some of the years being 0's instead of the actual years. Here's my currently edited code:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br>59<br>60<br>61<br>62<br>63<br>64<br>65<br>66<br>67<br>68<br>69<br>70<br>71<br>72<br>73<br>74<br>75<br>76<br>77<br>78<br>79<br>80<br>81<br>82<br>83<br>84<br>85<br>86<br>87<br>88<br>89<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;mysql.h&gt;</dfn>
+<dfn>#include &lt;iostream&gt;</dfn>
+<dfn>#include &lt;iomanip&gt;</dfn>
+<dfn>#include &lt;fstream&gt;</dfn>
+
+<var>using</var> <var>namespace</var> std;
+
+MYSQL *conn, mysql;
+MYSQL_RES *res;
+MYSQL_ROW row;
+
+<var>int</var> query_state;
+
+<var>int</var> main()
+{
+   <var>const</var> <var>char</var> *server=<kbd>"students"</kbd>;
+   <var>const</var> <var>char</var> *user=<kbd>"*****"</kbd>;
+   <var>const</var> <var>char</var> *password=<kbd>"*******"</kbd>;
+   <var>const</var> <var>char</var> *database=<kbd>"*****"</kbd>;
+
+   mysql_init(&amp;mysql);
+   conn=mysql_real_connect(&amp;mysql, server, user, password, database, 0, 0, 0);
+   <var>if</var>(conn==NULL)
+   {
+       cout&lt;&lt;mysql_error(&amp;mysql)&lt;&lt;endl&lt;&lt;endl;
+      <var>return</var> 1;
+   }
+   query_state=mysql_query(conn, <kbd>"select * from Instrument"</kbd>);
+   <var>if</var>(query_state!=0)
+   {
+      cout&lt;&lt;mysql_error(conn)&lt;&lt;endl&lt;&lt;endl;
+      <var>return</var> 1;
+   }
+   res=mysql_store_result(conn);
+   cout&lt;&lt;<kbd>"MySQL Values in the Instruments Table."</kbd>&lt;&lt;endl&lt;&lt;endl;
+   <var>while</var>((row=mysql_fetch_row(res))!=NULL)
+   {
+      cout&lt;&lt;left;
+      cout&lt;&lt;setw(18)&lt;&lt;row[0]
+          &lt;&lt;setw(18)&lt;&lt;row[1]
+          &lt;&lt;setw(18)&lt;&lt;row[2]
+          &lt;&lt;setw(18)&lt;&lt;row[3]&lt;&lt;endl;
+   }
+   cout&lt;&lt;endl&lt;&lt;endl;
+   ifstream infile;
+   infile.open(<kbd>"Instrument.txt"</kbd>);
+   <var>if</var>(infile.fail())
+   {
+      cout&lt;&lt;<kbd>"ERROR. Could not open file!"</kbd>&lt;&lt;endl;
+      <var>return</var> 1;
+   }
+   infile.seekg(0, infile.end);
+   <var>int</var> len=infile.tellg();
+   infile.seekg(0, infile.beg);
+   string rating;
+   string player=<kbd>"INSERT INTO Player (PlayerID, Name, Salary, StartDate) values (plID, name, salary, startdate)"</kbd>;
+   string plays=<kbd>"INSERT INTO Plays (InstrumentID, PlayerID, Rating) values (instnum, plID, rating)"</kbd>;
+<cite>//   mysql_query(conn, "DELETE FROM Instrument WHERE MakerName='maker'");</cite>
+   <var>while</var>(infile)
+   {
+      string instnum;
+      infile&gt;&gt;instnum;
+      cout&lt;&lt;instnum&lt;&lt;endl;
+      string insttype;
+      infile&gt;&gt;insttype;
+      cout&lt;&lt;insttype&lt;&lt;endl;
+      string maker;
+      infile&gt;&gt;maker;
+      cout&lt;&lt;maker&lt;&lt;endl;
+      string year;
+      infile&gt;&gt;year;
+      cout&lt;&lt;year&lt;&lt;endl;
+      string instrument=<kbd>"INSERT INTO Instrument (InstrumentID, InstrumentType, MakerName, YearMade) VALUES ( '"</kbd>+instnum+<kbd>"', '"</kbd>+insttype+<kbd>"', '"</kbd>+maker+<kbd>"', '"</kbd>+year+<kbd>"')"</kbd>;
+      query_state=mysql_query(conn, instrument.c_str());
+   }
+
+   <var>if</var>(query_state!=0)
+   {
+      cout&lt;&lt;mysql_error(conn)&lt;&lt;endl&lt;&lt;endl;
+      <var>return</var> 1;
+   }
+   cout&lt;&lt;endl&lt;&lt;endl;
+
+   mysql_free_result(res);
+   mysql_close(conn);
+
+   <var>return</var> 0;
+}
+</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+And here's the output:<br>
+MySQL Values in the Instruments Table.<br>
+<br>
+                                                      0000<br>
+CO543             Cello             Amati             0000<br>
+CO678             Cello             Amati             0000<br>
+CT337             Clarinet          Amati-Denak       2009<br>
+FE489             Flute             BooseyandHawkes   1989<br>
+FE776             Flute             Eloy              1975<br>
+p1234             Percussion        Kicker            2007<br>
+s1234             String            Casio             1998<br>
+s2345             String            Yamaha            2003<br>
+VA089             Viola             Scott             2008<br>
+VA333             Viola             Guarneri          0000<br>
+VA678             Viola             Guarneri          0000<br>
+VN456             Violin            Viseltear         1990<br>
+VN458             Violin            Stradivari        0000<br>
+VN555             Violin            Stradivari        0000<br>
+VN888             Violin            Amati             0000<br>
+w1234             Wind              Chyme Central     1994<br>
+w2345             Wind              Yamaha            2000<br>
+<br>
+<br>
+VN888<br>
+Violin<br>
+Amati<br>
+1650<br>
+VN555<br>
+Violin<br>
+Stradivari<br>
+1720<br>
+VN456<br>
+Violin<br>
+Viseltear<br>
+1990<br>
+VN458<br>
+Violin<br>
+Stradivari<br>
+1718<br>
+VA333<br>
+Viola<br>
+Guarneri<br>
+1664<br>
+VA678<br>
+Viola<br>
+Guarneri<br>
+1660<br>
+VA089<br>
+Viola<br>
+Scott<br>
+2008<br>
+CT337<br>
+Clarinet<br>
+Amati-Denak<br>
+2009<br>
+FE489<br>
+Flute<br>
+BooseyandHawkes<br>
+1989<br>
+FE776<br>
+Flute<br>
+Eloy<br>
+1975<br>
+CO543<br>
+Cello<br>
+Amati<br>
+1550<br>
+CO678<br>
+Cello<br>
+Amati<br>
+1550<br>
+<br>
+<br>
+<br>
+<br>
+Duplicate entry '' for key 'PRIMARY'<br>
+<br>
+<br>
+The correct years are in the txt file, and they are read in properly in infile, but they don't get added to the database (what the heck did I do this time...).<br>
+<br>
+
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm015120505e" title="Thu, 28 Nov 2013 03:12:05 +0000"></span><script type="text/javascript">WhenId('CH_zTm015120505e');</script><noscript>Nov 28, 2013 at 3:12am UTC</noscript></span>
+<span class="dbtn" id="CH_btn644466"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg644473"><span title="644473,130801,1023,3351,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg644473" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm6c807eb159" title="Thu, 28 Nov 2013 02:18:30 +0000"></span><script type="text/javascript">WhenId('CH_zTm6c807eb159');</script><noscript>Nov 28, 2013 at 2:18am UTC</noscript></div>
+<div class="dwho"><a href="/user/BHX/"><b>BHX</b> (3351)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i644473">
+My general advice when it comes to doing file i/o is to get the program working with cout statements as it makes it a little easier to get instant results. Then once you have it working with cout statements you can change them to file i/o commands. <br>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn644473"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg644483"><span title="644483,113833,1023,337,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg644483" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm8c36d9bffd" title="Thu, 28 Nov 2013 02:56:40 +0000"></span><script type="text/javascript">WhenId('CH_zTm8c36d9bffd');</script><noscript>Nov 28, 2013 at 2:56am UTC</noscript></div>
+<div class="dwho"><a href="/user/norm_b/"><b>norm b</b> (337)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i644483">
+Is  the "year" field in your database a YEAR type?<br>
+<a href="http://dev.mysql.com/doc/refman/5.0/en/year.html">http://dev.mysql.com/doc/refman/5.0/en/year.html</a><br>
+<br>
+<br>
+<b>Edit:</b> By the way, you might want to erase your username and password above, just in case . . . 
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm15c6c1bb7d" title="Thu, 28 Nov 2013 03:03:31 +0000"></span><script type="text/javascript">WhenId('CH_zTm15c6c1bb7d');</script><noscript>Nov 28, 2013 at 3:03am UTC</noscript></span>
+<span class="dbtn" id="CH_btn644483"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg644488"><span title="644488,128094,1023,6,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg644488" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm54ac574b3e" title="Thu, 28 Nov 2013 03:15:24 +0000"></span><script type="text/javascript">WhenId('CH_zTm54ac574b3e');</script><noscript>Nov 28, 2013 at 3:15am UTC</noscript></div>
+<div class="dwho"><a href="/user/Animegato88/"><b>Animegato88</b> (6)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i644488">
+Thanks for the heads up. I forgot to take that out when I posted it again.<br>
+<br>
+Yes, the field in my database is a YEAR type, and I changed the name of the variables to something completely different, but I still got 0's for most of the inserted values. It's really weird, too, because 5 of the year values got put in, but the others got replaced with 0's. And there's a random set off 0's in there, too. But my infile does print the correct year values. It's really weird.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn644488"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg644496"><span title="644496,113833,1023,337,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg644496" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm92156742d7" title="Thu, 28 Nov 2013 03:51:29 +0000"></span><script type="text/javascript">WhenId('CH_zTm92156742d7');</script><noscript>Nov 28, 2013 at 3:51am UTC</noscript></div>
+<div class="dwho"><a href="/user/norm_b/"><b>norm b</b> (337)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i644496">
+Notice from the link in my post above:<table class="quote"><tr><td class="qd">As a 4-digit string in the range '1901' to '2155'. </td></tr></table><br>
+So you're going to have to alter your table, or delete it and re-create it, making YearMade a varchar(4) field in order to handle those pre 1901 years.<table class="quote"><tr><td class="qd">mysql&gt; alter table Instrument drop column YearMade;<br>
+mysql&gt; alter table Instrument add column YearMade varchar(4);</td></tr></table>
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn644496"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg644502"><span title="644502,128094,1023,6,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg644502" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm94d2464eef" title="Thu, 28 Nov 2013 04:14:37 +0000"></span><script type="text/javascript">WhenId('CH_zTm94d2464eef');</script><noscript>Nov 28, 2013 at 4:14am UTC</noscript></div>
+<div class="dwho"><a href="/user/Animegato88/"><b>Animegato88</b> (6)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i644502">
+OMG I LOVE YOU I LOVE YOU I LOVE YOU!!!! You guys are my heroes! I hate to say it, but this thing took me like a week to figure out, and it was starting to drive me crazy...! Thank you, Norm! Thank you, Specter! You guys are the best!
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn644502"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg644506"><span title="644506,113833,1023,337,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg644506" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm39b22bc3df" title="Thu, 28 Nov 2013 04:33:32 +0000"></span><script type="text/javascript">WhenId('CH_zTm39b22bc3df');</script><noscript>Nov 28, 2013 at 4:33am UTC</noscript></div>
+<div class="dwho"><a href="/user/norm_b/"><b>norm b</b> (337)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i644506">
+You're welcome! Glad you got it working.<br>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn644506"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg644525"><span title="644525,130801,1023,3351,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg644525" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm4bfe6bed95" title="Thu, 28 Nov 2013 05:21:15 +0000"></span><script type="text/javascript">WhenId('CH_zTm4bfe6bed95');</script><noscript>Nov 28, 2013 at 5:21am UTC</noscript></div>
+<div class="dwho"><a href="/user/BHX/"><b>BHX</b> (3351)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i644525">
+You're welcome. Though, norm b was more helpful than I was.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn644525"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div class="rootbtnNew"></div><div id="CH_insNew"></div><div id="CH_reply">Topic archived. No new replies allowed.</div><div id="CH_subscription"></div><div class="rootedtNew"></div><script type="text/javascript">new for_PostList(118160,1,128094,0,'CH_PostList','CH_subscription','CH_reply','CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+<script type="text/javascript">
+    google_ad_client = "ca-pub-1444228343479937";
+    google_ad_slot = "9701143201";
+    google_ad_width = 728;
+    google_ad_height = 90;
+</script>
+<!-- leaderboard -->
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li><a href="/forum/beginner/"><b>Beginners</b></a></li><li><a href="/forum/windows/"><b>Windows Programming</b></a></li><li><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li class="selected"><a href="/forum/general/"><b>General C++ Programming</b></a></li><li><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Fgeneral%2F118160%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

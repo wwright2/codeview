@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Copying derived class without allocating - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/general/">General C++ Programming</a></li>
+<li class="here">Copying derived class without allocating</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico default" title="post">&nbsp;</div> Copying derived class without allocating memory?</h3><span id="CH_edttl"></span><span class="rootdatPost" title="181994,root,0,-1,8,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg892256"><span title="892256,205503,255,9,1"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892256" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm8a2ff35aa1" title="Thu, 31 Dec 2015 21:32:16 +0000"></span><script type="text/javascript">WhenId('CH_zTm8a2ff35aa1');</script><noscript>Dec 31, 2015 at 9:32pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Gadersd/"><b>Gadersd</b> (9)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892256">
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br>59<br>60<br>61<br>62<br>63<br>64<br>65<br>66<br></code></pre></td>
+<td class="source"><pre><code><var>struct</var> Object
+{
+    Object(<var>int</var> type):type(type){}
+
+    <var>virtual</var> Object* clone()<var>const</var> = 0;
+
+    <var>int</var> type;
+};
+
+<var>class</var> OReal : <var>public</var> Object
+{
+    <var>public</var>:
+        OReal():Object(0),location(DIRT),kill(UNKNOWN),alive(<var>true</var>){}
+        
+        <var>virtual</var> OReal* clone()<var>const</var>{<var>return</var> <var>new</var> OReal(*<var>this</var>);}
+
+        Location location;
+        Kill kill;
+        <var>bool</var> alive;
+};
+
+<var>typedef</var> std::unordered_map&lt;std::string,std::unique_ptr&lt;Object&gt;&gt; HASH_TABLE;
+
+<var>class</var> State
+{
+    <var>public</var>:
+        State(){}
+
+        <var>void</var> addObject(<var>const</var> std::string&amp; name,Object* obj){objects.insert(std::make_pair(name,std::unique_ptr&lt;Object&gt;(obj)) );} 
+        <cite>//looks a little sloppy</cite>
+        Object* getObject(<var>const</var> std::string&amp; name){<var>auto</var> it = objects.find(name);<var>return</var> (it==objects.end()) ? <var>nullptr</var> : it-&gt;second.get();}
+        <var>const</var> Object* getObject(<var>const</var> std::string&amp; name)<var>const</var>{<var>auto</var> it = objects.find(name);<var>return</var> (it==objects.end()) ? <var>nullptr</var> : it-&gt;second.get();}
+
+        State(<var>const</var> State&amp; s)
+        {
+            <var>for</var>(<var>const</var> <var>auto</var>&amp; p : s.objects)
+                objects.insert(std::make_pair(p.first,std::unique_ptr&lt;Object&gt;(p.second-&gt;clone()) ));
+        }
+        State&amp; <var>operator</var>=(<var>const</var> State&amp; s)
+        {
+            assert(objects.size()==s.objects.size() &amp;&amp; <var>this</var>!=&amp;s);
+            <var>for</var>(<var>const</var> <var>auto</var>&amp; p : s.objects)
+            {
+                <var>auto</var> it = objects.find(p.first);
+                assert(it!=objects.end());
+                
+                it-&gt;second = std::unique_ptr&lt;Object&gt;(p.second-&gt;clone());
+            }
+        }
+
+        HASH_TABLE::iterator begin(){<var>return</var> objects.begin();}
+        HASH_TABLE::iterator end(){<var>return</var> objects.end();}
+        
+    <var>protected</var>:
+    <var>private</var>:
+        HASH_TABLE objects;
+};
+
+<var>int</var> main()
+{
+    State state = existingState; <cite>//no way to avoid allocation</cite>
+
+    <cite>//manipulate state</cite>
+
+    state = existingState; <cite>//better to copy existing data without allocating</cite>
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Dynamically allocating memory is not efficient when assigning one State to another. Is there a better way to copy one state to another when they are the same size with the same types of derived Objects?
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTmb36a77b9af" title="Thu, 31 Dec 2015 21:34:49 +0000"></span><script type="text/javascript">WhenId('CH_zTmb36a77b9af');</script><noscript>Dec 31, 2015 at 9:34pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn892256"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg892257"><span title="892257,78419,1023,7174,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892257" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm9685366340" title="Thu, 31 Dec 2015 22:07:02 +0000"></span><script type="text/javascript">WhenId('CH_zTm9685366340');</script><noscript>Dec 31, 2015 at 10:07pm UTC</noscript></div>
+<div class="dwho"><a href="/user/cire/"><b>cire</b> (7174)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892257">
+Is there anything besides your intuition leading you to believe this is a problem?<br>
+<br>
+Is there a good reason for a type named State to manage the lifetime of other objects?<br>
+<br>
+If this actually is a problem, using custom memory pools might be a better idea than trying to salvage objects that may or may not be compatible.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn892257"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg892260"><span title="892260,205503,255,9,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892260" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm19b9643e89" title="Thu, 31 Dec 2015 22:43:22 +0000"></span><script type="text/javascript">WhenId('CH_zTm19b9643e89');</script><noscript>Dec 31, 2015 at 10:43pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Gadersd/"><b>Gadersd</b> (9)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892260">
+I found a solution that at least compiles. The code looks a bit sloppy to me. Is there a cleaner way to do this?<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br>59<br>60<br>61<br>62<br>63<br>64<br>65<br>66<br>67<br>68<br>69<br>70<br>71<br>72<br>73<br>74<br>75<br>76<br>77<br>78<br></code></pre></td>
+<td class="source"><pre><code><var>struct</var> Object
+{
+    Object(<var>int</var> type):type(type){}
+    Object(){}
+
+    <var>virtual</var> Object* clone()<var>const</var> = 0;
+    <var>virtual</var> <var>bool</var> copyTo(Object* obj) <var>const</var>= 0;
+
+    <var>int</var> type;
+};
+
+<var>class</var> OReal : <var>public</var> Object
+{
+    <var>public</var>:
+        OReal():Object(0),location(DIRT),kill(UNKNOWN),alive(<var>true</var>){}
+        
+        <var>virtual</var> OReal* clone()<var>const</var>{<var>return</var> <var>new</var> OReal(*<var>this</var>);}
+        <var>virtual</var> <var>bool</var> copyTo(Object *obj)<var>const</var>
+        {
+            OReal* rObj = <var>dynamic_cast</var>&lt;OReal*&gt;(obj);
+            <var>if</var>(rObj)
+            {
+                *rObj = *<var>this</var>;
+                <var>return</var> <var>true</var>;
+            }
+            <var>return</var> <var>false</var>;
+        }
+
+        Location location;
+        Kill kill;
+        <var>bool</var> alive;
+};
+
+<var>typedef</var> std::unordered_map&lt;std::string,std::unique_ptr&lt;Object&gt;&gt; HASH_TABLE;
+
+<var>class</var> State
+{
+    <var>public</var>:
+        State(){}
+
+        <var>void</var> addObject(<var>const</var> std::string&amp; name,Object* obj){objects.insert(std::make_pair(name,std::unique_ptr&lt;Object&gt;(obj)) );} 
+        <cite>//looks a little sloppy</cite>
+        Object* getObject(<var>const</var> std::string&amp; name){<var>auto</var> it = objects.find(name);<var>return</var> (it==objects.end()) ? <var>nullptr</var> : it-&gt;second.get();}
+        <var>const</var> Object* getObject(<var>const</var> std::string&amp; name)<var>const</var>{<var>auto</var> it = objects.find(name);<var>return</var> (it==objects.end()) ? <var>nullptr</var> : it-&gt;second.get();}
+        
+        <var>int</var> size()<var>const</var>{<var>return</var> objects.size();}
+
+        State(<var>const</var> State&amp; s)
+        {
+            <var>for</var>(<var>const</var> <var>auto</var>&amp; p : s.objects)
+                objects.insert(std::make_pair(p.first,std::unique_ptr&lt;Object&gt;(p.second-&gt;clone()) ));
+        }
+        State(State&amp;&amp; s)
+        {
+            objects = std::move(s.objects);
+        }
+        State&amp; <var>operator</var>=(<var>const</var> State&amp; s) = <var>delete</var>;
+        
+        <var>bool</var> copyTo(State&amp; s)<var>const</var>
+        {
+            <var>if</var>(objects.size()!=s.size() || <var>this</var>==&amp;s) <var>return</var> <var>false</var>;
+            <var>for</var>(<var>const</var> <var>auto</var>&amp; p : objects)
+            {
+                Object* obj = s.getObject(p.first);
+                <var>if</var>(!obj) <var>return</var> <var>false</var>; <cite>//cant find match</cite>
+                
+                <var>if</var>(!p.second-&gt;copyTo(obj)) <var>return</var> <var>false</var>; <cite>//wrong type</cite>
+            }
+            <var>return</var> <var>true</var>;
+        }
+
+        HASH_TABLE::iterator begin(){<var>return</var> objects.begin();}
+        HASH_TABLE::iterator end(){<var>return</var> objects.end();}
+        
+    <var>protected</var>:
+    <var>private</var>:
+        HASH_TABLE objects;
+};</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn892260"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg892261"><span title="892261,78419,1023,7174,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892261" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm64146d0815" title="Thu, 31 Dec 2015 23:19:50 +0000"></span><script type="text/javascript">WhenId('CH_zTm64146d0815');</script><noscript>Dec 31, 2015 at 11:19pm UTC</noscript></div>
+<div class="dwho"><a href="/user/cire/"><b>cire</b> (7174)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892261">
+<table class="quote"><tr><td class="qd">The code looks a bit sloppy to me. Is there a cleaner way to do this?</td></tr></table><br>
+There sure is.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br></code></pre></td>
+<td class="source"><pre><code>    <var>void</var> copyTo(State&amp; s) <var>const</var>    <cite>// Why is this object modifying another object?</cite>
+    {
+        s.objects = objects;
+    }</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+If the function returns the copy was a success and we haven't left some object in who-knows-what state.  Of course, it might look a little better as:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br></code></pre></td>
+<td class="source"><pre><code>    State&amp; <var>operator</var>=(State s)
+    {
+        objects = std::move(s.objects);
+        <var>return</var> *<var>this</var>;
+    }</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Thanks for answering the earlier questions.  It sheds a lot of light on your design.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn892261"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg892276"><span title="892276,205503,255,9,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892276" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm13be02f068" title="Fri, 01 Jan 2016 00:40:44 +0000"></span><script type="text/javascript">WhenId('CH_zTm13be02f068');</script><noscript>Jan 1, 2016 at 12:40am UTC</noscript></div>
+<div class="dwho"><a href="/user/Gadersd/"><b>Gadersd</b> (9)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892276">
+The first example you gave does not compile because unique_ptr cannot be assigned to an lvalue during the unordered_map copy. The second example works, but does not achieve good performance since the copy constructor will allocate new data for s when passed a lvalue. I am using copyTo to copy data without dynamically allocating data. One of my algorithms has a lot of state copying which is why I need it to only allocated data on the creation of a State instance and not every time an instance is set to another.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn892276"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg892282"><span title="892282,78419,1023,7174,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892282" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm90b2ee834a" title="Fri, 01 Jan 2016 01:10:39 +0000"></span><script type="text/javascript">WhenId('CH_zTm90b2ee834a');</script><noscript>Jan 1, 2016 at 1:10am UTC</noscript></div>
+<div class="dwho"><a href="/user/cire/"><b>cire</b> (7174)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892282">
+<table class="quote"><tr><td class="qd"> I am using copyTo to copy data without dynamically allocating data.</td></tr></table><br>
+It looks like you'd mostly be using copyTo to partially copy an object and fail most of the time.  Worse, you have no way of knowing what was successfully copied and what was not.<br>
+<br>
+Again, if this is an issue for you (and it probably isn't) I would suggest the use of custom memory pools or a redesign of the class rather than a kludge of the sort you've presented.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn892282"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg892284"><span title="892284,205503,255,9,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892284" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm965c0d0b6d" title="Fri, 01 Jan 2016 01:32:24 +0000"></span><script type="text/javascript">WhenId('CH_zTm965c0d0b6d');</script><noscript>Jan 1, 2016 at 1:32am UTC</noscript></div>
+<div class="dwho"><a href="/user/Gadersd/"><b>Gadersd</b> (9)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892284">
+The purpose of this entire class is to provide data storage for user defined data. A State instance is passed to user defined functions so that the user can retrieve his or her data by casting the pointers in the State to the appropriate derived class. There is not a way that I know of bypassing the necessity of using a container of pointers to user data to achieve this. To add to the complexity, some of my algorithms need to manipulate a state, perform some calculations, then reset the state back to the way it was before the computation, creating the necessity for efficient state copying. The format of the state should never change, so the copyTo function should never fail in any of my algorithms. The implementation of the State class will always require pointers of base classes and deep copying, no way around this. Also, I have no experience with custom memory pools. If you truly believe they are a good solution, then please elaborate on a design.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn892284"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg892289"><span title="892289,78419,1023,7174,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892289" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm65219045a8" title="Fri, 01 Jan 2016 03:24:18 +0000"></span><script type="text/javascript">WhenId('CH_zTm65219045a8');</script><noscript>Jan 1, 2016 at 3:24am UTC</noscript></div>
+<div class="dwho"><a href="/user/cire/"><b>cire</b> (7174)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892289">
+Finally, context.<br>
+<br>
+<table class="quote"><tr><td class="qd">The purpose of this entire class is to provide data storage for user defined data.</td></tr></table><br>
+Judging from the following explanation, that is <i>not</i> it's purpose.  Any container would fulfill that purpose.<br>
+<br>
+You might want to check out the memento pattern.<br>
+<a href="https://en.wikipedia.org/wiki/Memento_pattern">https://en.wikipedia.org/wiki/Memento_pattern</a><br>
+<br>
+<br>
+<table class="quote"><tr><td class="qd">Also, I have no experience with custom memory pools.</td></tr></table><br>
+<a href="http://www.drdobbs.com/cpp/improving-performance-with-custom-pool-a/184406243">http://www.drdobbs.com/cpp/improving-performance-with-custom-pool-a/184406243</a><br>
+<a href="http://www.boost.org/doc/libs/1_60_0/libs/pool/doc/html/index.html">http://www.boost.org/doc/libs/1_60_0/libs/pool/doc/html/index.html</a><br>
+But, I wouldn't go this route unless profiling finds that allocation is a bottle neck.  On the other hand, <tt>State</tt> would definitely benefit from a redesign.<br>
+<br>
+<br>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn892289"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div class="rootbtnNew"></div><div id="CH_insNew"></div><div id="CH_reply">Topic archived. No new replies allowed.</div><div id="CH_subscription"></div><div class="rootedtNew"></div><script type="text/javascript">new for_PostList(181994,1,205503,0,'CH_PostList','CH_subscription','CH_reply','CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+<script type="text/javascript">
+    google_ad_client = "ca-pub-1444228343479937";
+    google_ad_slot = "9701143201";
+    google_ad_width = 728;
+    google_ad_height = 90;
+</script>
+<!-- leaderboard -->
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li><a href="/forum/beginner/"><b>Beginners</b></a></li><li><a href="/forum/windows/"><b>Windows Programming</b></a></li><li><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li class="selected"><a href="/forum/general/"><b>General C++ Programming</b></a></li><li><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Fgeneral%2F181994%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>[WIP] Genetic algorithms - C++ Articles</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/articles/">Articles</a></li>
+<li class="here">[WIP] Genetic algorithms</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div id="I_content">
+<div class="C_art">
+<div id="I_author">Published by <b><a href="/user/chrisname/" rel="author">chrisname</a></b></div>
+<div id="I_date">Jun 21, 2013 (last update: Jun 23, 2013)</div>
+<h1>[WIP] Genetic algorithms</h1>
+<div id="I_score">Score: 3.5/5 (146 votes)</div>
+<div id="I_stars"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-half.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"></div>
+<div id="I_content">
+<h3>What is a genetic algorithm?</h3>
+<br>
+Genetic algorithms are a subset of evolutionary algorithms; biologically-inspired <i>search heuristics</i> used for finding solutions to problems where the desired result is known. The genetic algorithm attempts to find the best candidate solution for the problem. This solution is often an approximation of the correct solution, especially in problems where an exact solution is either impossible, intractable (requires infinite time or resources), or simply unnecessary. These algorithms work by "evolving" a solution.<br>
+<br>
+<h3>How do genetic algorithms work?</h3>
+<br>
+Genetic algorithms work by building an initial set of random potential solutions. A subset of these are selected for "breeding" to produce new potential solutions which then become the new population. This process continues until some termination criteria are met. These might include a "good-enough" (if not exact) solution being found, a lack of improvement in the population (convergence), a set maximum number of generations (i.e. new populations) being met, or a set limit for computational time and resources being met.<br>
+<br>
+From this, we can extract three steps:<br>
+<ol><li>Initialisation - the initial population of N randomised candidate solutions (alternative, more biological terms are "individual", "organism" or "chromosome") is created</li>
+<li>Regeneration - a new population is created from the previous one</li>
+<li>Exit (once termination criteria are met) - the best solution found so far is returned and the algorithm stops running</li></ol>
+<br>
+There are three sub-steps to regeneration:<br>
+<ol><li>Selection - a subset of the population is selected algorithmically from the population</li>
+<li>Recombination (also "crossover") - the selected individuals are combined to produce new ones</li>
+<li>Mutation - the new individuals ("offspring") are mutated to increase genetic diversity</li></ol>
+<br>
+<h4>Initialisation</h4>
+The initial population of <i>N</i> solutions is created randomly. Usually, solutions are encoded as a series of bits (<b>bi</b>nary digi<b>ts</b>). These can be considered analogous to the base pairs that make up genes in real DNA, although real-life genes consist of triplets of base pairs which each have one of four possible "values" (nucleotides - <b>a</b>denosine, <b>c</b>ytosine, <b>g</b>uanine and <b>t</b>hymine (in RNA, thymine is replaced by <b>u</b>racil)) while our bits only have two - a 0 or a 1. Also, in biology, a <i>chromosome</i> is a coiled strand of DNA which contains many genes; however, in our terminology, a chromosome will simply refer to a series of bits. The solution's "DNA" can be decoded later. Usually the value of <i>N</i> is in the hundreds or thousands. The value 1,000 is acceptable initially and can be tweaked later.<br>
+<br>
+<h4>Regeneration</h4>
+<h5>Selection</h5>
+During selection, a subset of the population&mdash;often two solutions, although more can be used if desired (some research suggests using more than two parents can result in higher quality offspring)&mdash;is selected using a <i>selection algorithm</i>. One example is called <i>fitness-proportionate-selection</i>, or roulette-wheel-selection. In this algorithm, individuals are selected at random with a probability based on their <i>fitness</i>, which is a value that represents how close that individual is to being a valid solution (often, it is a value between 0 and 1). Fitness functions will be discussed in more detail later on. Each iteration of FPS returns a single individual, so the algorithm can be applied multiple times to acquire the desired number of parents. Simpler selection algorithms include truncation selection, where the best half, third or some other fraction of the population is selected, and tournament selection, where the best individual from a random subset of the population is selected. Another, more complicated but fairer algorithm is called <i>stochastic universal sampling</i>, which is a modified version of RWS where the solutions are evenly spaced and thus weaker solutions (i.e., those with lower fitness function values) have a fair chance of being selected (although the algorithm still generally selects for greater fitness). The benefit in allowing weaker solutions to be selected is that a weak solutions could be a minor modification away from a much stronger solution, and only allowing the very fittest solutions to be selected may result in lack of genetic diversity of solutions.<br>
+<br>
+<h5>Recombination</h5>
+In recombination, the selected solutions are crossed-over to create new solutions, although often there is a probability of this happening; for example, 70%. This concept of crossing-over is also taken from biology: during meiosis (cellular division which results in four genetically-different cells), corresponding paternal (from the father) and maternal (from the mother) chromosomes come together and may swap genes (cross-over). In a genetic algorithm, this process is simulated in a number of ways. The simplest way is single-point or one-point crossover, in which a random position in the chromosome is selected and everything after that point is swapped with the other chromosome. Other methods are more complex but may produce higher quality offspring and more genetic diversity.<br>
+<br>
+<h5>Mutation</h5>
+After crossing-over occurs, mutation may occur with a very small probability (around 0.1% per bit). In mutation, the chromosome is iterated over and, each bit may be flipped according to a small probability. This is analogous to substitution mutations that occasionally occur during cellular division. Instead of simply flipping bits, one may also prepend, insert, append and or remove them, which would be equivalent to insertion and deletion mutations in biology. In this way, genetic diversity is increased further.<br>
+<br>
+<h3>A word on encoding and decoding</h3>
+As mentioned previously, chromosomes in genetic algorithms are often encoded as a sequence of bits. A group of bits&mdash;a gene&mdash;may represent a character in a string, for example if one wanted to generate the string "hello world", the letter h might be represented by the binary number 000, e by 001, l by 010, o by 011, space by 100, w by 101, r by 110 and d by 111. Eventually one would hope to stumble upon the sequence 000,001,010,010,011,100,101,011,110,010,111 which would correspond to the string "hello world". The great thing about encoding data like this is that the genetic algorithm can be written very generally&mdash;any object which has a fitness function, a crossover function and a mutation function can be used, and the algorithm never needs to know the implementation details. Usually decoding would happen at two stages: once whenever the fitness function needed to be calculated, and once whenever one wanted to display the output of the genetic algorithm.<br>
+<br>
+<h3>Just what the hell are fitness functions already?</h3>
+I've mentioned <i>fitness functions</i> several times without properly explaining what they are. Simply put, they measure an individual's fitness, that is, how close it comes to solving the problem desired. The computation done to produce this result is highly domain-specific, although usually a value between 0 and 1 is desired. In our "hello world" example, the fitness function might decode the binary sequence into an ASCII string and then compare that with the ASCII string supplied as the desired output. The difference between the two would then be converted into a number between 0 and 1 like so: 1/(y - x) &ndash; where y is the desired solution and x is the result of decoding.<br>
+<br>
+<h3>To-do</h3>
+<ul><li>Pseudo-code implementations of selection algorithms</li>
+<li>Pseudo-code implementations of crossover algorithms</li>
+<li>Pseudo-code implementations of mutation algorithms</li>
+<li>Bare-bones structure of a generic genetic algorithm class</li></ul></div></div><div id="CH_bb"></div><div id="CH_scoreapp"></div><script type="text/javascript">new Score('CH_scoreapp','/articles/score.cgi','4L18T05o');</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder selected articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/articles/">Articles</a></b></h3>
+<ul>
+<li><a href="/articles/algorithms/">Algorithms</a></li><li><a href="/articles/cpp11/">C++ 11</a></li><li><a href="/articles/graphics/">Graphics and multimedia</a></li><li><a href="/articles/howto/">How-To</a></li><li><a href="/articles/language/">Language Features</a></li><li><a href="/articles/linux/">Unix/Linux programming</a></li><li><a href="/articles/sourcecode/">Source Code</a></li><li><a href="/articles/standard_library/">Standard Library</a></li><li><a href="/articles/tips/">Tips and Tricks</a></li><li><a href="/articles/tools/">Tools and Libraries</a></li><li><a href="/articles/visualcpp/">Visual C++</a></li><li><a href="/articles/winapi/">Windows API</a></li></ul>
+</div>
+<div id="I_subnav"></div>
+</div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Farticles%2F4L18T05o%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+onSession(function(us) {
+		document.getElementById('I_subnav').innerHTML=
+			us.ok?
+				'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul>'+
+				'<li><a href="/articles/myitems.cgi">My items</a></li>'+
+				(us.auth(32768)?'<li><a href="/articles/adminitems.cgi">Admin items</a></li>':'')+
+				'</ul></div>'
+			:'';
+	}); onSession(function (us) {
+		var el=document.getElementById('CH_bb'); el.innerHTML='';
+		if ( (us.auth(32768)) || ((us.uniqid=='GEw0RXSz')&&(us.auth(128))) ) {
+			el.appendChild(btn('Edit article','Edit this version of the article','edit','/articles/edit.cgi?a=4L18T05o'));
+	
+			if (us.auth(32768)) {
+				el.appendChild(btn('Delete article','Delete this article','delete','javascript:artdel()'));
+			}
+	
+		}
+	});
+	function artdel() { if (confirm('WARNING: You are about to delete this page. Confirm?')) window.location='/articles/delete.cgi?a=4L18T05o'; }
+	ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

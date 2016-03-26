@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Output a Pattern of stars using recursio - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/general/">General C++ Programming</a></li>
+<li class="here">Output a Pattern of stars using recursio</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico default" title="post">&nbsp;</div> Output a Pattern of stars using recursion - stuck for hours</h3><span id="CH_edttl"></span><span class="rootdatPost" title="185431,root,0,-1,5,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg905334"><span title="905334,192887,1023,9,1"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg905334" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm8099447470" title="Thu, 25 Feb 2016 20:50:57 +0000"></span><script type="text/javascript">WhenId('CH_zTm8099447470');</script><noscript>Feb 25, 2016 at 8:50pm UTC</noscript></div>
+<div class="dwho"><a href="/user/knexkid9/"><b>knexkid9</b> (9)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i905334">
+I've got an assignment due in about 5 days, and this is the last task I can't solve.  I've gotten it to print<br>
+****<br>
+***<br>
+**<br>
+*<br>
+*<br>
+<br>
+but I need 3 more lines,<br>
+**<br>
+***<br>
+****<br>
+so it's a symmetrical pattern.<br>
+<br>
+My code so far is below.  If anyone could give me pointers or examples to solve this, that'd be great.  The instructor also told us to AVOID any FOR LOOPS.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br></code></pre></td>
+<td class="source"><pre><code><var>void</var> OutputStarPattern(ofstream&amp; fout, <var>int</var> numberOfLines)
+{
+	<var>char</var> symbol;
+
+	<cite>//The symbol to be output is a star</cite>
+	symbol = <kbd>'*'</kbd>;
+
+	<cite>//Set width to amount of lines and fill to symbol</cite>
+	fout &lt;&lt; setfill(symbol) &lt;&lt; setw(numberOfLines);
+	fout &lt;&lt; symbol &lt;&lt; endl;
+
+	<cite>//Determine if the numberOfLines is greater than 0</cite>
+	<var>if</var> (numberOfLines &gt; 0)
+	{
+		<cite>//Output symbol to the output file and recursively call</cite>
+		fout &lt;&lt; setfill(symbol) &lt;&lt; setw(--numberOfLines);
+		fout &lt;&lt; symbol &lt;&lt; endl;
+		OutputStarPattern(fout, --numberOfLines);
+	}
+	<cite>//Else exit the function</cite>
+	<var>else</var>
+	{
+		<var>return</var>;
+	}
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm4c267f3d5d" title="Thu, 25 Feb 2016 22:27:06 +0000"></span><script type="text/javascript">WhenId('CH_zTm4c267f3d5d');</script><noscript>Feb 25, 2016 at 10:27pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn905334"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg905350"><span title="905350,127909,1023,2072,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg905350" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm2bed598146" title="Thu, 25 Feb 2016 22:21:04 +0000"></span><script type="text/javascript">WhenId('CH_zTm2bed598146');</script><noscript>Feb 25, 2016 at 10:21pm UTC</noscript></div>
+<div class="dwho"><a href="/user/dhayden/"><b>dhayden</b> (2072)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i905350">
+Please use code tags when posting code. Highlight the code and click the &lt;&gt; button to the right of the edit window.<br>
+<br>
+When writing recursive functions, I always code them like this:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br></code></pre></td>
+<td class="source"><pre><code><var>if</var> (base_case) {
+    do_the_base_case;
+} <var>else</var> {
+    do_the_recursive_case;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+By structuring the code like this, it's clear which part is which.  More important, but putting the base case first, you won't forget it.  Part of what's wrong in your code is confusion over what gets printed in which case.<br>
+<br>
+For your code, I'd pass the number of stars instead of the number of lines.<br>
+<br>
+So in pseudocode, you want to do this:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br></code></pre></td>
+<td class="source"><pre><code><var>void</var>
+OutputStarPattern(std::ostream &amp; fout, <var>int</var> numberOfStars)
+{
+    <var>if</var> (numberOfStars &lt;= 0) {
+        <var>return</var>; <cite>// base case</cite>
+    } <var>else</var> {
+        <cite>// print numberOfStars on a line</cite>
+        OutputStarPattern(fout, numberOfStars-1);
+        <cite>// print numberOfStars again.</cite>
+    }
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn905350"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg905351"><span title="905351,192887,1023,9,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg905351" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm740a72e5a5" title="Thu, 25 Feb 2016 22:35:26 +0000"></span><script type="text/javascript">WhenId('CH_zTm740a72e5a5');</script><noscript>Feb 25, 2016 at 10:35pm UTC</noscript></div>
+<div class="dwho"><a href="/user/knexkid9/"><b>knexkid9</b> (9)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i905351">
+That just returns this pattern<br>
+****<br>
+****<br>
+***<br>
+***<br>
+**<br>
+**<br>
+*<br>
+*<br>
+*<br>
+*<br>
+*<br>
+**<br>
+***<br>
+<br>
+but i need 4.  I really don't understand how to do this because you can't increment numberOfStars again without messing up the function and having infinite recursion.<br>
+<br>
+I've seen methods like the one you're showing me, but they all use two for loops.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br></code></pre></td>
+<td class="source"><pre><code>
+<var>void</var> OutputStarPattern(ofstream&amp; fout, <var>int</var> numberOfStars)
+{
+	<var>char</var> symbol;
+
+	<cite>//The symbol to be output is a star</cite>
+	symbol = <kbd>'*'</kbd>;
+
+	<cite>//Set width to amount of lines and fill to symbol</cite>
+	fout &lt;&lt; setfill(symbol) &lt;&lt; setw(numberOfStars);
+	fout &lt;&lt; symbol &lt;&lt; endl;
+
+	<cite>//Determine if the numberOfLines is greater than 0</cite>
+	<var>if</var> (numberOfStars &lt;= 0)
+	{
+		<var>return</var>;
+	}
+	<cite>//Else exit the function</cite>
+	<var>else</var>
+	{
+		<cite>//Set width to amount of lines and fill to symbol</cite>
+		fout &lt;&lt; setfill(symbol) &lt;&lt; setw(numberOfStars) &lt;&lt; symbol &lt;&lt; endl;
+		OutputStarPattern(fout, --numberOfStars);
+		fout &lt;&lt; setfill(symbol) &lt;&lt; setw(numberOfStars) &lt;&lt; symbol &lt;&lt; endl;
+	}
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTmd36cc32fd1" title="Thu, 25 Feb 2016 22:46:10 +0000"></span><script type="text/javascript">WhenId('CH_zTmd36cc32fd1');</script><noscript>Feb 25, 2016 at 10:46pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn905351"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg905353"><span title="905353,192887,1023,9,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg905353" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm7c346acdd8" title="Thu, 25 Feb 2016 22:48:56 +0000"></span><script type="text/javascript">WhenId('CH_zTm7c346acdd8');</script><noscript>Feb 25, 2016 at 10:48pm UTC</noscript></div>
+<div class="dwho"><a href="/user/knexkid9/"><b>knexkid9</b> (9)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i905353">
+Looks like frustration got the better of me and had me overlooking that first fout statement.  I managed to get it to work with this code.  Thanks for the pseudocode and line of thought.<br>
+<br>
+<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br></code></pre></td>
+<td class="source"><pre><code><var>void</var> OutputStarPattern(ofstream&amp; fout, <var>int</var> numberOfStars)
+{
+	<var>char</var> symbol;
+
+	<cite>//The symbol to be output is a star</cite>
+	symbol = <kbd>'*'</kbd>;
+
+	<cite>//Determine if the numberOfLines is greater than 0</cite>
+	<var>if</var> (numberOfStars &lt;= 0)
+	{
+		<var>return</var>;
+	}
+	<cite>//Else exit the function</cite>
+	<var>else</var>
+	{
+		<cite>//Set width to amount of lines and fill to symbol</cite>
+		fout &lt;&lt; setfill(symbol) &lt;&lt; setw(numberOfStars) &lt;&lt; symbol &lt;&lt; endl;
+		OutputStarPattern(fout, --numberOfStars);
+		fout &lt;&lt; setfill(symbol) &lt;&lt; setw(numberOfStars+1) &lt;&lt; symbol &lt;&lt; endl;
+	}
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn905353"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg905357"><span title="905357,111189,1023,4867,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg905357" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm01fa73d232" title="Thu, 25 Feb 2016 23:11:21 +0000"></span><script type="text/javascript">WhenId('CH_zTm01fa73d232');</script><noscript>Feb 25, 2016 at 11:11pm UTC</noscript></div>
+<div class="dwho"><a href="/user/keskiverto/"><b>keskiverto</b> (4867)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i905357">
+What if, hypothetically, the setfill+setw is implemented with for loops?<br>
+<br>
+You could use recursion to print numberOfStars stars to a line. Then you would have not one, but two recursive functions, first to produce one line of stars and second to create the desired lines.<br>
+<br>
+More practice, more fun?
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn905357"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div class="rootbtnNew"></div><div id="CH_insNew"></div><div id="CH_reply">Registered users can post here. <a href="/user/">Sign in or register</a> to post.</div><div id="CH_subscription"></div><div class="rootedtNew"></div><script type="text/javascript">new for_PostList(185431,0,192887,0,'CH_PostList','CH_subscription','CH_reply','CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+<script type="text/javascript">
+    google_ad_client = "ca-pub-1444228343479937";
+    google_ad_slot = "9701143201";
+    google_ad_width = 728;
+    google_ad_height = 90;
+</script>
+<!-- leaderboard -->
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li><a href="/forum/beginner/"><b>Beginners</b></a></li><li><a href="/forum/windows/"><b>Windows Programming</b></a></li><li><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li class="selected"><a href="/forum/general/"><b>General C++ Programming</b></a></li><li><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Fgeneral%2F185431%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

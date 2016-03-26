@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>You want to build a program but where to - C++ Articles</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/articles/">Articles</a></li>
+<li class="here">You want to build a program but where to</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div id="I_content">
+<div class="C_art">
+<div id="I_author">Published by <b><a href="/user/siavoshkc/" rel="author">siavoshkc</a></b></div>
+<div id="I_date">Jan 14, 2008 (last update: Aug 4, 2011)</div>
+<h1>You want to build a program but where to start?</h1>
+<div id="I_score">Score: 3.7/5 (31 votes)</div>
+<div id="I_stars"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-half.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"></div>
+<div id="I_content">
+You want to build a program but where to start?<br>
+OK, I'll tell you. This should be done in the following steps:<br>
+1.	Specifications<br>
+2.	Design<br>
+3.	Implementation<br>
+4.	Test & Debug<br>
+5.	Documentation<br>
+<br>
+We go through this article by an example program. Imagine we are ordered to make a program for a school. They need a program to store student's name and average of marks. Then they should be able to find a student's average by knowing his/her name and vice versa. The program should also be able to show all the averages on the screen, alphabetically sorted.<br>
+<br>
+OK. Now we know what they want, so we can enter step one, Specifications:<br>
+<br>
+&gt;	Program should start with a menu with the following options: 1) Show list     2) Enter new name   3) Change a mark   4) Delete an entry    5) Search by name    6) Search by mark     7)Exit<br>
+&gt;	The program should be able to do all the tasks in menu<br>
+&gt;	The program should keep the records (names and marks) on hard disk in order to keep them safe on power off and retrieve them when program starts.<br>
+Now step two, Design:<br>
+It is the most important part of the development because a good design will make implementation easy and efficient while a bad one will make you cry (and program users may insult you!). How should we start? There are classic ways to design a program. For trivial programs like this, we use top down functional decomposition technique. We write pseudo codes to demonstrate the design. As we see in specifications, 6 functions are necessary. In addition there should be a function to read user choice and call appreciate function. We also need to save the records somewhere and read them again when the program starts. So we should have a main() like this:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br></code></pre></td>
+<td class="source"><pre><code><var>int</var> main() 
+{
+     LoadDataFromFile();
+     <var>while</var>(userChoice != 7){
+     userChoice = GetUserChoice();
+     <var>switch</var> (userChoice) {
+          <var>case</var> 1: ShowList(); <var>break</var>;
+          <var>case</var> 2: AddEntry(); <var>break</var>;
+          <var>case</var> 3: ChangeMark(); <var>break</var>;
+          <var>case</var> 4: Delete(); <var>break</var>;
+          <var>case</var> 5: ShowMark(); <var>break</var>;
+          <var>case</var> 6: ShowName(); <var>break</var>;
+      }
+   }
+   SaveDataToFile();
+   <var>return</var> 0;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+  <br>
+<br>
+main()  gets user choice, calls the appreciate function and will loop until it gets the choice 7, which means exit. In this case main() returns and program terminates. main() also loads the data from a file and saves them on exit (just before return).<br>
+<br>
+This is the function which reads data from a file. For the first time the program runs there is no file to be opened. So this function creates an empty file to store data.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br></code></pre></td>
+<td class="source"><pre><code>LoadDataFromFile()
+{
+        <var>if</var>(fileExists){ 
+           OpenFile();
+           ReadFileToMemory();
+        }
+        <var>else</var> 
+        CreateNewFile();
+		
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+We need to sorts the list then prints each item in the list until reaches the end of list. We sort list every time an item is added, so we will always have a sorted list in memory.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br></code></pre></td>
+<td class="source"><pre><code>ShowList()
+{
+        <var>for</var>(<var>int</var> i = 0; i &lt; listCount; ++i  ) cout &lt;&lt; i &lt;&lt; <kbd>"\t"</kbd> &lt;&lt; listItem&lt;i&gt;;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+To add an entry, program asks for name and mark of the student. There is an integer named listCount that keeps the number of records in the list.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br></code></pre></td>
+<td class="source"><pre><code>AddEntry() 
+{
+        name = GetStudentName();
+        mark = GetStudentMark();
+        listCount++;
+        AddToList(name, mark);		
+        SortList();
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+ <br>
+Each entry (name and mark pair) in the list has an index number. Suppose the user wants to change the mark of or delete an entry. She/He should first select the Show List option or using search options to find the desired entry and see its index. Then he/she can use Delete or Change Mark options which will ask for the index of desired entry. Every time an item is added, the list will be sorted. So indices may change.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br></code></pre></td>
+<td class="source"><pre><code>ChangeMark()
+{
+	idx = GetStudentIdx();
+	mark = GetStudentMark();
+	SetNewMark(idx, mark);
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+We will discuss SetNewMark() later.<br>
+<br>
+Functions below seem straightforward:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br></code></pre></td>
+<td class="source"><pre><code>Delete()
+{
+	idx = GetStudentIdx();
+	DeleteFromTheList(idx);
+	listCount--;
+} </code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br></code></pre></td>
+<td class="source"><pre><code>ShowName()
+{
+	mark = GetStudentMark();
+	<var>for</var>(<var>int</var> i = 0; i &lt; listCount; ++i  ) <var>if</var>(listItem&lt;i&gt;.mark == mark) cout  &lt;&lt; i &lt;&lt; <kbd>"\t"</kbd> &lt;&lt; listItem.name;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br></code></pre></td>
+<td class="source"><pre><code>ShowMark()
+{
+	name = GetStudentName();
+	<var>for</var>(<var>int</var> i = 0; i &lt; listCount; ++i  ) <var>if</var>(listItem&lt;i&gt;.name == name) cout &lt;&lt; i &lt;&lt; <kbd>"\t"</kbd> &lt;&lt; listItem.mark;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Sort function uses bubble sort algorithm to sort the list. Study its code in implementation step.<br>
+<br>
+You can see some new functions have been revealed in pseudo code. Some of them are straightforward like GetStudentMark() and some have to get studied like AddToList(). To get into more detail of those functions, we should now think about how to keep the records in the memory.<br>
+<br>
+It is a branch of IT that discusses the ways which should be used to store particular kinds of data. But as I don't want to enter that area, I choose a simple method. We will have a class that defines a pair of name and mark.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br></code></pre></td>
+<td class="source"><pre><code><var>class</var> StudentEntry
+{
+<var>public</var>:
+	string name;
+	<var>int</var> mark;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+One entry is defined. To have a list we use an array of pointers to that class which keeps a pointer to each entry.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>&nbsp;</code></pre></td>
+<td class="source"><pre><code>StudentEntry *entryList[max_student];</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+AddToList() is something like this:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br></code></pre></td>
+<td class="source"><pre><code>AddToList(name, mark)
+{
+	entryList[entryCount] = <var>new</var> StudentEntry(name, mark);
+	
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+You can read about "new" keyword in this web site, if you are not familiar with it.<br>
+<br>
+And DeleteFromTheList() is like this:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br></code></pre></td>
+<td class="source"><pre><code><var>if</var>(entryCount != idx) 
+        <var>for</var>(<var>int</var> i = idx; i &lt; entryCount; i++) {
+              entryList&lt;i&gt;-&gt;name = entryList[i+1]-&gt;name;
+              entryList&lt;i&gt;-&gt;mark = entryList[i+1]-&gt;mark;
+        } 
+<var>delete</var> entryList[entryCount];</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+To delete an entry we just replace it by its successor and repeat this action till the end of list. We also must delete the last entry that is duplicated when the list is shifted up. If not we will have a memory leak.<br>
+<br>
+You can see some things like (listItem<i>.name == name) in the design pseudo code. I wrote them before deciding how exactly entries are stored into memory. We can rewrite it as (entryList<i>-&gt;name == name) now that we know we are using an array of pointers to class.<br>
+<br>
+We have finished the design step. Now we exactly know how program works. We have actually written some parts of it.<br>
+<br>
+Step three, Implementation:<br>
+<br>
+Its time to write the code in the C++ language. As you noticed our pseudo code is nearly in C++ syntax but it needs to be polished to be a functional C++ program. I feel good to explain a little about the process of translating a cpp source code into an executable. First we write a code in cpp syntax and save it on hard disk. This cpp file is readable by humen of course. Next we give this file to a special executable, named "compiler". Compiler is a program that translates human readable data into machine readable data and saves it on hard disk as an object file (these are files with .obj extension). These files are not yet ready to be executed by the system. The reason is that they call many routines that are written in other files. For example the cout &lt;&lt; operator is defined in a .lib or .dll file. There is another program named "linker" that copies the code from .lib or other .obj files and puts them in the target file (That is the .obj file with main() entry point). After this operation, the file is ready to be executed and will have the .exe extension. <br>
+<br>
+So to make a program you first need to write its source code files somewhere, for example in Windows notepad, and save them, then give them to compiler. The compiler output is .obj of our .cpp files which will be given to linker in addition of needed .lib files to produce the final executive file.<br>
+<br>
+It may seem complex and will be a real pain if you really try this actually. Because of this, there are programs named IDE (Integrated Development Environment) that make the work simple. They have usually an easy to use interface, they highlight cpp keywords, format document using spacing and indentation to make the code easy to read, and more important they do this compile and linking without bothering you. They do their job that smooth that you will not know a separate compiler and linker program exist and work independent of IDE program. IDEs usually also have some useful debug tools which helps us find bugs in program. Nevertheless you have to know how to use your IDE and we suppose you do. If you don't, please read its help and documentation. Now I make a new empty cpp file to write my code.<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br>59<br>60<br>61<br>62<br>63<br>64<br>65<br>66<br>67<br>68<br>69<br>70<br>71<br>72<br>73<br>74<br>75<br>76<br>77<br>78<br>79<br>80<br>81<br>82<br>83<br>84<br>85<br>86<br>87<br>88<br>89<br>90<br>91<br>92<br>93<br>94<br>95<br>96<br>97<br>98<br>99<br>100<br>101<br>102<br>103<br>104<br>105<br>106<br>107<br>108<br>109<br>110<br>111<br>112<br>113<br>114<br>115<br>116<br>117<br>118<br>119<br>120<br>121<br>122<br>123<br>124<br>125<br>126<br>127<br>128<br>129<br>130<br>131<br>132<br>133<br>134<br>135<br>136<br>137<br>138<br>139<br>140<br>141<br>142<br>143<br>144<br>145<br>146<br>147<br>148<br>149<br>150<br>151<br>152<br>153<br>154<br>155<br>156<br>157<br>158<br>159<br>160<br>161<br>162<br>163<br>164<br>165<br>166<br>167<br>168<br>169<br>170<br>171<br>172<br>173<br>174<br>175<br>176<br>177<br>178<br>179<br>180<br>181<br>182<br>183<br>184<br>185<br>186<br>187<br>188<br>189<br>190<br>191<br>192<br>193<br>194<br>195<br>196<br>197<br>198<br>199<br>200<br>201<br>202<br>203<br>204<br>205<br>206<br>207<br>208<br>209<br>210<br>211<br>212<br>213<br>214<br>215<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;iostream&gt;</dfn>
+<dfn>#include &lt;string&gt;</dfn>
+<dfn>#include &lt;fstream&gt;</dfn>
+<var>using</var> <var>namespace</var> std; 
+<cite>/////Declarations////////////////////////////////////////////////</cite>
+<var>const</var> <var>int</var> MAX_STUDENT = 500;
+<var>const</var> <var>char</var> FILE_PATH[] = <kbd>"C:\\entry_file.txt"</kbd>;
+<var>typedef</var> <var>int</var> INDEX;
+<var>typedef</var> <var>double</var> MARK;
+<var>typedef</var> string NAME;
+<var>int</var> entryCount = -1;	<cite>//-1 means the list is empty</cite>
+fstream entryFile;
+
+<var>class</var> StudentEntry
+{
+<var>public</var>:
+	StudentEntry(NAME name, MARK mark): name(name), mark(mark){}
+	StrudentEntry&amp; <var>operator</var> = (StudentEntry &amp;entry)
+	{
+		name = entry.name;
+		mark = entry.mark;
+                <var>return</var> *<var>this</var>;
+	}
+	NAME name;
+	MARK mark;
+}*entryList[MAX_STUDENT];
+
+<cite>/////Function prototypes////////////////////////////////////////</cite>
+INDEX GetStudentIdx();	<cite>//Gets number of index from user</cite>
+MARK GetStudentMark();	<cite>//Gets number of maerk from user</cite>
+NAME GetStudentName();	<cite>//Gets string of name from user</cite>
+<var>void</var> DeleteFromTheList(INDEX idx);	<cite>//Deletes an item with index of idx</cite>
+<var>void</var> Delete();	<cite>//Called by DeleteFromTheList(INDEX)</cite>
+<var>void</var> ChangeMark();	<cite>//Changes the mark field of a record</cite>
+<var>void</var> SetNewMark(INDEX idx, MARK mark);	<cite>//Called by ChangeMark()</cite>
+<var>void</var> AddEntry();	<cite>//Adds new item to list</cite>
+<var>void</var> AddToList(NAME name, MARK mark);	<cite>//Called by AddEntry()</cite>
+<var>void</var> SortList();	<cite>//Does a buble sort on list</cite>
+<var>void</var> ShowMark();	<cite>//Shows all marks with the same name</cite>
+<var>void</var> ShowName();	<cite>//Shows all names with the same mark</cite>
+<var>void</var> ShowList();	<cite>//Shows all the items in the list</cite>
+<var>int</var> GetUserChoice();	<cite>//Gets numbet of option from user</cite>
+<var>void</var> LoadDataFromFile();	<cite>//Loads data from a file</cite>
+<var>void</var> SaveDataToFile();	<cite>//Saves data to a file</cite>
+
+<cite>/////////////////////////////////////////////////////////////</cite>
+INDEX GetStudentIdx()
+{
+	cout &lt;&lt; <kbd>"Enter index: "</kbd>;
+	INDEX idx;
+	cin &gt;&gt; idx;
+	<var>return</var> idx;
+}
+
+MARK GetStudentMark()
+{
+	cout &lt;&lt; <kbd>"Enter mark: "</kbd>;
+	MARK mark;
+	cin &gt;&gt; mark;
+	<var>return</var> mark;
+}
+
+NAME GetStudentName()
+{
+	cout &lt;&lt; <kbd>"Enter name: "</kbd>;
+	NAME name;
+	cin &gt;&gt; name;
+	<var>return</var> name;
+}
+
+<var>void</var> DeleteFromTheList(INDEX idx)
+{
+	<var>if</var>(entryCount != idx) 
+		<var>for</var>(<var>int</var> i = idx; i &lt; entryCount; i++) {
+			entryList&lt;i&gt;-&gt;name = entryList[i+1]-&gt;name;
+			entryList&lt;i&gt;-&gt;mark = entryList[i+1]-&gt;mark;
+		} 
+	<var>delete</var> entryList[entryCount];
+}
+<var>void</var> Delete()
+{
+	<var>if</var>(entryCount != -1){
+		DeleteFromTheList(GetStudentIdx());
+		entryCount--;
+	}
+} 
+
+<var>void</var> SetNewMark(INDEX idx, MARK mark)
+{
+	entryList[idx]-&gt;mark = mark;
+}
+
+<var>void</var> ChangeMark()
+{
+	SetNewMark(GetStudentIdx(), GetStudentMark());
+}
+
+<var>void</var> AddToList(NAME name, MARK mark)
+{
+	entryList[entryCount] = <var>new</var> StudentEntry(name, mark);
+}
+
+<var>void</var> SortList()
+{
+	<var>for</var>(<var>int</var> i = 0 ; i &lt; entryCount;i++){
+		<var>for</var>(<var>int</var> j = 0 ; j &lt; entryCount;j++)
+		{
+			<var>if</var>(entryList[j]-&gt;name.compare(entryList[j+1]-&gt;name ) == 1)
+			{
+				StudentEntry temp = *entryList[j+1];
+				*entryList[j+1] = entryList[j];
+				*entryList[j] = temp;
+
+			}
+		}
+	}
+}
+
+<var>void</var> AddEntry() 
+{
+	entryCount++;
+	NAME name = GetStudentName();
+	AddToList(name , GetStudentMark());		
+	SortList();
+}
+
+<var>void</var> ShowMark()
+{
+	NAME name = GetStudentName();
+	<var>for</var>(<var>int</var> i = 0; i &lt;= entryCount; ++i  ) <var>if</var>(entryList&lt;i&gt;-&gt;name == name) cout &lt;&lt; i &lt;&lt; <kbd>"\t"</kbd> &lt;&lt; entryList&lt;i&gt;-&gt;mark &lt;&lt; endl;
+}
+
+<var>void</var> ShowName()
+{
+	MARK mark = GetStudentMark();
+	<var>for</var>(<var>int</var> i = 0; i &lt;= entryCount; ++i  ) <var>if</var>(entryList&lt;i&gt;-&gt;mark == mark) cout &lt;&lt; i &lt;&lt; <kbd>"\t"</kbd> &lt;&lt; entryList&lt;i&gt;-&gt;name &lt;&lt;endl;
+}
+
+<var>void</var> ShowList()
+{
+	<var>for</var>(<var>int</var> i = 0; i &lt;= entryCount; ++i  ) cout &lt;&lt; i &lt;&lt; <kbd>"\t"</kbd> &lt;&lt; entryList&lt;i&gt;-&gt;name &lt;&lt; <kbd>"\t"</kbd> &lt;&lt; entryList&lt;i&gt;-&gt;mark &lt;&lt; endl;
+}
+
+
+<var>int</var> GetUserChoice()
+{
+	<var>int</var> choice;
+	cout &lt;&lt; <kbd>"Enter the option's number and press enter: "</kbd>;
+	cin &gt;&gt; choice;
+	<var>return</var> choice;
+}
+
+<var>void</var> LoadDataFromFile()
+{
+	entryFile.open(FILE_PATH,ios_base::in);
+	<var>if</var>(entryFile.is_open()){
+		cout &lt;&lt; <kbd>"File opened."</kbd> &lt;&lt; endl;
+		<var>char</var> temp[100];
+		<var>for</var>(entryCount = 0; entryFile &gt;&gt; temp; entryCount++)
+		{
+			entryList[entryCount] = <var>new</var> StudentEntry(temp, 0);
+			entryFile &gt;&gt; entryList[entryCount]-&gt;mark;
+		
+
+		}
+		entryCount--;
+		entryFile.close();
+		entryFile.clear();
+	}
+	<var>else</var>{
+		entryFile.clear();
+		cout &lt;&lt; <kbd>"File not found in "</kbd> &lt;&lt; FILE_PATH &lt;&lt; endl;
+	}
+}
+
+<var>void</var> SaveDataToFile()
+{
+	entryFile.open(FILE_PATH,ios_base::out);
+	<var>if</var>(entryFile.is_open()){ 
+		<var>if</var>(!entryFile.good())
+		{
+			cout &lt;&lt; <kbd>"Error writing file."</kbd> &lt;&lt; endl;
+		}
+		<var>else</var>
+			<var>for</var>(<var>int</var> i =0 ;i&lt;=entryCount;i++)
+			{
+				entryFile &lt;&lt; entryList&lt;i&gt;-&gt;name&lt;&lt;endl;
+				entryFile &lt;&lt; entryList&lt;i&gt;-&gt;mark&lt;&lt; endl;
+			}
+		entryFile.close();
+	}
+
+
+}
+
+<var>int</var> main() 
+{
+	LoadDataFromFile();
+	<var>int</var> userChoice;
+	<var>do</var>{
+		cout &lt;&lt;<kbd>"1: Show List\n2: Add Entry\n3: Change Mark\n4: Delete\n5: Search Name\n6: Search Mark\n7: Save and Exit\n"</kbd>;
+		cout &lt;&lt; <kbd>"Current number of records: "</kbd> &lt;&lt; entryCount + 1&lt;&lt; endl;
+		userChoice = GetUserChoice();
+		<var>switch</var> (userChoice) {
+			<var>case</var> 1: ShowList(); <var>break</var>;
+			<var>case</var> 2: AddEntry(); <var>break</var>;
+			<var>case</var> 3: ChangeMark(); <var>break</var>;
+			<var>case</var> 4: Delete(); <var>break</var>;
+			<var>case</var> 5: ShowMark(); <var>break</var>;
+			<var>case</var> 6: ShowName(); <var>break</var>;
+		}
+	}<var>while</var>(userChoice != 7);
+	SaveDataToFile();
+	<var>return</var> 0;
+} </code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+This step is done by now. You should read this code carefully and compare it to pseudo code. It is not a perfect implementation as it has many shortcomings:<br>
+-	You cannot enter a pair of name and sir name, only one of them<br>
+-	If you enter any thing other than a number when it asks for mark or index, program crashes<br>
+-	There is no error handling in program<br>
+-	When it asks for an option, user is able to enter things like: "asd" or "23423".<br>
+-	You may find many other similar things <br>
+<br>
+This is all because I tried to keep the code simple.<br>
+Step 4, Test and Debug:<br>
+The above code actually has passed this step because I couldn't place a buggy code in the site. For testing, I ran it many times and tried different input data. I had some problems with reading from a file, which was simply because I had forgotten to allocate memory for items that were read from the file (using new).<br>
+<br>
+I gave the program to my sister in order to test it. She said your program does not accept marks with floating point like 12.5. Because of good implementation I just had to change<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>&nbsp;</code></pre></td>
+<td class="source"><pre><code><var>typedef</var> <var>int</var> MARK;</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+To<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>&nbsp;</code></pre></td>
+<td class="source"><pre><code><var>typedef</var> <var>double</var> MARK; </code></pre></td><td class="C_btnholder"></td></tr></table></div>
+ <br>
+<br>
+The other problem I saw in my code was that marks were not linked to names. It was a bug in my SortList() function as it only sorted names and not the corresponding marks.<br>
+<br>
+At last it couldn't save the data when the file was not opened in LoadDataFromFile(). It was because I didn't use clear() function which resets the stream flags after the file could not be opened. It was a beginner fault.<br>
+<br>
+The code was tested and debugged on MSVC++ 2005 SP1.<br>
+<br>
+Step 5, Documentation:<br>
+<br>
+Documentation satisfies two peoples need; Developers and Users. Users need to know how to use the program, known issues, and how to troubleshoot. Developers need to know how the program works, how the design is, what the plug-in interface is (for programs that support), etc in order to develop the program in the future or for maintenance purposes. Using remarks to explain the ambiguous or key parts of the program is a very good practice. But additional design and implementation description should be written somewhere for further use.   <br>
+<br>
+Note: The code in this tutorial at the implementation phase is not a well written C++ code and by many is considered even wrong.<br>
+<br>
+Feel free to contact me.<br>
+</div></div><div id="CH_bb"></div><div id="CH_scoreapp"></div><script type="text/javascript">new Score('CH_scoreapp','/articles/score.cgi','S8hv0pDG');</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder selected articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/articles/">Articles</a></b></h3>
+<ul>
+<li><a href="/articles/algorithms/">Algorithms</a></li><li><a href="/articles/cpp11/">C++ 11</a></li><li><a href="/articles/graphics/">Graphics and multimedia</a></li><li><a href="/articles/howto/">How-To</a></li><li><a href="/articles/language/">Language Features</a></li><li><a href="/articles/linux/">Unix/Linux programming</a></li><li><a href="/articles/sourcecode/">Source Code</a></li><li><a href="/articles/standard_library/">Standard Library</a></li><li><a href="/articles/tips/">Tips and Tricks</a></li><li><a href="/articles/tools/">Tools and Libraries</a></li><li><a href="/articles/visualcpp/">Visual C++</a></li><li><a href="/articles/winapi/">Windows API</a></li></ul>
+</div>
+<div id="I_subnav"></div>
+</div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Farticles%2FS8hv0pDG%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+onSession(function(us) {
+		document.getElementById('I_subnav').innerHTML=
+			us.ok?
+				'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul>'+
+				'<li><a href="/articles/myitems.cgi">My items</a></li>'+
+				(us.auth(32768)?'<li><a href="/articles/adminitems.cgi">Admin items</a></li>':'')+
+				'</ul></div>'
+			:'';
+	}); onSession(function (us) {
+		var el=document.getElementById('CH_bb'); el.innerHTML='';
+		if ( (us.auth(32768)) || ((us.uniqid=='EU75fSEw')&&(us.auth(128))) ) {
+			el.appendChild(btn('Edit article','Edit this version of the article','edit','/articles/edit.cgi?a=S8hv0pDG'));
+	
+			if (us.auth(32768)) {
+				el.appendChild(btn('Delete article','Delete this article','delete','javascript:artdel()'));
+			}
+	
+		}
+	});
+	function artdel() { if (confirm('WARNING: You are about to delete this page. Confirm?')) window.location='/articles/delete.cgi?a=S8hv0pDG'; }
+	ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

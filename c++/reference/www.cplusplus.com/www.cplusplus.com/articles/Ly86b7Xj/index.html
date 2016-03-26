@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Simple XOR encryption - C++ Articles</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/articles/">Articles</a></li>
+<li class="here">Simple XOR encryption</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div id="I_content">
+<div class="C_art">
+<div id="I_author">Published by <b><a href="/user/ultifinitus/" rel="author">ultifinitus</a></b></div>
+<div id="I_date">Mar 13, 2011 (last update: Mar 13, 2011)</div>
+<h1>Simple XOR encryption</h1>
+<div id="I_score">Score: 3.9/5 (179 votes)</div>
+<div id="I_stars"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-half.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"></div>
+<div id="I_content">
+Alright, beginner's encryption lesson:<br>
+<br>
+everything on a computer is stored as binary data, in the form of bytes (8 bits, or individual 1's or 0's)<br>
+<br>
+Binary data can easily be "encrypted" with a "key" based on a little boolean operation called an xor, or exclusive or. <br>
+when we xor a single bit (a 1 or 0) with another bit:<br>
+<br>
+if 1 bit is true, and 1 bit is false, it returns true, otherwise it returns false;<br>
+sooo:<br>
+<br>
+1 xor 1 = 0<br>
+1 xor 0 = 1<br>
+0 xor 1 = 1<br>
+0 xor 0 = 0<br>
+<br>
+now one reason this is useful is if we take the new bit and xor it with the same key (the second bit) the result will always be the first bit. <br>
+so:<br>
+<br>
+1 xor 1 xor 1 = 1;<br>
+1 xor 0 xor 0 = 1;<br>
+<br>
+<br>
+Of course on a single bit, it wouldn't do much good, but when you get into higher levels of memory it's a fairly simple and (sometimes) effective (see later in article) encryption method.<br>
+<br>
+Now when I say everything is stored as binary data, that also means strings, a single char is stored as either ascii or unicode (or some other protocol, but those are the only two I've seen) values.<br>
+<br>
+for example:<br>
+<br>
+The letter 'h' in ascii = 104<br>
+The letter 'i' in ascii = 105<br>
+<br>
+converting from an integer to a binary number is a little difficult, but doable.<br>
+when you look at a binary number, you can read it in reverse and add the value of each bit, which is as follows<br>
+<br>
+2<sup>x</sup> 2<sup>5</sup> 2<sup>4</sup> 2<sup>3</sup> 2<sup>2</sup> 2<sup>1</sup> 2<sup>0</sup>
+<br>
+so the binary number<br>
+01110011<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br></code></pre></td>
+<td class="source"><pre><code>0    1    1    1   0   0   1   1 
+0 + 64 + 32 + 16 + 0 + 0 + 2 + 1</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+is 115 or 's'<br>
+<br>
+now that's all well and good, you can send little notes to your friends, and no one can tell what the heck your saying, but of course you could just write the binary stuff, and it would perform the same action =)<br>
+<br>
+In c++ the ^ operator is the xor operator.<br>
+if I have a string, that I want to encrypt, I can do something like this:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br></code></pre></td>
+<td class="source"><pre><code> string toEncrypt = <kbd>"fail"</kbd>;
+ <var>char</var> keyToEncrypt = <kbd>'s'</kbd>; <cite>//remember 115 in ascii</cite>
+
+ <var>for</var> (<var>int</var> temp = 0; temp &lt; toEncrypt.size(); temp++)
+   toEncrypt[temp] ^= keyToEncrypt;
+ cout &lt;&lt; <kbd>"nThe encrypted data = "</kbd> &lt;&lt; toEncrypt;
+
+ <var>for</var> (<var>int</var> temp = 0; temp &lt; toEncrypt.size(); temp++)
+   toEncrypt[temp] ^= keyToEncrypt; <cite>//notice we're using the exact same key, to unencrypt the data.</cite>
+ cout &lt;&lt; <kbd>"nThe unencrypted data = "</kbd> &lt;&lt; toEncrypt;</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Of course this is all well and good, but here's an excersize for anyone who's using a simple key for their data, if someone has access to your program. And they can encrypt some data of their own, and have access to the output of that encryption, they can get your key. Example:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br></code></pre></td>
+<td class="source"><pre><code> <var>char</var> original = <kbd>"f"</kbd>;
+ <var>char</var> key = <kbd>"s"</kbd>;
+ <var>char</var> end;
+ <var>char</var> getKey;
+
+ end = original ^ key;
+
+ <cite>// now here's the kicker</cite>
+
+ getKey = original ^ end;</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+So you have to get tricky, one reeeeeaaaaly easy way to encrypt and decrypt the data a <b>little</b> more securely, could be something like this:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br></code></pre></td>
+<td class="source"><pre><code> string original = <kbd>"super flying monkeys are aweseome, aren't they?"</kbd>;
+ cout &lt;&lt; <kbd>"Original data = "</kbd> &lt;&lt; original;
+ string encrypted = <kbd>""</kbd>;
+ string unencrypt = <kbd>""</kbd>;
+ <var>char</var> key = <kbd>'x'</kbd>;
+
+ <var>for</var> (<var>int</var> temp = 0; temp &lt; original.size(); temp++){
+  encrypted += original[temp] ^ (<var>int</var>(key) + temp) % 255;
+ }
+ cout &lt;&lt; <kbd>"nEncrypted data = "</kbd> &lt;&lt; encrypted;
+
+ <var>for</var> (<var>int</var> temp = 0; temp &lt; original.size(); temp++){
+  unencrypted += encrypted[temp] ^ (<var>int</var>(key) + temp) % 255;
+ }
+ cout &lt;&lt; <kbd>"nUnencrypted data = "</kbd> &lt;&lt; unencrypt;</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Of course, you can should do something other than simple incrementing, because that's pretty easy to sniff.<br>
+<br>
+But there you have it, a simple encryption lesson!<br>
+</div></div><div id="CH_bb"></div><div id="CH_scoreapp"></div><script type="text/javascript">new Score('CH_scoreapp','/articles/score.cgi','Ly86b7Xj');</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder selected articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/articles/">Articles</a></b></h3>
+<ul>
+<li><a href="/articles/algorithms/">Algorithms</a></li><li><a href="/articles/cpp11/">C++ 11</a></li><li><a href="/articles/graphics/">Graphics and multimedia</a></li><li><a href="/articles/howto/">How-To</a></li><li><a href="/articles/language/">Language Features</a></li><li><a href="/articles/linux/">Unix/Linux programming</a></li><li><a href="/articles/sourcecode/">Source Code</a></li><li><a href="/articles/standard_library/">Standard Library</a></li><li><a href="/articles/tips/">Tips and Tricks</a></li><li><a href="/articles/tools/">Tools and Libraries</a></li><li><a href="/articles/visualcpp/">Visual C++</a></li><li><a href="/articles/winapi/">Windows API</a></li></ul>
+</div>
+<div id="I_subnav"></div>
+</div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Farticles%2FLy86b7Xj%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+onSession(function(us) {
+		document.getElementById('I_subnav').innerHTML=
+			us.ok?
+				'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul>'+
+				'<li><a href="/articles/myitems.cgi">My items</a></li>'+
+				(us.auth(32768)?'<li><a href="/articles/adminitems.cgi">Admin items</a></li>':'')+
+				'</ul></div>'
+			:'';
+	}); onSession(function (us) {
+		var el=document.getElementById('CH_bb'); el.innerHTML='';
+		if ( (us.auth(32768)) || ((us.uniqid=='3U4Ey60M')&&(us.auth(128))) ) {
+			el.appendChild(btn('Edit article','Edit this version of the article','edit','/articles/edit.cgi?a=Ly86b7Xj'));
+	
+			if (us.auth(32768)) {
+				el.appendChild(btn('Delete article','Delete this article','delete','javascript:artdel()'));
+			}
+	
+		}
+	});
+	function artdel() { if (confirm('WARNING: You are about to delete this page. Confirm?')) window.location='/articles/delete.cgi?a=Ly86b7Xj'; }
+	ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

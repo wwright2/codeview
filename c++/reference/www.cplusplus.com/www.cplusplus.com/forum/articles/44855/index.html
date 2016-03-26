@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>C++0x Suffix Return Types - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/articles/">Articles</a></li>
+<li class="here">C++0x Suffix Return Types</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico default" title="post">&nbsp;</div> C++0x Suffix Return Types</h3><span id="CH_edttl"></span><span class="rootdatPost" title="44855,root,0,-1,7,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg243254"><span title="243254,53221,1023,1383,1"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg243254" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmd530c36200" title="Wed, 15 Jun 2011 12:18:00 +0000"></span><script type="text/javascript">WhenId('CH_zTmd530c36200');</script><noscript>Jun 15, 2011 at 12:18pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Xander314/"><b>Xander314</b> (1383)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i243254">
+Going to post this article about C++0x suffix return types on my blog later, and I thought I'd put it here too. I'm guessing most of the readers of the article section already know it - if so then hopefully you can help me iron out any mistakes :)<br>
+<br>
+From SFMLCoder: <a href="http://sfmlcoder.wordpress.com/">http://sfmlcoder.wordpress.com/</a><br>
+-------------------------------------------------------------------------------<br>
+<br>
+Time for another little C++0x feature. Like <i>auto</i>, it is supported by Microsoft Visual C++ 2010 and MinGW. If you have a different compiler, then you can't go wrong by trying it anyway. Just remember that if you get compiler errors, it could mean the feature isn't supported by your compiler.<br>
+<br>
+Let's get straight to it with an example. Consider the following example of how we would normally code a function:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br></code></pre></td>
+<td class="source"><pre><code><var>bool</var> Init()
+{
+	<cite>// etc</cite>
+	<var>return</var> <var>true</var>;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+And here is the way using trailing return types:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br></code></pre></td>
+<td class="source"><pre><code><var>auto</var> Init() -&gt; <var>bool</var>
+{
+	<cite>// etc</cite>
+	<var>return</var> <var>true</var>;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Why would we want to do this? It's more work after all. Well yes, it is more work in this case, but now consider a real world example. In my game engine's log, I have a function which takes a string, applies some formatting to it and returns it. The string type is a <span class="auto"><code class="source"><var>typedef</var></code></span>'d <span class="auto"><code class="source">std::string</code></span> called <span class="auto"><code class="source">String</code></span> in the <span class="auto"><code class="source">Icanos::System</code></span> namespace.<br>
+<br>
+This is how I had written the function before I took advantage of this C++0x feature.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br></code></pre></td>
+<td class="source"><pre><code>Icanos::System::String Icanos::System::FormattedLog::ApplyIndent(<var>const</var> String&amp; message, <var>const</var> String&amp; source)
+{
+  <cite>// etc</cite>
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+I have to qualify the <span class="auto"><code class="source">String</code></span> return type in full. But if I could put the return type after, the String type would already be in scope as we've qualified the function's scope, thus simplifying notation.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br></code></pre></td>
+<td class="source"><pre><code><var>auto</var> Icanos::System::FormattedLog::ApplyIndent(<var>const</var> String&amp; message, <var>const</var> String&amp; source) -&gt; String
+{
+  <cite>// etc</cite>
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+After the function name, everything in <span class="auto"><code class="source">Icanos::System</code></span> is already in scope, so we don't need to qualify the namespaces on <span class="auto"><code class="source">String</code></span> again.<br>
+<br>
+Now then, we might also want to use suffix return types if our return type depends on the argument types (in a template function). <i>Thanks to <b>jsmith</b> for this addition.</i><br>
+<br>
+Naively, we should like to do this:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br></code></pre></td>
+<td class="source"><pre><code><var>template</var> &lt;<var>class</var> S, <var>class</var> T&gt;
+<var>decltype</var>(s + t) Add(<var>const</var> S&amp; s, <var>const</var> T&amp; t) </code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+but of course, it will not compile, as <i>s</i> and <i>t</i> are not in scope. But they are in scope after the parameter list:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br></code></pre></td>
+<td class="source"><pre><code><var>template</var> &lt;<var>class</var> S, <var>class</var> T&gt;
+<var>auto</var> Add(<var>const</var> S&amp; s, <var>const</var> T&amp; t) -&gt; <var>decltype</var>(s + t)</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+This is a neat way of solving this problem, and just for your reference, here is the version Stroustrup suggests in the absence of suffix return types. It is clearly inferior.<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br></code></pre></td>
+<td class="source"><pre><code><var>template</var> &lt;<var>class</var> S, <var>class</var> T&gt;
+<var>decltype</var>(*(S*)(0) + *(T*)(0)) Add(<var>const</var> S&amp; s, <var>const</var> T&amp; t)</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Well I hope you've enjoyed my introduction to suffix return types - which you may also see referred to as trailing return types. If you'd like to read more about them, check out Dr. Stroustrup's FAQ:<br>
+<a href="http://www2.research.att.com/~bs/C++0xFAQ.html#suffix-return">http://www2.research.att.com/~bs/C++0xFAQ.html#suffix-return</a><br>
+<br>
+(Coincidentally, it was originally suggested (as noted in Stroustrup's FAQ) that suffix return types be signified using [] rather than auto. However, due to controversy, auto is suggested as an alternative. Both MinGW and Microsoft Visual C++ generate a compiler error if [] is used.)
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm941270a183" title="Thu, 16 Jun 2011 11:01:18 +0000"></span><script type="text/javascript">WhenId('CH_zTm941270a183');</script><noscript>Jun 16, 2011 at 11:01am UTC</noscript></span>
+<span class="dbtn" id="CH_btn243254"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg243339"><span title="243339,15588,0,2731,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg243339" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm2fcca03b71" title="Wed, 15 Jun 2011 17:43:35 +0000"></span><script type="text/javascript">WhenId('CH_zTm2fcca03b71');</script><noscript>Jun 15, 2011 at 5:43pm UTC</noscript></div>
+<div class="dwho">closed account (<i><a href="/user/closed_account_S6k9GNh0/">S6k9GNh0</a></i>)</div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i243339">
+Originally, they were going to have the auto "optional" to remove boilerplate. Apparently, they thought better of it. Various people on ##c++ @ freenode were rather pissed off...
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn243339"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg243341"><span title="243341,53221,1023,1383,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg243341" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm69895fb9e9" title="Wed, 15 Jun 2011 17:49:50 +0000"></span><script type="text/javascript">WhenId('CH_zTm69895fb9e9');</script><noscript>Jun 15, 2011 at 5:49pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Xander314/"><b>Xander314</b> (1383)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i243341">
+Are there any actual disadvantages to removing the auto? Personally I think it might seem weird writing functions without *something* before the name, but that's just my taste. <br>
+<br>
+Using auto seems more intuitive than using [].
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn243341"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg243486"><span title="243486,10532,1023,5804,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg243486" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm17ef3b6467" title="Thu, 16 Jun 2011 01:50:17 +0000"></span><script type="text/javascript">WhenId('CH_zTm17ef3b6467');</script><noscript>Jun 16, 2011 at 1:50am UTC</noscript></div>
+<div class="dwho"><a href="/user/jsmith/"><b>jsmith</b> (5804)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i243486">
+The real use of suffix return types happens when using decltype, where the decltype expression depends upon the parameters of the function.<br>
+<br>
+Uncompiled:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br></code></pre></td>
+<td class="source"><pre><code><var>template</var>&lt; <var>typename</var> T1, <var>typename</var> T2 &gt;
+<var>auto</var> add_em( <var>const</var> T1&amp; t1, <var>const</var> T2&amp; t2 ) -&gt; <var>decltype</var>( t1 + t2 )
+{
+    <cite>// etc</cite>
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn243486"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg243614"><span title="243614,53221,1023,1383,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg243614" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmcbb7f553f4" title="Thu, 16 Jun 2011 10:55:04 +0000"></span><script type="text/javascript">WhenId('CH_zTmcbb7f553f4');</script><noscript>Jun 16, 2011 at 10:55am UTC</noscript></div>
+<div class="dwho"><a href="/user/Xander314/"><b>Xander314</b> (1383)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i243614">
+I was going to add that, but I was pushed for time and I read this on the C++0x FAQ.<br>
+<table class="quote"><tr><th class="qh"><strong>Bjarne Stroustrup</strong> wrote:</th></tr><tr><td class="qd">The suffix syntax is not primarily about templates and type deduction, it is really about scope.</td></tr></table><br>
+<br>
+However, I shall add your template example.
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm3942cb62de" title="Thu, 16 Jun 2011 10:58:52 +0000"></span><script type="text/javascript">WhenId('CH_zTm3942cb62de');</script><noscript>Jun 16, 2011 at 10:58am UTC</noscript></span>
+<span class="dbtn" id="CH_btn243614"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg243922"><span title="243922,10532,1023,5804,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg243922" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm8a5e39696b" title="Fri, 17 Jun 2011 00:30:28 +0000"></span><script type="text/javascript">WhenId('CH_zTm8a5e39696b');</script><noscript>Jun 17, 2011 at 12:30am UTC</noscript></div>
+<div class="dwho"><a href="/user/jsmith/"><b>jsmith</b> (5804)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i243922">
+Yes, actually if you remove the template&lt;&gt; line from my example and assume that T1 and T2 are types that already exist, then my example still holds.<br>
+<br>
+<br>
+<br>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn243922"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg244075"><span title="244075,53221,1023,1383,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg244075" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm9ff15e5968" title="Fri, 17 Jun 2011 06:49:29 +0000"></span><script type="text/javascript">WhenId('CH_zTm9ff15e5968');</script><noscript>Jun 17, 2011 at 6:49am UTC</noscript></div>
+<div class="dwho"><a href="/user/Xander314/"><b>Xander314</b> (1383)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i244075">
+Sorry, yes. Yours is of course a scope example as well. Anyway, it has now been added to the article.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn244075"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div class="rootbtnNew"></div><div id="CH_insNew"></div><div id="CH_reply">Topic archived. No new replies allowed.</div><div id="CH_subscription"></div><div class="rootedtNew"></div><script type="text/javascript">new for_PostList(44855,1,53221,0,'CH_PostList','CH_subscription','CH_reply','CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+<script type="text/javascript">
+    google_ad_client = "ca-pub-1444228343479937";
+    google_ad_slot = "9701143201";
+    google_ad_width = 728;
+    google_ad_height = 90;
+</script>
+<!-- leaderboard -->
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li><a href="/forum/beginner/"><b>Beginners</b></a></li><li><a href="/forum/windows/"><b>Windows Programming</b></a></li><li><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li><a href="/forum/general/"><b>General C++ Programming</b></a></li><li><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Farticles%2F44855%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

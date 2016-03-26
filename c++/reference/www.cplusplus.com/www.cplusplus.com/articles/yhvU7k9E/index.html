@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Password Creator - C++ Articles</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/articles/">Articles</a></li>
+<li class="here">Password Creator</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div id="I_content">
+<div class="C_art">
+<div id="I_author">Published by <b><a href="/user/TheMassiveChipmunk/" rel="author">TheMassiveChipmunk</a></b></div>
+<div id="I_date">Jan 20, 2012 (last update: Jan 28, 2012)</div>
+<h1>Password Creator</h1>
+<div id="I_score">Score: 3.5/5 (109 votes)</div>
+<div id="I_stars"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-half.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"></div>
+<div id="I_content">
+<A HREF="http://www.cplusplus.com/forum/lounge/57626/2/#msg311009/"> Original idea here </A>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br></code></pre></td>
+<td class="source"><pre><code><dfn>#ifndef _PARSER_HPP</dfn>
+<dfn>#define _PARSER_HPP</dfn>
+
+<cite>//Parser.hpp</cite>
+
+<dfn>#include &lt;iostream&gt;</dfn>
+<dfn>#include &lt;fstream&gt;</dfn>
+<dfn>#include &lt;sstream&gt;</dfn>
+
+<dfn>#include &lt;string&gt;</dfn>
+
+<dfn>#include &lt;algorithm&gt;</dfn>
+
+<dfn>#include &lt;cstdlib&gt;</dfn>
+<dfn>#include &lt;ctime&gt;</dfn>
+<dfn>#include &lt;cctype&gt;</dfn>
+<dfn>#include &lt;cstring&gt;</dfn>
+
+<var>class</var> Parser
+{
+    std::ostream* Out;
+    <var>int</var> Argc;
+    <var>char</var>** Argv;
+<var>public</var>:
+    Parser (<var>int</var> , <var>char</var>**);
+    ~Parser ();
+    
+    <var>int</var> getPos ();
+    
+    <var>void</var> print ();
+    <var>void</var> setOut ();    
+
+    <var>static</var> <var>char</var> randomChar ();
+
+    <var>bool</var> isDigit (<var>char</var>*);
+};
+
+<dfn>#endif </dfn>
+</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br>59<br>60<br>61<br>62<br>63<br>64<br>65<br>66<br>67<br>68<br>69<br>70<br>71<br>72<br>73<br>74<br>75<br>76<br>77<br>78<br>79<br>80<br>81<br>82<br>83<br>84<br>85<br>86<br>87<br>88<br>89<br>90<br>91<br>92<br>93<br>94<br>95<br>96<br>97<br>98<br>99<br>100<br>101<br>102<br>103<br>104<br>105<br>106<br>107<br>108<br>109<br>110<br>111<br>112<br>113<br>114<br>115<br>116<br>117<br>118<br>119<br>120<br>121<br>122<br>123<br>124<br>125<br>126<br>127<br>128<br>129<br>130<br>131<br>132<br>133<br>134<br>135<br>136<br>137<br>138<br>139<br>140<br>141<br>142<br>143<br>144<br>145<br>146<br>147<br>148<br></code></pre></td>
+<td class="source"><pre><code>
+<cite>//Parser.cpp</cite>
+
+<dfn>#include "Parser.hpp"</dfn>
+
+Parser::Parser (<var>int</var> Argc , <var>char</var>** Argv)
+{
+    <cite>//Check if passed any arguments</cite>
+    <var>if</var> (Argc &lt; 2)
+    {
+	<cite>//Print usage and then exit</cite>
+	std::cout &lt;&lt; <kbd>"Usage : "</kbd> &lt;&lt; Argv [0] &lt;&lt; <kbd>" --Out (Optional) (Password length)"</kbd> &lt;&lt; std::endl;
+	std::cout &lt;&lt; <kbd>"Examples : \n"</kbd> &lt;&lt; Argv [0] &lt;&lt; <kbd>" --Passwords.txt 1 43 2 6"</kbd> &lt;&lt; std::endl;
+	std::cout &lt;&lt; Argv [0] &lt;&lt; <kbd>" 1 4"</kbd> &lt;&lt; std::endl;
+	
+	<cite>//Exit with a failure</cite>
+	exit (1);
+    }
+
+    <cite>//Set argument counter and vector</cite>
+    <var>this</var>-&gt;Argc = Argc;
+    <var>this</var>-&gt;Argv = Argv;
+
+    <cite>//Set out</cite>
+    <var>this</var>-&gt;Out = 0;
+}
+
+Parser::~Parser ()
+{
+    <cite>//Check if we need to delete anything</cite>
+    <var>if</var> (<var>this</var>-&gt;Out != &amp;std::cout)
+    {
+	<var>delete</var> <var>this</var>-&gt;Out;
+    }
+}
+
+<var>char</var> Parser::randomChar ()
+{
+    <cite>//String containing all possible characters</cite>
+    std::string Gen =
+	<kbd>"abcedefghijkmnlopqrstuvwxyz"</kbd>
+	<kbd>"ABCDEFGHIJKMNLOPQRSTUVWXYZ"</kbd>
+	<kbd>"0123456789"</kbd>;
+    
+    <cite>//Return a random character</cite>
+    <var>return</var> Gen [rand () % Gen.length ()];
+}
+
+<var>bool</var> Parser::isDigit (<var>char</var>* String)
+{
+    <cite>//Temp variable(s)</cite>
+    <var>int</var> i = 0;
+    <var>int</var> iSize = strlen (String);
+    
+    <cite>//Iterate through string to check for any non digit characters</cite>
+    <var>for</var> (i = 0 ; i &lt; iSize ; i++)
+    {
+	<cite>//We found a digit stop the loop and return false</cite>
+	<var>if</var> (!isdigit (String [i]))
+	{
+	    <var>return</var> <var>false</var>;
+	}
+    }
+    <cite>//All characters were digits so it is a number return true;</cite>
+    <var>return</var> <var>true</var>;
+}
+
+<var>int</var> Parser::getPos ()
+{
+    <cite>//Temp variable(s)</cite>
+    <var>int</var> i = 0;
+    std::string Temp = <kbd>""</kbd>;
+
+    <cite>//Search vector</cite>
+    <var>for</var> (i = 0 ; i &lt; <var>this</var>-&gt;Argc ; i++)
+    {
+	Temp = <var>this</var>-&gt;Argv [i];
+	<var>if</var> (Temp.find (<kbd>"--"</kbd>) != std::string::npos)
+	{
+	    <var>return</var> i;
+	}
+    } 
+
+    <cite>//Return no position</cite>
+    <var>return</var> -1;
+}
+
+<var>void</var> Parser::setOut ()
+{
+    <cite>//Set position</cite>
+    <var>int</var> iPos = <var>this</var>-&gt;getPos ();
+    
+    <cite>//Check if valid position</cite>
+    <var>if</var> (iPos &lt; 0)
+    {
+	<var>this</var>-&gt;Out = &amp;std::cout;
+	<var>return</var>;
+    }
+
+    <cite>//Temp variable(s)</cite>
+    std::string Temp = <var>this</var>-&gt;Argv [iPos];
+
+    <cite>//Replace dashes with empty spaces</cite>
+    Temp.replace (Temp.find (<kbd>"--"</kbd>) , 2 , <kbd>""</kbd>);
+    
+    <cite>//Set new ofstream to out</cite>
+    <var>this</var>-&gt;Out = <var>new</var> std::ofstream (Temp.c_str () , std::ios::app);
+}
+
+<var>void</var> Parser::print ()
+{
+    <cite>//Temp variable(s)</cite>
+    <var>int</var> i = 0;
+    <var>int</var> iPasswordSize = 0;
+
+    <cite>//Check if current string is a digit</cite>
+    <var>for</var> (i = 0 ; i &lt; <var>this</var>-&gt;Argc ; i++)
+    {
+	<cite>//Set stream to convert numbers</cite>
+	std::stringstream Stream;
+
+	<cite>//Check if current argument is a number</cite>
+	<var>if</var> (<var>this</var>-&gt;isDigit (<var>this</var>-&gt;Argv [i]))
+	{
+	    <cite>//It is a number convert it to an integer</cite>
+	    Stream &lt;&lt; <var>this</var>-&gt;Argv [i];
+	    Stream &gt;&gt; iPasswordSize;
+	    
+	    <cite>//Generate password</cite>
+	    
+	    <cite>//Temp string containing password</cite>
+	    std::string Temp;
+
+	    <cite>//Resize it</cite>
+	    Temp.resize (iPasswordSize);
+	    
+	    <cite>//Generate random letters</cite>
+	    std::generate (Temp.begin () , Temp.end () , Parser::randomChar);
+
+	    <cite>//Shuffle the letters around</cite>
+	    std::random_shuffle (Temp.begin () , Temp.end ());
+	    
+	    <cite>//Print the passwords either to a file or to the console</cite>
+	    *(<var>this</var>-&gt;Out) &lt;&lt; Temp &lt;&lt; std::endl;
+	}
+    }
+}
+</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br></code></pre></td>
+<td class="source"><pre><code>
+<cite>//main.cpp</cite>
+
+<dfn>#include &lt;iostream&gt;</dfn>
+
+<dfn>#include &lt;cstdlib&gt;</dfn>
+<dfn>#include &lt;ctime&gt;</dfn>
+
+<dfn>#include "Parser.hpp"</dfn>
+
+<var>int</var> main(<var>int</var> argc , <var>char</var>* argv[])
+{
+    <cite>//Seed generator</cite>
+    srand ((<var>unsigned</var>) time (NULL));
+    
+    <cite>//Create a parser</cite>
+    Parser Generator (argc , argv);
+
+    <cite>//Set the place to out put text</cite>
+    Generator.setOut ();
+    
+    <cite>//Print passwords</cite>
+    Generator.print ();
+    
+    <var>return</var> 0;
+}
+</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+</div></div><div id="CH_bb"></div><div id="CH_scoreapp"></div><script type="text/javascript">new Score('CH_scoreapp','/articles/score.cgi','yhvU7k9E');</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder selected articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/articles/">Articles</a></b></h3>
+<ul>
+<li><a href="/articles/algorithms/">Algorithms</a></li><li><a href="/articles/cpp11/">C++ 11</a></li><li><a href="/articles/graphics/">Graphics and multimedia</a></li><li><a href="/articles/howto/">How-To</a></li><li><a href="/articles/language/">Language Features</a></li><li><a href="/articles/linux/">Unix/Linux programming</a></li><li><a href="/articles/sourcecode/">Source Code</a></li><li><a href="/articles/standard_library/">Standard Library</a></li><li><a href="/articles/tips/">Tips and Tricks</a></li><li><a href="/articles/tools/">Tools and Libraries</a></li><li><a href="/articles/visualcpp/">Visual C++</a></li><li><a href="/articles/winapi/">Windows API</a></li></ul>
+</div>
+<div id="I_subnav"></div>
+</div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Farticles%2FyhvU7k9E%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+onSession(function(us) {
+		document.getElementById('I_subnav').innerHTML=
+			us.ok?
+				'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul>'+
+				'<li><a href="/articles/myitems.cgi">My items</a></li>'+
+				(us.auth(32768)?'<li><a href="/articles/adminitems.cgi">Admin items</a></li>':'')+
+				'</ul></div>'
+			:'';
+	}); onSession(function (us) {
+		var el=document.getElementById('CH_bb'); el.innerHTML='';
+		if ( (us.auth(32768)) || ((us.uniqid=='2v0Gz8AR')&&(us.auth(128))) ) {
+			el.appendChild(btn('Edit article','Edit this version of the article','edit','/articles/edit.cgi?a=yhvU7k9E'));
+	
+			if (us.auth(32768)) {
+				el.appendChild(btn('Delete article','Delete this article','delete','javascript:artdel()'));
+			}
+	
+		}
+	});
+	function artdel() { if (confirm('WARNING: You are about to delete this page. Confirm?')) window.location='/articles/delete.cgi?a=yhvU7k9E'; }
+	ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

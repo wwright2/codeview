@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>How to Make a Game 2 - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/articles/">Articles</a></li>
+<li class="here">How to Make a Game 2</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico news" title="news">&nbsp;</div> How to Make a Game 2</h3><span id="CH_edttl"></span><div class="C_pages">Pages: <span title="Current page">1</span><a href="/forum/articles/43175/2/">2</a></div><span class="rootdatPost" title="43175,root,0,-1,24,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg233169"><span title="233169,52020,1023,1147,1"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg233169" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmf50d1faf63" title="Mon, 16 May 2011 22:07:40 +0000"></span><script type="text/javascript">WhenId('CH_zTmf50d1faf63');</script><noscript>May 16, 2011 at 10:07pm UTC</noscript></div>
+<div class="dwho"><a href="/user/ModShop/"><b>ModShop</b> (1147)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i233169">
+It has been recently brought to my attention that many people ask about game development, yet there aren't any articles on the topic. I've decided to shed some light on the general process of developing a game from start to finish. Keep in mind that that this is a generalization and WILL change from project to project.<br>
+<br>
+<br>
+<u><b>Step 1: Choose Your Game Library</b></u><br>
+<br>
+Unless you want to write your own library for all the dirty graphics/sound programming, you will probably want to get a game library. There are many game libraries out there. but they all offer the same base functionality (mostly...).<br>
+<br>
+<u><i>Features that any good library should have:</i></u><br>
+<br>
+    -Some system to load and play sound files<br>
+    -Some system to load and display graphics<br>
+    -At least some basic image manipulation (rotation, etc)<br>
+    -Primitive drawing functions (circles, lines, rectangles, dots, etc)<br>
+    -Functions to display text<br>
+    -Multi-threading support<br>
+    -Basic timer functions<br>
+<br>
+<i><u>Some game libraries include:</u></i><br>
+<br>
+    -Simple Fast Multi-Media Library (SFML): <a href="http://www.sfml-dev.org/">http://www.sfml-dev.org/</a><br>
+    -Simple DirectMedia Layer (SDL): <a href="http://www.libsdl.org/">http://www.libsdl.org/</a><br>
+    -Allegro: <a href="http://www.allegro.cc/">http://www.allegro.cc/</a><br>
+    -OpenGL (GFX only, however, there are wrapper libs like AllegroGL): <a href="http://www.opengl.org/">http://www.opengl.org/</a><br>
+    -DirectX (Windows only): <a href="http://msdn.microsoft.com/en-us/directx/">http://msdn.microsoft.com/en-us/directx/</a><br>
+    -Irrlicht (3d lib): <a href="http://irrlicht.sourceforge.net/">http://irrlicht.sourceforge.net/</a><br>
+<br>
+<br>
+<u><b>Step 2: Define the Concept</b></u><br>
+<br>
+All games start here, merely ideas in someone's head.<br>
+First, come up with an idea for a game. Once you have a simple idea, expand on it. For example, if it is a board game, what is the objective/How do you win? What will the rules be like? etc. If your game will have characters or a story, create them. Make sure you have a pretty well defined concept of what your game will be when its finished. The more complex the game, the better you should plan it out in the beginning so you don't have to worry about the game itself while your coding. Keep in mind that your game WILL evolve as you create it.<br>
+<br>
+<br>
+<u><b>Step 3: Plan Your Engine</b></u><br>
+<br>
+Here, you will plan out the various components your game engine will need and how everything will fit together. Depending on the complexity of your project, you may not need to do this step. This is also a good time to test various parts of your engine that you have never implemented in the past, just to make sure they work before you put them in the main project source. Also, you should begin to design the structure of your classes here as well(if you are using OOP, which you should be). <b>Keep in mind, however, that there are pre-made engines out there, available for use in all kinds of projects.</b><br>
+<br>
+<br>
+<u><b>Step 4: Code Your Engine</b></u> (if your making your own)<br>
+<br>
+Now its time to actually start coding your engine. This doesn't necessarily mean the game itself, but rather, core rendering, physics, file handling and the like, functions and classes that will be used to construct your game. However, depending on the complexity of the game, the engine and game code may be the same. Also, a more complex game will probably require a resource manager. A resource manager does what it sounds like, it manages your resources (graphics, music, sounds, etc). It also keeps your code clean and helps to avoid memory leaks. See an excellent resource manager below by <b>Xander314</b>.  Try to give your entire engine some kind of compact, easy interface for use as well. That way, when you program your game, you don't have search through source to find functions names and the like. An easy way of doing this would be OOP.<br>
+Like so:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br></code></pre></td>
+<td class="source"><pre><code><cite>//put related components into classes</cite>
+<var>class</var> collisions {
+    <var>bool</var> check_col(obj1*, obj2*); <cite>//you should use a template for the objects</cite>
+    <var>void</var> handle_col(obj1*, obj2*); <cite>//so you can test players, bullets, bots with the same function</cite>
+
+    <var>public</var>:
+        <var>void</var> handle_all(); <cite>//handles EVERYTHING collision related</cite>
+    }Collision;
+
+<var>class</var> rendering {
+    <var>void</var> bots();
+    <var>void</var> bullets();
+    <var>void</var> players();
+
+    <var>public</var>:
+        <var>void</var> draw_all(); <cite>//calls other functions for rendering</cite>
+    }Renderer;
+
+<cite>//this allows collision management and rendering in your game loop to be as simple as:</cite>
+Renderer.draw_all();
+Collision.handle_all();</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Resource Manager by <b>Xander314</b>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br>59<br>60<br>61<br>62<br>63<br>64<br>65<br>66<br>67<br>68<br>69<br>70<br>71<br>72<br>73<br>74<br>75<br>76<br>77<br>78<br>79<br>80<br>81<br>82<br>83<br>84<br>85<br>86<br>87<br>88<br>89<br>90<br>91<br>92<br>93<br>94<br>95<br>96<br>97<br>98<br>99<br>100<br>101<br>102<br>103<br>104<br>105<br>106<br>107<br>108<br>109<br>110<br>111<br>112<br>113<br>114<br>115<br>116<br>117<br>118<br>119<br>120<br>121<br>122<br>123<br>124<br>125<br>126<br>127<br>128<br>129<br>130<br>131<br>132<br>133<br>134<br>135<br>136<br>137<br></code></pre></td>
+<td class="source"><pre><code><cite>/*
+ ResourceManagerB.hpp - Generic template resource manager				
+									
+ (C) Alexander Thorne (SFML Coder) 2011	
+ <a href="http://sfmlcoder.wordpress.com/">http://sfmlcoder.wordpress.com/</a>	
+		
+ Manages loading and unloading of a resource type specified by a
+ template argument.
+
+****************************************************************/</cite>
+
+<dfn>#include &lt;map&gt;</dfn>
+<dfn>#include &lt;string&gt;</dfn>
+<dfn>#include &lt;exception&gt;</dfn>
+
+<var>typedef</var> <var>const</var> std::string URI;
+
+<cite>// exceptions</cite>
+<var>namespace</var> Exceptions {
+
+	<cite>// thrown if user requests a resource URI not present in the manager's list</cite>
+	<var>class</var> URINotFound : <var>public</var> std::runtime_error 
+	{ 
+	<var>public</var>: 
+		URINotFound(<var>const</var> std::string&amp; Message = <kbd>"The specified URI was not found in the resource index."</kbd>)
+			: runtime_error(Message) { } 
+	};
+
+	<cite>// thrown if a resource allocation fails</cite>
+	<var>class</var> BadResourceAllocation : <var>public</var> std::runtime_error {
+	<var>public</var>: 
+		BadResourceAllocation(<var>const</var> std::string&amp; Message = <kbd>"Failed to allocate memory for resource."</kbd>)
+			: runtime_error(Message) {}
+	};
+}
+
+<var>template</var> &lt;<var>class</var> Resource&gt; <var>class</var> ResourceManagerB {
+	<var>typedef</var> std::pair&lt;URI, Resource*&gt; ResourcePair;
+	<var>typedef</var> std::map&lt;URI, Resource*&gt; ResourceList;
+
+	<cite>// the list of the manager's resources</cite>
+	ResourceList Resources;
+<var>public</var>:
+	~ResourceManagerB() { UnloadAll(); }
+
+	<cite>// Load a resource with the specified URI</cite>
+	<cite>// the URI could represent, e.g, a filename</cite>
+	URI&amp; Load(URI&amp; Uri);
+	<cite>// unload a resource with the specified URI</cite>
+	<var>void</var> Unload(URI&amp; Uri);
+	<cite>// unload all resources</cite>
+	<var>void</var> UnloadAll();
+
+	<cite>// get a pointer to a resource</cite>
+	Resource* GetPtr(URI&amp; Uri);
+	<cite>// get a reference to a resource</cite>
+	Resource&amp; Get(URI&amp; Uri);
+};
+
+<var>template</var> &lt;<var>class</var> Resource&gt;
+URI&amp; ResourceManagerB&lt;Resource&gt;::Load(URI&amp; Uri)
+{
+	<cite>// check if resource URI is already in list</cite>
+	<cite>// and if it is, we do no more</cite>
+	<var>if</var> (Resources.find(Uri) == Resources.end())
+	{
+		<cite>// try to allocate the resource</cite>
+		<cite>// NB: if the Resource template argument does not have a</cite>
+		<cite>// constructor accepting a const std::std::string, then this</cite>
+		<cite>// line will cause a compiler error</cite>
+		Resource* temp = <var>new</var> (std::nothrow) Resource(Uri);
+		<cite>// check if the resource failed to be allocated</cite>
+		<cite>// std::nothrow means that if allocation failed</cite>
+		<cite>// temp will be 0</cite>
+		<var>if</var> (!temp)
+			<var>throw</var> Exceptions::BadResourceAllocation();
+		<cite>// add the resource and it's URI to the manager's list</cite>
+		Resources.insert(ResourcePair(Uri, temp));
+	}
+	<var>return</var> Uri;
+}
+
+<var>template</var> &lt;<var>class</var> Resource&gt;
+<var>void</var> ResourceManagerB&lt;Resource&gt;::Unload(URI&amp; Uri)
+{
+	<cite>// try to find the specified URI in the list</cite>
+	ResourceList::const_iterator itr = Resources.find(Uri);
+	<cite>// if it is found...</cite>
+	<var>if</var> (itr != Resources.end())
+	{
+		<cite>// ... deallocate it</cite>
+		<var>delete</var> itr-&gt;second;
+		<cite>// then remove it from the list</cite>
+		Resources.erase(Uri);
+	}
+}
+
+<var>template</var> &lt;<var>class</var> Resource&gt;
+<var>void</var> ResourceManagerB&lt;Resource&gt;::UnloadAll()
+{
+	<cite>// iterate through every element of the resource list</cite>
+	ResourceList::iterator itr;
+	<var>for</var> (itr = Resources.begin(); itr != Resources.end(); itr++)
+		<cite>// delete each resource</cite>
+		<var>delete</var> itr-&gt;second;
+	<cite>// finally, clear the list</cite>
+	Resources.clear();
+}
+
+<var>template</var> &lt;<var>class</var> Resource&gt;
+Resource* ResourceManagerB&lt;Resource&gt;::GetPtr(URI&amp; Uri)
+{
+	<cite>// find the specified URI in the list</cite>
+	ResourceList::const_iterator itr;
+	<cite>// if it is there...</cite>
+	<var>if</var> ((itr = Resources.find(Uri)) != Resources.end())
+		<cite>// ... return a pointer to the corresponding resource</cite>
+		<var>return</var> itr-&gt;second;
+	<cite>// ... else return 0</cite>
+	<var>return</var> 0;
+}
+
+<var>template</var> &lt;<var>class</var> Resource&gt;
+Resource&amp; ResourceManagerB&lt;Resource&gt;::Get(URI&amp; Uri)
+{
+	<cite>// get a pointer to the resource</cite>
+	Resource* temp = GetPtr(Uri);
+	<cite>// if the resource was found...</cite>
+	<var>if</var> (temp)
+		<cite>// ... dereference the pointer to return a reference</cite>
+		<cite>// to the resource</cite>
+		<var>return</var> *temp;
+	<var>else</var>
+		<cite>// ... else throw an exception to notify the caller that</cite>
+		<cite>// the resource was not found</cite>
+		<var>throw</var> Exceptions::URINotFound();
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTme1f0b24194" title="Thu, 02 Jun 2011 10:19:28 +0000"></span><script type="text/javascript">WhenId('CH_zTme1f0b24194');</script><noscript>Jun 2, 2011 at 10:19am UTC</noscript></span>
+<span class="dbtn" id="CH_btn233169"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg233170"><span title="233170,52020,1023,1147,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg233170" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm7ba2eaac73" title="Mon, 16 May 2011 22:07:53 +0000"></span><script type="text/javascript">WhenId('CH_zTm7ba2eaac73');</script><noscript>May 16, 2011 at 10:07pm UTC</noscript></div>
+<div class="dwho"><a href="/user/ModShop/"><b>ModShop</b> (1147)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i233170">
+<u><b>Step 5: Graphics/Sounds</b></u><br>
+<br>
+Based on your game concept, start creating your graphics and sound effects/music. As you get further into development, you will probably need to create more GFX and SFX and possibly discard unneeded ones. This step may continue through the entire process of development.<br>
+<br>
+<br>
+<u><b>Step 6: Code Your Game</b></u><br>
+<br>
+Once you have your engine complete and working, you can start to code your actual game. This involves anything specific such as rules, story, etc. Your main game loop will be here as well. This is the loop that runs over and over and updates everything in your game. See example below. If you made your engine right, this should be easier than coding your engine, and more fun! This will probably be where you add your sounds as well. Once this stage is complete, you should have a working copy of your game. Make sure you get it just how you want it!<br>
+<br>
+<i>Game Loop:</i>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br></code></pre></td>
+<td class="source"><pre><code><cite>//your loop will probaly be very different from this, especially for board games</cite>
+<cite>//but this is the basic structure</cite>
+
+<var>while</var> (!Game.lost()) <cite>//or whatever your condition is (esc key not pressed, etc)</cite>
+{
+    Game.handle_input(); <cite>//get user input</cite>
+
+    AI.update_bots(); <cite>//let your bots move</cite>
+
+    Collision.handle_col(); <cite>//check for collisions</cite>
+
+    Game.check_win(); <cite>//see if the player won or lost</cite>
+
+    Renderer.draw_all(); <cite>//draw everything</cite>
+
+    Game.sleep(); <cite>//pause so your game doesn't run too fast</cite>
+    <cite>//your game lib of choice will have a function for this</cite>
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<u><b>Step 7: Optimize</b></u><br>
+<br>
+Just because your game works, doesn't mean its finished. Besides adding in last minute details, there will probably be optimizations that you can put in your code. This involves memory usage (try not to use global variables, check for memory leaks, etc) as well as speed (make sure your code isn't too slow or overly demanding on the CPU for whatever its doing). General debugging can also be grouped here too.<br>
+<br>
+<br>
+<u><b>Step 8: Package and Distribute</b></u><br>
+<br>
+Now that your game is finished, you need to package it and then distribute it as you wish. For packaging, try to keep it organized and put the final product into a single file (installer package, zip file, etc). This makes distribution MUCH easier.<br>
+<br>
+<br>
+<u><b>Tips:</b></u><br>
+<br>
+I've learned many things about making games, some things the hard way. Here are some things that you should do:<br>
+<br>
+<div class="centertext">First, stay organized! You should have a good organizational system for everything; your code, your graphics, your sound effects, etc. I would suggest putting code into different files based on what it does. i.e, collision detection/resolution code in one file, resource management in another, AI in its own file, etc. This way, if you need to track down a bug, it will be MUCH easier to find various functions, and possibly, the bug itself. Keeping the structure of your code organized can help as well (i.e. have classes for various purposes; rendering, AI, collision detection, etc. Rather than hundreds of void some_func()'s all over).<br>
+<br>
+Also, try to keep your code clean and efficient. Reuse variables where you can, minimize use of global variables, check for memory leaks, don't load all of your graphics/sounds at once, etc.<br>
+<br>
+<small><i>Some starting tips from <b>chrisname</b>:</i></small>
+<table class="quote"><tr><th class="qh"><strong>chrisname</strong> wrote:</th></tr><tr><td class="qd">You don't need to work that hard. What you need to do, is go through a programming tutorial (the one on this website for example). Don't do too much in a day, or you will get bored and unmotivated. Don't set a goal based on time, that doesn't work. You'll forget alot of what you learn if you stop halfway through a lesson. Work through the tutorial on this website ( <a href="http://cplusplus.com/doc/tutorial/">http://cplusplus.com/doc/tutorial/</a> ). Aim to get through two lessons a day. Don't stop partway through a lesson (unless it's for a short break, that's a good idea) and don't do too much in one go, or you simply won't remember it. I recommend reading and copying out each example (not copy and paste; type it yourself, this will help you to understand what you are doing), compiling it, seeing what it does when you run it and modifying things to see what changes. I also recommend you look at other people's code (one of the things that has helped me is to take other people's broken code and try to fix it, although don't get too hung up on this because it is hard to read other people's code when you first start out). When you are reading, try to rephrase things: "If you can't explain it simply, you don't understand it well enough." (Albert Einstein).<br>
+<br>
+Once you've gone through this tutorial, and maybe some others (I read about three different tutorials because it was useful to have things said in a different way - I find having something explained in two different ways is useful for understanding and remembering it), you could read through the tutorials for SFML ( <a href="http://sfml-dev.org/tutorials/1.6/">http://sfml-dev.org/tutorials/1.6/</a> ). Learning SFML will teach you to make 2D games. I'd also recommend learning SDL ( <a href="http://lazyfoo.net/SDL_tutorials/index.php">http://lazyfoo.net/SDL_tutorials/index.php</a> ) because lots of games use it and you will most probably come across it eventually.<br>
+<br>
+After that, you should get into OpenGL programming if you want to make 3D games. SFML makes this very easy, and the SFML tutorial includes a tutorial for using OpenGL. For OpenGL, perhaps someone here can recommend you a book or tutorial.<br>
+<br>
+<br>
+<br>
+Throughout all this you should remember that it is important to pace yourself. Don't try to absorb too much at once or you'll forget lots of it. And don't stay up until 3am when you have an exam the day after next... </td></tr></table> </div><br>
+<br>
+There are many other things that can be done to make development easier and your game more efficient, but, these are the biggies.<br>
+<br>
+__________________________________________________________________________<br>
+<br>
+That's my 2 cents on game development and the general process. If you feel that I am wrong somewhere, or missed something, please let me know.
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTmad99a8aa32" title="Sat, 04 Jun 2011 02:32:21 +0000"></span><script type="text/javascript">WhenId('CH_zTmad99a8aa32');</script><noscript>Jun 4, 2011 at 2:32am UTC</noscript></span>
+<span class="dbtn" id="CH_btn233170"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg233171"><span title="233171,52020,1023,1147,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg233171" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmca8aca534b" title="Mon, 16 May 2011 22:08:00 +0000"></span><script type="text/javascript">WhenId('CH_zTmca8aca534b');</script><noscript>May 16, 2011 at 10:08pm UTC</noscript></div>
+<div class="dwho"><a href="/user/ModShop/"><b>ModShop</b> (1147)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i233171">
+Reserved
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn233171"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg233187"><span title="233187,19724,5119,4176,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg233187" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm5b08fafde7" title="Mon, 16 May 2011 23:43:06 +0000"></span><script type="text/javascript">WhenId('CH_zTm5b08fafde7');</script><noscript>May 16, 2011 at 11:43pm UTC</noscript></div>
+<div class="dwho"><a href="/user/TheRabbitologist/"><b>TheRabbitologist</b> (4176)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i233187">
+<del>Just so you know, OpenGL isn't a game library, it's a graphics library i.e. it won't get you sound. ;)</del><br>
+EDIT: Fixed. :P<br>
+<br>
+-Albatross
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTme8aa45516b" title="Tue, 17 May 2011 01:50:56 +0000"></span><script type="text/javascript">WhenId('CH_zTme8aa45516b');</script><noscript>May 17, 2011 at 1:50am UTC</noscript></span>
+<span class="dbtn" id="CH_btn233187"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg233199"><span title="233199,52020,1023,1147,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg233199" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmc412767345" title="Tue, 17 May 2011 00:44:20 +0000"></span><script type="text/javascript">WhenId('CH_zTmc412767345');</script><noscript>May 17, 2011 at 12:44am UTC</noscript></div>
+<div class="dwho"><a href="/user/ModShop/"><b>ModShop</b> (1147)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i233199">
+I know :) OpenGL is used by many Professionals and is a very good lib, so I thought it was worth mentioning.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn233199"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg233265"><span title="233265,53221,1023,1383,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg233265" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmcb898c682d" title="Tue, 17 May 2011 07:11:35 +0000"></span><script type="text/javascript">WhenId('CH_zTmcb898c682d');</script><noscript>May 17, 2011 at 7:11am UTC</noscript></div>
+<div class="dwho"><a href="/user/Xander314/"><b>Xander314</b> (1383)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i233265">
+What about Irrlicht/Irrklang? The latter isn't under a free license I don't think. Has anyone had any experience with these libraries?
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn233265"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg233337"><span title="233337,19724,5119,4176,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg233337" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm313799c570" title="Tue, 17 May 2011 14:27:57 +0000"></span><script type="text/javascript">WhenId('CH_zTm313799c570');</script><noscript>May 17, 2011 at 2:27pm UTC</noscript></div>
+<div class="dwho"><a href="/user/TheRabbitologist/"><b>TheRabbitologist</b> (4176)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i233337">
+Irrlicht is ridiculously easy to use and it is a fast renderer especially on older systems, but its development has slowed and it still has a few internal design flaws.<br>
+<br>
+I haven't used Irrklang.<br>
+<br>
+-Albatross
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm3a626209da" title="Tue, 17 May 2011 14:28:20 +0000"></span><script type="text/javascript">WhenId('CH_zTm3a626209da');</script><noscript>May 17, 2011 at 2:28pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn233337"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg233444"><span title="233444,52020,1023,1147,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg233444" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm51d7848048" title="Tue, 17 May 2011 19:30:27 +0000"></span><script type="text/javascript">WhenId('CH_zTm51d7848048');</script><noscript>May 17, 2011 at 7:30pm UTC</noscript></div>
+<div class="dwho"><a href="/user/ModShop/"><b>ModShop</b> (1147)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i233444">
+I've heard of Irrlicht, but I haven't used it, so I can't say I know much about it. I'll add it to the list.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn233444"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg238583"><span title="238583,53221,1023,1383,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg238583" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm5c21de50c6" title="Wed, 01 Jun 2011 17:50:45 +0000"></span><script type="text/javascript">WhenId('CH_zTm5c21de50c6');</script><noscript>Jun 1, 2011 at 5:50pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Xander314/"><b>Xander314</b> (1383)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i238583">
+I recently found a resource manager on the SFML website which combined the load and get functions, i.e. if a resource that was not loaded was requested, it was loaded. Mine on the other hand separates these operations.<br>
+<br>
+Which approach do you think is best? Do you think I should completely change mine to that approach, or make it optional? As far as I can see, it is not necessarily a good idea - if for whatever reason resources failed to load, do you want the game randomly seizing up as it tries to load them in the middle of everything? I'm not sure if it's a good idea or not...
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm7658818ac9" title="Wed, 01 Jun 2011 17:51:20 +0000"></span><script type="text/javascript">WhenId('CH_zTm7658818ac9');</script><noscript>Jun 1, 2011 at 5:51pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn238583"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg238641"><span title="238641,52020,1023,1147,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg238641" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm13302aff8b" title="Wed, 01 Jun 2011 19:55:04 +0000"></span><script type="text/javascript">WhenId('CH_zTm13302aff8b');</script><noscript>Jun 1, 2011 at 7:55pm UTC</noscript></div>
+<div class="dwho"><a href="/user/ModShop/"><b>ModShop</b> (1147)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i238641">
+It depends on the application I suppose. You could have state flags within the manager class, similar to those in fstream. When the manager attempts to load a resource, if it fails, it could set the flags to error state. Then the could be checked by the function requesting the resource. But with that, you don't know which resource failed unless you check the flags EVERY time you get a new resource.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn238641"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg238681"><span title="238681,53221,1023,1383,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg238681" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm8f26193f5b" title="Wed, 01 Jun 2011 21:02:17 +0000"></span><script type="text/javascript">WhenId('CH_zTm8f26193f5b');</script><noscript>Jun 1, 2011 at 9:02pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Xander314/"><b>Xander314</b> (1383)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i238681">
+Hmmm. I'll look into it. What about a const boost variable/template parameter to specify whether the log should load on the fly or throw an exception? 
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn238681"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg238743"><span title="238743,52020,1023,1147,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg238743" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm6f6fd00e07" title="Thu, 02 Jun 2011 01:08:56 +0000"></span><script type="text/javascript">WhenId('CH_zTm6f6fd00e07');</script><noscript>Jun 2, 2011 at 1:08am UTC</noscript></div>
+<div class="dwho"><a href="/user/ModShop/"><b>ModShop</b> (1147)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i238743">
+Sounds good to me. You probably know more than me here, so its up to you.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn238743"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg238772"><span title="238772,15588,0,2731,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg238772" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm9f6d313b66" title="Thu, 02 Jun 2011 02:38:25 +0000"></span><script type="text/javascript">WhenId('CH_zTm9f6d313b66');</script><noscript>Jun 2, 2011 at 2:38am UTC</noscript></div>
+<div class="dwho">closed account (<i><a href="/user/closed_account_S6k9GNh0/">S6k9GNh0</a></i>)</div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i238772">
+If you really wanted to get picky, you could say OpenGL isn't a library of itself. It's actually a specification...<br>
+<br>
+Also, I'd think there should be <b>Choose your engine</b> rather than plan or code your engine. Most of the time, you'd just choose an engine, not actually make your own, as there is already hundreds available, good and bad. Then discuss the slim chance of you needing an actual custom engine. 
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm17a7fbf954" title="Thu, 02 Jun 2011 02:42:14 +0000"></span><script type="text/javascript">WhenId('CH_zTm17a7fbf954');</script><noscript>Jun 2, 2011 at 2:42am UTC</noscript></span>
+<span class="dbtn" id="CH_btn238772"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg238813"><span title="238813,53221,1023,1383,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg238813" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm7a2b1a0b45" title="Thu, 02 Jun 2011 06:21:05 +0000"></span><script type="text/javascript">WhenId('CH_zTm7a2b1a0b45');</script><noscript>Jun 2, 2011 at 6:21am UTC</noscript></div>
+<div class="dwho"><a href="/user/Xander314/"><b>Xander314</b> (1383)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i238813">
+Hehe whoops. I'm writing my own engine with SFML. Perhaps its a bad idea, but it's too late to stop now and besides, I need something to talk about on my blog...
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn238813"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg239284"><span title="239284,15588,0,2731,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg239284" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmb6e876981d" title="Fri, 03 Jun 2011 19:26:06 +0000"></span><script type="text/javascript">WhenId('CH_zTmb6e876981d');</script><noscript>Jun 3, 2011 at 7:26pm UTC</noscript></div>
+<div class="dwho">closed account (<i><a href="/user/closed_account_S6k9GNh0/">S6k9GNh0</a></i>)</div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i239284">
+There aren't many engines that use SFML though so what's wrong with that? If you were making one that used SDL, I might think differently.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn239284"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg239290"><span title="239290,53221,1023,1383,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg239290" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm72e0c58fac" title="Fri, 03 Jun 2011 19:51:22 +0000"></span><script type="text/javascript">WhenId('CH_zTm72e0c58fac');</script><noscript>Jun 3, 2011 at 7:51pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Xander314/"><b>Xander314</b> (1383)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i239290">
+Thats alright then. I think there is an auxiliary library written by some SFML forum regular, but as far as I can see I can't keep just climbing levels of abstraction or I'll end up with little knowledge of how much of the code works.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn239290"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg239356"><span title="239356,59313,1023,4,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg239356" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm240ddbe607" title="Fri, 03 Jun 2011 23:28:43 +0000"></span><script type="text/javascript">WhenId('CH_zTm240ddbe607');</script><noscript>Jun 3, 2011 at 11:28pm UTC</noscript></div>
+<div class="dwho"><a href="/user/L2_SNIPE/"><b>L2 SNIPE</b> (4)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i239356">
+Hello, <br>
+I'm new to C++. I have been drawing art for 4 years now, from since I was 13 and I would like to make an 8BIT game. My mind is a blank slate, I havn't the slightest clue how to get these pictures onto a screen. My friend showed me the "Hello World" thing on Code Blocks but that's my extent of knowledge, but I am keen to learn. I have 4 months of time and am willing to go through 100 hours of work a week to finish this. I have drawn everything out on paper and haven't the slightest clue where to move on from there. I was wondering if you could point me in the right direction. I've read through your guide but due to lack of knowledge I didn't understand allot of it.<br>
+Would appreciate any help, <br>
+- snipe
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn239356"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg239370"><span title="239370,21799,1023,7398,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg239370" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTme8fd073c18" title="Sat, 04 Jun 2011 01:58:16 +0000"></span><script type="text/javascript">WhenId('CH_zTme8fd073c18');</script><noscript>Jun 4, 2011 at 1:58am UTC</noscript></div>
+<div class="dwho"><a href="/user/chrisname/"><b>chrisname</b> (7398)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i239370">
+You don't need to work that hard. What you need to do, is go through a programming tutorial (the one on this website for example). Don't do too much in a day, or you will get bored and unmotivated. Don't set a goal based on time, that doesn't work. You'll forget alot of what you learn if you stop halfway through a lesson. Work through the tutorial on this website ( <a href="http://cplusplus.com/doc/tutorial/">http://cplusplus.com/doc/tutorial/</a> ). Aim to get through two lessons a day. Don't stop partway through a lesson (unless it's for a short break, that's a good idea) and don't do too much in one go, or you simply won't remember it. I recommend reading and copying out each example (not copy and paste; type it yourself, this will help you to understand what you are doing), compiling it, seeing what it does when you run it and modifying things to see what changes. I also recommend you look at other people's code (one of the things that has helped me is to take other people's broken code and try to fix it, although don't get too hung up on this because it is hard to read other people's code when you first start out). When you are reading, try to rephrase things: "If you can't explain it simply, you don't understand it well enough." (Albert Einstein).<br>
+<br>
+Once you've gone through this tutorial, and maybe some others (I read about three different tutorials because it was useful to have things said in a different way - I find having something explained in two different ways is useful for understanding and remembering it), you could read through the tutorials for SFML ( <a href="http://sfml-dev.org/tutorials/1.6/">http://sfml-dev.org/tutorials/1.6/</a> ). Learning SFML will teach you to make 2D games. I'd also recommend learning SDL ( <a href="http://lazyfoo.net/SDL_tutorials/index.php">http://lazyfoo.net/SDL_tutorials/index.php</a> ) because lots of games use it and you will most probably come across it eventually.<br>
+<br>
+After that, you should get into OpenGL programming if you want to make 3D games. SFML makes this very easy, and the SFML tutorial includes a tutorial for using OpenGL. For OpenGL, perhaps someone here can recommend you a book or tutorial.<br>
+<br>
+<br>
+<br>
+Throughout all this you should remember that it is important to pace yourself. Don't try to absorb too much at once or you'll forget lots of it. And don't stay up until 3am when you have an exam the day after next...
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn239370"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg239377"><span title="239377,52020,1023,1147,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg239377" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm15e95aff68" title="Sat, 04 Jun 2011 02:32:55 +0000"></span><script type="text/javascript">WhenId('CH_zTm15e95aff68');</script><noscript>Jun 4, 2011 at 2:32am UTC</noscript></div>
+<div class="dwho"><a href="/user/ModShop/"><b>ModShop</b> (1147)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i239377">
+Thanks chrisname! I put your post in the article.<br>
+<br>
+<br>
+@L2 SNIPE:<br>
+Sorry, didn't see your post before. As chrisname said, I would recommend going through the tutorials on this site. After that, choose your game library (the ones listed in my article are some of the more popular, well-documented libs, but there are MANY more). Get familiar with the library you chose, then start making some SIMPLE games. Pong, mazes, etc. As you get better, attempt larger, more complex projects.  Continue working your way up, setting little goals as you go.
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTmfe3e2d7ea2" title="Sat, 04 Jun 2011 03:24:09 +0000"></span><script type="text/javascript">WhenId('CH_zTmfe3e2d7ea2');</script><noscript>Jun 4, 2011 at 3:24am UTC</noscript></span>
+<span class="dbtn" id="CH_btn239377"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg239434"><span title="239434,59313,1023,4,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg239434" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmd29529308a" title="Sat, 04 Jun 2011 07:28:36 +0000"></span><script type="text/javascript">WhenId('CH_zTmd29529308a');</script><noscript>Jun 4, 2011 at 7:28am UTC</noscript></div>
+<div class="dwho"><a href="/user/L2_SNIPE/"><b>L2 SNIPE</b> (4)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i239434">
+Hello again,<br>
+Thank you for the help guys, I've bookmarked those links chrisname. Will be cracking on with the C++ tutorial now and I'll be sure not to rush myself. Will be scrolling through the forums from time to time to check on other peoples code as well like you said. Oh and Pong is a classic !<br>
+Thanks again<br>
+- snipe
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn239434"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div id="CH_insNew"></div><div id="CH_subscription"></div><div class="rootedtNew"></div><div class="C_pages right">Pages: <span title="Current page">1</span><a href="/forum/articles/43175/2/">2</a></div><script type="text/javascript">new for_PostList(43175,1,52020,0,'CH_PostList','CH_subscription',false,'CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+<script type="text/javascript">
+    google_ad_client = "ca-pub-1444228343479937";
+    google_ad_slot = "9701143201";
+    google_ad_width = 728;
+    google_ad_height = 90;
+</script>
+<!-- leaderboard -->
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li><a href="/forum/beginner/"><b>Beginners</b></a></li><li><a href="/forum/windows/"><b>Windows Programming</b></a></li><li><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li><a href="/forum/general/"><b>General C++ Programming</b></a></li><li><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Farticles%2F43175%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

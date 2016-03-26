@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Distributing dll, using boost. - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/general/">General C++ Programming</a></li>
+<li class="here">Distributing dll, using boost.</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico question" title="question">&nbsp;</div> Distributing dll, using boost.</h3><span id="CH_edttl"></span><span class="rootdatPost" title="185191,root,0,-1,9,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg904464"><span title="904464,213440,255,4,1"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg904464" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm64f182e809" title="Mon, 22 Feb 2016 18:31:20 +0000"></span><script type="text/javascript">WhenId('CH_zTm64f182e809');</script><noscript>Feb 22, 2016 at 6:31pm UTC</noscript></div>
+<div class="dwho"><a href="/user/zerophase/"><b>zerophase</b> (4)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i904464">
+I'm writing an application using the Unity game engine. There's some com port code in there, and the C# com port code was significantly slowing the application down. So, I switched to a C++ plugin for the com port code, and was able to get a port and read much faster. The only issue is it uses boost asio, and won't run on other computers.<br>
+<br>
+The project structure is:<br>
+   /repo<br>
+   |<br>
+   -- UnityProject<br>
+   | <br>
+   -- SerialCode<br>
+<br>
+When I build the C++ project it gets copied into the Unity 3D projects dll folder.<br>
+<br>
+Under linker settings I have Additional Library Directories set as C:\Users\User\Documents\boost_1_60_0\stage\lib<br>
+<br>
+I'm guessing I just need to include the asio dll with the project when I distribute it, but I don't see an asio dll or serial_port dll in the \stage\lib folder.<br>
+<br>
+Anyone know how I would correctly distribute an app using a dll calling boost code?<br>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn904464"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg904473"><span title="904473,13171,1023,12617,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg904473" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmc9bdbf9c2e" title="Mon, 22 Feb 2016 19:06:14 +0000"></span><script type="text/javascript">WhenId('CH_zTmc9bdbf9c2e');</script><noscript>Feb 22, 2016 at 7:06pm UTC</noscript></div>
+<div class="dwho"><a href="/user/helios/"><b>helios</b> (12617)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i904473">
+With the program running in the background, run Process Explorer. Select the process and click the button to display the lower pane that lists loaded executable images (note that there are two lower panes, and one displays open handles). Simply copy into the same directory as the main executable all the Boost DLLs that are loaded.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn904473"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg904484"><span title="904484,213440,255,4,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg904484" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm3cb6c4935a" title="Mon, 22 Feb 2016 20:01:51 +0000"></span><script type="text/javascript">WhenId('CH_zTm3cb6c4935a');</script><noscript>Feb 22, 2016 at 8:01pm UTC</noscript></div>
+<div class="dwho"><a href="/user/zerophase/"><b>zerophase</b> (4)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i904484">
+Hmm, I don't see any boost specific dlls listed. I just see SerialBufferControl.dll. Which is included in the data folder alongside the .exe.  Might boost show up if I just ran a C++ project using the same boost code?
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn904484"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg904494"><span title="904494,13171,1023,12617,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg904494" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm3628de9d35" title="Mon, 22 Feb 2016 20:41:14 +0000"></span><script type="text/javascript">WhenId('CH_zTm3628de9d35');</script><noscript>Feb 22, 2016 at 8:41pm UTC</noscript></div>
+<div class="dwho"><a href="/user/helios/"><b>helios</b> (12617)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i904494">
+Then you're not dynamically loading any Boost code and you don't need to do anything special to distribute your <del>code</del> program.
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm5d7c833714" title="Mon, 22 Feb 2016 20:41:43 +0000"></span><script type="text/javascript">WhenId('CH_zTm5d7c833714');</script><noscript>Feb 22, 2016 at 8:41pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn904494"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg904511"><span title="904511,213440,255,4,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg904511" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm5cbe7c0128" title="Mon, 22 Feb 2016 21:23:53 +0000"></span><script type="text/javascript">WhenId('CH_zTm5cbe7c0128');</script><noscript>Feb 22, 2016 at 9:23pm UTC</noscript></div>
+<div class="dwho"><a href="/user/zerophase/"><b>zerophase</b> (4)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i904511">
+Then I'm trying to figure out why the program would crash on my friends computer while getting serial ports. (his machine is a bit messed up, so it might just be his system) When I run it in a virtual machine with the bluetooth ports being passed through it just freezes at the loading screen, when the serial ports are gotten.  I'm able to get those ports with realterm, and read from them. I'm just going to let the virtual machine run for an hour to see if it's a speed issue, on less powerful hardware. Might I be linking the dll to a local folder directory?
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn904511"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg904525"><span title="904525,29924,1023,5406,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg904525" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm892cd340c4" title="Mon, 22 Feb 2016 21:55:32 +0000"></span><script type="text/javascript">WhenId('CH_zTm892cd340c4');</script><noscript>Feb 22, 2016 at 9:55pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Computergeek01/"><b>Computergeek01</b> (5406)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i904525">
+If the game crashed on your friends computer then it will have generated a crash report. Check: "Control Panel" -&gt; "Administrative Tools" -&gt; "Event Viewer" -&gt; "Windows Logs" -&gt; "Application" and look for a time stamp matching the latest crash. Generate one if you have to, but don't forget to hit Refresh in Event Viewer if you do this. Please then copy and paste the content of the Event Viewer entry in your next post.<br>
+<br>
+<table class="quote"><tr><th class="qh"><strong>OP</strong> wrote:</th></tr><tr><td class="qd">I'm able to get those ports with realterm, and read from them.</td></tr></table><br>
+I assume you mean from the VM right? It's a bit hard to follow your troubleshooting steps here. Paragraphs are nice, so are bulleted lists :P<br>
+<br>
+What share mode are the ports being opened up with? Is it possible that something in the other environment has handles to those ports open and your app is sitting and waiting for exclusive access?<br>
+<br>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn904525"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg904527"><span title="904527,213440,255,4,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg904527" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTma801aa9edd" title="Mon, 22 Feb 2016 22:04:20 +0000"></span><script type="text/javascript">WhenId('CH_zTma801aa9edd');</script><noscript>Feb 22, 2016 at 10:04pm UTC</noscript></div>
+<div class="dwho"><a href="/user/zerophase/"><b>zerophase</b> (4)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i904527">
+The ports are being passed through to VMWare. I had to pair the device to the host, and then pair it to the guest to get the ports through to the device. <br>
+<br>
+I have some Windows specific code that finds the outgoing com port. I'll run that, and see if the port gets found. <br>
+<br>
+I'll post that crash log once my friend is able to get to his computer.<br>
+<br>
+**Update: Alright, I installed Visual Studio on the Virtual Machine, with msvc 14.0, and the executable is now crashing.<br>
+<br>
+Here's the stack trace I get from that.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="output"><pre><samp>0x00007FFB986A1F08 (KERNELBASE) RaiseException
+0x00007FFB81124572 (VCRUNTIME140) CxxThrowException
+  ERROR: SymGetSymFromAddr64, GetLastError: 'Attempt to access invalid address.' (Address: 00007FFB81141D3B)
+0x00007FFB81141D3B (SerialBufferControl) 
+0x00007FFB81144CB8 (SerialBufferControl) Serial::Initialize
+0x0000000003FF8DE6 (Mono JIT Code) (wrapper managed-to-native) Assets.Scripts.ForceCellManipulation.ForceCellHandler:InitializeSerial ()
+0x0000000003FF8BFA (Mono JIT Code) Assets.Scripts.ForceCellManipulation.ForceCellHandler:Initialize ()
+0x0000000003FF895C (Mono JIT Code) LoadForceCell:Start ()
+0x0000000003FE8BBB (Mono JIT Code) (wrapper runtime-invoke) object:runtime_invoke_void__this__ (object,intptr,intptr,intptr)
+0x00007FFB636441BF (mono) mono_set_defaults
+0x00007FFB63598435 (mono) mono_runtime_invoke
+0x00007FF717E27D15 (Test) [c:\buildslave\unity\build\runtime\scripting\backend\scriptinginvocation.cpp:191] ScriptingInvocation::Invoke 
+0x00007FF717D80713 (Test) [c:\buildslave\unity\build\runtime\mono\monobehaviour.cpp:777] MonoBehaviour::InvokeMethodOrCoroutineChecked 
+0x00007FF717D80ABA (Test) [c:\buildslave\unity\build\runtime\mono\monobehaviour.cpp:859] MonoBehaviour::InvokeMethodOrCoroutineChecked 
+0x00007FF717D81395 (Test) [c:\buildslave\unity\build\runtime\mono\monobehaviour.cpp:486] MonoBehaviour::Start 
+0x00007FF717C46279 (Test) [c:\buildslave\unity\build\runtime\gamecode\calldelayed.cpp:180] DelayedCallManager::Update 
+0x00007FF717DE23DA (Test) [c:\buildslave\unity\build\runtime\misc\player.cpp:1589] PlayerLoop 
+0x00007FF717EACBB5 (Test) [c:\buildslave\unity\build\platformdependent\winplayer\winmain.cpp:546] MainMessageLoop 
+0x00007FF717EAF644 (Test) [c:\buildslave\unity\build\platformdependent\winplayer\winmain.cpp:963] PlayerWinMain 
+0x00007FF718304138 (Test) [f:\dd\vctools\crt_bld\self_64_amd64\crt\src\crt0.c:275] __tmainCRTStartup 
+0x00007FFB9B198102 (KERNEL32) BaseThreadInitThunk</samp></pre></td></tr></table></div><br>
+<br>
+I'm guessing that when Unity builds the dll, into the executable it's obfuscating what's going on with boost.
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTmbecc71f976" title="Mon, 22 Feb 2016 23:05:31 +0000"></span><script type="text/javascript">WhenId('CH_zTmbecc71f976');</script><noscript>Feb 22, 2016 at 11:05pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn904527"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg904690"><span title="904690,29924,1023,5406,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg904690" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm51373d1f20" title="Tue, 23 Feb 2016 14:22:29 +0000"></span><script type="text/javascript">WhenId('CH_zTm51373d1f20');</script><noscript>Feb 23, 2016 at 2:22pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Computergeek01/"><b>Computergeek01</b> (5406)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i904690">
+- Code runs with no visible problems on one machine but crashes on another. Or in other words, code exhibits undefined behavior; check. <br>
+- Code fails at a point where resources are being allocated, in this case port initialization; check.<br>
+- Code throws an "Attempt to access invalid address." exception and crashes; check.<br>
+<br>
+This has all of the hallmarks of a buffer overflow problem. Remember that CPP is not managed code, you have to allocate\deallocate some the buffers manually. Even if you think that you are allocating them all correctly then, as a diagnostic step, try arbitrarily doubling the size of all of your buffers and see if the problem goes away. If it does, then we know that you were not allocating enough memory for one or more of them. If it still fails then we are back to the drawing board. <br>
+<br>
+Actually, you have an address right there. You can try stepping into the code with the debugger and look at which buffer it's trying to write to.
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTmb239720472" title="Tue, 23 Feb 2016 14:27:19 +0000"></span><script type="text/javascript">WhenId('CH_zTmb239720472');</script><noscript>Feb 23, 2016 at 2:27pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn904690"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg904692"><span title="904692,13171,1023,12617,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg904692" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm60d8412061" title="Tue, 23 Feb 2016 14:30:13 +0000"></span><script type="text/javascript">WhenId('CH_zTm60d8412061');</script><noscript>Feb 23, 2016 at 2:30pm UTC</noscript></div>
+<div class="dwho"><a href="/user/helios/"><b>helios</b> (12617)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i904692">
+<table class="quote"><tr><td class="qd">I'm guessing that when Unity builds the dll, into the executable it's obfuscating what's going on with boost.</td></tr></table>To me it looks rather that you tried to pass to .NET an incorrect pointer or a pointer to a buffer that was too small. Actually, it could also be an issue in your marshaling code?
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn904692"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div class="rootbtnNew"></div><div id="CH_insNew"></div><div id="CH_reply">Registered users can post here. <a href="/user/">Sign in or register</a> to post.</div><div id="CH_subscription"></div><div class="rootedtNew"></div><script type="text/javascript">new for_PostList(185191,0,213440,0,'CH_PostList','CH_subscription','CH_reply','CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+<script type="text/javascript">
+    google_ad_client = "ca-pub-1444228343479937";
+    google_ad_slot = "9701143201";
+    google_ad_width = 728;
+    google_ad_height = 90;
+</script>
+<!-- leaderboard -->
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li><a href="/forum/beginner/"><b>Beginners</b></a></li><li><a href="/forum/windows/"><b>Windows Programming</b></a></li><li><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li class="selected"><a href="/forum/general/"><b>General C++ Programming</b></a></li><li><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Fgeneral%2F185191%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

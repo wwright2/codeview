@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Secrets of Boost Revealed: Checked Delet - C++ Articles</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/articles/">Articles</a></li>
+<li class="here">Secrets of Boost Revealed: Checked Delet</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div id="I_content">
+<div class="C_art">
+<div id="I_author">Published by <b><a href="/user/Luke_Leber/" rel="author">Luke Leber</a></b></div>
+<div id="I_date">Jun 16, 2011 (last update: Jun 16, 2011)</div>
+<h1>Secrets of Boost Revealed: Checked Delete</h1>
+<div id="I_score">Score: 3.4/5 (16 votes)</div>
+<div id="I_stars"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"></div>
+<div id="I_content">
+<div class="center"><b><u>Secrets of Boost Revealed</u></b>
+<br>
+<b>Boost C++ Libraries ( <a href="http://www.boost.org">http://www.boost.org</a> )</b>
+<br>
+<b>Topic / Idiom:</b> <i>Checked Delete</i>
+<br>
+<b>Contributor(s):</b> <i>Peter Dimov, Daniel Frey, Howard Hinnant</i>
+<br>
+<b>Boost Reference File(s):</b> <i><a href="http://www.boost.org/doc/libs/1_46_1/boost/checked_delete.hpp">http://www.boost.org/doc/libs/1_46_1/boost/checked_delete.hpp</a></i>
+<br>
+<b> Note - This document may contain errors, if you spot one (or a dozen of them), let me know please.</b>
+</div>
+<br>
+<b>Section I:</b> <i>What is the purpose?</i>
+<br>
+The checked delete idiom adds a compile-time safety check against deleting incomplete classes.  The C++ Standard mandates that a pointer to an incomplete class may be deleted, so long as the class has a <i>trivial desctructor</i> and <i>does not overload operator delete</i>.  Deleting pointers to classes with non-trivial destructors, or classes that overload operator delete results in <i>undefined behavior</i>.<br>
+<br>
+<b>Section II:</b> <i>Problematic Code Example</i>
+<br>
+Consider the following:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br>59<br>60<br>61<br>62<br>63<br>64<br>65<br>66<br>67<br>68<br>69<br>70<br>71<br>72<br>73<br>74<br>75<br>76<br>77<br></code></pre></td>
+<td class="source"><pre><code><cite>/* Deleter.hpp */</cite>
+
+<dfn>#include&lt;cstdlib&gt;</dfn>
+
+<var>class</var> A;
+<var>class</var> B;
+<var>class</var> C;
+<var>void</var> func1(A* a);
+<var>void</var> func2(B* b);
+<var>void</var> func3(C* c);
+<cite>/* End of Deleter.hpp */</cite>
+
+
+<cite>/* Deleter.cpp */</cite>
+<dfn>#include "Deleter.hpp"</dfn>
+<var>void</var> func1(A* a)
+{
+  <var>delete</var> a;
+}
+
+<var>void</var> func2(B* b)
+{
+  <var>delete</var> b;
+}
+
+<var>void</var> func3(C* c)
+{
+  <var>delete</var> c;
+}
+
+<cite>/* End of Deleter.cpp */</cite>
+
+<cite>/* Classes.hpp */</cite>
+<var>class</var> A
+{
+  <var>private</var>:
+    <var>int</var>* x;
+
+  <var>public</var>:
+    A(<var>void</var>)
+    {
+      x = <var>new</var> <var>int</var>(4);
+    }
+
+    ~A(<var>void</var>)
+    {
+      <var>delete</var> x;
+    }
+};
+
+<var>class</var> B { };
+
+<var>class</var> C
+{
+  <var>public</var>:
+    <var>void</var> <var>operator</var> <var>delete</var>(<var>void</var>* pointer)
+    {
+      free(pointer);
+    }
+};
+<cite>/* End of Classes.hpp */</cite>
+
+
+<cite>/* Main.cpp */</cite>
+<dfn>#include "Deleter.hpp"</dfn>
+<dfn>#include "Classes.hpp"</dfn>
+<var>int</var> main(<var>void</var>)
+{
+  A* a = <var>new</var> A;
+  func1(a); <cite>// &lt;-- Undefined Behavior - A has a non-trivial destructor</cite>
+  B* b = <var>new</var> B;
+  func2(b); <cite>// &lt;-- Legal - B has a trivial destructor and does not overload operator delete</cite>
+  C* c = <var>new</var> C;
+  func3(c); <cite>// &lt;-- Undefined Behavior - C has an overloaded operator delete</cite>
+  <var>return</var> 0;
+}
+<cite>/* End of Main.cpp */</cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Most compilers generate a warning when this occurs, however some compilers have been known not to catch these errors.  This is what the checked delete idiom is designed to remedy.<br>
+<br>
+<b>Section III:</b> <i>Line-By-Line Evaluation</i>
+<div class="center"><sub>The original source is listed at the top of this article.<br>
+The following code has been stripped of comments and preprocessor directives.</sub></div>
+<br>
+Boost's implementation of the checked delete idiom consists of two function templates and two class templates.<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br></code></pre></td>
+<td class="source"><pre><code><var>template</var>&lt;<var>class</var> T&gt; <var>void</var> checked_delete(T* p)
+{
+  <var>typedef</var> <var>char</var> type_must_be_complete[ <var>sizeof</var>(T)? 1: -1 ];
+  (<var>void</var>) <var>sizeof</var>(type_must_be_complete);
+  <var>delete</var> p;
+}
+
+<var>template</var>&lt;<var>class</var> T&gt; <var>struct</var> checked_deleter
+{
+  <var>typedef</var> <var>void</var> result_type;
+  <var>typedef</var> T * argument_type;
+  <var>void</var> <var>operator</var>()(T * x) <var>const</var>
+  {
+    boost::checked_delete(x);
+  }
+};
+
+
+<var>template</var>&lt;<var>class</var> T&gt; <var>void</var> checked_array_delete(T* p)
+{
+  <var>typedef</var> <var>char</var> type_must_be_complete[ <var>sizeof</var>(T)? 1: -1 ];
+  (<var>void</var>) <var>sizeof</var>(type_must_be_complete);
+  <var>delete</var> [] p;
+}
+
+<var>template</var>&lt;<var>class</var> T&gt; <var>struct</var> checked_array_deleter
+{
+  <var>typedef</var> <var>void</var> result_type;
+  <var>typedef</var> T * argument_type;
+  <var>void</var> <var>operator</var>()(T * x) <var>const</var>
+  {
+      boost::checked_array_delete(x);
+  }
+};</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+While the bodies of the code look very similar, one set is used to check <span class="auto"><code class="source"><var>operator</var> <var>delete</var></code></span> and the other is used to check <span class="auto"><code class="source"><var>operator</var> <var>delete</var>[]</code></span>.<br>
+<br>
+<b><i><u>Warning - The following contains opinions that cannot be cited to any documentation from boost.</u></i></b>
+<br>
+Lines 1-6<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br></code></pre></td>
+<td class="source"><pre><code><var>template</var>&lt;<var>class</var> T&gt; <var>void</var> checked_delete(T* p)
+{
+  <var>typedef</var> <var>char</var> type_must_be_complete[ <var>sizeof</var>(T)? 1: -1 ];
+  (<var>void</var>) <var>sizeof</var>(type_must_be_complete);
+  <var>delete</var> p;
+}
+<cite>// Line 3:</cite>
+<cite>//  sizeof(T) will either evaluate to 0,</cite>
+<cite>//  or cause a compiler error if T is an incomplete type.</cite>
+<cite>//  If sizeof(T) evaluates to 0, then a compiler error is</cite>
+<cite>//  caused by attempting to declare an array of -1 elements.</cite>
+<cite>//</cite>
+<cite>//  Line 4: * Citation Needed</cite>
+<cite>//   While I cannot be sure of why line 4 is there,</cite>
+<cite>//   I assume that it is to prevent the compiler from</cite>
+<cite>//   complaining about an unused variable, while at the</cite>
+<cite>//   same time helping it optimize the build casting the</cite>
+<cite>//   result of sizeof(type_must_be_completed) to void.</cite>
+<cite>//</cite>
+<cite>//  Line 5:</cite>
+<cite>//   operator delete is called on the parameter</cite>
+<cite>//</cite>
+<cite>//  Furthermore, it can be deduced that the defined</cite>
+<cite>//  type, `type_must_be_complete`, is named as such</cite>
+<cite>//  to aid in the debugging process, as it will show</cite>
+<cite>//  up in the compiler output as an indicator of where</cite>
+<cite>//  the problem lies. </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Lines 8-16<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br></code></pre></td>
+<td class="source"><pre><code><var>template</var>&lt;<var>class</var> T&gt; <var>struct</var> checked_deleter
+{
+  <var>typedef</var> <var>void</var> result_type;
+  <var>typedef</var> T * argument_type;
+  <var>void</var> <var>operator</var>()(T * x) <var>const</var>
+  {
+    boost::checked_delete(x);
+  }
+};
+<cite>//  Lines 3 &amp; 4:</cite>
+<cite>//   As far as I can see, lines 3 and 4 are present</cite>
+<cite>//   for documentation purposes.</cite>
+<cite>//  Lines 5-8:</cite>
+<cite>//   The overloaded operator() simply calls the corresponding</cite>
+<cite>//   function. </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Lines 19-34:<br>
+<i>The line-by-line for checked_array_delete is essentially the same as above.</i></div></div><div id="CH_bb"></div><div id="CH_scoreapp"></div><script type="text/javascript">new Score('CH_scoreapp','/articles/score.cgi','N8hv0pDG');</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder selected articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/articles/">Articles</a></b></h3>
+<ul>
+<li><a href="/articles/algorithms/">Algorithms</a></li><li><a href="/articles/cpp11/">C++ 11</a></li><li><a href="/articles/graphics/">Graphics and multimedia</a></li><li><a href="/articles/howto/">How-To</a></li><li><a href="/articles/language/">Language Features</a></li><li><a href="/articles/linux/">Unix/Linux programming</a></li><li><a href="/articles/sourcecode/">Source Code</a></li><li><a href="/articles/standard_library/">Standard Library</a></li><li><a href="/articles/tips/">Tips and Tricks</a></li><li><a href="/articles/tools/">Tools and Libraries</a></li><li><a href="/articles/visualcpp/">Visual C++</a></li><li><a href="/articles/winapi/">Windows API</a></li></ul>
+</div>
+<div id="I_subnav"></div>
+</div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Farticles%2FN8hv0pDG%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+onSession(function(us) {
+		document.getElementById('I_subnav').innerHTML=
+			us.ok?
+				'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul>'+
+				'<li><a href="/articles/myitems.cgi">My items</a></li>'+
+				(us.auth(32768)?'<li><a href="/articles/adminitems.cgi">Admin items</a></li>':'')+
+				'</ul></div>'
+			:'';
+	}); onSession(function (us) {
+		var el=document.getElementById('CH_bb'); el.innerHTML='';
+		if ( (us.auth(32768)) || ((us.uniqid=='3hM2Nwbp')&&(us.auth(128))) ) {
+			el.appendChild(btn('Edit article','Edit this version of the article','edit','/articles/edit.cgi?a=N8hv0pDG'));
+	
+			if (us.auth(32768)) {
+				el.appendChild(btn('Delete article','Delete this article','delete','javascript:artdel()'));
+			}
+	
+		}
+	});
+	function artdel() { if (confirm('WARNING: You are about to delete this page. Confirm?')) window.location='/articles/delete.cgi?a=N8hv0pDG'; }
+	ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>How sort a unordered_map in alphabetical - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/general/">General C++ Programming</a></li>
+<li class="here">How sort a unordered_map in alphabetical</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico default" title="post">&nbsp;</div> How sort a unordered_map in alphabetical order?</h3><span id="CH_edttl"></span><span class="rootdatPost" title="164440,root,0,-1,5,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg831593"><span title="831593,177556,1023,60,1"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg831593" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmf9ab5d637c" title="Thu, 07 May 2015 05:48:20 +0000"></span><script type="text/javascript">WhenId('CH_zTmf9ab5d637c');</script><noscript>May 7, 2015 at 5:48am UTC</noscript></div>
+<div class="dwho"><a href="/user/Ozzy69/"><b>Ozzy69</b> (60)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i831593">
+Hi, i want sort this unordered_map in alphabetical order with the function sort of the library algorithm using vectors. Look the my code! Help me!<br>
+<br>
+#include &lt;iostream&gt;<br>
+#include &lt;algorithm&gt;<br>
+#include &lt;string&gt;<br>
+#include &lt;unordered_map&gt;<br>
+<br>
+using namespace std;<br>
+<br>
+int main()<br>
+<br>
+{<br>
+    unordered_map&lt;string, int&gt; h;<br>
+<br>
+<br>
+    h["GG"] = 5;<br>
+    h["HF"] = 1;<br>
+    h["GL"] = 3;<br>
+    h["SS"] = 6;<br>
+<br>
+<br>
+    unordered_map&lt;string, int&gt;::iterator it;<br>
+<br>
+    for(it = h.begin(); it != h.end(); it++)<br>
+        cout &lt;&lt;(*it).first &lt;&lt; endl;<br>
+<br>
+    return 0;<br>
+}<br>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn831593"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg831603"><span title="831603,72446,1023,7402,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg831603" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm688197e16b" title="Thu, 07 May 2015 06:49:12 +0000"></span><script type="text/javascript">WhenId('CH_zTm688197e16b');</script><noscript>May 7, 2015 at 6:49am UTC</noscript></div>
+<div class="dwho"><a href="/user/Peter87/"><b>Peter87</b> (7402)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i831603">
+Loop through the unordered_map and add each key to the vector and then sort the vector after the loop. Or you could simply use std::map instead of std::unordered_map and it would always be sorted automatically. 
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm835a70c611" title="Thu, 07 May 2015 07:08:41 +0000"></span><script type="text/javascript">WhenId('CH_zTm835a70c611');</script><noscript>May 7, 2015 at 7:08am UTC</noscript></span>
+<span class="dbtn" id="CH_btn831603"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg831616"><span title="831616,166975,1023,810,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg831616" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmd1603bee5c" title="Thu, 07 May 2015 08:44:51 +0000"></span><script type="text/javascript">WhenId('CH_zTmd1603bee5c');</script><noscript>May 7, 2015 at 8:44am UTC</noscript></div>
+<div class="dwho"><a href="/user/Gamer2015/"><b>Gamer2015</b> (810)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i831616">
+<table class="quote"><tr><td class="qd">Hi, i want sort this unordered_map in alphabetical order with the function sort of the library algorithm using vectors. Look the my code! Help me!</td></tr></table><br>
+Sort requires a container to have a random-access-operator, unordered map does not fulfill that condition so you can't sort it with sort.<br>
+<br>
+You could, like Peter87 said, use std::map instead of std::unordered_map, then the keys will allways be sorted.<br>
+The standard sort condition is allways less-than, so the smallest element will be at the beginning.<br>
+If you want to have it sorted differently use the 3rd template parameter to give it a compare predicate, for example a function-object from the c++ standard.<br>
+The c++ standard provides a list of function-objects for comparison: <a href="http://www.cplusplus.com/reference/functional/">http://www.cplusplus.com/reference/functional/</a><br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;iostream&gt;</dfn>
+<dfn>#include &lt;algorithm&gt;</dfn>
+<dfn>#include &lt;string&gt;</dfn>
+<dfn>#include &lt;map&gt;</dfn>
+<dfn>#include &lt;functional&gt;</dfn>
+
+<var>using</var> <var>namespace</var> std;
+
+<var>int</var> main()
+{
+    map&lt;string, <var>int</var>, std::greater&lt;std::string&gt;&gt; h;
+
+    h[<kbd>"GG"</kbd>] = 5;
+    h[<kbd>"HF"</kbd>] = 1;
+    h[<kbd>"GL"</kbd>] = 3;
+    h[<kbd>"SS"</kbd>] = 6;
+
+    map&lt;string, <var>int</var>&gt;::iterator it;
+
+    <var>for</var>(it = h.begin(); it != h.end(); it++)
+        cout &lt;&lt;(*it).first &lt;&lt; endl;
+
+    <var>return</var> 0;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn831616"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg831691"><span title="831691,177556,1023,60,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg831691" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm55991bc13e" title="Thu, 07 May 2015 15:33:29 +0000"></span><script type="text/javascript">WhenId('CH_zTm55991bc13e');</script><noscript>May 7, 2015 at 3:33pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Ozzy69/"><b>Ozzy69</b> (60)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i831691">
+Peter87, can you show me in code this that write.... I'm with difficults!!!
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn831691"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg831707"><span title="831707,11526,1023,1182,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg831707" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmac7f0630c7" title="Thu, 07 May 2015 16:13:21 +0000"></span><script type="text/javascript">WhenId('CH_zTmac7f0630c7');</script><noscript>May 7, 2015 at 4:13pm UTC</noscript></div>
+<div class="dwho"><a href="/user/kempofighter/"><b>kempofighter</b> (1182)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i831707">
+There is an example in the previous post so I'm not sure what you are asking Ozzy69.  Unordered containers are named that way for a reason.  They are not supposed to be sorted. They are typically implemented using hashing so that accessing and storing items is faster.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn831707"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div class="rootbtnNew"></div><div id="CH_insNew"></div><div id="CH_reply">Topic archived. No new replies allowed.</div><div id="CH_subscription"></div><div class="rootedtNew"></div><script type="text/javascript">new for_PostList(164440,1,177556,0,'CH_PostList','CH_subscription','CH_reply','CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li><a href="/forum/beginner/"><b>Beginners</b></a></li><li><a href="/forum/windows/"><b>Windows Programming</b></a></li><li><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li class="selected"><a href="/forum/general/"><b>General C++ Programming</b></a></li><li><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Fgeneral%2F164440%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

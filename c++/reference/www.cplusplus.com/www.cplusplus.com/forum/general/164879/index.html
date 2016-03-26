@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>dynamic memory management (arrays) - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/general/">General C++ Programming</a></li>
+<li class="here">dynamic memory management (arrays)</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico default" title="post">&nbsp;</div> dynamic memory management (arrays)</h3><span id="CH_edttl"></span><span class="rootdatPost" title="164879,root,0,-1,2,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg832897"><span title="832897,108387,1023,165,1"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg832897" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmcc78dd9eb6" title="Tue, 12 May 2015 22:47:14 +0000"></span><script type="text/javascript">WhenId('CH_zTmcc78dd9eb6');</script><noscript>May 12, 2015 at 10:47pm UTC</noscript></div>
+<div class="dwho"><a href="/user/cppnoob25/"><b>cppnoob25</b> (165)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i832897">
+<br>
+if I created an array dynamically and want to delete it. Is this correct?<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br></code></pre></td>
+<td class="source"><pre><code>
+<var>int</var> size = 5;
+<var>int</var> *myarray = <var>new</var> <var>int</var>[size];
+
+<var>delete</var> [] myarray;
+</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+I imagine that I have to iterate through each element and delete them as I go along? so the above is wrong right?<br>
+<br>
+I've noticed that I can still access the value of the indexes of the array after doing the above. Is this correct?<br>
+<br>
+And I mean once I've put values inside the array.
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm722b0e4288" title="Tue, 12 May 2015 22:51:36 +0000"></span><script type="text/javascript">WhenId('CH_zTm722b0e4288');</script><noscript>May 12, 2015 at 10:51pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn832897"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg832904"><span title="832904,11526,1023,1182,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg832904" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTme9af3ee278" title="Tue, 12 May 2015 23:09:32 +0000"></span><script type="text/javascript">WhenId('CH_zTme9af3ee278');</script><noscript>May 12, 2015 at 11:09pm UTC</noscript></div>
+<div class="dwho"><a href="/user/kempofighter/"><b>kempofighter</b> (1182)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i832904">
+<table class="quote"><tr><td class="qd">I imagine that I have to iterate through each element and delete them as I go along?</td></tr></table><br>
+<br>
+As designed yes, but why do int pointers?  That doesn't seem very useful.  Perhaps there is a good reason to do that but I can't think of one right now.<br>
+<br>
+<table class="quote"><tr><td class="qd">I've noticed that I can still access the value of the indexes of the array after doing the above. Is this correct?</td></tr></table><br>
+<br>
+Trying to access the data after the delete is not correct.  Doing so is undefined behavior.  Once the object is freed the array is returned to the heap for reuse.  In a simple program it might not crash, but in a more complex program it might.  The debugger is simply showing you what exists within those memory locations.  delete doesn't sanitize the memory, but simply returns it to the heap for reuse.  Therefore I guess you could say that seeing the old data is correct.  The contents of the memory is not changed again until the heap manager gives that memory to a different requester, and then that requester puts something different there.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn832904"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div class="rootbtnNew"></div><div id="CH_insNew"></div><div id="CH_reply">Topic archived. No new replies allowed.</div><div id="CH_subscription"></div><div class="rootedtNew"></div><script type="text/javascript">new for_PostList(164879,1,108387,0,'CH_PostList','CH_subscription','CH_reply','CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li><a href="/forum/beginner/"><b>Beginners</b></a></li><li><a href="/forum/windows/"><b>Windows Programming</b></a></li><li><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li class="selected"><a href="/forum/general/"><b>General C++ Programming</b></a></li><li><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Fgeneral%2F164879%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

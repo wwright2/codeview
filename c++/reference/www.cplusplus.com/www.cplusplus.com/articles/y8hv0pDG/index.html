@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Copy constructors, assignment operators, - C++ Articles</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/articles/">Articles</a></li>
+<li class="here">Copy constructors, assignment operators,</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div id="I_content">
+<div class="C_art">
+<div id="I_author">Published by <b><a href="/user/jsmith/" rel="author">jsmith</a></b></div>
+<div id="I_date">Jan 27, 2010 (last update: Aug 20, 2010)</div>
+<h1>Copy constructors, assignment operators, and exception safe assignment</h1>
+<div id="I_score">Score: 4.2/5 (2238 votes)</div>
+<div id="I_stars"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"></div>
+<div id="I_content">
+<H3>What is a copy constructor?</H3>
+  A copy constructor is a special constructor for a class/struct that is<br>
+  used to make a copy of an existing instance.  According to the C++<br>
+  standard, the copy constructor for MyClass must have one of the<br>
+  following signatures:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br></code></pre></td>
+<td class="source"><pre><code>  MyClass( <var>const</var> MyClass&amp; other );
+  MyClass( MyClass&amp; other );
+  MyClass( <var>volatile</var> <var>const</var> MyClass&amp; other );
+  MyClass( <var>volatile</var> MyClass&amp; other );</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+  Note that none of the following constructors, despite the fact that<br>
+  they <EM>could</EM> do the same thing as a copy constructor, are copy<br>
+  constructors:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br></code></pre></td>
+<td class="source"><pre><code>  MyClass( MyClass* other );
+  MyClass( <var>const</var> MyClass* other );</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+  <br>
+  or my personal favorite way to create an infinite loop in C++:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>&nbsp;</code></pre></td>
+<td class="source"><pre><code>  MyClass( MyClass other );</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<H3>When do I need to write a copy constructor?</H3>
+  First, you should understand that if you do not declare a copy<br>
+  constructor, the compiler gives you one implicitly.  The implicit<br>
+  copy constructor does a member-wise copy of the source object.<br>
+  For example, given the class:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br></code></pre></td>
+<td class="source"><pre><code>  <var>class</var> MyClass {
+      <var>int</var> x;
+      <var>char</var> c;
+      std::string s;
+  };</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+  the compiler-provided copy constructor is exactly equivalent to:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br></code></pre></td>
+<td class="source"><pre><code>  MyClass::MyClass( <var>const</var> MyClass&amp; other ) :
+     x( other.x ), c( other.c ), s( other.s )
+  {}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+  In many cases, this is sufficient.  However, there are certain<br>
+  circumstances where the member-wise copy version is not good enough.<br>
+  By far, the most common reason the default copy constructor is not<br>
+  sufficient is because the object contains raw pointers and you need<br>
+  to take a "deep" copy of the pointer.  That is, you don't want to <br>
+  copy the pointer itself; rather you want to copy what the pointer<br>
+  <EM>points to</EM>.  Why do you need to take "deep" copies?  This is <br>
+  typically because the instance owns the pointer;  that is, the<br>
+  instance is responsible for calling delete on the pointer at some<br>
+  point (probably the destructor).  If two objects end up calling<br>
+  delete on the same non-NULL pointer, heap corruption results.<br>
+<br>
+  Rarely you will come across a class that does not contain raw<br>
+  pointers yet the default copy constructor is not sufficient.<br>
+  An example of this is when you have a reference-counted object.<br>
+  boost::shared_ptr&lt;&gt; is example.<br>
+<br>
+<H3>Const correctness</H3>
+  When passing parameters by reference to functions or constructors, be very<br>
+  careful about const correctness.  Pass by non-const reference ONLY if<br>
+  the function will modify the parameter and it is the intent to change<br>
+  the caller's copy of the data, otherwise pass by const reference.<br>
+<br>
+  Why is this so important?  There is a small clause in the C++ standard<br>
+  that says that non-const references cannot bind to temporary objects.<br>
+  A temporary object is an instance of an object that does not have a<br>
+  variable name.  For example:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>&nbsp;</code></pre></td>
+<td class="source"><pre><code>  std::string( <kbd>"Hello world"</kbd> );</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+  is a temporary, because we have not given it a variable name.  This<br>
+  is not a temporary:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>&nbsp;</code></pre></td>
+<td class="source"><pre><code>  std::string s( <kbd>"Hello world"</kbd> );</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+  because the object's name is s.<br>
+<br>
+  What is the practical implication of all this?  Consider the following:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br></code></pre></td>
+<td class="source"><pre><code>  <cite>// Improperly declared function:  parameter should be const reference:</cite>
+  <var>void</var> print_me_bad( std::string&amp; s ) {
+      std::cout &lt;&lt; s &lt;&lt; std::endl;
+  }
+
+  <cite>// Properly declared function: function has no intent to modify s:</cite>
+  <var>void</var> print_me_good( <var>const</var> std::string&amp; s ) {
+      std::cout &lt;&lt; s &lt;&lt; std::endl;
+  }
+
+  std::string hello( <kbd>"Hello"</kbd> );
+
+  print_me_bad( hello );  <cite>// Compiles ok; hello is not a temporary</cite>
+  print_me_bad( std::string( <kbd>"World"</kbd> ) );  <cite>// Compile error; temporary object</cite>
+  print_me_bad( <kbd>"!"</kbd> ); <cite>// Compile error; compiler wants to construct temporary</cite>
+                       <cite>// std::string from const char*</cite>
+
+  print_me_good( hello ); <cite>// Compiles ok</cite>
+  print_me_good( std::string( <kbd>"World"</kbd> ) ); <cite>// Compiles ok</cite>
+  print_me_good( <kbd>"!"</kbd> ); <cite>// Compiles ok </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Many of the STL containers and algorithms require that an object<br>
+be copyable.  Typically, this means that you need to have the<br>
+copy constructor that takes a const reference, for the above<br>
+reasons.<br>
+<br>
+<H3>What is an assignment operator?</H3>
+  The assignment operator for a class is what allows you to use<br>
+  = to assign one instance to another.  For example:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br></code></pre></td>
+<td class="source"><pre><code>  MyClass c1, c2;
+  c1 = c2;  <cite>// assigns c2 to c1 </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+  There are actually several different signatures that an<br>
+  assignment operator can have:<br>
+<br>
+  (1) MyClass& operator=( const MyClass& rhs );<br>
+  (2) MyClass& operator=( MyClass& rhs );<br>
+  (3) MyClass& operator=( MyClass rhs );<br>
+  (4) const MyClass& operator=( const MyClass& rhs );<br>
+  (5) const MyClass& operator=( MyClass& rhs );<br>
+  (6) const MyClass& operator=( MyClass rhs );<br>
+  (7) MyClass operator=( const MyClass& rhs );<br>
+  (8) MyClass operator=( MyClass& rhs );<br>
+  (9) MyClass operator=( MyClass rhs );<br>
+<br>
+  These signatures permute both the return type and the parameter<br>
+  type.  While the return type may not be too important, choice<br>
+  of the parameter type is critical.<br>
+<br>
+  (2), (5), and (8) pass the right-hand side by non-const reference,<br>
+  and is not recommended.  The problem with these signatures is that<br>
+  the following code would not compile:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br></code></pre></td>
+<td class="source"><pre><code>  MyClass c1;
+  c1 = MyClass( 5, <kbd>'a'</kbd>, <kbd>"Hello World"</kbd> );  <cite>// assuming this constructor exists </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+  This is because the right-hand side of this assignment expression is<br>
+  a temporary (un-named) object, and the C++ standard forbids the compiler<br>
+  to pass a temporary object through a non-const reference parameter.<br>
+<br>
+  This leaves us with passing the right-hand side either by value or<br>
+  by const reference.  Although it would seem that passing by const<br>
+  reference is more efficient than passing by value, we will see later<br>
+  that for reasons of exception safety, making a temporary copy of the<br>
+  source object is unavoidable, and therefore passing by value allows<br>
+  us to write fewer lines of code.<br>
+  <br>
+<H3>When do I need to write an assignment operator?</H3>
+  First, you should understand that if you do not declare an<br>
+  assignment operator, the compiler gives you one implicitly.  The<br>
+  implicit assignment operator does member-wise assignment of <br>
+  each data member from the source object.  For example, using<br>
+  the class above, the compiler-provided assignment operator is<br>
+  exactly equivalent to:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br></code></pre></td>
+<td class="source"><pre><code>  MyClass&amp; MyClass::<var>operator</var>=( <var>const</var> MyClass&amp; other ) {
+      x = other.x;
+      c = other.c;
+      s = other.s;
+      <var>return</var> *<var>this</var>;
+  }</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+  In general, any time you need to write your own custom copy <br>
+  constructor, you also need to write a custom assignment operator.<br>
+<br>
+<H3>What is meant by Exception Safe code?</H3>
+  A little interlude to talk about exception safety, because programmers<br>
+  often misunderstand exception handling to be exception safety.<br>
+<br>
+  A function which modifies some "global" state (for example, a reference<br>
+  parameter, or a member function that modifies the data members of its <br>
+  instance) is said to be exception safe if it leaves the global state<br>
+  well-defined in the event of an exception that is thrown at any point<br>
+  during the function.<br>
+<br>
+  What does this really mean?  Well, let's take a rather contrived<br>
+  (and trite) example.  This class wraps an array of some user-specified<br>
+  type.  It has two data members: a pointer to the array and a number of <br>
+  elements in the array.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br></code></pre></td>
+<td class="source"><pre><code>  <var>template</var>&lt; <var>typename</var> T &gt;
+  <var>class</var> MyArray {
+      size_t  numElements;
+      T*      pElements;
+
+    <var>public</var>:
+      size_t count() <var>const</var> { <var>return</var> numElements; }
+      MyArray&amp; <var>operator</var>=( <var>const</var> MyArray&amp; rhs );
+  };</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+  Now, assignment of one MyArray to another is easy, right?<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br></code></pre></td>
+<td class="source"><pre><code>  <var>template</var>&lt;&gt;
+  MyArray&lt;T&gt;::<var>operator</var>=( <var>const</var> MyArray&amp; rhs ) {
+      <var>if</var>( <var>this</var> != &amp;rhs ) {
+          <var>delete</var> [] pElements;
+          pElements = <var>new</var> T[ rhs.numElements ];
+          <var>for</var>( size_t i = 0; i &lt; rhs.numElements; ++i )
+              pElements[ i ] = rhs.pElements[ i ];
+          numElements = rhs.numElements;
+      }
+      <var>return</var> *<var>this</var>;
+  }</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+  Well, not so fast.  The problem is, the line<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>&nbsp;</code></pre></td>
+<td class="source"><pre><code>  pElements[ i ] = rhs.pElements[ i ];</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+  could throw an exception.  This line invokes operator= for type T, which<br>
+  could be some user-defined type whose assignment operator might throw an<br>
+  exception, perhaps an out-of-memory (std::bad_alloc) exception or some<br>
+  other exception that the programmer of the user-defined type created.<br>
+<br>
+  What would happen if it did throw, say on copying the 3rd element of 10<br>
+  total?  Well, the stack is unwound until an appropriate handler is found.  <br>
+  Meanwhile, what is the state of our object?  Well, we've reallocated our<br>
+  array to hold 10 T's, but we've copied only 2 of them successfully.  The<br>
+  third one failed midway, and the remaining seven were never even attempted<br>
+  to be copied.  Furthermore, we haven't even changed numElements, so whatever<br>
+  it held before, it still holds.  Clearly this instance will lie about the<br>
+  number of elements it contains if we call count() at this point.<br>
+<br>
+  But clearly it was never the intent of MyArray's programmer to have count()<br>
+  give a wrong answer.  Worse yet, there could be other member functions that<br>
+  rely more heavily (even to the point of crashing) on numElements being correct.<br>
+  Yikes -- this instance is clearly a timebomb waiting to go off.<br>
+<br>
+  This implementation of operator= is not exception safe:  if an exception is<br>
+  thrown during execution of the function, there is no telling what the state<br>
+  of the object is;  we can only assume that it is in such a bad state (ie,<br>
+  it violates some of its own invariants) as to be unusable.  If the object is <br>
+  in a bad state, it might not even be possible to destroy the object without<br>
+  crashing the program or causing MyArray to perhaps throw another exception.  <br>
+  And we know that the compiler runs destructors while unwinding the stack to <br>
+  search for a handler.  If an exception is thrown while unwinding the stack,<br>
+  the program necessarily and unstoppably terminates.<br>
+  <br>
+<br>
+<H3>How do I write an exception safe assignment operator?</H3>
+  The recommended way to write an exception safe assignment operator is via<br>
+  the copy-swap idiom. What is the copy-swap idiom?  Simply put, it is a two-<br>
+  step algorithm: first make a copy, then swap with the copy.  Here is our<br>
+  exception safe version of operator=:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br></code></pre></td>
+<td class="source"><pre><code>  <var>template</var>&lt;&gt;
+  MyArray&lt;T&gt;::<var>operator</var>=( <var>const</var> MyArray&amp; rhs ) {
+      <cite>// First, make a copy of the right-hand side</cite>
+      MyArray tmp( rhs );
+
+      <cite>// Now, swap the data members with the temporary:</cite>
+      std::swap( numElements, tmp.numElements );
+      std::swap( pElements, tmp.pElements );
+
+      <var>return</var> *<var>this</var>;
+  }</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+  Here's where the difference between exception handling and exception safety<br>
+  is important:  we haven't <EM>prevented</EM> an exception from occurring;  indeed,<br>
+  the copy construction of tmp from rhs may throw since it will copy T's.<br>
+  But, if the copy construction <EM>does throw</EM>, notice how the state of *this<br>
+  has not changed, meaning that in the face of an exception, we can guarantee<br>
+  that *this is still coherent, and furthermore, we can even say that it is<br>
+  left unchanged.<br>
+<br>
+  But, you say, what about std::swap?  Could it not throw?  Yes and no.  The<br>
+  default std::swap&lt;&gt;, defined in &lt;algorithm&gt; <EM>can</EM> throw, since std::swap&lt;&gt;<br>
+  looks like this:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br></code></pre></td>
+<td class="source"><pre><code>  <var>template</var>&lt; <var>typename</var> T &gt;
+  swap( T&amp; one, T&amp; two )
+  {
+      T tmp( one );
+      one = two;
+      two = tmp;
+  }</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+  The first line runs the copy constructor of T, which can throw;  the <br>
+  remaining lines are assignment operators which can also throw.<br>
+<br>
+  HOWEVER, if you have a type T for which the default std::swap() may result<br>
+  in either T's copy constructor or assignment operator throwing, you are <br>
+  politely required to provide a swap() overload for your type that does not<br>
+  throw.  [Since swap() cannot return failure, and you are not allowed to throw,<br>
+  your swap() overload must always succeed.]  By requiring that swap does not <br>
+  throw, the above operator= is thus exception safe: either the object is <br>
+  completely copied successfully, or the left-hand side is left unchanged.<br>
+<br>
+  Now you'll notice that our implementation of operator= makes a temporary<br>
+  copy as its first line of code.  Since we have to make a copy, we might as<br>
+  well let the compiler do that for us automatically, so we can change the<br>
+  signature of the function to take the right-hand side by value (ie, a copy)<br>
+  rather than by reference, and this allows us to eliminate one line of code:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br></code></pre></td>
+<td class="source"><pre><code>  <var>template</var>&lt;&gt;
+  MyArray&lt;T&gt;::<var>operator</var>=( MyArray tmp ) {
+      std::swap( numElements, tmp.numElements );
+      std::swap( pElements, tmp.pElements );
+      <var>return</var> *<var>this</var>;
+  }</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+</div></div><div id="CH_bb"></div><div id="CH_scoreapp"></div><script type="text/javascript">new Score('CH_scoreapp','/articles/score.cgi','y8hv0pDG');</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder selected articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/articles/">Articles</a></b></h3>
+<ul>
+<li><a href="/articles/algorithms/">Algorithms</a></li><li><a href="/articles/cpp11/">C++ 11</a></li><li><a href="/articles/graphics/">Graphics and multimedia</a></li><li><a href="/articles/howto/">How-To</a></li><li><a href="/articles/language/">Language Features</a></li><li><a href="/articles/linux/">Unix/Linux programming</a></li><li><a href="/articles/sourcecode/">Source Code</a></li><li><a href="/articles/standard_library/">Standard Library</a></li><li><a href="/articles/tips/">Tips and Tricks</a></li><li><a href="/articles/tools/">Tools and Libraries</a></li><li><a href="/articles/visualcpp/">Visual C++</a></li><li><a href="/articles/winapi/">Windows API</a></li></ul>
+</div>
+<div id="I_subnav"></div>
+</div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Farticles%2Fy8hv0pDG%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+onSession(function(us) {
+		document.getElementById('I_subnav').innerHTML=
+			us.ok?
+				'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul>'+
+				'<li><a href="/articles/myitems.cgi">My items</a></li>'+
+				(us.auth(32768)?'<li><a href="/articles/adminitems.cgi">Admin items</a></li>':'')+
+				'</ul></div>'
+			:'';
+	}); onSession(function (us) {
+		var el=document.getElementById('CH_bb'); el.innerHTML='';
+		if ( (us.auth(32768)) || ((us.uniqid=='SGhbqMoL')&&(us.auth(128))) ) {
+			el.appendChild(btn('Edit article','Edit this version of the article','edit','/articles/edit.cgi?a=y8hv0pDG'));
+	
+			if (us.auth(32768)) {
+				el.appendChild(btn('Delete article','Delete this article','delete','javascript:artdel()'));
+			}
+	
+		}
+	});
+	function artdel() { if (confirm('WARNING: You are about to delete this page. Confirm?')) window.location='/articles/delete.cgi?a=y8hv0pDG'; }
+	ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

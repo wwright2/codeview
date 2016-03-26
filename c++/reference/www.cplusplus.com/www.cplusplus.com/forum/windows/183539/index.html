@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>C, Win32 API: l need help on Owner draw  - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/windows/">Windows Programming</a></li>
+<li class="here">C, Win32 API: l need help on Owner draw </li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico default" title="post">&nbsp;</div> C, Win32 API: l need help on Owner draw tab control</h3><span id="CH_edttl"></span><span class="rootdatPost" title="183539,root,0,-1,16,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg898281"><span title="898281,116650,1023,32,1"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg898281" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm133907252b" title="Fri, 29 Jan 2016 23:30:00 +0000"></span><script type="text/javascript">WhenId('CH_zTm133907252b');</script><noscript>Jan 29, 2016 at 11:30pm UTC</noscript></div>
+<div class="dwho"><a href="/user/evaboy/"><b>evaboy</b> (32)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i898281">
+Firstly, thanks to you all who had in the time past guided me in my win32 programming.<br>
+right now, l need a help on owner drawn tab control.<br>
+<br>
+l did the following code after creating the tab control with CreateWindowEx<br>
+Code. However, it worked fine when l didn't use the owner draw style but l don't like the default. l want to customize it.<br>
+<br>
+NOTE: subject1 through subject6 are the indices of dropdown list combobox.<br>
+<br>
+What l want to do is to first check if a user has made a selection. if yes, get the index, add a tab and set the tab title to the subject selected. but if no, do nothing - don't create tab.<br>
+<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br>59<br>60<br>61<br>62<br>63<br>64<br>65<br>66<br>67<br>68<br>69<br>70<br>71<br>72<br>73<br>74<br>75<br>76<br>77<br>78<br>79<br>80<br>81<br>82<br>83<br>84<br>85<br>86<br>87<br>88<br>89<br>90<br></code></pre></td>
+<td class="source"><pre><code><var>case</var> WM_DRAWITEM:
+		
+		lpdis=(LPDRAWITEMSTRUCT) lParam;
+		
+		TCITEM	tie={0};
+		
+		<var>if</var>(SubjectTabs==lpdis-&gt;hwndItem){<cite>//get handle of the tab control</cite>
+			<var>if</var>(SubjectTabs==NULL){
+				MessageBox(hWnd,L<kbd>"Tab can not be created."</kbd>,szTitle,0);
+				MessageBox(hWnd,L<kbd>"Application closes"</kbd>,szTitle,0);
+				SendMessage(hWnd,WM_CLOSE,0,0);
+				<var>break</var>;
+			}
+			<var>if</var>(subject1){<cite>//if English is not selected, do the inner loop</cite>
+				MessageBox(hWnd,L<kbd>"Problem with English Subject."</kbd>,szTitle,0);
+				MessageBox(hWnd,L<kbd>"Application closes"</kbd>,szTitle,0);
+				SendMessage(hWnd,WM_CLOSE,0,0);
+				<var>break</var>;
+			}
+			<var>else</var>{<cite>//</cite>
+				tie.mask = TCIF_TEXT;
+				tie.cchTextMax = 100;
+				tie.pszText=subject1tab;<cite>//sets tab name</cite>
+				SendMessage(SubjectTabs,TCM_INSERTITEM,(WPARAM)0,(LPARAM)&amp;tie);<cite>//send message to add tab</cite>
+				FillRect(lpdis-&gt;hDC,&amp;lpdis-&gt;rcItem,(HBRUSH)GetStockObject(WHITE_BRUSH));
+				SetBkColor(lpdis-&gt;hDC,RGB(255,255,255));
+			}
+
+			<var>if</var>(subject2&lt;=0){<cite>//if subject 2 is not selected, do nothing</cite>
+				<cite>//do nothing and tab will not be added	</cite>
+			}
+			<var>else</var>{
+				tie.mask = TCIF_TEXT;
+				tie.cchTextMax = 100;
+				tie.pszText=subject2tab;<cite>//sets tab name</cite>
+				SendMessage(SubjectTabs,TCM_INSERTITEM,(WPARAM)1,(LPARAM)&amp;tie);<cite>//send message to add tab</cite>
+				FillRect(lpdis-&gt;hDC,&amp;lpdis-&gt;rcItem,(HBRUSH)GetStockObject(WHITE_BRUSH));
+				SetBkColor(lpdis-&gt;hDC,RGB(255,255,255));
+			}
+
+			<var>if</var>(subject3&lt;=0){<cite>//if subject 3 is not selected, do nothing</cite>
+				<cite>//do nothing and tab will not be added</cite>
+			}
+			<var>else</var>{
+				tie.mask = TCIF_TEXT;
+				tie.cchTextMax = 100;
+				tie.pszText=subject3tab;<cite>////</cite>
+				SendMessage(SubjectTabs,TCM_INSERTITEM,(WPARAM)2,(LPARAM)&amp;tie);<cite>//send message to add tab</cite>
+				FillRect(lpdis-&gt;hDC,&amp;lpdis-&gt;rcItem,(HBRUSH)GetStockObject(WHITE_BRUSH));
+				SetBkColor(lpdis-&gt;hDC,RGB(255,255,255));
+			}
+
+			<var>if</var>(subject4&lt;=0){<cite>//if subject 4 is not selected, do nothing</cite>
+				<cite>//do nothing and tab will not be added</cite>
+			}
+			<var>else</var>{
+				tie.mask = TCIF_TEXT;
+				tie.cchTextMax = 100;
+				tie.pszText=subject4tab;<cite>////</cite>
+				SendMessage(SubjectTabs,TCM_INSERTITEM,(WPARAM)3,(LPARAM)&amp;tie);<cite>//send message to add tab</cite>
+				FillRect(lpdis-&gt;hDC,&amp;lpdis-&gt;rcItem,(HBRUSH)GetStockObject(WHITE_BRUSH));
+				SetBkColor(lpdis-&gt;hDC,RGB(255,255,255));
+			}
+
+			<var>if</var>(subject5&lt;=0){<cite>//if subject 5 is not selected, do nothing</cite>
+				<cite>//do nothing and tab will not be added</cite>
+			}
+			<var>else</var>{
+				tie.mask = TCIF_TEXT;
+				tie.cchTextMax = 100;
+				tie.pszText=subject5tab;
+				SendMessage(SubjectTabs,TCM_INSERTITEM,(WPARAM)4,(LPARAM)&amp;tie);<cite>//send message to add tab</cite>
+				FillRect(lpdis-&gt;hDC,&amp;lpdis-&gt;rcItem,(HBRUSH)GetStockObject(WHITE_BRUSH));
+				SetBkColor(lpdis-&gt;hDC,RGB(255,255,255));
+			}
+
+			<var>if</var>(subject6&lt;=0){<cite>//if subject 6 is not selected, do nothing</cite>
+				<cite>//do nothing and tab will not be added</cite>
+			}
+			<var>else</var>{
+				tie.mask = TCIF_TEXT;
+				tie.cchTextMax = 100;
+
+				tie.pszText=subject6tab;<cite>////</cite>
+				SendMessage(SubjectTabs,TCM_INSERTITEM,(WPARAM)5,(LPARAM)&amp;tie);<cite>//send message to add tab</cite>
+				FillRect(lpdis-&gt;hDC,&amp;lpdis-&gt;rcItem,(HBRUSH)GetStockObject(WHITE_BRUSH));
+				SetBkColor(lpdis-&gt;hDC,RGB(255,255,255));
+			}
+		}
+		<var>break</var>;</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+but l got the following error;<br>
+1&gt;c:\users\chibu\documents\visual studio 2010\projects\unical ptume\unical ptume\unical ptume.cpp(349): error C2360: initialization of 'tie' is skipped by 'case' label<br>
+1&gt;          c:\users\chibu\documents\visual studio 2010\projects\unical ptume\unical ptume\unical ptume.cpp(261) : see declaration of 'tie'<br>
+1&gt;c:\users\chibu\documents\visual studio 2010\projects\unical ptume\unical ptume\unical ptume.cpp(355): error C2361: initialization of 'tie' is skipped by 'default' label<br>
+1&gt;          c:\users\chibu\documents\visual studio 2010\projects\unical ptume\unical ptume\unical ptume.cpp(261) : see declaration of 'tie'<br>
+<br>
+So can someone help me on out/<br>
+Thanks in advance.
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm7c11e163e7" title="Fri, 29 Jan 2016 23:31:44 +0000"></span><script type="text/javascript">WhenId('CH_zTm7c11e163e7');</script><noscript>Jan 29, 2016 at 11:31pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn898281"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg898285"><span title="898285,116072,1023,400,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg898285" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm9df0cddfd2" title="Fri, 29 Jan 2016 23:48:39 +0000"></span><script type="text/javascript">WhenId('CH_zTm9df0cddfd2');</script><noscript>Jan 29, 2016 at 11:48pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Jaybob66/"><b>Jaybob66</b> (400)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i898285">
+you can either move the declaration of tie so it is completely outside the switch statement, or add braces (which is what i do.<br>
+<br>
+[code]<br>
+case WM_DRAWITEM:<br>
+{<br>
+//blah<br>
+}<br>
+<br>
+see <a href="https://msdn.microsoft.com/en-us/library/61af7cx3.aspx">https://msdn.microsoft.com/en-us/library/61af7cx3.aspx</a><br>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn898285"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg898291"><span title="898291,116650,1023,32,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg898291" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmd4b9f38c09" title="Sat, 30 Jan 2016 00:06:24 +0000"></span><script type="text/javascript">WhenId('CH_zTmd4b9f38c09');</script><noscript>Jan 30, 2016 at 12:06am UTC</noscript></div>
+<div class="dwho"><a href="/user/evaboy/"><b>evaboy</b> (32)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i898291">
+@Jaybobb6: It work - compiled. Thanks. Humm, but the tab control was not created. May be l didn't code it well. but any more light on it will be appreciated as there are no much tut on the subject on the net for me to refer to. l didn't much understand that of microsoft. <a href="https://support.microsoft.com/en-us/kb/179909">https://support.microsoft.com/en-us/kb/179909</a>
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn898291"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg898318"><span title="898318,116072,1023,400,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg898318" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmb5a8498fb4" title="Sat, 30 Jan 2016 03:21:18 +0000"></span><script type="text/javascript">WhenId('CH_zTmb5a8498fb4');</script><noscript>Jan 30, 2016 at 3:21am UTC</noscript></div>
+<div class="dwho"><a href="/user/Jaybob66/"><b>Jaybob66</b> (400)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i898318">
+sorry, I haven't done any owner draw stuff for many years.<br>
+Hopefully someone else can contribute there.<br>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn898318"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg898347"><span title="898347,199131,1023,610,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg898347" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm60bd8ad32d" title="Sat, 30 Jan 2016 09:42:25 +0000"></span><script type="text/javascript">WhenId('CH_zTm60bd8ad32d');</script><noscript>Jan 30, 2016 at 9:42am UTC</noscript></div>
+<div class="dwho"><a href="/user/Thomas1965/"><b>Thomas1965</b> (610)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i898347">
+How did you create the TabControl ?<br>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn898347"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg898483"><span title="898483,116650,1023,32,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg898483" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm6db81eca8f" title="Sat, 30 Jan 2016 21:52:36 +0000"></span><script type="text/javascript">WhenId('CH_zTm6db81eca8f');</script><noscript>Jan 30, 2016 at 9:52pm UTC</noscript></div>
+<div class="dwho"><a href="/user/evaboy/"><b>evaboy</b> (32)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i898483">
+@Thomas1965: <div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br></code></pre></td>
+<td class="source"><pre><code>SubjectTabs=CreateWindow(WC_TABCONTROL,L<kbd>""</kbd>,WS_CHILD|WS_VISIBLE|TCS_OWNERDRAWFIXED,0,0,0,0,hwnd,(HMENU)IDC_TAB1,hInst,NULL);		
+	</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+where SubjectTabs is a HWND type.<br>
+However, it now works cos l followed the tut on <a href="https://support.microsoft.com/en-us/kb/179909">https://support.microsoft.com/en-us/kb/179909</a> but it doesn't look fine. The whole tab is the color l set and nothing to differentiate between tabs. l want it to be in a way, the tab(the title area where the user clicks to toggle between tabs) will have a blue colour while the display area will be white and again, the titles l set doesn't show but shows when l don't use the custom style. Please l need more help tut on it.<br>
+Thanks in advance.<br>
+<br>
+PS: never mine the x,y,cy,cy coordinate, cos l used movewindow in wm_size to size them.
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm892b659d2e" title="Sat, 30 Jan 2016 21:55:10 +0000"></span><script type="text/javascript">WhenId('CH_zTm892b659d2e');</script><noscript>Jan 30, 2016 at 9:55pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn898483"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg898570"><span title="898570,199131,1023,610,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg898570" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm02b3ff9485" title="Sun, 31 Jan 2016 09:31:35 +0000"></span><script type="text/javascript">WhenId('CH_zTm02b3ff9485');</script><noscript>Jan 31, 2016 at 9:31am UTC</noscript></div>
+<div class="dwho"><a href="/user/Thomas1965/"><b>Thomas1965</b> (610)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i898570">
+Could you post the complete code or upload the project somewhere?
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn898570"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg898678"><span title="898678,116650,1023,32,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg898678" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm46d78b85c0" title="Sun, 31 Jan 2016 21:43:45 +0000"></span><script type="text/javascript">WhenId('CH_zTm46d78b85c0');</script><noscript>Jan 31, 2016 at 9:43pm UTC</noscript></div>
+<div class="dwho"><a href="/user/evaboy/"><b>evaboy</b> (32)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i898678">
+@Thomas1965:<br>
+For owner draw that does not work:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br></code></pre></td>
+<td class="source"><pre><code><var>case</var> WM_CREATE:
+
+INITCOMMONCONTROLSEX icce = {0};
+	TCITEM tie={0};
+	icce.dwICC=ICC_TAB_CLASSES;
+	icce.dwSize=<var>sizeof</var>(INITCOMMONCONTROLSEX);
+	InitCommonControlsEx(&amp;icce);
+HWND SubjectTabs=CreateWindow(WC_TABCONTROL,L<kbd>""</kbd>,WS_CHILD|WS_VISIBLE|TCS_OWNERDRAWFIXED,300,50,700,1000,hwnd,(HMENU)IDC_TAB1,hInst,NULL);	
+....
+
+<var>case</var> WM_DRAWITEM:
+		
+		lpdis=(LPDRAWITEMSTRUCT)lParam;
+		<var>switch</var>(lpdis-&gt;itemID){
+		<var>case</var> 0:
+			tie.mask = TCIF_TEXT;
+			tie.cchTextMax = 100;
+			tie.iImage=-1;
+			tie.pszText=L<kbd>"Tab 1"</kbd>;<cite>//sets tab name</cite>
+			SendMessage(SubjectTabs,TCM_INSERTITEM,(WPARAM)0,(LPARAM)&amp;tie);
+			FillRect(lpdis-&gt;hDC,&amp;lpdis-&gt;rcItem,(HBRUSH)GetStockObject(WHITE_BRUSH));
+			SetBkColor(lpdis-&gt;hDC,RGB(100,200,155));
+			<var>break</var>;
+		<var>case</var> 1:
+		tie.mask = TCIF_TEXT;
+			tie.cchTextMax = 100;
+			tie.iImage=-1;
+			tie.pszText=L<kbd>"Tab 2"</kbd>;<cite>//sets tab name</cite>
+			SendMessage(SubjectTabs,TCM_INSERTITEM,(WPARAM)0,(LPARAM)&amp;tie);
+			FillRect(lpdis-&gt;hDC,&amp;lpdis-&gt;rcItem,(HBRUSH)GetStockObject(WHITE_BRUSH));
+			SetBkColor(lpdis-&gt;hDC,RGB(100,200,155));
+			<var>break</var>;
+		}
+		<var>break</var>;</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+but if l use style TCS_FIXEDWIDTH do the following, it works fine;<br>
+<br>
+Default draw:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br></code></pre></td>
+<td class="source"><pre><code><var>case</var> WM_CREATE:
+HWND SubjectTabs=CreateWindow(WC_TABCONTROL,L<kbd>""</kbd>,WS_CHILD|WS_VISIBLE|TCS_FIXEDWIDTH,300,50,700,1000,hwnd,(HMENU)IDC_TAB1,hInst,NULL);	
+tie.mask = TCIF_TEXT;
+		tie.cchTextMax = 100;
+		tie.iImage=-1;
+		tie.pszText=L<kbd>"Tab 1;//sets tab name
+		SendMessage(SubjectTabs,TCM_INSERTITEM,(WPARAM)0,(LPARAM)&amp;tie); </kbd></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn898678"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg898758"><span title="898758,199131,1023,610,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg898758" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm06313fe392" title="Mon, 01 Feb 2016 09:09:28 +0000"></span><script type="text/javascript">WhenId('CH_zTm06313fe392');</script><noscript>Feb 1, 2016 at 9:09am UTC</noscript></div>
+<div class="dwho"><a href="/user/Thomas1965/"><b>Thomas1965</b> (610)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i898758">
+I have do a little experiment with TCS_OWNERDRAWFIXED. <br>
+<br>
+Main.h<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br></code></pre></td>
+<td class="source"><pre><code><dfn>#ifndef MAIN_H</dfn>
+<dfn>#define MAIN_H</dfn>
+
+<dfn>#include &lt;Windows.h&gt;</dfn>
+<dfn>#include &lt;tchar.h&gt;</dfn>
+
+<dfn>#define WIN_WIDTH   800</dfn>
+<dfn>#define WIN_HEIGHT  600</dfn>
+
+TCHAR *ClsName = _T(<kbd>"BasicApp"</kbd>);
+TCHAR *WndName = _T(<kbd>"Template"</kbd>);
+
+ATOM WINAPI RegisterMyClass(HINSTANCE hInstance);
+LRESULT CALLBACK WndProcedure(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam);
+<var>int</var> WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, <var>int</var>);
+
+HWND CreateTabControl(HWND hMainWindow);
+<var>void</var> PaintTab(LPDRAWITEMSTRUCT lpdis);
+
+<dfn>#endif</dfn>
+</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Main.cpp<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br>59<br>60<br>61<br>62<br>63<br>64<br>65<br>66<br>67<br>68<br>69<br>70<br>71<br>72<br>73<br>74<br>75<br>76<br>77<br>78<br>79<br>80<br>81<br>82<br>83<br>84<br>85<br>86<br>87<br>88<br>89<br>90<br>91<br>92<br>93<br>94<br>95<br>96<br>97<br>98<br>99<br>100<br>101<br>102<br>103<br>104<br>105<br>106<br>107<br>108<br>109<br>110<br>111<br>112<br>113<br>114<br>115<br>116<br>117<br>118<br>119<br>120<br>121<br>122<br>123<br>124<br>125<br>126<br>127<br>128<br>129<br>130<br>131<br>132<br>133<br>134<br>135<br>136<br>137<br>138<br>139<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;windows.h&gt;</dfn>
+<dfn>#include &lt;commctrl.h&gt;</dfn>
+<dfn>#include "main.h"</dfn>
+
+HWND        g_hTabControl;
+HINSTANCE   g_hInstance;
+
+<var>int</var> WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, <var>int</var> nCmdShow)
+{
+  MSG        Msg;
+	HWND       hWnd;
+	
+	g_hInstance = hInstance;
+
+  <var>if</var> (!RegisterMyClass(hInstance))
+    <var>return</var> FALSE;
+
+  <var>int</var> left = (GetSystemMetrics(SM_CXSCREEN) - WIN_WIDTH) / 2;
+  <var>int</var> top = (GetSystemMetrics(SM_CYSCREEN) - WIN_HEIGHT) / 2;
+
+	hWnd = CreateWindow(ClsName, WndName, WS_BORDER | WS_SYSMENU	,
+                      left, top, WIN_WIDTH, WIN_HEIGHT,
+                      NULL, NULL, hInstance, NULL);
+
+	<var>if</var> (!hWnd)
+		<var>return</var> FALSE;
+		
+	INITCOMMONCONTROLSEX cc = {0};
+	
+	cc.dwSize = <var>sizeof</var>(INITCOMMONCONTROLSEX);
+	cc.dwICC = ICC_TAB_CLASSES;
+	InitCommonControlsEx(&amp;cc);
+
+	ShowWindow(hWnd, SW_SHOWNORMAL);
+	UpdateWindow(hWnd);
+
+	<var>while</var> (GetMessage(&amp;Msg, NULL, 0, 0))
+	{
+    TranslateMessage(&amp;Msg);
+    DispatchMessage(&amp;Msg);
+	}
+
+	<var>return</var> Msg.wParam;
+}
+
+ATOM WINAPI RegisterMyClass(HINSTANCE hInstance)
+{
+  WNDCLASSEX WndClsEx;
+
+	WndClsEx.cbSize        = <var>sizeof</var>(WNDCLASSEX);
+	WndClsEx.style         = CS_HREDRAW | CS_VREDRAW;
+	WndClsEx.lpfnWndProc   = WndProcedure;
+	WndClsEx.cbClsExtra    = 0;
+	WndClsEx.cbWndExtra    = 0;
+	WndClsEx.hIcon         = LoadIcon(NULL, IDI_APPLICATION);
+	WndClsEx.hCursor       = LoadCursor(NULL, IDC_ARROW);
+	WndClsEx.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);
+	WndClsEx.lpszMenuName  = NULL;
+	WndClsEx.lpszClassName = ClsName;
+	WndClsEx.hInstance     = hInstance;
+	WndClsEx.hIconSm       = LoadIcon(NULL, IDI_APPLICATION);
+
+	<var>return</var> RegisterClassEx(&amp;WndClsEx);
+}
+
+LRESULT CALLBACK WndProcedure(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
+{
+  <var>switch</var> (Msg)
+  {
+    <var>case</var> WM_CREATE:
+      g_hTabControl = CreateTabControl(hWnd);
+      <var>break</var>;
+    <var>case</var> WM_DRAWITEM:
+      PaintTab((LPDRAWITEMSTRUCT)lParam);
+			<var>break</var>;
+
+		<var>case</var> WM_DESTROY:
+      PostQuitMessage(0);
+      <var>break</var>;
+    <var>default</var>:
+      <var>return</var> DefWindowProc(hWnd, Msg, wParam, lParam);
+  }
+  <var>return</var> 0;
+}
+
+<var>void</var> PaintTab(LPDRAWITEMSTRUCT lpdis)
+{
+  COLORREF TextColor;
+  
+  <var>switch</var> (lpdis-&gt;itemID)
+  {
+    <var>case</var> 0:
+      TextColor = RGB(0,0, 128);
+      <var>break</var>;
+    <var>case</var> 1:
+      TextColor = RGB(0,128, 0);
+      <var>break</var>;
+    <var>default</var>:
+      TextColor = RGB(128, 0, 0);
+  }
+  TCHAR buf[128];
+  
+  TCITEM tci;
+  tci.mask = TCIF_TEXT;
+  tci.pszText = buf;
+  tci.cchTextMax = <var>sizeof</var>(buf) * <var>sizeof</var>(TCHAR);
+  TabCtrl_GetItem(g_hTabControl, lpdis-&gt;itemID, &amp;tci);
+  
+  FillRect(lpdis-&gt;hDC,&amp;lpdis-&gt;rcItem,(HBRUSH)GetStockObject(WHITE_BRUSH));
+  SetTextColor(lpdis-&gt;hDC, TextColor);
+  SetBkMode(lpdis-&gt;hDC, TRANSPARENT);
+	DrawText(lpdis-&gt;hDC, tci.pszText, _tcslen(tci.pszText), &amp;lpdis-&gt;rcItem, DT_CENTER|DT_VCENTER|DT_SINGLELINE);
+}
+
+HWND CreateTabControl(HWND hMainWindow)
+{
+  DWORD dwStyle = WS_VISIBLE | WS_TABSTOP | WS_CHILD | TCS_OWNERDRAWFIXED;
+  
+  HWND hWnd = CreateWindow(WC_TABCONTROL, NULL, dwStyle,
+                           10, 10, WIN_WIDTH - 20, WIN_HEIGHT - 20, hMainWindow,
+                           NULL, g_hInstance, NULL);
+                           
+  TCITEM  tci;
+              
+  tci.mask = TCIF_TEXT;
+  tci.iImage = -1;
+  tci.pszText = _T(<kbd>"German"</kbd>);             
+  TabCtrl_InsertItem(hWnd, 0, &amp;tci);
+  
+  tci.pszText = _T(<kbd>"English"</kbd>);             
+  TabCtrl_InsertItem(hWnd, 1, &amp;tci);
+  
+  tci.pszText = _T(<kbd>"Spanish"</kbd>);             
+  TabCtrl_InsertItem(hWnd, 2, &amp;tci);
+  
+  <var>return</var> hWnd;
+}
+
+Hope you find it helpful</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn898758"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg898897"><span title="898897,116650,1023,32,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg898897" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmb66f598ed7" title="Mon, 01 Feb 2016 23:16:47 +0000"></span><script type="text/javascript">WhenId('CH_zTmb66f598ed7');</script><noscript>Feb 1, 2016 at 11:16pm UTC</noscript></div>
+<div class="dwho"><a href="/user/evaboy/"><b>evaboy</b> (32)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i898897">
+@thomas1965: Thanks alot - it worked. However, only the top part(the part where user clicks to toggle between tab) changed color. Is there a way to also change the color of the tab client area?
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn898897"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg898989"><span title="898989,199131,1023,610,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg898989" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm22ef83a1bb" title="Tue, 02 Feb 2016 09:08:56 +0000"></span><script type="text/javascript">WhenId('CH_zTm22ef83a1bb');</script><noscript>Feb 2, 2016 at 9:08am UTC</noscript></div>
+<div class="dwho"><a href="/user/Thomas1965/"><b>Thomas1965</b> (610)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i898989">
+I don't think that there is a way, you can paint only inside the lpdis-&gt;rcItem.<br>
+<br>
+However I saw one example in a book that used modeless dialogs for the content. 
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn898989"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg899002"><span title="899002,116650,1023,32,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg899002" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTme176d45905" title="Tue, 02 Feb 2016 10:38:22 +0000"></span><script type="text/javascript">WhenId('CH_zTme176d45905');</script><noscript>Feb 2, 2016 at 10:38am UTC</noscript></div>
+<div class="dwho"><a href="/user/evaboy/"><b>evaboy</b> (32)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i899002">
+Ok. Can you please help me with the book name/title. Thanks
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn899002"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg899023"><span title="899023,199131,1023,610,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg899023" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm222f2a9949" title="Tue, 02 Feb 2016 13:04:45 +0000"></span><script type="text/javascript">WhenId('CH_zTm222f2a9949');</script><noscript>Feb 2, 2016 at 1:04pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Thomas1965/"><b>Thomas1965</b> (610)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i899023">
+I can try, but what help do you need ?
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn899023"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg899027"><span title="899027,116650,1023,32,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg899027" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm38f17917f2" title="Tue, 02 Feb 2016 13:21:45 +0000"></span><script type="text/javascript">WhenId('CH_zTm38f17917f2');</script><noscript>Feb 2, 2016 at 1:21pm UTC</noscript></div>
+<div class="dwho"><a href="/user/evaboy/"><b>evaboy</b> (32)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i899027">
+So l can see how it is being done. Am just beginning to code in win32. or you give me a snap shot of it or PM the name.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn899027"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg899031"><span title="899031,199131,1023,610,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg899031" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm562eb6b182" title="Tue, 02 Feb 2016 13:45:45 +0000"></span><script type="text/javascript">WhenId('CH_zTm562eb6b182');</script><noscript>Feb 2, 2016 at 1:45pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Thomas1965/"><b>Thomas1965</b> (610)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i899031">
+I still don't know what you want to do.<br>
+You mentioned book name/title, but what are they? <br>
+Maybe you can upload the project and the complete task and send me a PM.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn899031"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg899032"><span title="899032,116650,1023,32,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg899032" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm4346721d94" title="Tue, 02 Feb 2016 13:47:32 +0000"></span><script type="text/javascript">WhenId('CH_zTm4346721d94');</script><noscript>Feb 2, 2016 at 1:47pm UTC</noscript></div>
+<div class="dwho"><a href="/user/evaboy/"><b>evaboy</b> (32)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i899032">
+Ok. Thanks for your help and concern. l will do so.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn899032"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div class="rootbtnNew"></div><div id="CH_insNew"></div><div id="CH_reply">Registered users can post here. <a href="/user/">Sign in or register</a> to post.</div><div id="CH_subscription"></div><div class="rootedtNew"></div><script type="text/javascript">new for_PostList(183539,0,116650,0,'CH_PostList','CH_subscription','CH_reply','CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+<script type="text/javascript">
+    google_ad_client = "ca-pub-1444228343479937";
+    google_ad_slot = "9701143201";
+    google_ad_width = 728;
+    google_ad_height = 90;
+</script>
+<!-- leaderboard -->
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li><a href="/forum/beginner/"><b>Beginners</b></a></li><li class="selected"><a href="/forum/windows/"><b>Windows Programming</b></a></li><li><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li><a href="/forum/general/"><b>General C++ Programming</b></a></li><li><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Fwindows%2F183539%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

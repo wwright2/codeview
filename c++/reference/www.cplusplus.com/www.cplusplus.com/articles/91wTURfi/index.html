@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Grounded Pointers - C++ Articles</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/articles/">Articles</a></li>
+<li class="here">Grounded Pointers</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div id="I_content">
+<div class="C_art">
+<div id="I_author">Published by <b><a href="/user/AndreyKarpov/" rel="author">AndreyKarpov</a></b></div>
+<div id="I_date">Sep 2, 2013 (last update: Sep 2, 2013)</div>
+<h1>Grounded Pointers</h1>
+<div id="I_score">Score: 3.8/5 (55 votes)</div>
+<div id="I_stars"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-half.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"></div>
+<div id="I_content">
+<p>Not so long ago one of our colleagues left the team and joined one company developing software for embedded systems. There is nothing extraordinary about it: in every firm people come and go, all the time. Their choice is determined by bonuses offered, the convenience aspect, and personal preferences. What we find interesting is quite another thing. Our ex-colleague is sincerely worried about the quality of the code he deals with in his new job. And that has resulted in us writing a joint article. You see, once you have figured out what static analysis is all about, you just don't feel like settling for "simply programming".</p>
+<p><IMG SRC="image1.png" alt=""></p>
+<h2>Forest Reserves</h2>
+<p>I find an interesting phenomenon occurring in the world nowadays. What happens when a software development department turns into a secondary entity not closely related to the company's basic area of activity? A forest reserve appears. However significant and critical the company's area of activity may be (say, medicine or military equipment), a small swamp appears anyway, where new ideas get stuck and 10-year old technologies are in use.</p>
+<p>Here you are a couple of extracts from the correspondence of a man working in the software development department at some nuclear power plant:</p>
+<p><i>And then he says, "What for do we need git? Look here, I've got it all written down in my paper notebook."</i>  </p>
+<p><i>...</i></p>
+<p><i>And do you have any version control at all?</i></p>
+<p><i>2 men use git. The rest of the team use numbered zip's at best. Though it's only 1 person with zip's I'm sure about.</i>  </p>
+<p>Don't be scared. Software developed at nuclear power plants may serve different purposes, and no one has abolished hardware security yet. In that particular department, people collect and process statistical data. Yet the tendency to swamping is pretty obvious. I don't know why it happens, but the fact is certain. What's interesting, the larger the company, the more intense the swamping effect.</p>
+<p><b>I want to point it out that stagnation in large companies is an international phenomenon.</b> Things are quite the same abroad. There is an article on the subject, but I don't remember its title. I spent quite a time trying to find it, but in vain. If somebody knows it, give me the link please so that I could post it. In that article, a programmer is telling a story about him having worked at some military department. It was - naturally - awfully secret and bureaucratic - so much secret and bureaucratic that it took them several months to agree on which level of access permissions he could be granted to work on his computer. As a result, he was writing a program in Notepad (without compiling it) and was soon fired for inefficiency.</p>
+<h2>Foresters</h2>
+<p>Now let's get back to our ex-colleague. Having come to his new office, he was struck with kind of a cultural shock. You see, after spending so much time and effort on studying and working with static analysis tools, it's very painful to watch people ignore even compiler warnings. It's just like a separate world where they program according to their own canons and even use their own terms. The man told me some stories about it, and most of all I liked the phrase "grounded pointers" common among the local programmers. See how close they are to the hardware aspect?</p>
+<p>We are proud of having raised inside our team a skilled specialist who cares about the code quality and reliability. He hasn't silently accepted the established situation; he is trying to improve it.</p>
+<p>As a start, he did the following. He studied the compiler warnings, then checked the project with <a href="http://www.viva64.com/en/t/0083/">Cppcheck</a> and considered preventing typical mistakes in addition to making some fixes.</p>
+<p>One of his first steps was preparing a paper aiming at improving the quality of the code created by the team. Introducing and integrating a static code analyzer into the development process might be the next step. It will certainly not be PVS-Studio: first, they work under Linux; second, it's very difficult to sell a software product to such companies. So, he has chosen Cppcheck for now. This tool is very fine for people to get started with the static analysis methodology.</p>
+<p>I invite you to read the paper he has prepared. It is titled "The Way You Shouldn't Write Programs". Many of the items may look written pretty much in the Captain Obvious style. <b>However, these are real problems the man tries to address.</b>       </p>
+<h2>The Way You Shouldn't Write Programs</h2>
+<h3>Issue 1</h3>
+<p><b>Ignoring compiler warnings.</b> When there are many of them in the list, you risk easily missing genuine errors in the lately written code. That's why you should address them all.</p>
+<h3>Issue 2</h3>
+<p>In the conditional statement of the 'if' operator, a variable is assigned a value instead of being tested for this value:</p>	<br>
+<span class="auto"><code class="source"><var>if</var> (numb_numbc[i] = -1) { }</code></span><p>The code is compiled well in this case, but <b>the compiler produces a warning</b>. The correct code is shown below:</p>	<br>
+<span class="auto"><code class="source"><var>if</var> (numb_numbc[i] == -1) { }</code></span><h3>Issue 3</h3>
+<p>The statement "using namespace std;" written in header files may cause using this namespace in all the files which include this header, which in turn may lead to calling wrong functions or occurrence of name collisions.</p>
+<h3>Issue 4</h3>
+<p>Comparing signed variables to unsigned ones:</p>	<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br></code></pre></td>
+<td class="source"><pre><code><var>unsigned</var> <var>int</var> BufPos;
+std::vector&lt;<var>int</var>&gt; ba;
+....
+<var>if</var> (BufPos * 2 &lt; ba.size() - 1) { }</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<p>Keep in mind that mixing signed and unsigned variables may result in:</p>
+<ul>
+  <li>overflows;</li>
+  <li>occurrence of always true or always false conditions and, as a consequence, infinite loops;</li>
+  <li>a value larger than INT_MAX may be written into a signed variable (and it will be negative);</li>
+  <li>an int-variable participating in addition/subtraction/etc. with an unsigned variable becomes unsigned too (so that negative values turn into large positive ones);</li>
+  <li>other unexpected nice things</li>
+</ul>
+<p>The foregoing code sample incorrectly handles the situation of the 'ba' array being empty. The expression "ba.size() - 1" evaluates to an unsigned size_t value. If the array contains no items, the expression evaluates to 0xFFFFFFFFu.</p>
+<h3>Issue 5</h3>
+<p>Neglecting usage of constants may lead to overlooking hard-to-eliminate bugs. For example:</p>	<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br></code></pre></td>
+<td class="source"><pre><code><var>void</var> foo(std::string &amp;str)
+{
+  <var>if</var> (str = <kbd>"1234"</kbd>)
+  {
+  }
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<p>The '=' operator is mistakenly used instead of '=='. If the 'str' variable were declared as a constant, the compiler would not even compile the code.</p>
+<h3>Issue 6</h3>
+<p>Pointers to strings are compared instead of strings themselves:</p>	<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br></code></pre></td>
+<td class="source"><pre><code>сhar TypeValue [4];
+...
+<var>if</var> (TypeValue == <kbd>"S"</kbd>) {}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<p>Even if the string "S" is stored in the variable TypeValue, the comparison will always return 'false'. The correct way to compare strings is to use the special functions 'strcmp' or 'strncmp'.</p>
+<h3>Issue 7</h3>
+<p>Buffer overflow:</p>	<br>
+<span class="auto"><code class="source">memset(prot.ID, 0, <var>sizeof</var>(prot.ID) + 1);</code></span><p>This code may cause several bytes of the memory area right after 'prot.ID' to be cleared as well.</p>
+<p>Don't mix up sizeof() and strlen(). The sizeof() operator returns the complete size of an item in bytes. The strlen() function returns the string length in characters (without counting the null terminator).</p>
+<h3>Issue 8</h3>
+<p>Buffer underflow:</p>	<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br></code></pre></td>
+<td class="source"><pre><code><var>struct</var> myStruct
+{
+  <var>float</var> x, y, h;
+};
+myStruct *ptr;
+ ....
+memset(ptr, 0, <var>sizeof</var>(ptr));</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<p>In this case only N bytes will be cleared instead of the whole '*ptr' structure (N is the pointer size on the current platform). The correct way is to use the following code: </p>	<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br></code></pre></td>
+<td class="source"><pre><code>myStruct *ptr;
+ ....
+memset(ptr, 0, <var>sizeof</var>(*ptr));</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<h3>Issue 9</h3>
+<p>Incorrect expression:</p>	<br>
+<span class="auto"><code class="source"><var>if</var> (0 &lt; L &lt; 2 * M_PI) { }</code></span><p>The compiler doesn't see any error here, yet the expression is meaningless, for you will always get either 'true' or 'false' when executing it, the exact result depending on the comparison operators and boundary conditions. <b>The compiler generates a warning for such expressions</b>. The correct version of this code is this:</p>	<br>
+<span class="auto"><code class="source"> <var>if</var> (0 &lt; L &amp;&amp; L &lt; 2 * M_PI) { }</code></span><h3>Issue 10</h3>	<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br></code></pre></td>
+<td class="source"><pre><code><var>unsigned</var> <var>int</var> K;
+....
+<var>if</var> (K &lt; 0) { }
+...
+<var>if</var> (K == -1) { }</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<p>Unsigned variables cannot be less than zero.</p>
+<h3>Issue 11</h3>
+<p>Comparing a variable to a value it can never reach. For example:</p>	<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br></code></pre></td>
+<td class="source"><pre><code><var>short</var> s;
+...
+If (s==0xaaaa) { }</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<p><b>The compiler produces warnings against such things.</b></p>
+<h3>Issue 12</h3>
+<p>Memory is allocated with the help of 'new' or 'malloc', while forgotten to be freed through 'delete'/'free' correspondingly. It may look something like this:</p>	<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br></code></pre></td>
+<td class="source"><pre><code><var>void</var> foo()
+{
+  std::vector&lt;<var>int</var>&gt; *v1 = <var>new</var> std::vector&lt;<var>int</var>&gt;;
+  std::vector&lt;<var>int</var>&gt; v2;
+  v2-&gt;push_back(*v1);
+  ...
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<p>Perhaps it was the pointer to 'std::vector&lt;int&gt;' that used to be saved into 'v2' before. Now, due to modifications of some code parts, it is no longer needed and there are just 'int' values being saved. At the same time, memory allocated for 'v1' is not freed, as that was not needed in earlier times. To fix the code we should add the statement 'delete v1' at the end of the function, or use smart pointers.</p>
+<p>Even better is to bring refactoring to an end, making 'v1' a local object, since you no longer need to pass it anywhere:</p>	<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br></code></pre></td>
+<td class="source"><pre><code><var>void</var> foo()
+{
+  std::vector&lt;<var>int</var>&gt; v1;
+  std::vector&lt;<var>int</var>&gt; v2;
+  v2-&gt;push_back(v1[0]);
+  ...
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<h3>Issue 13</h3>
+<p>Memory is allocated through 'new[]' and freed through 'delete'. Or, vice versa, memory is allocated through 'new' and freed through 'delete[]'.</p>
+<h3>Issue 14</h3>
+<p>Using uninitialized variables:</p>	<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br></code></pre></td>
+<td class="source"><pre><code><var>int</var> sum;
+...
+<var>for</var> (<var>int</var> i = 0; i &lt; 10; i++)
+{
+  sum++;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<p>In C/C++, variables are not initialized to zero by default. Sometimes code only seems to run well, which is not so - it's merely luck.</p>
+<h3>Issue 15</h3>
+<p>A function returns a reference or pointer to local objects:</p>	<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br></code></pre></td>
+<td class="source"><pre><code><var>char</var>* CreateName()
+{
+  <var>char</var> FileName[100];
+  ...
+  <var>return</var> FileName;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<p>On leaving the function, 'FileName' will refer to an already freed memory area, since all the local objects are created on the stack, so it's impossible to handle it correctly any further.</p>
+<h3>Issue 16</h3>
+<p>Values returned by functions are not checked, while they may return an error code or '-1' in case of an error. It may happen that a function returns an error code, us continuing to work without noticing and reacting to it in any way, which will result in a sudden program crash at some point. Such defects take much time to debug after that.</p>
+<h3>Issue 17</h3>
+<p>Neglecting usage of special static and dynamic analysis tools, as well as creation and usage of unit-tests.</p>
+<h3>Issue 18</h3>
+<p>Being too greedy for adding some parentheses in math expressions, which results in the following:</p>	<br>
+<span class="auto"><code class="source">D = ns_vsk.bit.D_PN_ml + (<var>int</var>)(ns_vsk.bit.D_PN_st) &lt;&lt; 16;</code></span><p>In this case, addition is executed in the first place and only then left-shift is. See "<a href="http://www.viva64.com/en/t/0064/">Operation priorities in C/C++</a> ". Judging by the program logic, the order the operations must be executed in is quite reverse: shift first, then addition. A similar error occurs in the following fragment:</p>	<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br></code></pre></td>
+<td class="source"><pre><code><dfn>#define A 1</dfn>
+<dfn>#define B 2</dfn>
+<dfn>#define TYPE A | B</dfn>
+<var>if</var> (type &amp; TYPE) { }</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<p>The error here is this: the programmer forgot to enclose the TYPE macro in parentheses. This results in first executing the 'type & A' expression and only then the '(type & A ) | B' expression. As a consequence, the condition is always true.</p>
+<h3>Issue 19</h3>
+<p>Array index out of bounds:</p>	<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br></code></pre></td>
+<td class="source"><pre><code><var>int</var> mas[3];
+mas[0] = 1;
+mas[1] = 2;
+mas[2] = 3;
+mas[3] = 4;</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<p>The 'mas[3] = 4;' expression addresses a non-existing array item, since it follows from the declaration of the 'int mas[N]' array that its items can be indexed within the range [0...N-1].</p>
+<h3>Issue 20</h3>
+<p>Priorities of the logical operations '&&' and '||' are mixed up. The '&&' operator has a higher priority, so in this condition:</p>	<br>
+<span class="auto"><code class="source"><var>if</var> (A || B &amp;&amp; C) { }</code></span><p>'B && C' will be executed first, while the rest part of the expression will be executed after that. This may not conform to the required execution logic. It's often assumed that logical expressions are executed from left to right. <b>The compiler generates warnings for such suspicious fragments</b>.</p>
+<h3>Issue 21</h3>
+<p>An assigned value will have no effect outside the function:</p>	<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br></code></pre></td>
+<td class="source"><pre><code><var>void</var> foo(<var>int</var> *a, <var>int</var> b)
+{
+  If (b == 10)
+  {
+    *a = 10;
+  }
+  <var>else</var>
+  {
+    a = <var>new</var> <var>int</var>;
+  }
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<p>The pointer 'a' cannot be assigned a different address value. To do that, you need to declare the function in the following way:</p>	<br>
+<span class="auto"><code class="source"><var>void</var> foo(<var>int</var> *&amp;a, <var>int</var> b) {....}</code></span><p>or:</p>	<br>
+<span class="auto"><code class="source"><var>void</var> foo(<var>int</var> **a, <var>int</var> b) {....}</code></span><h3>References:</h3>
+<ol>
+  <li>"Enough Rope to Shoot Yourself in the Foot. Rules for C and C++ Programming". Allen I. Holub;</li>
+  <li>"C++ Coding Standards: 101 Rules, Guidelines, and Best Practices". Herb Sutter, Andrei Alexandrescu;</li>
+  <li>"Code Complete". Steve McConnel;</li>
+  <li>"C++ Gotchas: Avoiding Common Problems in Coding and Design". Stephen C. Dewhurst;</li>
+  <li>"Effective C++: 50 Specific Ways to Improve Your Programs and Designs". Scott Meyers.</li>
+</ol>
+<h2>Conclusion</h2>
+<p>I haven't drawn any specific and significant conclusions. I'm only sure that in one particular place the situation with software development is beginning to improve. And that's pleasant.</p>
+<p>On the other hand, it makes me sad that many people haven't even heard of static analysis. And these people are usually responsible for serious and important affairs. The area of programming is developing very fast. As a result, those who are constantly "working at work" fail to keep track of contemporary tendencies and tools in the industry. They eventually grow to work much less efficiently than freelance programmers and programmers engaged in startups and small companies.</p>
+<p>Thus we get a strange situation. A young freelancer can do his work better (because he has knowledge: TDD, continuous integration, static analysis, version control systems, and so on) than a programmer who has worked for 10 years at Russian Railways/nuclear power plant/… (add your variant of some large enterprise). Thank God, it's far not always like that. But still it happens.</p>
+<p>Why am I feeling sad about this? I wish we could sell PVS-Studio to them. But they don't even have a slightest suspicion about existence and usefulness of such tools. :)</p></div></div><div id="CH_bb"></div><div id="CH_scoreapp"></div><script type="text/javascript">new Score('CH_scoreapp','/articles/score.cgi','91wTURfi');</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder selected articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/articles/">Articles</a></b></h3>
+<ul>
+<li><a href="/articles/algorithms/">Algorithms</a></li><li><a href="/articles/cpp11/">C++ 11</a></li><li><a href="/articles/graphics/">Graphics and multimedia</a></li><li><a href="/articles/howto/">How-To</a></li><li><a href="/articles/language/">Language Features</a></li><li><a href="/articles/linux/">Unix/Linux programming</a></li><li><a href="/articles/sourcecode/">Source Code</a></li><li><a href="/articles/standard_library/">Standard Library</a></li><li><a href="/articles/tips/">Tips and Tricks</a></li><li><a href="/articles/tools/">Tools and Libraries</a></li><li><a href="/articles/visualcpp/">Visual C++</a></li><li><a href="/articles/winapi/">Windows API</a></li></ul>
+</div>
+<div id="I_subnav"></div>
+</div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Farticles%2F91wTURfi%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+onSession(function(us) {
+		document.getElementById('I_subnav').innerHTML=
+			us.ok?
+				'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul>'+
+				'<li><a href="/articles/myitems.cgi">My items</a></li>'+
+				(us.auth(32768)?'<li><a href="/articles/adminitems.cgi">Admin items</a></li>':'')+
+				'</ul></div>'
+			:'';
+	}); onSession(function (us) {
+		var el=document.getElementById('CH_bb'); el.innerHTML='';
+		if ( (us.auth(32768)) || ((us.uniqid=='Dj1Rko23')&&(us.auth(128))) ) {
+			el.appendChild(btn('Edit article','Edit this version of the article','edit','/articles/edit.cgi?a=91wTURfi'));
+	
+			if (us.auth(32768)) {
+				el.appendChild(btn('Delete article','Delete this article','delete','javascript:artdel()'));
+			}
+	
+		}
+	});
+	function artdel() { if (confirm('WARNING: You are about to delete this page. Confirm?')) window.location='/articles/delete.cgi?a=91wTURfi'; }
+	ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

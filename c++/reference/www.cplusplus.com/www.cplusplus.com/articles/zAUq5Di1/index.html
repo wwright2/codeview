@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Recusion Types - C++ Articles</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/articles/">Articles</a></li>
+<li class="here">Recusion Types</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div id="I_content">
+<div class="C_art">
+<div id="I_author">Published by <b><a href="/user/asadulla/" rel="author">asadulla</a></b></div>
+<div id="I_date">Jul 14, 2008</div>
+<h1>Recusion Types</h1>
+<div id="I_score">Score: 3.6/5 (30 votes)</div>
+<div id="I_stars"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-half.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"></div>
+<div id="I_content">
+Introduction<br>
+<br>
+Here I am going to give a detail about Recursion in C++. Definition: Recursion is the process where a function is called itself but stack frame will be out of limit because function call will be infinite times. So a termination condition is mandatory to a recursion.<br>
+<br>
+Many complex problem can be solved by recursion in a simple code. But it's too much costly than iterative. because in every recursion call one stack frame will formed.You all already know that about it's cost. but if problem is very complex than no way to solve except recursion.<br>
+<br>
+Background<br>
+<br>
+First recursion came into mathematics and then came into Computer science. Idea of it's use that first broke your problem into subproblems and solve it by using recursion.<br>
+<br>
+The code<br>
+<br>
+In C++, Recursion can be divided into two types:<br>
+(a)Run- Time Recursion: Normal as in C<br>
+(b)Compile- Time Recursion: By using Template<br>
+<br>
+Each of these can be also divided into following types:<br>
+<br>
+1. Linear Recursion<br>
+2. Binary Recursion<br>
+3. Tail Recursion<br>
+4. Mutual Recursion<br>
+5. Nested Recursion<br>
+<br>
+<br>
+1. Linear Recursion: This recursion is the most commonly used. In this recursion a function call itself in a simple manner and by termination condition it terminates. This process called 'Winding' and when it returns to caller that is called 'Un-Winding'. Termination condition also known as Base condition.<br>
+<br>
+Example: Factorial calculation by linear recursion<br>
+<br>
+Run-Time Version<br>
+<br>
+Code:<br>
+<br>
+<br>
+int Fact(long n)<br>
+{<br>
+if(0&gt;n)<br>
+return -1;<br>
+if(0 == n)<br>
+return 1;<br>
+else<br>
+{<br>
+return ( n* Fact(n-1));<br>
+}<br>
+}<br>
+<br>
+<br>
+<br>
+Winding Process:<br>
+<br>
+Function called Function return<br>
+<br>
+Fact(6) 6*Fact(5)<br>
+Fact(5) 5*Fact(4)<br>
+Fact(4) 4*Fact(3)<br>
+Fact(3) 3* Fact(2)<br>
+Fact(2) 2* Fact(1)<br>
+Fact(1) 1* Fact(0)<br>
+Terminating Point<br>
+Fact(0) 1<br>
+<br>
+Unwinding Process<br>
+<br>
+Fact(1) 1*1<br>
+Fact(2) 2*1<br>
+Fact(3) 3*2*1<br>
+Fact(4) 4*3*2*1<br>
+Fact(5) 5*4*3*2*1<br>
+Fact(6) 6*5*4*3*2*1<br>
+<br>
+<br>
+Compile-Time Version<br>
+<br>
+Code:<br>
+<br>
+<br>
+// template for Base Condition<br>
+template &lt;&gt;<br>
+struct Fact&lt;0&gt;<br>
+{<br>
+enum<br>
+{<br>
+factVal = 1<br>
+};<br>
+};<br>
+<br>
+template<br>
+struct Fact<br>
+{<br>
+// Recursion call by linear method<br>
+enum<br>
+{<br>
+value = n * Fact::factVal<br>
+};<br>
+};<br>
+<br>
+<br>
+To test it how it's working at compile time, just call<br>
+cout &lt;&lt;&gt;::factVal ;<br>
+And compile it then compiler error will come, because no template for -1.<br>
+<br>
+2. Binary Recursion: Binary Recursion is a process where function is called twice at a time inplace of once at a time. Mostly it's using in data structure like operations for tree as traversal, finding height, merging, etc.<br>
+<br>
+Example: Fibonacci number<br>
+<br>
+Run Time Version Code<br>
+Code:<br>
+<br>
+<br>
+int FibNum(int n)<br>
+{<br>
+// Base conditions<br>
+if (n &lt; 1)<br>
+return -1;<br>
+if (1 == n || 2 == n)<br>
+return 1; // Recursive call by Binary Method<br>
+return FibNum(n - 1) + FibNum(n - 2);<br>
+// At a time two recursive function called so Binary<br>
+}<br>
+// binary }<br>
+<br>
+<br>
+Compile Time Version Code<br>
+Code:<br>
+<br>
+<br>
+// Base Conditions<br>
+template&lt;&gt;<br>
+struct FibNum&lt;2&gt;<br>
+{<br>
+enum { val = 1 };<br>
+};<br>
+template &lt;&gt;<br>
+struct FibNum&lt;1&gt;<br>
+{<br>
+enum { val = 1 };<br>
+};<br>
+<br>
+// Recursive call by Binary Method<br>
+template<br>
+struct FibNum<br>
+{<br>
+enum { val= FibNum::val + FibNum::val };<br>
+};<br>
+<br>
+<br>
+3. Tail Recursion: In this method, recursive function is called at the last. So it's more efficient than linear recursion method. Means you can say termination point will come(100%) only you have to put that condition.<br>
+<br>
+Example: Fibonacci number<br>
+<br>
+Run Time Version Code<br>
+Code:<br>
+<br>
+<br>
+int FibNum(int n, int x, int y)<br>
+{<br>
+if (1 == n) // Base Condition<br>
+{<br>
+return y;<br>
+}<br>
+else // Recursive call by Tail method<br>
+{<br>
+return FibNum(n-1, y, x+y);<br>
+}<br>
+}<br>
+<br>
+<br>
+Compile Time Version Code<br>
+<br>
+Code:<br>
+<br>
+<br>
+template<br>
+struct FibNum<br>
+{<br>
+// Recursive call By tail method<br>
+enum<br>
+{<br>
+val = FibNum::val<br>
+};<br>
+};<br>
+<br>
+// Base Condition or Termination<br>
+template<br>
+struct FibNum&lt;1,&gt;<br>
+{<br>
+enum<br>
+{<br>
+val = y<br>
+};<br>
+};<br>
+<br>
+<br>
+4. Mutual Recursion: Functions calling each other. Let's say FunA calling FunB and FunB calling FunA recursively. This is not actually not recursive but it's doing same as recursive. So you can say Programming languages which are not supporting recursive calls, mutual recursion can be applied there to fulfill the requirement of recursion. Base condition can be applied to any into one or more than one or all functions.<br>
+<br>
+Example: To find Even Or Odd number<br>
+<br>
+Run Time Version Code<br>
+Code:<br>
+<br>
+<br>
+bool IsOddNumber(int n)<br>
+{<br>
+// Base or Termination Condition<br>
+if (0 == n)<br>
+return 0;<br>
+else<br>
+// Recursive call by Mutual Method<br>
+return IsEvenNumber(n - 1);<br>
+}<br>
+bool IsEvenNumber(int n)<br>
+{<br>
+// Base or Termination Condition<br>
+if (0 == n)<br>
+return 1;<br>
+else<br>
+// Recursive call by Mutual Method<br>
+return IsOddNumber(n - 1);<br>
+}<br>
+<br>
+<br>
+Compile Time Version Code<br>
+Code:<br>
+<br>
+<br>
+// Base Or Termination Conditions<br>
+template &lt;&gt;<br>
+struct IsOddNumber&lt;0&gt;<br>
+{<br>
+enum<br>
+{<br>
+val = 0<br>
+};<br>
+};<br>
+template &lt;&gt;<br>
+struct IsEvenNumber&lt;0&gt;<br>
+{<br>
+enum<br>
+{<br>
+val = 1<br>
+};<br>
+};<br>
+<br>
+// Recursive calls by Mutual Method<br>
+<br>
+template<br>
+struct IsOddNumber<br>
+{<br>
+enum<br>
+{<br>
+val = n == 0 ? 0 : IsEvenNumber::val<br>
+};<br>
+};<br>
+<br>
+<br>
+template<br>
+struct IsEvenNumber<br>
+{<br>
+enum<br>
+{<br>
+val = n == 0 ? 1 : IsOddNumber::val<br>
+};<br>
+};<br>
+<br>
+<br>
+5.Nested Recursion: It's very different than all recursions. All recursion can be converted to iterative (loop) except nested recursion. You can understand this recursion by example of Ackermann function.<br>
+<br>
+Example: Ackermann function<br>
+<br>
+Run Time Version Code<br>
+Code:<br>
+<br>
+<br>
+int Ackermann(int x, int y)<br>
+{<br>
+// Base or Termination Condition<br>
+if (0 == x)<br>
+{<br>
+return y + 1;<br>
+}<br>
+// Error Handling condition<br>
+if (x &lt;&gt; 0 && 0 == y)<br>
+{<br>
+return Ackermann(x-1, 1);<br>
+}<br>
+// Recursive call by Nested method<br>
+else<br>
+{<br>
+return Ackermann(x-1, Ackermann(x, y-1));<br>
+}<br>
+}<br>
+<br>
+<br>
+Compile Time Version Code<br>
+Code:<br>
+<br>
+<br>
+// Base Or Termination condition<br>
+template<br>
+struct Ackermann&lt;0,&gt;<br>
+{<br>
+enum { val = y + 1 };<br>
+};<br>
+<br>
+// Recursive Call by Linear Method<br>
+template<br>
+struct Ackermann<br>
+{<br>
+enum<br>
+{<br>
+val = Ackermann::val<br>
+};<br>
+};<br>
+// Recursive Call by Nested Method<br>
+template<br>
+struct Ackermann<br>
+{<br>
+Enum<br>
+{<br>
+val = Ackermann ::val&gt;::val<br>
+};<br>
+};<br>
+<br>
+</div></div><div id="CH_bb"></div><div id="CH_scoreapp"></div><script type="text/javascript">new Score('CH_scoreapp','/articles/score.cgi','zAUq5Di1');</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder selected articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/articles/">Articles</a></b></h3>
+<ul>
+<li><a href="/articles/algorithms/">Algorithms</a></li><li><a href="/articles/cpp11/">C++ 11</a></li><li><a href="/articles/graphics/">Graphics and multimedia</a></li><li><a href="/articles/howto/">How-To</a></li><li><a href="/articles/language/">Language Features</a></li><li><a href="/articles/linux/">Unix/Linux programming</a></li><li><a href="/articles/sourcecode/">Source Code</a></li><li><a href="/articles/standard_library/">Standard Library</a></li><li><a href="/articles/tips/">Tips and Tricks</a></li><li><a href="/articles/tools/">Tools and Libraries</a></li><li><a href="/articles/visualcpp/">Visual C++</a></li><li><a href="/articles/winapi/">Windows API</a></li></ul>
+</div>
+<div id="I_subnav"></div>
+</div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Farticles%2FzAUq5Di1%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+onSession(function(us) {
+		document.getElementById('I_subnav').innerHTML=
+			us.ok?
+				'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul>'+
+				'<li><a href="/articles/myitems.cgi">My items</a></li>'+
+				(us.auth(32768)?'<li><a href="/articles/adminitems.cgi">Admin items</a></li>':'')+
+				'</ul></div>'
+			:'';
+	}); onSession(function (us) {
+		var el=document.getElementById('CH_bb'); el.innerHTML='';
+		if ( (us.auth(32768)) || ((us.uniqid=='Lb4iE3v7')&&(us.auth(128))) ) {
+			el.appendChild(btn('Edit article','Edit this version of the article','edit','/articles/edit.cgi?a=zAUq5Di1'));
+	
+			if (us.auth(32768)) {
+				el.appendChild(btn('Delete article','Delete this article','delete','javascript:artdel()'));
+			}
+	
+		}
+	});
+	function artdel() { if (confirm('WARNING: You are about to delete this page. Confirm?')) window.location='/articles/delete.cgi?a=zAUq5Di1'; }
+	ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

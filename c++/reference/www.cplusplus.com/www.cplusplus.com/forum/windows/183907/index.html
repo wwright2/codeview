@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>GetUserNameEx Function - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/windows/">Windows Programming</a></li>
+<li class="here">GetUserNameEx Function</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico question" title="question">&nbsp;</div> GetUserNameEx Function</h3><span id="CH_edttl"></span><span class="rootdatPost" title="183907,root,0,-1,9,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg899714"><span title="899714,210800,255,5,1"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg899714" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmae90e5a6e2" title="Thu, 04 Feb 2016 23:07:30 +0000"></span><script type="text/javascript">WhenId('CH_zTmae90e5a6e2');</script><noscript>Feb 4, 2016 at 11:07pm UTC</noscript></div>
+<div class="dwho"><a href="/user/mysteryman/"><b>mysteryman</b> (5)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i899714">
+Hi I'm using Dev-C++ and trying to get the "GetUserNameEx" function to work. "GetUsername" works fine but this one leads to a bunch of errors when using it.<br>
+<br>
+Code:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br></code></pre></td>
+<td class="source"><pre><code><dfn>#define SECURITY_WIN32</dfn>
+<dfn>#include &lt;Security.h&gt;</dfn>
+<dfn>#include &lt;iostream&gt;</dfn>
+
+<var>using</var> <var>namespace</var> std;
+<var>int</var> main()
+{
+   TCHAR Username[UNLEN+1];
+   DWORD nULen = UNLEN;
+
+   GetUserNameEx(NameDisplay, Username, &amp;nULen); 
+   cout &lt;&lt; Username;
+   system(<kbd>"pause"</kbd>);
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+when I try to compile I get "In file included from C:/Dev-Cpp/include/Security.h:38,"<br>
+<br>
+lots of "ULONG_PTR/ULONG/USHORT/PVOID does not name a type"<br>
+<br>
+and then lots of "expected `,' or `;' before '*' token"<br>
+<br>
+and then more "does not name a type" and undeclared variables<br>
+<br>
+Does anyone know the problem? thanks<br>
+(also the preview button on this site doesn't seem to work and the length says 0, so I'm not sure if this will post right)
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn899714"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg899717"><span title="899717,17129,1023,7936,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg899717" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm95dd627f4a" title="Thu, 04 Feb 2016 23:19:09 +0000"></span><script type="text/javascript">WhenId('CH_zTm95dd627f4a');</script><noscript>Feb 4, 2016 at 11:19pm UTC</noscript></div>
+<div class="dwho"><a href="/user/kbw/"><b>kbw</b> (7936)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i899717">
+How about defining <span class="auto"><code class="source">NameDisplay</code></span>.<br>
+<br>
+Doc says include Secext.h.<br>
+<a href="https://msdn.microsoft.com/en-us/library/windows/desktop/ms724435%28v=vs.85%29.aspx">https://msdn.microsoft.com/en-us/library/windows/desktop/ms724435%28v=vs.85%29.aspx</a>
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn899717"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg899721"><span title="899721,210800,255,5,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg899721" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm73ebeb84e0" title="Thu, 04 Feb 2016 23:45:43 +0000"></span><script type="text/javascript">WhenId('CH_zTm73ebeb84e0');</script><noscript>Feb 4, 2016 at 11:45pm UTC</noscript></div>
+<div class="dwho"><a href="/user/mysteryman/"><b>mysteryman</b> (5)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i899721">
+I thought Secext.h is included in Security.h<br>
+NameDisplay is from EXTENDED_NAME_FORMAT
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn899721"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg899741"><span title="899741,94088,1023,5090,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg899741" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm44ceb44650" title="Fri, 05 Feb 2016 01:48:44 +0000"></span><script type="text/javascript">WhenId('CH_zTm44ceb44650');</script><noscript>Feb 5, 2016 at 1:48am UTC</noscript></div>
+<div class="dwho"><a href="/user/Chervil/"><b>Chervil</b> (5090)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i899741">
+Did you try <span class="auto"><code class="source"><dfn>#include &lt;windows.h&gt; </dfn></code></span>
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn899741"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg899744"><span title="899744,210800,255,5,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg899744" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm91f8c1ad24" title="Fri, 05 Feb 2016 02:41:59 +0000"></span><script type="text/javascript">WhenId('CH_zTm91f8c1ad24');</script><noscript>Feb 5, 2016 at 2:41am UTC</noscript></div>
+<div class="dwho"><a href="/user/mysteryman/"><b>mysteryman</b> (5)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i899744">
+Yeah, for "GetUserName" I had <div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;windows.h&gt;</dfn>
+<dfn>#include &lt;Lmcons.h&gt; </dfn></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+ but for this one adding them doesn't seem to help
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn899744"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg899785"><span title="899785,17129,1023,7936,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg899785" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm1b7d583732" title="Fri, 05 Feb 2016 09:14:06 +0000"></span><script type="text/javascript">WhenId('CH_zTm1b7d583732');</script><noscript>Feb 5, 2016 at 9:14am UTC</noscript></div>
+<div class="dwho"><a href="/user/kbw/"><b>kbw</b> (7936)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i899785">
+Being lazy?<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br></code></pre></td>
+<td class="source"><pre><code><dfn>#ifndef _UNICODE</dfn>
+<dfn>#define _UNICODE</dfn>
+<dfn>#define UNICODE</dfn>
+<dfn>#endif</dfn>
+
+<dfn>#define WIN32_LEAN_AND_MEAN</dfn>
+<dfn>#include &lt;Windows.h&gt;</dfn>
+
+<dfn>#define SECURITY_WIN32</dfn>
+<dfn>#include &lt;Security.h&gt;</dfn>
+
+<dfn>#include &lt;iostream&gt;</dfn>
+
+<var>int</var> main()
+{
+	EXTENDED_NAME_FORMAT eNameDisplay = NameFullyQualifiedDN;
+	<var>const</var> DWORD Len = 1024;
+	TCHAR szUsername[Len + 1];
+	DWORD dwLen = Len;
+
+	<var>if</var> (GetUserNameEx(eNameDisplay, szUsername, &amp;dwLen))
+	{
+		std::wcout &lt;&lt; <kbd>"Username="</kbd> &lt;&lt; szUsername &lt;&lt; std::endl;
+	}
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn899785"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg900478"><span title="900478,210800,255,5,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg900478" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmaedb91d364" title="Sun, 07 Feb 2016 20:45:39 +0000"></span><script type="text/javascript">WhenId('CH_zTmaedb91d364');</script><noscript>Feb 7, 2016 at 8:45pm UTC</noscript></div>
+<div class="dwho"><a href="/user/mysteryman/"><b>mysteryman</b> (5)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i900478">
+Well now I'm getting "undefined reference to `GetUserNameExW'" for some reason
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn900478"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg900483"><span title="900483,199131,1023,610,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg900483" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm4132f7ea09" title="Sun, 07 Feb 2016 21:05:21 +0000"></span><script type="text/javascript">WhenId('CH_zTm4132f7ea09');</script><noscript>Feb 7, 2016 at 9:05pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Thomas1965/"><b>Thomas1965</b> (610)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i900483">
+You need to link with Secur32.lib.<br>
+<br>
+I don't know if your Dev-C++ understands this: <span class="auto"><code class="source"><dfn>#pragma comment(lib, "Secur32.lib") </dfn></code></span>
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn900483"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg900494"><span title="900494,210800,255,5,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg900494" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm768d6e7262" title="Sun, 07 Feb 2016 21:59:12 +0000"></span><script type="text/javascript">WhenId('CH_zTm768d6e7262');</script><noscript>Feb 7, 2016 at 9:59pm UTC</noscript></div>
+<div class="dwho"><a href="/user/mysteryman/"><b>mysteryman</b> (5)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i900494">
+Thank you!!! It works finally, I did have to add the library another way but I figured out how to do it.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn900494"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div class="rootbtnNew"></div><div id="CH_insNew"></div><div id="CH_reply">Registered users can post here. <a href="/user/">Sign in or register</a> to post.</div><div id="CH_subscription"></div><div class="rootedtNew"></div><script type="text/javascript">new for_PostList(183907,0,210800,0,'CH_PostList','CH_subscription','CH_reply','CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+<script type="text/javascript">
+    google_ad_client = "ca-pub-1444228343479937";
+    google_ad_slot = "9701143201";
+    google_ad_width = 728;
+    google_ad_height = 90;
+</script>
+<!-- leaderboard -->
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li><a href="/forum/beginner/"><b>Beginners</b></a></li><li class="selected"><a href="/forum/windows/"><b>Windows Programming</b></a></li><li><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li><a href="/forum/general/"><b>General C++ Programming</b></a></li><li><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Fwindows%2F183907%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

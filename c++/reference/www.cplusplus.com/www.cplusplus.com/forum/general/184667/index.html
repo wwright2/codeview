@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Vector &quot;out of range&quot; error in a simple  - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/general/">General C++ Programming</a></li>
+<li class="here">Vector &quot;out of range&quot; error in a simple </li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico default" title="post">&nbsp;</div> Vector &quot;out of range&quot; error in a simple program storing words inputted into a vector</h3><span id="CH_edttl"></span><span class="rootdatPost" title="184667,root,0,-1,6,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg902565"><span title="902565,212071,1023,11,1"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg902565" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm2cb95a94b4" title="Tue, 16 Feb 2016 00:23:31 +0000"></span><script type="text/javascript">WhenId('CH_zTm2cb95a94b4');</script><noscript>Feb 16, 2016 at 12:23am UTC</noscript></div>
+<div class="dwho"><a href="/user/immortal192/"><b>immortal192</b> (11)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i902565">
+I am trying to store user input all words a user inputs into a vector, with each word being an element. The user can input as many lines of words as he wants, and when finished, uses CTRL+D to specify end of file. A word is any characters separated by a comma or space. The following code compiles but I get this error: <br>
+<br>
+Error: terminate called after throwing an instance of 'std::out_of_range'<br>
+what():  vector::_M_range_check: __n (which is 1) &gt;= this-&gt;size() (which is 1)<br>
+<br>
+My code:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;vector&gt;</dfn>
+<dfn>#include &lt;string&gt;</dfn>
+<dfn>#include &lt;sstream&gt;</dfn>
+<dfn>#include &lt;iostream&gt;</dfn>
+
+<var>using</var> <var>namespace</var> std;
+
+<var>int</var> main(){
+
+    string input;
+    vector&lt;string&gt; hand;
+    istringstream sso;
+
+    cout &lt;&lt; <kbd>"Enter your string: "</kbd> &lt;&lt; endl;
+
+    <var>while</var> (cin &gt;&gt; input){
+        
+        sso.str(input);
+    
+        <var>while</var>(getline(sso, input, <kbd>','</kbd>)) {
+
+            hand.push_back(input);
+        
+        }
+
+    }
+
+    cout &lt;&lt; hand.at(0) &lt;&lt; endl;
+    cout &lt;&lt; hand.at(1) &lt;&lt; endl;
+    cout &lt;&lt; hand.at(2) &lt;&lt; endl;
+
+    <var>return</var> 0;
+
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Any help is appreciated. Thank you.
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTmb0bbbcfda0" title="Tue, 16 Feb 2016 00:23:55 +0000"></span><script type="text/javascript">WhenId('CH_zTmb0bbbcfda0');</script><noscript>Feb 16, 2016 at 12:23am UTC</noscript></span>
+<span class="dbtn" id="CH_btn902565"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg902579"><span title="902579,118111,1023,1259,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg902579" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm130dbecd87" title="Tue, 16 Feb 2016 00:57:43 +0000"></span><script type="text/javascript">WhenId('CH_zTm130dbecd87');</script><noscript>Feb 16, 2016 at 12:57am UTC</noscript></div>
+<div class="dwho"><a href="/user/TwilightSpectre/"><b>TwilightSpectre</b> (1259)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i902579">
+You aren't clearing the flags on your <tt>istringstream</tt>, meaning that you are only adding one object to your <tt>vector</tt>. This means that when you try to do <tt>hand.at(1)</tt> you are accessing an element that doesn't exist, hence your program throwing an exception.<br>
+<br>
+To fix it, either add <tt>sso.clear()</tt> at the end of the loop, or just declare your variables inside the loop:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br></code></pre></td>
+<td class="source"><pre><code>std::string input;
+std::cout &lt;&lt; <kbd>"Enter your string:\n"</kbd>;
+<var>while</var> (std::cin &gt;&gt; input) {
+    std::istringstream iss(input);
+    <var>while</var> (std::getline(iss, input, <kbd>','</kbd>)) {
+        hand.push_back(input);
+    }
+}
+
+<cite>// print contents of vector</cite>
+<var>for</var> (<var>const</var> <var>auto</var>&amp; str : hand)
+    std::cout &lt;&lt; str &lt;&lt; std::endl;</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn902579"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg902584"><span title="902584,212071,1023,11,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg902584" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm033493feac" title="Tue, 16 Feb 2016 01:08:42 +0000"></span><script type="text/javascript">WhenId('CH_zTm033493feac');</script><noscript>Feb 16, 2016 at 1:08am UTC</noscript></div>
+<div class="dwho"><a href="/user/immortal192/"><b>immortal192</b> (11)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i902584">
+That did it, thank you. One more quick question--I'm trying to add a vector containing 52 strings but I am getting many errors (new to vectors). Here's what I have:<br>
+<br>
+vector &lt;string&gt; cards{"2C", "3C", "more cards", "2S"};  //etc.<br>
+<br>
+I will post exact errors if needed but I figured this is a noobie mistake that is easy to solve (it's like 2 pages worth of errors).<br>
+<br>
+Thank you.<br>
+<br>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn902584"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg902585"><span title="902585,118111,1023,1259,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg902585" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmf0d50bc70e" title="Tue, 16 Feb 2016 01:11:36 +0000"></span><script type="text/javascript">WhenId('CH_zTmf0d50bc70e');</script><noscript>Feb 16, 2016 at 1:11am UTC</noscript></div>
+<div class="dwho"><a href="/user/TwilightSpectre/"><b>TwilightSpectre</b> (1259)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i902585">
+What you have there is correct. Could you post more of your program?
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn902585"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg902589"><span title="902589,212071,1023,11,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg902589" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTma6b74bd9be" title="Tue, 16 Feb 2016 01:17:31 +0000"></span><script type="text/javascript">WhenId('CH_zTma6b74bd9be');</script><noscript>Feb 16, 2016 at 1:17am UTC</noscript></div>
+<div class="dwho"><a href="/user/immortal192/"><b>immortal192</b> (11)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i902589">
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;vector&gt;</dfn>
+<dfn>#include &lt;string&gt;</dfn>
+<dfn>#include &lt;sstream&gt;</dfn>
+<dfn>#include &lt;iostream&gt;</dfn>
+
+<var>using</var> <var>namespace</var> std;
+
+<var>int</var> main(){
+
+
+    string input;
+    vector &lt;string&gt; hand;
+    vector &lt;string&gt; cards{<kbd>"2C"</kbd>, <kbd>"3C"</kbd>, <kbd>"4C"</kbd>, <kbd>"5C"</kbd>, <kbd>"6C"</kbd>, <kbd>"7C"</kbd>, <kbd>"8C"</kbd>, <kbd>"9C"</kbd>, <kbd>"10C"</kbd>, <kbd>"JC"</kbd>, <kbd>"QC"</kbd>, <kbd>"KC"</kbd>, <kbd>"AC"</kbd>,
+                          <kbd>"2D"</kbd>, <kbd>"3D"</kbd>, <kbd>"4D"</kbd>, <kbd>"5D"</kbd>, <kbd>"6D"</kbd>, <kbd>"7D"</kbd>, <kbd>"8D"</kbd>, <kbd>"9D"</kbd>, <kbd>"10D"</kbd>, <kbd>"JD"</kbd>, <kbd>"QD"</kbd>, <kbd>"KD"</kbd>, <kbd>"AD"</kbd>,  
+                          <kbd>"2H"</kbd>, <kbd>"3H"</kbd>, <kbd>"4H"</kbd>, <kbd>"5H"</kbd>, <kbd>"6H"</kbd>, <kbd>"7H"</kbd>, <kbd>"8H"</kbd>, <kbd>"9H"</kbd>, <kbd>"10H"</kbd>, <kbd>"JH"</kbd>, <kbd>"QH"</kbd>, <kbd>"KH"</kbd>, <kbd>"AH"</kbd>,
+                          <kbd>"2S"</kbd>, <kbd>"3S"</kbd>, <kbd>"4S"</kbd>, <kbd>"5S"</kbd>, <kbd>"6S"</kbd>, <kbd>"7S"</kbd>, <kbd>"8S"</kbd>, <kbd>"9S"</kbd>, <kbd>"10S"</kbd>, <kbd>"JS"</kbd>, <kbd>"QS"</kbd>, <kbd>"KS"</kbd>, <kbd>"AS"</kbd>};
+
+    istringstream sso;
+
+    cout &lt;&lt; <kbd>"Enter your string: "</kbd> &lt;&lt; endl;
+
+    <var>while</var> (cin &gt;&gt; input){
+        
+        sso.str(input);
+    
+        <var>while</var>(getline(sso, input, <kbd>','</kbd>)) {
+
+            hand.push_back(input);
+
+        }
+
+        sso.clear(); 
+        
+
+    }
+
+    cout &lt;&lt; hand.at(0) &lt;&lt; endl;
+    cout &lt;&lt; hand.at(1) &lt;&lt; endl;
+    cout &lt;&lt; hand.at(2) &lt;&lt; endl;
+
+    <var>return</var> 0;
+
+}
+
+</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+P.S. 2 more small questions if you don't mind:<br>
+<br>
+1. I used istringstream's behavior to separate words by whitespace and then `getline(sso, input, ','))` to separate words by commas. How can I add in separating words by newlines? I don't think getline allows more parameters to be set and the 3rd one is used by the comma. Would `getline(sso, input, ',')) || getline(sso, input, '\n'))` work?<br>
+<br>
+<br>
+2. (This one is just out of curiosity) If I use the program and typed "hello i am a cat" then typed "CTRL+D" to initiate end-of-file to finish the input without clicking ENTER, it returns "hello i am" as expected but like this:<br>
+<br>
+"hello i am cathello <br>
+i<br>
+am"<br>
+<br>
+Is there an "endl" equivalent for that so it looks pretty?
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm641d6df83b" title="Tue, 16 Feb 2016 01:35:41 +0000"></span><script type="text/javascript">WhenId('CH_zTm641d6df83b');</script><noscript>Feb 16, 2016 at 1:35am UTC</noscript></span>
+<span class="dbtn" id="CH_btn902589"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg902846"><span title="902846,111189,1023,4869,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg902846" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm364684f4b6" title="Tue, 16 Feb 2016 23:30:09 +0000"></span><script type="text/javascript">WhenId('CH_zTm364684f4b6');</script><noscript>Feb 16, 2016 at 11:30pm UTC</noscript></div>
+<div class="dwho"><a href="/user/keskiverto/"><b>keskiverto</b> (4869)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i902846">
+Aren't you slighly double-posting.  First thread: <a href="http://www.cplusplus.com/forum/beginner/184545/">http://www.cplusplus.com/forum/beginner/184545/</a><br>
+<br>
+The order of operations could make a difference:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;iostream&gt;</dfn>
+<dfn>#include &lt;iomanip&gt;</dfn>
+<dfn>#include &lt;string&gt;</dfn>
+<dfn>#include &lt;sstream&gt;</dfn>
+<dfn>#include &lt;vector&gt;</dfn>
+
+<var>void</var> separator() {
+  std::cout &lt;&lt; std::setfill(<kbd>'#'</kbd>) &lt;&lt; std::setw(10) &lt;&lt; <kbd>'\n'</kbd>;
+}
+
+<var>int</var> main ()
+{
+  std::vector&lt;<var>char</var>&gt; types { <kbd>'x'</kbd>, <kbd>'y'</kbd>, <kbd>'z'</kbd> };
+  std::string Q(<kbd>"Q"</kbd>);
+  std::vector&lt;std::string&gt; foo;
+  foo.reserve(12);
+  <var>for</var> ( <var>auto</var> t : types ) {
+      <var>for</var> ( <var>int</var> w = 4; w &lt; 7; ++w ) {
+          foo.push_back( t + std::to_string(w) );
+      }
+      foo.push_back( Q+t );
+  }
+  std::cout &lt;&lt; <kbd>"foo has:\n"</kbd>;
+  <var>for</var> ( <var>auto</var> word : foo ) {
+      std::cout &lt;&lt; <kbd>' '</kbd> &lt;&lt; word;
+  }
+  std::cout &lt;&lt; <kbd>"\n\n"</kbd>;
+
+  std::ostringstream data( <kbd>"A B,C \nD\n,,E"</kbd> );
+
+  std::cout &lt;&lt; <kbd>"The user would type:\n"</kbd>;
+  separator();
+  std::cout &lt;&lt; data.str() &lt;&lt; <kbd>'\n'</kbd>;
+  separator();
+
+  std::istringstream ins( data.str() );
+  
+  std::string text;
+  std::string line;
+  <var>while</var> ( std::getline( ins, line ) ) {
+      text += <kbd>' '</kbd> + line;
+  }
+  std::cout &lt;&lt; <kbd>"\nThe program did read:\n"</kbd>;
+  separator();
+  std::cout &lt;&lt; text &lt;&lt; <kbd>'\n'</kbd>;
+  separator();
+  <cite>// How could one replace characters, like commas, in a string?</cite>
+  
+  <cite>// If you have a string with only whitespace and words ...</cite>
+  <var>return</var> 0;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+Lines 40-42 and following comments might give you an idea.<br>
+<br>
+<br>
+Lines 13-22 are more lines than your lines 13-16 vector initializer, but less tedious to write.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn902846"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div class="rootbtnNew"></div><div id="CH_insNew"></div><div id="CH_reply">Registered users can post here. <a href="/user/">Sign in or register</a> to post.</div><div id="CH_subscription"></div><div class="rootedtNew"></div><script type="text/javascript">new for_PostList(184667,0,212071,0,'CH_PostList','CH_subscription','CH_reply','CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+<script type="text/javascript">
+    google_ad_client = "ca-pub-1444228343479937";
+    google_ad_slot = "9701143201";
+    google_ad_width = 728;
+    google_ad_height = 90;
+</script>
+<!-- leaderboard -->
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li><a href="/forum/beginner/"><b>Beginners</b></a></li><li><a href="/forum/windows/"><b>Windows Programming</b></a></li><li><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li class="selected"><a href="/forum/general/"><b>General C++ Programming</b></a></li><li><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Fgeneral%2F184667%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

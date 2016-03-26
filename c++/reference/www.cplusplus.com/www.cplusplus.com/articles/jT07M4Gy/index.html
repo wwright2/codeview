@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Fibonacii at its best - C++ Articles</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/articles/">Articles</a></li>
+<li class="here">Fibonacii at its best</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div id="I_content">
+<div class="C_art">
+<div id="I_author">Published by <b><a href="/user/Sobo/" rel="author">Sobo</a></b></div>
+<div id="I_date">Mar 28, 2015</div>
+<h1>Fibonacii at its best</h1>
+<div id="I_score">Score: 3.2/5 (213 votes)</div>
+<div id="I_stars"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"></div>
+<div id="I_content">
+This post will be about a problem statement that got in my college exams during my engineering. It was a question of an assignment. The question was as follows<br>
+<br>
+Write the most efficient program to print Fibonacci series up to the value given during runtime and also store the values in a data structure to use it later..your code has to be very memory efficient and much better time complexity than normal programs. You can not use Dynamic Memory allocation!<br>
+<br>
+Well to be precise there are a hell lot of solutions to find the answer. People do use it a lot of techniques to solve this question. But wait, there is a problem in this question. The problem is the choice of language. If you are interested to do this in the good old C, then the problem will occur at the point of storing the values.<br>
+<br>
+You see in the question, it is mentioned that not only you have to print the series up to a certain value, but you need to save the data into a data structure. In C, we have only one rudimentary data structure which can save the series of data in a continuous memory locations: an array. But the problem with the array in C is that you can not declare a array of variable size. For example the line int a[size] would cause the program to crash. Hence you can not declare the size of the array during the runtime, which is actually the objective of the program.<br>
+<br>
+The next solution is to use dynamic memory allocation like this<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br></code></pre></td>
+<td class="source"><pre><code>
+    <var>int</var> size;
+    printf(<kbd>"Enter the length of the series :: "</kbd>);
+    scanf(<kbd>"%d"</kbd>, &amp;size);
+    <var>int</var> *memPtr = (<var>int</var> *)malloc( (size_t)( (<var>int</var>)<var>sizeof</var>(<var>int</var>) * size ) );
+    <cite>// insert the series..</cite>
+    free(memPtr);</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<br>
+But in the program it is explicitly mentioned that you can not use dynamic memory allocation, hence this option is not valid at all.<br>
+<br>
+So the fact of the matter is that you can not design it in good old C..At least not that I know of. Hence I moved to C++ and after few tweaks & improvements I finally designed something which my professor liked & he finally accepted. Hence the objective of this article is to show my design & ask to fellow community members for a better solution if there were any possible.<br>
+<br>
+I created an header file called <EM> fibo.h </EM> and the definition <EM> fibo.cpp </EM>, the <EM> main.cpp </EM> & of course the <EM> Makefile </EM>. Here are my each files<br>
+<br>
+<STRONG> fibo.h </STRONG>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br></code></pre></td>
+<td class="source"><pre><code>    <dfn>#ifndef _fibo_h_</dfn>
+    <dfn>#define _fibo_h_</dfn>
+    <dfn>#include &lt;vector&gt;</dfn>
+    <var>class</var> Fibonacii{
+    <var>private</var>:
+    <var>int</var> size;
+    std::vector&lt;<var>long</var>&gt; data;
+    <var>public</var>:
+    Fibonacii(<var>int</var>);
+    <var>void</var> create_series(<var>void</var>);
+    <var>void</var> get_data(<var>void</var>);
+    };
+    <dfn>#endif </dfn><cite>// _fibo_h_ </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<STRONG> fibo.cpp </STRONG>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br></code></pre></td>
+<td class="source"><pre><code>    <dfn>#include "fibo.h"</dfn>
+    <dfn>#include &lt;iostream&gt;</dfn>
+    <dfn>#include &lt;vector&gt;</dfn>
+    <var>using</var> <var>namespace</var> std;
+    <cite>// This creates a Fibonacii series</cite>
+    <var>void</var> Fibonacii::create_series(<var>void</var>){
+    data.push_back(0);
+    data.push_back(1);
+    <var>for</var> (<var>int</var> i = 2; i &lt; size; ++i)
+    {
+    <cite>/* code */</cite>
+    data.push_back(data[i - 2] + data[i - 1]);
+    }
+    }
+    <cite>// This is a constructor</cite>
+    Fibonacii::Fibonacii(<var>int</var> s){
+    size = s;
+    }
+    <cite>// This method is used to print the series</cite>
+    <var>void</var> Fibonacii::get_data(<var>void</var>){
+    <var>for</var> (<var>long</var> i: data)
+    cout &lt;&lt; i &lt;&lt; endl;
+    }</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<STRONG> main.cpp </STRONG>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br></code></pre></td>
+<td class="source"><pre><code>    <dfn>#include "fibo.h"</dfn>
+    <dfn>#include &lt;string&gt;</dfn>
+    <dfn>#include &lt;iostream&gt;</dfn>
+    <dfn>#include &lt;string&gt;</dfn>
+    <var>using</var> <var>namespace</var> std;
+    <var>int</var> main(<var>int</var> argc, <var>char</var> *argv[])
+    {
+    <cite>/* code */</cite>
+    <var>if</var> (argc == 2) {
+    <var>int</var> value = stoul(argv[1], <var>nullptr</var>, 10);
+    <var>static</var> Fibonacii Fibo(value);
+    Fibo.create_series();
+    Fibo.get_data();
+    <var>return</var> 0;
+    }
+    }</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<STRONG> Makefile </STRONG>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br></code></pre></td>
+<td class="source"><pre><code>    MAIN = main
+    HEADER_DEFINITIONS = fibo
+    CC = g++-4.9 -std=c++11
+    COMPILE = -c
+    EXE = $(MAIN)
+    OPTIMIZE = -Os
+    SHELL = /bin/bash
+    ARGS = 20
+    all: link
+    @echo <kbd>"Executing..........."</kbd>
+    @echo <kbd>" &gt; &gt; &gt; &gt; &gt; &gt; OUTPUT &lt; &lt; &lt; &lt; &lt; &lt; "</kbd>
+    @$(SHELL) -c <kbd>'./$(EXE) $(ARGS)'</kbd>
+    link: compile
+    @echo -n <kbd>"Linking............."</kbd>
+    @$(SHELL) -c <kbd>'$(CC) -o $(EXE) *.o'</kbd>
+    compile: $(MAIN).cpp $(HEADER_DEFINITIONS).cpp
+    @echo -n <kbd>"Compiling........."</kbd>
+    @$(SHELL) -c <kbd>'$(CC) $(OPTIMIZE) $(COMPILE) $^'</kbd>
+    clean:
+    @echo <kbd>"Cleaning............"</kbd>
+    @$(SHELL) -c <kbd>'rm -f *~ *.o $(EXE)'</kbd></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<br>
+<br>
+    [NOTE: if you don't have g++4.9 version, use only g++. But don't forget to put -std=c++11]<br>
+<br>
+    [NOTE: vector is type of data structure that as much as I know is implemented using a class template and dynamic memory allocation. Hence this program is still using dynamic memory allocation indirectly]<br>
+<br>
+    [NOTE: if you need to change the length of the series, the edit the value of ARGS = 20 into any value you like]<br>
+<br>
+ To run the program, just move to the directory in your terminal and type make all</div></div><div id="CH_bb"></div><div id="CH_scoreapp"></div><script type="text/javascript">new Score('CH_scoreapp','/articles/score.cgi','jT07M4Gy');</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder selected articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/articles/">Articles</a></b></h3>
+<ul>
+<li><a href="/articles/algorithms/">Algorithms</a></li><li><a href="/articles/cpp11/">C++ 11</a></li><li><a href="/articles/graphics/">Graphics and multimedia</a></li><li><a href="/articles/howto/">How-To</a></li><li><a href="/articles/language/">Language Features</a></li><li><a href="/articles/linux/">Unix/Linux programming</a></li><li><a href="/articles/sourcecode/">Source Code</a></li><li><a href="/articles/standard_library/">Standard Library</a></li><li><a href="/articles/tips/">Tips and Tricks</a></li><li><a href="/articles/tools/">Tools and Libraries</a></li><li><a href="/articles/visualcpp/">Visual C++</a></li><li><a href="/articles/winapi/">Windows API</a></li></ul>
+</div>
+<div id="I_subnav"></div>
+</div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Farticles%2FjT07M4Gy%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+onSession(function(us) {
+		document.getElementById('I_subnav').innerHTML=
+			us.ok?
+				'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul>'+
+				'<li><a href="/articles/myitems.cgi">My items</a></li>'+
+				(us.auth(32768)?'<li><a href="/articles/adminitems.cgi">Admin items</a></li>':'')+
+				'</ul></div>'
+			:'';
+	}); onSession(function (us) {
+		var el=document.getElementById('CH_bb'); el.innerHTML='';
+		if ( (us.auth(32768)) || ((us.uniqid=='j2b7X9L8')&&(us.auth(128))) ) {
+			el.appendChild(btn('Edit article','Edit this version of the article','edit','/articles/edit.cgi?a=jT07M4Gy'));
+	
+			if (us.auth(32768)) {
+				el.appendChild(btn('Delete article','Delete this article','delete','javascript:artdel()'));
+			}
+	
+		}
+	});
+	function artdel() { if (confirm('WARNING: You are about to delete this page. Confirm?')) window.location='/articles/delete.cgi?a=jT07M4Gy'; }
+	ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

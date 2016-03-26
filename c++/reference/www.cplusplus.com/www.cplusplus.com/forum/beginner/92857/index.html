@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>How to Write Short Clean Code? - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/beginner/">Beginners</a></li>
+<li class="here">How to Write Short Clean Code?</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico default" title="post">&nbsp;</div> How to Write Short Clean Code?</h3><span id="CH_edttl"></span><span class="rootdatPost" title="92857,root,0,-1,8,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg498884"><span title="498884,28015,1023,68,1"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg498884" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmdd5d498bdc" title="Sat, 16 Feb 2013 22:31:48 +0000"></span><script type="text/javascript">WhenId('CH_zTmdd5d498bdc');</script><noscript>Feb 16, 2013 at 10:31pm UTC</noscript></div>
+<div class="dwho"><a href="/user/unoriginal/"><b>unoriginal</b> (68)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i498884">
+I've run into a big problem.<br>
+<br>
+I was told to write a function, strrep(), which replaces a substring with another string. I made quite a few slower versions of this function, but I finally made a version that is fast. When I wrote the pseudo code the function looked very good.<br>
+<br>
+Pseudo code:<br>
+<div class="auto"><table class="snippet"><tr><td class="output"><pre><samp>
+strrep (string, word, replacement)
+
+word-&gt;size = replacement-&gt;size                                                                                               
+overwrite word with replacement                                                                                              
+                                                                                                                             
+word-&gt;size &gt; replacement-&gt;size                                                                                               
+search for word (store end of word in m0)                                                                                    
+loop:                                                                                                                        
+exit if not found                                                                                                            
+overwrite with replacement                                                                                                   
+search for next word                                                                                                         
+if found, store end of word in m1, otherwise store end of string in m1                                                       
+copy memory from m0 to m1 and overwrite it to end of replacement                                                             
+m0 = m1                                                                                                                      
+go to loop                                                                                                                   
+                                                                                                                             
+word-&gt;size &lt; replacement-&gt;size                                                                                               
+difference   = replacement-&gt;size - word-&gt;size                                                                                
+displacement = no. of instances of word in string multiplied by difference
+...
+...
+</samp></pre></td></tr></table></div><br>
+<br>
+Looks neat? Wait for it... When I wrote the code, everything seemed fine except for one thing. It looks TERRIBLE. My Tutor had a really hard time understanding it. I've added loads of comments to make things easier now.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br>59<br>60<br>61<br>62<br>63<br></code></pre></td>
+<td class="source"><pre><code><dfn>#define string_count		strcnt</dfn>
+<dfn>#define string_find		strstr</dfn>
+<dfn>#define string_shift_left	strmovl</dfn>
+<dfn>#define string_shift_right	strmovr</dfn>
+<dfn>#define string_write		strwrt</dfn>
+
+<var>char</var> *strrep_test(<var>char</var> *hstr, <var>char</var> *substring, <var>char</var> *replacement, size_t string_size)
+{
+	<var>int</var> substr_length  = strlen(substring);
+	<var>int</var> repstr_length  = strlen(replacement);
+	<var>int</var> len   = strlen(hstr);
+	<var>char</var> *string = hstr;
+	<var>int</var> diff;
+
+	<var>if</var> (substr_length == repstr_length) {
+		<var>while</var> (string = string_find(string, substring))
+			string = string_write(string, replacement);
+	} <var>else</var> <var>if</var> (substr_length &gt; repstr_length) {
+		<var>char</var> *start, *end; <cite>/* memory location #0 and #1 */</cite>
+
+		end = string = string_find(hstr, substring);
+		start = string+substr_length;
+
+		<var>while</var> (string) {
+			diff = start - string_write(end, replacement); <cite>/* overwrite substring with replacement string */</cite>
+			string = string_find(start, substring); <cite>/* find substring */</cite>
+			end = string? string: hstr+len;
+			string_shift_left(start, end, diff); <cite>/* move memory chunk from start to end leftwards */</cite>
+			start = end+substr_length; <cite>/* next pick position */</cite>
+			end -= diff;   <cite>/* next write position */</cite>
+		}
+	} <var>else</var> { <cite>/* repstr_length &gt; substr_length */</cite>
+		<var>char</var> **substr_instances; <cite>/* saved locations of substring */</cite>
+		<var>int</var> n; <cite>/* no. of instances of substring */</cite>
+		<var>int</var> displacement; <cite>/* displacement value */</cite>
+		<var>int</var> errval = errno;
+
+		n = string_count(hstr, substring, &amp;substr_instances);
+		<var>if</var> (!substr_instances) {
+			errno = errval; <cite>/* preserve userspace (to us, no error occured) */</cite>
+			strrep_old(hstr, substring, replacement, string_size); <cite>/* &lt;- slower version */</cite>
+			<var>return</var> hstr;
+		}
+
+		diff = repstr_length - substr_length;
+		displacement = diff * n;
+		string = hstr + len;
+		<var>if</var>  (displacement+len &gt; string_size) { <cite>/* should we set errno = EOVERFLOW? */</cite>
+			free(substr_instances);
+			<var>return</var> NULL;
+		}
+
+		<var>while</var> (n-- &gt; 0) {
+			string_shift_right(substr_instances[n]+substr_length, string, displacement);
+			string = substr_instances[n]-1;
+			displacement -= diff;
+			string_write(substr_instances[n]+displacement, replacement);
+		}
+		free(substr_instances);
+	}
+
+	<var>return</var> hstr;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Just to give you an idea, this is how the function works on a line that says:<br>
+<span class="auto"><code class="source">strrep_test(<kbd>"eight two eight two eight"</kbd>, <kbd>"eight"</kbd>, <kbd>"one"</kbd>); <cite>/* replace eight with one */</cite></code></span><br>
+output:<br>
+<div class="auto"><table class="snippet"><tr><td class="output"><pre><samp>
+0-&gt;[oneht two eight two eight]
+       ^
+1-&gt;[one two **eight two eight]
+       ^--&lt;--^       
+0-&gt;[one two oneight two eight]
+              ^
+1-&gt;[one two one two ****eight]
+               ^--^&lt;---^
+0-&gt;[one two one two one*eight]
+                      ^
+1-&gt;[one two one two one******]
+[DONE]</samp></pre></td></tr></table></div><br>
+<br>
+It wors but, the function is now very long, and looks ugly. Maybe I'm doing it the wrong way?<br>
+Any advice on how to make this ugly code into something beautiful?<br>
+I really want to make this thing shorter. I think this has turned out to be the longest function I've written.<br>
+<br>
+How do you guys write code that is both short and clean? That others can understand?<br>
+<br>
+Edit: I edited this function somewhat. Does look neater now? But it's still hard to understand for someone else right?
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm818ef5abeb" title="Sun, 17 Feb 2013 12:08:10 +0000"></span><script type="text/javascript">WhenId('CH_zTm818ef5abeb');</script><noscript>Feb 17, 2013 at 12:08pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn498884"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg498926"><span title="498926,80614,1023,1536,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg498926" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm25d35ce03d" title="Sun, 17 Feb 2013 00:15:07 +0000"></span><script type="text/javascript">WhenId('CH_zTm25d35ce03d');</script><noscript>Feb 17, 2013 at 12:15am UTC</noscript></div>
+<div class="dwho"><a href="/user/Lowest0ne/"><b>Lowest0ne</b> (1536)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i498926">
+I can't read that.  I would say your variable names are too abstract. you might loose time in writing a long variable name, but you'll gain it back in clarity.<br>
+<br>
+As far as simpler code, try to write more generic functions.  For example, this whole thing can be done with three functions, find(), erase() and insert()<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br></code></pre></td>
+<td class="source"><pre><code><var>int</var> found = find(myString, whatImLookingFor);
+<var>while</var> (found != -1)
+{
+  erase(myString, found, lengthOfWhatImLookingFor);
+  insert(myString, found, myReplacement);
+  found = find(myString, whatImLookingFor);
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+You just need to write those functions (or I see you're using strlen, perhaps you can use other lib functions).
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn498926"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg498936"><span title="498936,35710,1023,4250,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg498936" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmc36ee8dbae" title="Sun, 17 Feb 2013 00:38:10 +0000"></span><script type="text/javascript">WhenId('CH_zTmc36ee8dbae');</script><noscript>Feb 17, 2013 at 12:38am UTC</noscript></div>
+<div class="dwho"><a href="/user/AbstractionAnon/"><b>AbstractionAnon</b> (4250)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i498936">
+I agree with LowestOne.  It's next to impossible to read.  Needs to broken up into simpler functions.  <br>
+<br>
+Some other comments.<br>
+1)  I see calls to functions you haven't included (strwrt, strmov1, strcnt, strmovr).  No way to tell what they do, so therefore it's impossible to tell what the provided code is doing.<br>
+2)  I see a call to free, but no matching call to malloc.  Can't tell where you're allocating anything. <br>
+3)  Why are you calling strrep_old?  Isn't this function a replacement for it?<br>
+4)  It's easy to confuse your function names (see #1) with the standard C library routines.  You should have a different naming convention.  Don't be afraid to make your function names meaningful to the reader.<br>
+<br>
+<br>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn498936"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg499141"><span title="499141,28015,1023,68,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg499141" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm24d1d11d02" title="Sun, 17 Feb 2013 11:22:06 +0000"></span><script type="text/javascript">WhenId('CH_zTm24d1d11d02');</script><noscript>Feb 17, 2013 at 11:22am UTC</noscript></div>
+<div class="dwho"><a href="/user/unoriginal/"><b>unoriginal</b> (68)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i499141">
+Thanks for the advice guys. I'll expand the variable names and such.<br>
+<br>
+AbstractAnon, strcnt() (string count) counts all the instances of substr and saves all found locations in svdlocs. strcnt() allocates enough memory to store any number of instances found - infinite if we have enough memory. On line 33, we just check if allocation failed. If it did, then we call strrep_old because it doesn't allocate any memory from heap. Yeah, it's a mess.<br>
+<br>
+You're right, strwrt (string write), strmovl (string move left), all seem to similar to C library functions like strcpy (string copy). It made me more comfortable working with them.<br>
+<br>
+I'm working on fixing it. It looks worse if I expand the var names LOL. I'll post the new fixed code once I'm back. Thanks guys.<br>
+<br>
+<b>Major Edit:</b><br>
+I just fixed the variable names. I've edited the original post.<br>
+Does it look all right?<br>
+<br>
+Any thought on how I should divide this function?<br>
+I thought about making one for handling word-&gt;size &lt; replacement-&gt;size<br>
+and another for replacement-&gt;size &gt; word-&gt;size but somehow it doesn't feel right.<br>
+<br>
+For those who are curious, here is the implementation of strmovl, strmovr, strcnt and strwrt.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br></code></pre></td>
+<td class="source"><pre><code><cite>/* str-move-left: move sequence (start to end) leftwards by len bytes. */</cite>
+<var>void</var> strmovl(<var>char</var> *start, <var>char</var> *end, <var>int</var> len)
+{
+  <var>do</var>
+    *(start-len) = *start;
+  <var>while</var> (start++ != end);
+}
+
+<var>void</var> strmovr(<var>char</var> *start, <var>char</var> *end, <var>int</var> len)
+{
+  <var>do</var>
+    *(end+len) = *end;
+  <var>while</var> (start != end--);
+}
+
+<cite>/* strcnt: count occurences of @substr in @string */</cite>
+<var>int</var> strcnt(<var>char</var> *string, <var>char</var> *substr, <var>char</var> ***memblk)
+{
+	size_t cnt = 0, len = strlen(substr), sz = 8;
+	<var>char</var> *p = string;
+	<var>char</var> **svdlocs;
+	<var>int</var> save = memblk != NULL;
+	
+	<var>if</var> (save) {
+		*memblk = svdlocs = calloc(<var>sizeof</var>(<var>char</var> *), sz);
+		<var>if</var> (!svdlocs)
+			save = 0;
+
+	}
+	<var>while</var> ((p = strstr(p, substr)))
+	{
+		<var>if</var> (save) {
+			svdlocs[cnt] = p;
+			<var>if</var> (cnt &gt;= sz) {
+				sz *= 2;
+				<var>if</var> (!realloc(svdlocs, <var>sizeof</var>(<var>char</var> *) * sz)) {
+					save = 0;
+					*memblk = NULL;
+				}
+			}
+		}
+		p += len;
+		++cnt;
+	}
+	<var>return</var> cnt;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+strwrt() is just strcpy() but doesn't append '\0' at the end. Kind of like strncpy(str,  otherstr, strlen(otherstr));
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTmc6daae24e2" title="Sun, 17 Feb 2013 12:14:09 +0000"></span><script type="text/javascript">WhenId('CH_zTmc6daae24e2');</script><noscript>Feb 17, 2013 at 12:14pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn499141"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg499155"><span title="499155,28015,1023,68,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg499155" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTme5696c79fb" title="Sun, 17 Feb 2013 12:35:26 +0000"></span><script type="text/javascript">WhenId('CH_zTme5696c79fb');</script><noscript>Feb 17, 2013 at 12:35pm UTC</noscript></div>
+<div class="dwho"><a href="/user/unoriginal/"><b>unoriginal</b> (68)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i499155">
+LowestOne:<br>
+<br>
+I tried that, but it gets complicated if substr-&gt;size is not equal to repstr-&gt;size.<br>
+<br>
+I can easily stretch or contract the string, but to do it the fastest way I'll have to do it the way I've shown in the OP<br>
+<br>
+The function needs to:<br>
+<br>
+if slen &gt; rlen<br>
+loop:<br>
+find(substr)<br>
+replace(substr, otherstring)<br>
+end = find(substr) /* again */<br>
+if (end == 0) end = end of string;<br>
+shift_left(substr.location+substring.length, end);<br>
+goto loop<br>
+<br>
+<br>
+Basically this is what I'm doing with:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br></code></pre></td>
+<td class="source"><pre><code>diff = start - string_write(end, replacement); <cite>/* overwrite substring with replacement string */</cite>
+			string = string_find(start, substring); <cite>/* find substring */</cite>
+			end = string? string: hstr+len;
+			string_shift_left(start, end, diff); <cite>/* move memory chunk from start to end leftwards */</cite>
+			start = end+substr_length; <cite>/* next pick position */</cite>
+			end -= diff;   <cite>/* next write position */</cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+The extra boilerplate is just calculating the difference between the first instance of @substr and the other instance, and making @start and @end ready for next loop iterations.<br>
+<br>
+Of course, I need a different approach entirely for replacing string if replacement size is greater than substring size to make it fastest as possible. For that, basically, we search backwards... or rather, write backwards while extending the string from the end, to make sure we don't overwrite unnecessarily.<br>
+<br>
+Yeah, this is where it's getting long, 3 stuff to do for 3 different conditions. Maybe I'll really divide this thing into 3 functions.<br>
+<br>
+----------------------------------------------------------------------------------------<br>
+I did come up with a cleaner version but it's slower than the ugly version.<br>
+This is the other "shorter" version:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br></code></pre></td>
+<td class="source"><pre><code><var>char</var> *
+strrep(string, substr, repstr)
+<var>char</var> *string, substr, repstr;
+{
+         <var>char</var> *hstr = string;
+        <var>int</var> rlen = strlen(repstr);
+        <var>int</var> slen = strlen(substr);
+        <var>char</var> *htmp;
+        <var>register</var> <var>char</var> *tmp;
+
+        htmp = tmp = malloc((abs(rlen - slen)*strcnt(string,substr,NULL))+strlen(string));
+        <var>if</var> (!tmp)
+                <var>return</var> NULL;
+        <var>while</var> ((pos = strpos(string, substr)) != -1)
+        {
+                strncpy(tmp, string, pos);
+                tmp += pos;
+                strcpy(tmp, repstr);
+                tmp += rlen;
+                string += pos + slen;
+        }
+        strcpy(tmp, string);
+        strcpy(hstr, htmp);
+        free(htmp);
+        <var>return</var> hstr;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Okay, this is much much shorter and that does exactly the same job but is slower and allocates far too much memory.<br>
+<br>
+Should I switch the fast but long function with this slow but simple function?
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm73e9efbbc3" title="Sun, 17 Feb 2013 12:46:07 +0000"></span><script type="text/javascript">WhenId('CH_zTm73e9efbbc3');</script><noscript>Feb 17, 2013 at 12:46pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn499155"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg499209"><span title="499209,35710,1023,4250,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg499209" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm1fc4b658d0" title="Sun, 17 Feb 2013 14:44:22 +0000"></span><script type="text/javascript">WhenId('CH_zTm1fc4b658d0');</script><noscript>Feb 17, 2013 at 2:44pm UTC</noscript></div>
+<div class="dwho"><a href="/user/AbstractionAnon/"><b>AbstractionAnon</b> (4250)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i499209">
+Some comments on you variable naming.  Just my opinion here.<br>
+1)  _len is a common suffix for length variables.  No need to write out _length. <br>
+2)  str_ would have been a suitable prefix for your string routines.  Shorter that string_.  string_ also tends to imply compatability with or extension to std::string which your routines are not. It's also shorter. <br>
+3)  Line 12.  <span class="auto"><code class="source"><var>char</var> * string;</code></span> Although you're not using std::string, this does imply a level of confusion with std::string. <br>
+<br>
+<table class="quote"><tr><td class="qd">strwrt() is just strcpy() but doesn't append '\0' </td></tr></table><br>
+Why not use memcpy?  Probably faster than writing your own.<br>
+<br>
+<table class="quote"><tr><td class="qd">Should I switch the fast but long function with this slow but simple function? </td></tr></table><br>
+This is the kind of tradeoff that professional programmers have to make all the time.  It comes down to how your code is going to be used.  If you're writing something that is going to be used in a text processor that has to repeatedly rip through thouands of pages of documents, or performance is part of the grading of homework assignment, then yes, performance matters.  Otherwise, I tend to favor clarity over performance.<br>
+<br>
+p.s.  I wish you'd posted your updated code separately rather than editing the OP.  I wasn't able to compare the two.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn499209"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg499216"><span title="499216,28015,1023,68,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg499216" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm8f2a681e6d" title="Sun, 17 Feb 2013 14:51:01 +0000"></span><script type="text/javascript">WhenId('CH_zTm8f2a681e6d');</script><noscript>Feb 17, 2013 at 2:51pm UTC</noscript></div>
+<div class="dwho"><a href="/user/unoriginal/"><b>unoriginal</b> (68)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i499216">
+Thanks for the tip on variable names and memcpy(). I thought it would take too much space if I posted the code all over again.<br>
+<br>
+I was writing this function just for exercise but lol I made it so complicated just because I wanted it to be fast. Ah well. I'll figure something out to fix this bad boy. 
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn499216"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg499226"><span title="499226,80614,1023,1536,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg499226" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm81f8156714" title="Sun, 17 Feb 2013 15:27:17 +0000"></span><script type="text/javascript">WhenId('CH_zTm81f8156714');</script><noscript>Feb 17, 2013 at 3:27pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Lowest0ne/"><b>Lowest0ne</b> (1536)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i499226">
+In the code in this latest post, line 23 runs the potential of being out of bounds.<br>
+<br>
+How fast/slow are we talking about?  Do you have a file that you could post somewhere?<br>
+<br>
+<br>
+I think this may be faster for when the replacement string is less than the length of the string to be replaced.  There is no "move left" function, the intent is that it does the replacing while doing the move left.  Not sure if it works.<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br></code></pre></td>
+<td class="source"><pre><code><var>char</var>* insertPtr = str;
+<var>char</var>* findPtr = str;
+
+<var>while</var> (*findPtr)
+{
+  <var>if</var> (*findPtr == *subStr &amp;&amp; stringsMatch(findPtr, subStr))
+  {
+    insert(insertPtr, repStr);
+    insertPtr += repStr_len;
+    findPtr += subStr_len;
+  }
+  <var>else</var>
+  {
+    *insertPtr++ = *findPtr++;
+  }
+}
+*insertPtr = <kbd>'\0'</kbd>;</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+If this works, then I imagine it works for when they are the same length, no need for special case there.<br>
+<br>
+When the other string is shorter than the replacement string, then yes, the program will take longer.  The resulting string will be longer, so first you have to count the amount of replacements you will be doing.<br>
+<br>
+In this case, you do everything backwards.  InsertPtr equals the end of the allocated memory, findPtr is the null terminator of the string, and decriment pointers.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn499226"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div class="rootbtnNew"></div><div id="CH_insNew"></div><div id="CH_reply">Topic archived. No new replies allowed.</div><div id="CH_subscription"></div><div class="rootedtNew"></div><script type="text/javascript">new for_PostList(92857,1,28015,0,'CH_PostList','CH_subscription','CH_reply','CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+<script type="text/javascript">
+    google_ad_client = "ca-pub-1444228343479937";
+    google_ad_slot = "9701143201";
+    google_ad_width = 728;
+    google_ad_height = 90;
+</script>
+<!-- leaderboard -->
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li class="selected"><a href="/forum/beginner/"><b>Beginners</b></a></li><li><a href="/forum/windows/"><b>Windows Programming</b></a></li><li><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li><a href="/forum/general/"><b>General C++ Programming</b></a></li><li><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Fbeginner%2F92857%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

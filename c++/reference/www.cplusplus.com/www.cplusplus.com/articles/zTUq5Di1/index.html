@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title> Xistenial's TUTS Classes and Objects Le - C++ Articles</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/articles/">Articles</a></li>
+<li class="here"> Xistenial's TUTS Classes and Objects Le</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div id="I_content">
+<div class="C_art">
+<div id="I_author">Published by <b><a href="/user/Xistenial/" rel="author">Xistenial</a></b></div>
+<div id="I_date">Aug 18, 2013 (last update: Aug 19, 2013)</div>
+<h1> Xistenial's TUTS Classes and Objects Lesson 1</h1>
+<div id="I_score">Score: 3.1/5 (11 votes)</div>
+<div id="I_stars"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"></div>
+<div id="I_content">
+<H3>Classes and Objects</H3>
+<br>
+Picture a kitchen...Now in this kitchen you will have various appliances (Stove, Fridge,Microwave, kettle etc..). These appliances are what makes a kitchen, a kitchen, without them it would just be another room. C++ works in pretty much the same way. The Kitchen being your class and all the other Appliances as your members of the class.<br>
+<br>
+The general <STRONG>syntax</STRONG> for defining a class is:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br></code></pre></td>
+<td class="source"><pre><code><var>class</var> classIdentifier
+{
+classMembersList
+};</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+**A missing semicolon will result in a syntax error!<br>
+<br>
+The members of a class are classified into 3 categories: <STRONG>private</STRONG>,<STRONG>public</STRONG>,<STRONG>protected</STRONG> and the fancy name for these 3 are <STRONG>member access specifiers</STRONG>.<br>
+<br>
+Some facts about <STRONG>private</STRONG> & <STRONG>public</STRONG> members of a class:<br>
+(*)-- By default all members are declared private.<br>
+(*)-- If a member is <STRONG>private</STRONG>, you cannot access it outside of the class(Example 1 will illustrate this)<br>
+(*)-- A <STRONG>public</STRONG> member is accessible outside of a class (Example 1 will illustrate this)<br>
+<br>
+<H3>How to know when to choose public and private?</H3>
+<br>
+Suppose we wish to define a class to implement the time of day in a program. Lets call the this <STRONG>class clockType</STRONG>. Further we use 3 variables as follows:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br></code></pre></td>
+<td class="source"><pre><code><var>int</var> hr;
+<var>int</var> min;
+<var>int</var> sec;</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+We also wish to perform these functions:<br>
+1. set time<br>
+2. retrieve time <br>
+3. print time //well we need to read it yea?<br>
+4. increment time by 1 sec<br>
+5. increment time by 1 min<br>
+6.increment time by 1 hr<br>
+7. Compare two times for equality<br>
+<br>
+From above we can see <STRONG>class clockType</STRONG> has 10 member variables.<br>
+<br>
+Ok you have come this far but now what? How does this help with the private and public dilemma.. Deciding which members to make public or private depends on the nature of the member. The rule of thumb is, <br>
+*If a member needs to be accessed outside a class, declare it public.<br>
+*Any member that should not be accessed directly by the user should be declared private. <br>
+For example the user should be able to set the time and print the time, So they should be public. Also members to increment time and compare time should be declared public.To prevent direct manipulation of member variables hr,min,sec we will make them private.<br>
+**Keep in mind that if the user does have direct access to these, why would we need function setTime?<br>
+<br>
+Your code should now look like this:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br></code></pre></td>
+<td class="source"><pre><code><var>class</var> clockType
+{
+<var>public</var>:
+<var>void</var> setTime(<var>int</var>,<var>int</var>,<var>int</var>);
+<var>void</var> getTime(<var>int</var>&amp;,<var>int</var>&amp;,<var>int</var>&amp;) <var>const</var>;
+<var>void</var> printTime() <var>const</var>;
+<var>void</var> IncrementSeconds();
+<var>void</var> IncrementMinutes();
+<var>void</var> IncrementHours();
+<var>bool</var> equalTime(<var>const</var> clockType&amp;) <var>const</var>;
+
+<var>private</var>:
+<var>int</var> hr;
+<var>int</var> min;
+<var>int</var> sec;
+};
+ </code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+(*)--The word <STRONG>const</STRONG> specifies that these functions cannot modify the member variables of a variable of type class clockType.<br>
+<br>
+<br>
+<H3>Object Declaration</H3>
+<br>
+Until now we have been using the word class variable, what this is in , technical c++ terms, is an <STRONG>object</STRONG>.  <br>
+<br>
+<STRONG>syntax</STRONG> for declaring a class object<br>
+<br>
+clockType myClock; //Declaring an object, myClock<br>
+<br>
+<H3>Accessing Class Members</H3>
+<br>
+<STRONG>syntax</STRONG> for an object to access a member of a class is<br>
+<br>
+classObjectName.memberName // the .(period) is known as a dot operator<br>
+<br>
+Ok all these words are pretty much boring,I know, you want code not read through an essay (thats why you choose c++ not latin) but its important to keep up with the jargon used because thats where most people hit the wall. Ok so enough talk for now lets display some code.<br>
+<br>
+<br>
+<H3>Example 1 (Code segment)</H3>
+<br>
+This following piece of code will show you how accessing works..<br>
+<br>
+ <div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br></code></pre></td>
+<td class="source"><pre><code><cite>//Declaring our objects</cite>
+clockType myClock; 
+clockType yourClock; 
+
+<cite>//Accessing</cite>
+
+myClock.setTime(5,2,30)<cite>// values 5,2,30 passed as parameters to function setTime</cite>
+myClock.printTime();
+yourClock.setTime(x,y,z); <cite>//x,y,z are variables of type int.</cite>
+
+<var>if</var>(myClock.equalTime(yourClock))
+.
+.
+<cite>//Some code in here</cite>
+.
+.
+
+<cite>//Illegal Statements</cite>
+myClock.hr =10;
+myClock.min = yourClock.min; 
+<cite>/*Illegal because hr and min are private variables and cannot be accessed by the objects*/</cite>
+ </code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Thats it for this tutorial let all that stuff sink in. Next we tackle implementing Member Functions and a full example of the clock source code with an explanation for each step I took.<br>
+&lt;/.X.&gt;<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</div></div><div id="CH_bb"></div><div id="CH_scoreapp"></div><script type="text/javascript">new Score('CH_scoreapp','/articles/score.cgi','zTUq5Di1');</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder selected articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/articles/">Articles</a></b></h3>
+<ul>
+<li><a href="/articles/algorithms/">Algorithms</a></li><li><a href="/articles/cpp11/">C++ 11</a></li><li><a href="/articles/graphics/">Graphics and multimedia</a></li><li><a href="/articles/howto/">How-To</a></li><li><a href="/articles/language/">Language Features</a></li><li><a href="/articles/linux/">Unix/Linux programming</a></li><li><a href="/articles/sourcecode/">Source Code</a></li><li><a href="/articles/standard_library/">Standard Library</a></li><li><a href="/articles/tips/">Tips and Tricks</a></li><li><a href="/articles/tools/">Tools and Libraries</a></li><li><a href="/articles/visualcpp/">Visual C++</a></li><li><a href="/articles/winapi/">Windows API</a></li></ul>
+</div>
+<div id="I_subnav"></div>
+</div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Farticles%2FzTUq5Di1%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+onSession(function(us) {
+		document.getElementById('I_subnav').innerHTML=
+			us.ok?
+				'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul>'+
+				'<li><a href="/articles/myitems.cgi">My items</a></li>'+
+				(us.auth(32768)?'<li><a href="/articles/adminitems.cgi">Admin items</a></li>':'')+
+				'</ul></div>'
+			:'';
+	}); onSession(function (us) {
+		var el=document.getElementById('CH_bb'); el.innerHTML='';
+		if ( (us.auth(32768)) || ((us.uniqid=='z3hX92yv')&&(us.auth(128))) ) {
+			el.appendChild(btn('Edit article','Edit this version of the article','edit','/articles/edit.cgi?a=zTUq5Di1'));
+	
+			if (us.auth(32768)) {
+				el.appendChild(btn('Delete article','Delete this article','delete','javascript:artdel()'));
+			}
+	
+		}
+	});
+	function artdel() { if (confirm('WARNING: You are about to delete this page. Confirm?')) window.location='/articles/delete.cgi?a=zTUq5Di1'; }
+	ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

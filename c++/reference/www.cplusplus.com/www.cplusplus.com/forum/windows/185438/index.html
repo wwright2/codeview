@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Achieving INSANELY Low Usage Of RAM - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/windows/">Windows Programming</a></li>
+<li class="here">Achieving INSANELY Low Usage Of RAM</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico question" title="question">&nbsp;</div> Achieving INSANELY Low Usage Of RAM</h3><span id="CH_edttl"></span><span class="rootdatPost" title="185438,root,0,-1,8,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg905370"><span title="905370,212876,1023,7,1"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg905370" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTma55da143b7" title="Fri, 26 Feb 2016 00:23:55 +0000"></span><script type="text/javascript">WhenId('CH_zTma55da143b7');</script><noscript>Feb 26, 2016 at 12:23am UTC</noscript></div>
+<div class="dwho"><a href="/user/da_peppester/"><b>da peppester</b> (7)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i905370">
+Okay, so I am a perfectionist, so I NEED my applications to have INSANE performance (i.e. low usage of the computers resources which in this case is RAM). My goal is to make all of my applications be able to run in under 64Kb of memory if they need to (can't allocate any more memory). But, I ran into a major problem: I can't find any help pages on what compiler with what arguments to use. So, what would be a compiler that I can use to achieve these performance feats (please note that I do not use the terminal (DOS-like command prompt looking window) in my applications).<br>
+<br>
+EDIT: To clarify the question; <b><u>I am looking for a compiler that, when it compiles a c++ program that does not include any headers and no libraries are being linked, the resulting program uses up 0 bytes of RAM (or the smallest number of bytes possible)</u></b>.<br>
+<br>
+EDIT #2: I know it is the year 2016, where computers have plenty of RAM to spare, so I am not very justified to be a RAM perfectionist freak, but anyhow that has absolutely nothing to do with the topic of discussion, so <i>please</i> don't post responses about it, please :)
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTmf73db3e813" title="Fri, 26 Feb 2016 21:08:47 +0000"></span><script type="text/javascript">WhenId('CH_zTmf73db3e813');</script><noscript>Feb 26, 2016 at 9:08pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn905370"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg905374"><span title="905374,63891,1023,2618,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg905374" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmdf38fb5cdc" title="Fri, 26 Feb 2016 01:01:10 +0000"></span><script type="text/javascript">WhenId('CH_zTmdf38fb5cdc');</script><noscript>Feb 26, 2016 at 1:01am UTC</noscript></div>
+<div class="dwho"><a href="/user/S_G_H/"><b>S G H</b> (2618)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i905374">
+Insane performance... by using your hard disk like a RAM?<br>
+Also, why such a low RAM requirement? Most PCs nowadays have 4GB, and 99% older PCs have at least 256MB.<br>
+<br>
+Please also note that "Insane performance" and "run in under 64kb of memory" are mutually exclusive for Windows applications.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn905374"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg905376"><span title="905376,212876,1023,7,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg905376" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm95ed5a09bf" title="Fri, 26 Feb 2016 01:29:27 +0000"></span><script type="text/javascript">WhenId('CH_zTm95ed5a09bf');</script><noscript>Feb 26, 2016 at 1:29am UTC</noscript></div>
+<div class="dwho"><a href="/user/da_peppester/"><b>da peppester</b> (7)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i905376">
+Thank you so much for your response SGH,<br>
+<br>
+<b>I removed the rest of the contents of this post because it was causing too many off-topic responces</b>
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm6ecc55e087" title="Fri, 26 Feb 2016 20:56:26 +0000"></span><script type="text/javascript">WhenId('CH_zTm6ecc55e087');</script><noscript>Feb 26, 2016 at 8:56pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn905376"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg905410"><span title="905410,78419,1023,7174,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg905410" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm7e2d05b5bf" title="Fri, 26 Feb 2016 05:32:20 +0000"></span><script type="text/javascript">WhenId('CH_zTm7e2d05b5bf');</script><noscript>Feb 26, 2016 at 5:32am UTC</noscript></div>
+<div class="dwho"><a href="/user/cire/"><b>cire</b> (7174)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i905410">
+<table class="quote"><tr><td class="qd">Emphasize how I said 'if need-be'. I want my applications to be the most portable thing in the universe (like as portable as the laws of physics</td></tr></table><br>
+Then you shouldn't be pretending it is always feasible to trade memory for disk space.<br>
+<br>
+<br>
+<table class="quote"><tr><td class="qd">so I am planning to design my c++ applications to be able to see how much spare RAM the computer has and act accordingly,</td></tr></table><br>
+You can't do that portably.<br>
+<br>
+<br>
+<table class="quote"><tr><td class="qd">All of that would be for the sake of that (10^-15)% extra portability that I yearn and desperately crave for.</td></tr></table><br>
+What I see is:  "I want to <i>reduce portability</i> for the sake of a hypothetical, possibly unnoticeable gain in spatial efficiency, under the guise of <i>increasing portability</i>."<br>
+<br>
+Good luck with that.  <br>
+<br>
+(The fact that you're making this post in the windows forum is just icing on the cake.  But, you live in America.  I guess you're free not to make too much sense.)
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm26a3158da5" title="Fri, 26 Feb 2016 05:34:42 +0000"></span><script type="text/javascript">WhenId('CH_zTm26a3158da5');</script><noscript>Feb 26, 2016 at 5:34am UTC</noscript></span>
+<span class="dbtn" id="CH_btn905410"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg905475"><span title="905475,212876,1023,7,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg905475" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm7ce7be2095" title="Fri, 26 Feb 2016 12:59:09 +0000"></span><script type="text/javascript">WhenId('CH_zTm7ce7be2095');</script><noscript>Feb 26, 2016 at 12:59pm UTC</noscript></div>
+<div class="dwho"><a href="/user/da_peppester/"><b>da peppester</b> (7)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i905475">
+Thank you so much for your response cire, but as I said, this is really getting off topic, so please don't post more posts here unless they're about what this question is about which is the most memory efficient compiler.
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTmb719de5157" title="Fri, 26 Feb 2016 20:58:28 +0000"></span><script type="text/javascript">WhenId('CH_zTmb719de5157');</script><noscript>Feb 26, 2016 at 8:58pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn905475"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg905552"><span title="905552,11103,1023,4532,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg905552" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm91b09c51b6" title="Fri, 26 Feb 2016 17:32:13 +0000"></span><script type="text/javascript">WhenId('CH_zTm91b09c51b6');</script><noscript>Feb 26, 2016 at 5:32pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Zhuge/"><b>Zhuge</b> (4532)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i905552">
+<table class="quote"><tr><td class="qd">what I mean by 'Insane performance' is good performance of the application because the application uses up very little of the computers resources (RAM).</td></tr></table><br>
+<br>
+But you will be writing to disk instead, which is incredibly slow. An application that uses the hard disk instead of RAM whenever possible will be horribly underperformant. There is a reason that computers only fall back to the hard disk paging files when they think they need to, and why CPUs have continually gotten more cache memory - speed.<br>
+<br>
+I'm not sure how to reconcile your two goals of "low RAM usage by using the disk instead" and "fast/good performance".
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn905552"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg905618"><span title="905618,212876,1023,7,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg905618" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmc7e07a1006" title="Fri, 26 Feb 2016 20:58:07 +0000"></span><script type="text/javascript">WhenId('CH_zTmc7e07a1006');</script><noscript>Feb 26, 2016 at 8:58pm UTC</noscript></div>
+<div class="dwho"><a href="/user/da_peppester/"><b>da peppester</b> (7)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i905618">
+Again, thank you very much for your response, but let's please try to stay on topic, please :)
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn905618"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg905642"><span title="905642,38650,1023,2141,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg905642" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmd0223820a1" title="Fri, 26 Feb 2016 22:42:45 +0000"></span><script type="text/javascript">WhenId('CH_zTmd0223820a1');</script><noscript>Feb 26, 2016 at 10:42pm UTC</noscript></div>
+<div class="dwho"><a href="/user/naraku9333/"><b>naraku9333</b> (2141)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i905642">
+Most if not all compilers have an option to optimize for executable size (Os on g++) but having 0 RAM usage is likely impossible, the executable itself will have a size &gt; 0 and when run the executable is loaded into memory.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn905642"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div class="rootbtnNew"></div><div id="CH_insNew"></div><div id="CH_reply">Registered users can post here. <a href="/user/">Sign in or register</a> to post.</div><div id="CH_subscription"></div><div class="rootedtNew"></div><script type="text/javascript">new for_PostList(185438,0,212876,0,'CH_PostList','CH_subscription','CH_reply','CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+<script type="text/javascript">
+    google_ad_client = "ca-pub-1444228343479937";
+    google_ad_slot = "9701143201";
+    google_ad_width = 728;
+    google_ad_height = 90;
+</script>
+<!-- leaderboard -->
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li><a href="/forum/beginner/"><b>Beginners</b></a></li><li class="selected"><a href="/forum/windows/"><b>Windows Programming</b></a></li><li><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li><a href="/forum/general/"><b>General C++ Programming</b></a></li><li><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Fwindows%2F185438%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

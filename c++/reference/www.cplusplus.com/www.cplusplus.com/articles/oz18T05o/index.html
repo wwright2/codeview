@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>C++ type erasure - C++ Articles</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/articles/">Articles</a></li>
+<li class="here">C++ type erasure</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div id="I_content">
+<div class="C_art">
+<div id="I_author">Published by <b><a href="/user/jsmith/" rel="author">jsmith</a></b></div>
+<div id="I_date">Jan 27, 2010 (last update: Jan 28, 2010)</div>
+<h1>C++ type erasure</h1>
+<div id="I_score">Score: 4.3/5 (105 votes)</div>
+<div id="I_stars"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"></div>
+<div id="I_content">
+One of the significant advantages templates have over polymorphism<br>
+is their ability to retain type.  When you write a function frobnicate()<br>
+that takes a base class instance (by reference or pointer), that function<br>
+has "lost" the real type of its parameter:  from the perspective of<br>
+the compiler, while executing frobnicate(), it has a base class instance.<br>
+<br>
+Example:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br></code></pre></td>
+<td class="source"><pre><code><var>struct</var> Base {};
+<var>struct</var> Derived : Base {};
+
+<var>void</var> frobnicate( Base&amp; b ) {
+   std::cout &lt;&lt; <kbd>"The compiler says this function was passed a base class object"</kbd>;
+}
+
+<var>int</var> main() {
+   Derived d;
+   frobnicate( d );
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Although in reality we passed a Derived instance to frobnicate(), from the<br>
+perspective of the compiler, frobnicate() received a Base instance, not a<br>
+Derived instance.<br>
+<br>
+This can be a problem at times.  Perhaps the most common trouble spot is when<br>
+frobnicate() needs to make a <i>copy</i> of the object passed to it.  It can't.<br>
+First of all, to copy an object you have to know <i>at compile time</i> it's<br>
+real type, because the real type name is used to invoke the copy constructor:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br></code></pre></td>
+<td class="source"><pre><code><cite>// Note how we must say "new type-name".</cite>
+Derived* d_copy = <var>new</var> Derived( original_d );</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+(In fact, the clone pattern was invented to solve this problem.  But we won't<br>
+go into that here.)<br>
+<br>
+Templates solve that problem, because templates allow you to retain the<br>
+"real type" of b at compile time.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br></code></pre></td>
+<td class="source"><pre><code><var>template</var>&lt; <var>typename</var> T &gt;
+<var>void</var> frobnicate( <var>const</var> T&amp; b ) {
+   T b_copy( b );
+   std::cout &lt;&lt; <kbd>"I just made a copy of b"</kbd> &lt;&lt; std::endl;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<br>
+Now that I've evangelized templates a bit, it should be understood that sometimes,<br>
+templates' ability to retain type is a hindrance.  How can that be?  Consider<br>
+the following declaration:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br></code></pre></td>
+<td class="source"><pre><code><var>template</var>&lt; <var>typename</var> T &gt;
+<var>class</var> MyVector {
+};</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+The problem with this declaration is that it exposes the contained type as part<br>
+of <i>its</i> type:  MyVector&lt;int&gt; is not the same type as MyVector&lt;unsigned&gt;<br>
+is not the same type as MyVector&lt;char&gt;.  If we wanted, for example, to store<br>
+MyVector instances in an STL container, we couldn't directly, because the<br>
+containers do not support polymorphism unless you make a base class and store<br>
+pointers to base class instances.  But, doing so leads potentially to the <br>
+above problem with losing type information and also creates tighter coupling<br>
+in your code because now two potentially unrelated types must conform to some<br>
+virtual interface defined by the common base class.<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+Introducing <i>type erasure</i>.  To use the above MyVector example (it isn't<br>
+a very good one here, but it illustrates the point), what if MyVector didn't<br>
+have to expose T as part of its type?  Then, I could store a MyVector of ints<br>
+in the same container as a MyVector of std::strings without resorting to<br>
+derivation and polymorphism.  <br>
+<br>
+In fact, boost::any is a good example of type erasure.  boost::any allows you<br>
+to store absolutely anything inside it, but boost::any itself is not a template<br>
+class -- it does not expose the type of what is contained inside it.<br>
+<br>
+boost::function is another example of type erasure.<br>
+<br>
+But what can it do for you?  Why bother?<br>
+<br>
+Let's take an RPG game as an example.  The game has different kinds of items:<br>
+weapons of various types, armor of various types, helmets of various types,<br>
+scrolls, magic potions, etc. etc.  I want to be able to store all of these<br>
+in my backpack.  Immediately an STL container comes to mind -- perhaps a deque.<br>
+But that means that either I must make one class called Item that is a superset<br>
+of attributes of all the different kinds of items, or I must make Item a base<br>
+class of all those types.  But then, once I've stored the Item in the backpack,<br>
+I've lost its real type.  If I want to prevent the player from, say, wielding<br>
+a scroll as a weapon or donning a flashlight for armor, I must resort to downcasts <br>
+to check if the Item is really the right type.<br>
+<br>
+But there is an alternative:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br></code></pre></td>
+<td class="source"><pre><code><var>class</var> Weapon {};
+<var>class</var> Armor {};
+<var>class</var> Helmet {};
+<var>class</var> Scroll {};
+<var>class</var> Potion {};
+
+<var>class</var> Object {
+   <var>struct</var> ObjectConcept {
+       <var>virtual</var> ~ObjectConcept() {}
+   };
+
+   <var>template</var>&lt; <var>typename</var> T &gt; <var>struct</var> ObjectModel : ObjectConcept {
+       ObjectModel( <var>const</var> T&amp; t ) : object( t ) {}
+       <var>virtual</var> ~ObjectModel() {}
+     <var>private</var>:
+       T object;
+   };
+
+   boost::shared_ptr&lt;ObjectConcept&gt; object;
+
+  <var>public</var>:
+   <var>template</var>&lt; <var>typename</var> T &gt; Object( <var>const</var> T&amp; obj ) :
+      object( <var>new</var> ObjectModel&lt;T&gt;( obj ) ) {}
+};
+
+<var>int</var> main() {
+   std::vector&lt; Object &gt; backpack;
+
+   backpack.push_back( Object( Weapon( SWORD ) ) );
+   backpack.push_back( Object( Armor( CHAIN_MAIL ) ) );
+   backpack.push_back( Object( Potion( HEALING ) ) );
+   backpack.push_back( Object( Scroll( SLEEP ) ) );
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+And now I am able to store objects of disparate types in my backpack.<br>
+The cynic will argue that I'm not storing polymorphic types;  I'm storing<br>
+Objects.  Yes ... and no.  As we'll see, Object is a simple "passthrough"<br>
+object that becomes transparent to the programmer later.<br>
+<br>
+But, you say, you've just done the inheritance thing.  How is this better?<br>
+It is better not because it affords you more functionality than the inheritance<br>
+approach, but because it does not tighly couple Weapons and Armors etc through<br>
+a common base class.  It gives me the power of retaining type as templates do.<br>
+<br>
+Suppose I want now to look at all items that are capable of doing damage to<br>
+an opponent in battle.  Well, all Weapons will do that, and perhaps some, but<br>
+not all Scrolls and Potions.  A scroll of Fire will damage an opponent, a<br>
+scroll of Enchant Armor not so much.<br>
+<br>
+Here's one way:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br>59<br>60<br>61<br>62<br>63<br>64<br>65<br>66<br>67<br>68<br>69<br>70<br>71<br>72<br>73<br>74<br>75<br>76<br>77<br>78<br>79<br>80<br></code></pre></td>
+<td class="source"><pre><code>   
+<var>struct</var> Weapon {
+   <var>bool</var> can_attack() <var>const</var> { <var>return</var> <var>true</var>; } <cite>// All weapons can do damage</cite>
+};
+
+<var>struct</var> Armor {
+   <var>bool</var> can_attack() <var>const</var> { <var>return</var> <var>false</var>; } <cite>// Cannot attack with armor...</cite>
+};
+
+<var>struct</var> Helmet {
+   <var>bool</var> can_attack() <var>const</var> { <var>return</var> <var>false</var>; } <cite>// Cannot attack with helmet...</cite>
+};
+
+<var>struct</var> Scroll {
+   <var>bool</var> can_attack() <var>const</var> { <var>return</var> <var>false</var>; }
+};
+
+<var>struct</var> FireScroll {
+   <var>bool</var> can_attack() <var>const</var> { <var>return</var> <var>true</var>; }
+}
+
+<var>struct</var> Potion {
+   <var>bool</var> can_attack() <var>const</var> { <var>return</var> <var>false</var>; }  
+};
+
+
+<var>struct</var> PoisonPotion {
+   <var>bool</var> can_attack() <var>const</var> { <var>return</var> <var>true</var>; }
+};
+
+
+<var>class</var> Object {
+   <var>struct</var> ObjectConcept {   
+       <var>virtual</var> ~ObjectConcept() {}
+       <var>virtual</var> <var>bool</var> has_attack_concept() <var>const</var> = 0;
+       <var>virtual</var> std::string name() <var>const</var> = 0;
+   };
+
+   <var>template</var>&lt; <var>typename</var> T &gt; <var>struct</var> ObjectModel : ObjectConcept {
+       ObjectModel( <var>const</var> T&amp; t ) : object( t ) {}
+       <var>virtual</var> ~ObjectModel() {}
+       <var>virtual</var> <var>bool</var> has_attack_concept() <var>const</var>
+           { <var>return</var> object.can_attack(); }
+       <var>virtual</var> std::string name() <var>const</var>
+           { <var>return</var> <var>typeid</var>( object ).name; }
+     <var>private</var>:
+       T object;
+   };
+
+   boost::shared_ptr&lt;ObjectConcept&gt; object;
+
+  <var>public</var>:
+   <var>template</var>&lt; <var>typename</var> T &gt; Object( <var>const</var> T&amp; obj ) :
+      object( <var>new</var> ObjectModel&lt;T&gt;( obj ) ) {}
+
+   std::string name() <var>const</var>
+      { <var>return</var> object-&gt;name(); }
+
+   <var>bool</var> has_attack_concept() <var>const</var>
+      { <var>return</var> object-&gt;has_attack_concept(); }
+};
+
+<var>int</var> main() {
+   <var>typedef</var> std::vector&lt; Object &gt;    Backpack;
+   <var>typedef</var> Backpack::const_iterator BackpackIter;
+
+   Backpack backpack;
+
+   backpack.push_back( Object( Weapon( SWORD ) ) );
+   backpack.push_back( Object( Armor( CHAIN_MAIL ) ) );
+   backpack.push_back( Object( Potion( HEALING ) ) );
+   backpack.push_back( Object( Scroll( SLEEP ) ) );
+   backpack.push_back( Object( FireScroll() ) );
+   backpack.push_back( Object( PoisonPotion() ) );
+
+   std::cout &lt;&lt; <kbd>"Items I can attack with:"</kbd> &lt;&lt; std::endl;
+   <var>for</var>( BackpackIter item = backpack.begin(); item != backpack.end(); ++item )
+       <var>if</var>( item-&gt;has_attack_concept() )
+           std::cout &lt;&lt; item-&gt;name();
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+</div></div><div id="CH_bb"></div><div id="CH_scoreapp"></div><script type="text/javascript">new Score('CH_scoreapp','/articles/score.cgi','oz18T05o');</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder selected articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/articles/">Articles</a></b></h3>
+<ul>
+<li><a href="/articles/algorithms/">Algorithms</a></li><li><a href="/articles/cpp11/">C++ 11</a></li><li><a href="/articles/graphics/">Graphics and multimedia</a></li><li><a href="/articles/howto/">How-To</a></li><li><a href="/articles/language/">Language Features</a></li><li><a href="/articles/linux/">Unix/Linux programming</a></li><li><a href="/articles/sourcecode/">Source Code</a></li><li><a href="/articles/standard_library/">Standard Library</a></li><li><a href="/articles/tips/">Tips and Tricks</a></li><li><a href="/articles/tools/">Tools and Libraries</a></li><li><a href="/articles/visualcpp/">Visual C++</a></li><li><a href="/articles/winapi/">Windows API</a></li></ul>
+</div>
+<div id="I_subnav"></div>
+</div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Farticles%2Foz18T05o%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+onSession(function(us) {
+		document.getElementById('I_subnav').innerHTML=
+			us.ok?
+				'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul>'+
+				'<li><a href="/articles/myitems.cgi">My items</a></li>'+
+				(us.auth(32768)?'<li><a href="/articles/adminitems.cgi">Admin items</a></li>':'')+
+				'</ul></div>'
+			:'';
+	}); onSession(function (us) {
+		var el=document.getElementById('CH_bb'); el.innerHTML='';
+		if ( (us.auth(32768)) || ((us.uniqid=='SGhbqMoL')&&(us.auth(128))) ) {
+			el.appendChild(btn('Edit article','Edit this version of the article','edit','/articles/edit.cgi?a=oz18T05o'));
+	
+			if (us.auth(32768)) {
+				el.appendChild(btn('Delete article','Delete this article','delete','javascript:artdel()'));
+			}
+	
+		}
+	});
+	function artdel() { if (confirm('WARNING: You are about to delete this page. Confirm?')) window.location='/articles/delete.cgi?a=oz18T05o'; }
+	ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

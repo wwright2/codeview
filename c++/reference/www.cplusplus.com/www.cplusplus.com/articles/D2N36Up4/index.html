@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Recursion - C++ Articles</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/articles/">Articles</a></li>
+<li class="here">Recursion</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div id="I_content">
+<div class="C_art">
+<div id="I_author">Published by <b><a href="/user/Manga/" rel="author">Manga</a></b></div>
+<div id="I_date">Jun 21, 2013 (last update: Jun 25, 2013)</div>
+<h1>Recursion</h1>
+<div id="I_score">Score: 3.7/5 (1430 votes)</div>
+<div id="I_stars"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-half.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"></div>
+<div id="I_content">
+<h3>Recursion</h3>
+<br>
+	What is recursion? The simple answer is, it’s when a function calls itself. But how does this happen? Why would this happen, and what are its uses?<br>
+<br>
+	When we talk about recursion, we are really talking about creating a loop. Let’s start by looking at a basic loop.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br></code></pre></td>
+<td class="source"><pre><code><var>for</var>(<var>int</var> i=0;  i&lt;10; i++) {
+     cout &lt;&lt; <kbd>"The number is: "</kbd> &lt;&lt; i &lt;&lt; endl;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+	For those who don’t yet know, this basic loop displays the sentence, "The number is: " followed by the value of ‘i’. Like this.<br>
+<div class="auto"><table class="snippet"><tr><td class="output"><pre><samp>
+The number is: 0
+The number is: 1
+The number is: 2
+The number is: 3
+The number is: 4
+The number is: 5
+The number is: 6
+The number is: 7
+The number is: 8
+The number is: 9
+</samp></pre></td></tr></table></div>
+<br>
+        Inside the ‘for loop’ declaration we have the integer variable ‘i’ and have its starting value of 0. So the first time the sentence is displayed it reads, "The number is: 0". The part of the ‘for loop’ declaration that is ‘i++’ tells the program that each time the loop repeats, the value of ‘i’ should be increased by 1. So, the next time the sentence is displayed it reads, "The number is: 1".<br>
+	This cycle will continue to repeat for as long as the value of ‘i’ is less than 10. The last sentence displayed would read, "The number is: 9". As you can see the basic ‘for loop’ has three parts to its declaration, a starting value, what must remain true in order to continue repeating, and a modifying expression. Everything that is contained within the {braces} is what the program performs. Cout stands for console out, and prints words or characters to the screen.<br>
+	So what does this have to do with recursion? Remember recursion is a loop. What if I did not want to just print a message to the screen? A loop can be used to perform other tasks as well.<br>
+<br>
+	In the following code is the same loop as above only now it is being used to call a function.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;iostream&gt;</dfn>
+<var>using</var> <var>namespace</var> std;
+
+<var>void</var> numberFunction(<var>int</var> i) {
+  cout &lt;&lt; <kbd>"The number is: "</kbd> &lt;&lt; i &lt;&lt; endl;
+}
+
+<var>int</var> main() {
+
+<var>for</var>(<var>int</var> i=0; i&lt;10; i++) {
+  numberFunction(i);
+}
+
+<var>return</var> 0;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+	I have declared a void function, which means it returns nothing, and takes a parameter of ‘int i’. The function is named ‘numberFunction’ and as you can see, all it does is display the sentence, "The number is: " followed by the current value of ‘i’. The function is called into use by the ‘for loop’, which continually calls the function as long as the value of ‘i’ is less than 10.<br>
+<br>
+	Now with recursion, we won’t need to use a ‘for loop’ because we will set it up so that our function calls itself. Let’s recreate this same program one more time, only this time we will do it without a ‘for loop’. We will use a recursion loop instead, like this.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;iostream&gt;</dfn>
+<var>using</var> <var>namespace</var> std;
+
+<var>void</var> numberFunction(<var>int</var> i) {
+  cout &lt;&lt; <kbd>"The number is: "</kbd> &lt;&lt; i &lt;&lt; endl;
+  i++;
+  <var>if</var>(i&lt;10) {
+    numberFunction(i);
+  }
+}
+
+<var>int</var> main() {
+
+<var>int</var> i = 0;
+numberFunction(i);
+
+<var>return</var> 0;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+	We did it! We used recursion! You can see the call to ‘numberFunction’ is made only once in the main part of the program but it keeps getting called again and again from within the function itself, for as long as ‘i’ is less than 10.<br>
+</div></div><div id="CH_bb"></div><div id="CH_scoreapp"></div><script type="text/javascript">new Score('CH_scoreapp','/articles/score.cgi','D2N36Up4');</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder selected articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/articles/">Articles</a></b></h3>
+<ul>
+<li><a href="/articles/algorithms/">Algorithms</a></li><li><a href="/articles/cpp11/">C++ 11</a></li><li><a href="/articles/graphics/">Graphics and multimedia</a></li><li><a href="/articles/howto/">How-To</a></li><li><a href="/articles/language/">Language Features</a></li><li><a href="/articles/linux/">Unix/Linux programming</a></li><li><a href="/articles/sourcecode/">Source Code</a></li><li><a href="/articles/standard_library/">Standard Library</a></li><li><a href="/articles/tips/">Tips and Tricks</a></li><li><a href="/articles/tools/">Tools and Libraries</a></li><li><a href="/articles/visualcpp/">Visual C++</a></li><li><a href="/articles/winapi/">Windows API</a></li></ul>
+</div>
+<div id="I_subnav"></div>
+</div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Farticles%2FD2N36Up4%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+onSession(function(us) {
+		document.getElementById('I_subnav').innerHTML=
+			us.ok?
+				'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul>'+
+				'<li><a href="/articles/myitems.cgi">My items</a></li>'+
+				(us.auth(32768)?'<li><a href="/articles/adminitems.cgi">Admin items</a></li>':'')+
+				'</ul></div>'
+			:'';
+	}); onSession(function (us) {
+		var el=document.getElementById('CH_bb'); el.innerHTML='';
+		if ( (us.auth(32768)) || ((us.uniqid=='1yhkoG1T')&&(us.auth(128))) ) {
+			el.appendChild(btn('Edit article','Edit this version of the article','edit','/articles/edit.cgi?a=D2N36Up4'));
+	
+			if (us.auth(32768)) {
+				el.appendChild(btn('Delete article','Delete this article','delete','javascript:artdel()'));
+			}
+	
+		}
+	});
+	function artdel() { if (confirm('WARNING: You are about to delete this page. Confirm?')) window.location='/articles/delete.cgi?a=D2N36Up4'; }
+	ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

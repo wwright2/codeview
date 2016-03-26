@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>why ++i is better than i++ (when applica - C++ Forum (Page 2)</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/lounge/">Lounge</a></li>
+<li><a href="/forum/lounge/91220/">why ++i is better than i++ (when applica</a></li>
+<li class="here">Page 2</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico default" title="post">&nbsp;</div> why ++i is better than i++ (when applicable)</h3><span id="CH_edttl"></span><div class="C_pages">Pages: <a href="/forum/lounge/91220/1/">1</a><span title="Current page">2</span><a href="/forum/lounge/91220/3/">3</a></div><span class="rootdatPost" title="91220,root,0,-1,43,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg490590"><span title="490590,18360,1023,13765,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg490590" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm05e56a800a" title="Wed, 30 Jan 2013 15:18:49 +0000"></span><script type="text/javascript">WhenId('CH_zTm05e56a800a');</script><noscript>Jan 30, 2013 at 3:18pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Disch/"><b>Disch</b> (13765)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i490590">
+<table class="quote"><tr><td class="qd">That is actually perfectly valid for containers that don't invalidate iterators to other elements in the container when erase is used. it is advanced before the map element is erased. erase works on a (temporary) copy.</td></tr></table><br>
+<br>
+I was going to argue this and claim it was a classic example of undefined behavior (modifying the same variable twice in a sequence point).  However, <b>assuming the iterator is a complex type and not a typedef of a built in type</b>, then you're right.  This is legal and "safe".<br>
+<br>
+Though I still cringe.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn490590"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg490593"><span title="490593,38387,1023,13301,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg490593" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmaca7ccc334" title="Wed, 30 Jan 2013 15:25:44 +0000"></span><script type="text/javascript">WhenId('CH_zTmaca7ccc334');</script><noscript>Jan 30, 2013 at 3:25pm UTC</noscript></div>
+<div class="dwho"><a href="/user/LB/"><b>LB</b> (13301)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i490593">
+So this is undefined?<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br></code></pre></td>
+<td class="source"><pre><code><var>void</var> f(<var>int</var>){}
+<cite>//...</cite>
+<var>int</var> i = 0;
+f(i++);</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+I'm having trouble understanding what part is undefined and why...
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn490593"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg490598"><span title="490598,18360,1023,13765,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg490598" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm5c7c584be8" title="Wed, 30 Jan 2013 15:33:36 +0000"></span><script type="text/javascript">WhenId('CH_zTm5c7c584be8');</script><noscript>Jan 30, 2013 at 3:33pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Disch/"><b>Disch</b> (13765)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i490598">
+No that is perfectly fine.<br>
+<br>
+As cire said... it's probably fine with map (I think -- at least I can see a reason why it wouldn't be now that I've thought about it more).  But it might not work on all containers so I still don't recommend doing it.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn490598"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg490607"><span title="490607,78419,1023,7174,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg490607" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmab80b651b3" title="Wed, 30 Jan 2013 15:59:09 +0000"></span><script type="text/javascript">WhenId('CH_zTmab80b651b3');</script><noscript>Jan 30, 2013 at 3:59pm UTC</noscript></div>
+<div class="dwho"><a href="/user/cire/"><b>cire</b> (7174)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i490607">
+<table class="quote"><tr><td class="qd">However, assuming the iterator is a complex type and not a typedef of a built in type</td></tr></table><br>
+<br>
+I'm not sure why it wouldn't also be safe if the assumption is false.  side effects for arguments are guaranteed to be sequenced before the function body is entered, and in any case the function would still be operating on a copy.  erase takes iterators by value.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn490607"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg490633"><span title="490633,18360,1023,13765,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg490633" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmd995682f06" title="Wed, 30 Jan 2013 16:57:13 +0000"></span><script type="text/javascript">WhenId('CH_zTmd995682f06');</script><noscript>Jan 30, 2013 at 4:57pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Disch/"><b>Disch</b> (13765)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i490633">
+<table class="quote"><tr><td class="qd">I'm not sure why it wouldn't also be safe if the assumption is false.</td></tr></table><br>
+<br>
+Yeah you're right.  I can see it failing to work as expected for a container like deque or vector, but not because of the undefined behavior I was thinking of.<br>
+<br>
+I stand corrected.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn490633"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg490713"><span title="490713,38387,1023,13301,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg490713" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm6ec52b00bf" title="Wed, 30 Jan 2013 19:53:47 +0000"></span><script type="text/javascript">WhenId('CH_zTm6ec52b00bf');</script><noscript>Jan 30, 2013 at 7:53pm UTC</noscript></div>
+<div class="dwho"><a href="/user/LB/"><b>LB</b> (13301)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i490713">
+Still, I'll get out of that habit because it is inconsistent among containers that use iterators.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn490713"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg490756"><span title="490756,60636,1023,423,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg490756" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmd35a13a0e4" title="Wed, 30 Jan 2013 22:33:25 +0000"></span><script type="text/javascript">WhenId('CH_zTmd35a13a0e4');</script><noscript>Jan 30, 2013 at 10:33pm UTC</noscript></div>
+<div class="dwho"><a href="/user/BlackSheep/"><b>BlackSheep</b> (423)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i490756">
+It's undefined because an erase() on a vector causes it to move everything that comes after the erased element.<br>
+Erasing a map's element doesn't have this effect because a map uses a binary tree as storage instead of an underlying array.<br>
+<br>
+So (Disch, you'll probably hate me) something like this should still be "valid":<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>&nbsp;</code></pre></td>
+<td class="source"><pre><code>myVector.erase(it--);</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn490756"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg491511"><span title="491511,45401,1023,1010,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg491511" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm9dac678da4" title="Fri, 01 Feb 2013 13:34:00 +0000"></span><script type="text/javascript">WhenId('CH_zTm9dac678da4');</script><noscript>Feb 1, 2013 at 1:34pm UTC</noscript></div>
+<div class="dwho"><a href="/user/rapidcoder/"><b>rapidcoder</b> (1010)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i491511">
+<table class="quote"><tr><td class="qd"><br>
+(b++ vs ++b)<br>
+They aren't doing slightly different things. They are doing different things.</td></tr></table><br>
+<br>
+Yes, but it is easy to reorder code in such a way you change prefix to postfix without changing semantics. This can be often achieved by e.g. adding 1 somewhere or changing a condition from &gt; to &gt;=, etc. But compilers aren't *that* smart yet.<br>
+<br>
+e.g often you see code like this:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>&nbsp;</code></pre></td>
+<td class="source"><pre><code><var>if</var> (++a &lt;= some_const) ....</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+It can be simply changed into postfix:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>&nbsp;</code></pre></td>
+<td class="source"><pre><code><var>if</var> (a++ &lt; some_const)</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<br>
+which avoids pipeline stall and *is* faster.<br>
+<br>
+<br>
+
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm7b7f0c13d3" title="Fri, 01 Feb 2013 18:15:49 +0000"></span><script type="text/javascript">WhenId('CH_zTm7b7f0c13d3');</script><noscript>Feb 1, 2013 at 6:15pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn491511"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg491527"><span title="491527,38387,1023,13301,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg491527" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmfeb3ac34b3" title="Fri, 01 Feb 2013 14:32:32 +0000"></span><script type="text/javascript">WhenId('CH_zTmfeb3ac34b3');</script><noscript>Feb 1, 2013 at 2:32pm UTC</noscript></div>
+<div class="dwho"><a href="/user/LB/"><b>LB</b> (13301)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i491527">
+@rapidcoder shouldn't your &lt; and &lt;= be swapped?<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br></code></pre></td>
+<td class="source"><pre><code><var>int</var> x = 0, y = 0;
+<var>if</var>(++x   &lt;  1){} <cite>//false</cite>
+<var>if</var>(  y++ &lt;= 1){} <cite>//true </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn491527"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg491573"><span title="491573,130801,1023,3351,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg491573" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmdb82d662a0" title="Fri, 01 Feb 2013 16:52:54 +0000"></span><script type="text/javascript">WhenId('CH_zTmdb82d662a0');</script><noscript>Feb 1, 2013 at 4:52pm UTC</noscript></div>
+<div class="dwho"><a href="/user/BHX/"><b>BHX</b> (3351)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i491573">
+L B, yeah, seems that way, but you are assuming they are initializing x and y to 0 while they could be doing a mathematical figure or test where they could be negative (which would make both true).  Guess it should be noted that his example is case based. 
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm28f6bc70d4" title="Fri, 01 Feb 2013 16:53:18 +0000"></span><script type="text/javascript">WhenId('CH_zTm28f6bc70d4');</script><noscript>Feb 1, 2013 at 4:53pm UTC</noscript> by closed account z6A9GNh0</span>
+<span class="dbtn" id="CH_btn491573"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg491575"><span title="491575,38387,1023,13301,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg491575" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm1645beb34c" title="Fri, 01 Feb 2013 16:59:11 +0000"></span><script type="text/javascript">WhenId('CH_zTm1645beb34c');</script><noscript>Feb 1, 2013 at 4:59pm UTC</noscript></div>
+<div class="dwho"><a href="/user/LB/"><b>LB</b> (13301)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i491575">
+It is completely not case-based. He used 'a' in both cases, saying they were equivalent result-wise. The fact that x and y are 0 does not matter, I just made them the same value because otherwise the example would make no sense.<table class="quote"><tr><th class="qh"><strong>BHXSpecter</strong> wrote:</th></tr><tr><td class="qd">they could be negative (which would make both true)</td></tr></table>The point of the code was to show that it is not exactly the same and that there are cases where they are not the same.
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm2d38ce0f80" title="Fri, 01 Feb 2013 17:02:13 +0000"></span><script type="text/javascript">WhenId('CH_zTm2d38ce0f80');</script><noscript>Feb 1, 2013 at 5:02pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn491575"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg491581"><span title="491581,75536,1023,7545,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg491581" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm8364366688" title="Fri, 01 Feb 2013 17:06:51 +0000"></span><script type="text/javascript">WhenId('CH_zTm8364366688');</script><noscript>Feb 1, 2013 at 5:06pm UTC</noscript></div>
+<div class="dwho"><a href="/user/JLBorges/"><b>JLBorges</b> (7545)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i491581">
+&gt; which avoids pipeline stall and *is* faster.<br>
+<br>
+Don't spout rubbish about things that you don't understand.  <br>
+Pipeline stall, indeed. <br>
+<br>
+With the logical error corrected (not that that makes a difference as far as performance is concerned):<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br></code></pre></td>
+<td class="source"><pre><code><var>extern</var> <var>int</var> a ;
+
+<var>bool</var> foo()
+{
+    <var>constexpr</var> <var>int</var> some_const = 10 ;
+    <var>return</var> ++a &lt;= some_const ;
+
+    <cite>/* g++ -std=c++11 -Wall -O3 -fomit-frame-pointer -c -S
+        __Z3foov:
+        LFB0:
+            movl	_a, %eax
+            addl	$1, %eax
+            cmpl	$10, %eax
+            movl	%eax, _a
+            setle	%al
+            ret
+    */</cite>
+}
+
+<var>int</var> bar()
+{
+    <var>constexpr</var> <var>int</var> some_const = 10 ;
+    <var>return</var> a++ &lt; some_const ;
+
+    <cite>/* g++ -std=c++11 -Wall -O3 -fomit-frame-pointer -c -S
+        __Z3barv:
+        LFB1:
+            movl	_a, %eax
+            cmpl	$9, %eax
+            leal	1(%eax), %edx
+            setle	%al
+            movl	%edx, _a
+            movzbl	%al, %eax
+            ret
+    */</cite>
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn491581"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg491610"><span title="491610,45401,1023,1010,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg491610" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm2601338df6" title="Fri, 01 Feb 2013 18:20:22 +0000"></span><script type="text/javascript">WhenId('CH_zTm2601338df6');</script><noscript>Feb 1, 2013 at 6:20pm UTC</noscript></div>
+<div class="dwho"><a href="/user/rapidcoder/"><b>rapidcoder</b> (1010)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i491610">
+In the second code cmpl and leal can be executed in parallel by the CPU on different pipelines. In the first code, you've got read (cmpl) immediately after write (addl), and cmpl will have to wait for the addl to finish., which is... pipeline stall. Which means that the only those two addl and cmpl in the first example can take 10-20 CPU cycles.<br>
+<br>
+Judging performance by counting opcodes is indeed, rubbish, on your side.<br>
+<br>
+BTW: Little offtopic. Which is faster an why:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br></code></pre></td>
+<td class="source"><pre><code><var>int</var>[10000] array;
+<var>for</var> (<var>int</var> i = 0; i &lt; 10000; ++i)  
+  array[i] = random();
+
+<cite>// ---- code to measure time starts here:</cite>
+<var>int</var> count = 0;
+<var>for</var> (<var>int</var> i = 0; i &lt; 10000; ++i)
+  <var>if</var> (array[i] &lt; RAND_MAX / 2)
+    ++count;     </code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br></code></pre></td>
+<td class="source"><pre><code><var>int</var>[10000] array;
+<var>for</var> (<var>int</var> i = 0; i &lt; 10000; ++i)  
+  array[i] = random();
+
+std::sort(array, array + 10000);
+
+<cite>// ---- code to measure time starts here:</cite>
+<var>int</var> count = 0;
+<var>for</var> (<var>int</var> i = 0; i &lt; 10000; ++i)
+  <var>if</var> (array[i] &lt; RAND_MAX / 2)
+    ++count;     </code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Which one is faster, excluding array initialization. I'm asking only about the last for loop. Both are *identical* and yield *identical machine code*.
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm8e85149521" title="Fri, 01 Feb 2013 18:38:10 +0000"></span><script type="text/javascript">WhenId('CH_zTm8e85149521');</script><noscript>Feb 1, 2013 at 6:38pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn491610"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg491634"><span title="491634,72044,1023,3867,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg491634" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm1d67966a90" title="Fri, 01 Feb 2013 19:54:40 +0000"></span><script type="text/javascript">WhenId('CH_zTm1d67966a90');</script><noscript>Feb 1, 2013 at 7:54pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Cubbi/"><b>Cubbi</b> (3867)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i491634">
+just for fun, I compiled a couple programs: one calls foo() (that is, return ++a &lt;= some_const ;), the other calls bar() (that is, return a++ &lt; some_const). One billion times each.<br>
+<br>
+After dumbing down the compiler options I usually use so that they don't do whole-program optimizations, the results were:<br>
+<br>
+average of 5 runs<br>
+<div class="auto"><table class="snippet"><tr><td class="output"><pre><samp>             foo()    bar()
+gcc/core7    2.49s  2.49s
+clang/same   2.49s  2.49s
+intel/same   2.18s  2.18s
+gcc/opteron  2.66s  2.66s
+clang/same   2.65s  2.65s
+xlc/p750     3.17s  3.17s
+gcc/same     3.25s  3.29s
+sun/t5000    5.69s  5.68s
+</samp></pre></td></tr></table></div><br>
+<br>
+Assembly on gcc/x86 looked just like in the post above (Intel used more cpu registers)<br>
+<br>
+I'd say practice shows that there is no difference.<br>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn491634"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg491636"><span title="491636,75536,1023,7545,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg491636" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm37c7b9aa4f" title="Fri, 01 Feb 2013 19:59:46 +0000"></span><script type="text/javascript">WhenId('CH_zTm37c7b9aa4f');</script><noscript>Feb 1, 2013 at 7:59pm UTC</noscript></div>
+<div class="dwho"><a href="/user/JLBorges/"><b>JLBorges</b> (7545)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i491636">
+&gt; In the second code cmpl and leal can be executed in parallel by the CPU on different pipelines.<br>
+<br>
+Right. Because the second code requires the use of two registers instead of one. <br>
+<br>
+Even assuming that these functions are not inlined, with Link time optimization (which among other things perform interprocedural register allocation), this would need two extra instructions to save and restore the register around the call. <br>
+<br>
+If <span class="auto"><code class="source">a++ &lt; some_const</code></span> was inline,  LTO is not involved;  but the register would still have to be released. Push edx would stall waiting for push eax to finish, even before the section of code was entered into.  Unless the program is embarassingly tiny, and one is running on a machine with oodles of registers, the code requiring the use of an extra register  would be slower. That is theory; in reality, since int is a basic type, every self respecting compiler would know how to generate code that runs with the same efficiency for both versions.     <br>
+<br>
+<br>
+EDIT: Thanks, Cubbi. <br>
+<br>
+Hadn't seen your post when I wrote the above, but your post proves the last point. Though, I suppose that it was something that a C++ programmer would already know; in fact almost every C++ programmer who had posted in this thread mentioned something to that effect.   <br>
+<br>
+<br>
+EDIT2: Hadn't seen this addendum either.<br>
+<br>
+&gt; Judging performance by counting opcodes is indeed, rubbish, on your side<br>
+<br>
+Judging performance taking into account register usage; no count of op-codes were ever mentioned. If my memory serves me right, with an option like <b>-march=corei7</b>, the count of opcodes would be the same for both versions; but the code generated for the postfix increment would still use that crucial extra register.<br>
+  
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTma573f6f351" title="Fri, 01 Feb 2013 20:20:38 +0000"></span><script type="text/javascript">WhenId('CH_zTma573f6f351');</script><noscript>Feb 1, 2013 at 8:20pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn491636"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg491654"><span title="491654,38387,1023,13301,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg491654" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm64b88e86c4" title="Fri, 01 Feb 2013 20:52:37 +0000"></span><script type="text/javascript">WhenId('CH_zTm64b88e86c4');</script><noscript>Feb 1, 2013 at 8:52pm UTC</noscript></div>
+<div class="dwho"><a href="/user/LB/"><b>LB</b> (13301)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i491654">
+<table class="quote"><tr><th class="qh"><strong>rapidcoder</strong> wrote:</th></tr><tr><td class="qd">Which one is faster, excluding array initialization. I'm asking only about the last for loop. Both are *identical* and yield *identical machine code*.</td></tr></table>It is faster with the sorted data due to branch prediction.<br>
+<a href="http://stackoverflow.com/questions/11227809/why-is-processing-a-sorted-array-faster-than-an-unsorted-array">http://stackoverflow.com/questions/11227809/why-is-processing-a-sorted-array-faster-than-an-unsorted-array</a>
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn491654"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg491655"><span title="491655,72044,1023,3867,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg491655" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm77223de25f" title="Fri, 01 Feb 2013 20:52:42 +0000"></span><script type="text/javascript">WhenId('CH_zTm77223de25f');</script><noscript>Feb 1, 2013 at 8:52pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Cubbi/"><b>Cubbi</b> (3867)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i491655">
+PS: assembly, because I was curious, others might be as well<br>
+<br>
+<div class="auto"><table class="split"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br></code></pre></td>
+<td class="source"><pre><code>Sun Studio:
+foo:
+    sethi   %hi(a),%o4
+    ld      [%o4+%lo(a)],%o5
+    add     %o5,1,%o5
+    st      %o5,[%o4+%lo(a)]
+    sra     %o5,0,%o3
+    sub     %o3,11,%o2
+    retl    ! Result =  %o0
+    srlx    %o2,63,%o0
+IBM XLC
+foo:
+    lwz        r3,T.25.a(RTOC)
+    lwz        r4,0(r3)
+    addi       r0,r4,1
+    addi       r4,r4,-10
+    stw        r0,0(r3)
+    or         r0,r0,r4
+    rlwinm     r3,r0,1,31,31
+    bclr       BO_ALWAYS,CR0_LT
+GCC on ibm
+foo:
+    lwz 9,LC..0(2)
+    lwz 10,0(9)
+    addi 10,10,1
+    cmpwi 7,10,10
+    stw 10,0(9)
+    crnot 30,29
+    mfcr 3
+    rlwinm 3,3,31,1
+    blr
+GCC on intel
+foo:
+        movl    a(%rip), %eax
+        incl    %eax
+        cmpl    $10, %eax
+        movl    %eax, a(%rip)
+        setle   %al
+        ret
+Intel:
+foo:
+        movl      $1, %ecx
+        movl      a(%rip), %edx
+        xorl      %eax, %eax
+        incl      %edx 
+        cmpl      $10, %edx
+        movl      %edx, a(%rip)
+        cmovle    %ecx, %eax
+        ret
+original:
+<var>bool</var> foo()
+{
+    <var>const</var> <var>int</var> some_const = 10 ;
+    <var>return</var> ++a &lt;= some_const ;
+}</code></pre></td>
+<td class="output"><pre><samp>
+bar:
+    sethi   %hi(a),%o4
+    ld      [%o4+%lo(a)],%o5
+    sra     %o5,0,%o3
+    add     %o5,1,%o5
+    st      %o5,[%o4+%lo(a)]
+    sub     %o3,10,%o2
+    retl    ! Result =  %o0
+    srlx    %o2,63,%o0
+
+bar:
+    lwz        r3,T.25.a(RTOC)
+    lwz        r4,0(r3)
+    addi       r0,r4,-10
+    addi       r5,r4,1
+    or         r0,r4,r0
+    stw        r5,0(r3)
+    rlwinm     r3,r0,1,31,31
+    bclr       BO_ALWAYS,CR0_LT
+
+bar:
+    lwz 9,LC..1(2)
+    lwz 10,0(9)
+    cmpwi 7,10,9
+    addi 10,10,1
+    crnot 30,29
+    stw 10,0(9)
+    mfcr 3
+    rlwinm 3,3,31,1
+    blr
+
+bar:
+        movl    a(%rip), %eax
+        leal    1(%rax), %edx
+        cmpl    $9, %eax
+        movl    %edx, a(%rip)
+        setle   %al
+        ret
+
+bar:
+       movl      $1, %esi
+       movl      a(%rip), %ecx 
+       xorl      %eax, %eax
+       cmpl      $10, %ecx
+       cmovl     %esi, %eax
+       lea       1(%rcx), %edx 
+       movl      %edx, a(%rip)
+       ret 
+
+bool bar()
+{
+    const int some_const = 10 ;
+    return a++ &lt; some_const ;
+}</samp></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm4bb9a14f3e" title="Fri, 01 Feb 2013 20:57:35 +0000"></span><script type="text/javascript">WhenId('CH_zTm4bb9a14f3e');</script><noscript>Feb 1, 2013 at 8:57pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn491655"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg491681"><span title="491681,45401,1023,1010,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg491681" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm6fe152905f" title="Fri, 01 Feb 2013 21:34:18 +0000"></span><script type="text/javascript">WhenId('CH_zTm6fe152905f');</script><noscript>Feb 1, 2013 at 9:34pm UTC</noscript></div>
+<div class="dwho"><a href="/user/rapidcoder/"><b>rapidcoder</b> (1010)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i491681">
+@JLBorges<br>
+<br>
+Judging performance by number of used registers is also wrong. As you can see, both codes execute equally fast. If machine code uses only one register, it doesn't mean the CPU will use only one register. CPUs do internal register renaming, in order to avoid pipeline stalls. Internally x86 has 76 or more registers, even in 32-bit mode. You have completely no control over it, even when coding in assembly (funny times that even assembly coders do not have full control over hardware). So for simple code, I'm not very surprised, they executed equally, because CPUs are getting smarter and smarter. There are also some bypasses so the preceding instruction need not to execute fully in order to start executing the next dependent instruction.<br>
+<br>
+I recall on a different forum they did an experiment with complex expressions where lots of post/pre increments were used and preincrements turned out to be slower. But that was a few years ago on a different hardware.<br>
+<br>
+The example with branch prediction shows that the times when you could safely guess "instruction A is always slower than instruction B" are over. Now, everything depends on the context.
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm4559f853c1" title="Fri, 01 Feb 2013 21:37:25 +0000"></span><script type="text/javascript">WhenId('CH_zTm4559f853c1');</script><noscript>Feb 1, 2013 at 9:37pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn491681"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg491682"><span title="491682,75536,1023,7545,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg491682" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmb74e9f3f76" title="Fri, 01 Feb 2013 21:36:37 +0000"></span><script type="text/javascript">WhenId('CH_zTmb74e9f3f76');</script><noscript>Feb 1, 2013 at 9:36pm UTC</noscript></div>
+<div class="dwho"><a href="/user/JLBorges/"><b>JLBorges</b> (7545)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i491682">
+&gt; <a href="http://stackoverflow.com/questions/11227809/why-is-processing-a-sorted-array-faster-than-an-unsorted-array">http://stackoverflow.com/questions/11227809/why-is-processing-a-sorted-array-faster-than-an-unsorted-array</a><br>
+<br>
+Thanks, LB, for that link. This was illuminating, particularly the bit about ICC performing a loop-interchange. <br>
+<br>
+<table class="quote"><tr><td class="qd">Update :<br>
+<br>
+GCC 4.6.1 with -O3 or -ftree-vectorize on x64 is able to generate a conditional move. So there is no difference between the sorted and unsorted data - both are fast.<br>
+<br>
+VC++ 2010 is unable to generate conditional moves for this branch even under /Ox.<br>
+<br>
+Intel Compiler 11 does something miraculous. It interchanges the two loops, thereby hoisting the unpredictable branch to the outer loop. So not only is it immune the mispredictions, it is also twice as fast as whatever VC++ and GCC can generate! In other words, ICC took advantage of the test-loop to defeat the benchmark...<br>
+<br>
+If you give the Intel Compiler the branchless code, it just out-right vectorizes it... and is just as fast as with the branch (with the loop interchange).</td></tr></table> <br>
+<br>
+ 
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn491682"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg491687"><span title="491687,75536,1023,7545,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg491687" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTme952a31183" title="Fri, 01 Feb 2013 22:00:55 +0000"></span><script type="text/javascript">WhenId('CH_zTme952a31183');</script><noscript>Feb 1, 2013 at 10:00pm UTC</noscript></div>
+<div class="dwho"><a href="/user/JLBorges/"><b>JLBorges</b> (7545)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i491687">
+&gt; Judging performance by number of used registers is also wrong. As you can see, both codes execute equally fast. ...<br>
+<br>
+Yes, you are absolutely right on that count. <br>
+<br>
+That for native types, both would execute equally fast was the commonly held view among the C++ programmers who posted in this thread. <br>
+<br>
+And then you came up with the categorical assertion that postfix increment '<i>avoids pipeline stall and *is* faster.</i>' <br>
+Which is what started this debate.<br>
+<br>
+<br>
+&gt; The example with branch prediction shows that the times when <br>
+&gt; you could safely guess "instruction A is always slower than instruction B" <br>
+&gt; are over. Now, everything depends on the context.<br>
+<br>
+AFAIK, those days were over a very long time ago, ever since pipe-lining, cpu caches, translation look aside buffers etc. made their appearance. For example, John Lakos in his 1996 book, talks about it at some length while discussing the performance implications of inline functions.<br>
+<br>
+ <br>
+<br>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn491687"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div id="CH_insNew"></div><div id="CH_subscription"></div><div class="rootedtNew"></div><div class="C_pages right">Pages: <a href="/forum/lounge/91220/1/">1</a><span title="Current page">2</span><a href="/forum/lounge/91220/3/">3</a></div><script type="text/javascript">new for_PostList(91220,1,68265,0,'CH_PostList','CH_subscription',false,'CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+<script type="text/javascript">
+    google_ad_client = "ca-pub-1444228343479937";
+    google_ad_slot = "9701143201";
+    google_ad_width = 728;
+    google_ad_height = 90;
+</script>
+<!-- leaderboard -->
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li><a href="/forum/beginner/"><b>Beginners</b></a></li><li><a href="/forum/windows/"><b>Windows Programming</b></a></li><li><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li><a href="/forum/general/"><b>General C++ Programming</b></a></li><li class="selected"><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Flounge%2F91220%2F2%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

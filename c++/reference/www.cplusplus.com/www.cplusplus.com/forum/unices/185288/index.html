@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>compiling error - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/unices/">UNIX/Linux Programming</a></li>
+<li class="here">compiling error</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico default" title="post">&nbsp;</div> compiling error</h3><span id="CH_edttl"></span><span class="rootdatPost" title="185288,root,0,-1,3,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg904851"><span title="904851,194355,1023,16,1"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg904851" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm512991d1c8" title="Wed, 24 Feb 2016 00:25:42 +0000"></span><script type="text/javascript">WhenId('CH_zTm512991d1c8');</script><noscript>Feb 24, 2016 at 12:25am UTC</noscript></div>
+<div class="dwho"><a href="/user/nj1995/"><b>nj1995</b> (16)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i904851">
+Hi,when I attempt to run my code in unix it returns an error saying that 'data' is not a member of the vector in my toUpper function, but it runs fine when I run it else where, I would appreciate any help. Thanks.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br>59<br>60<br>61<br>62<br>63<br>64<br>65<br>66<br>67<br>68<br>69<br>70<br>71<br>72<br>73<br>74<br>75<br>76<br>77<br>78<br>79<br>80<br>81<br>82<br>83<br>84<br>85<br>86<br>87<br>88<br>89<br>90<br>91<br>92<br>93<br>94<br>95<br>96<br>97<br>98<br>99<br>100<br>101<br>102<br>103<br>104<br>105<br>106<br>107<br>108<br>109<br>110<br>111<br>112<br>113<br>114<br>115<br>116<br>117<br>118<br>119<br>120<br>121<br>122<br>123<br>124<br>125<br>126<br>127<br>128<br>129<br>130<br>131<br>132<br>133<br>134<br>135<br>136<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;iostream&gt;</dfn>
+<dfn>#include &lt;string&gt;</dfn>
+<dfn>#include &lt;vector&gt;</dfn>
+<dfn>#include &lt;algorithm&gt;</dfn>
+<dfn>#include &lt;cstring&gt;</dfn>
+<var>using</var> <var>namespace</var> std;
+
+<var>void</var> loadVector(vector&lt;<var>char</var>&gt; &amp;v);
+<cite>//Precondition: char vector passed</cite>
+<cite>//Postcondition: loads a word or phrase into the vector</cite>
+
+<var>void</var> displayVector(vector&lt;<var>char</var>&gt; &amp;v);
+<cite>//Precondition: char vector is passed, vector must be loaded </cite>
+<cite>//with word/phrase</cite>
+<cite>//Postcondition: displays the vector</cite>
+
+<var>void</var> toUpper(vector&lt;<var>char</var>&gt; &amp;v);
+<cite>//Precondition: char vector is passed, vector must be loaded</cite>
+<cite>//Postcondition: converts all lower case letters in the </cite>
+<cite>//phrase/word into upper case</cite>
+
+<var>void</var> removeNonAlphabets(vector&lt;<var>char</var>&gt; &amp;v);
+<cite>//Precondition: char vector passed, vector must be loaded</cite>
+<cite>//Postcondition: removes all non-alphabets from the vector</cite>
+
+<var>bool</var> isPalindrome(<var>const</var> vector&lt;<var>char</var>&gt; &amp;v);
+<cite>//Precondition: char vector passed, vector must be loaded</cite>
+<cite>//Postcondition: determines whether or not the word/phrase is</cite>
+<cite>//a palindrome</cite>
+
+<var>void</var> loadVector(vector&lt;<var>char</var>&gt; &amp;v)
+{
+    string input;
+ 
+    cout &lt;&lt; <kbd>"Enter a word, phrase or sentence to see if it's a palindrome: "</kbd> &lt;&lt; endl;
+    getline(cin, input);
+    <var>for</var>(<var>unsigned</var> <var>int</var> i=0; i&lt;input.size(); i++)
+    {
+    	v.push_back(input[i]);
+    	cout &lt;&lt; endl;
+	}
+}
+
+
+<var>void</var> displayVector(vector&lt;<var>char</var>&gt; &amp;v)
+{
+	<var>for</var>(<var>int</var> i = 0; i &lt; v.size(); i++)
+	{
+		cout &lt;&lt; v[i];
+	}
+}
+
+<var>void</var> toUpper(vector&lt;<var>char</var>&gt; &amp;v)
+{
+	<var>for</var> (<var>unsigned</var> <var>int</var> i = 0; i &lt; v.size(); i++)
+    {
+        <var>char</var> temp[v.size()];
+		memcpy(temp,v.data(),v.size());
+        <var>int</var> j = 0;
+
+        <var>while</var> (temp[j]) 
+		{ 
+			temp[j] = toupper(temp[j]); 
+			j++;
+	    }
+        v[i] = temp[i];
+    }
+}
+
+<var>void</var> removeNonAlphabets(vector&lt;<var>char</var>&gt; &amp;v)
+{
+    <var>unsigned</var> <var>int</var> m =0;
+    <var>for</var>(<var>unsigned</var> <var>int</var> j = 0; j &lt; v.size(); j++)
+    {
+        <var>char</var> temp = v[j];
+        
+            <var>if</var> (isalpha(v[j])!=0)
+            {
+               v[m] = temp;
+               m++;
+            }
+    }
+
+    v.resize(m);
+}
+
+
+<var>bool</var> isPalindrome(<var>const</var> vector&lt;<var>char</var>&gt; &amp;v)
+{  
+  	size_t i = 0;
+    size_t j = v.size() - 1;
+    
+    <var>while</var> (i &lt; j) 
+	{
+        <var>if</var> (v[i++] != v[j--]) 
+		{
+            <var>return</var> <var>false</var>;
+        }
+    }
+    <var>return</var> <var>true</var>;
+}
+
+<var>int</var> main()
+{
+	vector&lt;<var>char</var>&gt; v;
+		
+	loadVector(v);
+		
+	cout &lt;&lt; endl &lt;&lt;  <kbd>"The original input string contains: "</kbd> &lt;&lt; endl;
+	displayVector(v);
+	cout &lt;&lt; endl &lt;&lt; endl;	
+	
+	cout &lt;&lt; <kbd>"After conversion to upper-case, input string contains: "</kbd> &lt;&lt; endl;
+    toUpper(v);
+    displayVector(v);
+    cout &lt;&lt; endl &lt;&lt; endl;
+    
+    cout &lt;&lt; <kbd>"After removal of non-alphabets, input string contains: "</kbd> &lt;&lt; endl;
+    removeNonAlphabets(v);
+    displayVector(v);
+    cout &lt;&lt; endl;
+    
+    cout &lt;&lt; endl;
+	<var>if</var>(isPalindrome(v) == <var>true</var>)
+	{
+		displayVector(v);
+		cout &lt;&lt; <kbd>" IS a palindrome!"</kbd> &lt;&lt; endl;
+	}
+	<var>else</var>
+	{
+		displayVector(v);
+		cout &lt;&lt; <kbd>" is NOT a palindrome!"</kbd> &lt;&lt; endl;
+	}
+	
+	<var>return</var> 0;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn904851"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg904928"><span title="904928,72446,1023,7402,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg904928" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTme7ad20044b" title="Wed, 24 Feb 2016 08:54:55 +0000"></span><script type="text/javascript">WhenId('CH_zTme7ad20044b');</script><noscript>Feb 24, 2016 at 8:54am UTC</noscript></div>
+<div class="dwho"><a href="/user/Peter87/"><b>Peter87</b> (7402)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i904928">
+Make sure your compiler is up-to date enough and that you have at least enabled C++11 features. With GCC you do this by passing -std=c++11 to the compiler.
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTme87c7c6f9f" title="Wed, 24 Feb 2016 08:55:41 +0000"></span><script type="text/javascript">WhenId('CH_zTme87c7c6f9f');</script><noscript>Feb 24, 2016 at 8:55am UTC</noscript></span>
+<span class="dbtn" id="CH_btn904928"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg904993"><span title="904993,97037,1023,1903,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg904993" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmee9374d61b" title="Wed, 24 Feb 2016 15:54:28 +0000"></span><script type="text/javascript">WhenId('CH_zTmee9374d61b');</script><noscript>Feb 24, 2016 at 3:54pm UTC</noscript></div>
+<div class="dwho"><a href="/user/jlb/"><b>jlb</b> (1903)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i904993">
+Also be aware that C++ doesn't allow Variable Length Arrays. Array sizes must be compile time constants. <br>
+<br>
+What exactly are you trying to do in you toUpper() function? If you're just trying to convert the whole vector to uppercase why not just use std::transform() instead of all the copying?<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;algorithm&gt;</dfn>
+...
+<var>void</var> toUpper(vector&lt;<var>char</var>&gt; &amp;v)
+{
+    std::transform(v.begin(), v.end(), v.begin(), ::toupper);
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn904993"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div class="rootbtnNew"></div><div id="CH_insNew"></div><div id="CH_reply">Registered users can post here. <a href="/user/">Sign in or register</a> to post.</div><div id="CH_subscription"></div><div class="rootedtNew"></div><script type="text/javascript">new for_PostList(185288,0,194355,0,'CH_PostList','CH_subscription','CH_reply','CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li><a href="/forum/beginner/"><b>Beginners</b></a></li><li><a href="/forum/windows/"><b>Windows Programming</b></a></li><li class="selected"><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li><a href="/forum/general/"><b>General C++ Programming</b></a></li><li><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Funices%2F185288%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

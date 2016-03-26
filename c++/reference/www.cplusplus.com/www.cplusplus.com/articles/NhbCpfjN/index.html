@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>How to send an SMS message from an appli - C++ Articles</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/articles/">Articles</a></li>
+<li class="here">How to send an SMS message from an appli</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div id="I_content">
+<div class="C_art">
+<div id="I_author">Published by <b><a href="/user/Michael_Haephrati/" rel="author">Michael Haephrati</a></b></div>
+<div id="I_date">Aug 11, 2014 (last update: Aug 28, 2014)</div>
+<h1>How to send an SMS message from an application</h1>
+<div id="I_score">Score: 3.8/5 (85 votes)</div>
+<div id="I_stars"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-half.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"></div>
+<div id="I_content">
+<BLOCKQUOTE>
+<br>
+How to send an SMS from a Desktop Applicaiton (written in C++).<br>
+<br>
+<LI><A HREF="Haephrati_SendSMS.zip">Download source code - 45.7 KB</A></LI>
+<br>
+<br>
+<H2><B>Introduction</B></H2>
+<P>This article explains how to add the capability of sending text (SMS) messages from a desktop application.</P>
+<br>
+<H2><B>Background</B></H2>
+The article focuses on an implementation using MFC / C++. While looking for a reliable and cheap solution for sending SMS messages programmatically, I came across a company named <A HREF="http://cardboardfish.com"target="_blank">CardBoardFish</A>
+ which covers 150 countries and provides an easy to use, yet powerful SDK for interfacing from any web site, mobile phone, or desktop application, covering most platforms and development environments. Unfortunately, among the code samples in their web site, there aren't any C++ samples, so I decided to develop my own C++ implementation.<br>
+<br>
+<H2><B>Sending SMS Messages Programmatically</B></H2>
+Most applications and web sites used to send SMS messages as part of their scope or among other functionalities (i.e., sending alerts, etc.) use one of the following methods:<br>
+<UL>
+<LI><STRONG>HTTP Web Service -</STRONG>  requires using HTTP "GET" method to send a given Web Service a command, using an API, which contains the credentials, parameters, and the text for this message.<br>
+<br>
+<LI><STRONG>Email to SMS  -</STRONG> uses the SMTP protocol to allow sending an email in a unique format, which encodes all required parameters (credentials, sender, receiver, etc.) as part of an email.<br>
+</UL>
+This article focuses on the first method, using a Web Service.<br>
+<br>
+<H2><B>The API</B></H2>
+The following table lists all parameters that can (or should) be sent to the Web Service:<br>
+<br>
+<IMG SRC="API_small.jpg" alt="">
+<br>
+<H2><B>Using the code</B></H2>
+<P>The code in this article was developed in MFC / C++ using Visual Studio 2010 Ultimate. I also used <A HREF="http://beta.codeproject.com/Members/chen-shi"target="_blank">Cheng Shi</A>'s HTTPClient (thanks Cheng!).<br>
+<br>
+In order to use the code for your own application, it is advised to read the specifications for the SDK named <A HREF="http://www.cardboardfish.com/support/bin/view/Main/HTTPSMSSpecificationDocument"target="_blank">HTTPSMS</A>
+. Secondly, you need to open an account and obtain your user name and password, which can be hardcoded in the source code, or entered during runtime.</P>
+<H2><B>The SendSMS application</B></H2>
+<IMG SRC="SendSMS.jpg" alt="">
+<P>The main functionality of our application is obviously sending an SMS, which is done in the following function:</P>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br></code></pre></td>
+<td class="source"><pre><code><cite>// SendSms  - by Michael Haephrati</cite>
+BOOL SendSms(CString From, CString CountryCode, CString To,CString Message,CString *Status)
+    <cite>// From - the ID or number you are sending from. This is what will appear at the recipient's cellphone. </cite>
+    <cite>// CountyCode - the code of the country you are sending the SMS to (for example: 44 is for the UK</cite>
+    <cite>// To - is the number you are texting to, which should not contain any leading zeros, spaces, commas, etc.</cite>
+    <cite>// Message - is the message you are sending, which can be any multi lingual text</cite>
+    <cite>// The status returned would be either a confirmation number along with the text "OK", which means that the message</cite>
+    <cite>// was delivered, or an error code. </cite>
+{
+    BOOL result=FALSE;
+    wstring user=L<kbd>"PLACE_YOUR_USERNAME_HERE"</kbd>,pass=L<kbd>"PLACE_YOUR_PASSWORD_HERE"</kbd>,request=L<kbd>""</kbd>;
+    <cite>// </cite>
+    request=L<kbd>"http://sms1.cardboardfish.com:9001/HTTPSMS?S=H&amp;UN="</kbd>;
+    request+=user;    <cite>// user name</cite>
+    request+=L<kbd>"&amp;P="</kbd>;
+    request+=pass;    <cite>// password</cite>
+    request+=L<kbd>"&amp;DA="</kbd>; 
+    request+=(wstring)(CountryCode+To); <cite>// country code</cite>
+    request+=L<kbd>"&amp;SA="</kbd>; 
+    request+=(wstring)From; <cite>// From (sender ID)</cite>
+    request+=L<kbd>"&amp;M="</kbd>;
+    CString EncodedMessage; <cite>// Message</cite>
+    
+    CString ccc;
+    EncodedMessage=ConvertHex(Message)+ConvertHex( L<kbd>" here you can place your marketing piech, website, etc."</kbd>);
+    
+    request+=(wstring)EncodedMessage; <cite>// Message to send</cite>
+
+    request+=L<kbd>"&amp;DC=4"</kbd>;
+    <cite>// Indicating that this message is encoded as opposed to plain text  </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Now we handle the HTTP "GET" request:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br></code></pre></td>
+<td class="source"><pre><code>WinHttpClient client(request); 
+        
+     client.SendHttpRequest(L<kbd>"GET"</kbd>,<var>true</var>);
+    <cite>// Get the response</cite>
+
+    wstring httpResponseHeader = client.GetResponseHeader();
+    wstring httpResponseContent = client.GetResponseContent();
+    *Status=httpResponseContent.c_str();
+    <var>return</var> result; 
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<H2><B>Other Services</B></H2>
+<P>I have tested the services of CardBoardFish, which I used for the attached source code. They provide their own code samples here, but these don't include c++, which I why I wrote the test application attached to this article.<br>
+<br>
+I recently tested another service they provide which is verifying mobile numbers before sending the text messages. I didn't include this functionality because I found it to be too slow, and also it doesn't cover some countries, among them... USA.</P>
+I found another alternative service provider : <A HREF="http://www.clickatell.com"target="_blank">http://www.clickatell.coml</A> so there are several options to choose from. <br>
+<br>
+<h2>Further Reading&nbsp;</h2>
+<P>Please refer to <a href="http://www.codeproject.com/Articles/396252/Developing-an-App-that-sends-SMS-messages"title="Another Article by Michael Haephrati"target="_blank">another article of mine</a>, this time explaining how to do the same using iOS (iPhone / iPad).</P>
+<br>
+<h2>License</h2>
+<br>
+This article, along with any associated source code and files, is licensed under <a href="http://www.codeproject.com/info/cpol10.aspx"rel="license"target="_blank">The Code Project Open License (CPOL)</a>
+<br>
+<br>
+<h2 id="ctl00_AboutHeading">About the Author</h2>
+<BLOCKQUOTE><IMG SRC="Mr.M.png" alt=""></BLOCKQUOTE>
+<a href="http://www.codeproject.com/Members/mhaephrati"target="_blank"><B>Michael N. Haephrati</B></a>, is an entrepreneur, inventor and a musician. Haephrati worked on many ventures starting from HarmonySoft, designing Rashumon, the first Graphical Multi-lingual word processor for Amiga computer. During 1995-1996 he worked as a Contractor with <a rel="nofollow"href="http://www.apple.com"target="_blank">Apple </a> at Cupertino. Worked at a research institute made the fist steps developing the credit scoring field in Israel. He founded Target Scoring and developed a credit scoring system named ThiS, based on geographical statistical data, participating VISA CAL, Isracard, Bank Leumi and Bank Discount (Target Scoring, being the VP Business Development of a large Israeli institute).<br>
+During 2000, he founded Target Eye, and developed the first remote PC surveillance and monitoring system, named <a rel="nofollow" title="Target Eye" href="http://www.targeteye.biz"target="_blank">Target Eye</a>.<br>
+<br>
+Other ventures included: <a rel="nofollow" title="Data Optimization" href="http://dataoptimisation.wordpress.com/"target="_blank">Data Cleansing</a> (as part of the <a rel="nofollow" title="DataTune by Michael Haephrati" href="http://datatune.wordpress.com/"target="_blank">DataTune&nbsp;</a> system which was implemented in many organizations. <br>
+<br>
+<br>
+<br>
+<a rel="nofollow" href="https://twitter.com/haephrati"class="twitter-follow-button"data-show-count="false"data-size="large"target="_blank">Follow @haephrati</a>
+<br>
+<br>
+Follow on   <a href="http://www.twitter.com/haephrati?rel=author"rel="author" class="small-text"target="_blank">Twitter</a>, <a href="https://plus.google.com/103057860647722688896?rel=author"rel="author" class="small-text"target="_blank">Google</a>, <a href="http://www.linkedin.com/profile/view?id=344149159"rel="author" class="small-text"target="_blank">LinkedIn</a>   <br>
+<br>
+<br>
+<br>
+<a href="http://www.cplusplus.com">Article Top</a>
+ <br>
+<br>
+</BLOCKQUOTE>
+<p>Attachments:
+	[<a href="Haephrati_SendSMS.zip">Haephrati_SendSMS.zip</a>]
+</p>
+</div></div><div id="CH_bb"></div><div id="CH_scoreapp"></div><script type="text/javascript">new Score('CH_scoreapp','/articles/score.cgi','NhbCpfjN');</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder selected articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/articles/">Articles</a></b></h3>
+<ul>
+<li><a href="/articles/algorithms/">Algorithms</a></li><li><a href="/articles/cpp11/">C++ 11</a></li><li><a href="/articles/graphics/">Graphics and multimedia</a></li><li><a href="/articles/howto/">How-To</a></li><li><a href="/articles/language/">Language Features</a></li><li><a href="/articles/linux/">Unix/Linux programming</a></li><li><a href="/articles/sourcecode/">Source Code</a></li><li><a href="/articles/standard_library/">Standard Library</a></li><li><a href="/articles/tips/">Tips and Tricks</a></li><li><a href="/articles/tools/">Tools and Libraries</a></li><li><a href="/articles/visualcpp/">Visual C++</a></li><li><a href="/articles/winapi/">Windows API</a></li></ul>
+</div>
+<div id="I_subnav"></div>
+</div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Farticles%2FNhbCpfjN%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+onSession(function(us) {
+		document.getElementById('I_subnav').innerHTML=
+			us.ok?
+				'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul>'+
+				'<li><a href="/articles/myitems.cgi">My items</a></li>'+
+				(us.auth(32768)?'<li><a href="/articles/adminitems.cgi">Admin items</a></li>':'')+
+				'</ul></div>'
+			:'';
+	}); onSession(function (us) {
+		var el=document.getElementById('CH_bb'); el.innerHTML='';
+		if ( (us.auth(32768)) || ((us.uniqid=='Lhv7X9L8')&&(us.auth(128))) ) {
+			el.appendChild(btn('Edit article','Edit this version of the article','edit','/articles/edit.cgi?a=NhbCpfjN'));
+	
+			if (us.auth(32768)) {
+				el.appendChild(btn('Delete article','Delete this article','delete','javascript:artdel()'));
+			}
+	
+		}
+	});
+	function artdel() { if (confirm('WARNING: You are about to delete this page. Confirm?')) window.location='/articles/delete.cgi?a=NhbCpfjN'; }
+	ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

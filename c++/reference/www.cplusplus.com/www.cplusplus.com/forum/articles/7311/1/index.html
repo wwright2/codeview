@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Issues in Console Programming - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/articles/">Articles</a></li>
+<li class="here">Issues in Console Programming</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico default" title="post">&nbsp;</div> Issues in Console Programming</h3><span id="CH_edttl"></span><div class="C_pages">Pages: <span title="Current page">1</span><a href="/forum/articles/7311/2/">2</a><a href="/forum/articles/7311/3/">3</a></div><span class="rootdatPost" title="7311,root,0,-1,53,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg33732"><span title="33732,9110,5119,10134,1"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg33732" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTme517c8795b" title="Wed, 28 Jan 2009 22:38:40 +0000"></span><script type="text/javascript">WhenId('CH_zTme517c8795b');</script><noscript>Jan 28, 2009 at 10:38pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Duoas/"><b>Duoas</b> (10134)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i33732">
+<div class="centertext"><table class="quote"><tr><td class="qd"><b> ---------- Issues in Console Programming ---------- </b></td></tr></table></div><br>
+In this series of articles I intend to cover both the "how-to" of programming console applications but also the <i>reasons</i> that things are done the way they are.<br>
+<br>
+The purpose of these articles is threefold:<br>
+<br>
+<div class="centertext">1</div>First, this information is rather scattered about the internet. It sure would be nice to have it all in one spot. I don't aim to cover every possible issue, but I do intend to have a complete primer.<br>
+<br>
+<div class="centertext">2</div>Second, some of these issues are a constant sore spot for forum regulars (on forums everywhere). These questions get asked so often that people tire of answering them, and start giving simple answers just to shut the asker up. Answering a question takes a fair amount of energy, and when someone shows up two days after some brilliant answer to ask some simple variation, it makes us want to unplug his computer with a pair of wire-cutters. These articles aim to provide an easy, canned answer that makes everyone happy.<br>
+<br>
+<div class="centertext">3</div>Third, I intend to encourage people to think properly about how they are programming. Too often these days programmers fall into the trap of believing that the computer will help them program. This is true of all <i>other</i> computer activities, but <i>not programming</i>. Programming the computer requires careful thought and insight. Simple answers are simply the Wrong Thing. It is better to get a good, comprehensive answer that makes you more capable, skilled, and valuable -- a <i>better</i> programmer than the average wannabe. Don't be a liability to your software!<br>
+<br>
+<br>
+<div class="centertext"><table class="quote"><tr><td class="qd"><b> -------------------- For The Brain -------------------- </b></td></tr></table><br>
+Why system() is <i>evil</i>
+<sub> <a href="http://www.cplusplus.com/forum/articles/11153/">http://www.cplusplus.com/forum/articles/11153/</a> </sub><br>
+<br>
+How to set up a nice console-programming environment<br>
+<sub>-- todo --</sub><br>
+<br>
+Types and purposes of console applications<br>
+<sub>-- todo --</sub><br>
+<br>
+Issues when reading user input<br>
+<sub>-- todo --</sub><br>
+<br>
+Making your application well-behaved<br>
+<sub>-- todo --</sub><br>
+<br>
+Windows and Linux issues<br>
+<sub>-- todo --</sub><br>
+<br>
+Getting started with Curses<br>
+<sub>-- todo --</sub><br>
+<br>
+Using &lt;conio.h&gt;<br>
+<sub>-- todo --</sub><br>
+<br>
+Using Win32<br>
+<sub>-- todo --</sub><br>
+<br>
+Using POSIX<br>
+<sub>-- todo --</sub>
+</div><br>
+<br>
+<div class="centertext"><table class="quote"><tr><td class="qd"><b> -------------------- For The Body -------------------- </b></td></tr></table><br>
+Keep the console open long enough to see your program's output<br>
+<sub> <a href="http://www.cplusplus.com/forum/articles/7312/">http://www.cplusplus.com/forum/articles/7312/</a> </sub><br>
+<br>
+Flush stdin<br>
+<sub>-- todo --</sub><br>
+<br>
+Clear the screen<br>
+<sub> <a href="http://www.cplusplus.com/forum/articles/10515/">http://www.cplusplus.com/forum/articles/10515/</a> </sub><br>
+<br>
+Read a password<br>
+<sub>-- todo --</sub><br>
+<br>
+Read arrow keys and other fancy stuff<br>
+<sub>-- todo --</sub><br>
+<br>
+Know whether or not a key is pressed<br>
+<sub>-- todo --</sub><br>
+<br>
+Read a single key for input (without having to press <tt>Enter</tt>)<br>
+<sub>-- todo --</sub><br>
+<br>
+Use timeouts or delays when getting input<br>
+<sub>-- todo --</sub><br>
+<br>
+Change the text colors<br>
+<sub>-- todo --</sub><br>
+<br>
+Change the console window's title<br>
+<sub>-- todo --</sub><br>
+<br>
+Cursor position<br>
+<sub>-- todo --</sub><br>
+<br>
+Mouse input<br>
+<sub>-- todo --</sub><br>
+<br>
+Determine if there is a human interacting with the program<br>
+<sub>-- todo --</sub>
+</div><br>
+<br>
+<div class="centertext"><table class="quote"><tr><td class="qd"><b> ------------------- Actualization ------------------- </b></td></tr></table><br>
+Console Functions Source Code (Win32 and POSIX)<br>
+<sub>-- todo --</sub>
+</div><br>
+<br>
+<div class="centertext"><table class="quote"><tr><td class="qd"><b> -------------------- Boilerplate -------------------- </b></td></tr></table></div><br>
+First off, I wrote all this code. The articles are designed to be as cut-n-paste as possible so that you can get along with your life and not worry too much about making things work. That said, though, in many cases the code, while relatively simple, is still <i>way</i> above your heads. I don't care if you graduated last spring, with honors. Or if you've been working in C or C++ for the past five years. I don't care if your IQ is greater than mine. If you knew this stuff you wouldn't need me. Learn from it. But don't present it as your own. Professors and professionals alike hate cheaters. Be honest and enjoy the code, and share it with others.<br>
+<br>
+For students, remember that your professor is more interested in seeing you solve problems than write amazing code. Amazing code and cool solutions are nothing more than a bonus. Code <i>you wrote and understand</i>, and that <i>does what it is supposed to do</i> is the goal. <b><i>Always</i></b>. (That truth never changes!)<br>
+<br>
+This is obviously a work in progress. If I haven't answered your question yet, either post on the beginner's forum or ask me to write it next. You can also spend time looking through the following:<br>
+<div class="centertext">
+<b>Steve Summit's comp.lang.c FAQ</b>
+<sub> <a href="http://c-faq.com/">http://c-faq.com/</a> </sub><br>
+<br>
+<b>Things to Avoid in C/C++</b> by WaltP<br>
+<sub> <a href="http://www.gidnetwork.com/b-56.html">http://www.gidnetwork.com/b-56.html</a> </sub><br>
+<br>
+<b>The Linux Keyboard and Console HOWTO</b>
+<sub> <a href="http://tldp.org/HOWTO/Keyboard-and-Console-HOWTO.html">http://tldp.org/HOWTO/Keyboard-and-Console-HOWTO.html</a> </sub><br>
+<br>
+<b>Windows Console Functions</b>
+<sub> <a href="http://google.com/search?btnI=1&amp;q=msdn+console+functions">http://google.com/search?btnI=1&amp;q=msdn+console+functions</a> </sub>
+</div><br>
+Comments, suggestions, clarifications, corrections, and tactful critisisms are, as always, welcome.<br>
+<br>
+Hope this helps<br>
+<br>
+-- Dúthomhas<br>
+
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm8a112bc0d2" title="Wed, 20 May 2009 01:20:56 +0000"></span><script type="text/javascript">WhenId('CH_zTm8a112bc0d2');</script><noscript>May 20, 2009 at 1:20am UTC</noscript></span>
+<span class="dbtn" id="CH_btn33732"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg33752"><span title="33752,16326,1023,1055,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg33752" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmb24ff8e670" title="Thu, 29 Jan 2009 04:08:08 +0000"></span><script type="text/javascript">WhenId('CH_zTmb24ff8e670');</script><noscript>Jan 29, 2009 at 4:08am UTC</noscript></div>
+<div class="dwho"><a href="/user/Mythios/"><b>Mythios</b> (1055)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i33752">
+Yeah! This is the sort of thing I've been wanting to see. I can't wait for this article to progress more! Better keep hitting refresh :P<br>
+<br>
+Excellent work Duoas!
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn33752"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg34045"><span title="34045,12258,1023,460,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg34045" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmc166782a8c" title="Sat, 31 Jan 2009 13:29:01 +0000"></span><script type="text/javascript">WhenId('CH_zTmc166782a8c');</script><noscript>Jan 31, 2009 at 1:29pm UTC</noscript></div>
+<div class="dwho"><a href="/user/QWERTYman/"><b>QWERTYman</b> (460)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i34045">
+Finally.<br>
+<br>
+Now I might not suck as bad at programming.<br>
+<br>
+&lt;_&lt;<br>
+<br>
+&gt;_&gt;
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn34045"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg34246"><span title="34246,16326,1023,1055,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg34246" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmc0ec54d70d" title="Mon, 02 Feb 2009 12:33:41 +0000"></span><script type="text/javascript">WhenId('CH_zTmc0ec54d70d');</script><noscript>Feb 2, 2009 at 12:33pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Mythios/"><b>Mythios</b> (1055)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i34246">
+Hey don't worry I know the feeling :P - Either way this guide will be awesome!
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn34246"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg46601"><span title="46601,21250,1023,21,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg46601" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm45733145ac" title="Thu, 16 Apr 2009 17:31:23 +0000"></span><script type="text/javascript">WhenId('CH_zTm45733145ac');</script><noscript>Apr 16, 2009 at 5:31pm UTC</noscript></div>
+<div class="dwho"><a href="/user/GANTOR/"><b>GANTOR</b> (21)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i46601">
+Can't wait for it to come out! Thanks man.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn46601"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg48676"><span title="48676,16326,1023,1055,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg48676" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm4c31413b4a" title="Mon, 27 Apr 2009 13:37:14 +0000"></span><script type="text/javascript">WhenId('CH_zTm4c31413b4a');</script><noscript>Apr 27, 2009 at 1:37pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Mythios/"><b>Mythios</b> (1055)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i48676">
+Any idea when the next update will be :D
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn48676"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg48879"><span title="48879,18802,1023,450,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg48879" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTme7c8e45283" title="Tue, 28 Apr 2009 06:58:50 +0000"></span><script type="text/javascript">WhenId('CH_zTme7c8e45283');</script><noscript>Apr 28, 2009 at 6:58am UTC</noscript></div>
+<div class="dwho"><a href="/user/kevinchkin/"><b>kevinchkin</b> (450)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i48879">
+Wow I would love to have this guide. Thanks Duoas. 
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn48879"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg58309"><span title="58309,23139,1023,33,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg58309" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmad4e3456e1" title="Sat, 27 Jun 2009 01:32:19 +0000"></span><script type="text/javascript">WhenId('CH_zTmad4e3456e1');</script><noscript>Jun 27, 2009 at 1:32am UTC</noscript></div>
+<div class="dwho"><a href="/user/AngelGithara23/"><b>AngelGithara23</b> (33)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i58309">
+It would be nice to get an update sometime soon, maybe something on working with directories in win32 or posix, now thats over my head!
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn58309"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg65910"><span title="65910,13218,1023,28,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg65910" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm75467ac136" title="Fri, 21 Aug 2009 15:16:56 +0000"></span><script type="text/javascript">WhenId('CH_zTm75467ac136');</script><noscript>Aug 21, 2009 at 3:16pm UTC</noscript></div>
+<div class="dwho"><a href="/user/mspy2plus/"><b>mspy2plus</b> (28)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i65910">
+Wow. great idea.<br>
+Excellent work.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn65910"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg66372"><span title="66372,21946,1023,948,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg66372" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm6bf182ddd2" title="Tue, 25 Aug 2009 10:47:04 +0000"></span><script type="text/javascript">WhenId('CH_zTm6bf182ddd2');</script><noscript>Aug 25, 2009 at 10:47am UTC</noscript></div>
+<div class="dwho"><a href="/user/Null/"><b>Null</b> (948)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i66372">
+Any updates?
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn66372"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg67156"><span title="67156,24982,255,3,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg67156" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmb81bc5aabf" title="Sun, 30 Aug 2009 17:34:05 +0000"></span><script type="text/javascript">WhenId('CH_zTmb81bc5aabf');</script><noscript>Aug 30, 2009 at 5:34pm UTC</noscript></div>
+<div class="dwho"><a href="/user/murukesh/"><b>murukesh</b> (3)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i67156">
+Thanks Duoas! Your posts have been quite helpful, as well as clear and succint. This will definitely be good.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn67156"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg74601"><span title="74601,23921,1023,72,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg74601" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm400e42dc90" title="Sat, 10 Oct 2009 00:26:27 +0000"></span><script type="text/javascript">WhenId('CH_zTm400e42dc90');</script><noscript>Oct 10, 2009 at 12:26am UTC</noscript></div>
+<div class="dwho"><a href="/user/garob/"><b>garob</b> (72)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i74601">
+Here's a link to some win32 console tutorials.<br>
+<a href="http://www.adrianxw.dk/SoftwareSite/index.html">http://www.adrianxw.dk/SoftwareSite/index.html</a><br>
+This article is looking good. Hope to see more soon, especially reading the keyboard.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn74601"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg74637"><span title="74637,21799,1023,7398,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg74637" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmcfd89830ee" title="Sat, 10 Oct 2009 10:16:53 +0000"></span><script type="text/javascript">WhenId('CH_zTmcfd89830ee');</script><noscript>Oct 10, 2009 at 10:16am UTC</noscript></div>
+<div class="dwho"><a href="/user/chrisname/"><b>chrisname</b> (7398)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i74637">
+<table class="quote"><tr><td class="qd">This article is looking good. Hope to see more soon, <b>especially reading the keyboard.</b></td></tr></table><br>
+<br>
+Don't hold me to this, but the following could work:<br>
+You'll need an OS in real mode though :)<br>
+I think windows automagically runs .COM files in virtual real mode... so try compiling it to a .COM...<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br></code></pre></td>
+<td class="source"><pre><code><var>int</var> getcharASM() {
+    <var>int</var> c = 0;
+    <var>asm</var> <var>volatile</var>
+    (
+        <kbd>"movl $0x0, %%ah"</kbd> <cite>// Read from keyboard</cite>
+        <kbd>"int $0x21"</kbd>        <cite>// Call interrupt to get keypress</cite>
+        <kbd>"movl %%al, %0"</kbd>   <cite>// Store result in output operand</cite>
+        :<kbd>"=r"</kbd>(c) <cite>// Output operand</cite>
+    );
+    <var>return</var> c; <cite>// Return character</cite>
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+I'm not entirely sure I put the right value in AH, though. If it prints "ERROR!" to the screen and your BIOS chip explodes, it's not my fault.
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm3e26676119" title="Sat, 10 Oct 2009 16:20:26 +0000"></span><script type="text/javascript">WhenId('CH_zTm3e26676119');</script><noscript>Oct 10, 2009 at 4:20pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn74637"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg76112"><span title="76112,8438,1023,4538,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg76112" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm9c73af7c83" title="Sun, 18 Oct 2009 16:02:57 +0000"></span><script type="text/javascript">WhenId('CH_zTm9c73af7c83');</script><noscript>Oct 18, 2009 at 4:02pm UTC</noscript></div>
+<div class="dwho"><a href="/user/hamsterman/"><b>hamsterman</b> (4538)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i76112">
+It could be either <tt>mov ah, 1</tt><tt> int 0x21</tt> or <tt>mov ah, 0</tt> <tt>int 0x16</tt> if you want to directly read a key.
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm813c660048" title="Sun, 18 Oct 2009 16:03:59 +0000"></span><script type="text/javascript">WhenId('CH_zTm813c660048');</script><noscript>Oct 18, 2009 at 4:03pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn76112"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg76115"><span title="76115,9110,5119,10134,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg76115" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmdbdd8f774d" title="Sun, 18 Oct 2009 16:13:20 +0000"></span><script type="text/javascript">WhenId('CH_zTmdbdd8f774d');</script><noscript>Oct 18, 2009 at 4:13pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Duoas/"><b>Duoas</b> (10134)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i76115">
+Yeah... Don't do that.<br>
+<br>
+I'll post more soon enough. If you want to get individual key presses, see the stuff I've already posted here <a href="http://www.cplusplus.com/forum/articles/7312/page1.html#msg33734">http://www.cplusplus.com/forum/articles/7312/page1.html#msg33734</a><br>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn76115"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg76129"><span title="76129,21799,1023,7398,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg76129" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm07dcbae5e9" title="Sun, 18 Oct 2009 17:55:27 +0000"></span><script type="text/javascript">WhenId('CH_zTm07dcbae5e9');</script><noscript>Oct 18, 2009 at 5:55pm UTC</noscript></div>
+<div class="dwho"><a href="/user/chrisname/"><b>chrisname</b> (7398)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i76129">
+Cool; when you finish this, it is going to be a great help for all of us.<br>
+<br>
+Another way of reading a key with inline asm would be to use inb (in byte) to read from the keyboard port (0x60 I think)... but I think I'll quit while I'm ahead.<br>
+<br>
+I'm interested in the hard drive most of all at the moment.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn76129"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg76136"><span title="76136,9110,5119,10134,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg76136" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm187fa4ebca" title="Sun, 18 Oct 2009 18:55:02 +0000"></span><script type="text/javascript">WhenId('CH_zTm187fa4ebca');</script><noscript>Oct 18, 2009 at 6:55pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Duoas/"><b>Duoas</b> (10134)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i76136">
+Reading key presses from ports 60 and 61 are for interrupt handlers to do in response to a hardware interrupt. Application programs should not do that.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn76136"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg77086"><span title="77086,16326,1023,1055,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg77086" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmc59510e11f" title="Fri, 23 Oct 2009 02:33:55 +0000"></span><script type="text/javascript">WhenId('CH_zTmc59510e11f');</script><noscript>Oct 23, 2009 at 2:33am UTC</noscript></div>
+<div class="dwho"><a href="/user/Mythios/"><b>Mythios</b> (1055)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i77086">
+<table class="quote"><tr><td class="qd">I'll post more soon enough.</td></tr></table><br>
+&lt;3
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn77086"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg78279"><span title="78279,19576,1023,574,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg78279" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm32068e8e9a" title="Thu, 29 Oct 2009 00:20:11 +0000"></span><script type="text/javascript">WhenId('CH_zTm32068e8e9a');</script><noscript>Oct 29, 2009 at 12:20am UTC</noscript></div>
+<div class="dwho"><a href="/user/DrChill/"><b>DrChill</b> (574)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i78279">
+<table class="quote"><tr><td class="qd">Mouse input</td></tr></table><br>
+<br>
+Would that be still in the command prompt box or are you moving visual?
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn78279"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg78283"><span title="78283,23921,1023,72,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg78283" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm1698d2e445" title="Thu, 29 Oct 2009 00:24:55 +0000"></span><script type="text/javascript">WhenId('CH_zTm1698d2e445');</script><noscript>Oct 29, 2009 at 12:24am UTC</noscript></div>
+<div class="dwho"><a href="/user/garob/"><b>garob</b> (72)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i78283">
+It is still command prompt box in Windows see <a href="http://www.adrianxw.dk/SoftwareSite/Consoles/Consoles5.html">http://www.adrianxw.dk/SoftwareSite/Consoles/Consoles5.html</a>
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn78283"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div id="CH_insNew"></div><div id="CH_subscription"></div><div class="rootedtNew"></div><div class="C_pages right">Pages: <span title="Current page">1</span><a href="/forum/articles/7311/2/">2</a><a href="/forum/articles/7311/3/">3</a></div><script type="text/javascript">new for_PostList(7311,1,9110,0,'CH_PostList','CH_subscription',false,'CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+<script type="text/javascript">
+    google_ad_client = "ca-pub-1444228343479937";
+    google_ad_slot = "9701143201";
+    google_ad_width = 728;
+    google_ad_height = 90;
+</script>
+<!-- leaderboard -->
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li><a href="/forum/beginner/"><b>Beginners</b></a></li><li><a href="/forum/windows/"><b>Windows Programming</b></a></li><li><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li><a href="/forum/general/"><b>General C++ Programming</b></a></li><li><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Farticles%2F7311%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

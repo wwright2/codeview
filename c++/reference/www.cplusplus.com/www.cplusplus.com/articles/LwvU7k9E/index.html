@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Wade Not in Unknown C++ Waters. Part Fou - C++ Articles</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/articles/">Articles</a></li>
+<li class="here">Wade Not in Unknown C++ Waters. Part Fou</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div id="I_content">
+<div class="C_art">
+<div id="I_author">Published by <b><a href="/user/AndreyKarpov/" rel="author">AndreyKarpov</a></b></div>
+<div id="I_date">Jul 15, 2013 (last update: Jul 15, 2013)</div>
+<h1>Wade Not in Unknown C++ Waters. Part Four.</h1>
+<div id="I_score">Score: 4.2/5 (15 votes)</div>
+<div id="I_stars"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"></div>
+<div id="I_content">
+<p>This time we will discuss virtual inheritance in C++ and find out why one should be very careful using it. See other articles of this series: <a href="http://www.viva64.com/en/b/0127/">N1</a>, <a href="http://www.viva64.com/en/b/0129/">N2</a>, <a href="http://www.viva64.com/en/b/0142/">N3</a>.</p>
+<h2>Initialization of Virtual Base Classes</h2>
+<p>At first let's find out how classes are allocated in memory without virtual inheritance. Have a look at this code fragment:</p>
+<pre >class Base { ... };
+class X : public Base { ... };
+class Y : public Base { ... };
+class XY : public X, public Y { ... };</pre>
+<p>It's pretty clear: members of the non-virtual base class 'Base' are allocated as common data members of a derived class. It results in the 'XY' object containing two independent 'Base' subobjects. Here is a scheme to illustrate that:</p>
+<p><img src="image1.png" alt=""></p>
+<p>Figure 1. Multiple non-virtual inheritance.</p>
+<p>When we deal with virtual inheritance, an object of a virtual base class is included into the object of a derived class only once. Figure 2 shows the structure of the 'XY' object in the code fragment below.</p>
+<pre >class Base { ... };
+class X : public virtual Base { ... };
+class Y : public virtual Base { ... };
+class XY : public X, public Y { ... };</pre>
+<p><img src="image2.png" alt=""></p>
+<p>Figure 2. Multiple virtual inheritance.</p>
+<p>It is at the end of the 'XY' object that memory for the shared subobject 'Base' is most probable to be allocated. The exact implementation of the class depends on the compiler. For example, the classes 'X' and 'Y' may store pointers to the shared object 'Base'. But as far as I understand, this practice is out of use nowadays. A reference to a shared subobject is rather implemented through offset or as information stored in the virtual function table.</p>
+<p>The "most derived" class 'XY' alone knows where exactly a subobject of the virtual base class 'Base' is to be allocated. That's why it is the most derived class which is responsible for initializing all the subobjects of virtual base classes.</p>
+<p>'XY' constructors initialize the 'Base' subobject and pointers to it in 'X' and 'Y'. After that, all the rest members of the classes 'X', 'Y' and 'XY' are initialized.</p>
+<p>Once the 'XY' constructor has initialized the 'Base' subobject, the 'X' and 'Y' constructors are not allowed to re-initialize it. The particular way it will be done depends on the compiler. For example, it can pass a special additional argument into the 'X' and 'Y' constructors to tell them not to initialize the 'Base' class.</p>
+<p>Now the most interesting thing which causes much confusion and a lot of mistakes. Have a look at the following constructors:</p>
+<pre >X::X(int A) : Base(A) {}
+Y::Y(int A) : Base(A) {}
+XY::XY() : X(3), Y(6) {}</pre>
+<p>What number will the base class's constructor take as an argument - 3 or 6? None!</p>
+<p>The constructor 'XY' initializes the virtual subobject 'Base' yet does that implicitly. It is the 'Base' constructor which is called by default.</p>
+<p>As the 'XY' constructor calls the 'X' or 'Y' constructor, it doesn't re-initialize 'Base'. That's why 'Base' is not being called with an argument passed into it.</p>
+<p>Troubles with virtual base classes don't end here. Besides constructors, there are also assignment operators. If I'm not mistaken, the standard tells us that an assignment operator generated by the compiler may assign values to a subobject of a virtual base class multiple times or once. So, you just don't know how many times the 'Base' object will be copied.</p>
+<p>If you implement your own assignment operator, make sure you have prevented multiple copying of the 'Base' object. The following code fragment is incorrect:</p>
+<pre >XY &amp;XY::operator =(const XY &amp;src)
+{
+  if (this != &amp;src)
+  {
+    X::operator =(*this);
+    Y::operator =(*this);
+    ....
+  }
+  return *this;
+}</pre>
+<p>This code leads to double copying of the 'Base' object. To avoid this, we should add special functions into the 'X' and 'Y' classes to prevent copying of the 'Base' class's members. The contents of the 'Base' class are copied just once, in the same code fragment. This is the fixed code:</p>
+<pre >XY &amp;XY::operator =(const XY &amp;src)
+{
+  if (this != &amp;src)
+  {
+    Base::operator =(*this);
+    X::PartialAssign(*this);
+    Y::PartialAssign(*this);
+    ....
+  }
+  return *this;
+}</pre>
+<p>This code will work well, but it still doesn't look nice and clear. That's the reason why programmers are recommended to avoid multiple virtual inheritance.</p>
+<h2>Virtual Base Classes and Type Conversion</h2>
+<p>Because of the specifics of how virtual base classes are allocated in memory, you can't perform type conversions like this one:</p>
+<pre >Base *b = Get();
+XY *q = static_cast&lt;XY *&gt;(b); // Compilation error
+XY *w = (XY *)(b); // Compilation error</pre>
+<p>A persistent programmer, though, will achieve that by employing the operator 'reinterpret_cast':</p>
+<pre >XY *e = reinterpret_cast&lt;XY *&gt;(b);</pre>
+<p>However, the result will hardly be of any use. The address of the beginning of the 'Base' object will be interpreted as a beginning of the 'XY' object, which is quite a different thing. See Figure 3 for details.</p>
+<p>The only way to perform a type conversion is to use the operator dynamic_cast. But using dynamic_cast too often makes the code smell.</p>
+<p><img src="image3.png" alt=""></p>
+<p>Figure 3. Type conversion.</p>
+<h2>Should We Abandon Virtual Inheritance?</h2>
+<p>I agree with many authors that one should avoid virtual inheritance by all means, as well as common multiple inheritance.</p>
+<p>Virtual inheritance causes troubles with object initialization and copying. Since it is the "most derived" class which is responsible for these operations, it has to be familiar with all the intimate details of the structure of base classes. Due to this, a more complex dependency appears between the classes, which complicates the project structure and forces you to make some additional revisions in all those classes during refactoring. All this leads to new bugs and makes the code less readable.</p>
+<p>Troubles with type conversions may also be a source of bugs. You can partly solve the issues by using the dynamic_cast operator. But it is too slow, and if you have to use it too often in your code, it means that your project's architecture is probably very poor. Project structure can be almost always implemented without multiple inheritance. After all, there are no such exotica in many other languages, and it doesn't prevent programmers writing code in these languages from developing large and complex projects.</p>
+<p>We cannot insist on total refusal of virtual inheritance: it may be useful and convenient at times. But always think twice before making a heap of complex classes. Growing a forest of small classes with shallow hierarchy is better than handling a few huge trees. For example, multiple inheritance can be in most cases replaced by object composition.</p>
+<h2>Good Sides of Multiple Inheritance</h2>
+<p>OK, we now understand and agree with the criticism of multiple virtual inheritance and multiple inheritance as such. But are there cases when it can be safe and convenient to use?</p>
+<p>Yes, I can name at least one: Mix-ins. If you don't know what it is, see the book "Enough Rope to Shoot Yourself in the Foot" [3]</p>
+<p>A mix-in class doesn't contain any data. All its functions are usually pure virtual. It has no constructor, and even when it has, it doesn't do anything. It means that no troubles will occur when creating or copying these classes.</p>
+<p>If a base class is a mix-in class, assignment is harmless. Even if an object is copied many times, it doesn't matter: the program will be free of it after compilation.</p>
+<h2>References</h2>
+<ol>
+  <li>Stephen C. Dewhurst. "C++ Gotchas: Avoiding Common Problems in Coding and Design". - Addison-Wesley Professional. - 352 pages; illustrations. ISBN-13: 978-0321125187. (See gotchas 45 and 53).</li>
+  <li>Wikipedia. <a href="http://www.viva64.com/go.php?url=1146">Object composition</a>.</li>
+  <li>Allen I. Holub. "Enough Rope to Shoot Yourself in the Foot". (You can easily find it on the Internet. Start reading at section 101 and further on).</li>
+</ol></div></div><div id="CH_bb"></div><div id="CH_scoreapp"></div><script type="text/javascript">new Score('CH_scoreapp','/articles/score.cgi','LwvU7k9E');</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder selected articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/articles/">Articles</a></b></h3>
+<ul>
+<li><a href="/articles/algorithms/">Algorithms</a></li><li><a href="/articles/cpp11/">C++ 11</a></li><li><a href="/articles/graphics/">Graphics and multimedia</a></li><li><a href="/articles/howto/">How-To</a></li><li><a href="/articles/language/">Language Features</a></li><li><a href="/articles/linux/">Unix/Linux programming</a></li><li><a href="/articles/sourcecode/">Source Code</a></li><li><a href="/articles/standard_library/">Standard Library</a></li><li><a href="/articles/tips/">Tips and Tricks</a></li><li><a href="/articles/tools/">Tools and Libraries</a></li><li><a href="/articles/visualcpp/">Visual C++</a></li><li><a href="/articles/winapi/">Windows API</a></li></ul>
+</div>
+<div id="I_subnav"></div>
+</div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Farticles%2FLwvU7k9E%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+onSession(function(us) {
+		document.getElementById('I_subnav').innerHTML=
+			us.ok?
+				'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul>'+
+				'<li><a href="/articles/myitems.cgi">My items</a></li>'+
+				(us.auth(32768)?'<li><a href="/articles/adminitems.cgi">Admin items</a></li>':'')+
+				'</ul></div>'
+			:'';
+	}); onSession(function (us) {
+		var el=document.getElementById('CH_bb'); el.innerHTML='';
+		if ( (us.auth(32768)) || ((us.uniqid=='Dj1Rko23')&&(us.auth(128))) ) {
+			el.appendChild(btn('Edit article','Edit this version of the article','edit','/articles/edit.cgi?a=LwvU7k9E'));
+	
+			if (us.auth(32768)) {
+				el.appendChild(btn('Delete article','Delete this article','delete','javascript:artdel()'));
+			}
+	
+		}
+	});
+	function artdel() { if (confirm('WARNING: You are about to delete this page. Confirm?')) window.location='/articles/delete.cgi?a=LwvU7k9E'; }
+	ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

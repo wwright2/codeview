@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>std::iterator::reference and ::pointer - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/beginner/">Beginners</a></li>
+<li class="here">std::iterator::reference and ::pointer</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico solved" title="solved">&nbsp;</div> std::iterator::reference and ::pointer</h3><span id="CH_edttl"></span><span class="rootdatPost" title="185198,root,0,-1,2,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg904481"><span title="904481,18075,1023,311,1"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg904481" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTme390b2e783" title="Mon, 22 Feb 2016 19:25:11 +0000"></span><script type="text/javascript">WhenId('CH_zTme390b2e783');</script><noscript>Feb 22, 2016 at 7:25pm UTC</noscript></div>
+<div class="dwho"><a href="/user/etrusks/"><b>etrusks</b> (311)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i904481">
+Hi, I am kind of confused that when I'm using <span class="auto"><code class="source">std::iterator</code></span> as base class for my <span class="auto"><code class="source">reverse_iterator</code></span> I cant use name aliases that I'm inheriting from this base in my <span class="auto"><code class="source">reverse_iterator</code></span><br>
+It worked on Visual Studio but didn't work when I compiled it in cpp.sh<br>
+Here is the code (look for commented part)<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br>59<br>60<br>61<br>62<br>63<br>64<br>65<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;iostream&gt;</dfn>
+<dfn>#include &lt;iterator&gt;</dfn>
+<dfn>#include &lt;vector&gt;</dfn>
+
+<var>template</var>&lt;<var>typename</var> T&gt;
+<var>using</var> Iterator_category = <var>typename</var> std::iterator_traits&lt;T&gt;::iterator_category;
+
+<var>template</var>&lt;<var>typename</var> T&gt;
+<var>using</var> Value_type = <var>typename</var> std::iterator_traits&lt;T&gt;::value_type;
+
+<var>template</var>&lt;<var>typename</var> T&gt;
+<var>using</var> Difference_type = <var>typename</var> std::iterator_traits&lt;T&gt;::difference_type;
+
+<var>template</var>&lt;<var>typename</var> T&gt;
+<var>using</var> Pointer = <var>typename</var> std::iterator_traits&lt;T&gt;::pointer;
+
+<var>template</var>&lt;<var>typename</var> T&gt;
+<var>using</var> Reference = <var>typename</var> std::iterator_traits&lt;T&gt;::reference;
+
+
+<var>template</var>&lt;<var>typename</var> Iter&gt;
+<var>class</var> reverse_iterator : <var>public</var> std::iterator&lt;Iterator_category&lt;Iter&gt;,
+                                              Value_type&lt;Iter&gt;,
+					      Difference_type&lt;Iter&gt;,
+					      Pointer&lt;Iter&gt;,
+					      Reference&lt;Iter&gt;&gt;
+{
+<var>public</var>:
+	<var>using</var> iterator_type = Iter;
+
+	reverse_iterator() : current{} {}
+	<var>explicit</var> reverse_iterator(Iter p) : current{ p } {}
+
+	<var>template</var>&lt;<var>typename</var> Iter2&gt;
+	reverse_iterator(<var>const</var> reverse_iterator&lt;Iter2&gt;&amp; p) : current{ p.base() } {}
+
+
+	Iter base() <var>const</var> { <var>return</var> current; }
+
+<cite>//  THIS WORKS</cite>
+	Reference&lt;Iter&gt; <var>operator</var>*() { tmp = current; <var>return</var> *(--tmp); }
+	Pointer&lt;Iter&gt; <var>operator</var>-&gt;() { tmp = current; <var>return</var> &amp;*--tmp; }
+
+<cite>//  THIS DIDN'T WORK</cite>
+<cite>//	reference operator*() { tmp = current; return *(--tmp); }</cite>
+<cite>//	pointer operator-&gt;() { tmp = current; return &amp;*--tmp; }  </cite>
+
+
+<var>protected</var>:
+	Iter current;
+<var>private</var>:
+	Iter tmp;
+};
+
+
+
+<var>int</var> main()
+{
+	std::vector&lt;<var>int</var>&gt; vec{ 1,2,3,4,5,6,7,8,9 };
+	reverse_iterator&lt;<var>typename</var> std::vector&lt;<var>int</var>&gt;::iterator&gt; iter{ vec.end() };
+
+	std::cout &lt;&lt; *iter &lt;&lt; std::endl;
+
+	system(<kbd>"pause"</kbd>);
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Why is plain <span class="auto"><code class="source">reference</code></span> and <span class="auto"><code class="source">pointer</code></span> is not working as return types?
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm4a6ed49ef1" title="Mon, 22 Feb 2016 19:59:14 +0000"></span><script type="text/javascript">WhenId('CH_zTm4a6ed49ef1');</script><noscript>Feb 22, 2016 at 7:59pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn904481"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg905450"><span title="905450,18075,1023,311,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg905450" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm3720c10b8d" title="Fri, 26 Feb 2016 10:34:41 +0000"></span><script type="text/javascript">WhenId('CH_zTm3720c10b8d');</script><noscript>Feb 26, 2016 at 10:34am UTC</noscript></div>
+<div class="dwho"><a href="/user/etrusks/"><b>etrusks</b> (311)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i905450">
+Hey, this was very important question for me and I got an answer to it on cprogramming forum and I just want to share the answer jsut in case someone ever needs it. <br>
+<br>
+It was answered by <b>kmdv</b>.<br>
+<br>
+<table class="quote"><tr><td class="qd">You need to specify type with the typename keyword. The reason is that your reverse_iterator is a class template and, what is really important here, its base class depends on a template argument - Iter. This means that when the compiler sees your type definition, it does not know what std::iterator&lt;...&gt; exactly is, because what it is depends on Iter (which is unknown). If you really want to refer to reference, pointer, and other members from std::iterator&lt;...&gt;, you need to qualify it:</td></tr></table>
+<span class="auto"><code class="source"><var>typename</var> std::iterator&lt;VERY LONG ARGUMENT LIST&gt;::reference METHOD();</code></span>
+<table class="quote"><tr><td class="qd">To avoid repeating this extremely long argument list, it would be convenient to add a typedef to the base class before:</td></tr></table>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br></code></pre></td>
+<td class="source"><pre><code><var>template</var> &lt;<var>class</var> Iter&gt;
+<var>class</var> reverse_iterator&lt;Iter&gt; : <var>public</var> std::iterator&lt;VERY LONG ARGUMENT LIST&gt;
+{
+<var>private</var>:
+    <var>typedef</var> std::iterator&lt;VERY LONG ARGUMENT LIST&gt; base_type;
+ 
+<var>public</var>:
+    <var>using</var> <var>typename</var> base_type::reference;
+    <var>using</var> <var>typename</var> base_type::pointer;
+ 
+<var>public</var>:
+    reference METHOD();
+};</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<table class="quote"><tr><td class="qd">However, do you really need your own reverse iterator? Just in case you don't know, there is already a reverse iterator adaptor in STL: std::reverse_iterator&lt;Iter&gt;.</td></tr></table><br>
+<br>
+Link : <br>
+<a href="http://cboard.cprogramming.com/cplusplus-programming/169761-std-iterator-pointer-std-iterator-reference.html">http://cboard.cprogramming.com/cplusplus-programming/169761-std-iterator-pointer-std-iterator-reference.html</a>
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn905450"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div class="rootbtnNew"></div><div id="CH_insNew"></div><div id="CH_reply">Registered users can post here. <a href="/user/">Sign in or register</a> to post.</div><div id="CH_subscription"></div><div class="rootedtNew"></div><script type="text/javascript">new for_PostList(185198,0,18075,1,'CH_PostList','CH_subscription','CH_reply','CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li class="selected"><a href="/forum/beginner/"><b>Beginners</b></a></li><li><a href="/forum/windows/"><b>Windows Programming</b></a></li><li><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li><a href="/forum/general/"><b>General C++ Programming</b></a></li><li><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Fbeginner%2F185198%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

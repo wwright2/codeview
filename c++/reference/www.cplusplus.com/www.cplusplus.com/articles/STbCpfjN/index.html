@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>log4z v1.0.0 - C++ Articles</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/articles/">Articles</a></li>
+<li class="here">log4z v1.0.0</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div id="I_content">
+<div class="C_art">
+<div id="I_author">Published by <b><a href="/user/zsummer/" rel="author">zsummer</a></b></div>
+<div id="I_date">Dec 31, 2012 (last update: Apr 7, 2013)</div>
+<h1>log4z v1.0.0</h1>
+<div id="I_score">Score: 3.7/5 (33 votes)</div>
+<div id="I_stars"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-half.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"></div>
+<div id="I_content">
+<H3>intro</H3>
+ Log4z is an open source C++ lightweight log library. <br>
+It provides in a C++ application log and trace debug function.<br>
+Using log4z can be very easy and convenient to debug log or track for conveying information to the screen, the log file<br>
+<br>
+<STRONG>open source site:</STRONG>
+<br>
+https://github.com/zsummer/log4z<br>
+<br>
+<br>
+<H3>The advantages of log4z</H3>
+1.	A very wide range of MIT open source license can unrestricted use in personal, educational and commercial cases<br>
+2.	log4z very lightweight. Using C++ and API system write only a header file and a CPP source files, very simple and easy to use                     <br>
+3.	suitable for cross platform (windows or Linux, 32 or 64bit) multithreading logging output occasions<br>
+4.	to provide a complete log priority control, and the procedure can be adjusted in any position.<br>
+5.	through a configuration file or call interface increased with the configuration of different log recorder.<br>
+6.	screen output according to priority to different log color display, file output information and neat enough, logging interface fast and convenient.<br>
+7.	excellent performance, a small memory footprint<br>
+8.	Interface clear and simple, a skilled programmer just visit the log4z.h interface can grasp the log system.<br>
+<br>
+<br>
+<H3>update logs </H3>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br></code></pre></td>
+<td class="source"><pre><code><cite>/*
+ * UPDATES
+ *
+ * VERSION 0.1.0 &lt;DATE: 2010.10.4&gt;
+ * 	create the first project.  
+ * 	It support put log to screen and files, 
+ * 	support log level, support one day one log file.
+ * 	support multiple thread, multiple operating system.
+ * 
+ * VERSION .... &lt;DATE: ...&gt;
+ * 	...
+ * 
+ * VERSION 0.9.0 &lt;DATE: 2012.12.24&gt;
+ * 	support config files.
+ * 	support color text in screen.
+ * 	support multiple logger.
+ * 
+ * VERSION 1.0.0 &lt;DATE: 2012.12.29&gt;
+ * 	support comments in the config file.
+ * 	add a advanced demo in the ./project
+ * 	fix some details.
+ */</cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<H3>Quick User Manual </H3>
+<div class="auto"><table class="snippet"><tr><td class="output"><pre><samp>
+1.	include log4z.h
+2.	using namespace 
+using namespace zsummer::log4z;
+3.	add a logger.  if skip that only one main logger.
+ILog4zManager::GetInstance()-&gt;AddLogger(1,"", "AddLogger", LOG_DEBUG);
+4.	start log4z. 
+ILog4zManager::GetInstance()-&gt;Start();
+5.	fast log record micro: LOGD LOGI LOGE ... It's record to main logger, and the level is LOG DEBUG, LOG INFO ...  example:
+LOGD("this is a LOG_DEBUG level's log, " &lt;&lt; " ^_^ " );
+6.	stop and close.  Log4z will auto stop and close at the process dea.
+//ILog4zManager::GetInstance()-&gt;Stop()
+</samp></pre></td></tr></table></div>
+<br>
+<H3>compile</H3>
+<div class="auto"><table class="snippet"><tr><td class="output"><pre><samp>
+in VS  join the .h and .cpp
+in linux,  need append -lpthread. example:
+g++ -lpthread -o test   main.cpp   ../log4z.cpp
+</samp></pre></td></tr></table></div>
+<br>
+<br>
+<H3>//add the log4z v1.0.1</H3>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br></code></pre></td>
+<td class="source"><pre><code> * VERSION 1.0.1 &lt;DATE: 2013.01.01&gt;
+ * 	the source code haven<kbd>'t any change.
+ *	fix some Comments in the log4z
+ *	add some comments in the test projects.
+ *	delete some needless code in the '</kbd>fast_test<kbd>' demo projects, it'</kbd>s so simple.</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<p>Attachments:
+	[<a href="log4z_v1.0.0.zip">log4z_v1.0.0.zip</a>]
+	[<a href="log4z_v1.0.1.zip">log4z_v1.0.1.zip</a>]
+</p>
+</div></div><div id="CH_bb"></div><div id="CH_scoreapp"></div><script type="text/javascript">new Score('CH_scoreapp','/articles/score.cgi','STbCpfjN');</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder selected articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/articles/">Articles</a></b></h3>
+<ul>
+<li><a href="/articles/algorithms/">Algorithms</a></li><li><a href="/articles/cpp11/">C++ 11</a></li><li><a href="/articles/graphics/">Graphics and multimedia</a></li><li><a href="/articles/howto/">How-To</a></li><li><a href="/articles/language/">Language Features</a></li><li><a href="/articles/linux/">Unix/Linux programming</a></li><li><a href="/articles/sourcecode/">Source Code</a></li><li><a href="/articles/standard_library/">Standard Library</a></li><li><a href="/articles/tips/">Tips and Tricks</a></li><li><a href="/articles/tools/">Tools and Libraries</a></li><li><a href="/articles/visualcpp/">Visual C++</a></li><li><a href="/articles/winapi/">Windows API</a></li></ul>
+</div>
+<div id="I_subnav"></div>
+</div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Farticles%2FSTbCpfjN%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+onSession(function(us) {
+		document.getElementById('I_subnav').innerHTML=
+			us.ok?
+				'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul>'+
+				'<li><a href="/articles/myitems.cgi">My items</a></li>'+
+				(us.auth(32768)?'<li><a href="/articles/adminitems.cgi">Admin items</a></li>':'')+
+				'</ul></div>'
+			:'';
+	}); onSession(function (us) {
+		var el=document.getElementById('CH_bb'); el.innerHTML='';
+		if ( (us.auth(32768)) || ((us.uniqid=='DoS8vCM9')&&(us.auth(128))) ) {
+			el.appendChild(btn('Edit article','Edit this version of the article','edit','/articles/edit.cgi?a=STbCpfjN'));
+	
+			if (us.auth(32768)) {
+				el.appendChild(btn('Delete article','Delete this article','delete','javascript:artdel()'));
+			}
+	
+		}
+	});
+	function artdel() { if (confirm('WARNING: You are about to delete this page. Confirm?')) window.location='/articles/delete.cgi?a=STbCpfjN'; }
+	ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

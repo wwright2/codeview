@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SQLite Wrapper for C++ - C++ Articles</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/articles/">Articles</a></li>
+<li class="here">SQLite Wrapper for C++</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div id="I_content">
+<div class="C_art">
+<div id="I_author">Published by <b><a href="/user/saurabh4118/" rel="author">saurabh4118</a></b></div>
+<div id="I_date">Mar 6, 2013</div>
+<h1>SQLite Wrapper for C++</h1>
+<div id="I_score">Score: 3.8/5 (82 votes)</div>
+<div id="I_stars"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-half.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"></div>
+<div id="I_content">
+<H3>About SQLite</H3>
+This is a simple SQLite wrapper written in c++. SQLite is an embedded SQL database engine,fully tested. SQLite does not have a separate server process. SQLite reads and writes directly to ordinary disk files.<br>
+The description about SQLite database is <A HREF="http://www.sqlite.org/about.html">HERE.</A>
+<br>
+SQLite release for Windows OS can be download from <A HREF="http://www.sqlite.org/download.html">HERE.</A>
+<br>
+<H3>SQLite Wrapper</H3>
+This source code provide the simple methods to create database and run queries in portable database. Created SQLite database file is platform independent and can be use or replicate to Windows or Linux OS. <br>
+<br>
+<H3>SQLiteDB Class</H3>
+This class contains the method of SQLite wrapper. <br>
+<br>
+Method to open connection accept two argument first one is the database file name this could be *.db format and the directory where the DB file will create. If DB file is already present it will be open or else new file will create.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br>59<br>60<br>61<br>62<br>63<br>64<br>65<br>66<br>67<br>68<br>69<br>70<br>71<br>72<br>73<br>74<br>75<br>76<br></code></pre></td>
+<td class="source"><pre><code><var>class</var> SQLiteDB : <var>public</var> IResult
+{
+
+<var>public</var>:
+	SQLiteDB();
+	~SQLiteDB();
+	
+	<cite>/*Open Connection*/</cite>
+	<var>bool</var> OpenConnection(string DatabaseName,string DatabaseDir); 
+
+
+	<cite>/*Close Connection*/</cite>
+	<var>void</var> CloseConnection();
+
+	<cite>/*Query Wrapper*/</cite>
+	<cite>/*For large insert operation Memory Insert option for SQLLITE dbJournal*/</cite>
+	<var>void</var> BeginTransaction();
+	<var>void</var> CommitTransection();
+
+	<cite>/*This Method called when SELECT Query to be excuted. 
+	Return RESULTSET class pointer on success else NULL of failed*/</cite>
+	IResult*  ExcuteSelect(<var>const</var> <var>char</var> *Query);
+
+	<cite>/*This Method called when INSERT/DELETE/UPDATE Query to be excuted. 
+	Return UINT count of effected data on success*/</cite>
+	UINT	    Excute(<var>const</var> <var>char</var> *Query);
+
+	<cite>/*Get Last Error of excution*/</cite>
+	string GetLastError();
+
+	<cite>/*Return TRUE if databse is connected else FALSE*/</cite>
+	<var>bool</var>  isConnected() ;	
+
+
+<var>protected</var>:
+	<cite>/*SQLite Connection Object*/</cite>
+	<var>typedef</var> <var>struct</var> SQLLITEConnection
+	{
+		string		 SQLiteDatabaseName;   <cite>//Database Name</cite>
+		string		 SQLiteDBPath;		   <cite>//Databse File Dir</cite>
+		sqlite3		 *pCon;				   <cite>//SQLite Connection Object</cite>
+		sqlite3_stmt *pRes;				   <cite>//SQLite statement object </cite>
+	}SQLITECONNECTIONOBJECT;
+
+	<cite>//SQLite Connection Details</cite>
+	SQLITECONNECTIONOBJECT	 *pSQLiteConn;
+
+	<cite>/*Sync Database in Case of Multiple Threads using class object*/</cite>
+	SyncDB					 *Sync;	
+
+	<var>bool</var>	m_bConnected;      <cite>/*Is Connected To DB*/</cite>
+	<var>bool</var>    m_bConsole;	       <cite>/*If Console Application*/</cite>
+	string  m_strLastError;    <cite>/*Last Error String*/</cite>
+	<var>int</var>	    m_iColumnCount;    <cite>/*No.Of Column in Result*/</cite>
+
+
+<var>private</var>:
+	<cite>/*This function return of count of column 
+	  present in result set of last excueted query*/</cite>
+	<var>int</var>	    GetColumnCount();
+
+	<cite>/*Get the next coloumn name*/</cite>
+	<var>const</var> <var>char</var>* NextColomnName(<var>int</var> iClmnCount);
+	
+	<cite>/*This function returns TRUE if still rows are 
+	der in result set of last excueted query FALSE 
+	if no row present*/</cite>
+	<var>bool</var>  Next();
+
+	<cite>/*Get the next coloumn data*/</cite>
+	<var>const</var> <var>char</var>*  ColomnData(<var>int</var> clmNum);
+
+	<cite>/*RELEASE all result set as well as RESET all data*/</cite>
+	<var>void</var> Release(); 
+
+};</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Where the select query can be excuted from the method  <span class="auto"><code class="source">IResult*  ExcuteSelect(<var>const</var> <var>char</var> *Query);</code></span> Which return the object of Interface class IResult.<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br></code></pre></td>
+<td class="source"><pre><code> 
+<cite>/*Interface class for Result data of query*/</cite>
+<var>class</var> IResult
+{
+<var>public</var>:
+	<cite>/*This function return of count of column 
+	  present in result set of last excueted query*/</cite>
+	<var>virtual</var> <var>int</var>	    GetColumnCount() = 0;
+
+	<cite>/*Get the next coloumn name*/</cite>
+	<var>virtual</var> <var>const</var> <var>char</var>* NextColomnName(<var>int</var> iClmnCount) = 0;
+	
+	<cite>/*This function returns TRUE if still rows are 
+	der in result set of last excueted query FALSE 
+	if no row present*/</cite>
+	<var>virtual</var> <var>bool</var>  Next() = 0;
+
+	<cite>/*Get the next coloumn data*/</cite>
+	<var>virtual</var> <var>const</var> <var>char</var>*  ColomnData(<var>int</var> clmNum) = 0;
+
+	<cite>/*RELEASE all result set as well as RESET all data*/</cite>
+	<var>virtual</var> <var>void</var> Release() = 0;
+};</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<H3>How to Use</H3>
+The test file SQLiteTest.cpp has implmented using SQLLite Wrapper class. For large data insert insertion void <span class="auto"><code class="source"><var>void</var> BeginTransaction();</code></span> and <span class="auto"><code class="source"><var>void</var> CommitTransection();</code></span> method. Without using these method multiple insertion will take much longer time thn usual.<br>
+<br>
+IResult class have pure virtual method to provide interface to read result data.<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br></code></pre></td>
+<td class="source"><pre><code><cite>//Get Data From DB</cite>
+	IResult *res=pSQLite-&gt;ExcuteSelect(<kbd>"Select * from test;"</kbd>);
+	<var>if</var>(!res)
+	  cout&lt;&lt;<kbd>"\n Error:"</kbd>&lt;&lt;pSQLite-&gt;GetLastError().c_str();
+	
+	<var>else</var>
+	{
+		<cite>//Get Column Count</cite>
+		<var>int</var> i = res-&gt;GetColumnCount();
+		
+		<cite>//Print Colomn Name</cite>
+		<var>for</var>(<var>int</var> k=0;k&lt;i;k++)
+		{
+			printf(<kbd>"%s\t"</kbd>,res-&gt;NextColomnName(k));	
+		}
+		
+		cout&lt;&lt;endl;
+
+		<cite>//Print Result</cite>
+		<var>while</var>(res-&gt;Next())
+		{
+			<var>for</var>(<var>int</var> k=0;k&lt;i;k++)
+				printf(<kbd>"%s\t"</kbd>,res-&gt;ColomnData(k));		
+			cout&lt;&lt;endl;
+		}
+
+		<cite>//release Result Data</cite>
+		res-&gt;Release();
+	}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<p>Attachments:
+	[<a href="SQLiteTest.cpp">SQLiteTest.cpp</a>]
+	[<a href="SQLLiteWrapper.cpp">SQLLiteWrapper.cpp</a>]
+	[<a href="SQLLiteWrapper.h">SQLLiteWrapper.h</a>]
+</p>
+</div></div><div id="CH_bb"></div><div id="CH_scoreapp"></div><script type="text/javascript">new Score('CH_scoreapp','/articles/score.cgi','jL18T05o');</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder selected articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/articles/">Articles</a></b></h3>
+<ul>
+<li><a href="/articles/algorithms/">Algorithms</a></li><li><a href="/articles/cpp11/">C++ 11</a></li><li><a href="/articles/graphics/">Graphics and multimedia</a></li><li><a href="/articles/howto/">How-To</a></li><li><a href="/articles/language/">Language Features</a></li><li><a href="/articles/linux/">Unix/Linux programming</a></li><li><a href="/articles/sourcecode/">Source Code</a></li><li><a href="/articles/standard_library/">Standard Library</a></li><li><a href="/articles/tips/">Tips and Tricks</a></li><li><a href="/articles/tools/">Tools and Libraries</a></li><li><a href="/articles/visualcpp/">Visual C++</a></li><li><a href="/articles/winapi/">Windows API</a></li></ul>
+</div>
+<div id="I_subnav"></div>
+</div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Farticles%2FjL18T05o%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+onSession(function(us) {
+		document.getElementById('I_subnav').innerHTML=
+			us.ok?
+				'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul>'+
+				'<li><a href="/articles/myitems.cgi">My items</a></li>'+
+				(us.auth(32768)?'<li><a href="/articles/adminitems.cgi">Admin items</a></li>':'')+
+				'</ul></div>'
+			:'';
+	}); onSession(function (us) {
+		var el=document.getElementById('CH_bb'); el.innerHTML='';
+		if ( (us.auth(32768)) || ((us.uniqid=='ECkN8vqX')&&(us.auth(128))) ) {
+			el.appendChild(btn('Edit article','Edit this version of the article','edit','/articles/edit.cgi?a=jL18T05o'));
+	
+			if (us.auth(32768)) {
+				el.appendChild(btn('Delete article','Delete this article','delete','javascript:artdel()'));
+			}
+	
+		}
+	});
+	function artdel() { if (confirm('WARNING: You are about to delete this page. Confirm?')) window.location='/articles/delete.cgi?a=jL18T05o'; }
+	ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

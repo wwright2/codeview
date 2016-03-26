@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Convert from one class to a related clas - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/general/">General C++ Programming</a></li>
+<li class="here">Convert from one class to a related clas</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico default" title="post">&nbsp;</div> Convert from one class to a related class (not typecasting)</h3><span id="CH_edttl"></span><span class="rootdatPost" title="181922,root,0,-1,9,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg891954"><span title="891954,165832,1023,26,1"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg891954" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm7a682a6c7e" title="Tue, 29 Dec 2015 22:01:58 +0000"></span><script type="text/javascript">WhenId('CH_zTm7a682a6c7e');</script><noscript>Dec 29, 2015 at 10:01pm UTC</noscript></div>
+<div class="dwho"><a href="/user/moonman239/"><b>moonman239</b> (26)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i891954">
+Imagine I have a C++ program that operates a machine that can rearrange the biology of any animal so that it is now of a different type of animal. So a bird can become a dog, a dog can become a cat, etc.<br>
+<br>
+My program stores in memory a bunch of objects of type "Animal", which represent the various animals in my possession. Derived from the "Animal" class are various classes, each one representing a different type of animal (dog, cat, etc.) Once my program causes the conversion of an animal, it must be aware of the animal's new abilities/inabilities &amp; weaknesses. For example, if my bird is converted into a dog, "polly.canFly" should now be false. Or, "polly.fly()" should no longer be valid.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn891954"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg891960"><span title="891960,49329,1023,6375,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg891960" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm2386bd5125" title="Tue, 29 Dec 2015 22:51:15 +0000"></span><script type="text/javascript">WhenId('CH_zTm2386bd5125');</script><noscript>Dec 29, 2015 at 10:51pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Moschops/"><b>Moschops</b> (6375)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i891960">
+Okay, I have imagined that.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn891960"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg891965"><span title="891965,116693,1023,351,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg891965" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm6913fd65ac" title="Tue, 29 Dec 2015 23:06:20 +0000"></span><script type="text/javascript">WhenId('CH_zTm6913fd65ac');</script><noscript>Dec 29, 2015 at 11:06pm UTC</noscript></div>
+<div class="dwho"><a href="/user/prestokeys/"><b>prestokeys</b> (351)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i891965">
+I dealt with this issue before.  Check this thread of mine:<br>
+<br>
+<a href="http://www.cplusplus.com/forum/general/136276/">http://www.cplusplus.com/forum/general/136276/</a><br>
+<br>
+JLBorges' suggestion of using the proxy pattern really worked wonders.  But the patterns introduced can get really complex, so you need to really study it and be careful (and get ready to do a lot of debugging as your program evolves).
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn891965"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg891966"><span title="891966,165832,1023,26,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg891966" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm219b1e64bc" title="Tue, 29 Dec 2015 23:13:59 +0000"></span><script type="text/javascript">WhenId('CH_zTm219b1e64bc');</script><noscript>Dec 29, 2015 at 11:13pm UTC</noscript></div>
+<div class="dwho"><a href="/user/moonman239/"><b>moonman239</b> (26)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i891966">
+This looks like a job for templates.<br>
+<br>
+If I have access to the Animal class, perhaps I could write a private function like this:<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br></code></pre></td>
+<td class="source"><pre><code><var>template</var> &lt;<var>typename</var> AnimalType&gt;
+AnimalType* convert()
+{
+AnimalType* animal = <var>new</var> AnimalType();
+animal-&gt;name = <var>this</var>-&gt;name;
+<var>return</var> animal;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+Edit: Is there a way to then set animal's memory address to that of the object being converted?
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm686c7f326f" title="Tue, 29 Dec 2015 23:37:56 +0000"></span><script type="text/javascript">WhenId('CH_zTm686c7f326f');</script><noscript>Dec 29, 2015 at 11:37pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn891966"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg892264"><span title="892264,165832,1023,26,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892264" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm9f37785815" title="Fri, 01 Jan 2016 00:01:49 +0000"></span><script type="text/javascript">WhenId('CH_zTm9f37785815');</script><noscript>Jan 1, 2016 at 12:01am UTC</noscript></div>
+<div class="dwho"><a href="/user/moonman239/"><b>moonman239</b> (26)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892264">
+I think I can do what I want just by dropping down to Assembly level.  I was thinking of creating a function whose sole purpose is to change the address to which a pointer points.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn892264"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg892290"><span title="892290,177808,1023,27,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892290" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmb8f2b4074b" title="Fri, 01 Jan 2016 03:35:27 +0000"></span><script type="text/javascript">WhenId('CH_zTmb8f2b4074b');</script><noscript>Jan 1, 2016 at 3:35am UTC</noscript></div>
+<div class="dwho"><a href="/user/Golden_Lizard/"><b>Golden Lizard</b> (27)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892290">
+Why not just use polymorphic behavior with an abstract base class? I don't know how exactly you want to approach this unless I see your program, but as I understand it now you can just use a base pointer and (re)cast it as needed.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn892290"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg892293"><span title="892293,75536,1023,7545,-1"></span>
+<div class="box reported">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892293" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm37322ff8a2" title="Fri, 01 Jan 2016 05:34:43 +0000"></span><script type="text/javascript">WhenId('CH_zTm37322ff8a2');</script><noscript>Jan 1, 2016 at 5:34am UTC</noscript></div>
+<div class="dwho"><a href="/user/JLBorges/"><b>JLBorges</b> (7545)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892293">
+&gt;  I can do what I want just by dropping down to Assembly level. <br>
+<br>
+Yes, but difficult, error-prone, and hard to maintain.<br>
+<br>
+<br>
+&gt; I was thinking of creating a function whose sole purpose is to change the address to which a pointer points.<br>
+<br>
+That is the way to go. <br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br>59<br>60<br>61<br>62<br>63<br>64<br>65<br>66<br>67<br>68<br>69<br>70<br>71<br>72<br>73<br>74<br>75<br>76<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;iostream&gt;</dfn>
+<dfn>#include &lt;string&gt;</dfn>
+<dfn>#include &lt;typeinfo&gt;</dfn>
+<dfn>#include &lt;memory&gt;</dfn>
+<dfn>#include &lt;iomanip&gt;</dfn>
+
+<var>struct</var> animal
+{
+    <var>explicit</var> animal( std::string name ) : name_(name) {}
+
+    <var>virtual</var> ~animal() = <var>default</var> ;
+
+    <var>virtual</var> std::string who() <var>const</var> { <var>return</var> <var>typeid</var>(*<var>this</var>).name() ; }
+
+    <var>virtual</var> <var>bool</var> can_fly() <var>const</var> { <var>return</var> <var>false</var> ; }
+    <var>virtual</var> <var>bool</var> can_woof() <var>const</var> { <var>return</var> <var>false</var> ; }
+
+    <var>virtual</var> std::string name() <var>const</var> { <var>return</var> name_ ; }
+
+    <var>using</var> pointer = std::unique_ptr&lt;animal&gt; ;
+
+    <var>template</var> &lt; <var>typename</var> T, <var>typename</var>... CONSTRUCTOR_ARGS &gt;
+    <var>static</var> pointer make( CONSTRUCTOR_ARGS&amp;&amp;... args )
+    { <var>return</var> std::make_unique&lt;T&gt;( std::forward&lt;CONSTRUCTOR_ARGS&gt;(args)... ) ; }
+
+    <var>template</var> &lt; <var>typename</var> T, <var>typename</var>... MORE_CONSTRUCTOR_ARGS &gt;
+    <var>static</var> pointer&amp; convert( pointer&amp; p, MORE_CONSTRUCTOR_ARGS&amp;&amp;... args )
+    { <var>return</var> p = make&lt;T&gt;( p-&gt;animal::name(), std::forward&lt;MORE_CONSTRUCTOR_ARGS&gt;(args)... ) ; }
+
+    <var>private</var>: std::string name_ ;
+};
+
+<var>struct</var> cat : animal
+{
+    cat( std::string name, <var>int</var> age ) : animal(name), age(age) {}
+
+    <var>virtual</var> std::string who() <var>const</var> override { <var>return</var> <kbd>"cat (age "</kbd> + std::to_string(age) + <kbd>')'</kbd> ; }
+
+    <var>int</var> age = 1 ;
+};
+
+<var>struct</var> dog : animal
+{
+    dog( std::string name, std::string colour ) : animal(name), colour(colour) {}
+
+    <var>virtual</var> std::string who() <var>const</var> override { <var>return</var> colour + <kbd>' '</kbd> + <kbd>"dog"</kbd> ; }
+    <var>virtual</var> <var>bool</var> can_woof() <var>const</var> override { <var>return</var> <var>true</var> ; }
+
+    std::string colour = <kbd>"grey"</kbd> ;
+};
+
+<var>struct</var> bird : animal
+{
+    <var>using</var> animal::animal ;
+    <var>virtual</var> <var>bool</var> can_fly() <var>const</var> override { <var>return</var> <var>true</var> ; }
+};
+
+std::ostream&amp; info( <var>const</var> animal::pointer&amp; pa, std::ostream&amp; stm = std::clog )
+{
+    <var>static</var> <var>const</var> <var>char</var>* <var>const</var> can_it[] = { <kbd>" can't "</kbd>, <kbd>" can "</kbd> } ;
+    <var>return</var> stm &lt;&lt; pa-&gt;who() &lt;&lt; <kbd>' '</kbd> &lt;&lt; std::quoted( pa-&gt;name() )
+               &lt;&lt; can_it[ pa-&gt;can_fly() ] &lt;&lt; <kbd>"fly,"</kbd>
+               &lt;&lt; can_it[ pa-&gt;can_woof() ] &lt;&lt; <kbd>"woof.\n"</kbd> ;
+}
+
+<var>int</var> main()
+{
+    <var>auto</var> my_pet = animal::make&lt;bird&gt;( <kbd>"polly"</kbd> ) ;
+    info(my_pet) &lt;&lt; <kbd>"----------------\n"</kbd> ;
+
+    animal::convert&lt;cat&gt;( my_pet, 2 ) ; <cite>// name remains unchanged</cite>
+    info(my_pet) &lt;&lt; <kbd>"----------------\n"</kbd> ;
+
+    my_pet = animal::make&lt;dog&gt;( <kbd>"fido"</kbd>, <kbd>"white"</kbd> ) ; <cite>// name changed to "fido"</cite>
+    info(my_pet) ;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="output"><pre><samp>4bird "polly" can fly, can't woof.
+----------------
+cat (age 2) "polly" can't fly, can't woof.
+----------------
+white dog "fido" can't fly, can woof.</samp></pre></td></tr></table></div><br>
+<a href="http://coliru.stacked-crooked.com/a/ef16a050fb5be75a">http://coliru.stacked-crooked.com/a/ef16a050fb5be75a</a>
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn892293"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg892294"><span title="892294,205577,1023,73,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892294" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm7c6b479cc7" title="Fri, 01 Jan 2016 05:41:30 +0000"></span><script type="text/javascript">WhenId('CH_zTm7c6b479cc7');</script><noscript>Jan 1, 2016 at 5:41am UTC</noscript></div>
+<div class="dwho"><a href="/user/Stalker/"><b>Stalker</b> (73)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892294">
+The best and easy way is through polymorphism. You can define a base class as animal and then you can derive other classes like cat, dog, bird, etc. Then when you convert an object of type bird to an object of type dog. Then the specific attributes of the bird will be null and void to the object of type dog.<br>
+<br>
+If you need any further help then don't hesitate to contact me.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn892294"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg892602"><span title="892602,165832,1023,26,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892602" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm462f01e15f" title="Sat, 02 Jan 2016 21:40:02 +0000"></span><script type="text/javascript">WhenId('CH_zTm462f01e15f');</script><noscript>Jan 2, 2016 at 9:40pm UTC</noscript></div>
+<div class="dwho"><a href="/user/moonman239/"><b>moonman239</b> (26)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892602">
+Thanks, everyone. I just got around to actually testing out a solution. Here's a full program that works on my machine.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;iostream&gt;</dfn>
+<var>using</var> <var>namespace</var> std;
+<var>struct</var> Animal
+{
+    <var>bool</var> canFly = <var>false</var>;
+    string name;
+    <var>template</var> &lt;<var>typename</var> destType&gt; destType *convert()
+    {
+        destType *newAnimal = <var>new</var> destType();
+        newAnimal-&gt;name = <var>this</var>-&gt;name;
+        memmove(<var>this</var>, newAnimal, <var>sizeof</var>(destType));
+        <var>delete</var> newAnimal;
+        <var>return</var> <var>reinterpret_cast</var>&lt;destType*&gt;(<var>this</var>);
+    }
+};
+
+<var>struct</var> Dog : Animal {
+    <var>const</var> <var>bool</var> canFly = <var>false</var>;
+    <var>void</var> bark()
+    {
+        cout &lt;&lt; <kbd>"Bark!"</kbd>;
+    }
+};
+
+<var>struct</var> Bird : Animal {
+    <var>bool</var> canFly = <var>true</var>;
+};
+
+string yesNoString(<var>bool</var> _bool)
+{
+    <var>if</var> (_bool) {
+        <var>return</var> <kbd>"yes"</kbd>;
+    }
+    <var>else</var>
+    {
+        <var>return</var> <kbd>"no"</kbd>;
+    }
+}
+
+<var>int</var> main(<var>int</var> argc, <var>const</var> <var>char</var> * argv[]) {
+    <cite>// Define our animal.</cite>
+    Bird *polly = <var>new</var> Bird();
+    polly-&gt;name = <kbd>"Polly"</kbd>;
+    cout &lt;&lt; <kbd>"\nCan "</kbd> + polly-&gt;name + <kbd>" fly? "</kbd> + yesNoString(polly-&gt;canFly);
+    Dog *pollyDog = polly-&gt;convert&lt;Dog&gt;();
+    cout &lt;&lt; <kbd>"\nCan "</kbd> + polly-&gt;name + <kbd>" fly? "</kbd> + yesNoString(polly-&gt;canFly);
+    pollyDog-&gt;bark();
+    <var>return</var> 0;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<br>
+Edit: Just wanted to add: If we didn't have access to the source codes for any of the above classes, we could also have done something like this:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br></code></pre></td>
+<td class="source"><pre><code><var>struct</var> AnimalConverter {
+ <var>template</var> &lt;<var>typename</var> destType&gt; <var>static</var> destType *convert(Animal *_animal)
+    {
+        destType *newAnimal = <var>new</var> destType();
+        newAnimal-&gt;name = _animal-&gt;name;
+        memmove(_animal, newAnimal, <var>sizeof</var>(destType));
+        <var>delete</var> newAnimal;
+        <var>return</var> <var>reinterpret_cast</var>&lt;destType*&gt;(<var>this</var>);
+    }</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+Edit #3: It would seem that there is a caveat in my code. After Polly's conversion, she still isn't taking on only one type. She isn't just a Dog, she's also still a Bird. I can still make her able to fly by calling <span class="auto"><code class="source">polly-&gt;canFly=<var>true</var></code></span>; however, <span class="auto"><code class="source">pollyDog-&gt;canFly=<var>true</var></code></span> still fails. 
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm819fa92739" title="Sun, 03 Jan 2016 03:18:14 +0000"></span><script type="text/javascript">WhenId('CH_zTm819fa92739');</script><noscript>Jan 3, 2016 at 3:18am UTC</noscript></span>
+<span class="dbtn" id="CH_btn892602"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div class="rootbtnNew"></div><div id="CH_insNew"></div><div id="CH_reply">Registered users can post here. <a href="/user/">Sign in or register</a> to post.</div><div id="CH_subscription"></div><div class="rootedtNew"></div><script type="text/javascript">new for_PostList(181922,0,165832,0,'CH_PostList','CH_subscription','CH_reply','CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+<script type="text/javascript">
+    google_ad_client = "ca-pub-1444228343479937";
+    google_ad_slot = "9701143201";
+    google_ad_width = 728;
+    google_ad_height = 90;
+</script>
+<!-- leaderboard -->
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li><a href="/forum/beginner/"><b>Beginners</b></a></li><li><a href="/forum/windows/"><b>Windows Programming</b></a></li><li><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li class="selected"><a href="/forum/general/"><b>General C++ Programming</b></a></li><li><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Fgeneral%2F181922%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

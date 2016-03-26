@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>C++ Sorting the “percentage” of two  - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/beginner/">Beginners</a></li>
+<li class="here">C++ Sorting the “percentage” of two </li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico question" title="question">&nbsp;</div> C++ Sorting the “percentage” of two paired integer arrays</h3><span id="CH_edttl"></span><span class="rootdatPost" title="178775,root,0,-1,5,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg879857"><span title="879857,199895,255,1,1"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg879857" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmce03fda8a0" title="Sun, 15 Nov 2015 09:42:15 +0000"></span><script type="text/javascript">WhenId('CH_zTmce03fda8a0');</script><noscript>Nov 15, 2015 at 9:42am UTC</noscript></div>
+<div class="dwho"><a href="/user/Sosa/"><b>Sosa</b> (1)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i879857">
+Write your question here.<br>
+I have a program with 2 "paired" integer arrays newNumerator[ ], and newDenominator[ ] which both have 9 integers in them. I wrote a function that sorts them in ascending order (lowest percentage or 'ratio' to highest), however it outputs the elements in the same order as they were before, and doesn't sort it at all.  Here is the code, and sortData is the function that is (supposed) to sort it.<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br>59<br>60<br>61<br>62<br>63<br>64<br>65<br>66<br>67<br>68<br>69<br>70<br>71<br>72<br>73<br>74<br>75<br>76<br>77<br>78<br>79<br>80<br>81<br>82<br>83<br>84<br>85<br>86<br>87<br>88<br>89<br>90<br>91<br>92<br>93<br>94<br>95<br>96<br>97<br>98<br>99<br>100<br>101<br>102<br>103<br>104<br>105<br>106<br>107<br>108<br>109<br>110<br>111<br>112<br>113<br>114<br>115<br>116<br>117<br>118<br>119<br>120<br>121<br>122<br>123<br>124<br>125<br>126<br>127<br>128<br>129<br>130<br>131<br>132<br>133<br>134<br>135<br>136<br>137<br>138<br>139<br>140<br>141<br>142<br>143<br>144<br>145<br>146<br>147<br>148<br>149<br>150<br>151<br>152<br>153<br>154<br>155<br>156<br>157<br>158<br>159<br>160<br>161<br>162<br>163<br>164<br>165<br>166<br>167<br>168<br>169<br>170<br>171<br>172<br>173<br>174<br>175<br>176<br>177<br>178<br>179<br>180<br>181<br>182<br>183<br>184<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;iostream&gt;</dfn>
+<dfn>#include &lt;fstream&gt;</dfn>
+<dfn>#include &lt;cstdlib&gt;</dfn>
+<dfn>#include &lt;string&gt;</dfn>
+<dfn>#include &lt;cmath&gt;</dfn>
+<dfn>#include &lt;iomanip&gt;</dfn>
+
+<var>using</var> <var>namespace</var> std;
+
+<var>typedef</var> <var>int</var> arrayType[];
+
+<var>void</var> readData(<var>int</var> numerator[], <var>int</var> denominator[], <var>int</var> size);
+<var>void</var> reportData(arrayType, arrayType, <var>int</var>);
+<var>void</var> reportOverall(<var>int</var> numerator[], <var>int</var> denominator[], <var>int</var> size);
+<var>void</var> cleanData(<var>int</var>* numerator, <var>int</var>* denominator, <var>const</var> <var>int</var> size, <var>int</var> *newNumerator, <var>int</var> *newDenominator, <var>int</var> &amp;newSize);
+<var>void</var> reportMin(<var>int</var> newNumerator[], <var>int</var> newDenominator[], <var>int</var> newSize);
+<var>void</var> sortData(<var>int</var> newNumerator[], <var>int</var> newDenominator[], <var>int</var> newSize);
+<var>void</var> hrule();
+<var>int</var> main()
+{
+    <var>const</var> <var>int</var> size = 12;
+    <var>int</var> numerator[size];
+    <var>int</var> denominator[size];
+    <var>int</var> newSize = 12;
+    <var>int</var> newNumerator[newSize];
+    <var>int</var> newDenominator[newSize];
+    
+    
+    cout &lt;&lt; fixed &lt;&lt; showpoint &lt;&lt; setprecision(1);
+    
+    readData(numerator, denominator, size);
+    reportData(numerator, denominator, size);
+    reportOverall(numerator, denominator, size);
+    
+    hrule();
+    
+    cleanData(numerator, denominator, size, newNumerator, newDenominator, newSize);
+    cout &lt;&lt; <kbd>"There are "</kbd> &lt;&lt; newSize &lt;&lt; <kbd>" scores that are not bonuses:\n"</kbd>;
+    reportData(newNumerator, newDenominator, newSize);
+    reportMin(newNumerator, newDenominator, newSize);
+    hrule();
+    sortData(newNumerator, newDenominator, newSize);
+    cout &lt;&lt; <kbd>"The scores from highest to lowest are: "</kbd> &lt;&lt; endl;
+    reportData(newNumerator, newDenominator, newSize);
+    
+    system(<kbd>"pause"</kbd>);
+    <var>return</var> 0;
+}
+
+<var>void</var> readData(<var>int</var> numerator[], <var>int</var> denominator[], <var>int</var> size)
+{
+    ifstream dataIn;
+    dataIn.open(<kbd>"data.txt"</kbd>);
+    <var>if</var>(!dataIn)
+    {
+        cout &lt;&lt; <kbd>"File not found\n"</kbd>;
+        system(<kbd>"pause"</kbd>);
+        exit(1);
+    }
+    
+    <var>int</var> count;
+    <var>for</var>(count = 0; count &lt; size; count++)
+    {
+        dataIn &gt;&gt; numerator[count];
+    }
+    <var>for</var> (count = 0; count &lt; size; count++)
+    {
+        dataIn &gt;&gt; denominator[count];
+    }
+    
+    dataIn.close();
+}
+
+<var>void</var> reportData(arrayType numerator, arrayType denominator, <var>int</var> size)
+{
+    <var>int</var> count;
+    <var>for</var> (count = 0; count &lt; size; count++)
+    {
+        <var>if</var> (denominator[count] == 0)
+        {
+            cout &lt;&lt; <kbd>"Score "</kbd> &lt;&lt; (count + 1) &lt;&lt; <kbd>" is "</kbd> &lt;&lt; numerator[count] &lt;&lt; <kbd>"/"</kbd> &lt;&lt; denominator[count] &lt;&lt; <kbd>" = "</kbd> &lt;&lt; <kbd>"Bonus points!\n"</kbd>;
+        }
+        <var>else</var>
+        {
+            <var>double</var> percent = 100.0 * <var>static_cast</var>&lt;<var>double</var>&gt;(numerator[count]) / denominator[count];
+            cout &lt;&lt; <kbd>"Score "</kbd> &lt;&lt; (count + 1) &lt;&lt; <kbd>" is "</kbd> &lt;&lt; numerator[count] &lt;&lt; <kbd>"/"</kbd> &lt;&lt; denominator[count] &lt;&lt; <kbd>" = "</kbd> &lt;&lt; (percent) &lt;&lt; <kbd>"%\n"</kbd>;
+        }
+    }
+}
+
+<var>void</var> reportOverall(<var>int</var> numerator[], <var>int</var> denominator[], <var>int</var> size)
+{
+    <var>int</var> count;
+    <var>int</var> totalNumerator = 0.0;
+    <var>int</var> totalDenominator = 0.0;
+    
+    <var>for</var> (count = 0; count &lt; size; count++)
+    {
+        totalNumerator += numerator[count];
+    }
+    <var>for</var> (count = 0; count &lt; size; count++)
+    {
+        totalDenominator += denominator[count];
+    }
+    
+    <var>double</var> overallPercent = 100.0 * <var>static_cast</var>&lt;<var>double</var>&gt;(totalNumerator) / (totalDenominator);
+    cout &lt;&lt; <kbd>"Total Points Earned (numerators): "</kbd> &lt;&lt; totalNumerator &lt;&lt; endl;
+    cout &lt;&lt; <kbd>"Total Points Possible (denominators): "</kbd> &lt;&lt; totalDenominator &lt;&lt; endl;
+    cout &lt;&lt; <kbd>"Overall Grade: "</kbd> &lt;&lt; overallPercent &lt;&lt; <kbd>"%\n"</kbd>;
+}
+
+<var>void</var> cleanData(<var>int</var>* numerator, <var>int</var>* denominator, <var>const</var> <var>int</var> size, <var>int</var> *newNumerator, <var>int</var> *newDenominator, <var>int</var> &amp;newSize)
+{
+    <var>int</var> count;
+    <var>int</var> count2 = 0;
+    
+    <var>for</var>(count = 0; count &lt; size; count++)
+    {
+        <var>if</var>(denominator[count] != 0)
+        {
+            newNumerator[count2] = numerator[count];
+            newDenominator[count2] = denominator[count];
+            count2++;
+        }
+        <var>else</var> <var>if</var>(denominator[count] == 0)
+        {
+            newSize--;
+        }
+    }
+    
+}
+
+<var>void</var> reportMin(<var>int</var> newNumerator[], <var>int</var> newDenominator[], <var>int</var> newSize)
+{
+    <var>double</var> minimum;
+    <var>int</var> count;
+    <var>int</var> location = 0;
+    <var>double</var> quotient;
+    <var>for</var>(count = 0; count &lt; newSize; count++)
+    {
+        quotient = 100.0 * <var>static_cast</var>&lt;<var>double</var>&gt;(newNumerator[count]) / newDenominator[count];
+        <var>if</var> (count == 0 || quotient &lt; minimum)
+        {
+            minimum = quotient;
+            location = count;
+        }
+    }
+    cout &lt;&lt; <kbd>"The lowest earned percentage grade is "</kbd> &lt;&lt; newNumerator[location] &lt;&lt; <kbd>"/"</kbd> &lt;&lt; newDenominator[location] &lt;&lt; <kbd>" = "</kbd> &lt;&lt; minimum &lt;&lt; <kbd>"%\n"</kbd>;
+}
+
+<var>void</var> sortData(<var>int</var> newNumerator[], <var>int</var> newDenominator[], <var>int</var> newSize)
+{
+    <var>int</var> temp1;
+    <var>int</var> temp2;
+    <var>bool</var> swap;
+    <var>int</var> count = 0;
+    <var>double</var> percentageLeft = 100.0 * <var>static_cast</var>&lt;<var>double</var>&gt;(newNumerator[count]) / newDenominator[count];
+    <var>double</var> percentageRight = 100.0 * <var>static_cast</var>&lt;<var>double</var>&gt;(newNumerator[count + 1]) / newDenominator[count + 1];
+    
+    <var>do</var>
+    {  swap = <var>false</var>;
+        <var>for</var>(count = 0; count &lt; (newSize - 1); count++)
+        {
+            <var>if</var>(percentageLeft &gt; percentageRight)
+            {
+                temp1 = newNumerator[count];
+                newNumerator[count] = newNumerator[count + 1];
+                newNumerator[count + 1] = temp1;
+                
+                temp2 = newDenominator[count];
+                newDenominator[count] = newDenominator[count + 1];
+                newDenominator[count + 1] = temp2;
+                
+                swap = <var>true</var>;
+            }
+        }
+    } <var>while</var> (swap);
+}
+
+<var>void</var> hrule()
+{
+    cout &lt;&lt; <kbd>"\n****************************************\n\n"</kbd>;
+}
+</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Data File- <br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br></code></pre></td>
+<td class="source"><pre><code>72 49 23 5 9 10 6 16 26 54 14 55
+75 50 25 0 10 0 0 20 30 55 15 60</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm601a5130ee" title="Sun, 15 Nov 2015 09:43:06 +0000"></span><script type="text/javascript">WhenId('CH_zTm601a5130ee');</script><noscript>Nov 15, 2015 at 9:43am UTC</noscript></span>
+<span class="dbtn" id="CH_btn879857"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg879861"><span title="879861,16990,1023,3160,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg879861" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm2daf518d92" title="Sun, 15 Nov 2015 10:01:26 +0000"></span><script type="text/javascript">WhenId('CH_zTm2daf518d92');</script><noscript>Nov 15, 2015 at 10:01am UTC</noscript></div>
+<div class="dwho"><a href="/user/MikeyBoy/"><b>MikeyBoy</b> (3160)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i879861">
+Have you tried stepping through it with a debugger, to see what's happening?
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn879861"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg879877"><span title="879877,34800,1023,1806,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg879877" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm2fc991b5bb" title="Sun, 15 Nov 2015 11:57:48 +0000"></span><script type="text/javascript">WhenId('CH_zTm2fc991b5bb');</script><noscript>Nov 15, 2015 at 11:57am UTC</noscript></div>
+<div class="dwho"><a href="/user/fun2code/"><b>fun2code</b> (1806)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i879877">
+percentageLeft and percentageRight are calculated only once, where they're declared.<br>
+They should be recalculated following line 163.
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTmf1facf4c42" title="Sun, 15 Nov 2015 11:58:29 +0000"></span><script type="text/javascript">WhenId('CH_zTmf1facf4c42');</script><noscript>Nov 15, 2015 at 11:58am UTC</noscript></span>
+<span class="dbtn" id="CH_btn879877"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg880186"><span title="880186,16990,1023,3160,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg880186" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm405f3187cd" title="Mon, 16 Nov 2015 11:05:03 +0000"></span><script type="text/javascript">WhenId('CH_zTm405f3187cd');</script><noscript>Nov 16, 2015 at 11:05am UTC</noscript></div>
+<div class="dwho"><a href="/user/MikeyBoy/"><b>MikeyBoy</b> (3160)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i880186">
+Well, yes.  I was hoping that, by using a debugger, the OP would learn how to see that for themself.<br>
+<br>
+Teach a man to fish, and all that...
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn880186"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg885027"><span title="885027,201998,255,1,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg885027" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm34c7bf98a2" title="Thu, 03 Dec 2015 14:04:01 +0000"></span><script type="text/javascript">WhenId('CH_zTm34c7bf98a2');</script><noscript>Dec 3, 2015 at 2:04pm UTC</noscript></div>
+<div class="dwho"><a href="/user/marailth/"><b>marailth</b> (1)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i885027">
+Hi<br>
+<br>
+Sorry off topic, but I'm trying to get hold of fun2code, I sent him a pm re: an old forum post about BigNums, and some work he'd done on trig functions using BigFloat. <br>
+<br>
+Cheers!
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn885027"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div class="rootbtnNew"></div><div id="CH_insNew"></div><div id="CH_reply">Topic archived. No new replies allowed.</div><div id="CH_subscription"></div><div class="rootedtNew"></div><script type="text/javascript">new for_PostList(178775,1,199895,0,'CH_PostList','CH_subscription','CH_reply','CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+<script type="text/javascript">
+    google_ad_client = "ca-pub-1444228343479937";
+    google_ad_slot = "9701143201";
+    google_ad_width = 728;
+    google_ad_height = 90;
+</script>
+<!-- leaderboard -->
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li class="selected"><a href="/forum/beginner/"><b>Beginners</b></a></li><li><a href="/forum/windows/"><b>Windows Programming</b></a></li><li><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li><a href="/forum/general/"><b>General C++ Programming</b></a></li><li><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Fbeginner%2F178775%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

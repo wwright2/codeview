@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Making a Plugin System - C++ Articles</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/articles/">Articles</a></li>
+<li class="here">Making a Plugin System</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div id="I_content">
+<div class="C_art">
+<div id="I_author">Published by <b><a href="/user/TwilightSpectre/" rel="author">TwilightSpectre</a></b></div>
+<div id="I_date">Jan 25, 2014 (last update: Apr 10, 2014)</div>
+<h1>Making a Plugin System</h1>
+<div id="I_score">Score: 3.9/5 (186 votes)</div>
+<div id="I_stars"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-half.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"></div>
+<div id="I_content">
+Now, lets say that you are making a program, maybe a game, and you decide that you want to make it moddable without your intervention. Now, of course, you think of how that might be possible, and without forcing the users to inject code directly into your executable, or modifying the source code directly. How would you do this?<br>
+<br>
+Well, of course, the answer is a plugin system. I'll briefly explain how it works: A plugin system is simply where a specified folder is searched for DLLs (or the like), and if any are found, adds the contents to the program. Of course, because the program doesn't actually know what is <EM>in</EM> the DLLs, the normal way is for the DLL's to define a set entry point and calling functions defined by the program itself, which can then use the functionality exposed in those DLLs. The way this can be done is up to you, whether defining functions to implement or maybe getting the DLL to provide an instance of a base class, and then use the functionality from that. In this article, I am briefly going to demonstrate both of those options. First, though, lets look at how to actually <EM>load</EM> libraries at all.<br>
+<br>
+<br>
+<br>
+<H3> Loading a library </H3>
+<br>
+Well, lets start with the basics. To load a DLL at runtime, simply call <span class="auto"><code class="source">LoadLibrary</code></span>, with the parameter being the file path of the DLL to load. However, when you think about this, this isn't much help, is it? We want to load a <EM>variable number</EM> of DLLs, whose names <EM>cannot be known at compile time</EM>. So, this means that we need to find all the DLLs that are plugins, and then load them.<br>
+<br>
+Now, the easiest way of doing this is using WinAPI's <span class="auto"><code class="source">FindFile</code></span> functions, using a file mask to collect all the .dll files. Though, this can have the problem that you suddenly try loading the DLLs that your program needs to run! This is the reason why programs normally have a 'plugins' folder: If you tried to load all the DLLs just from the directory of your program, you might start trying to load non-plugin DLLs. The seperation into a specified plugin folder helps prevent this from happening.<br>
+<br>
+Now, enough talking, here is some example code of how to loop through all the files in a directory and load the values for each:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br></code></pre></td>
+<td class="source"><pre><code><cite>// A list to store our DLL handles</cite>
+std::vector&lt;HINSTANCE&gt; modules;
+<cite>// The data for each file we find.</cite>
+WIN32_FIND_DATA fileData;
+
+<cite>// Find the first DLL file in out plugins folder,</cite>
+<cite>// and store the data in out fileData structure.</cite>
+HANDLE fileHandle = FindFirstFile(R<kbd>"(.\plugins\*.dll)"</kbd>, &amp;fileData);
+
+<var>if</var> (fileHandle == (<var>void</var>*)ERROR_INVALID_HANDLE ||
+    fileHandle == (<var>void</var>*)ERROR_FILE_NOT_FOUND) {
+    <cite>// We couldn't find any plugins, lets just</cite>
+    <cite>// return for now (imagine this is in main)</cite>
+    <var>return</var> 0;
+}
+
+<cite>// Loop over every plugin in the folder, and store</cite>
+<cite>// the handle in our modules list</cite>
+<var>do</var> {
+    <cite>// Load the plugin. We need to condense the plugin</cite>
+    <cite>// name and the path together to correctly load the</cite>
+    <cite>// file (There are other ways, I won't get into it here)</cite>
+    HINSTANCE temp = LoadLibrary((R<kbd>"(.\plugins\)"</kbd> + 
+                         std::string(fileData.cFileName)) .c_str());
+
+    <var>if</var> (!temp) {
+        <cite>// Couldn't load the library, continue on</cite>
+        cerr &lt;&lt; <kbd>"Couldn't load library "</kbd> &lt;&lt; fileData.cFileName &lt;&lt; <kbd>"!\n"</kbd>;
+        <var>continue</var>;
+    }
+
+    <cite>// Add the loaded module to our list of modules</cite>
+    modules.push_back(temp);
+<cite>// Continue while there are more files to find</cite>
+} <var>while</var> (FindNextFile(fileHandle, &amp;fileData));</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Well, that is fairly complicated. Just thought I'd mention now, you do need a C++11 compiler to be able to compile these examples, otherwise some of the things like raw string literals will not compile. Also, if you use a Unicode compiler, you will need to specify that it is using wide strings.<br>
+<br>
+Now, we have loaded all our plugins, but if we don't free them when we are done, we will cause a memory leak, and that can become a real problem in bigger projects. However, because we have stored all our handles in a vector, freeing them isn't actually that hard:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br></code></pre></td>
+<td class="source"><pre><code><var>for</var> (HINSTANCE hInst : modules)
+    FreeLibrary(hInst);</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<br>
+<br>
+<H3> Actually doing something with our library </H3>
+<br>
+OK, no we can load the libraries. The thing is, it doesn't actually <EM>do</EM> anything yet. Lets change that. For starters, we should define a header file for the DLLs to include: This defines the functions and classes that we want them to export. I've decided to show two things here: How to export a polymorphic class and how to export a function. Once you get the idea, though, most things are fairly easy. Anyway, lets define our header file:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br></code></pre></td>
+<td class="source"><pre><code><dfn>#ifndef __MAIN_HPP_INCLUDED__</dfn>
+<dfn>#define __MAIN_HPP_INCLUDED__</dfn>
+
+<cite>// includes we need</cite>
+<dfn>#include &lt;string&gt;</dfn>
+<dfn>#include &lt;memory&gt;</dfn>
+
+<cite>// Test to see if we are building a DLL.</cite>
+<cite>// If we are, specify that we are exporting</cite>
+<cite>// to the DLL, otherwise don't worry (we</cite>
+<cite>// will manually import the functions).</cite>
+<dfn>#ifdef BUILD_DLL</dfn>
+    <dfn>#define DLLAPI __declspec(dllexport)</dfn>
+<dfn>#else</dfn>
+    <dfn>#define DLLAPI</dfn>
+<dfn>#endif </dfn><cite>// BUILD_DLL</cite>
+
+<cite>// This is the base class for the class</cite>
+<cite>// retrieved from the DLL. This is used simply</cite>
+<cite>// so that I can show how various types should</cite>
+<cite>// be retrieved from a DLL. This class is to</cite>
+<cite>// show how derived classes can be taken from</cite>
+<cite>// a DLL.</cite>
+<var>class</var> Base {
+<var>public</var>:
+    <cite>// Make sure we call the derived classes destructors</cite>
+    <var>virtual</var> ~Base() = <var>default</var>;
+
+    <cite>// Pure virtual print function, effect specific to DLL</cite>
+    <var>virtual</var> <var>void</var> print(<var>void</var>) = 0;
+
+    <cite>// Pure virtual function to calculate something, </cite>
+    <cite>// according to an unknown set of rules.</cite>
+    <var>virtual</var> <var>double</var> calc(<var>double</var> val) = 0;
+};
+
+
+<cite>// Get an instance of the derived class</cite>
+<cite>// contained in the DLL.</cite>
+DLLAPI std::unique_ptr&lt;Base&gt; getObj(<var>void</var>);
+
+<cite>// Get the name of the plugin. This can</cite>
+<cite>// be used in various associated messages.</cite>
+DLLAPI std::string getName(<var>void</var>);
+
+<dfn>#endif </dfn><cite>// __MAIN_HPP_INCLUDED__ </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Now, for the complicated bit. We need to load these functions from the DLL's that we loaded earlier. The function to do this is called <span class="auto"><code class="source">GetProcAddress()</code></span>, which returns a pointer to the function in the DLL with the name you specify. Because it doesn't know what type of function it is getting, however, we need to explicitly cast that pointer returned to a function pointer of the appropriate type. Add this code to the earlier example:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br></code></pre></td>
+<td class="source"><pre><code><var>do</var> {
+    ...
+
+    modules.push_back(temp);
+    
+    <cite>// Typedefs for the functions. Don't worry about the</cite>
+    <cite>// __cdecl, that is for the name mangling (look up</cite>
+    <cite>// that if you are interested).</cite>
+    <var>typedef</var> std::unique_ptr&lt;Base&gt; (__cdecl *ObjProc)(<var>void</var>);
+    <var>typedef</var> std::string (__cdecl *NameProc)(<var>void</var>);
+
+    <cite>// Load the functions. This may or may not work, based on</cite>
+    <cite>// your compiler. If your compiler created a '.def' file</cite>
+    <cite>// with your DLL, copy the function names from that to</cite>
+    <cite>// these functions. Look up 'name mangling' if you want</cite>
+    <cite>// to know why this happens.</cite>
+    ObjProc objFunc = (ObjProc)GetProcAddress(temp, <kbd>"_Z6getObjv"</kbd>);
+    NameProc nameFunc = (NameProc)GetProcAddress(temp, <kbd>"_Z7getNamev"</kbd>);
+
+    <cite>// use them!</cite>
+    std::cout &lt;&lt; <kbd>"Plugin "</kbd> &lt;&lt; nameFunc() &lt;&lt; <kbd>" loaded!\n"</kbd>;
+    std::unique_ptr&lt;Base&gt; obj = objFunc();
+    obj-&gt;print();
+    std::cout &lt;&lt; <kbd>"\t"</kbd> &lt;&lt; obj-&gt;calc() &lt;&lt; std::endl;
+} <var>while</var> (...);</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+And that is it for loading and using a plugin! You probably want to store the objects / names in their own lists, but it doesn't really matter, this is just an example.<br>
+<br>
+<br>
+<br>
+<H3> Building the plugins </H3>
+<br>
+Now, there is one thing left: Actually building the plugins. This is very simple, comparitively. You need to <span class="auto"><code class="source"><dfn>#include "main.hpp" </dfn></code></span> so as to get the classes, and then simply implement the functions. The <span class="auto"><code class="source">main()</code></span> function is the only thing you have to watch out for: For one, it isn't actually called main anymore! Here is just a basic main function (you don't normally need more than this):<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br></code></pre></td>
+<td class="source"><pre><code><var>extern</var> <kbd>"C"</kbd> DLLAPI BOOL APIENTRY DllMain(HINSTANCE hInst, 
+                                        DWORD reason, 
+                                        LPVOID reserved)
+{
+    <var>switch</var> (reason) {
+        <var>case</var> DLL_PROCESS_ATTACH:
+            <cite>// attach to process, return FALSE to fail</cite>
+        <var>break</var>;
+
+        <var>case</var> DLL_PROCESS_DETACH:
+            <cite>// detaching from process</cite>
+        <var>break</var>;
+
+        <var>case</var> DLL_THREAD_ATTACH:
+            <cite>// attach to thread within process</cite>
+        <var>break</var>;
+
+        <var>case</var> DLL_THREAD_DETACH:
+            <cite>// detach from thread within process</cite>
+        <var>break</var>;
+    }
+
+    <cite>// return success</cite>
+    <var>return</var> TRUE;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<br>
+<br>
+<H3> Getting the source code </H3>
+Here I have posted a link to the source code for your convenience. This was compiled using the MinGW-w64 toolchain, but it should work for most Windows compilers. The examples require C++11 support (mostly for raw string literals and std::unique_ptr), and are developed with ANSI encoding in mind (rather than Unicode). This shouldn't make much of a difference, just go through and change the string literals to be long string literals, and use wide strings instead (std::wstring).<br>
+<br>
+By way of project files, unfortunately I can't provide them all, there is merely a GCC makefile. To find out how to compile the project using your compiler, look at the documentation for that compiler. Probably the bit of information that you are least likely to know is how to generate a DLL, and how to define symbols when compiling. <br>
+<br>
+<A href="plugin-src.zip">Download the source code</A>
+<br>
+<br>
+<br>
+<H3> Final Remarks </H3>
+If you don't understand anything in this article, first check out MSDN (the MicroSoft Developer Network). In fact, I would have to quote MSDN as my main source of information for this article. Here are some links to relevant pages that you may be interested in looking at:<br>
+<br>
+<STRONG>DLL loading functions:</STRONG>
+<ul>
+<li><a href="http://msdn.microsoft.com/en-us/library/windows/desktop/ms684175(v=vs.85).aspx">LoadLibrary</a>, load a DLL for use.</li>
+<li><a href="http://msdn.microsoft.com/en-us/library/windows/desktop/ms683152(v=vs.85).aspx">FreeLibrary</a>, free a DLL from the address space.</li>
+<li><a href="http://msdn.microsoft.com/en-us/library/windows/desktop/ms683212(v=vs.85).aspx">GetProcAddress</a>, get the address of a function exported by a DLL.</li>
+<li><a href="http://msdn.microsoft.com/en-us/library/windows/desktop/ms682583(v=vs.85).aspx">DllMain</a>, the 'main' function for a DLL.</li>
+</ul>
+<br>
+<STRONG> File related functins: </STRONG>
+<ul>
+<li><a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa365740(v=vs.85).aspx">WIN32_FIND_DATA structure</a>, the structure returned by the file finding functions.</li>
+<li><a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa364418(v=vs.85).aspx">FindFirstFile</a>, finds the first file of a type.</li>
+<li><a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa364428(v=vs.85).aspx">FindNextFile</a>, continues a search from FindFirstFile.</li>
+<li><a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa364413(v=vs.85).aspx">FindClose</a>, close the file finding handle.</li>
+</ul>
+<br>
+Please let me know if there is anything unclear in this article, an error that you find, or you have any suggestions for updates to this article!<br>
+<br>
+<br>
+<br>
+<h3> Update - Using the plugin system across different compilers </h3>
+Due to <a href="http://www.cplusplus.com/forum/windows/128653/">this</a> issue that has been encountered, I have decided to update this article slightly. The above has been kept the same, however. Basically, I will put how to fix issues such as using DLLs built by other compilers.<br>
+<br>
+<h4> The Problem </h4>
+If you use different compilers, different versions of the compiler, or even different settings on the same compiler, the DLL will be generated differently and may cause crashes with the application it is linked to. This is because C++ is <i>not</i> binary standardized - i.e. There is no requirement for the same source code on different compilers to behave in the same way. This is especially true of things like the C++ standard library, were different compilers can have different implementations, which can cause problems with the program.<br>
+<br>
+Another thing that can change between compilers (and as a general rule, WILL change) is the name mangling of functions. In the example above, the function <span class="auto"><code class="source">getObj</code></span> was replaced with the following name: <span class="auto"><code class="source">_Z6getObjv</code></span>. However, this particular name is dependent on the compiler that produces it: This name was from a MinGW compiler, an MSVS compiler will produce something different, and an Intel compiler something else again. This can also cause problems.<br>
+<br>
+<h4> Some Solutions </h4>
+For the above problems, there are a few solutions. The first (non-solution) is just to always use the same compiler. This is useful for if you or your company are the only people providing plugins for this application, so you can ensure that you are using the same compiler settings as when you exported your primary application.<br>
+<br>
+Another solution is to avoid using the standard library. The standard library is very useful, but due to different implementations it can cause problems with the usage of the objects: My compiler's <tt>std::string</tt> and another compilers <tt>std::string</tt> might <i>look</i> and <i>behave</i> the same, but in reality can be very different on the inside, so using one instead of the other can cause problems. Possible workarounds are to pass the raw data associated with the object, rather than the object itself.<br>
+<br>
+For example, you can still use <tt>std::string</tt> and <tt>std::vector&lt;int&gt;</tt> in your programs, but for the exported interface you would pass a <span class="auto"><code class="source"><var>const</var> <var>char</var>*</code></span> or an <span class="auto"><code class="source"><var>int</var>*</code></span> instead, and just convert to and from in the process. <br>
+<br>
+Which brings me to the final problem: The name mangling. C++ compilers will often mangle the names of functions and variables differently if the compiler has different options set (such as level of optimization or debug/release builds). However, C compilers do no name mangling, which means that the functions name will not change based on the compiler options. Here is how to say that we are exporting the functions with 'C' linkage:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br></code></pre></td>
+<td class="source"><pre><code><dfn>#ifdef __cplusplus  </dfn><cite>// if we are compiling C++</cite>
+<var>extern</var> <kbd>"C"</kbd> {        <cite>// export the functions with C linkage</cite>
+<dfn>#endif</dfn>
+
+<cite>// ... your DLL exported functions, e.g.</cite>
+<var>const</var> <var>char</var>* getName(<var>void</var>);
+
+<dfn>#ifdef __cplusplus</dfn>
+}
+<dfn>#endif </dfn></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+Then, when you implement the functions, you need to specify that you are using C linkage for them as well:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br></code></pre></td>
+<td class="source"><pre><code><cite>// ...</cite>
+
+<var>const</var> std::string pluginName = <kbd>"TestPlugin"</kbd>;
+
+<var>extern</var> <kbd>"C"</kbd>
+<var>const</var> <var>char</var>* getName(<var>void</var>) {
+    <cite>// just extrapolating on information given above: we can still</cite>
+    <cite>// use the C++ Standard Library within functions, just you can't</cite>
+    <cite>// pass them as the return value or function arguments</cite>
+    <var>return</var> pluginName.c_str();
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+This is to tell the compiler to use C linkage, which normally guarantees that all compilers will see the functions in the same way, and also has the bonus side effect of getting rid of a lot of the strange symbols that may otherwise appear. Of course, this means that you can only export C-style functions and structures,  but that is the price to pay for the compatibility that you receive.<p>Attachments:
+	[<a href="plugin-src.zip">plugin-src.zip</a>]
+</p>
+</div></div><div id="CH_bb"></div><div id="CH_scoreapp"></div><script type="text/javascript">new Score('CH_scoreapp','/articles/score.cgi','48TbqMoL');</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder selected articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/articles/">Articles</a></b></h3>
+<ul>
+<li><a href="/articles/algorithms/">Algorithms</a></li><li><a href="/articles/cpp11/">C++ 11</a></li><li><a href="/articles/graphics/">Graphics and multimedia</a></li><li><a href="/articles/howto/">How-To</a></li><li><a href="/articles/language/">Language Features</a></li><li><a href="/articles/linux/">Unix/Linux programming</a></li><li><a href="/articles/sourcecode/">Source Code</a></li><li><a href="/articles/standard_library/">Standard Library</a></li><li><a href="/articles/tips/">Tips and Tricks</a></li><li><a href="/articles/tools/">Tools and Libraries</a></li><li><a href="/articles/visualcpp/">Visual C++</a></li><li><a href="/articles/winapi/">Windows API</a></li></ul>
+</div>
+<div id="I_subnav"></div>
+</div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Farticles%2F48TbqMoL%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+onSession(function(us) {
+		document.getElementById('I_subnav').innerHTML=
+			us.ok?
+				'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul>'+
+				'<li><a href="/articles/myitems.cgi">My items</a></li>'+
+				(us.auth(32768)?'<li><a href="/articles/adminitems.cgi">Admin items</a></li>':'')+
+				'</ul></div>'
+			:'';
+	}); onSession(function (us) {
+		var el=document.getElementById('CH_bb'); el.innerHTML='';
+		if ( (us.auth(32768)) || ((us.uniqid=='3vD3T05o')&&(us.auth(128))) ) {
+			el.appendChild(btn('Edit article','Edit this version of the article','edit','/articles/edit.cgi?a=48TbqMoL'));
+	
+			if (us.auth(32768)) {
+				el.appendChild(btn('Delete article','Delete this article','delete','javascript:artdel()'));
+			}
+	
+		}
+	});
+	function artdel() { if (confirm('WARNING: You are about to delete this page. Confirm?')) window.location='/articles/delete.cgi?a=48TbqMoL'; }
+	ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

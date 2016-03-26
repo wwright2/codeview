@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Console Closing Down - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/beginner/">Beginners</a></li>
+<li class="here">Console Closing Down</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico question" title="question">&nbsp;</div> Console Closing Down</h3><span id="CH_edttl"></span><div class="C_pages">Pages: <span title="Current page">1</span><a href="/forum/beginner/1988/2/">2</a><a href="/forum/beginner/1988/3/">3</a>... <a href="/forum/beginner/1988/7/">7</a></div><span class="rootdatPost" title="1988,root,0,-1,121,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg7262"><span title="7262,11631,255,1,1"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg7262" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm683038d998" title="Sun, 18 May 2008 21:30:32 +0000"></span><script type="text/javascript">WhenId('CH_zTm683038d998');</script><noscript>May 18, 2008 at 9:30pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Zolaboony/"><b>Zolaboony</b> (1)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i7262">
+Hi, i am new to C++ and have just written my "Hello World" program. It worked all right but the console/cmd closes down instantly. If you tell me why it is closing down it would be very helpful. 
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn7262"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg7263"><span title="7263,9110,5119,10130,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg7263" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmbc10d98858" title="Sun, 18 May 2008 21:40:59 +0000"></span><script type="text/javascript">WhenId('CH_zTmbc10d98858');</script><noscript>May 18, 2008 at 9:40pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Duoas/"><b>Duoas</b> (10130)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i7263">
+It is because your IDE is too stupid to know that a console application run from the IDE should have an automatic pause at the end.<br>
+<br>
+Add the following to the end of your main() function to fix it:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br></code></pre></td>
+<td class="source"><pre><code>  ...
+
+  std::cout &lt;&lt; <kbd>"Press ENTER to continue..."</kbd>;
+  std::cin.ignore( std::numeric_limits&lt;std::streamsize&gt;::max(), <kbd>'\n'</kbd> );
+
+  <var>return</var> 0;
+  }</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+You'll need to #include &lt;limits&gt;<br>
+<br>
+Enjoy.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn7263"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg7264"><span title="7264,11607,255,9,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg7264" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm5751d5320f" title="Mon, 19 May 2008 00:21:59 +0000"></span><script type="text/javascript">WhenId('CH_zTm5751d5320f');</script><noscript>May 19, 2008 at 12:21am UTC</noscript></div>
+<div class="dwho"><a href="/user/UserName/"><b>UserName</b> (9)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i7264">
+Zolaboony, <br>
+<br>
+You can also use: <br>
+<br>
+system ("PAUSE");<br>
+<br>
+Make sure to input above in the last line of "main" just before the ending brace. This will require you to "Press any key...." to close the window.<br>
+<br>
+Personally(I am new to programming too), I use the following it lets me run the program again and again to test different values.<br>
+<br>
+int main () {<br>
+<br>
+    while (true) {  //This repeats the program. You close console window manually by clicking "x". <br>
+<br>
+	system ("CLS");  //this will clear the screen of any text from prior run<br>
+	cin.clear();    //this will clear any values remain in cin from prior run<br>
+<br>
+         body of your program goes here<br>
+<br>
+         system ("PAUSE");<br>
+     } // this ends while loop<br>
+return 0;<br>
+} // this ends your main function.<br>
+<br>
+I hope this helps.<br>
+<br>
+
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm295ea279bf" title="Mon, 19 May 2008 19:29:18 +0000"></span><script type="text/javascript">WhenId('CH_zTm295ea279bf');</script><noscript>May 19, 2008 at 7:29pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn7264"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg7275"><span title="7275,9110,5119,10130,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg7275" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmd0cb3960b9" title="Mon, 19 May 2008 01:51:55 +0000"></span><script type="text/javascript">WhenId('CH_zTmd0cb3960b9');</script><noscript>May 19, 2008 at 1:51am UTC</noscript></div>
+<div class="dwho"><a href="/user/Duoas/"><b>Duoas</b> (10130)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i7275">
+Grumble.<br>
+<br>
+<b><i>Don't</i></b> use system("anything"). It is slow. It is disliked by antivirus software. It is OS-dependent. It tags you as an absolute beginner. And it is a massively huge, gaping, ugly security hole.<br>
+<br>
+If all you are doing is some silly homework assignment or playing with your own code, it is fine. But for everything else: please, please don't.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn7275"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg7280"><span title="7280,11634,1023,2,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg7280" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmf65d206b9f" title="Mon, 19 May 2008 03:02:44 +0000"></span><script type="text/javascript">WhenId('CH_zTmf65d206b9f');</script><noscript>May 19, 2008 at 3:02am UTC</noscript></div>
+<div class="dwho"><a href="/user/glamox/"><b>glamox</b> (2)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i7280">
+I`ll tell the most short explain:<br>
+                                                just before closing- return 0; type<br>
+                                                system("pause");<br>
+-----------------------------------------------------------------------------------------------<br>
+but remember that if you go to competition you must always delete it
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn7280"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg7308"><span title="7308,9110,5119,10130,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg7308" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmefb1533c1d" title="Mon, 19 May 2008 13:51:59 +0000"></span><script type="text/javascript">WhenId('CH_zTmefb1533c1d');</script><noscript>May 19, 2008 at 1:51pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Duoas/"><b>Duoas</b> (10130)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i7308">
+Did you even read the rest of this thread?
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn7308"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg7339"><span title="7339,11607,255,9,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg7339" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm5f6a801cb6" title="Mon, 19 May 2008 19:33:09 +0000"></span><script type="text/javascript">WhenId('CH_zTm5f6a801cb6');</script><noscript>May 19, 2008 at 7:33pm UTC</noscript></div>
+<div class="dwho"><a href="/user/UserName/"><b>UserName</b> (9)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i7339">
+Duoas, <br>
+<br>
+sorry man, I didn't meant to upset or lead anyone in wrong direction. I am an absolute beginner. Just finished the functions chapter and now going into arrays. I didn't know "system.." can cause security problems, but now i know.  Thanks. 
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn7339"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg7346"><span title="7346,9110,5119,10130,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg7346" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm68299030f7" title="Mon, 19 May 2008 20:30:01 +0000"></span><script type="text/javascript">WhenId('CH_zTm68299030f7');</script><noscript>May 19, 2008 at 8:30pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Duoas/"><b>Duoas</b> (10130)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i7346">
+Don't feel bad. It just irks me that new programmers are constantly taught to do something like that by people that ought to know better.<br>
+<br>
+There's nothing wrong with using <b>system</b>() when used properly. And, like I said, just for some homework assignment or just dinking around on your own it's fine (I've done it myself). But for finished, production code, it is usually a no-no.<br>
+<br>
+The related one is the "cls" (or "clear" in Unix/Linux). The problem with that one is that it encourages people to use it trivially, when it is in fact an OS-specific (and often <i>terminal</i>-specific) thing to do. In other words, it presupposes some knowledge about the output device, which typically makes command-line programs <i>less</i> friendly by restricting the I/O to some human sitting in front of a display and keyboard.<br>
+<br>
+But again, there <i>are</i> legitimate reasons to do it, such as a console text editor or the like.<br>
+<br>
+To end my rant... one-size-fits-all, easy solutions that teach nothing and defeat security irk me.<br>
+<br>
+:-)
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn7346"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg7516"><span title="7516,11741,1023,2,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg7516" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm083923be9a" title="Thu, 22 May 2008 06:52:16 +0000"></span><script type="text/javascript">WhenId('CH_zTm083923be9a');</script><noscript>May 22, 2008 at 6:52am UTC</noscript></div>
+<div class="dwho"><a href="/user/Mark_Harrigan/"><b>Mark Harrigan</b> (2)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i7516">
+An even simpler way to keep the console from closing immediately after the code has run is to declare an int (for example 'i') then put the following line just before the 'return 0;' :-<br>
+<br>
+std::cin &gt;&gt; i;<br>
+<br>
+All you have to do then to close the console is input a number when you're ready.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn7516"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg7528"><span title="7528,11681,1023,128,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg7528" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmdb1ee7d73b" title="Thu, 22 May 2008 11:36:03 +0000"></span><script type="text/javascript">WhenId('CH_zTmdb1ee7d73b');</script><noscript>May 22, 2008 at 11:36am UTC</noscript></div>
+<div class="dwho"><a href="/user/Lodger/"><b>Lodger</b> (128)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i7528">
+Or just run your program from the command line?
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn7528"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg7540"><span title="7540,9110,5119,10130,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg7540" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm1a5cb0e0ed" title="Thu, 22 May 2008 14:14:24 +0000"></span><script type="text/javascript">WhenId('CH_zTm1a5cb0e0ed');</script><noscript>May 22, 2008 at 2:14pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Duoas/"><b>Duoas</b> (10130)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i7540">
+@<b>Mark Harrigan</b>
+<table class="quote"><tr><td class="qd">std::cin &gt;&gt; i;</td></tr></table><br>
+How is that simpler than <b>cin.ignore</b>() ?<br>
+<br>
+It is bad UI because (1) it doesn't tell the user that he is expected to do something, (2) it requires him to input a <i>specific</i> thing <i>in addition to</i> pressing ENTER, and (3) it requires your program to have an extra variable lying around.<br>
+<br>
+Again, like <b>system</b>() I've no objection to it so long as it doesn't make it out into the real world where it will confuse people and allow them to abnormally terminate your program.<br>
+<br>
+@<b>Lodger</b><br>
+Yes, but the OP's problem is with the IDE, not the command-line.<br>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn7540"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg7633"><span title="7633,11778,1023,3,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg7633" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm3ad1913de5" title="Sat, 24 May 2008 11:57:36 +0000"></span><script type="text/javascript">WhenId('CH_zTm3ad1913de5');</script><noscript>May 24, 2008 at 11:57am UTC</noscript></div>
+<div class="dwho"><a href="/user/nilsson/"><b>nilsson</b> (3)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i7633">
+You could also write <div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br></code></pre></td>
+<td class="source"><pre><code>cin.get();
+cin.get(); </code></pre></td><td class="C_btnholder"></td></tr></table></div>
+ just before return 0;
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm792b324bc2" title="Sat, 24 May 2008 11:57:55 +0000"></span><script type="text/javascript">WhenId('CH_zTm792b324bc2');</script><noscript>May 24, 2008 at 11:57am UTC</noscript></span>
+<span class="dbtn" id="CH_btn7633"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg7636"><span title="7636,11779,255,1,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg7636" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmd9837fe55a" title="Sat, 24 May 2008 12:47:21 +0000"></span><script type="text/javascript">WhenId('CH_zTmd9837fe55a');</script><noscript>May 24, 2008 at 12:47pm UTC</noscript></div>
+<div class="dwho"><a href="/user/RIZKY/"><b>RIZKY</b> (1)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i7636">
+Hello zooobany ^_^,<br>
+you can also use:<br>
+you will need #include&lt;iostream.h&gt;<br>
+and then Add the following to the end of your main() <br>
+....<br>
+<br>
+getche();<br>
+}<br>
+<br>
+good luck
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn7636"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg7660"><span title="7660,9110,5119,10130,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg7660" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTma8a0394de0" title="Sat, 24 May 2008 22:32:41 +0000"></span><script type="text/javascript">WhenId('CH_zTma8a0394de0');</script><noscript>May 24, 2008 at 10:32pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Duoas/"><b>Duoas</b> (10130)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i7660">
+Sigh. I suppose I am the only one here who isn't determined to turn this into the <b>How to Do Things the Wrong Way</b> thread. Either that or I'm the only one who has bothered to read more than the first post.<br>
+<br>
+@<b>nilsson</b><br>
+So the user <i>still</i> doesn't get any instruction on what to do, but now he has to press <tt>Enter</tt> <i>twice</i> to quit? Do you mind if I just use <tt>Ctrl-C</tt> ?<br>
+<br>
+@<b>RIZKY</b><br>
+That there non-standard, platform-dependent function is found in &lt;conio.h&gt;. Of course, &lt;iostream.h&gt; is non-standard too...
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn7660"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg7667"><span title="7667,11792,255,2,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg7667" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm304ea11a12" title="Sat, 24 May 2008 23:59:59 +0000"></span><script type="text/javascript">WhenId('CH_zTm304ea11a12');</script><noscript>May 24, 2008 at 11:59pm UTC</noscript></div>
+<div class="dwho"><a href="/user/camthalion95/"><b>camthalion95</b> (2)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i7667">
+yeah, using Dev-C++ Or Delphi Makes It Real Dumb About Hello World.<br>
+Good Luck On Your C++, Though!
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn7667"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg7682"><span title="7682,7371,1023,310,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg7682" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTma316b75176" title="Sun, 25 May 2008 05:44:22 +0000"></span><script type="text/javascript">WhenId('CH_zTma316b75176');</script><noscript>May 25, 2008 at 5:44am UTC</noscript></div>
+<div class="dwho"><a href="/user/ropez/"><b>ropez</b> (310)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i7682">
+First I would search for the setting in my IDE that says "Keep console window open after program terminates".<br>
+<br>
+If I didn't find it, I'd send a request for it to be included in the next version.<br>
+<br>
+In the meantime: All the suggestions so far assumes that the program reach the end of main. Neither of you considered exceptions, or something like this in main:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br></code></pre></td>
+<td class="source"><pre><code><var>if</var> (somethingFailed())
+  <var>return</var> SOME_ERROR_CODE;</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+I suggest creating this small tool:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br></code></pre></td>
+<td class="source"><pre><code><var>class</var> KeepRunning {
+  <var>public</var>:
+    ~KeepRunning() {
+      <cite>// Whatever code you prefer to keep the program running, e.g.</cite>
+      system(<kbd>"pause"</kbd>); <cite>// "Press enter"</cite>
+      sleep(5); <cite>// Wait 5 seconds</cite>
+    }
+};</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+In your main function:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br></code></pre></td>
+<td class="source"><pre><code><var>int</var> main() {
+  KeepRunning kr;
+
+  <cite>// code</cite>
+
+} <cite>// Program stops here </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+This way the program <i>must</i> keep the console open, even if it doesn't reach the end of main.<br>
+<br>
+BTW: Of course, remember to remove this code before the program is "released".
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn7682"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg7700"><span title="7700,11802,255,1,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg7700" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm407e45b328" title="Sun, 25 May 2008 10:41:53 +0000"></span><script type="text/javascript">WhenId('CH_zTm407e45b328');</script><noscript>May 25, 2008 at 10:41am UTC</noscript></div>
+<div class="dwho"><a href="/user/DantetheDemon/"><b>DantetheDemon</b> (1)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i7700">
+At the end just put<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>&nbsp;</code></pre></td>
+<td class="source"><pre><code>cin.get;</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+This will nto only make you have to press enter to exit, but it doesnt actually show the "Please press enter to continue" (Not the one you put in your code)
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn7700"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg7722"><span title="7722,9110,5119,10130,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg7722" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm9a6c1c4230" title="Sun, 25 May 2008 19:00:32 +0000"></span><script type="text/javascript">WhenId('CH_zTm9a6c1c4230');</script><noscript>May 25, 2008 at 7:00pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Duoas/"><b>Duoas</b> (10130)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i7722">
+@<b>ropez</b><br>
+That's brilliant!<br>
+<br>
+@<b>DanteTheDemon</b><br>
+Typo. Please read the rest of the thread.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn7722"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg7734"><span title="7734,7371,1023,310,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg7734" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm4febf08562" title="Sun, 25 May 2008 21:22:35 +0000"></span><script type="text/javascript">WhenId('CH_zTm4febf08562');</script><noscript>May 25, 2008 at 9:22pm UTC</noscript></div>
+<div class="dwho"><a href="/user/ropez/"><b>ropez</b> (310)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i7734">
+<b>@Duoas:</b> <table class="quote"><tr><td class="qd">That's brilliant!</td></tr></table><br>
+Glad you liked it.<br>
+<br>
+The technique is similar to RAII:<br>
+<a href="http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization">http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization</a>
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTmecafae5bb1" title="Sun, 25 May 2008 21:23:15 +0000"></span><script type="text/javascript">WhenId('CH_zTmecafae5bb1');</script><noscript>May 25, 2008 at 9:23pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn7734"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg7989"><span title="7989,11741,1023,2,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg7989" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmfa48b5987a" title="Wed, 28 May 2008 09:11:10 +0000"></span><script type="text/javascript">WhenId('CH_zTmfa48b5987a');</script><noscript>May 28, 2008 at 9:11am UTC</noscript></div>
+<div class="dwho"><a href="/user/Mark_Harrigan/"><b>Mark Harrigan</b> (2)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i7989">
+Duoas, <br>
+<br>
+For the benefit of us beginners, could you explain why you prefer ropez's solution when you've previously been rather categorical in your dislike of the use of system():<br>
+<br>
+'Don't use system("anything"). It is slow. It is disliked by antivirus software. It is OS-dependent. It tags you as an absolute beginner. And it is a massively huge, gaping, ugly security hole.'.<br>
+<br>
+Many thanks.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn7989"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div id="CH_insNew"></div><div id="CH_subscription"></div><div class="rootedtNew"></div><div class="C_pages right">Pages: <span title="Current page">1</span><a href="/forum/beginner/1988/2/">2</a><a href="/forum/beginner/1988/3/">3</a>... <a href="/forum/beginner/1988/7/">7</a></div><script type="text/javascript">new for_PostList(1988,1,11631,0,'CH_PostList','CH_subscription',false,'CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+<script type="text/javascript">
+    google_ad_client = "ca-pub-1444228343479937";
+    google_ad_slot = "9701143201";
+    google_ad_width = 728;
+    google_ad_height = 90;
+</script>
+<!-- leaderboard -->
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li class="selected"><a href="/forum/beginner/"><b>Beginners</b></a></li><li><a href="/forum/windows/"><b>Windows Programming</b></a></li><li><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li><a href="/forum/general/"><b>General C++ Programming</b></a></li><li><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Fbeginner%2F1988%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

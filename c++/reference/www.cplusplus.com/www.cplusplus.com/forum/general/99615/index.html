@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Why does this code run? - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/general/">General C++ Programming</a></li>
+<li class="here">Why does this code run?</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico solved" title="solved">&nbsp;</div> Why does this code run?</h3><span id="CH_edttl"></span><span class="rootdatPost" title="99615,root,0,-1,9,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg535682"><span title="535682,79695,1023,170,1"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg535682" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmb37e280208" title="Fri, 19 Apr 2013 16:26:35 +0000"></span><script type="text/javascript">WhenId('CH_zTmb37e280208');</script><noscript>Apr 19, 2013 at 4:26pm UTC</noscript></div>
+<div class="dwho"><a href="/user/eklavya_sharma_2/"><b>eklavya sharma 2</b> (170)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i535682">
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include&lt;cstdio&gt;</dfn>
+<var>int</var> main()
+{puts(<kbd>"abcde"</kbd>);}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+I haven't put <span class="auto"><code class="source">std::</code></span> before <span class="auto"><code class="source">puts</code></span> and <span class="auto"><code class="source">main</code></span> doesn't return.<br>
+The code was compiled and linked using 'Microsoft Visual C++ 2008 Express Edition'. Is there a way to make this code not compile?
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn535682"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg535688"><span title="535688,38387,1023,13301,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg535688" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm63c72214e7" title="Fri, 19 Apr 2013 16:39:49 +0000"></span><script type="text/javascript">WhenId('CH_zTm63c72214e7');</script><noscript>Apr 19, 2013 at 4:39pm UTC</noscript></div>
+<div class="dwho"><a href="/user/LB/"><b>LB</b> (13301)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i535688">
+I'd like to know why this compiles too. I don't see why it does but it does in MSVC and GCC.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn535688"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg535697"><span title="535697,75536,1023,7545,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg535697" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm68aad2a420" title="Fri, 19 Apr 2013 16:55:21 +0000"></span><script type="text/javascript">WhenId('CH_zTm68aad2a420');</script><noscript>Apr 19, 2013 at 4:55pm UTC</noscript></div>
+<div class="dwho"><a href="/user/JLBorges/"><b>JLBorges</b> (7545)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i535697">
+<table class="quote"><tr><td class="qd">For compatibility with the C standard library and the C Unicode TR,  the C++  standard library provides the 25 C headers, as shown in Table 154.<br>
+<br>
+Every C header, each of which has a name of the form name.h, behaves as if each name placed in the standard library namespace by the corresponding cname header is placed within the global namespace <br>
+scope. It is unspeciﬁed whether these names are ﬁrst declared or deﬁned within namespace scope of the namespace std and are then injected into the global namespace scope by explicit using-declarations.<br>
+<br>
+[ Example: The header &lt;cstdlib&gt; assuredly provides its declarations and deﬁnitions within the namespace std. <b>It may also provide these names within the global namespace.</b> The header &lt;stdlib.h&gt; assuredly provides the same declarations and deﬁnitions within the global namespace, much as in the C Standard. It may also provide these names within the namespace std.  — end example ] - IS </td></tr></table>
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn535697"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg535728"><span title="535728,79695,1023,170,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg535728" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm3d19dad00a" title="Fri, 19 Apr 2013 18:41:05 +0000"></span><script type="text/javascript">WhenId('CH_zTm3d19dad00a');</script><noscript>Apr 19, 2013 at 6:41pm UTC</noscript></div>
+<div class="dwho"><a href="/user/eklavya_sharma_2/"><b>eklavya sharma 2</b> (170)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i535728">
+It was stupid of me to not see the header file itself before posting. Sorry. MS has first defined the header file in global namespace and then imported them into std using <span class="auto"><code class="source"><var>using</var></code></span>.I might be wrong in some cases as there are a lot of #defines. I have only analysed that part which the IDE didn't grey out.<br>
+<br>
+But why have the MS guys done it? Does it offer some advantage to keep identifiers in the global namespace?<br>
+<br>
+Also, I've noticed that including &lt;iostream&gt; automatically seems to include &lt;cstring&gt; and &lt;cstdio&gt;. (I haven't actually seen the #includes, but the functions of those libraries work). Is this behaviour standard? If I forget to include to &lt;cstring&gt;, is it going to make my code not run on other compilers?
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm14f98ba94f" title="Fri, 19 Apr 2013 18:44:09 +0000"></span><script type="text/javascript">WhenId('CH_zTm14f98ba94f');</script><noscript>Apr 19, 2013 at 6:44pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn535728"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg535734"><span title="535734,75536,1023,7545,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg535734" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm066e46c4ee" title="Fri, 19 Apr 2013 18:52:57 +0000"></span><script type="text/javascript">WhenId('CH_zTm066e46c4ee');</script><noscript>Apr 19, 2013 at 6:52pm UTC</noscript></div>
+<div class="dwho"><a href="/user/JLBorges/"><b>JLBorges</b> (7545)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i535734">
+&gt; Does it offer some advantage to keep identifiers in the global namespace?<br>
+<br>
+I Suppose it is convenient for the implementers in cases where C++ parameter passing and return does not clash with the C mechanism; one does not have to write a separate &lt;stdio.h&gt; for C and another for C++.<br>
+<br>
+<br>
+&gt; Also, I've noticed that including &lt;iostream&gt; automatically seems to include &lt;cstring&gt; and &lt;cstdio&gt;. <br>
+&gt; Is this behaviour standard?<br>
+<br>
+The standard allows it; an implementation may include one standard header in another.<br>
+<br>
+<br>
+&gt; If I forget to include to &lt;cstring&gt;, is it going to make my code not run on other compilers?<br>
+<br>
+The only assured, portable way to use <span class="auto"><code class="source">std::strlen()</code></span> is to <span class="auto"><code class="source"><dfn>#include &lt;cstring&gt; </dfn></code></span> The only assured portable way to use <span class="auto"><code class="source">::strlen()</code></span> is to <span class="auto"><code class="source"><dfn>#include &lt;string.h&gt; </dfn></code></span><br>
+<br>
+<br>
+<br>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn535734"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg548755"><span title="548755,79695,1023,170,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg548755" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm25329841e4" title="Tue, 14 May 2013 15:12:13 +0000"></span><script type="text/javascript">WhenId('CH_zTm25329841e4');</script><noscript>May 14, 2013 at 3:12pm UTC</noscript></div>
+<div class="dwho"><a href="/user/eklavya_sharma_2/"><b>eklavya sharma 2</b> (170)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i548755">
+Why does this code run even when main doesn't return?<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include&lt;cstdio&gt;</dfn>
+<var>int</var> main()
+{puts(<kbd>"abcde"</kbd>);}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTmd4faca7640" title="Tue, 14 May 2013 15:12:59 +0000"></span><script type="text/javascript">WhenId('CH_zTmd4faca7640');</script><noscript>May 14, 2013 at 3:12pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn548755"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg548762"><span title="548762,72446,1023,7402,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg548762" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm262c437716" title="Tue, 14 May 2013 15:20:36 +0000"></span><script type="text/javascript">WhenId('CH_zTm262c437716');</script><noscript>May 14, 2013 at 3:20pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Peter87/"><b>Peter87</b> (7402)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i548762">
+<small><b>§3.6.1/5</b></small>
+<table class="quote"><tr><td class="qd">If control reaches the end of main without encountering a return statement, the effect is that of executing <span class="auto"><code class="source"><var>return</var> 0;</code></span></td></tr></table>
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn548762"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg548765"><span title="548765,102701,1023,415,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg548765" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmd72a2d5e4d" title="Tue, 14 May 2013 15:21:57 +0000"></span><script type="text/javascript">WhenId('CH_zTmd72a2d5e4d');</script><noscript>May 14, 2013 at 3:21pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Bourgond_Aries/"><b>Bourgond Aries</b> (415)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i548765">
+<table class="quote"><tr><th class="qh"><strong>cppreference</strong> wrote:</th></tr><tr><td class="qd">If control reaches the end of a function without encountering a return statement, return; is executed (except in the main function, where return 0; is executed).<br>
+Flowing off the end of a value-returning function (except main) without a return statement is undefined behavior.<br>
+</td></tr></table><br>
+<br>
+<a href="http://en.cppreference.com/w/cpp/language/return">http://en.cppreference.com/w/cpp/language/return</a>
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn548765"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg552520"><span title="552520,79695,1023,170,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg552520" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm61caca0af2" title="Tue, 21 May 2013 11:58:47 +0000"></span><script type="text/javascript">WhenId('CH_zTm61caca0af2');</script><noscript>May 21, 2013 at 11:58am UTC</noscript></div>
+<div class="dwho"><a href="/user/eklavya_sharma_2/"><b>eklavya sharma 2</b> (170)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i552520">
+MSVC++ 2008 gives compile error with this code:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include&lt;iostream&gt;</dfn>
+
+<var>int</var> func()
+{std::cout&lt;&lt;<kbd>"Hello\n"</kbd>;}
+
+<var>int</var> main()
+{func();}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="output"><pre><samp>error C4716: 'func' : must return a value</samp></pre></td></tr></table></div><br>
+<br>
+However, this code<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include&lt;iostream&gt;</dfn>
+<var>using</var> std::cout;
+
+<var>int</var> func(<var>int</var> a)
+{
+	<var>if</var>(a==5)<var>return</var> 100;
+}
+
+<var>int</var> main()
+{
+	cout&lt;&lt;<kbd>"1\n"</kbd>;
+	cout&lt;&lt;func(5);
+	cout&lt;&lt;<kbd>"\n2\n"</kbd>;
+	cout&lt;&lt;func(7)&lt;&lt;<kbd>'\n'</kbd>&lt;&lt;func(7);
+	cout&lt;&lt;<kbd>"\n3\n"</kbd>;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Gives a warning <br>
+<div class="auto"><table class="snippet"><tr><td class="output"><pre><samp>warning C4715: 'func' : not all control paths return a value</samp></pre></td></tr></table></div><br>
+<br>
+Running this program gave this output:<br>
+<div class="auto"><table class="snippet"><tr><td class="output"><pre><samp>1
+100
+2
+-858993460
+-858993460
+3
+Press any key to continue . . .</samp></pre></td></tr></table></div><br>
+<br>
+where -858993460 is CCCC CCCC in hexadecimal.<br>
+<br>
+I didn't know this earlier that main gets special treatment w.r.t. return value.
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm6ebb508165" title="Tue, 21 May 2013 12:12:03 +0000"></span><script type="text/javascript">WhenId('CH_zTm6ebb508165');</script><noscript>May 21, 2013 at 12:12pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn552520"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div class="rootbtnNew"></div><div id="CH_insNew"></div><div id="CH_reply">Topic archived. No new replies allowed.</div><div id="CH_subscription"></div><div class="rootedtNew"></div><script type="text/javascript">new for_PostList(99615,1,79695,1,'CH_PostList','CH_subscription','CH_reply','CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+<script type="text/javascript">
+    google_ad_client = "ca-pub-1444228343479937";
+    google_ad_slot = "9701143201";
+    google_ad_width = 728;
+    google_ad_height = 90;
+</script>
+<!-- leaderboard -->
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li><a href="/forum/beginner/"><b>Beginners</b></a></li><li><a href="/forum/windows/"><b>Windows Programming</b></a></li><li><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li class="selected"><a href="/forum/general/"><b>General C++ Programming</b></a></li><li><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Fgeneral%2F99615%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

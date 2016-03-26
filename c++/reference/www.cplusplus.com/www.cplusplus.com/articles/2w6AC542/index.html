@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>WinAPI:  Being Unicode Friendly - C++ Articles</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/articles/">Articles</a></li>
+<li class="here">WinAPI:  Being Unicode Friendly</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div id="I_content">
+<div class="C_art">
+<div id="I_author">Published by <b><a href="/user/Disch/" rel="author">Disch</a></b></div>
+<div id="I_date">Nov 27, 2009 (last update: Nov 27, 2009)</div>
+<h1>WinAPI:  Being Unicode Friendly</h1>
+<div id="I_score">Score: 4.2/5 (45 votes)</div>
+<div id="I_stars"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"></div>
+<div id="I_content">
+<b>Section 0)  Introduction</b>
+<br>
+This article is to go over being Unicode Friendly in WinAPI.<br>
+<br>
+I don't normally encourage programming in WinAPI, since you're typically better off with a crossplatform widgetry lib such as wxWidgets or QT or whatever.  But a lot of people still like to use WinAPI directly... so I should at least point them in the right direction.  Besides, a lot of the stuff here applies to wx as well (and possibly to QT, though I've never used QT so I can't say for sure).<br>
+<br>
+I didn't put a lot of work into formatting or proofreading this article.  So my apologies there.  I still think it gets the idea across pretty well, even if my throughts are unorganized.<br>
+<br>
+Unicode forever!  Spread the love!<br>
+<br>
+<b>Section 1)  The UNICODE macro</b>
+<br>
+The UNICODE macro (and/or _UNICODE macro -- usually both) is scattered throughout all of WinAPI.  It redefines some types and functions to use either char* strings (if it's not defined) or wchar_t* Unicode strings (if it is defined).<br>
+<br>
+If you use MSVS, these macros are often automatically defined by the compiler before it begins compiling if you set your project settings to make the program a Unicode program.  Otherwise you can do it yourself by #defining them before you include Windows.h:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br></code></pre></td>
+<td class="source"><pre><code><dfn>#ifndef UNICODE</dfn>
+<dfn>#define UNICODE</dfn>
+<dfn>#endif</dfn>
+
+<dfn>#ifndef _UNICODE</dfn>
+<dfn>#define _UNICODE</dfn>
+<dfn>#endif</dfn>
+
+<dfn>#include &lt;Windows.h&gt; </dfn></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+You don't need to #define either of them to use Unicode in your program.  It just changes around some types to make it easier to use the Unicode parts of WinAPI.<br>
+<br>
+Further in this article, "Unicode build" refers to UNICODE and _UNICODE being defined, whereas "ANSI build" refers to neither of them being defined.<br>
+<br>
+<b>Section 2)  LPSTR, LPCSTR, LPTSTR,  LPCTSTR, LPWTFISALLTHIS</b>
+<br>
+Anybody who's looked at WinAPI has probably seen the above types... but what exactly are they?<br>
+<br>
+An inexperienced C/C++ coder might think they're strings, like std::string.  It can certainly look that way from the documentation and examples.  And since WinAPI pages doesn't ever really seem to tell you exactly what they are, it's a logical conclusion.<br>
+<br>
+However, this is not the case.  All of the above are <i>macros</i> which #define different types.<br>
+<br>
+<br>
+Now you might look at "LPCTSTR" and see the "STR" in there, but the rest might look like random letter combinations that make no sense.  Rest assured there's a method to the madness.<br>
+<br>
+- The starting 'LP' stands for "Long Pointer".  Without getting too much into what a Long Pointer is (or really what it used to be, it doesn't have as much meaning in modern computing), we'll just say that this is basically a pointer.  This means that the LP is telling you that this type is not a string by itself, but is a POINTER to a string (or really, a C-style string).<br>
+<br>
+- The 'C' means that the string is constant<br>
+<br>
+- The 'W' means the string is wide (Unicode)<br>
+<br>
+- The 'T' means the string is TCHARs (see section on TCHAR below)<br>
+<br>
+So really, the #defines are the following:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br></code></pre></td>
+<td class="source"><pre><code><dfn>#define  LPSTR          char*</dfn>
+<dfn>#define  LPCSTR         const char*</dfn>
+
+<dfn>#define  LPWSTR         wchar_t*</dfn>
+<dfn>#define  LPWCSTR        const wchar_t*</dfn>
+
+<dfn>#define  LPTSTR         TCHAR*</dfn>
+<dfn>#define  LPCTSTR        const TCHAR* </dfn></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<b>Section 3)  TCHAR, _T(), T(), TEXT()</b>
+<br>
+TCHAR is #defined as either a char or a wchar_t depending on whether or not the UNICODE macro was defined.<br>
+<br>
+By using TCHARs properly, you can create both ANSI and Unicode builds of your program.  All you have to do is #define UNICODE if you want a Unicode build, or don't define it if you want an ANSI build.<br>
+<br>
+This presents a bit of a problem, though.  String literals in C++ can take 2 forms, either char or wchar_t:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br></code></pre></td>
+<td class="source"><pre><code><var>const</var> <var>char</var>*    a = <kbd>"Foo"</kbd>;
+<var>const</var> <var>wchar_t</var>* b = L<kbd>"Bar"</kbd>;  <cite>// &lt;-- note the L.  That makes it wide. </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+The compiler doesn't auto-detect... so things like this would throw compiler errors:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br></code></pre></td>
+<td class="source"><pre><code><var>const</var> <var>char</var>*    a = L<kbd>"Foo"</kbd>; <cite>// &lt;-- error, can't point char* to a wide string</cite>
+<var>const</var> <var>wchar_t</var>* b = <kbd>"Bar"</kbd>;  <cite>// &lt;-- error, can't point wchar_t* to a non-wide string </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+So what about this?:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>&nbsp;</code></pre></td>
+<td class="source"><pre><code><var>const</var> TCHAR*   c = <kbd>"Foo"</kbd>;</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Remember that TCHAR is char or wchar_t depending on Unicode.  So the above code will work <i>only if</i> you are not building Unicode.  If you are building Unicode you'll get an error.<br>
+<br>
+Likewise, the following won't work <i>unless</i> you're building Unicode:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>&nbsp;</code></pre></td>
+<td class="source"><pre><code><var>const</var> TCHAR*   c = L<kbd>"Foo"</kbd>;</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+To get around this problem... WinAPI provides some other macros, _T(), T(), and TEXT(), all of which do the same thing.  In a Unicode build, they put the L before the string literal to make it wide, and in non-Unicode, they do nothing.  Therefore they will always work hand in hand with TCHARs:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>&nbsp;</code></pre></td>
+<td class="source"><pre><code><var>const</var> TCHAR*   d = _T(<kbd>"foo"</kbd>);  <cite>// works in both Unicode and ANSI builds </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<br>
+<b>Section 4)  Function and Structure Name Aliases</b>
+<br>
+A lot of Windows functions take strings as parameters.  But because char and wchar_t strings are two distinctly different types, the same function can't be used for both of them.<br>
+<br>
+Take for example, the WinAPI function "DeleteFile" which takes a single parameter.  Let's say you want to delete "myfile.txt":<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>&nbsp;</code></pre></td>
+<td class="source"><pre><code>DeleteFile( _T(<kbd>"myfile.txt"</kbd>) );  <cite>// notice _T because DeleteFile takes a LPC&lt;b&gt;T&lt;/b&gt;STR </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+The trick here is that the function DeleteFile doesn't really exist!  There are actually two different functions:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br></code></pre></td>
+<td class="source"><pre><code>DeleteFileA( LPCSTR );  <cite>// ANSI version, taking a LPCSTR</cite>
+DeleteFileW( LPCWSTR ); <cite>// Unicode version, taking LPCWSTR </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+DeleteFile is actually a <i>macro</i> defined as either DeleteFileA or DeleteFileW, depending on whether or not this is a Unicode build.<br>
+<br>
+As such... for WinAPI functions that take a C style string... there are, in a sense, 3 different versions, each taking a different type of C string:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br></code></pre></td>
+<td class="source"><pre><code>DeleteFile   &lt;-  Takes a TCHAR string (LPCTSTR)
+DeleteFileA  &lt;-  Takes a <var>char</var> string (LPCSTR)
+DeleteFileW  &lt;-  Takes a <var>wchar_t</var> string (LPCWSTR)</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+This is true of virtually all WinAPI functions that take a C string as a param.<br>
+<br>
+<br>
+But it doesn't stop there!  There are also some structs that have strings in them, as well.  For instance, the OPENFILENAME structure contains various C strings for use with the open file dialog box.  As you might expect, There are 3 versions of this struct as well:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br></code></pre></td>
+<td class="source"><pre><code>OPENFILENAME  &lt;-  has TCHAR strings
+OPENFILENAMEA &lt;-  has <var>char</var> strings
+OPENFILENAMEW &lt;-  has <var>wchar_t</var> strings</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+And again... note that OPENFILENAME doesn't <i>really</i> exist, but is just a #define of one of the other two depending on the build.<br>
+<br>
+<b>Section 5)  Being Unicode friendly</b>
+<br>
+So what does it take to be Unicode friendly in WinAPI?<br>
+<br>
+For most programs... not very much.  Just stick to the following and you'll be fine:<br>
+<br>
+-)  Use TCHAR for characters and C strings instead of char<br>
+-)  Use std::basic_string&lt;TCHAR&gt; instead of std::string.  You can even typedef your own kind of tstring:<br>
+  <span class="auto"><code class="source"><var>typedef</var> std::basic_string&lt;TCHAR&gt; tstring;</code></span>
+-)  Don't use std::string, as this is a char string.<br>
+-)  Put all string literals in <span class="auto"><code class="source">_T()</code></span> macros.  UNLESS you are dealing with libs other than WinAPI.  For example, standard lib functions like fstream ctors take char* strings -- so don't put those strings in _T() macros.  Really, though, if you're using WinAPI, you shouldn't be using standard lib file I/O because the standard lib is not Unicode friendly.<br>
+-)  Don't use standard lib C string functions like strcpy, strcat, sprintf, etc.  These all work with char -- they don't work with wchar_t or TCHAR.  Alternatively you can use 'tstring' member functions, and Windows specific TCHAR functions like _tcscpy, _tcscat, etc.<br>
+-)  <i>Never ever ever</i> C style cast C strings from one type to another.  C style casts mask very important compiler errors.  Avoid C++ style casts also.  Basically if you're getting type errors with your strings -- it's because you're doing something wrong.  Don't try to cast around the problem.<br>
+-)  Switch between ANSI builds and Unicode builds often to make sure that your program will compile in both.  If that's too much of a hassle, make Unicode builds all the time and forget about ANSI builds.<br>
+<br>
+<br>
+For other programs where you do a lot of text manipulation, it gets a little trickier....<br>
+<br>
+-)  Be careful when reading or writing text to a file.  Don't use TCHAR for this, since its size is variable.  Use char if you're reading 8-bit characters from a file, and wchar_t if reading 16-bit characters.<br>
+<br>
+-)  Ideally if text is going in an output file, you should use a Unicode encoding, such as UTF-8 or UTF-16.  However that is beyond the scope of this article (perhaps another day!)<br>
+<br>
+-)  If you need to use char or wchar_t directly (for instance the above situation), be very careful about how you move those strings to a TCHAR string.  You'll typically have to copy the string over 1 character at a time or write your own string copy function to do that.  I don't think WinAPI has any functions to help with such a case, and I know the standard lib doesn't.<br>
+<br>
+For example:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br></code></pre></td>
+<td class="source"><pre><code><cite>// this function copies a char C string to a TCHAR C string:</cite>
+<var>void</var> ustrcpy(TCHAR* dst, <var>const</var> <var>char</var>* src)
+{
+  <var>while</var>(*src)
+  {
+   *dst = *src;
+   ++dst;
+   ++src;
+  }
+  *dst = *src;
+}
+
+<cite>//---------</cite>
+<cite>//  then, say you need to read a string from a file and put it in a text box with SetWindowText:</cite>
+
+<var>char</var> str[500] = {0};            <cite>// note I'm using char because I specifically want 8-bit characers</cite>
+ifstream myfile(<kbd>"myfile.txt"</kbd>);  <cite>// note no _T() macro because I'm dealing with std lib</cite>
+                                <cite>//  ideally you'd open the file with WinAPI's CreateFile and read</cite>
+                                <cite>//  that way because that is Unicode friendly.  However I'm trying</cite>
+                                <cite>//  to keep this example simple</cite>
+myfile &gt;&gt; str;      <cite>// read the string</cite>
+
+TCHAR buffer[500];  <cite>// need to copy to a TCHAR buffer in order to give it to SetWindowText</cite>
+ustrcpy( buffer, str );
+
+<cite>// give it to WinAPI</cite>
+SetWindowText( hMyTextBox, buffer );</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+A better approach would be to make template functions for ustrcpy and similar so you can convert to/from all sorts of different types and sizes:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br></code></pre></td>
+<td class="source"><pre><code><var>template</var> &lt;<var>typename</var> T, <var>typename</var> TT&gt;
+<var>void</var> ustrcpy( T* dst, <var>const</var> TT* src )
+{
+  <cite>//.. same as above</cite>
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Alternatively... you can avoid the TCHAR version of the WinAPI function and use the ANSI version directly.  This let's Windows take care of the conversion:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br></code></pre></td>
+<td class="source"><pre><code><var>char</var> str[500] = {0};
+myfile &gt;&gt; str;
+
+ <cite>// note here we specifically call SetWindowTextA, not SetWindowText.</cite>
+ <cite>// this is because we're giving a char string and not a TCHAR string.</cite>
+SetWindowTextA( hMyTextBox, str );</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<b>More to come? ???</b>
+</div></div><div id="CH_bb"></div><div id="CH_scoreapp"></div><script type="text/javascript">new Score('CH_scoreapp','/articles/score.cgi','2w6AC542');</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder selected articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/articles/">Articles</a></b></h3>
+<ul>
+<li><a href="/articles/algorithms/">Algorithms</a></li><li><a href="/articles/cpp11/">C++ 11</a></li><li><a href="/articles/graphics/">Graphics and multimedia</a></li><li><a href="/articles/howto/">How-To</a></li><li><a href="/articles/language/">Language Features</a></li><li><a href="/articles/linux/">Unix/Linux programming</a></li><li><a href="/articles/sourcecode/">Source Code</a></li><li><a href="/articles/standard_library/">Standard Library</a></li><li><a href="/articles/tips/">Tips and Tricks</a></li><li><a href="/articles/tools/">Tools and Libraries</a></li><li><a href="/articles/visualcpp/">Visual C++</a></li><li><a href="/articles/winapi/">Windows API</a></li></ul>
+</div>
+<div id="I_subnav"></div>
+</div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Farticles%2F2w6AC542%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+onSession(function(us) {
+		document.getElementById('I_subnav').innerHTML=
+			us.ok?
+				'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul>'+
+				'<li><a href="/articles/myitems.cgi">My items</a></li>'+
+				(us.auth(32768)?'<li><a href="/articles/adminitems.cgi">Admin items</a></li>':'')+
+				'</ul></div>'
+			:'';
+	}); onSession(function (us) {
+		var el=document.getElementById('CH_bb'); el.innerHTML='';
+		if ( (us.auth(32768)) || ((us.uniqid=='2TRDSL3A')&&(us.auth(128))) ) {
+			el.appendChild(btn('Edit article','Edit this version of the article','edit','/articles/edit.cgi?a=2w6AC542'));
+	
+			if (us.auth(32768)) {
+				el.appendChild(btn('Delete article','Delete this article','delete','javascript:artdel()'));
+			}
+	
+		}
+	});
+	function artdel() { if (confirm('WARNING: You are about to delete this page. Confirm?')) window.location='/articles/delete.cgi?a=2w6AC542'; }
+	ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Problem in displaying two bitmaps - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/windows/">Windows Programming</a></li>
+<li class="here">Problem in displaying two bitmaps</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico question" title="question">&nbsp;</div><div class="C_ico solved" title="solved">&nbsp;</div> Problem in displaying two bitmaps</h3><span id="CH_edttl"></span><span class="rootdatPost" title="181877,root,0,-1,4,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg891773"><span title="891773,194827,1023,48,1"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg891773" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmae00b68e37" title="Mon, 28 Dec 2015 19:09:29 +0000"></span><script type="text/javascript">WhenId('CH_zTmae00b68e37');</script><noscript>Dec 28, 2015 at 7:09pm UTC</noscript></div>
+<div class="dwho"><a href="/user/V07/"><b>V07</b> (48)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i891773">
+Hi everyone,<br>
+      I have coded a program to display two bitmaps on a window.One is displayed successfully but the other is not can you help me with this?<br>
+<br>
+Here is my code:<br>
+case WM_PAINT:<br>
+        {<br>
+            PAINTSTRUCT ps;<br>
+            HDC hdc = BeginPaint(hWnd, &amp;ps);<br>
+            		HBITMAP logo;<br>
+			logo = LoadBitmap(hInst, MAKEINTRESOURCE(IDB_BITMAP1));<br>
+			HDC logoB;<br>
+			logoB = CreateCompatibleDC(hdc);<br>
+			SelectObject(logoB, logo);<br>
+			BitBlt(hdc, 0, 0, 4100, 4100, logoB, 10, 10, SRCCOPY);<br>
+			DeleteDC(logoB);<br>
+			DeleteObject(logo);<br>
+			EndPaint(hWnd, &amp;ps);<br>
+			HBITMAP design;<br>
+			design = LoadBitmap(hInst, MAKEINTRESOURCE(IDB_BITMAP2));<br>
+			HDC designb;<br>
+			PAINTSTRUCT pas;<br>
+			HDC hfc = BeginPaint(hWnd, &amp;pas);<br>
+			designb = CreateCompatibleDC(hfc);<br>
+			SelectObject(designb, design);<br>
+			BitBlt(hfc, 0, 0, 4100, 4100, designb, 100, 10, SRCCOPY);<br>
+			DeleteDC(designb);<br>
+			DeleteObject(design);<br>
+			EndPaint(hWnd, &amp;pas);<br>
+			break;<br>
+//---------------------------<br>
+ }
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn891773"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg891788"><span title="891788,199131,1023,610,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg891788" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm6211ae37d9" title="Mon, 28 Dec 2015 21:09:58 +0000"></span><script type="text/javascript">WhenId('CH_zTm6211ae37d9');</script><noscript>Dec 28, 2015 at 9:09pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Thomas1965/"><b>Thomas1965</b> (610)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i891788">
+Try to paint both bitmaps in the same BeginPaint EndPaint block.<br>
+Here is a little example:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br>59<br>60<br>61<br>62<br>63<br>64<br>65<br>66<br>67<br>68<br>69<br>70<br>71<br>72<br>73<br>74<br>75<br>76<br>77<br>78<br>79<br>80<br>81<br>82<br>83<br>84<br>85<br>86<br>87<br>88<br>89<br>90<br>91<br>92<br>93<br>94<br>95<br>96<br>97<br>98<br>99<br>100<br>101<br>102<br>103<br>104<br>105<br>106<br>107<br>108<br>109<br>110<br>111<br>112<br>113<br>114<br>115<br>116<br>117<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;windows.h&gt;</dfn>
+<dfn>#include &lt;tchar.h&gt;</dfn>
+<dfn>#include &lt;crtdbg.h&gt;</dfn>
+<dfn>#include "Resource.h"</dfn>
+
+TCHAR szClsName[] = _T(<kbd>"BasicApp"</kbd>);
+TCHAR szWndName[] = _T(<kbd>"BasicApp"</kbd>);
+
+<var>static</var> HINSTANCE g_hInstance; 
+
+LRESULT CALLBACK WndProcedure(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam);
+ATOM RegisterMyClass();
+
+<var>void</var> DrawBitmap(HDC hDC, HBITMAP hBitmap, <var>int</var> left, <var>int</var> top, <var>int</var> width, <var>int</var> height);
+
+
+ATOM RegisterMyClass()
+{
+  WNDCLASSEX WndClsEx;
+
+	WndClsEx.cbSize        = <var>sizeof</var>(WNDCLASSEX);
+	WndClsEx.style         = CS_HREDRAW | CS_VREDRAW;
+	WndClsEx.lpfnWndProc   = WndProcedure;
+	WndClsEx.cbClsExtra    = 0;
+	WndClsEx.cbWndExtra    = 0;
+	WndClsEx.hIcon         = LoadIcon(NULL, IDI_APPLICATION);
+	WndClsEx.hCursor       = LoadCursor(NULL, IDC_ARROW);
+	WndClsEx.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);
+	WndClsEx.lpszMenuName  = NULL;
+	WndClsEx.lpszClassName = _T(szClsName);
+	WndClsEx.hInstance     = g_hInstance;
+	WndClsEx.hIconSm       = LoadIcon(NULL, IDI_APPLICATION);
+
+  <var>return</var> RegisterClassEx(&amp;WndClsEx);
+}
+
+<var>int</var> WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, <var>int</var> nCmdShow)
+{
+  MSG        Msg;
+	HWND       hWnd;
+  
+  g_hInstance = hInstance;
+  
+	<var>if</var> (!RegisterMyClass())
+	{
+	  MessageBox(0, _T(<kbd>"RegisterClassEx failed"</kbd>), _T(<kbd>"Error"</kbd>), MB_OK);
+    <var>return</var> FALSE;
+  }
+
+	hWnd = CreateWindow(szClsName, szWndName, WS_OVERLAPPEDWINDOW,
+                      CW_USEDEFAULT, CW_USEDEFAULT, 1000, 
+                      700, 0, 0, g_hInstance, 0);
+
+	<var>if</var> (!hWnd)
+	{
+	  MessageBox(0, _T(<kbd>"CreateWindow failed"</kbd>), _T(<kbd>"Error"</kbd>), MB_OK);
+    <var>return</var> FALSE;
+  }
+  
+	ShowWindow(hWnd, SW_SHOWNORMAL);
+	UpdateWindow(hWnd);
+
+	<var>while</var> (GetMessage(&amp;Msg, NULL, 0, 0))
+	{
+    TranslateMessage(&amp;Msg);
+    DispatchMessage(&amp;Msg);
+	}
+
+	<var>return</var> (<var>int</var>)Msg.wParam;
+}
+
+LRESULT CALLBACK WndProcedure(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
+{
+  HBITMAP hBitmap;
+  HDC hDC;
+  PAINTSTRUCT ps;
+  
+  <var>switch</var> (Msg)
+  {
+    <var>case</var> WM_COMMAND:
+      MessageBox(hWnd, <kbd>"Hello World"</kbd>, <kbd>"Hello"</kbd>, MB_OK);
+      <var>break</var>;
+    <var>case</var> WM_PAINT:
+      hDC = BeginPaint(hWnd, &amp;ps);
+      <cite>// first bitmap</cite>
+      hBitmap = LoadBitmap(g_hInstance, MAKEINTRESOURCE(IDB_BITMAP1));
+      _ASSERTE(hBitmap != NULL);
+      DrawBitmap(hDC, hBitmap, 0, 0, 480, 640);
+      DeleteObject(hBitmap);
+      <cite>// second bitmap</cite>
+      hBitmap = LoadBitmap(g_hInstance, MAKEINTRESOURCE(IDB_BITMAP2));
+      _ASSERTE(hBitmap != NULL);
+      DrawBitmap(hDC, hBitmap, 500, 0, 480, 640);
+      EndPaint(hWnd, &amp;ps);
+      DeleteObject(hBitmap);
+      <var>break</var>;
+    <var>case</var> WM_DESTROY:
+      PostQuitMessage(0);
+      <var>break</var>;
+  }
+  <var>return</var> DefWindowProc(hWnd, Msg, wParam, lParam);
+}
+
+<var>void</var> DrawBitmap(HDC hDC, HBITMAP hBitmap, <var>int</var> left, <var>int</var> top, <var>int</var> width, <var>int</var> height)
+{
+  HDC hMemDC; 
+  
+  _ASSERTE(hDC != NULL);
+  _ASSERTE(hBitmap != NULL);
+  _ASSERTE(width &gt; 0);
+  _ASSERTE(height &gt; 0);
+  
+  hMemDC = CreateCompatibleDC(hDC);
+  SelectObject(hMemDC, hBitmap);
+  BitBlt(hDC, left, top, width, height, hMemDC, 0, 0, SRCCOPY);
+  DeleteDC(hMemDC);
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm8e2049d245" title="Tue, 29 Dec 2015 09:25:43 +0000"></span><script type="text/javascript">WhenId('CH_zTm8e2049d245');</script><noscript>Dec 29, 2015 at 9:25am UTC</noscript></span>
+<span class="dbtn" id="CH_btn891788"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg891912"><span title="891912,194827,1023,48,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg891912" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm7aa1638a85" title="Tue, 29 Dec 2015 17:56:29 +0000"></span><script type="text/javascript">WhenId('CH_zTm7aa1638a85');</script><noscript>Dec 29, 2015 at 5:56pm UTC</noscript></div>
+<div class="dwho"><a href="/user/V07/"><b>V07</b> (48)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i891912">
+case WM_PAINT:<br>
+        {<br>
+            PAINTSTRUCT ps;<br>
+            HDC hdc = BeginPaint(hWnd, &amp;ps);<br>
+           <br>
+			HBITMAP logo;<br>
+			logo = LoadBitmap(hInst, MAKEINTRESOURCE(IDB_BITMAP1));<br>
+			HDC logoB;<br>
+			logoB = CreateCompatibleDC(hdc);<br>
+			SelectObject(logoB, logo);<br>
+			BitBlt(hdc, 0, 0, 4100, 4100, logoB, 10, 10, SRCCOPY);<br>
+			DeleteDC(logoB);<br>
+			DeleteObject(logo);<br>
+			EndPaint(hWnd, &amp;ps);<br>
+			logo = LoadBitmap(hInst, MAKEINTRESOURCE(IDB_BITMAP2));<br>
+			logoB = CreateCompatibleDC(hdc);<br>
+			SelectObject(logoB, logo);<br>
+			BitBlt(hdc, 1000, 1000, 4100, 4100, logoB, 100, 100, SRCCOPY);<br>
+			DeleteDC(logoB);<br>
+			DeleteObject(logo);<br>
+			EndPaint(hWnd, &amp;ps);<br>
+			break;<br>
+//---------------------------<br>
+ }<br>
+<br>
+Tried like this but does not displays the other bitmap.Can anyone help?<br>
+<br>
+Thank you
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn891912"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg891990"><span title="891990,156650,1023,564,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg891990" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm10ca083435" title="Wed, 30 Dec 2015 03:40:06 +0000"></span><script type="text/javascript">WhenId('CH_zTm10ca083435');</script><noscript>Dec 30, 2015 at 3:40am UTC</noscript></div>
+<div class="dwho"><a href="/user/FurryGuy/"><b>FurryGuy</b> (564)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i891990">
+You still have TWO EndPaint() functions.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br></code></pre></td>
+<td class="source"><pre><code><var>case</var> WM_PAINT:
+{
+   PAINTSTRUCT ps;
+   HDC hdc = BeginPaint(hWnd, &amp;ps);
+
+   HBITMAP logo;
+   logo = LoadBitmap(hInst, MAKEINTRESOURCE(IDB_BITMAP1));
+   HDC logoB;
+   logoB = CreateCompatibleDC(hdc);
+   SelectObject(logoB, logo);
+   BitBlt(hdc, 0, 0, 4100, 4100, logoB, 10, 10, SRCCOPY);
+   DeleteDC(logoB);
+   DeleteObject(logo);
+   <i><b>EndPaint(hWnd, &amp;ps);</b></i> <cite>/// DELETE THIS ONE!</cite>
+   logo = LoadBitmap(hInst, MAKEINTRESOURCE(IDB_BITMAP2));
+   logoB = CreateCompatibleDC(hdc);
+   SelectObject(logoB, logo);
+   BitBlt(hdc, 1000, 1000, 4100, 4100, logoB, 100, 100, SRCCOPY);
+   DeleteDC(logoB);
+   DeleteObject(logo);
+   <i><b>EndPaint(hWnd, &amp;ps);</b></i>
+   <var>break</var>;
+   <cite>//---------------------------</cite>
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+PLEASE learn to use code tags so reading your code is easier..<br>
+<a href="http://www.cplusplus.com/articles/jEywvCM9/">http://www.cplusplus.com/articles/jEywvCM9/</a><br>
+<b></b><u></u>
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTmaec338fe15" title="Wed, 30 Dec 2015 03:44:14 +0000"></span><script type="text/javascript">WhenId('CH_zTmaec338fe15');</script><noscript>Dec 30, 2015 at 3:44am UTC</noscript></span>
+<span class="dbtn" id="CH_btn891990"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div class="rootbtnNew"></div><div id="CH_insNew"></div><div id="CH_reply">Topic archived. No new replies allowed.</div><div id="CH_subscription"></div><div class="rootedtNew"></div><script type="text/javascript">new for_PostList(181877,1,194827,1,'CH_PostList','CH_subscription','CH_reply','CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+<script type="text/javascript">
+    google_ad_client = "ca-pub-1444228343479937";
+    google_ad_slot = "9701143201";
+    google_ad_width = 728;
+    google_ad_height = 90;
+</script>
+<!-- leaderboard -->
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li><a href="/forum/beginner/"><b>Beginners</b></a></li><li class="selected"><a href="/forum/windows/"><b>Windows Programming</b></a></li><li><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li><a href="/forum/general/"><b>General C++ Programming</b></a></li><li><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Fwindows%2F181877%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

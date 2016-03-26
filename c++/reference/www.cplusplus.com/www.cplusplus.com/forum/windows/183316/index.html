@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>if your using avast, or distribute uncer - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/windows/">Windows Programming</a></li>
+<li class="here">if your using avast, or distribute uncer</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico default" title="post">&nbsp;</div> if your using avast, or distribute uncertified code, avast may break everything</h3><span id="CH_edttl"></span><span class="rootdatPost" title="183316,root,0,-1,6,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg897393"><span title="897393,208550,1023,11,1"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg897393" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm7cb9c97df5" title="Mon, 25 Jan 2016 22:32:38 +0000"></span><script type="text/javascript">WhenId('CH_zTm7cb9c97df5');</script><noscript>Jan 25, 2016 at 10:32pm UTC</noscript></div>
+<div class="dwho"><a href="/user/demon6552/"><b>demon6552</b> (11)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i897393">
+I know this isnt directly programming related -- but it IS related to programming on the windows platform.<br>
+<br>
+I brought up this issue to avast, and even though they have yet to respond, I know they will not 'fix' it, as fixing it would require breaking the program and removing features that one up their competitors.<br>
+<br>
+so I figured Id spread the word around here seeing as it hasnt been brought up on this site (although it is well known on stack overflow and other websites)<br>
+<br>
+for some reason, probably deepscan, certificate checking, community reputation, and parts of their sandbox code -- avast will block most of the programs you yourself write -- a GOOD MAJORITY of them (sometimes one can sneak through if its exceptionally well coded and doesnt use a majority of common i/o processes, or common APIs such as win32).. and its not even bad practices like format strings that can allow hacks, its just... well.. almost ANYTHING.<br>
+<br>
+Ive had this do things like totally crash visual studio or code::blocks during debugging, not allow simple programs (like a blank window or Hello World Dialog box) coded in ASM to run. it will simply crash -- WITH NO NOTIFICATION FROM AVAST WHATSOEVER THAT AVAST IS THE CAUSE. sometimes the program will even be STUCK in your ram, partially running, until you restart (because the ram gets dumped then, you cant even delete the 'broken' program from your hard drive to try a recompile or anything... not that your code is 'broken' to begin with)<br>
+<br>
+basically this can cause a lot of problems for you if your learning to code and have no idea why its not running even though it compiles or assembles fine -- and while an exception to the projects folder or individual app may work temporarily -- when it comes time for release phase, this can cause massive problems for your users unless you advise them to dump avast from their system up front, and likely also give them instructions on creating exceptions or alternative antivirus programs (or tell them to disable avast before running)<br>
+<br>
+this can be annoying for everyone -- im sure avast would add an exception for any of us, but this is simply terribly inconvenient and we'd be relying on them updating the program simply for us which MAY not happen.<br>
+<br>
+we could all buy certificates for our code -- but if we are releasing for free via open source, or simply do not want to do this or cant afford it, this is can be problematic (or even ludicrous if we arent making a single penny off the code)<br>
+<br>
+regardless, avast WILL break your code at some point, on someones machine. whether you run it or not. avast was my favorite AV, but they have lost my support and I will be endorsing their competitors simply because of this (which is sad, because they have lower false positive rates and a better product aside from this IMO)<br>
+<br>
+so its important to be aware of this problem. I even faced this issue with simple hello world cout&lt;&lt; programs when I tried to get visual studio up and running as test programs to make sure it all installed right(I later decided to go back to GCC, because Im more used to it, and I also use linux so its easier in the long run then porting to vc++. I cant afford MFC anyway, and the slightly larger binary size and less effeciency of minGW is worth the portability)<br>
+<br>
+the real danger is it doesnt even tell you its blocking it. it just acts like its trying to load forever, and if you dont have the pro version, it wont even try to sandbox it, sometimes getting it stuck in your memory until you dump the ram.<br>
+<br>
+so users wont know to tell you avast is blocking it, and it may in fact be harder to get an exception in. it will never pop up in a scan, never be detected as a virus, but avast still wont let it run.<br>
+<br>
+the minute you disable avast, your program will load instantly and run fine. but if you dont, no warning whatsoever, and your IDE will crash if you try to debug as well. if you dont debug, whatever folder its in will be stuck loading forever and just your program will crash.<br>
+<br>
+just wanted to give y'all a heads up. its not limited to C/C++ -- sometimes a C++ program might be able to sneak through -- but not often, and ASM programs almost always fail during runtime because of avast -- im not sure what conditions cause this, as some programs that are well established work fine. most do. but if yours are new, they  just dont. Im sure other languages (maybe not .NET or JAVA) like pascal will suffer the same issue.<br>
+<br>
+<br>
+<br>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn897393"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg897493"><span title="897493,189070,1023,9,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg897493" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm552de080c3" title="Tue, 26 Jan 2016 13:18:54 +0000"></span><script type="text/javascript">WhenId('CH_zTm552de080c3');</script><noscript>Jan 26, 2016 at 1:18pm UTC</noscript></div>
+<div class="dwho"><a href="/user/mi41lumber/"><b>mi41lumber</b> (9)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i897493">
+VERY interesting.  You may have just solved a deeply puzzling problem I've been having when trying to compile a personal project - the "half dead at loading" EXE problem you mentioned is the exact symptom.  My main desktop system shipped with AVG and does not give me the same trouble as my laptop.  Thank you!
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn897493"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg897624"><span title="897624,116650,1023,32,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg897624" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm6fe4ceeff6" title="Tue, 26 Jan 2016 22:33:31 +0000"></span><script type="text/javascript">WhenId('CH_zTm6fe4ceeff6');</script><noscript>Jan 26, 2016 at 10:33pm UTC</noscript></div>
+<div class="dwho"><a href="/user/evaboy/"><b>evaboy</b> (32)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i897624">
+Sometimes, it depends on the code itself, like when avast detects a bad code such as unmanaged pointers, classes errors etc. it may then think that it is a hack program. But the best solution is to turn off avast in such cases. Get it, avast is not going to do anything about this.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn897624"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg897711"><span title="897711,38650,1023,2141,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg897711" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm97d6c79512" title="Wed, 27 Jan 2016 10:21:16 +0000"></span><script type="text/javascript">WhenId('CH_zTm97d6c79512');</script><noscript>Jan 27, 2016 at 10:21am UTC</noscript></div>
+<div class="dwho"><a href="/user/naraku9333/"><b>naraku9333</b> (2141)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i897711">
+This issue isn't really specific to Avast, but to many anti-virus programs. They will often block unknown executables or ones with very recent creation dates. The simple fix is to white list your project directories.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn897711"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg897736"><span title="897736,115199,1023,103,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg897736" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm72862273fb" title="Wed, 27 Jan 2016 13:14:29 +0000"></span><script type="text/javascript">WhenId('CH_zTm72862273fb');</script><noscript>Jan 27, 2016 at 1:14pm UTC</noscript></div>
+<div class="dwho"><a href="/user/DrZoidberg/"><b>DrZoidberg</b> (103)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i897736">
+You are mistaken. Avast is the best!<br>
+<br>
+Other anti-virus solutions might just block your programs - or even just sandbox them! But Avast is different. Avast will not only stop your programs from running, oh no, it will also take care to corrupt your MSVC install, effectively protecting you from your own hubris!<br>
+<br>
+The latest versions are also able to identify other software commonly abused by the incompetent to bring harm upon their PC - No, Avast is not afraid to stand up to the flagship apps of the software giants - MS Office, Chrome, Skyrim? None are safe from its righteous fury.<br>
+<br>
+But that's not all! The nature of its wrath is such that it will cripple, but not completely destroy, its enemies. You see, the developers have carefully studied Machiavelli. By corrupting installs and removing the uninstaller while leaving registry keys intact, repair or re-install becomes impossible. Your PC's demons are vanquished for all time.<br>
+<br>
+I'd whole-heartedly recommend that everyone reading this go to <a href="https://www.avast.com/en-us/index">https://www.avast.com/en-us/index</a> and get Avast now!
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn897736"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg897760"><span title="897760,13185,1023,1354,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg897760" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm70311d46b0" title="Wed, 27 Jan 2016 15:28:37 +0000"></span><script type="text/javascript">WhenId('CH_zTm70311d46b0');</script><noscript>Jan 27, 2016 at 3:28pm UTC</noscript></div>
+<div class="dwho"><a href="/user/freddie1/"><b>freddie1</b> (1354)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i897760">
+The situation with anti-virus software is so bad that its a case of the 'cure' being worse than the malady.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn897760"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div class="rootbtnNew"></div><div id="CH_insNew"></div><div id="CH_reply">Registered users can post here. <a href="/user/">Sign in or register</a> to post.</div><div id="CH_subscription"></div><div class="rootedtNew"></div><script type="text/javascript">new for_PostList(183316,0,208550,0,'CH_PostList','CH_subscription','CH_reply','CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+<script type="text/javascript">
+    google_ad_client = "ca-pub-1444228343479937";
+    google_ad_slot = "9701143201";
+    google_ad_width = 728;
+    google_ad_height = 90;
+</script>
+<!-- leaderboard -->
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li><a href="/forum/beginner/"><b>Beginners</b></a></li><li class="selected"><a href="/forum/windows/"><b>Windows Programming</b></a></li><li><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li><a href="/forum/general/"><b>General C++ Programming</b></a></li><li><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Fwindows%2F183316%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

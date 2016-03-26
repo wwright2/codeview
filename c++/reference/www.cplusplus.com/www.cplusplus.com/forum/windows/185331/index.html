@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Batch programming - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/windows/">Windows Programming</a></li>
+<li class="here">Batch programming</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico default" title="post">&nbsp;</div> Batch programming</h3><span id="CH_edttl"></span><span class="rootdatPost" title="185331,root,0,-1,6,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg905000"><span title="905000,202179,1023,42,1"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg905000" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm5fc760a999" title="Wed, 24 Feb 2016 16:24:12 +0000"></span><script type="text/javascript">WhenId('CH_zTm5fc760a999');</script><noscript>Feb 24, 2016 at 4:24pm UTC</noscript></div>
+<div class="dwho"><a href="/user/andrewllewop/"><b>andrewllewop</b> (42)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i905000">
+I am writing a program where I need to know how to pass a string parameter from a batch file into main().
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn905000"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg905005"><span title="905005,199131,1023,610,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg905005" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm674f8f1071" title="Wed, 24 Feb 2016 16:55:25 +0000"></span><script type="text/javascript">WhenId('CH_zTm674f8f1071');</script><noscript>Feb 24, 2016 at 4:55pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Thomas1965/"><b>Thomas1965</b> (610)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i905005">
+Do you mean sth. like this:<br>
+<a href="http://stackoverflow.com/questions/26551/how-to-pass-command-line-parameters-to-a-batch-file">http://stackoverflow.com/questions/26551/how-to-pass-command-line-parameters-to-a-batch-file</a><br>
+<a href="http://www.robvanderwoude.com/parameters.php">http://www.robvanderwoude.com/parameters.php</a><br>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn905005"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg905017"><span title="905017,29924,1023,5406,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg905017" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmbddacf155d" title="Wed, 24 Feb 2016 18:16:45 +0000"></span><script type="text/javascript">WhenId('CH_zTmbddacf155d');</script><noscript>Feb 24, 2016 at 6:16pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Computergeek01/"><b>Computergeek01</b> (5406)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i905017">
+The definition for "main()" is: <span class="auto"><code class="source"><var>int</var> main(<var>int</var> argn, <var>char</var>* argsc[], <var>char</var>* env[]);</code></span> the first argument, the integer, is the number of c strings contained in the second argument. The first element of the second argument, argsc[0] in this case, is the FQP to the binary being executed. The third argument, optional, are c strings describing the environment that the executable is running in.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn905017"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg905088"><span title="905088,202179,1023,42,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg905088" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm8816a435ce" title="Wed, 24 Feb 2016 23:27:40 +0000"></span><script type="text/javascript">WhenId('CH_zTm8816a435ce');</script><noscript>Feb 24, 2016 at 11:27pm UTC</noscript></div>
+<div class="dwho"><a href="/user/andrewllewop/"><b>andrewllewop</b> (42)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i905088">
+@Computergeek01, I understand what your saying but its still very vague in terms of what I need to do. I am just trying to figure a way out how to pass into the main() externally maybe from another program.<br>
+<br>
+The reason why I want to do this is I need to let the program that I am writing know the difference between where the program is called from. I figured i could write a smaller program that stored the file-path of where it is on the drive and when it is executed pass this location into the main program. depending on the location the main program would execute differently. <br>
+<br>
+All i think i need is an example of how to pass parameters from one program to another on windows or direct me where I can learn how to do this. <br>
+Specific rather than general information would be helpful
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn905088"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg905225"><span title="905225,199131,1023,610,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg905225" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTme713b6355a" title="Thu, 25 Feb 2016 13:25:12 +0000"></span><script type="text/javascript">WhenId('CH_zTme713b6355a');</script><noscript>Feb 25, 2016 at 1:25pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Thomas1965/"><b>Thomas1965</b> (610)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i905225">
+Let me give you a concrete example:<br>
+Let's say you have a program called test.exe.<br>
+From the console you would call it with test.exe arg1 arg2<br>
+Inside your program(test.exe) you can access the parameters with <br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br></code></pre></td>
+<td class="source"><pre><code><var>int</var> main(<var>int</var> argc, <var>char</var>* args[])
+{
+   <var>for</var> (<var>int</var> i = 0; i &lt; argc; i++)
+   {
+        cout &lt;&lt; <kbd>"Arg "</kbd> &lt;&lt; i &lt;&lt; <kbd>": "</kbd> &lt;&lt; args[i] &lt;&lt; <kbd>"\n"</kbd>;
+   }
+  system(<kbd>"pause"</kbd>);
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn905225"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg905258"><span title="905258,29924,1023,5406,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg905258" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm3c586b1996" title="Thu, 25 Feb 2016 16:58:21 +0000"></span><script type="text/javascript">WhenId('CH_zTm3c586b1996');</script><noscript>Feb 25, 2016 at 4:58pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Computergeek01/"><b>Computergeek01</b> (5406)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i905258">
+As long as we are talking about a console application then <b>Thomas1965</b> about covered it. The only other thing worth mentioning is that if you find yourself using Unicode functions, which you should be doing in reality, then you'll save yourself some work by calling "CommandLineToArgvW()": <a href="https://msdn.microsoft.com/en-us/library/windows/desktop/bb776391(v=vs.85).aspx">https://msdn.microsoft.com/en-us/library/windows/desktop/bb776391(v=vs.85).aspx</a> . If you're having a specific problem then tell us what it is.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn905258"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div class="rootbtnNew"></div><div id="CH_insNew"></div><div id="CH_reply">Registered users can post here. <a href="/user/">Sign in or register</a> to post.</div><div id="CH_subscription"></div><div class="rootedtNew"></div><script type="text/javascript">new for_PostList(185331,0,202179,0,'CH_PostList','CH_subscription','CH_reply','CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li><a href="/forum/beginner/"><b>Beginners</b></a></li><li class="selected"><a href="/forum/windows/"><b>Windows Programming</b></a></li><li><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li><a href="/forum/general/"><b>General C++ Programming</b></a></li><li><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Fwindows%2F185331%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

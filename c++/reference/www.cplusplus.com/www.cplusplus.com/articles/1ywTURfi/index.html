@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>How To Learn The Basics Of C++ Part 1/5 - C++ Articles</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/articles/">Articles</a></li>
+<li class="here">How To Learn The Basics Of C++ Part 1/5</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div id="I_content">
+<div class="C_art">
+<div id="I_author">Published by <b><a href="/user/Code_Assassin/" rel="author">Code Assassin</a></b></div>
+<div id="I_date">Oct 7, 2011 (last update: Oct 7, 2011)</div>
+<h1>How To Learn The Basics Of C++ Part 1/5</h1>
+<div id="I_score">Score: 3.8/5 (2140 votes)</div>
+<div id="I_stars"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-half.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"></div>
+<div id="I_content">
+Greetings,<br>
+<br>
+You're probably reading this because:<br>
+<br>
+1. You want to learn C++<br>
+            <br>
+                                   <br>
+2. You need a refresher course on the Basics of C++<br>
+<br>
+First of all, before you get into "real coding", you'll need to create a Basic Program called "Hello World"- I know the name's corny, but hey, it serves it's purpose. The "Hello World"(C++ Version), is designed to teach beginners the basic parts to writing a simple program and is a very fundamental step to learning C++.<br>
+I'm sure we'd be lost without it.(:D)<br>
+<br>
+Without further a do, you'll need to open up your compiler. You may want to "Google" search a list of free compilers, if you do not have on installed on your computer (I'll be using Xcode, this program will work on any compiler.) Assuming you've already created a new project, label it "Hello World.cpp" (You do not need the quotations around the project name. )After you've named it, I want you to go to the first line of your empty programming space and type the following: <br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>&nbsp;</code></pre></td>
+<td class="source"><pre><code><cite>// Your Name - Project Title - Date - (Whatever Else-Optional) </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+What you've just typed is called a comment. A comment does not affect the program technically, but it's useful to have when you start to create huge programs. Secondly, You'll need to type in:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br></code></pre></td>
+<td class="source"><pre><code>
+<dfn>#include &lt;iostream&gt;</dfn>
+</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+This is called a directive (or preprocesser directive ). There are many directives(#include &lt;windows.h&gt;,#include&lt;ctime&gt;) but for now we will be focusing mainly on the iostream library. This directive is used most commonly in every program for it is the basis of the input/output in C++. Now Type in:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>&nbsp;</code></pre></td>
+<td class="source"><pre><code><var>using</var> <var>namespace</var> std;</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+I won't go into details now (I'll explain more in PART 2), but for now just include that bit of code in your programs. Now type in:<br>
+<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br></code></pre></td>
+<td class="source"><pre><code><var>int</var> main (<var>void</var>){
+
+
+<cite>// Code Go Here </cite>
+
+<var>return</var> 0;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+What you see above.. int main (void), is a VERY important part when learning programming. If you do not include this, your program will not run. It typically denotes where the main part of your program will begin. <br>
+Your code should look like this now:<br>
+<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br></code></pre></td>
+<td class="source"><pre><code><cite>// Your Name - Project Title - Date - (Whatever Else-Optional)</cite>
+<dfn>#include &lt;iostream&gt;</dfn>
+<var>using</var> <var>namespace</var> std;
+<var>int</var> main (<var>void</var>){
+
+<cite>// Code Go Here</cite>
+
+
+<var>return</var> 0;
+}
+</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+If you do not have all the code listed above make changes now. So, now we are going to enter what specifically goes into the program. What makes the program do, what it does... Delete the comment located within the two curly braces and add this:<br>
+<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br></code></pre></td>
+<td class="source"><pre><code>cout &lt;&lt; <kbd>"Hello World!"</kbd>;
+</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Make sure you type exactly that, and make sure you've deleted your comment (We don't need it now, It was just a placeholder). You should have something that looks exactly like this:<br>
+<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br></code></pre></td>
+<td class="source"><pre><code><cite>// Your Name - Project Title - Date - (Whatever Else-Optional)</cite>
+<dfn>#include &lt;iostream&gt;</dfn>
+<var>using</var> <var>namespace</var> std;
+<var>int</var> main (<var>void</var>){
+
+cout &lt;&lt; <kbd>"Hello World!"</kbd>;
+<var>return</var> 0;
+
+}
+</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<br>
+You probably will want to know what "cout" means. Well, its pronounced (CEE-OUT), and it displays text on the screen.. think of it as a prompt. Whenever you want to write message that will display on the screen you must always use this format:<br>
+<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br></code></pre></td>
+<td class="source"><pre><code>
+cout &lt;&lt; <kbd>"Whatever you want goes here"</kbd>;</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+Always make sure you have those to arrows pointing towards cout. Make sure your text is within the quotations.<br>
+<br>
+ALSO: You do not need to have the:<br>
+<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br></code></pre></td>
+<td class="source"><pre><code>
+ <var>return</var> 0;
+</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+at the end of your program, but I recommend it just for the purpose of this tutorial (Plus it's the traditional way of signifying your program has exited successfully ). So run the following Program:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br></code></pre></td>
+<td class="source"><pre><code><cite>// Your Name - Project Title - Date - (Whatever Else-Optional)</cite>
+<dfn>#include &lt;iostream&gt;</dfn>
+<var>using</var> <var>namespace</var> std;
+<var>int</var> main (<var>void</var>){
+
+cout &lt;&lt; <kbd>"Hello World!"</kbd>;
+<var>return</var> 0;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+and your Output should result to:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="output"><pre><samp>
+Hello world!
+</samp></pre></td></tr></table></div>
+<br>
+<br>
+<br>
+Stay Tuned for PART 2 :)<br>
+May the code be with you...<br>
+(If I have missed anything please let me know )</div></div><div id="CH_bb"></div><div id="CH_scoreapp"></div><script type="text/javascript">new Score('CH_scoreapp','/articles/score.cgi','1ywTURfi');</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder selected articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/articles/">Articles</a></b></h3>
+<ul>
+<li><a href="/articles/algorithms/">Algorithms</a></li><li><a href="/articles/cpp11/">C++ 11</a></li><li><a href="/articles/graphics/">Graphics and multimedia</a></li><li><a href="/articles/howto/">How-To</a></li><li><a href="/articles/language/">Language Features</a></li><li><a href="/articles/linux/">Unix/Linux programming</a></li><li><a href="/articles/sourcecode/">Source Code</a></li><li><a href="/articles/standard_library/">Standard Library</a></li><li><a href="/articles/tips/">Tips and Tricks</a></li><li><a href="/articles/tools/">Tools and Libraries</a></li><li><a href="/articles/visualcpp/">Visual C++</a></li><li><a href="/articles/winapi/">Windows API</a></li></ul>
+</div>
+<div id="I_subnav"></div>
+</div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Farticles%2F1ywTURfi%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+onSession(function(us) {
+		document.getElementById('I_subnav').innerHTML=
+			us.ok?
+				'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul>'+
+				'<li><a href="/articles/myitems.cgi">My items</a></li>'+
+				(us.auth(32768)?'<li><a href="/articles/adminitems.cgi">Admin items</a></li>':'')+
+				'</ul></div>'
+			:'';
+	}); onSession(function (us) {
+		var el=document.getElementById('CH_bb'); el.innerHTML='';
+		if ( (us.auth(32768)) || ((us.uniqid=='N8bC5Di1')&&(us.auth(128))) ) {
+			el.appendChild(btn('Edit article','Edit this version of the article','edit','/articles/edit.cgi?a=1ywTURfi'));
+	
+			if (us.auth(32768)) {
+				el.appendChild(btn('Delete article','Delete this article','delete','javascript:artdel()'));
+			}
+	
+		}
+	});
+	function artdel() { if (confirm('WARNING: You are about to delete this page. Confirm?')) window.location='/articles/delete.cgi?a=1ywTURfi'; }
+	ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

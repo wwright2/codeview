@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Error .. string - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/windows/">Windows Programming</a></li>
+<li class="here">Error .. string</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico question" title="question">&nbsp;</div><div class="C_ico solved" title="solved">&nbsp;</div> Error .. string</h3><span id="CH_edttl"></span><span class="rootdatPost" title="182017,root,0,-1,5,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg892358"><span title="892358,202910,1023,23,1"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892358" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmaacfa1716b" title="Fri, 01 Jan 2016 16:20:20 +0000"></span><script type="text/javascript">WhenId('CH_zTmaacfa1716b');</script><noscript>Jan 1, 2016 at 4:20pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Hex213/"><b>Hex213</b> (23)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892358">
+I have this code:<br>
+ofstream Out("Test.ini", ios::out | ios::app);<br>
+<br>
+//head<br>
+#include&lt;windows.h&gt;<br>
+#include&lt;iostream&gt; <br>
+#include&lt;fstream&gt;  <br>
+#include&lt;string&gt;   <br>
+#include&lt;ctime&gt;    <br>
+#include&lt;string&gt;   <br>
+#include&lt;sstream&gt;<br>
+<br>
+//code<br>
+        string pismena[9][49]<br>
+        stringstream stri;<br>
+	stringstream stri1;<br>
+	stringstream stri2;<br>
+	ConNum = rand() % 900 + 100;<br>
+	for(int o = 0; o &lt;= 42; o++)<br>
+	{<br>
+		Random1 = rand() % 500 + 1;<br>
+		Random2 = rand() % 1000 + 77;<br>
+		Random10 = ConNum + Random1;<br>
+		Random20 = ConNum2 + Random2;<br>
+		znaky[o] = rand() % 26 + 65;<br>
+		cout &lt;&lt; endl &lt;&lt; Random10 &lt;&lt; znaky[o] &lt;&lt; Random20 &lt;&lt; " = " &lt;&lt; o &lt;&lt; endl;<br>
+		<br>
+		Out &lt;&lt; Random10;<br>
+		Out &lt;&lt; znaky[o];<br>
+		if(o &lt;= 41)<br>
+		{<br>
+			Out &lt;&lt; Random20 &lt;&lt; " ";<br>
+		}<br>
+		else<br>
+		{<br>
+			Out &lt;&lt; Random20;<br>
+		}<br>
+		cout &lt;&lt; "0";<br>
+		<br>
+		stri &lt;&lt; Random10;<br>
+		st1 = stri.str();<br>
+		stri.str("");<br>
+		Sleep(200);<br>
+		cout &lt;&lt; "1";<br>
+		<br>
+		stri1 &lt;&lt; znaky[o];<br>
+		st2 = stri1.str();<br>
+		stri1.str("");<br>
+		Sleep(200);<br>
+		cout &lt;&lt; "2";<br>
+		<br>
+		stri2 &lt;&lt; Random20;<br>
+		st3 = stri2.str();<br>
+		stri2.str("");<br>
+		Sleep(200);<br>
+		cout &lt;&lt; "3";<br>
+<br>
+		pismena[9][o] = st1 + st2 + st3;<br>
+		<br>
+		cout &lt;&lt; "4" &lt;&lt; endl;<br>
+		cout &lt;&lt; pismena[9][o] &lt;&lt; endl;<br>
+		st1 = "";<br>
+		st2 = "";<br>
+		st3 = "";<br>
+		<br>
+		Sleep(2000);<br>
+	}<br>
+	Out.close();<br>
+<br>
+<br>
+<br>
+Between step 3 and 4, when the error occurs, if o = 3.<br>
+<br>
+Error:<br>
+There is a problem with the application Code.exe and therefore needs to close. We apologize for any inconvenience.<br>
+<br>
+Details:<br>
+AppName: code.exe	 AppVer: 0.0.0.0	 ModName: code.exe<br>
+ModVer: 0.0.0.0	 Offset: 00009749<br>
+<br>
+I use win32.<br>
+I don't know continue.
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm52dd27b0a4" title="Fri, 01 Jan 2016 16:20:49 +0000"></span><script type="text/javascript">WhenId('CH_zTm52dd27b0a4');</script><noscript>Jan 1, 2016 at 4:20pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn892358"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg892362"><span title="892362,199131,1023,610,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892362" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmcd9425d9bd" title="Fri, 01 Jan 2016 17:06:16 +0000"></span><script type="text/javascript">WhenId('CH_zTmcd9425d9bd');</script><noscript>Jan 1, 2016 at 5:06pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Thomas1965/"><b>Thomas1965</b> (610)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892362">
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br></code></pre></td>
+<td class="source"><pre><code>string pismena[9][49]
+
+cout &lt;&lt; <kbd>"3"</kbd>;
+pismena[9][o] = st1 + st2 + st3;</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Array index is out of bounds, must be &gt;= 0 and &lt;= 8. 
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn892362"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg892517"><span title="892517,202910,1023,23,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892517" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm418a45ee26" title="Sat, 02 Jan 2016 15:35:19 +0000"></span><script type="text/javascript">WhenId('CH_zTm418a45ee26');</script><noscript>Jan 2, 2016 at 3:35pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Hex213/"><b>Hex213</b> (23)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892517">
+So I have a larger index 9 to 10?
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn892517"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg892523"><span title="892523,151681,1023,2488,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892523" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmcf0f8f8394" title="Sat, 02 Jan 2016 16:03:37 +0000"></span><script type="text/javascript">WhenId('CH_zTmcf0f8f8394');</script><noscript>Jan 2, 2016 at 4:03pm UTC</noscript></div>
+<div class="dwho"><a href="/user/TarikNeaj/"><b>TarikNeaj</b> (2488)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892523">
+Arrays start from index 0. If you have an array of 9, it's from 0-8.<br>
+<br>
+You have an array <span class="auto"><code class="source">string pismena[9][49]</code></span> And you're trying to access <span class="auto"><code class="source">pismena[9] </code></span>which doesnt exist, because the last one is <span class="auto"><code class="source">pismena[8]</code></span>
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn892523"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg892558"><span title="892558,202910,1023,23,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892558" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm4251eb91ce" title="Sat, 02 Jan 2016 18:52:50 +0000"></span><script type="text/javascript">WhenId('CH_zTm4251eb91ce');</script><noscript>Jan 2, 2016 at 6:52pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Hex213/"><b>Hex213</b> (23)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892558">
+Have I understand it .. thank you very much.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn892558"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div class="rootbtnNew"></div><div id="CH_insNew"></div><div id="CH_reply">Registered users can post here. <a href="/user/">Sign in or register</a> to post.</div><div id="CH_subscription"></div><div class="rootedtNew"></div><script type="text/javascript">new for_PostList(182017,0,202910,1,'CH_PostList','CH_subscription','CH_reply','CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li><a href="/forum/beginner/"><b>Beginners</b></a></li><li class="selected"><a href="/forum/windows/"><b>Windows Programming</b></a></li><li><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li><a href="/forum/general/"><b>General C++ Programming</b></a></li><li><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Fwindows%2F182017%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

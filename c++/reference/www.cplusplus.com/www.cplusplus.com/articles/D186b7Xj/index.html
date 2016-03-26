@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Using Pointers 3 dfferent ways - C++ Articles</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/articles/">Articles</a></li>
+<li class="here">Using Pointers 3 dfferent ways</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div id="I_content">
+<div class="C_art">
+<div id="I_author">Published by <b><a href="/user/angelrapallo/" rel="author">angelrapallo</a></b></div>
+<div id="I_date">Oct 22, 2012 (last update: Oct 22, 2012)</div>
+<h1>Using Pointers 3 dfferent ways</h1>
+<div id="I_score">Score: 3.3/5 (142 votes)</div>
+<div id="I_stars"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"></div>
+<div id="I_content">
+In this small article, I show you about pointers by performing the same task using pointers in 3 different way. I think for some one learning c++ this is a very good approach because you can see pointers from different angles and get a much better idea as to what they and how to use them.<br>
+<br>
+the code uses 3 different approaches using pointers to create an array of strings. you can look at the it as a sparse matrix of characters or just an array of strings like<br>
+          Aa01234<br>
+          Bb012<br>
+          Cc0123456<br>
+etc.<br>
+<br>
+the 3 approaches are offset, indexes and increments <br>
+the codes uses the #define in order to be able to compile<br>
+easily the each aproach so by just commenting these 3 lines<br>
+you can see how each approach works.<br>
+<br>
+for example now it is set to run using increments<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br></code></pre></td>
+<td class="source"><pre><code><cite>//#define _use_offset_</cite>
+<cite>//#define _use_array_</cite>
+<dfn>#define _use_increments_ </dfn></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+the data structure I use is the char**<br>
+this is a pointer to a pointer to a character<br>
+like -&gt; (-&gt; character)<br>
+I initialize it to<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>&nbsp;</code></pre></td>
+<td class="source"><pre><code><var>char</var>** array_of_strings = <var>new</var> <var>char</var>*[26];</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+so is basically an array of strings like<br>
+-&gt;   -&gt;sssssssssssss<br>
+     -&gt;sssssssssssss<br>
+     -&gt;sssssssssssss<br>
+<br>
+array_of_stringsis the main pointer -&gt; which we move by either method<br>
+vertically (is better to think of it this way). at the moment<br>
+we dereference *array_of_strings we then have another pointer the one that<br>
+points to the actual string, the second -&gt; above.<br>
+so array_of_strings++ moves to the next string (vertical) and<br>
+(*array_of_strings)++ points to the next character in the string horizontal.<br>
+<br>
+<br>
+the first approach using offsets, in this approach we don't modify<br>
+the pointers, instead we use some offset value to point to the data<br>
+like *(pointer+5) = something. because pointers hold address we can so this<br>
+so pointer+5 points to the address of the byte which is 5 bytes from pointer<br>
+in array terminology as you will see in the array approach this is equivalent to pointer[5]. In increments terminology this is equivalent to<br>
+++pointer;++pointer;++pointer;++pointer;++pointer, incrementing the pointer 5<br>
+times.<br>
+<br>
+the second approach is the best and easiest, using array indexes<br>
+array[i][j]. <br>
+<br>
+the third approach is the increments. here we need to modify the pointer<br>
+because we move the pointer forward or backward using the ++ and -- operators.<br>
+<br>
+so p[1], *(p+1) and *++p are 3 ways to do the same thing<br>
+point pointer to one byte after pointer.<br>
+<br>
+in the increment method you will see i used 2 pointers <br>
+array_of_strings and new_string they are both pointers but they <br>
+behave differently. array_of_strings is a pointer to a pointer<br>
+it points to a pointer to a byte (character), while new_string<br>
+points to the actual data the string. when we do array_of_strings++<br>
+we move array_of_strings to point to the next string.<br>
+<br>
+                       Aa01234<br>
+*array_of_strings++ -&gt; Bb01234567<br>
+<br>
+and when we do *++new_string we point to the next character in the string<br>
+                  Aa01234<br>
+                     ^<br>
+                     |<br>
+                *++new_pointer<br>
+<br>
+notice i use the increment operator before *++p not *p++ because i wanted<br>
+to increment p first and then dereference. if i had done *p++ it would process<br>
+Aa012345 or which ever string twice <br>
+<br>
+bellow is the code, it has comments and I think is not hard to follow<br>
+just comment two of the #define and leave the one you want to experiment with <br>
+uncommented, then set break points and see how it works.<br>
+<br>
+to run the code just create a new windows console application if using<br>
+Microsoft visual studio. if using some other tool then just copy paste<br>
+the code in your Main function<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br>59<br>60<br>61<br>62<br>63<br>64<br>65<br>66<br>67<br>68<br>69<br>70<br>71<br>72<br>73<br>74<br>75<br>76<br>77<br>78<br>79<br>80<br>81<br>82<br>83<br>84<br>85<br>86<br>87<br>88<br>89<br>90<br>91<br>92<br>93<br>94<br>95<br>96<br>97<br>98<br>99<br>100<br>101<br>102<br>103<br></code></pre></td>
+<td class="source"><pre><code>	<cite>/************************************************************************/</cite>
+	<cite>/*
+	    this example shows the equivalence in pointer math between
+	    array     p[i]
+	    offset    *(p+i)
+	    increment p++ p++ ..... i number of times
+
+	    example p[3] = *(p+3) = p++ p++ p++
+	*/</cite>
+<cite>//#define _use_offset_</cite>
+<cite>//#define _use_array_</cite>
+<dfn>#define _use_increments_</dfn>
+
+	<dfn>#ifdef _use_offset_</dfn>
+		cout &lt;&lt; <kbd>"using offset\n"</kbd>;
+	<dfn>#endif</dfn>
+	<dfn>#ifdef _use_array_</dfn>
+		cout &lt;&lt; <kbd>"using array\n"</kbd>;
+	<dfn>#endif</dfn>
+	<dfn>#ifdef _use_increments_</dfn>
+		cout &lt;&lt; <kbd>"using increments\n"</kbd>;
+	<dfn>#endif</dfn>
+
+	<var>int</var> j;
+	
+	<cite>/*
+	    declare and initialize the sparse matrix of characters
+	    or the array of string, whichever fits.
+	*/</cite>
+	<var>char</var>** array_of_strings = <var>new</var> <var>char</var>*[26];
+
+	<var>for</var> (<var>int</var> i = 0; i &lt; 26 ; i++) 
+	{
+<dfn>#ifdef _use_offset_		</dfn>
+		<cite>/*
+		  using offsets
+		  instead of changing the pointer, just use
+		  and offset from it all the time. the i is the
+	           vertical offset into the table of strings
+		  while the j is the horizontal. j = x and y = i
+		  in vector terminology.
+		*/</cite>
+		*(array_of_strings+i)      = <var>new</var> <var>char</var>(toascii(65+i));
+		*(*(array_of_strings+i)+1) = <var>char</var>(toascii(97+i));
+		<var>for</var> (j = 2; j &lt; rand() % 16 + 2; j++)
+			*(*(array_of_strings+i)+j) = <var>char</var>(toascii(48+j-2));
+		*(*(array_of_strings+i)+j) = <kbd>'\0'</kbd>;
+<dfn>#endif</dfn>
+<dfn>#ifdef _use_array_</dfn>
+		<cite>/*
+		   using arrays
+		   the simplest and prefered way because is more
+	            readable and cleaner. just use array indexes
+		    [y][x] or [i][j]
+		*/</cite>
+		array_of_strings[i]    = <var>new</var> <var>char</var>(toascii(65+i));
+		array_of_strings[i][1] = <var>char</var>(toascii(97+i));
+		<var>for</var> (j = 2; j &lt; rand() % 16 + 2; j++)
+			array_of_strings[i][j] = <var>char</var>(toascii(48+j-2));
+		array_of_strings[i][j] = <kbd>'\0'</kbd>;
+<dfn>#endif</dfn>
+<dfn>#ifdef _use_increments_</dfn>
+		<cite>/*
+		   use increments
+		   here we change the pointers instead of using offsets
+		   like p+i we actuaqlly increment the pointers p++
+		   two things we need a two pointers the vertical pointer
+		   and the horizontal pointer which actually points to
+		   each string. array_of_strings is the verticaal and
+	            new_string is the horizontal and the one which
+		   points to the string and we use to modify the strings.
+
+		   before printing out the strings we need to reset 
+	            the vertical pointer array_of_strings back to the
+		   to the beginning so we simply subtract 26 from it
+	            because we incremented it 26 times.
+		*/</cite> 
+		<var>char</var>* new_string  = *array_of_strings++ = <var>new</var> <var>char</var>(toascii(65+i));
+		*++new_string = <var>char</var>(toascii(97+i));
+		<var>for</var> (j = 2; j &lt; rand() % 16 + 2; j++)
+			*++new_string = <var>char</var>(toascii(48+j-2));
+		*++new_string = <kbd>'\0'</kbd>;
+<dfn>#endif</dfn>
+	}
+
+		<dfn>#ifdef _use_increments_</dfn>
+			array_of_strings = array_of_strings - 26;
+		<dfn>#endif</dfn>
+
+	<var>for</var> (<var>int</var> i = 0; i &lt; 26 ; i++) 
+	{
+		<dfn>#ifdef _use_offset_</dfn>
+			cout &lt;&lt; *(array_of_strings+i) &lt;&lt; endl;
+		<dfn>#endif</dfn>
+		<dfn>#ifdef _use_array_</dfn>
+			cout &lt;&lt; array_of_strings[i] &lt;&lt; endl;
+		<dfn>#endif</dfn>
+		<dfn>#ifdef _use_increments_</dfn>
+			cout &lt;&lt; *array_of_strings++ &lt;&lt; endl;
+		<dfn>#endif</dfn>
+	}
+	<cite>/************************************************************************/</cite>
+</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</div></div><div id="CH_bb"></div><div id="CH_scoreapp"></div><script type="text/javascript">new Score('CH_scoreapp','/articles/score.cgi','D186b7Xj');</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder selected articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/articles/">Articles</a></b></h3>
+<ul>
+<li><a href="/articles/algorithms/">Algorithms</a></li><li><a href="/articles/cpp11/">C++ 11</a></li><li><a href="/articles/graphics/">Graphics and multimedia</a></li><li><a href="/articles/howto/">How-To</a></li><li><a href="/articles/language/">Language Features</a></li><li><a href="/articles/linux/">Unix/Linux programming</a></li><li><a href="/articles/sourcecode/">Source Code</a></li><li><a href="/articles/standard_library/">Standard Library</a></li><li><a href="/articles/tips/">Tips and Tricks</a></li><li><a href="/articles/tools/">Tools and Libraries</a></li><li><a href="/articles/visualcpp/">Visual C++</a></li><li><a href="/articles/winapi/">Windows API</a></li></ul>
+</div>
+<div id="I_subnav"></div>
+</div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Farticles%2FD186b7Xj%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+onSession(function(us) {
+		document.getElementById('I_subnav').innerHTML=
+			us.ok?
+				'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul>'+
+				'<li><a href="/articles/myitems.cgi">My items</a></li>'+
+				(us.auth(32768)?'<li><a href="/articles/adminitems.cgi">Admin items</a></li>':'')+
+				'</ul></div>'
+			:'';
+	}); onSession(function (us) {
+		var el=document.getElementById('CH_bb'); el.innerHTML='';
+		if ( (us.auth(32768)) || ((us.uniqid=='j37oGNh0')&&(us.auth(128))) ) {
+			el.appendChild(btn('Edit article','Edit this version of the article','edit','/articles/edit.cgi?a=D186b7Xj'));
+	
+			if (us.auth(32768)) {
+				el.appendChild(btn('Delete article','Delete this article','delete','javascript:artdel()'));
+			}
+	
+		}
+	});
+	function artdel() { if (confirm('WARNING: You are about to delete this page. Confirm?')) window.location='/articles/delete.cgi?a=D186b7Xj'; }
+	ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

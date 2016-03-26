@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Need help with operator+ !! - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/general/">General C++ Programming</a></li>
+<li class="here">Need help with operator+ !!</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico question" title="question">&nbsp;</div><div class="C_ico solved" title="solved">&nbsp;</div> Need help with operator+ !!</h3><span id="CH_edttl"></span><span class="rootdatPost" title="182869,root,0,-1,7,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg895629"><span title="895629,199181,1023,23,1"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg895629" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmad57574721" title="Sun, 17 Jan 2016 20:05:59 +0000"></span><script type="text/javascript">WhenId('CH_zTmad57574721');</script><noscript>Jan 17, 2016 at 8:05pm UTC</noscript></div>
+<div class="dwho"><a href="/user/whyunomad/"><b>whyunomad</b> (23)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i895629">
+int operator+ function returns an address i think, anybody knows why? <br>
+I need to add two objects and return int.<br>
+<br>
+<br>
+Here is the code<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;iostream&gt;</dfn>
+
+<var>using</var> <var>namespace</var> std;
+
+<var>class</var> T
+{
+    <var>int</var> one,two;
+
+<var>public</var>:
+    T(<var>int</var> one = 2, <var>int</var> two = 1)
+    {
+        cout &lt;&lt; one &lt;&lt; <kbd>"/"</kbd> &lt;&lt; two &lt;&lt; endl;
+    }
+
+    <var>int</var> <var>operator</var>+(T s)
+    {
+        <var>int</var> x = (one/two) + (s.one/s.two);
+        cout &lt;&lt; x;
+        <var>return</var> x;
+    }
+
+};
+
+<var>int</var> main()
+{
+    T one(7,5);
+    T two;
+    <var>int</var> i = one + two;
+    <var>return</var> 0;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn895629"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg895633"><span title="895633,18360,1023,13765,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg895633" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmc9ea7596c8" title="Sun, 17 Jan 2016 20:18:17 +0000"></span><script type="text/javascript">WhenId('CH_zTmc9ea7596c8');</script><noscript>Jan 17, 2016 at 8:18pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Disch/"><b>Disch</b> (13765)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i895633">
+It does not return an address, it returns an int.<br>
+<br>
+The problem is you never initialize the 'one' and 'two' members of your T class.<br>
+<br>
+This is hard to see because you gave 3 different things the same name, so I'm going to rename your vars for this example.  Note that the below code is 100% identical to yours, apart from the changed names:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;iostream&gt;</dfn>
+
+<var>using</var> <var>namespace</var> std;
+
+<var>class</var> T
+{
+    <var>int</var> one,two;
+
+<var>public</var>:
+    T(<var>int</var> a = 2, <var>int</var> b = 1)
+    {
+        <cite>// note that you are printing parameters 'a' and 'b' here, and not your</cite>
+        <cite>//   member vars 'one' and 'two'.</cite>
+        cout &lt;&lt; a &lt;&lt; <kbd>"/"</kbd> &lt;&lt; b &lt;&lt; endl;
+        
+        <cite>// also note that you do not initialize 'one' and 'two' to anything... so</cite>
+        <cite>//  those vars are filled with random garbage.</cite>
+    }
+
+    <var>int</var> <var>operator</var>+(T s)
+    {
+        <cite>// note again, since 'one' and 'two' never were initialized, they have garbage.</cite>
+        <cite>//   so here, 'x' is also going to be garbage</cite>
+        <var>int</var> x = (one/two) + (s.one/s.two);
+        cout &lt;&lt; x;
+        <var>return</var> x;
+    }
+
+};
+
+<var>int</var> main()
+{
+    T foo(7,5);
+    T bar;
+    <var>int</var> i = foo + bar;
+    <var>return</var> 0;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm1758c1f041" title="Sun, 17 Jan 2016 20:19:04 +0000"></span><script type="text/javascript">WhenId('CH_zTm1758c1f041');</script><noscript>Jan 17, 2016 at 8:19pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn895633"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg895634"><span title="895634,199181,1023,23,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg895634" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm1e0a5a3001" title="Sun, 17 Jan 2016 20:26:45 +0000"></span><script type="text/javascript">WhenId('CH_zTm1e0a5a3001');</script><noscript>Jan 17, 2016 at 8:26pm UTC</noscript></div>
+<div class="dwho"><a href="/user/whyunomad/"><b>whyunomad</b> (23)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i895634">
+Oh okay <b>Disch</b> , now i see... so all i need to do is just :<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br></code></pre></td>
+<td class="source"><pre><code><var>this</var>-&gt; one = one;
+<var>this</var>-&gt; two = two;</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+in the default constructor ? 
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm2d58ad0287" title="Sun, 17 Jan 2016 20:33:54 +0000"></span><script type="text/javascript">WhenId('CH_zTm2d58ad0287');</script><noscript>Jan 17, 2016 at 8:33pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn895634"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg895637"><span title="895637,49329,1023,6375,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg895637" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm12e12d670f" title="Sun, 17 Jan 2016 20:35:04 +0000"></span><script type="text/javascript">WhenId('CH_zTm12e12d670f');</script><noscript>Jan 17, 2016 at 8:35pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Moschops/"><b>Moschops</b> (6375)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i895637">
+Do yourself a favour; don't name your parameters the same as the member variables.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br></code></pre></td>
+<td class="source"><pre><code><var>public</var>:
+    T(<var>int</var> first_input_value, <var>int</var> second_input_value)
+    {
+       one  = first_input_value;
+       two = second_input_value;
+    }</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn895637"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg895689"><span title="895689,88654,1023,4208,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg895689" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmdc53d2e4b9" title="Mon, 18 Jan 2016 03:04:15 +0000"></span><script type="text/javascript">WhenId('CH_zTmdc53d2e4b9');</script><noscript>Jan 18, 2016 at 3:04am UTC</noscript></div>
+<div class="dwho"><a href="/user/TheIdeasMan/"><b>TheIdeasMan</b> (4208)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i895689">
+Hi,<br>
+<br>
+Also avoid naming your class <span class="auto"><code class="source">T</code></span> <br>
+<br>
+ <span class="auto"><code class="source">T</code></span> is often used as type parameter for template programming, so IMO it would be good to not see it being used like you have it.<br>
+<br>
+Consider separating the class declaration and it's implementation in to separate files, .hpp and .cpp .<br>
+<br>
+Consider using a member initialisation list instead of assignment in your constructor.<br>
+<br>
+Don't have <span class="auto"><code class="source"><var>using</var> <var>namespace</var> std;</code></span> ,especially in header files. Just put <span class="auto"><code class="source">std::</code></span> before each std thing, it's the best way, all the experts do that.<br>
+<br>
+You can Google these things :+)
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn895689"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg895861"><span title="895861,199181,1023,23,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg895861" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmdff34ea116" title="Mon, 18 Jan 2016 19:49:59 +0000"></span><script type="text/javascript">WhenId('CH_zTmdff34ea116');</script><noscript>Jan 18, 2016 at 7:49pm UTC</noscript></div>
+<div class="dwho"><a href="/user/whyunomad/"><b>whyunomad</b> (23)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i895861">
+Oh thanks <b>Moschops</b>, i don't know why i name them the same always.<br>
+<br>
+<b>TheIdeasMan</b> thanks a lot for helpful advices. I never understood why it is bad to use <span class="auto"><code class="source"><var>using</var> <var>namespace</var> std;</code></span> ? Is it like interrupting something or? 
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn895861"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg895873"><span title="895873,151681,1023,2488,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg895873" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmae745c2f3f" title="Mon, 18 Jan 2016 21:31:08 +0000"></span><script type="text/javascript">WhenId('CH_zTmae745c2f3f');</script><noscript>Jan 18, 2016 at 9:31pm UTC</noscript></div>
+<div class="dwho"><a href="/user/TarikNeaj/"><b>TarikNeaj</b> (2488)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i895873">
+<table class="quote"><tr><td class="qd">You can Google these things :+)</td></tr></table>
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn895873"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div class="rootbtnNew"></div><div id="CH_insNew"></div><div id="CH_reply">Registered users can post here. <a href="/user/">Sign in or register</a> to post.</div><div id="CH_subscription"></div><div class="rootedtNew"></div><script type="text/javascript">new for_PostList(182869,0,199181,1,'CH_PostList','CH_subscription','CH_reply','CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+<script type="text/javascript">
+    google_ad_client = "ca-pub-1444228343479937";
+    google_ad_slot = "9701143201";
+    google_ad_width = 728;
+    google_ad_height = 90;
+</script>
+<!-- leaderboard -->
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li><a href="/forum/beginner/"><b>Beginners</b></a></li><li><a href="/forum/windows/"><b>Windows Programming</b></a></li><li><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li class="selected"><a href="/forum/general/"><b>General C++ Programming</b></a></li><li><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Fgeneral%2F182869%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

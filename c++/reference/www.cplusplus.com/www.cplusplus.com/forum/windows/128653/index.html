@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>loading dll issue - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/windows/">Windows Programming</a></li>
+<li class="here">loading dll issue</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico solved" title="solved">&nbsp;</div> loading dll issue</h3><span id="CH_edttl"></span><span class="rootdatPost" title="128653,root,0,-1,6,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg695163"><span title="695163,118079,1023,56,1"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg695163" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTme2783d7c8d" title="Wed, 09 Apr 2014 15:24:24 +0000"></span><script type="text/javascript">WhenId('CH_zTme2783d7c8d');</script><noscript>Apr 9, 2014 at 3:24pm UTC</noscript></div>
+<div class="dwho"><a href="/user/herrybiscuit/"><b>herrybiscuit</b> (56)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i695163">
+so i was using a plugin system from this article: cplusplus.com/articles/48TbqMoL in my program using sdl2. i created a dll plugin to test the program and when i run the program using the dll the program's console starts printing a bunch of random strings and then crashes. i can't find any errors in the code and when i debugged the dll was loaded and all of the functions were too but when i call a function that returns a string it crashes. so all i can thing of that is causing this issue is a compiling error.<br>
+<br>
+here is the code:<br>
+<br>
+main.cpp:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br>59<br>60<br>61<br>62<br>63<br>64<br>65<br>66<br>67<br>68<br>69<br>70<br>71<br>72<br>73<br>74<br>75<br>76<br>77<br>78<br>79<br>80<br>81<br>82<br>83<br>84<br>85<br>86<br>87<br>88<br>89<br>90<br>91<br>92<br>93<br>94<br>95<br>96<br>97<br>98<br>99<br>100<br>101<br>102<br>103<br>104<br>105<br>106<br>107<br>108<br>109<br>110<br>111<br>112<br>113<br>114<br>115<br>116<br>117<br>118<br>119<br>120<br>121<br>122<br>123<br>124<br>125<br>126<br>127<br>128<br>129<br>130<br>131<br>132<br>133<br>134<br>135<br>136<br>137<br>138<br>139<br>140<br>141<br>142<br>143<br>144<br>145<br>146<br>147<br>148<br>149<br>150<br>151<br>152<br>153<br>154<br>155<br>156<br>157<br>158<br>159<br>160<br>161<br>162<br>163<br>164<br>165<br>166<br>167<br>168<br>169<br>170<br>171<br>172<br>173<br>174<br>175<br>176<br>177<br>178<br>179<br>180<br>181<br>182<br>183<br>184<br>185<br>186<br>187<br>188<br>189<br>190<br>191<br>192<br>193<br>194<br>195<br>196<br>197<br>198<br>199<br>200<br>201<br>202<br>203<br>204<br>205<br>206<br>207<br>208<br>209<br>210<br>211<br>212<br>213<br>214<br>215<br>216<br>217<br>218<br>219<br>220<br>221<br>222<br>223<br>224<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;SDL.h&gt;</dfn>
+<dfn>#include &lt;lua.hpp&gt;</dfn>
+<dfn>#include &lt;iostream&gt;</dfn>
+<dfn>#include &lt;cstdlib&gt;</dfn>
+<dfn>#include &lt;ctime&gt;</dfn>
+<dfn>#include &lt;Windows.h&gt;</dfn>
+<dfn>#include &lt;vector&gt;</dfn>
+<dfn>#include &lt;memory&gt;</dfn>
+
+<dfn>#include "conio.h"</dfn>
+<dfn>#include "game.h"</dfn>
+<dfn>#include "LTimer.h"</dfn>
+<dfn>#include "modbase.hpp"</dfn>
+
+<var>using</var> <var>namespace</var> std;
+
+game* g_game = <var>new</var> game;
+
+LTimer capTimer;
+
+<var>const</var> <var>int</var> FPS = 60;
+<var>int</var> SCREEN_TICK_PER_FRAME = 1000 / FPS;
+
+<cite>// Load the objects from the plugin folder.</cite>
+<cite>//</cite>
+<cite>// Takes as a parameter a reference to a list of modules,</cite>
+<cite>// which will be emptied and then refilled with handles to</cite>
+<cite>// the modules loaded. These should be freed with the</cite>
+<cite>// FreeLibrary() after use.</cite>
+<cite>//</cite>
+<cite>// Returns a list of Base*, contained in a smart pointer</cite>
+<cite>// to ease memory deallocation and help prevent memory</cite>
+<cite>// leaks.</cite>
+std::vector&lt;std::unique_ptr&lt;ModBase&gt;&gt; getPlugins(std::vector&lt;HINSTANCE&gt;&amp; modules) {
+	<cite>// A temporary structure to return.</cite>
+	std::vector&lt;std::unique_ptr&lt;ModBase&gt;&gt; ret;
+	<cite>// empty the modules list passed</cite>
+	modules.clear();
+
+	<cite>// Find the files contained in the 'plugins' folder</cite>
+	WIN32_FIND_DATA fileData;
+	HANDLE fileHandle = FindFirstFile(R<kbd>"(mods\*.dll)"</kbd>, &amp;fileData);
+
+	<var>if</var> (fileHandle == (<var>void</var>*)ERROR_INVALID_HANDLE ||
+		fileHandle == (<var>void</var>*)ERROR_FILE_NOT_FOUND) {
+		<cite>// If we couldn't find any plugins, quit gracefully,</cite>
+		<cite>// returning an empty structure.</cite>
+		<var>return</var> std::vector&lt;std::unique_ptr&lt;ModBase&gt;&gt;();
+	}
+
+	<cite>// Loop over every plugin in the folder and store in our</cite>
+	<cite>// temporary return list</cite>
+	<var>do</var> {
+		<cite>// Define the function types for what we are retrieving</cite>
+		<var>typedef</var> std::unique_ptr&lt;ModBase&gt;(__cdecl *ObjProc)(<var>void</var>);
+		<var>typedef</var> std::string(__cdecl *NameProc)(<var>void</var>);
+		<var>typedef</var> <var>void</var>(__cdecl *InitProc)(<var>void</var>);
+
+		<cite>// Load the library</cite>
+		HINSTANCE mod = LoadLibrary((R<kbd>"(mods\)"</kbd> + std::string(fileData.cFileName)).c_str());
+
+		<var>if</var> (!mod) {
+			<cite>// Couldn't load the library, cleaning module list and quitting.</cite>
+			<var>for</var> (HINSTANCE hInst : modules)
+				FreeLibrary(hInst);
+			<var>throw</var> std::runtime_error(<kbd>"Library "</kbd> + std::string(fileData.cFileName) + <kbd>" wasn't loaded successfully!"</kbd>);
+		}
+
+		<cite>// Get the function and the class exported by the DLL.</cite>
+		<cite>// If you aren't using the MinGW compiler, you may need to adjust</cite>
+		<cite>// this to cope with name mangling (I haven't gone into this here,</cite>
+		<cite>// look it up if you want).</cite>
+		ObjProc objFunc = (ObjProc)GetProcAddress(mod, <kbd>"getObj"</kbd>);
+		NameProc nameFunc = (NameProc)GetProcAddress(mod, <kbd>"getName"</kbd>);
+		InitProc initFunc = (InitProc)GetProcAddress(mod, <kbd>"initDLL"</kbd>);
+
+		<var>if</var> (!objFunc || !nameFunc || !initFunc)
+			<var>throw</var> std::runtime_error(<kbd>"Invalid Plugin DLL: both 'getObj' , 'getName' and 'init' must be defined."</kbd>);
+
+		<cite>// push the objects and modules into our vectors</cite>
+		ret.push_back(objFunc());
+		modules.push_back(mod);
+
+		clog &lt;&lt; nameFunc() &lt;&lt; endl;
+		initFunc();
+
+	} <var>while</var> (FindNextFile(fileHandle, &amp;fileData));
+
+	clog &lt;&lt; endl;
+
+	<cite>// Close the file when we are done</cite>
+	FindClose(fileHandle);
+	<var>return</var> ret;
+}
+
+<cite>//return a random string from a list of strings</cite>
+string getRandStr()
+{
+	<var>int</var> r = rand() % 9 + 1;
+	string returnStr;
+
+	<var>switch</var> (r)
+	{
+	<var>case</var> 1:
+		returnStr = <kbd>"Spacey things!"</kbd>;
+		<var>break</var>;
+	<var>case</var> 2:
+		returnStr = <kbd>"Like the Oregon Trail!"</kbd>;
+		<var>break</var>;
+	<var>case</var> 3:
+		returnStr = <kbd>"3.1415926% Death!"</kbd>;
+		<var>break</var>;
+	<var>case</var> 4:
+		returnStr = <kbd>"Herry has dysentery.."</kbd>;
+		<var>break</var>;
+	<var>case</var> 5:
+		returnStr = <kbd>"Explosions!"</kbd>;
+		<var>break</var>;
+	<var>case</var> 6:
+		returnStr = <kbd>"I\'m sorry, Dave. I\'m afraid I can\'t do that."</kbd>;
+		<var>break</var>;
+	<var>case</var> 7:
+		returnStr = <kbd>"It\'s a TRAP!"</kbd>;
+		<var>break</var>;
+	<var>case</var> 8:
+		returnStr = <kbd>"Mineing For Gold!"</kbd>;
+		<var>break</var>;
+	<var>case</var> 9:
+		returnStr = <kbd>"Get In The Ship!"</kbd>;
+		<var>break</var>;
+	<var>case</var> 10:
+		returnStr = <kbd>"Space For Dummies!"</kbd>;
+		<var>break</var>;
+	<var>default</var>:
+		returnStr = <kbd>"IMPOSSABREW"</kbd>;
+		<var>break</var>;
+	}
+	<var>return</var> returnStr;
+}
+
+<var>int</var> main(<var>int</var> argc, <var>char</var> *argv[])
+{
+	std::vector&lt;HINSTANCE&gt; modules;
+
+	<cite>// Enter a block, to prevent the Base objects being</cite>
+	<cite>// deallocated after the modules are freed (which will</cite>
+	<cite>// cause your program to crash)</cite>
+	{
+
+		<cite>//random seed</cite>
+		srand(time(0));
+		string name = getRandStr();
+		<cite>//init game</cite>
+		<var>if</var> (!g_game-&gt;g_init(name.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOW_SHOWN))
+		{
+			<cite>//best error ever</cite>
+			cout &lt;&lt; <kbd>"well shit..."</kbd> &lt;&lt; endl;
+			_getch();
+			<var>return</var> 0;
+		}
+		<var>else</var>
+		{
+			<cite>//load media</cite>
+			<var>if</var> (!g_game-&gt;g_loadMedia())
+			{
+				<cite>//throw this</cite>
+				cout &lt;&lt; <kbd>"well shit..."</kbd> &lt;&lt; endl;
+				_getch();
+				<var>return</var> 0;
+			}
+			<var>else</var>
+			{
+				std::vector&lt;std::unique_ptr&lt;ModBase&gt;&gt; objs;
+				<cite>// Load the plugins using our function</cite>
+				<var>try</var> {
+					objs = getPlugins(modules);
+				}
+				<var>catch</var> (<var>const</var> std::exception&amp; e) {
+					std::cerr &lt;&lt; <kbd>"Exception caught: "</kbd> &lt;&lt; e.what() &lt;&lt; std::endl;
+					_getch();
+					<var>return</var> 1;
+				}
+
+				<cite>//successful load!</cite>
+				cout &lt;&lt; <kbd>"-------------------------\nSuccessfully loaded!"</kbd> &lt;&lt; endl;
+
+				<var>while</var> (!g_game-&gt;g_getStop())
+				{
+					capTimer.start();
+
+					g_game-&gt;g_handleEvents();
+					g_game-&gt;g_update();
+
+					g_game-&gt;g_preRender();
+					g_game-&gt;g_render();
+
+					<var>for</var> (<var>auto</var>&amp; x : objs) 
+					{
+						x-&gt;update();
+						x-&gt;render();
+					}
+
+					g_game-&gt;g_aftRender();
+
+					<var>int</var> frameTicks = capTimer.getTicks();
+					<var>if</var> (frameTicks &lt; SCREEN_TICK_PER_FRAME)
+					{
+						SDL_Delay(SCREEN_TICK_PER_FRAME - frameTicks);
+					}
+				}
+			}
+		}
+
+		g_game-&gt;getFlieO();
+
+		<cite>//close program</cite>
+		<var>for</var> (HINSTANCE hInst : modules)
+			FreeLibrary(hInst);
+
+		<var>delete</var> g_game;
+		g_game = NULL;
+		<var>return</var> 0;
+	}
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+modbase.hpp:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br></code></pre></td>
+<td class="source"><pre><code><dfn>#ifndef __MODBASE_HPP_INCLUDED__</dfn>
+<dfn>#define __MODBASE_HPP_INCLUDED__</dfn>
+
+<dfn>#include &lt;memory&gt;</dfn>
+<dfn>#include &lt;string&gt;</dfn>
+
+<cite>// Test to see if we are building a DLL.</cite>
+<cite>// If we are, specify that we are exporting</cite>
+<cite>// to the DLL, otherwise don't worry (we</cite>
+<cite>// will manually import the functions).</cite>
+<dfn>#ifdef BUILD_DLL</dfn>
+<dfn>#define DLLAPI __declspec(dllexport)</dfn>
+<dfn>#else</dfn>
+<dfn>#define DLLAPI</dfn>
+<dfn>#endif </dfn><cite>// BUILD_DLL</cite>
+
+<cite>// This is the base class for the class</cite>
+<cite>// retrieved from the DLL. This is used simply</cite>
+<cite>// so that I can show how various types should</cite>
+<cite>// be retrieved from a DLL. This class is to</cite>
+<cite>// show how derived classes can be taken from</cite>
+<cite>// a DLL.</cite>
+<var>class</var> ModBase {
+<var>public</var>:
+	<var>virtual</var> ~ModBase() = <var>default</var>;
+
+	<cite>// Pure virtual function to render dll</cite>
+	<var>virtual</var> <var>void</var> render(<var>void</var>) = 0;
+
+	<cite>// Pure virtual function to update dll</cite>
+	<var>virtual</var> <var>void</var> update(<var>void</var>) = 0;
+};
+
+
+<cite>// DLL export funcs</cite>
+
+<cite>// Get an instance of the derived class</cite>
+<cite>// contained in the DLL.</cite>
+DLLAPI std::unique_ptr&lt;ModBase&gt; getObj(<var>void</var>);
+
+<cite>// Get the name of the plugin. This can</cite>
+<cite>// be used in various associated messages.</cite>
+DLLAPI std::string getName(<var>void</var>);
+
+<cite>//init the dll</cite>
+DLLAPI <var>void</var> initDLL(<var>void</var>);
+
+<dfn>#endif </dfn><cite>// __MODBASE_HPP_INCLUDED__ </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+mtestplugin.cpp:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include "stdafx.h"</dfn>
+<dfn>#include &lt;iostream&gt;</dfn>
+<dfn>#include &lt;cmath&gt;</dfn>
+<dfn>#include &lt;windows.h&gt;</dfn>
+<dfn>#include &lt;string&gt;</dfn>
+<dfn>#include "modbase.hpp"</dfn>
+
+<var>class</var> mtestplugin : <var>public</var> ModBase {
+<var>public</var>:
+	<var>void</var> render(<var>void</var>)
+	{
+	
+	}
+
+	<var>void</var> update(<var>void</var>)
+	{
+	
+	}
+};
+
+std::string getName(<var>void</var>) {
+	<var>return</var> std::string(<kbd>"a"</kbd>);
+}
+
+std::unique_ptr&lt;ModBase&gt; getObj(<var>void</var>) {
+	<var>return</var> std::unique_ptr&lt;ModBase&gt;(<var>new</var> mtestplugin);
+}
+
+<var>void</var> initDLL(<var>void</var>)
+{
+	std::cout &lt;&lt; <kbd>"hia"</kbd> &lt;&lt; std::endl;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+mtestplugin.def<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br></code></pre></td>
+<td class="source"><pre><code>LIBRARY mtestplugin
+EXPORTS
+  getObj
+  getName
+  initDLL</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+i have tried to fix this for weeks but nothing is working
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn695163"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg695219"><span title="695219,38387,1023,13301,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg695219" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmc0b09016a6" title="Wed, 09 Apr 2014 17:35:40 +0000"></span><script type="text/javascript">WhenId('CH_zTmc0b09016a6');</script><noscript>Apr 9, 2014 at 5:35pm UTC</noscript></div>
+<div class="dwho"><a href="/user/LB/"><b>LB</b> (13301)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i695219">
+The problem is your getObj and getName functions. The issue with using DLLs is that they have to be built by the same compiler and with the exact same settings. If you build the application and DLL in different mods (e.g. Debug vs Release) they will have different definitions of the standard types like std::string and such. This means that while your DLL's getName function returns one kind of std::string, your application interprets it as a different kind of std::string with a different memory layout.<br>
+<br>
+You must use types that will always remain the same between DLL and application regardless of compiler and/or build settings. Otherwise you will have to painstakingly track down which settings are different and make them the same.
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm6b6d3855b1" title="Wed, 09 Apr 2014 17:36:26 +0000"></span><script type="text/javascript">WhenId('CH_zTm6b6d3855b1');</script><noscript>Apr 9, 2014 at 5:36pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn695219"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg695265"><span title="695265,131601,1023,617,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg695265" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm391563fe2c" title="Wed, 09 Apr 2014 19:20:48 +0000"></span><script type="text/javascript">WhenId('CH_zTm391563fe2c');</script><noscript>Apr 9, 2014 at 7:20pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Avilius/"><b>Avilius</b> (617)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i695265">
+It's best to avoid the C++ STL altogether when making a DLL interface. If you want use it, by all means use it internally, but avoid it being used when trying to create an interface.<br>
+<br>
+Good:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br></code></pre></td>
+<td class="source"><pre><code><var>class</var> ToExport
+{
+    <var>public</var>:
+        <var>void</var> SetString(<var>const</var> <var>char</var>* newStr);
+        <var>const</var> <var>char</var>* GetString() <var>const</var>;
+    <var>private</var>:
+        <var>const</var> <var>char</var>* str;
+};</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Not Good:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;string&gt;</dfn>
+
+<var>class</var> ToExport
+{
+    <var>public</var>:
+        <var>void</var> SetString (<var>const</var> std::string &amp;newStr);
+        std::string GetString() <var>const</var>;
+    <var>private</var>:
+        std::string str;
+};</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTma2162fb985" title="Wed, 09 Apr 2014 19:21:26 +0000"></span><script type="text/javascript">WhenId('CH_zTma2162fb985');</script><noscript>Apr 9, 2014 at 7:21pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn695265"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg695275"><span title="695275,38387,1023,13301,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg695275" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTma8f0cde6f0" title="Wed, 09 Apr 2014 19:35:36 +0000"></span><script type="text/javascript">WhenId('CH_zTma8f0cde6f0');</script><noscript>Apr 9, 2014 at 7:35pm UTC</noscript></div>
+<div class="dwho"><a href="/user/LB/"><b>LB</b> (13301)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i695275">
+Another consideration is structure member padding, which can vary.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn695275"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg695333"><span title="695333,118079,1023,56,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg695333" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmc777cdc900" title="Wed, 09 Apr 2014 21:51:55 +0000"></span><script type="text/javascript">WhenId('CH_zTmc777cdc900');</script><noscript>Apr 9, 2014 at 9:51pm UTC</noscript></div>
+<div class="dwho"><a href="/user/herrybiscuit/"><b>herrybiscuit</b> (56)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i695333">
+i hate how the settings have to be exactly the same but ill just put it in the documentation for set up. thanks!
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn695333"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg695375"><span title="695375,131601,1023,617,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg695375" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmd6ce297144" title="Wed, 09 Apr 2014 23:23:07 +0000"></span><script type="text/javascript">WhenId('CH_zTmd6ce297144');</script><noscript>Apr 9, 2014 at 11:23pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Avilius/"><b>Avilius</b> (617)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i695375">
+Well it's something that really can't be helped due to the lack of a binary standard for C++. That's why it's preferred to use C for DLL interfacing.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn695375"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div class="rootbtnNew"></div><div id="CH_insNew"></div><div id="CH_reply">Topic archived. No new replies allowed.</div><div id="CH_subscription"></div><div class="rootedtNew"></div><script type="text/javascript">new for_PostList(128653,1,118079,1,'CH_PostList','CH_subscription','CH_reply','CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+<script type="text/javascript">
+    google_ad_client = "ca-pub-1444228343479937";
+    google_ad_slot = "9701143201";
+    google_ad_width = 728;
+    google_ad_height = 90;
+</script>
+<!-- leaderboard -->
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li><a href="/forum/beginner/"><b>Beginners</b></a></li><li class="selected"><a href="/forum/windows/"><b>Windows Programming</b></a></li><li><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li><a href="/forum/general/"><b>General C++ Programming</b></a></li><li><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Fwindows%2F128653%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

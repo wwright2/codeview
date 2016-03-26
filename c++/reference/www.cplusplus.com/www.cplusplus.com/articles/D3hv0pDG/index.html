@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Animated card game (Rummy), user vs. PC - C++ Articles</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/articles/">Articles</a></li>
+<li class="here">Animated card game (Rummy), user vs. PC</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div id="I_content">
+<div class="C_art">
+<div id="I_author">Published by <b><a href="/user/fun2code/" rel="author">fun2code</a></b></div>
+<div id="I_date">Dec 11, 2012 (last update: Dec 11, 2012)</div>
+<h1>Animated card game (Rummy), user vs. PC</h1>
+<div id="I_score">Score: 3.9/5 (50 votes)</div>
+<div id="I_stars"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-half.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"></div>
+<div id="I_content">
+This is another game which grew out of my effort to develop drag and drop objects for use in <br>
+<br>
+games, or as a gui element. The first was checkers. See that article in source codes here.<br>
+<br>
+I will offer a description of the gameplay first.<br>
+A description of the way I implemented the computers plays will follow.<br>
+<br>
+The game begins with an animated dealing of cards to both hands. The computers hand is visible to enable effective program testing. If you are playing, try to resist the urge to cheat by looking at your opponents hand!<br>
+<br>
+The user always starts the game by drawing from either the discard pile or the draw pile. <br>
+Simply click on the pile. A card will be dealt (animated).<br>
+<br>
+Next, user makes a play if he can, then discards one card to the discard pile.<br>
+Cards to be played/discarded are selected by clicking on the card. A blue stripe will appear along the left edge of each card selected. To unselect a card just click on it a 2nd time (selection toggles).<br>
+<br>
+To make a play after selecting cards simply click on an empty area and the cards will go there. Be carefull where you put them. They can wind up in the way of a lengthy discard pile, or your own hand if it gets long.All "piles" (ie draw, discard and both hands) are displayed "fanned out", so a large pile will take a lot of room.<br>
+<br>
+To discard, select a single card in your hand, then click on the discard pile. An alert will appear if you have more than one card selected.<br>
+<br>
+To draw multiple cards from the discard pile click on the deepest card in the pile that you wish to take. Note: There is a shortcoming here. If a player draws from the discard pile he must make a play and that play must use the bottom card drawn. The program does not check for this.<br>
+<br>
+The computer will take its turn automatically once you have ended your turn by discarding (always required). There are some animation pauses built in so that there is time to see the <br>
+<br>
+computer make a draw, then select cards, then make a play then finally discard.<br>
+<br>
+Screenshot during play: <IMG SRC="screenshot_a.jpg" alt="">
+<br>
+Each hand ends when a player discards his last card. Stats for the hand are shown:<br>
+<IMG SRC="screenshot_b.jpg" alt="">
+<br>
+The user clicks on the deck to start the next hand. The player ending the previous hand starts the next hand.<br>
+<br>
+The game goes to 500 points. All scoring is done automatically.<br>
+<br>
+*** Some description of the AI involved here ***<br>
+<br>
+The computer( aka C) first examines the discard pile for any plays it could make using those.<br>
+Flaw: C will draw down to the bottom card for any play. This is poor strategy.<br>
+<br>
+If C finds no play can be made from the cards in the discard pile it will draw.<br>
+C then makes any and all plays it can.<br>
+C does use some discretion in discarding. Point values are assigned to cards based on whether there is another of the same face value (save pairs) or suit (potential 3-kind) and whether <br>
+<br>
+discarding a card will make a play in the discard pile. C keeps the hand with the highest of this type of score.<br>
+<br>
+Several functions are used to support the computers plays. These are:<br>
+<br>
+Main function:<br>
+bool c_findPlay( const discardStack* p_ds = NULL );<br>
+<br>
+calls these functions:<br>
+int c_scorePlay( vector&lt;sf_pair&gt;& handVec );<br>
+bool c_find_3kind( vector&lt;sf_pair&gt;& handVec );<br>
+bool c_find_3straight( vector&lt;sf_pair&gt;& handVec );<br>
+bool c_find_addToExist( vector&lt;sf_pair&gt;& handVec );<br>
+<br>
+bool c_makePlay(void);// return assigned to c_start<br>
+bool c_drawCards(void);// return assigned to c_start<br>
+bool c_discard(void);// return assigned to c_start<br>
+<br>
+Finally, a link to a zip file containing all source files, images and an executable.<br>
+Unfortunately, the zip file would not upload with the required dlls in it (too big).<br>
+The reader will have to download these dll files from sfml.org (these are for v 1.6)<br>
+libgcc_s_dw2-1.dll<br>
+libstdc++-6.dll<br>
+sfml-system.dll<br>
+sfml-graphics.dll<br>
+sfml-window.dll<p>Attachments:
+	[<a href="cards.zip">cards.zip</a>]
+</p>
+</div></div><div id="CH_bb"></div><div id="CH_scoreapp"></div><script type="text/javascript">new Score('CH_scoreapp','/articles/score.cgi','D3hv0pDG');</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder selected articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/articles/">Articles</a></b></h3>
+<ul>
+<li><a href="/articles/algorithms/">Algorithms</a></li><li><a href="/articles/cpp11/">C++ 11</a></li><li><a href="/articles/graphics/">Graphics and multimedia</a></li><li><a href="/articles/howto/">How-To</a></li><li><a href="/articles/language/">Language Features</a></li><li><a href="/articles/linux/">Unix/Linux programming</a></li><li><a href="/articles/sourcecode/">Source Code</a></li><li><a href="/articles/standard_library/">Standard Library</a></li><li><a href="/articles/tips/">Tips and Tricks</a></li><li><a href="/articles/tools/">Tools and Libraries</a></li><li><a href="/articles/visualcpp/">Visual C++</a></li><li><a href="/articles/winapi/">Windows API</a></li></ul>
+</div>
+<div id="I_subnav"></div>
+</div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Farticles%2FD3hv0pDG%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+onSession(function(us) {
+		document.getElementById('I_subnav').innerHTML=
+			us.ok?
+				'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul>'+
+				'<li><a href="/articles/myitems.cgi">My items</a></li>'+
+				(us.auth(32768)?'<li><a href="/articles/adminitems.cgi">Admin items</a></li>':'')+
+				'</ul></div>'
+			:'';
+	}); onSession(function (us) {
+		var el=document.getElementById('CH_bb'); el.innerHTML='';
+		if ( (us.auth(32768)) || ((us.uniqid=='D80DSL3A')&&(us.auth(128))) ) {
+			el.appendChild(btn('Edit article','Edit this version of the article','edit','/articles/edit.cgi?a=D3hv0pDG'));
+	
+			if (us.auth(32768)) {
+				el.appendChild(btn('Delete article','Delete this article','delete','javascript:artdel()'));
+			}
+	
+		}
+	});
+	function artdel() { if (confirm('WARNING: You are about to delete this page. Confirm?')) window.location='/articles/delete.cgi?a=D3hv0pDG'; }
+	ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

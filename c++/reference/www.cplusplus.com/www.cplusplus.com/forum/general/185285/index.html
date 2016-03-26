@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>New Project - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/general/">General C++ Programming</a></li>
+<li class="here">New Project</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico default" title="post">&nbsp;</div> New Project</h3><span id="CH_edttl"></span><span class="rootdatPost" title="185285,root,0,-1,3,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg904844"><span title="904844,210836,1023,14,1"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg904844" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmb5085ea569" title="Tue, 23 Feb 2016 23:23:38 +0000"></span><script type="text/javascript">WhenId('CH_zTmb5085ea569');</script><noscript>Feb 23, 2016 at 11:23pm UTC</noscript></div>
+<div class="dwho"><a href="/user/theotherguy8883/"><b>theotherguy8883</b> (14)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i904844">
+Hello I am having more trouble with programming this one is with structures.<br>
+<br>
+I need to Write a program which uses a structure having the indicated member names to store the following data:<br>
+<br>
+Name (student name)<br>
+IDnum (student ID number)<br>
+Tests (an array of three test scores)<br>
+Average (average test score)<br>
+Grade (course grade)<br>
+The program will keep a list of three test scores for one student.  The program may prompt the user for the name, ID number, and test scores, or these may be assigned within the program.  The average test score will be calculated and stored in the average member of the structure.  The course grade will be assigned based on this scale:<br>
+<br>
+A 91 - 100<br>
+B 81 - 90<br>
+C 71 - 80<br>
+D 61 - 70<br>
+F 0 - 60<br>
+Store the course grade in the Grade member of the structure.  Display the student name, ID, average test score, and course grade on the screen.<br>
+<br>
+This is what I have so far but the output is always 122.<br>
+<br>
+// ConsoleApplication10.cpp : Defines the entry point for the console application.<br>
+//<br>
+<br>
+#include "stdafx.h"<br>
+#include &lt;iostream&gt;<br>
+#include &lt;string&gt;<br>
+<br>
+<br>
+using namespace std;<br>
+<br>
+<br>
+struct Grades<br>
+{<br>
+	string name;//Student's name<br>
+	int studentID; //Student's Identification Number<br>
+	double test [3];<br>
+	double average;<br>
+	char grade;<br>
+<br>
+};<br>
+<br>
+// Function Prototypes.<br>
+int GetGrades(int, int, int);<br>
+int FindAverage(int, int);<br>
+<br>
+<br>
+int main()<br>
+{<br>
+	Grades student;<br>
+<br>
+	Grades grd;<br>
+	//Get Student name<br>
+	cout &lt;&lt; "Enter the Student name :";<br>
+	cin.ignore();<br>
+	getline(cin, grd.name);<br>
+<br>
+	//Get Student's ID<br>
+	cout &lt;&lt; "Enter the Student's Identification Number: ";<br>
+	cin &gt;&gt; student.studentID;<br>
+<br>
+	//Get scores<br>
+	cout &lt;&lt; "Enter three test scores: ";<br>
+<br>
+<br>
+}<br>
+<br>
+int grade()// Determine letter grade of the average.<br>
+{<br>
+	const int numberOfGrades = 3;<br>
+<br>
+	int numberOfGrades, letterGrade;<br>
+	int totalPoints, average;<br>
+<br>
+	GetGrades(numberOfGrades, totalPoints, average); // Call GetGrades<br>
+<br>
+	while (totalPoints &gt;= 0)<br>
+	{<br>
+		if (totalPoints &gt;= 90 &amp;&amp; totalPoints == 100) // 90 and above<br>
+			letterGrade = 'A';<br>
+		else if (totalPoints &gt;= 80 &amp;&amp; totalPoints == 89) //80-89<br>
+			letterGrade = 'B';<br>
+		else if (totalPoints &gt;= 70 &amp;&amp; totalPoints == 79) //70-79<br>
+			letterGrade = 'C';<br>
+		else if (totalPoints &gt;= 60 &amp;&amp; totalPoints == 69) //60-69<br>
+			letterGrade = 'D';<br>
+		else if (totalPoints &gt;= 0 &amp;&amp; totalPoints == 59) //0-59<br>
+			letterGrade = 'F';<br>
+		<br>
+	}<br>
+	return 0;<br>
+}<br>
+<br>
+<br>
+int FindAverage(int numericGrade, int numberOfGrades)<br>
+{<br>
+	// Display the average.<br>
+	return (numericGrade) / numberOfGrades;<br>
+}<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm5b505ebeb6" title="Tue, 23 Feb 2016 23:24:11 +0000"></span><script type="text/javascript">WhenId('CH_zTm5b505ebeb6');</script><noscript>Feb 23, 2016 at 11:24pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn904844"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg904849"><span title="904849,210836,1023,14,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg904849" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm5bcbab71e8" title="Tue, 23 Feb 2016 23:53:26 +0000"></span><script type="text/javascript">WhenId('CH_zTm5bcbab71e8');</script><noscript>Feb 23, 2016 at 11:53pm UTC</noscript></div>
+<div class="dwho"><a href="/user/theotherguy8883/"><b>theotherguy8883</b> (14)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i904849">
+The biggest thing I need assistance with is using a structure to get an array that is entered and using the information to come up with the average 
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn904849"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg904963"><span title="904963,170565,1023,3,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg904963" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm30ad6056b9" title="Wed, 24 Feb 2016 13:03:09 +0000"></span><script type="text/javascript">WhenId('CH_zTm30ad6056b9');</script><noscript>Feb 24, 2016 at 1:03pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Kinyo356/"><b>Kinyo356</b> (3)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i904963">
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br>59<br>60<br>61<br>62<br>63<br>64<br>65<br>66<br>67<br>68<br>69<br>70<br>71<br>72<br>73<br>74<br>75<br>76<br>77<br>78<br>79<br>80<br>81<br>82<br>83<br>84<br></code></pre></td>
+<td class="source"><pre><code><cite>// ConsoleApplication10.cpp : Defines the entry point for the console application.</cite>
+<cite>//</cite>
+
+<cite>//#include "stdafx.h"</cite>
+<dfn>#include &lt;iostream&gt;</dfn>
+<dfn>#include &lt;string&gt;</dfn>
+
+
+<var>using</var> <var>namespace</var> std;
+
+
+<var>struct</var> Grades
+{
+string name;<cite>//Student's name</cite>
+<var>int</var> studentID; <cite>//Student's Identification Number</cite>
+<var>double</var> test [3];
+<var>double</var> average;
+<var>char</var> grade;
+
+};
+<cite>/* You can declare a array of structs like this :
+ Grades variable_name[array_size]; and access it with variable_name[index].member.
+ Example Grades details[4]; details[n].name;
+ Check your functions and where and when you call them.
+*/</cite>
+
+<cite>// Function Prototypes.</cite>
+<var>int</var> GetGrades(<var>int</var>, <var>int</var>, <var>int</var>);
+<var>int</var> FindAverage(<var>int</var>, <var>int</var>);
+
+
+<var>int</var> main()
+{
+Grades student;
+
+Grades grd;
+<cite>//Get Student name</cite>
+cout &lt;&lt; <kbd>"Enter the Student name :"</kbd>;
+cin.ignore();
+getline(cin, grd.name);
+
+<cite>//Get Student's ID</cite>
+cout &lt;&lt; <kbd>"Enter the Student's Identification Number: "</kbd>;
+cin &gt;&gt; student.studentID;
+
+<cite>//Get scores</cite>
+cout &lt;&lt; <kbd>"Enter three test scores: "</kbd>;
+
+
+}
+
+<var>int</var> grade()<cite>/* Try making this return a char of letterGrade instead of a int of zero and accept a variable of sum scores*/</cite>
+{
+<var>const</var> <var>int</var> numberOfGrades = 3;
+
+<var>int</var> <cite>/*numberOfGrades,*/</cite> letterGrade;
+<var>int</var> totalPoints, average;
+
+GetGrades(numberOfGrades, totalPoints, average); <cite>/* You are trying to call a function thats doesn't exist in the code*/</cite>
+
+<var>while</var> (totalPoints &gt;= 0)
+{
+<var>if</var> (totalPoints &gt;= 90 &amp;&amp; totalPoints == 100) <cite>// 90 and above</cite>
+letterGrade = <kbd>'A'</kbd>;
+<var>else</var> <var>if</var> (totalPoints &gt;= 80 &amp;&amp; totalPoints == 89) <cite>//80-89</cite>
+letterGrade = <kbd>'B'</kbd>;
+<var>else</var> <var>if</var> (totalPoints &gt;= 70 &amp;&amp; totalPoints == 79) <cite>//70-79</cite>
+letterGrade = <kbd>'C'</kbd>;
+<var>else</var> <var>if</var> (totalPoints &gt;= 60 &amp;&amp; totalPoints == 69) <cite>//60-69</cite>
+letterGrade = <kbd>'D'</kbd>;
+<var>else</var> <var>if</var> (totalPoints &gt;= 0 &amp;&amp; totalPoints == 59) <cite>//0-59</cite>
+letterGrade = <kbd>'F'</kbd>;
+
+}
+<var>return</var> 0;
+}
+
+
+<var>int</var> FindAverage(<var>int</var> numericGrade, <var>int</var> numberOfGrades)
+{
+<cite>/* Display the average(to what or where)*/</cite>
+<var>return</var> (numericGrade) / numberOfGrades;
+}
+</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn904963"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div class="rootbtnNew"></div><div id="CH_insNew"></div><div id="CH_reply">Registered users can post here. <a href="/user/">Sign in or register</a> to post.</div><div id="CH_subscription"></div><div class="rootedtNew"></div><script type="text/javascript">new for_PostList(185285,0,210836,0,'CH_PostList','CH_subscription','CH_reply','CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li><a href="/forum/beginner/"><b>Beginners</b></a></li><li><a href="/forum/windows/"><b>Windows Programming</b></a></li><li><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li class="selected"><a href="/forum/general/"><b>General C++ Programming</b></a></li><li><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Fgeneral%2F185285%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

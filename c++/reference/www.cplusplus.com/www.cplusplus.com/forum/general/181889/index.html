@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>System command with Two arguments - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/general/">General C++ Programming</a></li>
+<li class="here">System command with Two arguments</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico question" title="question">&nbsp;</div> System command with Two arguments</h3><span id="CH_edttl"></span><span class="rootdatPost" title="181889,root,0,-1,4,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg891823"><span title="891823,205298,255,2,1"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg891823" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmf4f9b1ed75" title="Tue, 29 Dec 2015 04:55:16 +0000"></span><script type="text/javascript">WhenId('CH_zTmf4f9b1ed75');</script><noscript>Dec 29, 2015 at 4:55am UTC</noscript></div>
+<div class="dwho"><a href="/user/Ketan/"><b>Ketan</b> (2)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i891823">
+Hello,<br>
+Upto best of my knowledge, I know that system command takes string as input. This string can be of any thing, which works fine into command prompt. For example, we can call an executable using system command passing full path of executable as argument.<br>
+<br>
+One thing I have observed is that system command does not work properly if argument string includes space into it. Solution for this is to use a double quote. For example, below works fine:<br>
+String strPathOfExe =  “\””  + “C:\Program Files\Myexe.exe” + “\””;<br>
+System(strPathOfExe);<br>
+<br>
+I am stuck in the case of executable asking for two arguments [One argument as specific word “YES” or “NO” and second argument as file path having space into it]. I have tried below but no success:<br>
+String strPathOfExe =  “\””  + “C:\Program Files\Myexe.exe” + “  ” +  “NO” + “ ” +  “C:\Program Files\MyFile.xml” + “\””;<br>
+System(strPathOfExe);<br>
+<br>
+Can anyone help me on this? I hope I have conveyed my problem statement. Feel free to ask for more details or further explanation if required.<br>
+Thanks in advance!<br>
+Regards<br>
+Ketan
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn891823"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg891829"><span title="891829,75536,1023,7545,-1"></span>
+<div class="box reported">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg891829" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm27c25970e8" title="Tue, 29 Dec 2015 07:49:24 +0000"></span><script type="text/javascript">WhenId('CH_zTm27c25970e8');</script><noscript>Dec 29, 2015 at 7:49am UTC</noscript></div>
+<div class="dwho"><a href="/user/JLBorges/"><b>JLBorges</b> (7545)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i891829">
+<tt>“C:/Program Files/MyFile.xml”</tt> would be parsed as two separate command line arguments: <tt>“C:/Program"</tt> and <tt>"Files/MyFile.xml"</tt>.<br>
+<br>
+Quote it:  <tt>"C:/\"Program Files/MyFile.xml\""</tt><br>
+<br>
+Example:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;iostream&gt;</dfn>
+<dfn>#include &lt;cstdlib&gt;</dfn>
+<dfn>#include &lt;string&gt;</dfn>
+
+<var>int</var> main()
+{
+    <var>const</var> <var>char</var> quote = <kbd>'"'</kbd> ;
+    <var>const</var> <var>char</var> space = <kbd>' '</kbd> ;
+    
+    <var>const</var> std::string root_path = <kbd>"C:/"</kbd> ; <cite>// favour using '/' as the directory separator (back-slash requires escape)</cite>
+
+    <var>const</var> std::string executable_name = <kbd>"Program Files (x86)/Microsoft Visual Studio 14.0/VC/bin/dumpbin.exe"</kbd> ;
+    <var>const</var> std::string program = root_path + quote + executable_name + quote ;
+    std::cout &lt;&lt; <kbd>"program: "</kbd> &lt;&lt; program &lt;&lt; <kbd>'\n'</kbd> ;
+    
+    <var>const</var> std::string arg1 = <kbd>"-dependents"</kbd> ;
+    std::cout &lt;&lt; <kbd>"   arg1: "</kbd> &lt;&lt; arg1 &lt;&lt; <kbd>'\n'</kbd> ;
+    
+    <var>const</var> std::string arg_file_name = <kbd>"Program Files (x86)/Microsoft Visual Studio 14.0/VC/bin/cl.exe"</kbd> ;
+    <var>const</var> std::string arg2 = root_path + quote + arg_file_name + quote ;
+    std::cout &lt;&lt; <kbd>"   arg2: "</kbd> &lt;&lt; arg2 &lt;&lt; <kbd>'\n'</kbd> ;
+
+   
+    <var>const</var> std::string cmd = program + space + arg1 + space + arg2 ;
+    std::cout &lt;&lt; <kbd>"command: "</kbd> &lt;&lt; cmd &lt;&lt; <kbd>"\n---------------\n\n"</kbd> &lt;&lt; std::flush ;    
+    
+    std::system( cmd.c_str() ) ;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<a href="http://rextester.com/NKP58090">http://rextester.com/NKP58090</a>
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn891829"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg892033"><span title="892033,205298,255,2,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892033" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm5129f3a5d7" title="Wed, 30 Dec 2015 07:54:14 +0000"></span><script type="text/javascript">WhenId('CH_zTm5129f3a5d7');</script><noscript>Dec 30, 2015 at 7:54am UTC</noscript></div>
+<div class="dwho"><a href="/user/Ketan/"><b>Ketan</b> (2)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892033">
+Hello,<br>
+<br>
+Thanks for this useful response.<br>
+<br>
+I would like to know whether system command does behave same as command line or not. <br>
+<br>
+I got it that “C:/Program Files/MyFile.xml” would be required to use it like "C:/\"Program Files/MyFile.xml\"".<br>
+<br>
+What need to be done if file path is like below:<br>
+“C:/Program Files/Test Folder Today/ My Test/MyFile.xml”<br>
+<br>
+<br>
+However, is it worth to use short path instead of this path? I could not find anything related to this for 64 bit.<br>
+<br>
+Thanks and Regards<br>
+Ketan
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn892033"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg892087"><span title="892087,75536,1023,7545,-1"></span>
+<div class="box reported">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892087" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm0a71da11d7" title="Wed, 30 Dec 2015 15:24:06 +0000"></span><script type="text/javascript">WhenId('CH_zTm0a71da11d7');</script><noscript>Dec 30, 2015 at 3:24pm UTC</noscript></div>
+<div class="dwho"><a href="/user/JLBorges/"><b>JLBorges</b> (7545)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892087">
+&gt; I would like to know whether system command does behave same as command line or not.<br>
+<br>
+Yes, same as the host environment's standard command processor.<br>
+For instance, in Unix, the command is passed to <tt>/bin/sh</tt>.  <br>
+<br>
+<br>
+&gt;  is it worth to use short path instead of this path?<br>
+<br>
+It is better not to rely on the relative path. If the root path is configurable, compose a fully qualified path from the root path and the relative path (as in the example above). Often, the root path for the program is specified as an environment variable or as an entry in a run control file.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn892087"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div class="rootbtnNew"></div><div id="CH_insNew"></div><div id="CH_reply">Topic archived. No new replies allowed.</div><div id="CH_subscription"></div><div class="rootedtNew"></div><script type="text/javascript">new for_PostList(181889,1,205298,0,'CH_PostList','CH_subscription','CH_reply','CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li><a href="/forum/beginner/"><b>Beginners</b></a></li><li><a href="/forum/windows/"><b>Windows Programming</b></a></li><li><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li class="selected"><a href="/forum/general/"><b>General C++ Programming</b></a></li><li><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Fgeneral%2F181889%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

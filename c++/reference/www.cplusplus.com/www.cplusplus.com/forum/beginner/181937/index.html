@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>How to make this simple? - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/beginner/">Beginners</a></li>
+<li class="here">How to make this simple?</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico question" title="question">&nbsp;</div><div class="C_ico solved" title="solved">&nbsp;</div> How to make this simple?</h3><span id="CH_edttl"></span><span class="rootdatPost" title="181937,root,0,-1,7,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg892020"><span title="892020,205424,1023,20,1"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892020" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm19729a53e2" title="Wed, 30 Dec 2015 06:20:46 +0000"></span><script type="text/javascript">WhenId('CH_zTm19729a53e2');</script><noscript>Dec 30, 2015 at 6:20am UTC</noscript></div>
+<div class="dwho"><a href="/user/GibsRey/"><b>GibsRey</b> (20)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892020">
+How to make my code simple? i wrote it for little practice but end up being a long enough code.<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br>59<br>60<br>61<br>62<br>63<br>64<br>65<br>66<br>67<br>68<br>69<br>70<br>71<br>72<br>73<br>74<br>75<br>76<br>77<br>78<br>79<br>80<br>81<br>82<br>83<br>84<br>85<br>86<br>87<br>88<br>89<br>90<br>91<br>92<br>93<br>94<br>95<br>96<br>97<br>98<br>99<br>100<br>101<br>102<br>103<br>104<br>105<br>106<br>107<br>108<br>109<br>110<br>111<br>112<br>113<br>114<br>115<br>116<br>117<br>118<br>119<br>120<br>121<br>122<br>123<br>124<br>125<br>126<br>127<br>128<br>129<br>130<br>131<br>132<br>133<br>134<br>135<br>136<br>137<br>138<br>139<br>140<br>141<br>142<br>143<br>144<br>145<br>146<br>147<br>148<br>149<br>150<br>151<br>152<br>153<br>154<br>155<br>156<br>157<br>158<br>159<br>160<br>161<br>162<br>163<br>164<br>165<br>166<br>167<br>168<br>169<br>170<br>171<br>172<br>173<br>174<br>175<br>176<br>177<br>178<br>179<br>180<br>181<br>182<br>183<br>184<br>185<br>186<br>187<br>188<br>189<br>190<br>191<br>192<br>193<br>194<br>195<br>196<br>197<br>198<br>199<br>200<br>201<br>202<br>203<br>204<br>205<br>206<br>207<br>208<br>209<br>210<br>211<br>212<br>213<br>214<br>215<br>216<br>217<br>218<br>219<br>220<br>221<br>222<br>223<br>224<br>225<br>226<br>227<br>228<br>229<br>230<br>231<br>232<br>233<br>234<br>235<br>236<br>237<br></code></pre></td>
+<td class="source"><pre><code><cite>///Bot Program :3</cite>
+<dfn>#include &lt;iostream&gt;</dfn>
+<dfn>#include &lt;exception&gt;</dfn>
+<dfn>#include &lt;fstream&gt;</dfn>
+
+<var>using</var> <var>namespace</var> std;
+
+<var>int</var> Calculator(<var>float</var>,<var>float</var>);
+<var>int</var> CalcExtra1OP(<var>float</var>,<var>float</var>,<var>float</var>);
+<var>int</var> CalcExtra2OP(<var>float</var>,<var>float</var>,<var>float</var>);
+<var>void</var> BDataEngine();
+
+<var>float</var> Num1,Num2,Num3;
+
+<var>int</var> main()
+{
+<var>bool</var> extcho;
+extcho = <var>true</var>;
+<var>while</var>(extcho){
+    cout &lt;&lt; <kbd>"-----------------------------WELCOME TO BOT PROGRAM-----------------------------"</kbd> &lt;&lt; endl;
+    cout &lt;&lt; <kbd>"\n Here I will give you some choices to choose,\nplease choose one :) \n"</kbd>;
+    cout &lt;&lt; <kbd>"1.Calculator Program.\n2.Biodata Engine\n0.Exit BOT Program\n\n"</kbd>;
+    <var>int</var> MChoice;
+    <var>int</var> CalcNUMs;
+    <var>int</var> CalcOPRs;
+    cin &gt;&gt; MChoice;
+    cout &lt;&lt; <kbd>"The program runs:\n"</kbd>;
+    <var>switch</var> (MChoice){
+    <var>case</var> 1:
+    cout &lt;&lt; <kbd>"-----------------------------------CALCULATOR-----------------------------------\n"</kbd>;
+
+    cout &lt;&lt; <kbd>"Now How many numbers you want to calculate?\nchoose one\n2\n3\nYour Answer: "</kbd>;
+    cin &gt;&gt; CalcNUMs;
+     <var>if</var>(CalcNUMs == 2)
+    {
+        Calculator(Num1,Num2);
+        <var>break</var>;
+    }
+    <var>if</var>(CalcNUMs == 3){
+    cout &lt;&lt; <kbd>"Now How many Operator you want to insert?\nChoose one\n1\n2\nYour Answer: "</kbd>;
+    cin &gt;&gt; CalcOPRs;
+    <var>if</var>(CalcOPRs == 1){CalcExtra1OP(Num1,Num2,Num3); <var>break</var>;}
+    <var>if</var>(CalcOPRs == 2){CalcExtra2OP(Num1,Num2,Num3); <var>break</var>;}
+    }
+    <var>if</var>(CalcNUMs ==1)
+    {
+    cout &lt;&lt; <kbd>"You can't calculate one number -_-"</kbd>; <var>break</var>;
+    }
+    <var>else</var>
+    {
+    cout &lt;&lt; <kbd>"that's a too much Numbers, sorry I can't Calculate that much :("</kbd>; <var>break</var>;
+    }
+    <var>case</var> 2:
+    cout &lt;&lt; <kbd>"---------------------------------Biodata Engine---------------------------------\n"</kbd>;
+    cout &lt;&lt; <kbd>"Biodata engine is a program that will create a file that contains your biodata,\
+    \n you can chose what is the file extension later in the program ;)"</kbd> &lt;&lt; endl;
+    BDataEngine();
+
+    <var>break</var>;
+    <var>case</var> 0:
+    cout &lt;&lt; <kbd>"Good Bye!"</kbd>;
+    extcho = <var>false</var>;
+
+    <var>break</var>;
+
+}
+}
+<var>while</var>(extcho = <var>false</var>){terminate;}
+}
+
+<var>int</var> Calculator(<var>float</var>,<var>float</var>)
+{
+    <var>int</var> CalcCho;
+    cout &lt;&lt; <kbd>"\nOkay Now Input Two Numbers\nNumber1: "</kbd>;
+    cin &gt;&gt; Num1;
+    cout &lt;&lt; <kbd>"\nNumber2: "</kbd>;
+    cin &gt;&gt; Num2;
+    cout &lt;&lt; <kbd>"Now choose the operator:\n1.Addition\n2.Substraction\n3.Multiplication\n4.Division\n\nYour Answer: "</kbd>;
+    cin &gt;&gt; CalcCho;
+    <var>switch</var>(CalcCho){
+        <var>case</var> 1:
+        cout &lt;&lt; <kbd>"The Result is "</kbd> &lt;&lt;(Num1+Num2);
+        <var>break</var>;
+        <var>case</var> 2:
+        cout &lt;&lt; <kbd>"The Result is "</kbd> &lt;&lt;(Num1-Num2);
+        <var>break</var>;
+        <var>case</var> 3:
+        cout &lt;&lt; <kbd>"The Result is "</kbd> &lt;&lt;(Num1*Num2);
+        <var>break</var>;
+        <var>case</var> 4:
+        cout &lt;&lt; <kbd>"The Result is "</kbd> &lt;&lt;(Num1/Num2);
+        <var>break</var>;
+        <var>default</var>:
+        cout &lt;&lt; <kbd>"Can u see my fucking instruction said number beetween 1-4?"</kbd>;
+        terminate;
+    }
+    }
+<var>int</var> CalcExtra1OP(<var>float</var>,<var>float</var>,<var>float</var>)
+{
+    <var>int</var> CalcCho;
+    cout &lt;&lt; <kbd>"Now, you insert 3 numbers to operate with\nNumber1: "</kbd>;
+    cin &gt;&gt; Num1;
+    cout &lt;&lt; <kbd>"\nNumber2: "</kbd>;
+    cin &gt;&gt; Num2;
+    cout &lt;&lt; <kbd>"\nNumber3: "</kbd>;
+    cin &gt;&gt; Num3;
+  cout &lt;&lt; <kbd>"Now choose the operator:\n1.Addition\n2.Substraction\n3.Multiplication\n4.Division\n\nYour Answer: "</kbd>;
+    cin &gt;&gt; CalcCho;
+    <var>switch</var>(CalcCho){
+        <var>case</var> 1:
+        cout &lt;&lt; <kbd>"The Result is "</kbd> &lt;&lt;(Num1+Num2+Num3);
+        <var>break</var>;
+        <var>case</var> 2:
+        cout &lt;&lt; <kbd>"The Result is "</kbd> &lt;&lt;(Num1-Num2-Num3);
+        <var>break</var>;
+        <var>case</var> 3:
+        cout &lt;&lt; <kbd>"The Result is "</kbd> &lt;&lt;(Num1*Num2*Num3);
+        <var>break</var>;
+        <var>case</var> 4:
+        cout &lt;&lt; <kbd>"The Result is "</kbd> &lt;&lt;(Num1/Num2/Num3);
+        <var>break</var>;
+        <var>default</var>:
+        cout &lt;&lt; <kbd>"Can u see my fucking instruction said number beetween 1-4?"</kbd>;
+        terminate;
+    }
+
+}
+<var>int</var> CalcExtra2OP(<var>float</var>,<var>float</var>,<var>float</var>)
+{
+    <var>int</var> CalcCho;
+    <var>int</var> CalcCho2;
+     cout &lt;&lt; <kbd>"Now, you insert 3 numbers to operate with\nNumber1: "</kbd>;
+    cin &gt;&gt; Num1;
+    cout &lt;&lt; <kbd>"\nNumber2: "</kbd>;
+    cin &gt;&gt; Num2;
+    cout &lt;&lt; <kbd>"\nNumber3: "</kbd>;
+    cin &gt;&gt; Num3;
+    cout &lt;&lt; <kbd>"Now choose the first operator:\n1.Addition\n2.Substraction\n3.Multiplication\n4.Division\n\nYour Answer: "</kbd>;
+    cin &gt;&gt; CalcCho;
+    cout &lt;&lt; <kbd>"Now choose the second operator:\n1.Addition\n2.Substraction\n3.Multiplication\n4.Division\n\nYour Answer: "</kbd>;
+    cin &gt;&gt; CalcCho2;
+    cout &lt;&lt; <kbd>"\n"</kbd> &lt;&lt; endl;
+    <var>if</var>(CalcCho == 1){
+    <var>if</var>(CalcCho2 == 1){cout &lt;&lt; Num1 &lt;&lt; <kbd>" + "</kbd> &lt;&lt; Num2 &lt;&lt; <kbd>" + "</kbd> &lt;&lt; Num3 &lt;&lt; <kbd>" = "</kbd>;
+                      cout &lt;&lt; Num1 + Num2 + Num3;
+    }
+    <var>if</var>(CalcCho2 == 2){cout &lt;&lt; Num1 &lt;&lt; <kbd>" + "</kbd> &lt;&lt; Num2 &lt;&lt; <kbd>" - "</kbd> &lt;&lt; Num3 &lt;&lt; <kbd>" = "</kbd>;
+                      cout &lt;&lt; Num1 + Num2 - Num3;
+    }
+    <var>if</var>(CalcCho2 == 3){cout &lt;&lt; Num1 &lt;&lt; <kbd>" + "</kbd> &lt;&lt; Num2 &lt;&lt; <kbd>" * "</kbd> &lt;&lt; Num3 &lt;&lt; <kbd>" = "</kbd>;
+                      cout &lt;&lt; Num1 + (Num2 * Num3);
+    }
+    <var>if</var>(CalcCho2 == 4){cout &lt;&lt; Num1 &lt;&lt; <kbd>" + "</kbd> &lt;&lt; Num2 &lt;&lt; <kbd>" / "</kbd> &lt;&lt; Num3 &lt;&lt; <kbd>" = "</kbd>;
+                      cout &lt;&lt; Num1 + (Num2 / Num3);
+    }
+    }
+    <var>if</var>(CalcCho == 2){
+    <var>if</var>(CalcCho2 == 1){cout &lt;&lt; Num1 &lt;&lt; <kbd>" - "</kbd> &lt;&lt; Num2 &lt;&lt; <kbd>" + "</kbd> &lt;&lt; Num3 &lt;&lt; <kbd>" = "</kbd>;
+                      cout &lt;&lt; Num1 - Num2 + Num3;
+    }
+    <var>if</var>(CalcCho2 == 2){cout &lt;&lt; Num1 &lt;&lt; <kbd>" - "</kbd> &lt;&lt; Num2 &lt;&lt; <kbd>" - "</kbd> &lt;&lt; Num3 &lt;&lt; <kbd>" = "</kbd>;
+                      cout &lt;&lt; Num1 - Num2 - Num3;
+    }
+    <var>if</var>(CalcCho2 == 3){cout &lt;&lt; Num1 &lt;&lt; <kbd>" - "</kbd> &lt;&lt; Num2 &lt;&lt; <kbd>" * "</kbd> &lt;&lt; Num3 &lt;&lt; <kbd>" = "</kbd>;
+                      cout &lt;&lt; Num1 - (Num2 * Num3);
+    }
+    <var>if</var>(CalcCho2 == 4){cout &lt;&lt; Num1 &lt;&lt; <kbd>" - "</kbd> &lt;&lt; Num2 &lt;&lt; <kbd>" / "</kbd> &lt;&lt; Num3 &lt;&lt; <kbd>" = "</kbd>;
+                      cout &lt;&lt; Num1 - (Num2 / Num3);
+    }
+    }
+    <var>if</var>(CalcCho == 3){
+    <var>if</var>(CalcCho2 == 1){cout &lt;&lt; Num1 &lt;&lt; <kbd>" * "</kbd> &lt;&lt; Num2 &lt;&lt; <kbd>" + "</kbd> &lt;&lt; Num3 &lt;&lt; <kbd>" = "</kbd>;
+                      cout &lt;&lt; (Num1 * Num2) + Num3;
+    }
+    <var>if</var>(CalcCho2 == 2){cout &lt;&lt; Num1 &lt;&lt; <kbd>" * "</kbd> &lt;&lt; Num2 &lt;&lt; <kbd>" - "</kbd> &lt;&lt; Num3 &lt;&lt; <kbd>" = "</kbd>;
+                      cout &lt;&lt; (Num1 * Num2) - Num3;
+    }
+    <var>if</var>(CalcCho2 == 3){cout &lt;&lt; Num1 &lt;&lt; <kbd>" * "</kbd> &lt;&lt; Num2 &lt;&lt; <kbd>" * "</kbd> &lt;&lt; Num3 &lt;&lt; <kbd>" = "</kbd>;
+                      cout &lt;&lt; Num1 * (Num2 * Num3);
+    }
+    <var>if</var>(CalcCho2 == 4){cout &lt;&lt; Num1 &lt;&lt; <kbd>" * "</kbd> &lt;&lt; Num2 &lt;&lt; <kbd>" / "</kbd> &lt;&lt; Num3 &lt;&lt; <kbd>" = "</kbd>;
+                      cout &lt;&lt; Num1 * Num2 / Num3;
+    }
+    }
+    <var>if</var>(CalcCho == 4){
+     <var>if</var>(CalcCho2 == 1){cout &lt;&lt; Num1 &lt;&lt; <kbd>" / "</kbd> &lt;&lt; Num2 &lt;&lt; <kbd>" + "</kbd> &lt;&lt; Num3 &lt;&lt; <kbd>" = "</kbd>;
+                      cout &lt;&lt; (Num1 / Num2) + Num3;
+    }
+    <var>if</var>(CalcCho2 == 2){cout &lt;&lt; Num1 &lt;&lt; <kbd>" / "</kbd> &lt;&lt; Num2 &lt;&lt; <kbd>" - "</kbd> &lt;&lt; Num3 &lt;&lt; <kbd>" = "</kbd>;
+                      cout &lt;&lt; (Num1 / Num2) - Num3;
+    }
+    <var>if</var>(CalcCho2 == 3){cout &lt;&lt; Num1 &lt;&lt; <kbd>" / "</kbd> &lt;&lt; Num2 &lt;&lt; <kbd>" * "</kbd> &lt;&lt; Num3 &lt;&lt; <kbd>" = "</kbd>;
+                      cout &lt;&lt; Num1 / Num2 * Num3;
+    }
+    <var>if</var>(CalcCho2 == 4){cout &lt;&lt; Num1 &lt;&lt; <kbd>" / "</kbd> &lt;&lt; Num2 &lt;&lt; <kbd>" / "</kbd> &lt;&lt; Num3 &lt;&lt; <kbd>" = "</kbd>;
+                      cout &lt;&lt; Num1 / Num2 / Num3;
+    }
+    }
+}
+
+<var>void</var> BDataEngine()
+{
+    string Name;
+    <var>int</var> Gender;
+    <var>int</var> Birthdate;
+    <var>int</var> BirthMonth;
+    <var>int</var> BirthYear;
+    <var>int</var> age;
+    <var>int</var> fileEx;
+
+    cout &lt;&lt; <kbd>"Now please enter your name\nYour Answer: "</kbd>;
+    cin &gt;&gt; Name;
+    cout &lt;&lt; <kbd>"\nYour gender:\n1.Male\n2.Female\nYour answer: "</kbd>;
+    cin &gt;&gt; Gender;
+    cout &lt;&lt; <kbd>"How about your birth date?(just the date)\nYour answer: "</kbd>;
+    cin &gt;&gt; Birthdate;
+    cout &lt;&lt; <kbd>"Month?\nYour answer: "</kbd>;
+    cin &gt;&gt; BirthMonth;
+    cout &lt;&lt; <kbd>"Year?\nYour answer: "</kbd>;
+    cin &gt;&gt; BirthYear;
+    cout &lt;&lt; <kbd>"Even though i know your birth date i need to ask 'How old are you?'\nYour answer: "</kbd>;
+    cin &gt;&gt; age;
+    cout &lt;&lt; <kbd>"That's Enough now see in the same directory of this program there will be\n a file named 'Biodata.txt' with the file extension you wanted"</kbd>;
+    ofstream Data;
+    Data.open(<kbd>"Biodata.txt"</kbd>);
+    Data &lt;&lt; <kbd>"Name: "</kbd> &lt;&lt; Name &lt;&lt; endl;
+    Data &lt;&lt; <kbd>"Gender: "</kbd>;
+    <var>if</var>(Gender == 1)
+    {Data &lt;&lt; <kbd>"Male"</kbd> &lt;&lt; endl;}
+    <var>if</var>(Gender == 2)
+    {Data &lt;&lt; <kbd>"Female"</kbd> &lt;&lt; endl;}
+    Data &lt;&lt; <kbd>"Birth Date: "</kbd> &lt;&lt; Birthdate &lt;&lt; <kbd>"/"</kbd> &lt;&lt; BirthMonth &lt;&lt; <kbd>"/"</kbd> &lt;&lt; BirthYear &lt;&lt; endl;
+    Data &lt;&lt; <kbd>"Age: "</kbd> &lt;&lt; age &lt;&lt; endl;
+
+
+}
+</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn892020"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg892035"><span title="892035,120747,1023,379,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892035" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTme36df83e91" title="Wed, 30 Dec 2015 08:00:43 +0000"></span><script type="text/javascript">WhenId('CH_zTme36df83e91');</script><noscript>Dec 30, 2015 at 8:00am UTC</noscript></div>
+<div class="dwho"><a href="/user/Bdanielz/"><b>Bdanielz</b> (379)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892035">
+Just glancing at your code I would say it could benefit from <br>
+<br>
+Functions:<br>
+Switches: <br>
+Structures/Classes: <br>
+<br>
+I would say start with refactoring this<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br></code></pre></td>
+<td class="source"><pre><code>   string Name;
+    <var>int</var> Gender;
+    <var>int</var> Birthdate;
+    <var>int</var> BirthMonth;
+    <var>int</var> BirthYear;
+    <var>int</var> age;
+    <var>int</var> fileEx;</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+ <br>
+into a class/struct
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn892035"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg892036"><span title="892036,194820,1023,51,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892036" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm0fb6bd3570" title="Wed, 30 Dec 2015 08:02:39 +0000"></span><script type="text/javascript">WhenId('CH_zTm0fb6bd3570');</script><noscript>Dec 30, 2015 at 8:02am UTC</noscript></div>
+<div class="dwho"><a href="/user/C0D3FR3AK/"><b>C0D3FR3AK</b> (51)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892036">
+Why would you want to shorten it? <br>
+If it works then your in the clear. Also PC's now in days can run some HEAVY programs and you don't necessarily have to worry about memory space because now in days PC's have quite a bit.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn892036"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg892044"><span title="892044,205424,1023,20,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892044" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm8bd1b8f757" title="Wed, 30 Dec 2015 09:05:15 +0000"></span><script type="text/javascript">WhenId('CH_zTm8bd1b8f757');</script><noscript>Dec 30, 2015 at 9:05am UTC</noscript></div>
+<div class="dwho"><a href="/user/GibsRey/"><b>GibsRey</b> (20)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892044">
+Okay then, i don't really wanted to shorten  it, I just thinking Maybe there are some suggestions
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn892044"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg892050"><span title="892050,151681,1023,2488,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892050" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm351e0510e9" title="Wed, 30 Dec 2015 09:44:56 +0000"></span><script type="text/javascript">WhenId('CH_zTm351e0510e9');</script><noscript>Dec 30, 2015 at 9:44am UTC</noscript></div>
+<div class="dwho"><a href="/user/TarikNeaj/"><b>TarikNeaj</b> (2488)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892050">
+<table class="quote"><tr><td class="qd">Why would you want to shorten it? <br>
+If it works then your in the clear. Also PC's now in days can run some HEAVY programs and you don't necessarily have to worry about memory space because now in days PC's have quite a bit.</td></tr></table><br>
+<br>
+ehh ok...<br>
+<br>
+@GibsRey. Look into what @BDanielz wrote to you. Learn about classes, functions and switches. <br>
+It'll be much better if you shorten it, or divide it into files(classes).
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn892050"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg892159"><span title="892159,198580,1023,108,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892159" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm7593c10eb5" title="Thu, 31 Dec 2015 00:37:38 +0000"></span><script type="text/javascript">WhenId('CH_zTm7593c10eb5');</script><noscript>Dec 31, 2015 at 12:37am UTC</noscript></div>
+<div class="dwho"><a href="/user/jgg2002/"><b>jgg2002</b> (108)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892159">
+The addition/multiplication/division/subtraction function could be made very simpler. It doesn't even need a function actually. Check this.<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include&lt;iostream&gt;</dfn>
+<var>using</var> <var>namespace</var> std;
+
+<var>int</var> main(){
+
+<var>int</var> n;
+cout&lt;&lt;<kbd>"Enter the amount of numbers:\n"</kbd>;
+cin&gt;&gt;n;
+<var>int</var> nums[n];
+cout&lt;&lt;<kbd>"Enter the numbers:\n"</kbd>;
+<var>for</var> (<var>int</var> i=0; i&lt;n; i++){
+    cin&gt;&gt;nums[i];
+}
+cout&lt;&lt;<kbd>"Now enter the operators (without using spaces)"</kbd>;
+string op;
+cin&gt;&gt;op;
+<var>int</var> final_ans = nums[0];
+<var>for</var> (<var>int</var> i=1; i&lt;n; i++){  <cite>// &lt; i = 1 because we've initialized the final_ans with the value of nums[0]</cite>
+    <var>if</var> (op[i-1]==<kbd>'+'</kbd>){
+        final_ans = final_ans + nums[i];
+    }
+    <var>else</var> <var>if</var> (op[i-1]==<kbd>'-'</kbd>){                 <cite>// i-1 so we can start from the start</cite>
+        final_ans = final_ans - nums[i];
+    }
+    <var>else</var> <var>if</var> (op[i-1]==<kbd>'*'</kbd>){
+        final_ans = final_ans * nums[i];
+    }
+     <var>else</var> <var>if</var> (op[i-1]==<kbd>'/'</kbd>){
+        final_ans = final_ans / nums[i];
+    }
+}
+cout &lt;&lt; final_ans;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm05318494ca" title="Thu, 31 Dec 2015 00:40:08 +0000"></span><script type="text/javascript">WhenId('CH_zTm05318494ca');</script><noscript>Dec 31, 2015 at 12:40am UTC</noscript></span>
+<span class="dbtn" id="CH_btn892159"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg892190"><span title="892190,205424,1023,20,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892190" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmd56e00eca3" title="Thu, 31 Dec 2015 09:28:50 +0000"></span><script type="text/javascript">WhenId('CH_zTmd56e00eca3');</script><noscript>Dec 31, 2015 at 9:28am UTC</noscript></div>
+<div class="dwho"><a href="/user/GibsRey/"><b>GibsRey</b> (20)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892190">
+<div class="auto"><table class="snippet"><tr><td class="output"><pre><samp>
+@GibsRey. Look into what @BDanielz wrote to you. Learn about classes, functions and switches.
+It'll be much better if you shorten it, or divide it into files(classes).
+</samp></pre></td></tr></table></div><br>
+<br>
+Classes Huh? @TarikNeaj<br>
+That's a good idea, i will try it!<br>
+making header Files and include them makes program looks a bit short.<br>
+ehh ok...
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm394cfd1b4e" title="Thu, 31 Dec 2015 09:31:51 +0000"></span><script type="text/javascript">WhenId('CH_zTm394cfd1b4e');</script><noscript>Dec 31, 2015 at 9:31am UTC</noscript></span>
+<span class="dbtn" id="CH_btn892190"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div class="rootbtnNew"></div><div id="CH_insNew"></div><div id="CH_reply">Topic archived. No new replies allowed.</div><div id="CH_subscription"></div><div class="rootedtNew"></div><script type="text/javascript">new for_PostList(181937,1,205424,1,'CH_PostList','CH_subscription','CH_reply','CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+<script type="text/javascript">
+    google_ad_client = "ca-pub-1444228343479937";
+    google_ad_slot = "9701143201";
+    google_ad_width = 728;
+    google_ad_height = 90;
+</script>
+<!-- leaderboard -->
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li class="selected"><a href="/forum/beginner/"><b>Beginners</b></a></li><li><a href="/forum/windows/"><b>Windows Programming</b></a></li><li><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li><a href="/forum/general/"><b>General C++ Programming</b></a></li><li><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Fbeginner%2F181937%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

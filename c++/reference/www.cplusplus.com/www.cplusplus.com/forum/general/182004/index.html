@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Inheritance does not work when linking s - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/general/">General C++ Programming</a></li>
+<li class="here">Inheritance does not work when linking s</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico default" title="post">&nbsp;</div> Inheritance does not work when linking shared library ...</h3><span id="CH_edttl"></span><span class="rootdatPost" title="182004,root,0,-1,3,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg892305"><span title="892305,94565,1023,53,1"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892305" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmb21ea21567" title="Fri, 01 Jan 2016 09:43:42 +0000"></span><script type="text/javascript">WhenId('CH_zTmb21ea21567');</script><noscript>Jan 1, 2016 at 9:43am UTC</noscript></div>
+<div class="dwho"><a href="/user/fluppe/"><b>fluppe</b> (53)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892305">
+HI,<br>
+<br>
+i have a problem with inheritance in shared library and an application ...<br>
+I have a library containing a very simple template "tmpl" and a derived class<br>
+"clsDerived".<br>
+<br>
+If i try to use "clsDerived" in an application, i get the error<br>
+"unkown reference to tmpl&lt;...&gt;::setSome()", but see below ...<br>
+<br>
+ <br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br></code></pre></td>
+<td class="source"><pre><code>
+<var>template</var>&lt;<var>typename</var> TypeSyn&gt; tmpl{
+
+     TypeSyn* field1;
+     <cite>/* ... there are some more fields ... */</cite>
+
+     <var>public</var>: 
+	TypeSyn getSome();
+	<var>void</var> setSome(TypeSyn a);
+
+      <var>private</var>:
+	....
+      <var>protected</var>:
+	....
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Implementation of the methods is done then this way ...<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br></code></pre></td>
+<td class="source"><pre><code>
+<var>template</var> &lt;<var>typename</var> TypeSyn&gt;
+<var>void</var> tmpl&lt;TypeSyn&gt;::setSome(TypeSyn* data){
+   
+  <cite>/* set the content of "field1"  ... */</cite>
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<br>
+Then i add a derived class with "TypeSyn = double"<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br></code></pre></td>
+<td class="source"><pre><code><var>class</var> cslDerived : <var>public</var> tmpl&lt;<var>double</var>&gt;{
+
+<var>public</var>:
+
+  <cite>/* all fields derived ... the constructor should be assumed to be as 
+    simple as possible */</cite>
+  <var>void</var> veryOwnMethod(<var>double</var>);
+<var>private</var>:
+<var>protected</var>:
+
+}
+</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+the very own method is implemented like ( but that does not matter i think ...)<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br></code></pre></td>
+<td class="source"><pre><code>
+<var>void</var> clsDerived::veryOwnMethod(<var>double</var> some){
+
+  <cite>/* some functionality here .... */</cite>
+
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+What i get is now an "undefined refernce to tmpl&lt;double&gt;::setSome(double) ... <br>
+if i try to use the class "clsDerived" in an application ...<br>
+I think it is quite a standard mistake i am making and i hope i have given the relevant <br>
+code. maybe i need some special compilerflags or something else ... <br>
+However, i did not need when i did only use a class. That is why i think it is the way i use inheritance and templates , but i don't know what it is exactly. A link for a tutorial with emphasis on linking a shared library AND inheritance and templates would help me as well, i think.<br>
+<br>
+If i have left out something relevant, please let me know.<br>
+<br>
+Best regards and thanks for reading,<br>
+...
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm1d9fa2b4be" title="Fri, 01 Jan 2016 09:46:11 +0000"></span><script type="text/javascript">WhenId('CH_zTm1d9fa2b4be');</script><noscript>Jan 1, 2016 at 9:46am UTC</noscript></span>
+<span class="dbtn" id="CH_btn892305"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg892308"><span title="892308,72446,1023,7402,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892308" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTma1e994a31f" title="Fri, 01 Jan 2016 10:56:45 +0000"></span><script type="text/javascript">WhenId('CH_zTma1e994a31f');</script><noscript>Jan 1, 2016 at 10:56am UTC</noscript></div>
+<div class="dwho"><a href="/user/Peter87/"><b>Peter87</b> (7402)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892308">
+External linkage doesn't work good with templates. You are more or less forced to define setSome in the header file.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn892308"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg892355"><span title="892355,94565,1023,53,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892355" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm0a11a9ce99" title="Fri, 01 Jan 2016 16:09:54 +0000"></span><script type="text/javascript">WhenId('CH_zTm0a11a9ce99');</script><noscript>Jan 1, 2016 at 4:09pm UTC</noscript></div>
+<div class="dwho"><a href="/user/fluppe/"><b>fluppe</b> (53)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892355">
+Well, it seems so .. i found some other notes on that on the internet and i am disappointed ...<br>
+But well, whatever, it will work somehow ... it should be enough to put all template methods into the header file, no ?? 
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn892355"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div class="rootbtnNew"></div><div id="CH_insNew"></div><div id="CH_reply">Registered users can post here. <a href="/user/">Sign in or register</a> to post.</div><div id="CH_subscription"></div><div class="rootedtNew"></div><script type="text/javascript">new for_PostList(182004,0,94565,0,'CH_PostList','CH_subscription','CH_reply','CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li><a href="/forum/beginner/"><b>Beginners</b></a></li><li><a href="/forum/windows/"><b>Windows Programming</b></a></li><li><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li class="selected"><a href="/forum/general/"><b>General C++ Programming</b></a></li><li><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Fgeneral%2F182004%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

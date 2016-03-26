@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>I need help with a checkers C++ program, - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/beginner/">Beginners</a></li>
+<li class="here">I need help with a checkers C++ program,</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico question" title="question">&nbsp;</div> I need help with a checkers C++ program, I'm not sure what's wrong.</h3><span id="CH_edttl"></span><span class="rootdatPost" title="181932,root,0,-1,8,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg891985"><span title="891985,205417,255,7,1"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg891985" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm909472ed5c" title="Wed, 30 Dec 2015 03:26:59 +0000"></span><script type="text/javascript">WhenId('CH_zTm909472ed5c');</script><noscript>Dec 30, 2015 at 3:26am UTC</noscript></div>
+<div class="dwho"><a href="/user/previeaux/"><b>previeaux</b> (7)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i891985">
+I'm fairly new to C++ and was trying to make a checkers program. I'm getting an error once I type the x and y coordinates for the piece I'm trying to move. Side note: It's not finished yet.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br>59<br>60<br>61<br>62<br>63<br>64<br>65<br>66<br>67<br>68<br>69<br>70<br>71<br>72<br>73<br>74<br>75<br>76<br>77<br>78<br>79<br>80<br>81<br>82<br>83<br>84<br>85<br>86<br>87<br>88<br>89<br>90<br>91<br>92<br>93<br>94<br>95<br>96<br>97<br>98<br>99<br>100<br>101<br>102<br>103<br>104<br>105<br>106<br>107<br>108<br>109<br>110<br>111<br>112<br>113<br>114<br>115<br>116<br>117<br>118<br>119<br>120<br>121<br>122<br>123<br>124<br>125<br>126<br>127<br>128<br>129<br>130<br>131<br>132<br>133<br>134<br>135<br>136<br>137<br>138<br>139<br>140<br>141<br>142<br>143<br>144<br>145<br>146<br>147<br>148<br>149<br>150<br>151<br>152<br>153<br>154<br>155<br>156<br>157<br>158<br>159<br>160<br>161<br>162<br>163<br>164<br>165<br>166<br>167<br>168<br>169<br>170<br>171<br>172<br>173<br>174<br>175<br>176<br>177<br>178<br>179<br>180<br>181<br>182<br>183<br>184<br>185<br>186<br>187<br>188<br>189<br>190<br>191<br>192<br>193<br>194<br>195<br>196<br>197<br>198<br>199<br>200<br>201<br>202<br>203<br>204<br>205<br>206<br>207<br>208<br>209<br>210<br>211<br>212<br>213<br>214<br>215<br>216<br>217<br>218<br>219<br>220<br></code></pre></td>
+<td class="source"><pre><code>Main.cpp:
+<dfn>#include &lt;iostream&gt;</dfn>
+<dfn>#include &lt;string&gt;</dfn>
+<dfn>#include "CheckerBoard.h"</dfn>
+
+<var>using</var> <var>namespace</var> std;
+
+<var>char</var> turn = <kbd>'1'</kbd>;
+
+<var>int</var> main()
+{
+	<var>bool</var> isDone = <var>false</var>;
+
+	CheckerBoard checkerBoard;
+
+	<var>while</var> (isDone == <var>false</var>)
+	{
+		checkerBoard.initBoard();
+		checkerBoard.placePieces();
+		checkerBoard.printBoard();
+		
+
+		checkerBoard.movePieces(turn);
+
+		<var>if</var> (turn == <kbd>'1'</kbd>)
+
+		system(<kbd>"PAUSE"</kbd>);
+	}
+
+	<var>return</var> 0;
+}
+
+CheckerBoard.h:
+<dfn>#pragma once</dfn>
+<var>class</var> CheckerBoard
+{
+<var>public</var>:
+	CheckerBoard(<var>void</var>);
+	<var>void</var> initBoard();
+	<var>void</var> printBoard();
+
+	<var>int</var> getXCoord();
+	<var>int</var> getYCoord();
+	<var>int</var> getXCoordOfPiece();
+	<var>int</var> getYCoordOfPiece();
+
+	<var>void</var> movePieces(<var>char</var> turn);
+	<var>void</var> placePieces();
+
+
+<var>private</var>: 
+	<var>char</var> player1 = <kbd>'R'</kbd>;
+	<var>char</var> player2 = <kbd>'B'</kbd>;
+
+	<var>char</var> board[8][8];
+
+	<var>int</var> yInput;
+	<var>int</var> xInput;
+
+	<var>int</var> yCoord;
+	<var>int</var> xCoord;
+};
+
+CheckerBoard.cpp:
+<dfn>#include "CheckerBoard.h"</dfn>
+<dfn>#include &lt;iostream&gt;</dfn>
+
+<var>using</var> <var>namespace</var> std;
+
+CheckerBoard::CheckerBoard(<var>void</var>)
+{
+}
+
+<var>void</var> CheckerBoard::initBoard()
+{
+	<var>for</var> (<var>int</var> y = 0; y &lt; 8; y++)
+	{
+		<var>for</var> (<var>int</var> x = 0; x &lt; 8; x++)
+		{
+			<var>if</var> (((x + y + 1) % 2) == 0)
+			{
+				board[y][x] = <kbd>' '</kbd>;
+			}
+			<var>else</var> <var>if</var> (((x + y + 1) % 2) == 1)
+			{
+				board[y][x] = <kbd>' '</kbd>;
+			}
+			
+		}
+	}
+}
+
+<var>void</var> CheckerBoard::printBoard()
+{ 
+	cout &lt;&lt; <kbd>"  | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |\n"</kbd>;
+	cout &lt;&lt; <kbd>"-----------------------------------\n"</kbd>;
+
+	<var>for</var> (<var>int</var> y = 0; y &lt; 8; y++)
+	{
+		<var>static</var> <var>int</var> x = 0;
+		cout &lt;&lt; y + 1  &lt;&lt; <kbd>" | "</kbd>;
+		<var>for</var> (<var>int</var> x = 0; x &lt; 8; x++)
+		{
+			cout &lt;&lt; board[y][x] &lt;&lt; <kbd>" | "</kbd>;
+		}
+		cout &lt;&lt; endl &lt;&lt; <kbd>"-----------------------------------"</kbd> &lt;&lt; endl;
+	}
+}
+
+<var>int</var> CheckerBoard::getXCoordOfPiece()
+{
+	<var>int</var> xInput;
+	cout &lt;&lt; <kbd>"Enter X Coordinate of piece you'd like to move: "</kbd>;
+	cin &gt;&gt; xInput;
+	<var>return</var> xInput;
+}
+
+<var>int</var> CheckerBoard::getYCoordOfPiece()
+{
+	<var>int</var> yInput;
+	cout &lt;&lt; <kbd>"Enter Y Coordinate of piece you'd like to move: "</kbd>;
+	cin &gt;&gt; yInput;
+	<var>return</var> yInput;
+
+}
+
+<var>int</var> CheckerBoard::getYCoord()
+{
+	<var>int</var> yCoord;
+	cout &lt;&lt; <kbd>"Enter Y Coordinate of where you want to move."</kbd>;
+	cin &gt;&gt; yCoord;
+	<var>return</var> yCoord;
+}
+
+<var>int</var> CheckerBoard::getXCoord()
+{
+	<var>int</var> xCoord;
+	cout &lt;&lt; <kbd>"Enter X Coordinate of where you want to move."</kbd>;
+	cin &gt;&gt; xCoord;
+	<var>return</var> xCoord;
+}
+
+<var>void</var> CheckerBoard::movePieces(<var>char</var> turn)
+{
+	<var>if</var> (turn == <kbd>'1'</kbd>)
+	{
+		getXCoordOfPiece();
+		getYCoordOfPiece();
+		<var>if</var> (board[yInput][xInput] == player1)
+		{
+			getXCoord();
+			getYCoord();
+			<var>if</var> (board[yCoord][xCoord] == player1)
+			{
+				cout &lt;&lt; <kbd>"That move is invalid!"</kbd>;
+				<var>return</var>;
+			}
+			<var>else</var> <var>if</var> (board[yCoord][xCoord] == player2)
+			{
+				cout &lt;&lt; <kbd>"That move is invalid!"</kbd>;
+				<var>return</var>;
+			}
+			<var>else</var>
+			{
+				board[yCoord][xCoord] = player1;
+			}
+		}
+	}
+
+	<var>if</var> (turn == <kbd>'2'</kbd>)
+	{
+		getXCoordOfPiece();
+		getYCoordOfPiece();
+		<var>if</var> (board[yInput][xInput] == player1)
+		{
+			getXCoord();
+			getYCoord();
+			<var>if</var> (board[yCoord][xCoord] == player1)
+			{
+				cout &lt;&lt; <kbd>"That move is invalid!"</kbd>;
+				<var>return</var>;
+			}
+			<var>else</var> <var>if</var> (board[yCoord][xCoord] == player2)
+			{
+				cout &lt;&lt; <kbd>"That move is invalid!"</kbd>;
+				<var>return</var>;
+			}
+			<var>else</var>
+			{
+				board[yCoord][xCoord] = player2;
+			}
+		}
+	}
+}
+
+<var>void</var> CheckerBoard::placePieces()
+{
+	<var>for</var> (<var>int</var> y = 0; y &lt; 3; y++)
+	{
+		<var>for</var> (<var>int</var> x = 0; x &lt; 8; x++)
+		{
+			<var>if</var> (((x + y) % 2) == 0)
+			{
+				board[y][x] = player1;
+			}
+		}
+	}
+
+	<var>for</var> (<var>int</var> y = 5; y &lt; 8; y++)
+	{
+		<var>for</var> (<var>int</var> x = 0; x &lt; 8; x++)
+		{
+			<var>if</var> (((x + y) % 2) == 1)
+			{
+				board[y][x] = player2;
+			}
+		}
+	}
+}
+</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm3e1d5f2129" title="Wed, 30 Dec 2015 04:16:30 +0000"></span><script type="text/javascript">WhenId('CH_zTm3e1d5f2129');</script><noscript>Dec 30, 2015 at 4:16am UTC</noscript></span>
+<span class="dbtn" id="CH_btn891985"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg892069"><span title="892069,199131,1023,610,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892069" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm1424a37051" title="Wed, 30 Dec 2015 11:36:52 +0000"></span><script type="text/javascript">WhenId('CH_zTm1424a37051');</script><noscript>Dec 30, 2015 at 11:36am UTC</noscript></div>
+<div class="dwho"><a href="/user/Thomas1965/"><b>Thomas1965</b> (610)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892069">
+Your code doesn't compile:<br>
+<table class="quote"><tr><td class="qd"><br>
+line 19: error C2864: 'CheckerBoard::player1' : only static const integral data members can be initialized within a class<br>
+line 20: error C2864: 'CheckerBoard::player2' : only static const integral data members can be initialized within a class<br>
+</td></tr></table><br>
+<br>
+In getXCoordOfPiece() and getYCoordOfPiece() you store the input in local vars xInput and yInput.<br>
+In CheckerBoard::movePieces() you access the member variables with the same name which have a random value. Accessing  board[yInput][xInput] will most of the time cause a crash.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn892069"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg892073"><span title="892073,140309,1023,149,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892073" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm71fe9908ef" title="Wed, 30 Dec 2015 11:52:22 +0000"></span><script type="text/javascript">WhenId('CH_zTm71fe9908ef');</script><noscript>Dec 30, 2015 at 11:52am UTC</noscript></div>
+<div class="dwho"><a href="/user/Shadowwolf/"><b>Shadowwolf</b> (149)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892073">
+@Thomas1965, in C++11, it is allowed to initialize class members this way. It depends on your compiler settings whether it will compile or not.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn892073"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg892080"><span title="892080,199131,1023,610,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892080" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm09340782b4" title="Wed, 30 Dec 2015 13:14:12 +0000"></span><script type="text/javascript">WhenId('CH_zTm09340782b4');</script><noscript>Dec 30, 2015 at 1:14pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Thomas1965/"><b>Thomas1965</b> (610)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892080">
+@Shadowwolf,<br>
+<table class="quote"><tr><td class="qd"> in C++11, it is allowed to initialize class members this way.</td></tr></table><br>
+I didn't know that. VS2010 doesn't support all C++11
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn892080"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg892103"><span title="892103,140309,1023,149,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892103" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm82c5c2d279" title="Wed, 30 Dec 2015 17:31:56 +0000"></span><script type="text/javascript">WhenId('CH_zTm82c5c2d279');</script><noscript>Dec 30, 2015 at 5:31pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Shadowwolf/"><b>Shadowwolf</b> (149)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892103">
+@Thomas1965<br>
+Visual Studio supports them as of VS2013, in earlier versions they were not supported.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn892103"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg892125"><span title="892125,199131,1023,610,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892125" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmbe8265d4b4" title="Wed, 30 Dec 2015 21:04:02 +0000"></span><script type="text/javascript">WhenId('CH_zTmbe8265d4b4');</script><noscript>Dec 30, 2015 at 9:04pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Thomas1965/"><b>Thomas1965</b> (610)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892125">
+@Shadowwolf,<br>
+<br>
+I have VS 2013 Community but it is as sluggish as Eclipse - takes about 20 seconds to start. :(
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn892125"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg892138"><span title="892138,205417,255,7,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892138" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm985b3e23fc" title="Wed, 30 Dec 2015 22:29:37 +0000"></span><script type="text/javascript">WhenId('CH_zTm985b3e23fc');</script><noscript>Dec 30, 2015 at 10:29pm UTC</noscript></div>
+<div class="dwho"><a href="/user/previeaux/"><b>previeaux</b> (7)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892138">
+I have VS 2015 Community if that helps. I still haven't figured out how to get the program to work and still need help. I've tried to fix it and figure it out but it still doesn't work. <br>
+main.cpp:<br>
+<div class="auto"><table class="snippet"><tr><td class="output"><pre><samp>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include "CheckerBoard.h"
+
+using namespace std;
+
+int main()
+{
+	CheckerBoard checkerBoard;
+
+	checkerBoard.playGame();
+
+	return 0;
+}
+</samp></pre></td></tr></table></div><br>
+<br>
+CheckerBoard.h:<br>
+<div class="auto"><table class="snippet"><tr><td class="output"><pre><samp>
+#pragma once
+class CheckerBoard
+{
+public:
+	CheckerBoard(void);
+	void initBoard();
+	void printBoard();
+
+	int getXCoord();
+	int getYCoord();
+	int getXCoordOfPiece();
+	int getYCoordOfPiece();
+
+
+	int xCoord = getXCoord();
+	int yCoord = getYCoord();
+	int yInput = getYCoordOfPiece();
+	int xInput = getXCoordOfPiece();
+
+	void movePieces(char turn, int  yInput, int xInput, int yCoord, int xCoord);
+	void placePieces();
+
+	void playGame();
+
+private: 
+	char turn = '1';
+
+	char player1 = 'R';
+	char player2 = 'B';
+
+	char board[8][8];
+};
+</samp></pre></td></tr></table></div><br>
+<br>
+CheckerBoard.cpp:<br>
+<div class="auto"><table class="snippet"><tr><td class="output"><pre><samp>
+#include "CheckerBoard.h"
+#include &lt;iostream&gt;
+
+using namespace std;
+
+CheckerBoard::CheckerBoard(void)
+{
+}
+
+void CheckerBoard::initBoard()
+{
+	for (int y = 0; y &lt; 8; y++)
+	{
+		for (int x = 0; x &lt; 8; x++)
+		{
+			board[y][x] = ' ';
+		}
+	}
+}
+
+void CheckerBoard::printBoard()
+{ 
+	cout &lt;&lt; "  | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |\n";
+	cout &lt;&lt; "-----------------------------------\n";
+
+	for (int y = 0; y &lt; 8; y++)
+	{
+		int x = 0;
+		cout &lt;&lt; y + 1  &lt;&lt; " | ";
+		for (int x = 0; x &lt; 8; x++)
+		{
+			cout &lt;&lt; board[y][x] &lt;&lt; " | ";
+		}
+		cout &lt;&lt; endl &lt;&lt; "-----------------------------------" &lt;&lt; endl;
+	}
+}
+
+int CheckerBoard::getXCoordOfPiece()
+{
+	int xInput;
+	cout &lt;&lt; "Enter X Coordinate of piece you'd like to move: ";
+	cin &gt;&gt; xInput;
+	return xInput - 1;
+}
+
+int CheckerBoard::getYCoordOfPiece()
+{
+	int yInput;
+	cout &lt;&lt; "Enter Y Coordinate of piece you'd like to move: ";
+	cin &gt;&gt; yInput;
+	return yInput - 1;
+
+}
+
+int CheckerBoard::getYCoord()
+{
+	int yCoord;
+	cout &lt;&lt; "Enter Y Coordinate of where you want to move.";
+	cin &gt;&gt; yCoord;
+	return yCoord - 1;
+}
+
+int CheckerBoard::getXCoord()
+{
+	int xCoord;
+	cout &lt;&lt; "Enter X Coordinate of where you want to move.";
+	cin &gt;&gt; xCoord;
+	return xCoord - 1;
+}
+
+void CheckerBoard::movePieces(char turn, int  yInput, int xInput, int yCoord, int xCoord)
+{
+	if (turn == '1')
+	{
+		xInput = getXCoordOfPiece();
+		yInput = getYCoordOfPiece();
+		if (board[yInput][xInput] == player1)
+		{
+			xCoord = getXCoord();
+			yCoord = getYCoord();
+			if (board[yCoord][xCoord] == player1)
+			{
+				cout &lt;&lt; "That move is invalid!";
+				cout &lt;&lt; yCoord &lt;&lt; xCoord;
+				system("PAUSE");
+				return;
+			}
+			else if (board[yCoord][xCoord] == player2)
+			{
+				cout &lt;&lt; "That move is invalid!";
+				cout &lt;&lt; yCoord &lt;&lt; xCoord;
+				system("PAUSE");
+				return;
+			}
+			else
+			{
+				board[yInput][xInput] = ' ';
+				board[yCoord][xCoord] = player1;
+			}
+		}
+	}
+
+	if (turn == '2')
+	{
+		xInput = getXCoordOfPiece();
+		yInput = getYCoordOfPiece();
+		if (board[yInput][xInput] == player1)
+		{
+			xCoord = getXCoord();
+			yCoord = getYCoord();
+			if (board[yCoord][xCoord] == player1)
+			{
+				cout &lt;&lt; "That move is invalid!";
+				cout &lt;&lt; yCoord &lt;&lt; xCoord;
+				system("PAUSE");
+				return;
+			}
+			else if (board[yCoord][xCoord] == player2)
+			{
+				cout &lt;&lt; "That move is invalid!";
+				cout &lt;&lt; yCoord &lt;&lt; xCoord;
+				system("PAUSE");
+				return;
+			}
+			else
+			{
+				board[yInput][xInput] = ' ';
+				board[yCoord][xCoord] = player2;
+			}
+		}
+	}
+}
+
+void CheckerBoard::placePieces()
+{
+	for (int y = 0; y &lt; 3; y++)
+	{
+		for (int x = 0; x &lt; 8; x++)
+		{
+			if (((x + y) % 2) == 0)
+			{
+				board[y][x] = player1;
+			}
+		}
+	}
+
+	for (int y = 5; y &lt; 8; y++)
+	{
+		for (int x = 0; x &lt; 8; x++)
+		{
+			if (((x + y) % 2) == 1)
+			{
+				board[y][x] = player2;
+			}
+		}
+	}
+}
+
+void CheckerBoard::playGame()
+{
+	bool isDone = false;
+
+	while (isDone == false)
+	{
+		
+		initBoard();
+		placePieces();
+		printBoard();
+
+
+		movePieces(turn, yInput, xInput, yCoord, xCoord);
+
+		if (turn == '1') 
+		{
+			turn = '2';
+		}
+		else if (turn == '2')
+		{
+			turn = '1';
+		}
+			system("PAUSE");
+	}
+}</samp></pre></td></tr></table></div>
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTmd722b92deb" title="Wed, 30 Dec 2015 22:46:34 +0000"></span><script type="text/javascript">WhenId('CH_zTmd722b92deb');</script><noscript>Dec 30, 2015 at 10:46pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn892138"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg892144"><span title="892144,78419,1023,7174,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg892144" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmf59e49be5e" title="Wed, 30 Dec 2015 22:43:12 +0000"></span><script type="text/javascript">WhenId('CH_zTmf59e49be5e');</script><noscript>Dec 30, 2015 at 10:43pm UTC</noscript></div>
+<div class="dwho"><a href="/user/cire/"><b>cire</b> (7174)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i892144">
+<table class="quote"><tr><td class="qd">I'm getting an error once I type the x and y coordinates for the piece I'm trying to move.</td></tr></table><br>
+Typically you'll want to be more specific than "I'm getting an error."  If you're getting an error, presumably there is some sort of text or behavior you're seeing that leads you to believe this.  Describing that would be helpful.<br>
+<br>
+You have several members of your class that are never initialized or assigned values, but are used as if they have some meaningful value (xCoord, xInput, yCoord, etc.)  Since they don't have meaningful values and you use them to index an array, you're likely to be accessing outside the bounds of that array which is a big no-no.<br>
+<br>
+In:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br></code></pre></td>
+<td class="source"><pre><code><var>int</var> CheckerBoard::getXCoordOfPiece()
+{
+	<var>int</var> xInput;
+	cout &lt;&lt; <kbd>"Enter X Coordinate of piece you'd like to move: "</kbd>;
+	cin &gt;&gt; xInput;
+	<var>return</var> xInput;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<tt>xInput</tt> is a local variable which stops existing when the function returns.  It is <i>not</i> the data member that is declared in the class definition. These functions return values.  You ignore/discard the returned values.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn892144"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div class="rootbtnNew"></div><div id="CH_insNew"></div><div id="CH_reply">Topic archived. No new replies allowed.</div><div id="CH_subscription"></div><div class="rootedtNew"></div><script type="text/javascript">new for_PostList(181932,1,205417,0,'CH_PostList','CH_subscription','CH_reply','CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+<script type="text/javascript">
+    google_ad_client = "ca-pub-1444228343479937";
+    google_ad_slot = "9701143201";
+    google_ad_width = 728;
+    google_ad_height = 90;
+</script>
+<!-- leaderboard -->
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li class="selected"><a href="/forum/beginner/"><b>Beginners</b></a></li><li><a href="/forum/windows/"><b>Windows Programming</b></a></li><li><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li><a href="/forum/general/"><b>General C++ Programming</b></a></li><li><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Fbeginner%2F181932%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

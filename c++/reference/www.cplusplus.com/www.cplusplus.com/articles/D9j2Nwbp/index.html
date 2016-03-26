@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Converting numbers to strings and string - C++ Articles</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/articles/">Articles</a></li>
+<li class="here">Converting numbers to strings and string</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div id="I_content">
+<div class="C_art">
+<div id="I_author">Published by <b><a href="/user/Bazzy/" rel="author">Bazzy</a></b></div>
+<div id="I_date">Oct 9, 2009 (last update: Nov 22, 2012)</div>
+<h1>Converting numbers to strings and strings to numbers</h1>
+<div id="I_score">Score: 4.1/5 (664 votes)</div>
+<div id="I_stars"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"></div>
+<div id="I_content">
+<p>
+Converting numbers to text and vice versa is a common issue as it can be useful in many different situations and C++98 doesn't provide a tool designed specifically to solve this problem.<br>
+Luckily C++ is a general purpose language so it allows to solve this quite easily and, as most things, you have many ways of accomplishing this task.<br>
+Here are listed some</p>
+<h3>Contents:</h3>
+<ul>
+<li><a href="#ss">C++ - stringstreams</a></li>
+<ul>
+<li><a href="#n2s">Number to String</a></li>
+<ul><li><a href="#cf">Custom Formatting</a></li></ul>
+<li><a href="#s2n">String to Number</a></li>
+<li><a href="#eg">Simple Sample Functions</a></li>
+</ul>
+<li><a href="#cpp11">C++11</a></li>
+<li><a href="#boost">C++ - boost library</a></li>
+<li><a href="#stdio">C - stdio</a></li>
+<li><a href="#stdlib">C - stdlib</a></li>
+<li><a href="#bad">Writing your own function</a></li>
+</ul>
+<br>
+<br>
+<h2><a name="ss"></a>C++ - stringstreams</h2>
+<p>
+The <a href="http://www.cplusplus.com/reference/iostream/">C++ stream library</a> is powerful and it allows easy formatted input output operations. With <a href="http://www.cplusplus.com/reference/iostream/stringstream/">stringstreams</a> you can perform this input/output to string, this allows you to convert numbers ( or any type with the <code>&lt;&lt;</code> <code>&gt;&gt;</code> stream operators overloaded ) to and from strings.<br>
+With <code>stringstreams</code> you can use the same syntax to convert the different numeric types.<br>
+To use <code>stringstreams</code> you need to <code>#include &lt;sstream&gt;</code>
+<br>
+<h3><a name="n2s"></a>Number to String</h3>
+Converting a number to a string takes two steps using stringstreams:<br>
+<ol>
+<li>Outputting the value of the number to the stream</li>
+<li>Getting the string with the contents of the stream</li>
+</ol>
+As with this conversion needs only output operation with the stream, an <code>ostringstream</code> ( output string stream ) can be used instead of the stream for both input and output ( <code>stringstream</code> )<br>
+<br>
+Here is an example which shows each step:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br></code></pre></td>
+<td class="source"><pre><code><var>int</var> Number = 123;       <cite>// number to be converted to a string</cite>
+
+string Result;          <cite>// string which will contain the result</cite>
+
+ostringstream convert;   <cite>// stream used for the conversion</cite>
+
+convert &lt;&lt; Number;      <cite>// insert the textual representation of 'Number' in the characters in the stream</cite>
+
+Result = convert.str(); <cite>// set 'Result' to the contents of the stream</cite>
+
+          <cite>// 'Result' now is equal to "123" </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+This operation can be shorten into a single line:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br></code></pre></td>
+<td class="source"><pre><code><var>int</var> Number = 123;
+string String = <var>static_cast</var>&lt;ostringstream*&gt;( &amp;(ostringstream() &lt;&lt; Number) )-&gt;str();</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+Here is constructed an unnamed stringstream object and performed the output  <span class="auto"><code class="source"> ostringstream() &lt;&lt; Number </code></span>
+Then, since the &lt;&lt; returns a reference to an <code>ostream</code> ( a base of <code>ostringstream</code> ) the result of the operation needs to be casted back to a stringstream <span class="auto"><code class="source"><var>static_cast</var>&lt;ostringstream*&gt;</code></span>
+Finally, we get the contents of the resulting stream as a string <span class="auto"><code class="source">-&gt;str()</code></span> and we assign that value to the string <span class="auto"><code class="source">string String =</code></span>
+<br>
+<h4><a name="cf"></a>Custom formatting</h4>
+<br>
+Stringstreams allow <a href="http://www.cplusplus.com/reference/iostream/manipulators/">manipulators</a> and <a href="http://www.cplusplus.com/reference/std/locale/">locales</a> to customize the result of these operations so you can easily change the format of the resulting string<br>
+<br>
+Example:  - This is not a complete program -<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br></code></pre></td>
+<td class="source"><pre><code><cite>// Headers needed:</cite>
+
+<dfn>#include &lt;iomanip&gt;</dfn>
+<dfn>#include &lt;locale&gt;</dfn>
+<dfn>#include &lt;sstream&gt;</dfn>
+<dfn>#include &lt;string&gt; </dfn><cite>// this should be already included in &lt;sstream&gt;</cite>
+
+
+<cite>// Defining own numeric facet:</cite>
+
+<var>class</var> WithComma: <var>public</var> numpunct&lt;<var>char</var>&gt; <cite>// class for decimal numbers using comma instead of point</cite>
+{
+    <var>protected</var>:
+        <var>char</var> do_decimal_point() <var>const</var> { <var>return</var> <kbd>','</kbd>; } <cite>// change the decimal separator</cite>
+};
+
+
+<cite>// Conversion code:</cite>
+
+<var>double</var> Number = 0.12;           <cite>// Number to convert to string</cite>
+
+ostringstream Convert;
+
+locale MyLocale(  locale(), <var>new</var> WithComma);<cite>// Crate customized locale</cite>
+
+Convert.imbue(MyLocale);       <cite>// Imbue the custom locale to the stringstream</cite>
+
+Convert &lt;&lt; fixed &lt;&lt; setprecision(3) &lt;&lt; Number; <cite>// Use some manipulators</cite>
+
+string Result = Convert.str(); <cite>// Give the result to the string</cite>
+
+<cite>// Result is now equal to "0,120"</cite>
+</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<h3><a name="s2n"></a>String to Number</h3>
+Also converting a string to a number via stringstream takes two steps:<br>
+<ol>
+<li>Constructing the stream from the string</li>
+<li>Reading the value into the variable</li>
+</ol>
+For this ( as you need to read input from the stream ) an <code>istringstream</code> will be used<br>
+While a number can always be converted in a string, a string must be valid to be converted to a number ( eg: An attempt of converting <span class="auto"><code class="source"><kbd>"hello"</kbd></code></span> to an integer would certainly fail ) so on this conversion, some checking must be done<br>
+<br>
+Here is the code example:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br></code></pre></td>
+<td class="source"><pre><code>string Text = <kbd>"456"</kbd>; <cite>// string containing the number</cite>
+
+<var>int</var> Result;          <cite>//number which will contain the result</cite>
+
+istringstream convert(Text); <cite>// stringstream used for the conversion constructed with the contents of 'Text' </cite>
+                             <cite>// ie: the stream will start containing the characters of 'Text'</cite>
+
+<var>if</var> ( !(convert &gt;&gt; Result) ) <cite>//give the value to 'Result' using the characters in the stream</cite>
+    Result = 0;             <cite>//if that fails set 'Result' to 0</cite>
+
+<cite>//'Result' now equal to 456  </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+This conversion is even easier to reduce to a single line:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br></code></pre></td>
+<td class="source"><pre><code>string Text = <kbd>"456"</kbd>;
+<var>int</var> Number;
+<var>if</var> ( ! (istringstream(Text) &gt;&gt; Number) ) Number = 0;</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+In the above code an object of istringstream gets constructed from 'Text' <span class="auto"><code class="source">istringstream(Text)</code></span> and its contents get read into the numeric variable <span class="auto"><code class="source">&gt;&gt; Number</code></span>.<br>
+If that operation fails <span class="auto"><code class="source"><var>if</var> ( !</code></span>, 'Number' is set to zero <span class="auto"><code class="source">Number = 0;</code></span>
+<br>
+Locales and manipulators can be used as well as with any stream<br>
+<br>
+<h4>More complex cases</h4>
+<br>
+A generic <code>stringstream</code> ( which could be used both for input and for output ) can be useful in some more complex situations and in almost any situation you need to perform operations not provided by <code>string</code>
+<br>
+<h3><a name="eg"></a>Simple Sample Functions</h3>
+<br>
+Here are listed some functions to perform these conversion using stringstreams:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br></code></pre></td>
+<td class="source"><pre><code><var>template</var> &lt;<var>typename</var> T&gt;
+  string NumberToString ( T Number )
+  {
+     ostringstream ss;
+     ss &lt;&lt; Number;
+     <var>return</var> ss.str();
+  }</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+ Usage: <span class="auto"><code class="source">NumberToString ( Number );</code></span>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br></code></pre></td>
+<td class="source"><pre><code><var>template</var> &lt;<var>typename</var> T&gt;
+  T StringToNumber ( <var>const</var> string &amp;Text )
+  {
+     istringstream ss(Text);
+     T result;
+     <var>return</var> ss &gt;&gt; result ? result : 0;
+  }</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+Usage: <span class="auto"><code class="source">StringToNumber&lt;Type&gt; ( String );</code></span>
+<br>
+</p>
+<br>
+<p><small><strong>Notice:</strong> In the code examples std:: was omitted to make the code simpler<br>
+Using the last functions, there is no way of detecting whether the conversion succeded or failed</small>
+</p>
+<br>
+<h3><a name="cpp11"></a>C++11</h3>
+<p>C++11 introduced some standard library functions that can directly convert<br>
+basic types to std::string objects and vice-versa.</p>
+<p><a href="http://en.cppreference.com/w/cpp/string/basic_string/to_string">std::to_string</a>
+Converts basic numeric types to strings.</p>
+<p>The set of functions<br>
+<a href="http://en.cppreference.com/w/cpp/string/basic_string/stol">stoi, stol, stoll</a>
+convert to integral types, the functions<br>
+<a href="http://en.cppreference.com/w/cpp/string/basic_string/stof">stof, stod, stold</a>
+to floating-point values.<br>
+</p>
+<p>These functions are declared in declared in &lt;string&gt;.</p>
+<p>Note that since these functions were added in the latest version of the C++ standard,<br>
+they may not be available unless your implementation is very recent.</p>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br></code></pre></td>
+<td class="source"><pre><code><var>int</var> number = 123;
+string text = to_string(number);
+
+text = <kbd>"456"</kbd>
+number = stoi(number);</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<br>
+<h3><a name="boost"></a>C++ - Boost Library</h3>
+<p>
+Using stringstreams is the standard C++ way of doing these conversions but they usually need a few lines of code<br>
+Among the <a href="http://www.boost.org/">Boost libraries</a> there is <a href="http://www.boost.org/doc/libs/1_40_0/libs/conversion/lexical_cast.htm#lexical_cast"><code>lexical_cast</code></a> which allows to perform the stringstream conversions through simple function call<br>
+To make this library working, just include the header, it doesn't need to be linked<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br></code></pre></td>
+<td class="source"><pre><code><cite>// Boost header needed:</cite>
+<dfn>#include &lt;boost/lexical_cast.hpp&gt;</dfn>
+
+<cite>// Number to string conversion:</cite>
+Text = boost::lexical_cast&lt;string&gt;(Number);
+
+<cite>// String to number conversion:</cite>
+Number = boost::lexical_cast&lt;Type&gt;(Text);</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+The above examples don't handle eventual conversion failures<br>
+When <code>boost::lexical_cast</code> fails, it throws <code>boost::bad_lexical_cast</code> ( derived from <a href="http://www.cplusplus.com/reference/std/typeinfo/bad_cast/"><code>std::bad_cast</code></a> )<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br></code></pre></td>
+<td class="source"><pre><code><var>try</var>
+{
+    Number = boost::lexical_cast&lt;Type&gt;(Text);
+}
+<var>catch</var> ( <var>const</var> boost::bad_lexical_cast &amp;exc ) <cite>// conversion failed, exception thrown by lexical_cast and caught</cite>
+{
+    Number = 0; <cite>// give 'Number' an arbitrary value ( in this case zero )</cite>
+                <cite>// if you don't give it any value, it would maintain the value it had before the conversion</cite>
+
+    <cite>// A string containing a description of the exception can be found in exc.what()</cite>
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+</p>
+<br>
+<h3><a name="stdio"></a>C - stdio</h3>
+<p>
+<h4>Number to String</h4>
+<br>
+In C there is no stream library, but the function <a href="http://www.cplusplus.com/reference/clibrary/cstdio/sprintf/"><code>sprintf</code></a> can be used for conversion<br>
+It works in a similar way to <a href="http://www.cplusplus.com/reference/clibrary/cstdio/printf/"><code>printf</code></a> but it will put the characters in a C string ( a character array ) instead of <code>stdout</code>
+Using this is not as easy as with streams as the format string changes depending on the type of the number which needs to be converted<br>
+<br>
+Example:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br></code></pre></td>
+<td class="source"><pre><code><var>int</var> Number = 123; <cite>// number to convert</cite>
+
+<var>char</var> Result[16]; <cite>// string which will contain the number</cite>
+
+sprintf ( Result, <kbd>"%d"</kbd>, Number ); <cite>// %d makes the result be a decimal integer </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<h4>String to Number</h4>
+<br>
+As <code>printf</code>, also <a href="http://www.cplusplus.com/reference/clibrary/cstdio/scanf/"><code>scanf</code></a> has a related function which can read from a character array, <a href="http://www.cplusplus.com/reference/clibrary/cstdio/sscanf/"><code>sscanf</code></a>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br></code></pre></td>
+<td class="source"><pre><code><var>char</var> Text[] = <kbd>"456"</kbd>; <cite>// string to be converted</cite>
+
+<var>int</var> Result; <cite>// number which will contain the result</cite>
+
+sscanf ( Text, <kbd>"%d"</kbd>, &amp;Result );</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+If <code>sscanf</code> fails ( ie: the string is not a number ), the value of the variable passed remains unchanged, in that case the function should return zero as no argument were read successfully, if the string passed is so bad that nothing can be read from it, it would return <a href="http://www.cplusplus.com/reference/clibrary/cstdio/EOF/"><code>EOF</code></a>:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br></code></pre></td>
+<td class="source"><pre><code><var>char</var> Text[] = <kbd>"456"</kbd>; <cite>// string to be converted</cite>
+
+<var>int</var> Result; <cite>// number which will contain the result</cite>
+
+<var>int</var> Succeeded = sscanf ( Text, <kbd>"%d"</kbd>, &amp;Result );
+
+<var>if</var> ( !Succeeded || Succeeded == EOF ) <cite>// check if something went wrong during the conversion</cite>
+    Result = 0;</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+</p>
+<br>
+<h3><a name="stdlib"></a>C - stdlib</h3>
+<p>
+The <a href="http://www.cplusplus.com/reference/clibrary/cstdlib/">stdlib</a> header contains some functions to convert text and numbers<br>
+Notice that <u>some of these functions are not standard!</u>
+These functions are: <br>
+<ul>
+<li><a href="http://www.cplusplus.com/reference/clibrary/cstdlib/itoa.html"><code>itoa</code></a></li>
+<li><a href="http://www.cplusplus.com/reference/clibrary/cstdlib/atoi.html"><code>atoi</code></a></li>
+<li><a href="http://www.cplusplus.com/reference/clibrary/cstdlib/atol.html"><code>atol</code></a></li>
+<li><a href="http://www.cplusplus.com/reference/clibrary/cstdlib/atof.html"><code>atof</code></a></li>
+<li><a href="http://www.cplusplus.com/reference/clibrary/cstdlib/strtol.html"><code>strtol</code></a></li>
+<li><a href="http://www.cplusplus.com/reference/clibrary/cstdlib/strtoul.html"><code>strtoul</code></a></li>
+<li><a href="http://www.cplusplus.com/reference/clibrary/cstdlib/strtod.html"><code>strtod</code></a></li>
+</ul>
+- For examples refer to the individual reference pages - <br>
+</p>
+<br>
+<h3><a name="bad"></a>Writing your own function</h3>
+<p>
+Using already existing libraries is easier and better but, just to show how some of the above solutions work, here are some examples of how to write functions to convert text to numbers and numbers to text using only the core language, the following examples are from the book "<cite>The C Programming Language</cite>"<br>
+<br>
+Here is <code>itoa</code> ( Integer TO Alphabet )<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br></code></pre></td>
+<td class="source"><pre><code><cite>/* itoa:  convert n to characters in s */</cite>
+<var>void</var> itoa(<var>int</var> n, <var>char</var> s[])
+{
+    <var>int</var> i, sign;
+
+    <var>if</var> ((sign = n) &lt; 0)  <cite>/* record sign */</cite>
+        n = -n;          <cite>/* make n positive */</cite>
+    i = 0;
+    <var>do</var> {       <cite>/* generate digits in reverse order */</cite>
+        s[i++] = n % 10 + <kbd>'0'</kbd>;   <cite>/* get next digit */</cite>
+    } <var>while</var> ((n /= 10) &gt; 0);     <cite>/* delete it */</cite>
+    <var>if</var> (sign &lt; 0)
+        s[i++] = <kbd>'-'</kbd>;
+    s[i] = <kbd>'\0'</kbd>;
+    reverse(s);
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+Here is the function <code>reverse</code> used in <code>itoa</code>:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br></code></pre></td>
+<td class="source"><pre><code><cite>/* reverse:  reverse string s in place */</cite>
+<var>void</var> reverse(<var>char</var> s[])
+{
+    <var>int</var> i, j;
+    <var>char</var> c;
+
+    <var>for</var> (i = 0, j = strlen(s)-1; i&lt;j; i++, j--) {
+        c = s[i];
+        s[i] = s[j];
+        s[j] = c;
+    }
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<code>reverse</code> uses the function <code>strlen</code> from the header cstring ( string.h in C )<br>
+This is easy to implement, here is an example:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br></code></pre></td>
+<td class="source"><pre><code><cite>/* strlen: return length of s */</cite>
+<var>int</var> strlen(<var>char</var> s[])
+{
+    <var>int</var> i = 0;
+    <var>while</var> (s[i] != <kbd>'\0'</kbd>)
+        ++i;
+    <var>return</var> i;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+As you can see, is possible to create a ( bad ) conversion function with just some basic C<br>
+The same applies to the opposite conversion:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br></code></pre></td>
+<td class="source"><pre><code><cite>/* atoi: convert s to integer */</cite>
+<var>int</var> atoi(<var>char</var> s[])
+{
+    <var>int</var> i, n;
+    n = 0;
+    <var>for</var> (i = 0; s[i] &gt;= <kbd>'0'</kbd> &amp;&amp; s[i] &lt;= <kbd>'9'</kbd>; ++i)
+        n = 10 * n + (s[i] - <kbd>'0'</kbd>);
+    <var>return</var> n;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+Of course these functions are bad for many reasons and should not be used in actual code<br>
+They just show the idea behind the conversion between an integer value and a character sequence<br>
+</p>
+</div></div><div id="CH_bb"></div><div id="CH_scoreapp"></div><script type="text/javascript">new Score('CH_scoreapp','/articles/score.cgi','D9j2Nwbp');</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder selected articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/articles/">Articles</a></b></h3>
+<ul>
+<li><a href="/articles/algorithms/">Algorithms</a></li><li><a href="/articles/cpp11/">C++ 11</a></li><li><a href="/articles/graphics/">Graphics and multimedia</a></li><li><a href="/articles/howto/">How-To</a></li><li><a href="/articles/language/">Language Features</a></li><li><a href="/articles/linux/">Unix/Linux programming</a></li><li><a href="/articles/sourcecode/">Source Code</a></li><li><a href="/articles/standard_library/">Standard Library</a></li><li><a href="/articles/tips/">Tips and Tricks</a></li><li><a href="/articles/tools/">Tools and Libraries</a></li><li><a href="/articles/visualcpp/">Visual C++</a></li><li><a href="/articles/winapi/">Windows API</a></li></ul>
+</div>
+<div id="I_subnav"></div>
+</div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Farticles%2FD9j2Nwbp%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+onSession(function(us) {
+		document.getElementById('I_subnav').innerHTML=
+			us.ok?
+				'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul>'+
+				'<li><a href="/articles/myitems.cgi">My items</a></li>'+
+				(us.auth(32768)?'<li><a href="/articles/adminitems.cgi">Admin items</a></li>':'')+
+				'</ul></div>'
+			:'';
+	}); onSession(function (us) {
+		var el=document.getElementById('CH_bb'); el.innerHTML='';
+		if ( (us.auth(32768)) || ((us.uniqid=='Ey60RXSz')&&(us.auth(128))) ) {
+			el.appendChild(btn('Edit article','Edit this version of the article','edit','/articles/edit.cgi?a=D9j2Nwbp'));
+	
+			if (us.auth(32768)) {
+				el.appendChild(btn('Delete article','Delete this article','delete','javascript:artdel()'));
+			}
+	
+		}
+	});
+	function artdel() { if (confirm('WARNING: You are about to delete this page. Confirm?')) window.location='/articles/delete.cgi?a=D9j2Nwbp'; }
+	ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

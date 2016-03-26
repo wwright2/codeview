@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>The Element Project (v2) - C++ Articles</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/articles/">Articles</a></li>
+<li class="here">The Element Project (v2)</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div id="I_content">
+<div class="C_art">
+<div id="I_author">Published by <b><a href="/user/Pheonix/" rel="author">Pheonix</a></b></div>
+<div id="I_date">Jun 2, 2014 (last update: Jul 24, 2014)</div>
+<h1>The Element Project (v2)</h1>
+<div id="I_score">Score: 3.8/5 (45 votes)</div>
+<div id="I_stars"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-half.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"></div>
+<div id="I_content">
+Element is a 1 or 2 player game where you take control of 1 of 10 playable characters to defeat your opponent.<br>
+<br>
+<H3>
+How To Play<br>
+</H3>
+<br>
+Element is a turn based game that tracks multiple player statistics. On the header page, you will see a short summary of each of the different playable elements. To select one, enter its name (note: it will only work if you use capital first letter). You must do this twice, one for each player. Once you select your character, you will be accompanied by the following statistics:<br>
+<br>
+-Health: Starting health of your character.<br>
+-Armor: Flat damage reduction against normal attacks.<br>
+-Speed: First attack priority. Every turn, a random number generator determines who takes their action first, there is no advantage in being player 1 or player 2.<br>
+-Agility: Percentage chance to dodge a normal attack.<br>
+-Max Damage: when attacking, a random number generator will choose a number from 0 to this number and deal damage.<br>
+-Starting Energy: Energy is used to activate abilities, this is how much you will have available at the beginning of the game. you gain 1 more every turn.<br>
+<br>
+The next 3 items are your abilities, their energy cost is listed next to them and their description of what they do underneath.<br>
+<br>
+the next item is a passive ability. It is a special ability that is always active and is completely free.<br>
+<br>
+lastly, is the tips. Its a summary of the character, their strengths, weaknesses, and play style.<br>
+<br>
+After both players have chosen their elements, they will move onto the battle phase. There is some statistical data displayed at the top, they are:<br>
+-Element Name<br>
+-[remaining health]<br>
+-[current status]<br>
+-[current energy]<br>
+<br>
+*Default status is "Healthy", certain abilities change this.<br>
+<br>
+Every turn, you may take 1 of 6 actions:<br>
+1) attack for a random value between 0 and maximum attack value, there is a chance to miss based on your opponents agility and will be reduced in damage by your opponent's armor.<br>
+2) defend against your opponent's attack, half incoming damage (only effects attacks, not abilities)<br>
+3 - 5) activate an ability, the energy cost is listed inside the brackets. effects vary depending on element being played<br>
+6) surrender and loose immediately.<br>
+0) ai code (disabled for Sweep mode)<br>
+<br>
+The game ends when a player's health reaches 0.<br>
+<br>
+After the battle, the results will be saved for future reference, if you would like to look up statistical data, enter "y" for yes on the next screen (the one with the 10x10 grid of numbers, these are the saved wins and losses for all match ups for the normal characters. If you enter y, you will be asked to enter in what match ups you would like to look up.<br>
+<br>
+If the elements are different: it will look up that specific match up, wins and losses.<br>
+If you enter the same element twice: it will look up that element's win rate against all opponents<br>
+If one of the two elements entered is "All": it will look up the overall win rate of all elements and display them.<br>
+<br>
+<H3>
+Admin Commands<br>
+</H3>
+<br>
+On the initial screen, there are numerous commands you can enter.<br>
+<br>
+FillData<br>
+   Run an ai battle to determine a quick result between 2 random combatants.<br>
+<br>
+FillDataFast<br>
+   Run an infinite number of ai battles, use to populate data if you want statistics.<br>
+<br>
+FillDataOne (use on player 2 screen)<br>
+   Run an infinite number of ai battles, the first combatant will always be the same, use for statistical purposes. <br>
+<br>
+SystemFill<br>
+   Run an infinite number of ai battles in a specific order so each element battles each other the same amount of times. Use to populate data for statistics.<br>
+<br>
+SystemFillOne<br>
+   Run 2 ai battles of each matchup, useful for quick statistics.<br>
+<br>
+no<br>
+   Skip the battle and go directly to the statistical analysis page.<br>
+<br>
+Rand<br>
+   Enter a number to mix up the random number generator so you do not get repeat results<br>
+<br>
+Secret<br>
+   Add the 4 hidden characters to the top menu, will not reveal their codes to play them<br>
+<br>
+Sweep (use on player 2 screen)<br>
+   Activate special single player mode, fight each element until you win, test your skills with a given element to achieve victory over all opponents.<br>
+<br>
+<H3>
+Changes From Version 1<br>
+</H3>
+<br>
+-Added screen coloring to better determine whose turn it is. Red for player 1, blue for player 2.<br>
+<br>
+-Changed how stats are shown on the header screen, from ambiguous phrasing to statistical bar graphs.<br>
+<br>
+-Adjusted text to better align menus.<br>
+<br>
+-Various AI improvements<br>
+<br>
+*NEW* added 3rd and 4th new secret characters, Idler and Techmaturgy. The other two are Energy and Morphling. Figure out their secret codes to play them.<br>
+<br>
+<H3>
+Balance Changes<br>
+</H3>
+<br>
+Fire:<br>
+<br>
+-Armor increased to 6 from 3<br>
+-Max Attack reduced to 25 from 30<br>
+-Speed increased to 55 from 50<br>
+-Dodge increased to 30 from 20<br>
+-Starting energy reduced to 3 from 4<br>
+-Flamethrower:<br>
+   Damage reduced to 35 from 45<br>
+<br>
+Water:<br>
+<br>
+-Wave:<br>
+   Cost reduced to 1 from 2<br>
+   Damage reduced to 24 from 33<br>
+-Barrier:<br>
+   Cost increased to 4 from 3<br>
+<br>
+Static:<br>
+<br>
+-Health increased to 270 from 230<br>
+-Armor increased to 8 from 2<br>
+-Dodge reduced to 15 from 25<br>
+-Shock Absorb:<br>
+   Healing rate increased to double opposing damage from just the base value<br>
+<br>
+Holy:<br>
+<br>
+-Health increased to 250 from 170<br>
+-Armor increased to 6 from 4<br>
+-Max attack increased to 45 from 38<br>
+-Speed increased to 40 from 35<br>
+-Starting energy reduced to 4 from 5<br>
+-Divine Blessing:<br>
+   Cost increased to 4 from 3<br>
+-Hinder:<br>
+   Cost increased to 5 from 4<br>
+-Smite<br>
+   Cost decreased to 6 from 7<br>
+<br>
+Wind:<br>
+<br>
+-Health increased to 170 from 150<br>
+-Max attack increased to 35 from 25<br>
+-Speed reduced to 75 from 80<br>
+-Starting energy reduced to 2 from 3<br>
+-Wind Charge:<br>
+   Cost decreased to 3 from 4<br>
+   Maximum damage increased to 85 from 75, still remains +50<br>
+-Tempest:<br>
+   Cost increased to 7 from 6<br>
+   Damage reduced to 100 from 120<br>
+<br>
+Earth:<br>
+<br>
+-Health increased to 350 from 300<br>
+-Armor increased to 10 from 6<br>
+-Max damage increased to 40 from 30<br>
+-Speed increased to 35 from 30<br>
+-Starting energy reduced to 2 from 3<br>
+-Boulder:<br>
+   Cost reduced to 3 from 4<br>
+-Shakedown:<br>
+   Cost reduced to 4 from 6<br>
+-Quake:<br>
+   Cost reduced to 7 from 8<br>
+<br>
+Blood:<br>
+<br>
+-Armor increased to 4 from 3<br>
+-Max attack increased to 50 from 35<br>
+-Bleed:<br>
+   Damage increased to 10% per turn from 5% (new maximum is 27.1% from 14.3%)<br>
+-Drain:<br>
+   Cost reduced to 3 from 4<br>
+-Ravage:<br>
+   Damage increased to Attack*4 + 20 from Attack*4 (keep in mind the attack buff from 35 to 50)<br>
+   Cost increased to 6 from 5<br>
+<br>
+Dark:<br>
+<br>
+-Armor increased to 6 from 3<br>
+-Max attack decreased to 15 from 30<br>
+-Speed increased to 70 from 65<br>
+-Shadowmeld:<br>
+   Now has a 1 energy penalty if it is not used to dodge an ability<br>
+   Now activates passive a second time if dodge is successful against an ability<br>
+<br>
+Venom:<br>
+<br>
+-Health decreased to 170 from 230<br>
+-Armor increased to 3 from 2<br>
+-Max damage reduced to 15 from 30<br>
+-Hidden:<br>
+   Renamed: Sneak Attack<br>
+-Piercing Shot:<br>
+   Cost increased to 6 from 5<br>
+-Passive:<br>
+   Venom damage per stack reduced to 3 from 5<br>
+<br>
+<H3>
+Conclusion<br>
+</H3>
+<br>
+I am sorry the new version took so long to come out, but I was incredibly bogged down by IRL projects. If you have any questions about the game, balance suggestions, or other ideas, PLEASE send me a message (be specific so I know what you are talking about). If it does not work initially, try creating a document called "Balance.txt", this is where all of the battle data will be saved. I wanted to get this up as soon as I got a chance to, so the code is slightly messy and un-commented, some comments are inaccurate, however, all data that is displayed within the game is up to date. Have fun with Element!<br>
+<br>
+(Due to the amount of changes and additions to the game I made, I am unable to directly post the source code due to length restrictions, I'll include a .txt in case you cannot get .cpp files)<br>
+<br>
+<H3>
+EDIT:<br>
+</H3>
+<br>
+I went back and commented all of the code to make it more readable, all comments should be up to date now, I also noticed a few small bugs that are now fixed:<br>
+<br>
+-Morphling cannot activate idler's and tech's 3rd ability now, caused major inconsistencies program-wise<br>
+<br>
+-Fixed typo in earth, boulder does 20 damage, not 30<br>
+<br>
+-Fixed bug that allowed Energy element's cost on 1st ability to be reimbursed if used to block an attack (not an ability)<br>
+<br>
+I also added a title screen to make it a bit more game-like once it is started up.<br>
+<br>
+Lastly, I am also adding match data I have gathered if you want to use that as a base, it's in the file "Balance.txt"<p>Attachments:
+	[<a href="Balance.txt">Balance.txt</a>]
+	[<a href="Element.cpp">Element.cpp</a>]
+	[<a href="Element.txt">Element.txt</a>]
+</p>
+</div></div><div id="CH_bb"></div><div id="CH_scoreapp"></div><script type="text/javascript">new Score('CH_scoreapp','/articles/score.cgi','z1hv0pDG');</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder selected articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/articles/">Articles</a></b></h3>
+<ul>
+<li><a href="/articles/algorithms/">Algorithms</a></li><li><a href="/articles/cpp11/">C++ 11</a></li><li><a href="/articles/graphics/">Graphics and multimedia</a></li><li><a href="/articles/howto/">How-To</a></li><li><a href="/articles/language/">Language Features</a></li><li><a href="/articles/linux/">Unix/Linux programming</a></li><li><a href="/articles/sourcecode/">Source Code</a></li><li><a href="/articles/standard_library/">Standard Library</a></li><li><a href="/articles/tips/">Tips and Tricks</a></li><li><a href="/articles/tools/">Tools and Libraries</a></li><li><a href="/articles/visualcpp/">Visual C++</a></li><li><a href="/articles/winapi/">Windows API</a></li></ul>
+</div>
+<div id="I_subnav"></div>
+</div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Farticles%2Fz1hv0pDG%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+onSession(function(us) {
+		document.getElementById('I_subnav').innerHTML=
+			us.ok?
+				'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul>'+
+				'<li><a href="/articles/myitems.cgi">My items</a></li>'+
+				(us.auth(32768)?'<li><a href="/articles/adminitems.cgi">Admin items</a></li>':'')+
+				'</ul></div>'
+			:'';
+	}); onSession(function (us) {
+		var el=document.getElementById('CH_bb'); el.innerHTML='';
+		if ( (us.auth(32768)) || ((us.uniqid=='4w6fSL3A')&&(us.auth(128))) ) {
+			el.appendChild(btn('Edit article','Edit this version of the article','edit','/articles/edit.cgi?a=z1hv0pDG'));
+	
+			if (us.auth(32768)) {
+				el.appendChild(btn('Delete article','Delete this article','delete','javascript:artdel()'));
+			}
+	
+		}
+	});
+	function artdel() { if (confirm('WARNING: You are about to delete this page. Confirm?')) window.location='/articles/delete.cgi?a=z1hv0pDG'; }
+	ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

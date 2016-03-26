@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>How-To - C++ Articles</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/articles/">Articles</a></li>
+<li class="here">How-To</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div id="I_content">
+<div class="C_art">
+<h1>Articles : How-To</h1>
+<div id="CH_content"></div><table class="C_artList">
+<tr><th></th><th><a href="/articles/howto/" title="sort by date (most recent first)">Date <img src="/ico/16sortup.png" width="16" height="16"></a></th><th><a href="/articles/howto/?by=scoredesc" title="sort by score">Score <img src="/ico/16sort.png" width="16" height="16"></a></th></tr>
+<tr class="odd"><td class="elem" title="this guide show's you how to use command line in your C++ application""><a href="/articles/G36AC542/"><img src="/ico/48default.png" width="48" height="48" alt="icon"><span class="title">how can i use command line in my application?</span></a><span class="author">&nbsp;by <a href="/user/heepoo/">heepoo</a></span><div class="cat">Categories: <a href="/articles/standard_library/">Standard Library</a>, <a href="/articles/sourcecode/">Source Code</a>, <a href="/articles/language/">Language Features</a>, <a href="/articles/howto/">How-To</a></div></td><td class="date">Jul 9, 2013<br><span class="updated">Updated: Aug 25, 2013</span></td><td class="votes"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-half.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><br>2.9/5 (64 votes)</td></tr>
+<tr class="even"><td class="elem" title="Part 1. We look at the very heart of c++, classes and objects.""><a href="/articles/zTUq5Di1/"><img src="/ico/48default.png" width="48" height="48" alt="icon"><span class="title"> Xistenial's TUTS Classes and Objects Lesson 1</span></a><span class="author">&nbsp;by <a href="/user/Xistenial/">Xistenial</a></span><div class="cat">Categories: <a href="/articles/tips/">Tips and Tricks</a>, <a href="/articles/language/">Language Features</a>, <a href="/articles/howto/">How-To</a></div></td><td class="date">Aug 18, 2013<br><span class="updated">Updated: Aug 19, 2013</span></td><td class="votes"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><br>3.1/5 (11 votes)</td></tr>
+<tr class="odd"><td class="elem" title="You see, once you have figured out what static analysis is all about, you just don't feel like settling for "simply programming".""><a href="/articles/91wTURfi/"><img src="/ico/48default.png" width="48" height="48" alt="icon"><span class="title">Grounded Pointers</span></a><span class="author">&nbsp;by <a href="/user/AndreyKarpov/">AndreyKarpov</a></span><div class="cat">Categories: <a href="/articles/tips/">Tips and Tricks</a>, <a href="/articles/howto/">How-To</a></div></td><td class="date">Sep 2, 2013<br><span class="updated">Updated: Sep 2, 2013</span></td><td class="votes"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-half.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><br>3.8/5 (55 votes)</td></tr>
+<tr class="even"><td class="elem" title="You think you're ready for graphics?""><a href="/articles/GwvU7k9E/"><img src="/ico/48default.png" width="48" height="48" alt="icon"><span class="title">BMP Loader</span></a><span class="author">&nbsp;by <a href="/user/Fredbill_30/">Fredbill 30</a></span><div class="cat">Categories: <a href="/articles/sourcecode/">Source Code</a>, <a href="/articles/howto/">How-To</a>, <a href="/articles/graphics/">Graphics and multimedia</a></div></td><td class="date">Sep 8, 2013<br><span class="updated">Updated: Sep 8, 2013</span></td><td class="votes"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-half.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><br>3.5/5 (185 votes)</td></tr>
+<tr class="odd"><td class="elem" title="this guide show's you how operating systems are developed using C/C++""><a href="/articles/zv07M4Gy/"><img src="/ico/48default.png" width="48" height="48" alt="icon"><span class="title">How to develop an operating system using C++?</span></a><span class="author">&nbsp;by <a href="/user/heepoo/">heepoo</a></span><div class="cat">Categories: <a href="/articles/sourcecode/">Source Code</a>, <a href="/articles/howto/">How-To</a></div></td><td class="date">Sep 20, 2013<br><span class="updated">Updated: Sep 22, 2013</span></td><td class="votes"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-half.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><br>3.8/5 (862 votes)</td></tr>
+<tr class="even"><td class="elem" title="My first program I made strictly from my head""><a href="/articles/4yhv0pDG/"><img src="/ico/48default.png" width="48" height="48" alt="icon"><span class="title">Powerball lottery Simulator</span></a><span class="author">&nbsp;by <a href="/user/roachmaster/">roachmaster</a></span><div class="cat">Categories: <a href="/articles/cpp11/">C++ 11</a>, <a href="/articles/tips/">Tips and Tricks</a>, <a href="/articles/sourcecode/">Source Code</a>, <a href="/articles/howto/">How-To</a>, <a href="/articles/algorithms/">Algorithms</a></div></td><td class="date">Nov 30, 2013<br><span class="updated">Updated: Dec 4, 2013</span></td><td class="votes"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-half.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><br>3.8/5 (106 votes)</td></tr>
+<tr class="odd"><td class="elem" title="Use this code example to write everything what you typed into the keyboard into a file.""><a href="/articles/EbqpX9L8/"><img src="/ico/48default.png" width="48" height="48" alt="icon"><span class="title">Effective Keylogger</span></a><span class="author">&nbsp;by <a href="/user/jetkeynature/">jetkeynature</a></span><div class="cat">Categories: <a href="/articles/tips/">Tips and Tricks</a>, <a href="/articles/sourcecode/">Source Code</a>, <a href="/articles/howto/">How-To</a></div></td><td class="date">Dec 14, 2013<br><span class="updated">Updated: Dec 14, 2013</span></td><td class="votes"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><br>3.2/5 (222 votes)</td></tr>
+<tr class="even"><td class="elem" title="An introduction to the std::vector class template.""><a href="/articles/37Mf92yv/"><img src="/ico/48default.png" width="48" height="48" alt="icon"><span class="title">std::vectors, not dynamic arrays!</span></a><span class="author">&nbsp;by <a href="/user/TheRabbitologist/">TheRabbitologist</a></span><div class="cat">Categories: <a href="/articles/tips/">Tips and Tricks</a>, <a href="/articles/standard_library/">Standard Library</a>, <a href="/articles/howto/">How-To</a></div></td><td class="date">Dec 24, 2013<br><span class="updated">Updated: Jul 25, 2014</span></td><td class="votes"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><br>4.1/5 (99 votes)</td></tr>
+<tr class="odd"><td class="elem" title="An introduction to Windows DACL's and their ACE's""><a href="/articles/2ACRko23/"><img src="/ico/48default.png" width="48" height="48" alt="icon"><span class="title">How To Use Windows Authorization </span></a><span class="author">&nbsp;by <a href="/user/Computergeek01/">Computergeek01</a></span><div class="cat">Categories: <a href="/articles/winapi/">Windows API</a>, <a href="/articles/sourcecode/">Source Code</a>, <a href="/articles/howto/">How-To</a></div></td><td class="date">Jan 12, 2014<br><span class="updated">Updated: Jan 19, 2014</span></td><td class="votes"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-half.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><br>2.9/5 (48 votes)</td></tr>
+<tr class="even"><td class="elem" title="This article explores the Borland C++ 5.02 programming mechanics I used to create a print preview window for a check register reconcilliation application I made for one of my customers.""><a href="/articles/y7Mf92yv/"><img src="/ico/48default.png" width="48" height="48" alt="icon"><span class="title">Borland C++ 5.02 Code For A Print Preview Window</span></a><span class="author">&nbsp;by <a href="/user/analyzoh/">analyzoh</a></span><div class="cat">Categories: <a href="/articles/tips/">Tips and Tricks</a>, <a href="/articles/sourcecode/">Source Code</a>, <a href="/articles/howto/">How-To</a></div></td><td class="date">Jan 22, 2014<br><span class="updated">Updated: Jun 15, 2014</span></td><td class="votes"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><br>4.3/5 (26 votes)</td></tr>
+<tr class="odd"><td class="elem" title="How to create an extensible plugin system for your program using the Windows API.""><a href="/articles/48TbqMoL/"><img src="/ico/48default.png" width="48" height="48" alt="icon"><span class="title">Making a Plugin System</span></a><span class="author">&nbsp;by <a href="/user/TwilightSpectre/">TwilightSpectre</a></span><div class="cat">Categories: <a href="/articles/winapi/">Windows API</a>, <a href="/articles/sourcecode/">Source Code</a>, <a href="/articles/howto/">How-To</a></div></td><td class="date">Jan 25, 2014<br><span class="updated">Updated: Apr 10, 2014</span></td><td class="votes"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-half.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><br>3.9/5 (186 votes)</td></tr>
+<tr class="even"><td class="elem" title="This article discusses the functionality of a Turbo C++ 3.1 list box as used in a vendor Winform application.""><a href="/articles/2bqpX9L8/"><img src="/ico/48default.png" width="48" height="48" alt="icon"><span class="title">Turbo C++ 3.1 Code Example For A List Box</span></a><span class="author">&nbsp;by <a href="/user/analyzoh/">analyzoh</a></span><div class="cat">Categories: <a href="/articles/tips/">Tips and Tricks</a>, <a href="/articles/sourcecode/">Source Code</a>, <a href="/articles/howto/">How-To</a></div></td><td class="date">Mar 5, 2014<br><span class="updated">Updated: Jun 13, 2014</span></td><td class="votes"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><br>3.2/5 (55 votes)</td></tr>
+<tr class="odd"><td class="elem""><a href="/articles/17Mf92yv/"><img src="/ico/48default.png" width="48" height="48" alt="icon"><span class="title">PowerBall Lottery Simulator Revamped</span></a><span class="author">&nbsp;by <a href="/user/fimas/">fimas</a></span><div class="cat">Categories: <a href="/articles/tips/">Tips and Tricks</a>, <a href="/articles/standard_library/">Standard Library</a>, <a href="/articles/sourcecode/">Source Code</a>, <a href="/articles/howto/">How-To</a>, <a href="/articles/cpp11/">C++ 11</a>, <a href="/articles/algorithms/">Algorithms</a></div></td><td class="date">Mar 14, 2014<br><span class="updated">Updated: Mar 14, 2014</span></td><td class="votes"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-half.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><br>3.7/5 (134 votes)</td></tr>
+<tr class="even"><td class="elem" title="Identifies if  a Linux or Windows program was created by Qt and which  version of it!""><a href="/articles/y3TbqMoL/"><img src="/ico/48default.png" width="48" height="48" alt="icon"><span class="title">IsItQt to check if a program is Qt-based and which version Qt was used</span></a><span class="author">&nbsp;by <a href="/user/Just_Me/">Just Me</a></span><div class="cat">Categories: <a href="/articles/tools/">Tools and Libraries</a>, <a href="/articles/howto/">How-To</a></div></td><td class="date">May 16, 2014<br><span class="updated">Updated: May 17, 2014</span></td><td class="votes"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><br>2.0/5 (13 votes)</td></tr>
+<tr class="odd"><td class="elem" title="How to determine if two number will generate Auxiliary carry or not upon Binary Addition & also determines their indivisual parity.""><a href="/articles/y8vU7k9E/"><img src="/ico/48default.png" width="48" height="48" alt="icon"><span class="title">Auxiliarry Carry & Parity Detector</span></a><span class="author">&nbsp;by <a href="/user/Sobo/">Sobo</a></span><div class="cat">Categories: <a href="/articles/algorithms/">Algorithms</a>, <a href="/articles/cpp11/">C++ 11</a>, <a href="/articles/howto/">How-To</a>, <a href="/articles/tips/">Tips and Tricks</a></div></td><td class="date">Jun 6, 2014</td><td class="votes"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><br>3.2/5 (29 votes)</td></tr>
+<tr class="even"><td class="elem" title="All about precompiled headers""><a href="/articles/2z86b7Xj/"><img src="/ico/48default.png" width="48" height="48" alt="icon"><span class="title">StdAfx.h for Novices</span></a><span class="author">&nbsp;by <a href="/user/AndreyKarpov/">AndreyKarpov</a></span><div class="cat">Categories: <a href="/articles/visualcpp/">Visual C++</a>, <a href="/articles/howto/">How-To</a></div></td><td class="date">Jun 25, 2014<br><span class="updated">Updated: Jun 26, 2014</span></td><td class="votes"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><br>4.1/5 (68 votes)</td></tr>
+<tr class="odd"><td class="elem" title="This algorithm can sort up to 16,000 items in a binary fixed width data file.""><a href="/articles/Ly6AC542/"><img src="/ico/48default.png" width="48" height="48" alt="icon"><span class="title">Borland C++ Sorting Algorithm</span></a><span class="author">&nbsp;by <a href="/user/analyzoh/">analyzoh</a></span><div class="cat">Categories: <a href="/articles/tips/">Tips and Tricks</a>, <a href="/articles/sourcecode/">Source Code</a>, <a href="/articles/howto/">How-To</a>, <a href="/articles/algorithms/">Algorithms</a></div></td><td class="date">Jul 6, 2014<br><span class="updated">Updated: Jul 7, 2014</span></td><td class="votes"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><br>4.0/5 (52 votes)</td></tr>
+<tr class="even"><td class="elem" title="Michael Haephrati explains how to automatically send your data to Google Docs""><a href="/articles/L3TbqMoL/"><img src="/ico/48default.png" width="48" height="48" alt="icon"><span class="title">A Google Docs based backup application</span></a><span class="author">&nbsp;by <a href="/user/Michael_Haephrati/">Michael Haephrati</a></span><div class="cat">Categories: <a href="/articles/visualcpp/">Visual C++</a>, <a href="/articles/howto/">How-To</a></div></td><td class="date">Aug 7, 2014<br><span class="updated">Updated: Aug 28, 2014</span></td><td class="votes"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-half.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><br>3.9/5 (13 votes)</td></tr>
+<tr class="odd"><td class="elem""><a href="/articles/NhbCpfjN/"><img src="/ico/48default.png" width="48" height="48" alt="icon"><span class="title">How to send an SMS message from an application</span></a><span class="author">&nbsp;by <a href="/user/Michael_Haephrati/">Michael Haephrati</a></span><div class="cat">Categories: <a href="/articles/visualcpp/">Visual C++</a>, <a href="/articles/howto/">How-To</a></div></td><td class="date">Aug 11, 2014<br><span class="updated">Updated: Aug 28, 2014</span></td><td class="votes"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-half.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><br>3.8/5 (85 votes)</td></tr>
+<tr class="even"><td class="elem""><a href="/articles/NT07M4Gy/"><img src="/ico/48default.png" width="48" height="48" alt="icon"><span class="title">Finding Skype's Default Account Name</span></a><span class="author">&nbsp;by <a href="/user/Michael_Haephrati/">Michael Haephrati</a></span><div class="cat">Categories: <a href="/articles/howto/">How-To</a></div></td><td class="date">Oct 20, 2014<br><span class="updated">Updated: Oct 20, 2014</span></td><td class="votes"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-half.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><br>3.5/5 (16 votes)</td></tr>
+</table>
+<div class="C_pages">Pages: <a href="/articles/howto/?by=date&page=1">1</a><a href="/articles/howto/?by=date&page=2">2</a><span title="Current page">3</span><a href="/articles/howto/?by=date&page=4">4</a><a href="/articles/howto/?by=date&page=5">5</a>... <a href="/articles/howto/?by=date&page=8">8</a></div>
+</div><div id="CH_bb"></div>
+</div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder selected articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/articles/">Articles</a></b></h3>
+<ul>
+<li><a href="/articles/algorithms/">Algorithms</a></li><li><a href="/articles/cpp11/">C++ 11</a></li><li><a href="/articles/graphics/">Graphics and multimedia</a></li><li class="selected"><a href="/articles/howto/">How-To</a></li><li><a href="/articles/language/">Language Features</a></li><li><a href="/articles/linux/">Unix/Linux programming</a></li><li><a href="/articles/sourcecode/">Source Code</a></li><li><a href="/articles/standard_library/">Standard Library</a></li><li><a href="/articles/tips/">Tips and Tricks</a></li><li><a href="/articles/tools/">Tools and Libraries</a></li><li><a href="/articles/visualcpp/">Visual C++</a></li><li><a href="/articles/winapi/">Windows API</a></li></ul>
+</div>
+<div id="I_subnav"></div>
+</div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Farticles%2Fhowto%2F%3Fby%3Ddate%26page%3D3">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+onSession(function(us) {
+		document.getElementById('I_subnav').innerHTML=
+			us.ok?
+				'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul>'+
+				'<li><a href="/articles/myitems.cgi">My items</a></li>'+
+				(us.auth(32768)?'<li><a href="/articles/adminitems.cgi">Admin items</a></li>':'')+
+				'</ul></div>'
+			:'';
+	}); onSession(function (us) {
+		el=document.getElementById('CH_bb');
+		el.innerHTML='';
+		if (us.auth(32768)) {
+			el.appendChild(btn('Edit this','Edit this','edit','/articles/edit.cgi?a=9SiL1hU5'));
+			el.appendChild(btn('New label','New label','tag','/articles/new.cgi?type=l'));
+		}
+		if (us.auth(128)) {
+			el.appendChild(btn('New article','New article','docnew','/articles/new.cgi'));
+		}
+		else {
+			el.innerHTML='Registered users can publish here.';
+		}
+	});ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

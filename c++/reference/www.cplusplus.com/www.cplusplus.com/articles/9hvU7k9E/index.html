@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Caesar cipher - C++ Articles</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/articles/">Articles</a></li>
+<li class="here">Caesar cipher</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div id="I_content">
+<div class="C_art">
+<div id="I_author">Published by <b><a href="/user/Catfish3/" rel="author">Catfish3</a></b></div>
+<div id="I_date">Dec 14, 2012 (last update: Jan 5, 2013)</div>
+<h1>Caesar cipher</h1>
+<div id="I_score">Score: 3.5/5 (39 votes)</div>
+<div id="I_stars"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-half.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"></div>
+<div id="I_content">
+<H3>Caveat</H3>
+The Caesar cipher encrypts text by rotating the alphabet, leaving digits and symbols unchanged. It was used in ancient times to encrypt confidential messages, but from today's perspective it is just a toy cipher.<br>
+<br>
+The purpose of this article is not to promote the Caesar cipher, but to demonstrate how to use C++'s features in its implementation for the English language.<br>
+<br>
+<H3>Goal</H3>
+<UL>
+<LI>To provide a means to encrypt <CODE>char[]</CODE>'s, <CODE>std::string</CODE>s, and files.</LI>
+<LI>It is achieved by a function template which works with iterators.</LI>
+</UL>
+<br>
+<H3>Language</H3>
+C++11, the 2011 version of the C++ language's standard.<BR>
+<br>
+Your C++ compiler must support lambda functions, range-based <CODE>for()</CODE> loops, and initializer lists, for to successfully compile the source code snippets in this article, and the full program attached.<br>
+<br>
+<H3>Parameters and design rationale</H3>
+The core function of the program is named <CODE>caesar_cipher()</CODE> and it has four parameters:<br>
+<br>
+<TABLE class="boxed">
+<THEAD>
+<TR>
+<TH>Name</TH>
+<TH>Description</TH>
+</TR>
+</THEAD>
+<TBODY>
+<TR>
+<TD><CODE>src_begin</CODE></TD>
+<TD>source's beginning iterator</TD>
+</TR>
+<TR>
+<TD><CODE>src_end</CODE></TD>
+<TD>source's end iterator</TD>
+</TR>
+<TR>
+<TD><CODE>dest_begin</CODE></TD>
+<TD>destination's beginning iterator</TD>
+</TR>
+<TR>
+<TD><CODE>shift</CODE></TD>
+<TD>integer representing the alphabet shift</TD>
+</TR>
+</TBODY>
+</TABLE>
+<br>
+The approach of passing iterators instead of an actual container has two advantages:<br>
+<OL>
+<LI>The function is container-agnostic.</LI>
+<LI>The function's implementation is simplified.</LI>
+</OL>
+<br>
+<H3>Usage examples</H3>
+<UL>
+<LI>The Good<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br></code></pre></td>
+<td class="source"><pre><code>std::string s(<kbd>"Hello, World!"</kbd>);
+
+caesar_cipher(s.begin(), s.end(), s.begin(), 4);  <cite>// s == "Lipps, Asvph!"</cite>
+caesar_cipher(s.begin(), s.end(), s.begin(), -4); <cite>// s == "Hello, World!" </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+</LI>
+<br>
+<LI>The Bad<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br></code></pre></td>
+<td class="source"><pre><code><var>const</var> std::vector&lt;<var>char</var>&gt; vc{<kbd>'D'</kbd>, <kbd>'b'</kbd>, <kbd>'f'</kbd>, <kbd>'t'</kbd>, <kbd>'b'</kbd>, <kbd>'s'</kbd>};
+std::list&lt;<var>char</var>&gt;         lc(vc.size());
+
+caesar_cipher(vc.begin(), vc.end(), lc.begin(), -1);
+<cite>// lc == std::list&lt;char&gt;({'C', 'a', 'e', 's', 'a', 'r'}) </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+</LI>
+<br>
+<LI>The Ugly<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br></code></pre></td>
+<td class="source"><pre><code><var>const</var> <var>char</var>              ca[]{<kbd>"Sqjzanxwn!"</kbd>};
+std::unique_ptr&lt;<var>char</var>[]&gt; upca(<var>new</var> <var>char</var>[<var>sizeof</var> ca]);
+
+caesar_cipher(std::begin(ca), std::end(ca), upca.get(), 4);
+<cite>// std::strcmp(upca.get(), "Wunderbar!") == 0 </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+</LI>
+</UL>
+<br>
+<H3>Core function source code</H3>
+If you need the full program, that works with files, skip to the next section.<br>
+<br>
+<EM>Notes:</EM>
+<UL>
+<LI>When the alphabet shifts, it wraps. This means that for an alphabet with a length of 26, a shift of 27 will be the same as a shift of 1, and a shift of 52 will be the same as no shift at all.</LI>
+<br>
+<LI>The purpose of line <EM>11</EM> is to trim <CODE>shift</CODE> to a value that can be used in <CODE>std::rotate()</CODE>.</LI>
+</UL>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;algorithm&gt;</dfn>
+<dfn>#include &lt;cctype&gt;</dfn>
+<dfn>#include &lt;string&gt;</dfn>
+
+<var>template</var> &lt;<var>typename</var> InputIterator, <var>typename</var> OutputIterator&gt;
+OutputIterator caesar_cipher(InputIterator src_begin, InputIterator src_end, OutputIterator dest_begin, <var>int</var> shift)
+{
+    <var>const</var> std::string ab(<kbd>"abcdefghijklmnopqrstuvwxyz"</kbd>); <cite>// AlphaBet</cite>
+    std::string rot_ab(ab); <cite>// ROTated AlphaBet</cite>
+
+    shift %= <var>static_cast</var>&lt;<var>int</var>&gt; (ab.length());
+
+    <var>if</var> (shift &lt; 0)
+        std::rotate(rot_ab.rbegin(), rot_ab.rbegin() - shift, rot_ab.rend());
+    <var>else</var>
+        std::rotate(rot_ab.begin(), rot_ab.begin() + shift, rot_ab.end());
+
+    <var>return</var> std::transform(src_begin, src_end, dest_begin, [ab, rot_ab](<var>unsigned</var> <var>char</var> c) -&gt; <var>char</var> {
+        <var>if</var> (std::isalpha(c))
+        {
+            <var>if</var> (std::isupper(c))
+                <var>return</var> std::toupper(rot_ab.at(ab.find(std::tolower(c))));
+
+            <var>return</var> rot_ab.at(ab.find(c));
+        }
+
+        <var>return</var> c;
+    });
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<H3>Full program source code</H3>
+Please download the ZIP archive attachment at the end of the article.<br>
+<br>
+<H3>Useful links</H3>
+<UL>
+<LI><A HREF="http://en.wikipedia.org/wiki/Caesar_cipher">http://en.wikipedia.org/wiki/Caesar_cipher</A></LI>
+<LI><A HREF="http://wiki.apache.org/stdcxx/C%2B%2B0xCompilerSupport">http://wiki.apache.org/stdcxx/C%2B%2B0xCompilerSupport</A></LI>
+<LI><A HREF="http://www.cprogramming.com/c++11/c++11-lambda-closures.html">http://www.cprogramming.com/c++11/c++11-lambda-closures.html</A></LI>
+<LI><A HREF="http://en.wikipedia.org/wiki/Iterator_pattern">http://en.wikipedia.org/wiki/Iterator_pattern</A></LI>
+<LI><A HREF="http://www.stroustrup.com/C++11FAQ.html#uniform-init">http://www.stroustrup.com/C++11FAQ.html#uniform-init</A></LI>
+</UL>
+<br>
+<H3>Thanks go to</H3>
+<UL>
+<LI><A HREF="http://cplusplus.com/user/Athar/">Athar</A></LI>
+<LI><A HREF="http://cplusplus.com/user/Cubbi/">Cubbi</A></LI>
+<LI><A HREF="http://cplusplus.com/user/hamsterman/">hamsterman</A></LI>
+</UL>
+<p>Attachments:
+	[<a href="caesar.zip">caesar.zip</a>]
+</p>
+</div></div><div id="CH_bb"></div><div id="CH_scoreapp"></div><script type="text/javascript">new Score('CH_scoreapp','/articles/score.cgi','9hvU7k9E');</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder selected articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/articles/">Articles</a></b></h3>
+<ul>
+<li><a href="/articles/algorithms/">Algorithms</a></li><li><a href="/articles/cpp11/">C++ 11</a></li><li><a href="/articles/graphics/">Graphics and multimedia</a></li><li><a href="/articles/howto/">How-To</a></li><li><a href="/articles/language/">Language Features</a></li><li><a href="/articles/linux/">Unix/Linux programming</a></li><li><a href="/articles/sourcecode/">Source Code</a></li><li><a href="/articles/standard_library/">Standard Library</a></li><li><a href="/articles/tips/">Tips and Tricks</a></li><li><a href="/articles/tools/">Tools and Libraries</a></li><li><a href="/articles/visualcpp/">Visual C++</a></li><li><a href="/articles/winapi/">Windows API</a></li></ul>
+</div>
+<div id="I_subnav"></div>
+</div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Farticles%2F9hvU7k9E%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+onSession(function(us) {
+		document.getElementById('I_subnav').innerHTML=
+			us.ok?
+				'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul>'+
+				'<li><a href="/articles/myitems.cgi">My items</a></li>'+
+				(us.auth(32768)?'<li><a href="/articles/adminitems.cgi">Admin items</a></li>':'')+
+				'</ul></div>'
+			:'';
+	}); onSession(function (us) {
+		var el=document.getElementById('CH_bb'); el.innerHTML='';
+		if ( (us.auth(32768)) || ((us.uniqid=='N74NwA7f')&&(us.auth(128))) ) {
+			el.appendChild(btn('Edit article','Edit this version of the article','edit','/articles/edit.cgi?a=9hvU7k9E'));
+	
+			if (us.auth(32768)) {
+				el.appendChild(btn('Delete article','Delete this article','delete','javascript:artdel()'));
+			}
+	
+		}
+	});
+	function artdel() { if (confirm('WARNING: You are about to delete this page. Confirm?')) window.location='/articles/delete.cgi?a=9hvU7k9E'; }
+	ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Tips and Tricks - C++ Articles</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/articles/">Articles</a></li>
+<li class="here">Tips and Tricks</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div id="I_content">
+<div class="C_art">
+<h1>Articles : Tips and Tricks</h1>
+<div id="CH_content"></div><table class="C_artList">
+<tr><th></th><th><a href="/articles/tips/" title="sort by date (most recent first)">Date <img src="/ico/16sortup.png" width="16" height="16"></a></th><th><a href="/articles/tips/?by=scoredesc" title="sort by score">Score <img src="/ico/16sort.png" width="16" height="16"></a></th></tr>
+<tr class="odd"><td class="elem""><a href="/articles/jLzyhbRD/"><img src="/ico/48default.png" width="48" height="48" alt="icon"><span class="title">How To: Ask Questions The Smart Way</span></a><span class="author">&nbsp;by <a href="/user/Grey_Wolf/">Grey Wolf</a></span><div class="cat">Categories: <a href="/articles/tips/">Tips and Tricks</a></div></td><td class="date">Apr 10, 2008<br><span class="updated">Updated: May 9, 2008</span></td><td class="votes"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><br>4.4/5 (54 votes)</td></tr>
+<tr class="even"><td class="elem""><a href="/articles/o13hAqkS/"><img src="/ico/48default.png" width="48" height="48" alt="icon"><span class="title">How to post a new topic</span></a><span class="author">&nbsp;by <a href="/user/Bazzy/">Bazzy</a></span><div class="cat">Categories: <a href="/articles/tips/">Tips and Tricks</a></div></td><td class="date">Mar 22, 2009<br><span class="updated">Updated: Mar 22, 2009</span></td><td class="votes"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><br>3.4/5 (12 votes)</td></tr>
+<tr class="odd"><td class="elem""><a href="/articles/4z18T05o/"><img src="/ico/48default.png" width="48" height="48" alt="icon"><span class="title">Clear the screen</span></a><span class="author">&nbsp;by <a href="/user/Duoas/">Duoas</a></span><div class="cat">Categories: <a href="/articles/winapi/">Windows API</a>, <a href="/articles/tips/">Tips and Tricks</a>, <a href="/articles/linux/">Unix/Linux programming</a>, <a href="/articles/howto/">How-To</a></div></td><td class="date">Apr 28, 2009<br><span class="updated">Updated: Nov 27, 2011</span></td><td class="votes"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><br>4.1/5 (484 votes)</td></tr>
+<tr class="even"><td class="elem""><a href="/articles/j3wTURfi/"><img src="/ico/48default.png" width="48" height="48" alt="icon"><span class="title">Why system() is evil</span></a><span class="author">&nbsp;by <a href="/user/Duoas/">Duoas</a></span><div class="cat">Categories: <a href="/articles/standard_library/">Standard Library</a>, <a href="/articles/tips/">Tips and Tricks</a></div></td><td class="date">May 19, 2009<br><span class="updated">Updated: May 19, 2009</span></td><td class="votes"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-half.png" width="16" height="16" alt="*"><br>4.5/5 (308 votes)</td></tr>
+<tr class="odd"><td class="elem""><a href="/articles/N6vU7k9E/"><img src="/ico/48default.png" width="48" height="48" alt="icon"><span class="title">Beginner Exercises</span></a><span class="author">&nbsp;by <a href="/user/Bazzy/">Bazzy</a></span><div class="cat">Categories: <a href="/articles/tips/">Tips and Tricks</a></div></td><td class="date">Jul 26, 2009<br><span class="updated">Updated: Jul 26, 2009</span></td><td class="votes"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><br>4.3/5 (189 votes)</td></tr>
+<tr class="even"><td class="elem" title="A simple explanation of the conditional operator and some examples of its use""><a href="/articles/1AUq5Di1/"><img src="/ico/48default.png" width="48" height="48" alt="icon"><span class="title">The Conditional (or Ternary) Operator (?:)</span></a><span class="author">&nbsp;by <a href="/user/chrisname/">chrisname</a></span><div class="cat">Categories: <a href="/articles/language/">Language Features</a>, <a href="/articles/tips/">Tips and Tricks</a></div></td><td class="date">Sep 23, 2009<br><span class="updated">Updated: Apr 16, 2013</span></td><td class="votes"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-half.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><br>3.8/5 (195 votes)</td></tr>
+<tr class="odd"><td class="elem" title="A List of highly regarded books...""><a href="/articles/GLzyhbRD/"><img src="/ico/48default.png" width="48" height="48" alt="icon"><span class="title">Book Of Brilliant Things</span></a><span class="author">&nbsp;by <a href="/user/Grey_Wolf/">Grey Wolf</a></span><div class="cat">Categories: <a href="/articles/tips/">Tips and Tricks</a></div></td><td class="date">Feb 11, 2010<br><span class="updated">Updated: Jun 25, 2010</span></td><td class="votes"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><br>4.2/5 (61 votes)</td></tr>
+<tr class="even"><td class="elem" title="Inline function""><a href="/articles/G3wTURfi/"><img src="/ico/48default.png" width="48" height="48" alt="icon"><span class="title">Inline function Advantages, Disadvantages, Performance and User Guidelines ?</span></a><span class="author">&nbsp;by <a href="/user/tajendra/">tajendra</a></span><div class="cat">Categories: <a href="/articles/tips/">Tips and Tricks</a>, <a href="/articles/language/">Language Features</a>, <a href="/articles/visualcpp/">Visual C++</a></div></td><td class="date">Mar 8, 2010<br><span class="updated">Updated: Sep 28, 2011</span></td><td class="votes"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-half.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><br>3.5/5 (94 votes)</td></tr>
+<tr class="odd"><td class="elem""><a href="/articles/Gy86b7Xj/"><img src="/ico/48default.png" width="48" height="48" alt="icon"><span class="title">Cleaner code</span></a><span class="author">&nbsp;by <a href="/user/Kyon/">Kyon</a></span><div class="cat">Categories: <a href="/articles/tips/">Tips and Tricks</a>, <a href="/articles/howto/">How-To</a></div></td><td class="date">Jul 21, 2010<br><span class="updated">Updated: Aug 6, 2011</span></td><td class="votes"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-half.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><br>3.8/5 (61 votes)</td></tr>
+<tr class="even"><td class="elem""><a href="/articles/G13hAqkS/"><img src="/ico/48default.png" width="48" height="48" alt="icon"><span class="title">The Console is a Terrible Medium for Games</span></a><span class="author">&nbsp;by <a href="/user/Disch/">Disch</a></span><div class="cat">Categories: <a href="/articles/tips/">Tips and Tricks</a>, <a href="/articles/graphics/">Graphics and multimedia</a></div></td><td class="date">Sep 14, 2010<br><span class="updated">Updated: Sep 14, 2010</span></td><td class="votes"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><br>4.1/5 (279 votes)</td></tr>
+<tr class="odd"><td class="elem""><a href="/articles/23wTURfi/"><img src="/ico/48default.png" width="48" height="48" alt="icon"><span class="title">Debugging Your Program</span></a><span class="author">&nbsp;by <a href="/user/Thumper/">Thumper</a></span><div class="cat">Categories: <a href="/articles/tips/">Tips and Tricks</a></div></td><td class="date">Sep 19, 2010</td><td class="votes"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><br>3.2/5 (26 votes)</td></tr>
+<tr class="even"><td class="elem""><a href="/articles/42E1wA7f/"><img src="/ico/48default.png" width="48" height="48" alt="icon"><span class="title">When to use what language and why</span></a><span class="author">&nbsp;by <a href="/user/Seraphimsan/">Seraphimsan</a></span><div class="cat">Categories: <a href="/articles/language/">Language Features</a>, <a href="/articles/tips/">Tips and Tricks</a></div></td><td class="date">Oct 13, 2010<br><span class="updated">Updated: Oct 14, 2010</span></td><td class="votes"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><br>3.4/5 (142 votes)</td></tr>
+<tr class="odd"><td class="elem" title="Or rather, why we have the "no giving out homework solutions" rule.""><a href="/articles/DjGEy60M/"><img src="/ico/48default.png" width="48" height="48" alt="icon"><span class="title">Why we are a bunch of tough lovers.</span></a><span class="author">&nbsp;by <a href="/user/TheRabbitologist/">TheRabbitologist</a></span><div class="cat">Categories: <a href="/articles/tips/">Tips and Tricks</a></div></td><td class="date">Nov 3, 2010<br><span class="updated">Updated: Jun 22, 2011</span></td><td class="votes"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><br>4.2/5 (46 votes)</td></tr>
+<tr class="even"><td class="elem""><a href="/articles/9EN36Up4/"><img src="/ico/48default.png" width="48" height="48" alt="icon"><span class="title">How to choose the correct section to post in</span></a><span class="author">&nbsp;by <a href="/user/closed_account_S6k9GNh0/">closed account S6k9GNh0</a></span><div class="cat">Categories: <a href="/articles/tips/">Tips and Tricks</a></div></td><td class="date">Nov 15, 2010<br><span class="updated">Updated: Feb 4, 2013</span></td><td class="votes"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-half.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><br>3.5/5 (14 votes)</td></tr>
+<tr class="odd"><td class="elem""><a href="/articles/oGLN8vqX/"><img src="/ico/48default.png" width="48" height="48" alt="icon"><span class="title">Why you should NOT delete your posts after getting an answer.</span></a><span class="author">&nbsp;by <a href="/user/TheRabbitologist/">TheRabbitologist</a></span><div class="cat">Categories: <a href="/articles/tips/">Tips and Tricks</a></div></td><td class="date">Apr 6, 2011<br><span class="updated">Updated: Apr 6, 2011</span></td><td class="votes"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><br>4.4/5 (75 votes)</td></tr>
+<tr class="even"><td class="elem" title="A quick overveiw of the game development process from start to finish""><a href="/articles/1w6AC542/"><img src="/ico/48default.png" width="48" height="48" alt="icon"><span class="title">How to Make a Game</span></a><span class="author">&nbsp;by <a href="/user/ModShop/">ModShop</a></span><div class="cat">Categories: <a href="/articles/tips/">Tips and Tricks</a>, <a href="/articles/howto/">How-To</a>, <a href="/articles/graphics/">Graphics and multimedia</a></div></td><td class="date">May 16, 2011<br><span class="updated">Updated: Dec 24, 2014</span></td><td class="votes"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><br>4.2/5 (991 votes)</td></tr>
+<tr class="odd"><td class="elem""><a href="/articles/1C75fSEw/"><img src="/ico/48default.png" width="48" height="48" alt="icon"><span class="title">Explicit Template Instantiation</span></a><span class="author">&nbsp;by <a href="/user/closed_account_S6k9GNh0/">closed account S6k9GNh0</a></span><div class="cat">Categories: <a href="/articles/tips/">Tips and Tricks</a>, <a href="/articles/language/">Language Features</a>, <a href="/articles/howto/">How-To</a></div></td><td class="date">Jun 25, 2011<br><span class="updated">Updated: Jun 26, 2011</span></td><td class="votes"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><br>3.2/5 (135 votes)</td></tr>
+<tr class="even"><td class="elem""><a href="/articles/D4SGz8AR/"><img src="/ico/48default.png" width="48" height="48" alt="icon"><span class="title">Template parameter deduction from array dimensions</span></a><span class="author">&nbsp;by <a href="/user/Rob_Desbois/">Rob Desbois</a></span><div class="cat">Categories: <a href="/articles/tips/">Tips and Tricks</a>, <a href="/articles/language/">Language Features</a>, <a href="/articles/howto/">How-To</a></div></td><td class="date">Aug 26, 2011<br><span class="updated">Updated: Aug 26, 2011</span></td><td class="votes"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-half.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><br>3.8/5 (55 votes)</td></tr>
+<tr class="odd"><td class="elem" title="A little about pointers and why, as a C++ programmer, you shouldn't use them for anything other than pointing to an existing variable.""><a href="/articles/z186b7Xj/"><img src="/ico/48default.png" width="48" height="48" alt="icon"><span class="title">Pointer craft</span></a><span class="author">&nbsp;by <a href="/user/Catfish/">Catfish</a></span><div class="cat">Categories: <a href="/articles/tips/">Tips and Tricks</a>, <a href="/articles/language/">Language Features</a>, <a href="/articles/howto/">How-To</a></div></td><td class="date">Nov 14, 2011<br><span class="updated">Updated: Nov 19, 2011</span></td><td class="votes"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><br>4.1/5 (100 votes)</td></tr>
+<tr class="even"><td class="elem" title="how we should handle the exception thrown during C++ construction""><a href="/articles/3wTbqMoL/"><img src="/ico/48default.png" width="48" height="48" alt="icon"><span class="title">How to Handle exception at C++ constructor using Boost's Shared Ptr</span></a><span class="author">&nbsp;by <a href="/user/somenath_mukhopadhyay/">somenath mukhopadhyay</a></span><div class="cat">Categories: <a href="/articles/tips/">Tips and Tricks</a>, <a href="/articles/howto/">How-To</a></div></td><td class="date">Nov 16, 2011<br><span class="updated">Updated: Nov 30, 2011</span></td><td class="votes"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><br>3.2/5 (117 votes)</td></tr>
+</table>
+<div class="C_pages">Pages: <span title="Current page">1</span><a href="/articles/tips/?by=date&page=2">2</a><a href="/articles/tips/?by=date&page=3">3</a>... <a href="/articles/tips/?by=date&page=6">6</a></div>
+</div><div id="CH_bb"></div>
+</div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder selected articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/articles/">Articles</a></b></h3>
+<ul>
+<li><a href="/articles/algorithms/">Algorithms</a></li><li><a href="/articles/cpp11/">C++ 11</a></li><li><a href="/articles/graphics/">Graphics and multimedia</a></li><li><a href="/articles/howto/">How-To</a></li><li><a href="/articles/language/">Language Features</a></li><li><a href="/articles/linux/">Unix/Linux programming</a></li><li><a href="/articles/sourcecode/">Source Code</a></li><li><a href="/articles/standard_library/">Standard Library</a></li><li class="selected"><a href="/articles/tips/">Tips and Tricks</a></li><li><a href="/articles/tools/">Tools and Libraries</a></li><li><a href="/articles/visualcpp/">Visual C++</a></li><li><a href="/articles/winapi/">Windows API</a></li></ul>
+</div>
+<div id="I_subnav"></div>
+</div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Farticles%2Ftips%2F%3Fby%3Ddate">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+onSession(function(us) {
+		document.getElementById('I_subnav').innerHTML=
+			us.ok?
+				'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul>'+
+				'<li><a href="/articles/myitems.cgi">My items</a></li>'+
+				(us.auth(32768)?'<li><a href="/articles/adminitems.cgi">Admin items</a></li>':'')+
+				'</ul></div>'
+			:'';
+	}); onSession(function (us) {
+		el=document.getElementById('CH_bb');
+		el.innerHTML='';
+		if (us.auth(32768)) {
+			el.appendChild(btn('Edit this','Edit this','edit','/articles/edit.cgi?a=o3wTURfi'));
+			el.appendChild(btn('New label','New label','tag','/articles/new.cgi?type=l'));
+		}
+		if (us.auth(128)) {
+			el.appendChild(btn('New article','New article','docnew','/articles/new.cgi'));
+		}
+		else {
+			el.innerHTML='Registered users can publish here.';
+		}
+	});ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

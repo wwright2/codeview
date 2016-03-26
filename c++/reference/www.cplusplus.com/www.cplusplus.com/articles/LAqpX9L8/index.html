@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Null Pointer Dereferencing Causes Undefi - C++ Articles</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/articles/">Articles</a></li>
+<li class="here">Null Pointer Dereferencing Causes Undefi</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div id="I_content">
+<div class="C_art">
+<div id="I_author">Published by <b><a href="/user/AndreyKarpov/" rel="author">AndreyKarpov</a></b></div>
+<div id="I_date">Feb 16, 2015</div>
+<h1>Null Pointer Dereferencing Causes Undefined Behavior</h1>
+<div id="I_score">Score: 4.0/5 (22 votes)</div>
+<div id="I_stars"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"></div>
+<div id="I_content">
+<p>I have unintentionally raised a large debate recently concerning the question if it is legal in C/C++ to use the &P-&gt;m_foo expression with P being a null pointer. The programmers' community divided into two camps. The first claimed with confidence that it wasn't legal while the others were as sure saying that it was. Both parties gave various arguments and links, and it occurred to me at some point that I had to make things clear. For that purpose, I contacted Microsoft MVP experts and Visual C++ Microsoft development team communicating through a closed mailing list. They helped me to prepare this article and now everyone interested is welcome to read it. For those who can't wait to learn the answer: That code is NOT correct.</p>
+<h2>Debate history</h2>
+<p>It all started with an <a href="http://www.viva64.com/en/b/0299/">article</a> about a Linux kernel's check by the PVS-Studio analyzer. But the issue doesn't have to do anything with the check itself. The point is that in that article I cited the following fragment from Linux' code:</p>	<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br></code></pre></td>
+<td class="source"><pre><code><var>static</var> <var>int</var> podhd_try_init(<var>struct</var> usb_interface *interface,
+        <var>struct</var> usb_line6_podhd *podhd)
+{
+  <var>int</var> err;
+  <var>struct</var> usb_line6 *line6 = &amp;podhd-&gt;line6;
+
+  <var>if</var> ((interface == NULL) || (podhd == NULL))
+    <var>return</var> -ENODEV;
+  ....
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<p>I called this code dangerous because I thought it to cause <a href="http://www.viva64.com/en/t/0066/">undefined behavior</a>. </p>
+<p>After that, I got a pile of emails and comments, readers objecting to that idea of mine, and even was almost about to give in to their convincing arguments. For instance, as proof of that code being correct they pointed out the implementation of the <a href="http://www.viva64.com/go.php?url=1481">offsetof</a> macro, typically looking like this:</p>	<br>
+<span class="auto"><code class="source"><dfn>#define offsetof(st, m) ((size_t)(&amp;((st *)0)-&gt;m)) </dfn></code></span><p>We deal with null pointer dereferencing here, but the code still works well. There were also some other emails reasoning that since there had been no access by null pointer, there was no problem.</p>
+<p>Although I tend to be gullible, I still try to double-check any information I may doubt. I started investigating the subject and eventually wrote a small article: "<a href="http://www.viva64.com/en/b/0301/">Reflections on the Null Pointer Dereferencing Issue</a>".</p>
+<p>Everything suggested that I had been right: One cannot write code like that. But I didn't manage to provide convincing proof for my conclusions and cite the relevant excerpts from the standard.</p>
+<p>After publishing that article, I again was bombarded by protesting emails, so I thought I should figure it all out once and for all. I addressed language experts with a question to find out their opinions. This article is a summary of their answers.</p>
+<h2>About C</h2>
+<p>The '&podhd-&gt;line6' expression is undefined behavior in the C language when 'podhd' is a null pointer.</p>
+<p>The C99 standard says the following about the '&' address-of operator (6.5.3.2 "Address and indirection operators"):</p>
+<p><i>The operand of the unary &amp; operator shall be either a function designator, the result of a [] or unary * operator, or an lvalue that designates an object that is not a bit-field and is not declared with the register storage-class specifier.</i></p>
+<p>The expression 'podhd-&gt;line6' is clearly not a function designator, the result of a [] or * operator. It <i>is</i> an lvalue expression. However, when the 'podhd' pointer is NULL, the expression does not designate an object since 6.3.2.3 "Pointers" says:</p>
+<p><i>If a null pointer constant is converted to a pointer type, the resulting pointer, called a null pointer, is guaranteed to compare unequal to a pointer to any object or function.</i></p>
+<p>When "an lvalue does not designate an object when it is evaluated, the behavior is undefined" (C99 6.3.2.1 "Lvalues, arrays, and function designators"):</p>
+<p><i>An lvalue is an expression with an object type or an incomplete type other than void</i><b><i>; if an lvalue does not designate an object when it is evaluated, the behavior is undefined.</i></b></p>
+<p>So, the same idea in brief:</p>
+<p>When -&gt; was executed on the pointer, it evaluated to an lvalue where no object exists, and as a result the behavior is undefined.</p>
+<h2>About C++</h2>
+<p>In the C++ language, things are absolutely the same. The '&podhd-&gt;line6' expression is undefined behavior here when 'podhd' is a null pointer.</p>
+<p>The discussion at WG21 (<a href="http://www.viva64.com/go.php?url=1484">232. Is indirection through a null pointer undefined behavior?</a>), to which I referred to in the previous article, brings in some confusion. The programmers participating in it insist that this expression is not undefined behavior. However, no one has found any clause in the C++ standard permitting the use of "poldh-&gt;line6" with "polhd" being a null pointer.</p>
+<p>The "polhd" pointer fails the basic constraint (5.2.5/4, second bullet) that it must designate an object.  No C++ object has nullptr as address.</p>
+<h2>Summing it all up</h2>	<br>
+<span class="auto"><code class="source"><var>struct</var> usb_line6 *line6 = &amp;podhd-&gt;line6;</code></span><p>This code is incorrect in both C and C++ when the podhd pointer equals 0. If the pointer equals 0, undefined behavior occurs.</p>
+<p>The program running well is pure luck. Undefined behavior may take different forms, including program execution in just the way the programmer expected. It's just one of the special cases of undefined behavior, and that's all.</p>
+<p>You cannot write code like that. The pointer must be checked before being dereferenced.</p>
+<h2>Additional ideas and links</h2>
+<ul>
+  <li>When considering the idiomatic implementation of the 'offsetof()' operator, one must take into account that a compiler implementation is permitted to use what would be non-portable techniques to implement its functionality.  The fact that a compiler's library implementation uses the null pointer constant in its implementation of 'offsetof()' doesn't make it OK for user code to use '&amp;podhd-&gt;line6' when 'podhd' is a null pointer.</li>
+  <li>GCC can / does optimize assuming no undefined behavior ever occurs, and would remove the null checks here -- the Kernel compiles with a bunch of switches to tell the compiler not to do this. As an example, the experts refer to the article "<a href="http://www.viva64.com/go.php?url=1499">What Every C Programmer Should Know About Undefined Behavior #2/3</a>".</li>
+  <li>You may also find it interesting that a similar use of a null pointer was involved in a kernel exploit with the TUN/TAP driver. See "<a href="http://www.viva64.com/go.php?url=1500">Fun with NULL pointers</a>". The major difference that might cause some people to think the similarity doesn't apply is that in the TUN/TAP driver bug the structure field that the null pointer accessed was explicitly taken as a value to initialize a variable instead of simply having the address of the field taken.  However, as far as standard C goes, taking the address of the field through a null pointer is still undefined behavior.</li>
+  <li>Is there any case when writing &amp;P-&gt;m_foo where P == nullptr is OK? Yes, for example when it is an argument of the sizeof operator: sizeof(&amp;P-&gt;m_foo).</li>
+</ul>
+<h2>Acknowledgements</h2>
+<p>This article has become possible thanks to the experts whose competence I can see no reason to doubt. I want to thank the following people for helping me in writing it:</p>
+<ul>
+  <li><b>Michael Burr</b> is a C/C++ enthusiast who specializes in systems level and embedded software including Windows services, networking, and device drivers.  He can often be found on the <a href="http://www.viva64.com/go.php?url=1493">StackOverflow</a> community answering questions about C and C++ (and occasionally fielding the easier C# questions). He has 6 Microsoft MVP awards for Visual C++.</li>
+  <li><b>Billy O'Neal</b> is a (mostly) C++ developer and contributor to <a href="http://www.viva64.com/go.php?url=1494">StackOverflow</a>. He is a Microsoft Software Development Engineer on the Trustworthy Computing Team. He has worked at several security related places previously, including Malware Bytes and PreEmptive Solutions.</li>
+  <li><b>Giovanni Dicanio</b> is a computer programmer, specialized in Windows operating system development. Giovanni wrote computer programming articles on C++, OpenGL and other programming subjects on Italian computer magazines. He contributed code to some open-source projects as well. Giovanni likes helping people solving C and C++ programming problems on <a href="http://www.viva64.com/go.php?url=1495">Microsoft MSDN</a> forums and recently on StackOverflow. He has 8 Microsoft MVP awards for Visual C++.</li>
+  <li><b>Gabriel Dos Reis</b> is a Principal Software Development Engineer at Microsoft. He is also a researcher and a longtime member of the C++ community.  His research interests include programming tools for dependable software. Prior to joining Microsoft, he was Assistant Professor at Texas A&amp;M University.  Dr. Dos Reis was a recipient of the 2012 National Science Foundation CAREER award for his research in compilers for dependable computational mathematics and educational activities. He is a member of the C++ standardization committee.</li>
+</ul>
+<h2>References</h2>
+<ol>
+  <li>Wikipedia. <a href="http://www.viva64.com/go.php?url=1496">Undefined Behavior</a>.</li>
+  <li>A Guide to Undefined Behavior in C and C++. Part <a href="http://www.viva64.com/go.php?url=750">1</a>, <a href="http://www.viva64.com/go.php?url=1497">2</a>, <a href="http://www.viva64.com/go.php?url=1498">3</a>.</li>
+  <li>Wikipedia. <a href="http://www.viva64.com/go.php?url=1481">offsetof</a>.</li>
+  <li>LLVM Blog. <a href="http://www.viva64.com/go.php?url=1499">What Every C Programmer Should Know About Undefined Behavior #2/3</a>.</li>
+  <li>LWN. Fun with NULL pointers. Part <a href="http://www.viva64.com/go.php?url=1500">1</a>, <a href="http://www.viva64.com/go.php?url=1501">2</a>.</li>
+</ol></div></div><div id="CH_bb"></div><div id="CH_scoreapp"></div><script type="text/javascript">new Score('CH_scoreapp','/articles/score.cgi','LAqpX9L8');</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder selected articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/articles/">Articles</a></b></h3>
+<ul>
+<li><a href="/articles/algorithms/">Algorithms</a></li><li><a href="/articles/cpp11/">C++ 11</a></li><li><a href="/articles/graphics/">Graphics and multimedia</a></li><li><a href="/articles/howto/">How-To</a></li><li><a href="/articles/language/">Language Features</a></li><li><a href="/articles/linux/">Unix/Linux programming</a></li><li><a href="/articles/sourcecode/">Source Code</a></li><li><a href="/articles/standard_library/">Standard Library</a></li><li><a href="/articles/tips/">Tips and Tricks</a></li><li><a href="/articles/tools/">Tools and Libraries</a></li><li><a href="/articles/visualcpp/">Visual C++</a></li><li><a href="/articles/winapi/">Windows API</a></li></ul>
+</div>
+<div id="I_subnav"></div>
+</div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Farticles%2FLAqpX9L8%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+onSession(function(us) {
+		document.getElementById('I_subnav').innerHTML=
+			us.ok?
+				'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul>'+
+				'<li><a href="/articles/myitems.cgi">My items</a></li>'+
+				(us.auth(32768)?'<li><a href="/articles/adminitems.cgi">Admin items</a></li>':'')+
+				'</ul></div>'
+			:'';
+	}); onSession(function (us) {
+		var el=document.getElementById('CH_bb'); el.innerHTML='';
+		if ( (us.auth(32768)) || ((us.uniqid=='Dj1Rko23')&&(us.auth(128))) ) {
+			el.appendChild(btn('Edit article','Edit this version of the article','edit','/articles/edit.cgi?a=LAqpX9L8'));
+	
+			if (us.auth(32768)) {
+				el.appendChild(btn('Delete article','Delete this article','delete','javascript:artdel()'));
+			}
+	
+		}
+	});
+	function artdel() { if (confirm('WARNING: You are about to delete this page. Confirm?')) window.location='/articles/delete.cgi?a=LAqpX9L8'; }
+	ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Distinguish between pointers and referen - C++ Articles</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/articles/">Articles</a></li>
+<li class="here">Distinguish between pointers and referen</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div id="I_content">
+<div class="C_art">
+<div id="I_author">Published by <b><a href="/user/EliteHussar/" rel="author">EliteHussar</a></b></div>
+<div id="I_date">Jun 6, 2010 (last update: Aug 20, 2010)</div>
+<h1>Distinguish between pointers and references in C++</h1>
+<div id="I_score">Score: 3.9/5 (835 votes)</div>
+<div id="I_stars"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-half.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"></div>
+<div id="I_content">
+<a href="http://learnbyexamples.org/cc/distinguish-between-pointers-and-references-in-c.html">Pointers and references</a> look different enough (pointers use the <tt>*</tt> and <tt>-&gt;</tt> operators, references use <tt>.</tt>), but they seem to do similar things. Both pointers and references let you refer to other objects indirectly. How, then, do you decide when to use one and not the other?<br>
+First, recognize that there is no such thing as a null reference. A reference must always refer to some object. As a result, if you have a variable whose purpose is to refer to another object, but it is possible that there might not be an object to refer to, you should make the variable a pointer, because then you can set it to null. On the other hand, if the variable must always refer to an object, i.e., if your design does not allow for the possibility that the variable is null, you should probably make the variable a reference.<br>
+"But wait," you wonder, "what about underhandedness like this?"<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br></code></pre></td>
+<td class="source"><pre><code><var>char</var> *pc = 0;          <cite>// set pointer to null  </cite>
+<var>char</var>&amp; rc = *pc;        <cite>// make reference refer to                         </cite>
+                       <cite>// dereferenced null pointer  </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+ <br>
+Well, this is evil, pure and simple. The results are undefined (compilers can generate output to do anything they like), and people who write this kind of code should be shunned until they agree to cease and desist. If you have to worry about things like this in your software, you're probably best off avoiding references entirely. Either that or finding a better class of <a href="http://learnbyexamples.org">programmers</a> to work with. We'll henceforth ignore the possibility that a reference can be <i>null</i>.<br>
+Because a reference must refer to an object, <a href="http://learnbyexamples.org">C++</a> requires that references be initialized:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br></code></pre></td>
+<td class="source"><pre><code>string&amp; rs;             <cite>// error! References must  </cite>
+                        <cite>// be initialized  </cite>
+string s(<kbd>"xyzzy"</kbd>);  
+string&amp; rs = s;         <cite>// okay, rs refers to s   </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+Pointers are subject to no such restriction:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br></code></pre></td>
+<td class="source"><pre><code>string *ps;             <cite>// uninitialized pointer:  </cite>
+                        <cite>// valid but risky  </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+ <br>
+The fact that there is no such thing as a null reference implies that it can be more efficient to use references than to use pointers. That's because there's no need to test the validity of a reference before using it:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br></code></pre></td>
+<td class="source"><pre><code><var>void</var> printDouble(<var>const</var> <var>double</var>&amp; rd)  
+{  
+    cout &lt;&lt; rd;         <cite>// no need to test rd; it  </cite>
+}                       <cite>// must refer to a double   </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+Pointers, on the other hand, should generally be tested against null:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br></code></pre></td>
+<td class="source"><pre><code><var>void</var> printDouble(<var>const</var> <var>double</var> *pd)  
+{  
+<var>if</var> (pd) {             <cite>// check for null pointer  </cite>
+cout &lt;&lt; *pd;  
+}  
+}  </code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+Another important difference between pointers and references is that pointers may be reassigned to refer to different objects. A reference, however, always refers to the object with which it is initialized:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br></code></pre></td>
+<td class="source"><pre><code>string s1(<kbd>"Nancy"</kbd>);  
+string s2(<kbd>"Clancy"</kbd>);  
+string&amp; rs = s1;         <cite>// rs refers to s1  </cite>
+  
+string *ps = &amp;s1;        <cite>// ps points to s1&lt;a name="31186"&gt;&lt;/a&gt;  </cite>
+  
+rs = s2;                 <cite>// rs still refers to s1,  </cite>
+                         <cite>// but s1's value is now  </cite>
+                         <cite>// "Clancy"  </cite>
+  
+ps = &amp;s2;                <cite>// ps now points to s2;  </cite>
+                         <cite>// s1 is unchanged   </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+In general, you should use a pointer whenever you need to take into account the possibility that there's nothing to refer to (in which case you can set the pointer to null) or whenever you need to be able to refer to different things at different times (in which case you can change where the pointer points). You should use a reference whenever you know there will always be an object to refer to and you also know that once you're referring to that object, you'll never want to refer to anything else.<br>
+There is one other situation in which you should use a reference, and that's when you're implementing certain operators. The most common example is <tt>operator[]</tt>. This operator typically needs to return something that can be used as the target of an assignment:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br></code></pre></td>
+<td class="source"><pre><code>vector&lt;<var>int</var>&gt; v(10);       <cite>// create an int vector of size 10;  </cite>
+                         <cite>// vector is a template in the  </cite>
+                         <cite>// standard C++ library  </cite>
+v[5] = 10;               <cite>// the target of this assignment is  </cite>
+                         <cite>// the return value of operator[]   </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+If operator[] returned a pointer, this last statement would have to be written this way:<br>
+*v[5] = 10;  <br>
+But this makes it look like v is a vector of pointers, which it's not. For this reason, you'll almost always want <tt>operator[]</tt> to return a reference.<br>
+References, then, are the feature of choice when you know you have something to refer to, when you'll never want to refer to anything else, and when implementing operators whose syntactic requirements make the use of pointers undesirable. In all other cases, stick with pointers.<br>
+</div></div><div id="CH_bb"></div><div id="CH_scoreapp"></div><script type="text/javascript">new Score('CH_scoreapp','/articles/score.cgi','ENywvCM9');</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder selected articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/articles/">Articles</a></b></h3>
+<ul>
+<li><a href="/articles/algorithms/">Algorithms</a></li><li><a href="/articles/cpp11/">C++ 11</a></li><li><a href="/articles/graphics/">Graphics and multimedia</a></li><li><a href="/articles/howto/">How-To</a></li><li><a href="/articles/language/">Language Features</a></li><li><a href="/articles/linux/">Unix/Linux programming</a></li><li><a href="/articles/sourcecode/">Source Code</a></li><li><a href="/articles/standard_library/">Standard Library</a></li><li><a href="/articles/tips/">Tips and Tricks</a></li><li><a href="/articles/tools/">Tools and Libraries</a></li><li><a href="/articles/visualcpp/">Visual C++</a></li><li><a href="/articles/winapi/">Windows API</a></li></ul>
+</div>
+<div id="I_subnav"></div>
+</div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Farticles%2FENywvCM9%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+onSession(function(us) {
+		document.getElementById('I_subnav').innerHTML=
+			us.ok?
+				'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul>'+
+				'<li><a href="/articles/myitems.cgi">My items</a></li>'+
+				(us.auth(32768)?'<li><a href="/articles/adminitems.cgi">Admin items</a></li>':'')+
+				'</ul></div>'
+			:'';
+	}); onSession(function (us) {
+		var el=document.getElementById('CH_bb'); el.innerHTML='';
+		if ( (us.auth(32768)) || ((us.uniqid=='1q9yhbRD')&&(us.auth(128))) ) {
+			el.appendChild(btn('Edit article','Edit this version of the article','edit','/articles/edit.cgi?a=ENywvCM9'));
+	
+			if (us.auth(32768)) {
+				el.appendChild(btn('Delete article','Delete this article','delete','javascript:artdel()'));
+			}
+	
+		}
+	});
+	function artdel() { if (confirm('WARNING: You are about to delete this page. Confirm?')) window.location='/articles/delete.cgi?a=ENywvCM9'; }
+	ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

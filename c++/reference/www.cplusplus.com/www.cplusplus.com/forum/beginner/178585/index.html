@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Need help with void recursive problem, 1 - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/beginner/">Beginners</a></li>
+<li class="here">Need help with void recursive problem, 1</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico default" title="post">&nbsp;</div> Need help with void recursive problem, 1,2,3,..n</h3><span id="CH_edttl"></span><span class="rootdatPost" title="178585,root,0,-1,12,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg879197"><span title="879197,178405,1023,53,1"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg879197" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm52c213af86" title="Thu, 12 Nov 2015 22:15:27 +0000"></span><script type="text/javascript">WhenId('CH_zTm52c213af86');</script><noscript>Nov 12, 2015 at 10:15pm UTC</noscript></div>
+<div class="dwho"><a href="/user/RAVSHAN02/"><b>RAVSHAN02</b> (53)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i879197">
+Hi, I was really struggling with the following problem for an assignment. I really confused on how exactly I should use the void recursive function for it. I have spent almost 2 hours figuring out solutions but can't find one. I have wrote what I currently have, i no it might not make be really wrong. Any help is appreciated. Thanks.<br>
+<br>
+Submit a complete program that has a recursive void function that takes a<br>
+single int argument n and writes the integers 1, 2, …, n on the screen.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;iostream&gt;</dfn>
+<var>using</var> <var>namespace</var> std;
+
+
+<var>int</var> main()
+{
+	<var>int</var> n;
+	cin &gt;&gt; n;
+	writeUntilN(n);
+	<var>return</var> 0;
+}
+
+<var>void</var> writeUntilN(<var>int</var> n)		
+{
+	<var>if</var> (n = 1)
+	{
+		cout &lt;&lt; n;	
+	}
+	<var>else</var>
+	{
+		writeUntilN((n++));
+		cout &lt;&lt; n;
+	}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn879197"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg879227"><span title="879227,184864,1023,319,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg879227" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm4258623891" title="Thu, 12 Nov 2015 23:34:16 +0000"></span><script type="text/javascript">WhenId('CH_zTm4258623891');</script><noscript>Nov 12, 2015 at 11:34pm UTC</noscript></div>
+<div class="dwho"><a href="/user/Kevin_C/"><b>Kevin C</b> (319)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i879227">
+Either this:<br>
+<br>
+else<br>
+	{<br>
+		writeUntilN(n-1);<br>
+<br>
+.. or you need the function writeUntilN to have 2 parameters
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn879227"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg879298"><span title="879298,178405,1023,53,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg879298" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm0c7b0851e9" title="Fri, 13 Nov 2015 05:08:08 +0000"></span><script type="text/javascript">WhenId('CH_zTm0c7b0851e9');</script><noscript>Nov 13, 2015 at 5:08am UTC</noscript></div>
+<div class="dwho"><a href="/user/RAVSHAN02/"><b>RAVSHAN02</b> (53)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i879298">
+Thanks so much! It actually works. But, do you mind explaining how it works especially the recursive part as i don't really understand this code, since i just looked at a bunch of examples and randomly wrote it. Thanks.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn879298"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg879336"><span title="879336,184864,1023,319,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg879336" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm6900bdf2f6" title="Fri, 13 Nov 2015 08:40:07 +0000"></span><script type="text/javascript">WhenId('CH_zTm6900bdf2f6');</script><noscript>Nov 13, 2015 at 8:40am UTC</noscript></div>
+<div class="dwho"><a href="/user/Kevin_C/"><b>Kevin C</b> (319)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i879336">
+Explanation:<br>
+In line 21 writeuntillN will be called BEFORE n is written out. That means that the resursion will calculate all values of n on stack before any output begins. The output will start from the deepest function call, where n=1, and it will then unwind untill the first function call where n will be the greatest, which will output the greatest value of n, just before the recursion exits.<br>
+<br>
+In order to comprehend this recursion better, I recommend you to use a debugger. Use "step-into" to go through the writeUntillN function.<br>
+<br>
+The best debugger is available in Visual Studio (free) but the debugger GUI in Code::Blocks is also OK.
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm1d368b0c74" title="Fri, 13 Nov 2015 08:51:43 +0000"></span><script type="text/javascript">WhenId('CH_zTm1d368b0c74');</script><noscript>Nov 13, 2015 at 8:51am UTC</noscript></span>
+<span class="dbtn" id="CH_btn879336"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg879547"><span title="879547,178405,1023,53,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg879547" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm0a4dd29aa6" title="Sat, 14 Nov 2015 04:31:06 +0000"></span><script type="text/javascript">WhenId('CH_zTm0a4dd29aa6');</script><noscript>Nov 14, 2015 at 4:31am UTC</noscript></div>
+<div class="dwho"><a href="/user/RAVSHAN02/"><b>RAVSHAN02</b> (53)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i879547">
+so what u mean is that lets say n =5 when inputed, so it will skip the first step and will go to the else statement where it will continue to add 1 to 1 until it reaches 5 and then it will continue and output those values, 1,2,3,4,5? <br>
+<br>
+Also, is there anyway I can get, ex. "1, 2, 3, 4, 5" when inserting ", " after the n's in the code cause whenever i add them, i get "1, 2, 3, 4, 5," with the comma after 5 but i don't want that comma at the end. Thanks.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn879547"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg879577"><span title="879577,184864,1023,319,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg879577" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm97aaec5e9c" title="Sat, 14 Nov 2015 07:52:04 +0000"></span><script type="text/javascript">WhenId('CH_zTm97aaec5e9c');</script><noscript>Nov 14, 2015 at 7:52am UTC</noscript></div>
+<div class="dwho"><a href="/user/Kevin_C/"><b>Kevin C</b> (319)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i879577">
+"where it will continue to add 1 to 1 until it reaches 5 and then"<br>
+<br>
+No, n is 5 at the beginning, so it will produce new values of n in the order: 5,4,3,2,1<br>
+<br>
+Judging from your second question, I would say that it's too early for you to grasp recursion, so perhaps it would be better to just concentrate on something else.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn879577"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg879590"><span title="879590,34800,1023,1806,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg879590" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm36d1b99d21" title="Sat, 14 Nov 2015 10:13:29 +0000"></span><script type="text/javascript">WhenId('CH_zTm36d1b99d21');</script><noscript>Nov 14, 2015 at 10:13am UTC</noscript></div>
+<div class="dwho"><a href="/user/fun2code/"><b>fun2code</b> (1806)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i879590">
+You could use a local static int to keep track of recursion depth. Increment it before the recursive call and decrement after. Print a comma only when recursion depth is positive. eg:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br></code></pre></td>
+<td class="source"><pre><code><var>static</var> <var>int</var> recDepth = 0;<cite>// initialized on 1st function call</cite>
+...
+++recDepth;
+writeUntilN(n-1);
+--recDepth;
+cout &lt;&lt; n;
+<var>if</var>(recDepth &gt; 0)
+    cout &lt;&lt; <kbd>','</kbd>;</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTmfc76e4164b" title="Sat, 14 Nov 2015 10:13:54 +0000"></span><script type="text/javascript">WhenId('CH_zTmfc76e4164b');</script><noscript>Nov 14, 2015 at 10:13am UTC</noscript></span>
+<span class="dbtn" id="CH_btn879590"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg879717"><span title="879717,178405,1023,53,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg879717" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmdad6f06125" title="Sat, 14 Nov 2015 19:18:26 +0000"></span><script type="text/javascript">WhenId('CH_zTmdad6f06125');</script><noscript>Nov 14, 2015 at 7:18pm UTC</noscript></div>
+<div class="dwho"><a href="/user/RAVSHAN02/"><b>RAVSHAN02</b> (53)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i879717">
+I dont think u understood what i meant with the comma at the end. Please try to run the following code and u will see that it produces, "1, 2, 3, 4, 5,", but i dont want that extra comma after 5. As for learning recursion, we just learned it last week for my intro to programming class, it was the last topic covered in the course.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;iostream&gt;</dfn>
+<var>using</var> <var>namespace</var> std;
+
+<var>void</var> writeUntilN(<var>int</var>);
+
+<var>int</var> main()
+{
+	<var>int</var> n;
+	cout &lt;&lt; <kbd>"Please enter an integer:"</kbd>;
+	cin &gt;&gt; n;
+	writeUntilN(n);
+	<var>return</var> 0;
+}
+
+<var>void</var> writeUntilN(<var>int</var> n)		
+{
+	<var>if</var> (n == 1)
+	{
+		cout &lt;&lt; n &lt;&lt; <kbd>", "</kbd>;	
+	}
+	<var>else</var>
+	{
+		writeUntilN((n-1));
+		cout &lt;&lt; n &lt;&lt; <kbd>", "</kbd>;
+	}
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm74fdb35bd2" title="Sat, 14 Nov 2015 19:23:27 +0000"></span><script type="text/javascript">WhenId('CH_zTm74fdb35bd2');</script><noscript>Nov 14, 2015 at 7:23pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn879717"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg879726"><span title="879726,178405,1023,53,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg879726" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm6cd6f387a5" title="Sat, 14 Nov 2015 19:55:31 +0000"></span><script type="text/javascript">WhenId('CH_zTm6cd6f387a5');</script><noscript>Nov 14, 2015 at 7:55pm UTC</noscript></div>
+<div class="dwho"><a href="/user/RAVSHAN02/"><b>RAVSHAN02</b> (53)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i879726">
+Thanks fun2code, the local static worked, but would i include it before the function definitions, like after the #include&lt;iostream, etc. before the int main().<br>
+<br>
+Also, i just wanted to confirm with u guys if this is how it works:<br>
+if for ex. the user enters 5,<br>
+<br>
+it goes to else, and does (5-1) which gives 4 and this work is checked in the if but if it fails it goes again to the recursive part and does (4-1) giving 3 and the process repeats until after (2-1) which results in 1 and ends up being true for the if statement outputting "1, " and after it begins to follow the stack (last in/first out) process and just outputs, 2, 3, 4, and then outputs the last number n, 5. I'm not sure if the way I explained it makes sense but i want to no if this is how it works. Thanks.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn879726"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg879738"><span title="879738,34800,1023,1806,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg879738" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmad15e59d62" title="Sat, 14 Nov 2015 21:05:52 +0000"></span><script type="text/javascript">WhenId('CH_zTmad15e59d62');</script><noscript>Nov 14, 2015 at 9:05pm UTC</noscript></div>
+<div class="dwho"><a href="/user/fun2code/"><b>fun2code</b> (1806)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i879738">
+I declared it within the function.<br>
+Your code probably satisfies the assignment requirement, so it shouldn't hurt to share my code.<br>
+You can run it in the shell here to see it work. Click the wheel thingy in the upper right corner of the code.<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;iostream&gt;</dfn>
+
+<var>void</var> f(<var>int</var> n)
+{
+    <var>static</var> <var>int</var> recDepth = 0;
+
+    <var>if</var>( n == 0 ) <var>return</var>;<cite>// last recursion just returns</cite>
+
+    ++recDepth;
+    f(n-1);
+    --recDepth;
+    std::cout &lt;&lt; n;
+    <var>if</var>( recDepth &gt; 0 )
+        std::cout &lt;&lt; <kbd>','</kbd>;<cite>//  print comma</cite>
+    <var>else</var>
+        std::cout &lt;&lt; <kbd>'\n'</kbd>;<cite>// last thing printed is a newline</cite>
+}
+
+<var>int</var> main()
+{
+    f(5);
+    f(8);
+
+    <var>return</var> 0;
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn879738"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg879790"><span title="879790,178405,1023,53,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg879790" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm2a0b5f2a89" title="Sun, 15 Nov 2015 00:59:55 +0000"></span><script type="text/javascript">WhenId('CH_zTm2a0b5f2a89');</script><noscript>Nov 15, 2015 at 12:59am UTC</noscript></div>
+<div class="dwho"><a href="/user/RAVSHAN02/"><b>RAVSHAN02</b> (53)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i879790">
+Is the way I did declaring it as a global ok or is that not good, it works but i want to know if it is normal to do it like this.<br>
+<br>
+Also, could read my explanation of how i think the recursion in the code works and tell me if its right:<br>
+<br>
+if for ex. the user enters 5,<br>
+<br>
+it goes to else, and does (5-1) which gives 4 and this work is checked in the if but if it fails it goes again to the recursive part and does (4-1) giving 3 and the process repeats until after (2-1) which results in 1 and ends up being true for the if statement outputting "1, " and after it begins to follow the stack (last in/first out) process and just outputs, 2, 3, 4, and then outputs the last number n, 5. I'm not sure if the way I explained it makes sense but i want to no if this is how it works. Thanks.<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br></code></pre></td>
+<td class="source"><pre><code><dfn>#include &lt;iostream&gt;</dfn>
+<var>using</var> <var>namespace</var> std;
+
+<var>void</var> writeUntilN(<var>int</var>);
+
+<var>static</var> <var>int</var> recDepth = 0;			<cite>//initialized on 1st function call</cite>
+
+<var>int</var> main()
+{
+	<cite>//static int recDepth = 0;</cite>
+	<var>int</var> n;
+	cout &lt;&lt; <kbd>"Please enter an integer:"</kbd>;
+	cin &gt;&gt; n;
+	writeUntilN(n);
+	<var>return</var> 0;
+}
+
+<var>void</var> writeUntilN(<var>int</var> n)		
+{
+	<var>if</var> (n == 1)
+	{
+		cout &lt;&lt; n &lt;&lt; <kbd>", "</kbd>;	
+	}
+	<var>else</var>
+	{
+		++recDepth;
+		writeUntilN((n-1));
+		--recDepth;
+		cout &lt;&lt; n;
+		<var>if</var> (recDepth &gt; 0)
+		cout &lt;&lt; <kbd>", "</kbd>;
+	}
+}</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn879790"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg879805"><span title="879805,34800,1023,1806,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg879805" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm5d770ba276" title="Sun, 15 Nov 2015 01:46:35 +0000"></span><script type="text/javascript">WhenId('CH_zTm5d770ba276');</script><noscript>Nov 15, 2015 at 1:46am UTC</noscript></div>
+<div class="dwho"><a href="/user/fun2code/"><b>fun2code</b> (1806)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i879805">
+Your explanation seems pretty good. When the calls are returning, as the call stack is unwinding, execution resumes just after the function call, line 28 in your code.<br>
+<br>
+Declaring recDepth at global scope works, as you've noted. When it's declared globally it doesn't need to be static though. If you remove the keyword static from line 6 it will still work.<br>
+Many prefer to declare variables within the scope where they're used. recDepth is used only in the writeUntilN function which is why I declared it there. The static type makes it a single variable which persists across function calls. It is assigned = 0 only the first time the function is called.<br>
+If you declared it non-static as <span class="auto"><code class="source"><var>int</var> recDepth = 0;</code></span> in the function then it would be a regular local variable and be set=0 in each function call. This method wouldn't work for us.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn879805"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div class="rootbtnNew"></div><div id="CH_insNew"></div><div id="CH_reply">Topic archived. No new replies allowed.</div><div id="CH_subscription"></div><div class="rootedtNew"></div><script type="text/javascript">new for_PostList(178585,1,178405,0,'CH_PostList','CH_subscription','CH_reply','CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+<script type="text/javascript">
+    google_ad_client = "ca-pub-1444228343479937";
+    google_ad_slot = "9701143201";
+    google_ad_width = 728;
+    google_ad_height = 90;
+</script>
+<!-- leaderboard -->
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li class="selected"><a href="/forum/beginner/"><b>Beginners</b></a></li><li><a href="/forum/windows/"><b>Windows Programming</b></a></li><li><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li><a href="/forum/general/"><b>General C++ Programming</b></a></li><li><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Fbeginner%2F178585%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

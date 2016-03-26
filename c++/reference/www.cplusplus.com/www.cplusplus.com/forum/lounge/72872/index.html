@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Are lexers generally ugly? - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/forum/">Forum</a></li>
+<li><a href="/forum/lounge/">Lounge</a></li>
+<li class="here">Are lexers generally ugly?</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id='div-gpt-ad-1427191279638-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1427191279638-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<h3><div class="C_ico default" title="post">&nbsp;</div> Are lexers generally ugly?</h3><span id="CH_edttl"></span><span class="rootdatPost" title="72872,root,0,-1,20,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg388691"><span title="388691,21799,1023,7398,1"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg388691" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm73c19c9b7f" title="Fri, 08 Jun 2012 23:01:35 +0000"></span><script type="text/javascript">WhenId('CH_zTm73c19c9b7f');</script><noscript>Jun 8, 2012 at 11:01pm UTC</noscript></div>
+<div class="dwho"><a href="/user/chrisname/"><b>chrisname</b> (7398)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i388691">
+I'm trying to write a lexer for a language that's a bit like GLSL (I had an idea to write a window system that is controlled entirely by things similar to shader programs which are compiled in the client and then sent as bytecodes to the server to tell it how to render things; I also had an idea to create a windowing system for text displays, so I decided to combine them [I'm crazy]). I've never written a lexer before (not a complex one, anyway), so I don't know how it's going to turn out or what it should look like. Currently, it's basically a for loop and a giant switch, with some other switch statements and for loops embedded in it (it's ugly, but it'll be refactored into lots of functions to make it less ugly once I get to some kind of milestone).<br>
+<br>
+It scans the string character-by-character, then when it sees an interesting character it can either append it to an array or append everything in between that character and an end character to the array (for strings and stuff). Then there's another function which will read the token stream and convert it into bytecode (while checking that the token stream actually makes sense, which I'll do by having a function that takes two tokens as parameters and then decides whether or not they should go next to each other (so, <span class="auto"><code class="source">f(INT, INT)</code></span> returns false, while <span class="auto"><code class="source">f(INT, VARIABLE_NAME)</code></span> returns true [no, I won't really call the function 'f']).<br>
+<br>
+I've looked at some very simple Flex-generated lexers and they were pretty ugly - it was about 2,000 LOC just for something that printed "start" or "stop" depending on which you typed.<br>
+<br>
+I was conscious while writing this that it's probably quite jumbled because I kind of wrote things as I thought of them, and also because sleep deprivation.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn388691"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg388702"><span title="388702,19724,5119,4176,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg388702" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmf09138cf19" title="Fri, 08 Jun 2012 23:27:38 +0000"></span><script type="text/javascript">WhenId('CH_zTmf09138cf19');</script><noscript>Jun 8, 2012 at 11:27pm UTC</noscript></div>
+<div class="dwho"><a href="/user/TheRabbitologist/"><b>TheRabbitologist</b> (4176)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i388702">
+I'll admit, I think it's quite hard to make a pretty lexer. By their nature, they're rather icky because they often have to handle a lot of different character combinations that aren't easy to bunch up into a few distinct categories (which can make the code a LOT prettier). It's especially true with Flex, which doesn't know what you'll be doing with those tokens later.<br>
+<br>
+Anyways. That's my opinion on the matter. :)<br>
+<br>
+-Albatross
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn388702"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg388706"><span title="388706,21799,1023,7398,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg388706" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTme0f66daeeb" title="Fri, 08 Jun 2012 23:31:05 +0000"></span><script type="text/javascript">WhenId('CH_zTme0f66daeeb');</script><noscript>Jun 8, 2012 at 11:31pm UTC</noscript></div>
+<div class="dwho"><a href="/user/chrisname/"><b>chrisname</b> (7398)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i388706">
+That's good. I'll just write it, get it somewhat working, and then try to split it into chunks.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn388706"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg388795"><span title="388795,13114,1023,6281,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg388795" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm75cdd3616b" title="Sat, 09 Jun 2012 10:22:32 +0000"></span><script type="text/javascript">WhenId('CH_zTm75cdd3616b');</script><noscript>Jun 9, 2012 at 10:22am UTC</noscript></div>
+<div class="dwho"><a href="/user/Bazzy/"><b>Bazzy</b> (6281)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i388795">
+You can start your design with a DFA and code each state as a function.<br>
+Since functions are not stateless  you can merge similar nodes or subgraphs in a single function.<br>
+<br>
+Translating a lexer from a loop and switch into a functional automaton can be hard work if the lexer isn't trivial.<br>
+<br>
+<table class="quote"><tr><td class="qd">Then there's another function which will read the token stream and convert it into bytecode (while checking that the token stream actually makes sense, which I'll do by having a function that takes two tokens as parameters and then decides whether or not they should go next to each other</td></tr></table>You can do all this in a single pass with a parser.<br>
+Or in two passes with a parser that generates a tree structure and a generator that translates that tree.<br>
+You can write a simple predictive parser in a similar way that you'd write the lexer.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn388795"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg388814"><span title="388814,63891,1023,2618,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg388814" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm7263ad2816" title="Sat, 09 Jun 2012 12:24:45 +0000"></span><script type="text/javascript">WhenId('CH_zTm7263ad2816');</script><noscript>Jun 9, 2012 at 12:24pm UTC</noscript></div>
+<div class="dwho"><a href="/user/S_G_H/"><b>S G H</b> (2618)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i388814">
+My opinion is: Create first a short-code version, like, calling functions with 4-5 characters (being the first two the ID, or use the DLL Name &amp; Function Name) then some Parameter IDs, like: <span class="auto"><code class="source"><var>char</var> ParametersBuffer[256][64];</code></span><br>
+And maybe a Parameter Type Enum like <span class="auto"><code class="source"><var>enum</var> ParamType { PT_INT = 0, PT_LONG, PT_CHAR, PT_CHARPTR, PT_VOIDPTR };</code></span> and act in the desired way, or something like that.<br>
+Then create a long-code version, maybe looking like C also, that your program will "convert" into short-code version. I used to do it in my game-scripting engine test, and it worked pretty well, it's just a bit too complex to explain indeep on-the-fly.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn388814"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg388893"><span title="388893,21799,1023,7398,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg388893" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm32c6a4ebdf" title="Sat, 09 Jun 2012 16:42:35 +0000"></span><script type="text/javascript">WhenId('CH_zTm32c6a4ebdf');</script><noscript>Jun 9, 2012 at 4:42pm UTC</noscript></div>
+<div class="dwho"><a href="/user/chrisname/"><b>chrisname</b> (7398)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i388893">
+@Bazzy,<br>
+The idea of using two passes was to have the lexer simply convert source code into tokens, without having to understand what the tokens mean. Then the compiler proper simply converts the tokens into bytecode, but at the same time it will be checking that tokens make sense next to each other. Alternatively, in the lexer, I could have a variable that stores the tokens that are allowed to follow the current token. I think my current model is a little easier though. It shouldn't be too difficult to split it up into multiple functions, all I was going to do was have each case in the switch call a different function (so that I don't, at first glance, have loops nested in switches nested in a switch nested in a loop, which is what I have currently).<br>
+[edit]<br>
+But your idea of writing it as a sort of state machine is interesting. I might switch to that model. I don't know what you'd call what I have at the moment. It just scans the string for tokens (or the start of a token) and then figures out where the token ends, and tacks the whole thing onto the end of a buffer, along with an integer that says what the token is. It's just an array of these:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br></code></pre></td>
+<td class="source"><pre><code><cite>/** ttydel token types. */</cite>
+<var>typedef</var> <var>enum</var> __ttydel_token_type__ {
+	<cite>/** Character constant. */</cite>
+	TTYDEL_TOKEN_CONST_CHAR,
+	<cite>/** Floating point constant. */</cite>
+	TTYDEL_TOKEN_CONST_FLOAT,
+	<cite>/** Integer constant. */</cite>
+	TTYDEL_TOKEN_CONST_INT,
+	<cite>/** String constant. */</cite>
+	TTYDEL_TOKEN_CONST_STRING,
+	<cite>/** Function definition. */</cite>
+	TTYDEL_TOKEN_DEFN_FUNC,
+	<cite>/** Type declaration. */</cite>
+	TTYDEL_TOKEN_DECL_TYPE,
+	<cite>/** Variable declaration. */</cite>
+	TTYDEL_TOKEN_DECL_VAR,
+	<cite>/** Binary operator. */</cite>
+	TTYDEL_TOKEN_OPERATOR_BI,
+	<cite>/** Unary operator. */</cite>
+	TTYDEL_TOKEN_OPERATOR_UN,
+} ttydel_token_type;
+
+<cite>/** A ttydel token. */</cite>
+<var>typedef</var> <var>struct</var> __ttydel_token__ {
+	<cite>/** The token type. */</cite>
+	ttydel_token_type	type;
+	<cite>/** The token as a string. */</cite>
+	<var>char</var>*			value;
+} ttydel_token;</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+I have some more tokens types to add (function calls, for example) but that's all I could think of at the time.<br>
+<br>
+@EssGeEich,<br>
+For the functions, I want to allow function overloading so I'm going to take the name of a function and add its return type and the types of its parameters together (name mangling) like this:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br></code></pre></td>
+<td class="source"><pre><code><var>int</var> foo(<var>int</var> bar) =&gt; foo_int_int
+<var>int</var> foo(<var>float</var> bar) =&gt; foo_int_float</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+That should make it possible for functions to not only have different parameters, but also different return types. Then, as long as every call to every function is mangled in the same way, there don't have to be any special cases. All the lexer needs to know is which version of the function is being called, which can it can figure out quite easily by looking at the symbols immediately before and after the function call, making a mangled function name, and then looking in the symbol table for a match. The symbol table will be a list of global symbol names and their types generated by the lexer (every function then has its own local symbol table) and completed by the compiler, which will go through the symbol table(s) and find the index into the bytecode buffer and write it down. Then the whole thing just gets sent as a single buffer to the server, which simply runs the program and uses it to figure out what to write and where. It sounds insecure, but the purpose of the bytecode programs is just to generate data to be drawn to the screen, there shouldn't be any way to exploit it (that's not to say no-one will find one, but if they do, it'll be something really obvious like a buffer overrun; and that's assuming anyone else ever looks at the source code or uses the program in any way).
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm5328ec99c6" title="Sat, 09 Jun 2012 16:51:01 +0000"></span><script type="text/javascript">WhenId('CH_zTm5328ec99c6');</script><noscript>Jun 9, 2012 at 4:51pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn388893"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg389021"><span title="389021,63891,1023,2618,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg389021" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmb5f5c9a8f0" title="Sat, 09 Jun 2012 22:24:39 +0000"></span><script type="text/javascript">WhenId('CH_zTmb5f5c9a8f0');</script><noscript>Jun 9, 2012 at 10:24pm UTC</noscript></div>
+<div class="dwho"><a href="/user/S_G_H/"><b>S G H</b> (2618)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i389021">
+Well, a little suggestion about function names:<br>
+What about:<br>
+<span class="auto"><code class="source"><var>int</var> foo(<var>int</var> bar) -&gt; (ParametersCount)(TTYDEL_TOKEN_CONST_INT)(TTYDEL_TOKEN_CONST_INT)foo</code></span><br>
+So instead of using 3+1+3+1+3+null terminator (12 bytes) it will use 3+1+1+1+null terminator (7 bytes)<br>
+<br>
+Also this will allow function naming with underscore.
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTmb2b9ce641a" title="Sat, 09 Jun 2012 22:25:10 +0000"></span><script type="text/javascript">WhenId('CH_zTmb2b9ce641a');</script><noscript>Jun 9, 2012 at 10:25pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn389021"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg389050"><span title="389050,21799,1023,7398,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg389050" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmc2e1f96d4d" title="Sun, 10 Jun 2012 00:03:10 +0000"></span><script type="text/javascript">WhenId('CH_zTmc2e1f96d4d');</script><noscript>Jun 10, 2012 at 12:03am UTC</noscript></div>
+<div class="dwho"><a href="/user/chrisname/"><b>chrisname</b> (7398)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i389050">
+So, in that example, it'd be <span class="auto"><code class="source"><kbd>"133foo\0"</kbd></code></span>? I could do it like that. It doesn't really matter what the functions are called, because nothing ever has to parse them, the only requirement is that symbol names are distinct from non-symbols and each overload has a different mangled name.<br>
+<br>
+I think I will do it your way, although the number of parameters doesn't need to be encoded: the only time that would be useful is when all the parameters have the same type but the only difference is the number of them, but even that would be taken care of by just encoding the type of each parameter.<br>
+<br>
+In other words, the way I'll do it is like this:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br></code></pre></td>
+<td class="source"><pre><code><var>int</var> foo(<var>int</var> bar) -&gt; foo33 <cite>/* foo int int */</cite>
+<var>int</var> foo(<var>int</var> bar1, <var>int</var> bar2) -&gt; foo333 <cite>/* foo int int int */</cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+even though it doesn't matter in the bytecode, I think it's better for functions not to start with a number.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn389050"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg389069"><span title="389069,13171,1023,12617,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg389069" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTme24ab0a985" title="Sun, 10 Jun 2012 01:40:39 +0000"></span><script type="text/javascript">WhenId('CH_zTme24ab0a985');</script><noscript>Jun 10, 2012 at 1:40am UTC</noscript></div>
+<div class="dwho"><a href="/user/helios/"><b>helios</b> (12617)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i389069">
+<table class="quote"><tr><td class="qd">All the lexer needs to know is which version of the function is being called, which can it can figure out quite easily by looking at the symbols immediately before and after the function call, making a mangled function name, and then looking in the symbol table for a match.</td></tr></table>You're giving the lexer too much responsibility. The only output from a lexer should be "IDENTIFIER LPAREN NUMBER COMMA IDENTIFIER RPAREN" with possibly extra data attached to each token (e.g. an IDENTIFIER token should know the name of the identifier). Figuring out what the tokens mean when put together should be up to the parser.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn389069"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg389072"><span title="389072,21799,1023,7398,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg389072" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmc5144307f6" title="Sun, 10 Jun 2012 02:01:09 +0000"></span><script type="text/javascript">WhenId('CH_zTmc5144307f6');</script><noscript>Jun 10, 2012 at 2:01am UTC</noscript></div>
+<div class="dwho"><a href="/user/chrisname/"><b>chrisname</b> (7398)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i389072">
+Wow, welcome back (again).<br>
+<br>
+You're right, I suppose name mangling doesn't really belong in the lexer. The only other things it does are pretty much what you said - an enum value saying what the token is, and then the value of the token itself (for constants and identifiers).<br>
+<br>
+I'll move that to the subroutine that converts tokens into bytecode (parser/compiler/translator, whatever you want to call it).
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn389072"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg389107"><span title="389107,72044,1023,3867,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg389107" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm485cbc9171" title="Sun, 10 Jun 2012 03:57:49 +0000"></span><script type="text/javascript">WhenId('CH_zTm485cbc9171');</script><noscript>Jun 10, 2012 at 3:57am UTC</noscript></div>
+<div class="dwho"><a href="/user/Cubbi/"><b>Cubbi</b> (3867)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i389107">
+<table class="quote"><tr><td class="qd">I've looked at some very simple Flex-generated lexers and they were pretty ugly </td></tr></table><br>
+If you're using C++, take a look at boost.spirit then: <a href="http://www.boost.org/doc/libs/release/libs/spirit/doc/html/index.html">http://www.boost.org/doc/libs/release/libs/spirit/doc/html/index.html</a>
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn389107"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg389157"><span title="389157,63891,1023,2618,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg389157" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm4f1d55336d" title="Sun, 10 Jun 2012 12:42:10 +0000"></span><script type="text/javascript">WhenId('CH_zTm4f1d55336d');</script><noscript>Jun 10, 2012 at 12:42pm UTC</noscript></div>
+<div class="dwho"><a href="/user/S_G_H/"><b>S G H</b> (2618)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i389157">
+<table class="quote"><tr><td class="qd">even though it doesn't matter in the bytecode, I think it's better for functions not to start with a number.</td></tr></table><br>
+Chrisname:<br>
+Take care, what if user then creates a function with a terminating number? Will it be a parameter or the function name?<br>
+<table class="quote"><tr><td class="qd">So, in that example, it'd be <span class="auto"><code class="source"><kbd>"133foo\0"</kbd></code></span>? </td></tr></table><br>
+Not really, it'd be <span class="auto"><code class="source"><kbd>"\1\3\3foo\0"</kbd></code></span> (see not using atoi/itoa to get value but writing the RAW code, but then you'd be limited to 255 types. Maybe using two chars for each parameter would be enough.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn389157"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg389193"><span title="389193,17960,1023,867,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg389193" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm12dc470724" title="Sun, 10 Jun 2012 14:21:14 +0000"></span><script type="text/javascript">WhenId('CH_zTm12dc470724');</script><noscript>Jun 10, 2012 at 2:21pm UTC</noscript></div>
+<div class="dwho"><a href="/user/tition/"><b>tition</b> (867)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i389193">
+I started out with enums just like you (following an example from helios, btw). However, <br>
+I play a lot with token types/languages specs*. Also, I don't need fast parsing time. That is why I stopped using enum tokens: adding a new token means <br>
+1) you have to add a token in your .h file, <br>
+2) you have to bind the token to the corresponding characters/word(s) at the input  <br>
+3) you have to bind the token to the corresponding char/word at the output (you don't want error messages like "token 1 must not follow tokens 5,6,3").<br>
+<br>
+2) and 3) can already be merged with enums (but kinda kills the purpose of enums), but you have to do at least 2. cpp edits to add a new token  (I had to do 4+). Also, it is easier to get bugs with enums, and harder to read.<br>
+<br>
+Instead, I started using a std::string to integer <del>map</del> hashed list. Now, adding a token is just <br>
+<span class="auto"><code class="source">Commands.AddToken(<kbd>"+"</kbd>, <kbd>"Token description"</kbd>, <kbd>"Example"</kbd>);</code></span>. When I reference tokens I simply use their <del>human-readable </del>names or, if I do need the actual token, I do something like<br>
+<span class="auto"><code class="source">Tokens.GetIndex(<kbd>"+"</kbd>)</code></span>. <br>
+<br>
+Advantages of non-enum approach: much faster to edit, read/understand, maintain and experiment with. <br>
+Disadvantages: will be *considerably* slower on a large file.<br>
+<br>
+*for example, I am adding at the moment the tensor operation, in addition to +,-,*,/,^,==,&gt;,&lt;, etc.  [Edit:] I checked, at the moment I have 47 different syntactical tokens, so there are quite a few more. 
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm0fd993d3ae" title="Sun, 10 Jun 2012 19:29:14 +0000"></span><script type="text/javascript">WhenId('CH_zTm0fd993d3ae');</script><noscript>Jun 10, 2012 at 7:29pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn389193"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg389214"><span title="389214,21799,1023,7398,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg389214" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm7480ecf40f" title="Sun, 10 Jun 2012 15:38:05 +0000"></span><script type="text/javascript">WhenId('CH_zTm7480ecf40f');</script><noscript>Jun 10, 2012 at 3:38pm UTC</noscript></div>
+<div class="dwho"><a href="/user/chrisname/"><b>chrisname</b> (7398)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i389214">
+@EssGeEich,<br>
+I had a realisation last night that TTYDEL_TOKEN_CONST_INT is not a type, it's for constants embedded in source code. For example, in C++, <span class="auto"><code class="source">500</code></span> is an integer constant. That was my intention. For some reason, I didn't notice until then.<br>
+<br>
+@tition,<br>
+It needs to be fast enough to compile several short programs all in one go, and then send the bytecodes to the server. A single program will probably never be large (I can't see them ever being more than a few hundred lines, if even that) but there could be a lot of them (potentially hundreds). They can be compiled and then the bytecode saved so that they don't have to be compiled again, but I think it's safer to assume that they will be compiled in one go at runtime.<br>
+<br>
+Also, I forgot to mention that I'm using C, not C++.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn389214"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg389249"><span title="389249,63891,1023,2618,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg389249" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm4c8e7965b1" title="Sun, 10 Jun 2012 18:10:28 +0000"></span><script type="text/javascript">WhenId('CH_zTm4c8e7965b1');</script><noscript>Jun 10, 2012 at 6:10pm UTC</noscript></div>
+<div class="dwho"><a href="/user/S_G_H/"><b>S G H</b> (2618)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i389249">
+@chrisname: It takes nothing to add TTYDEL_VAR_INT and such things to your enums.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn389249"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg389278"><span title="389278,17960,1023,867,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg389278" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm14746ad9e5" title="Sun, 10 Jun 2012 19:36:40 +0000"></span><script type="text/javascript">WhenId('CH_zTm14746ad9e5');</script><noscript>Jun 10, 2012 at 7:36pm UTC</noscript></div>
+<div class="dwho"><a href="/user/tition/"><b>tition</b> (867)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i389278">
+@chrisname<br>
+Using c complicates things (as little as I have tried c; would null-terminated strings make things easier to mess up?).<br>
+<br>
+At any rate, whether it is c or c++, my advice reads: try to make binding a token to a string of characters to be one line of code only, even if that means dynamical binding. The flexibility benefits are big. Also, try making each of your grammar rules a single line of code, for the same reason. <br>
+<br>
+Adding a new operator/keyword/syntax element should optimally* be N+1 lines of c/c++ code, where N is the number of rules that your operator satisfies. <br>
+<br>
+[Edit:] *I am not quite there yet: for me the number of code lines is 2N+1<br>
+[Edit:]Dynamical binding adds a not-so-small additional flexibility - for example registering pointers to handler functions - my token registration is something like:<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br></code></pre></td>
+<td class="source"><pre><code>Commands.AddToken(<kbd>"+"</kbd>, pointer_to_handler_function, <kbd>"Token description"</kbd>, <kbd>"Example"</kbd>); <cite>//&lt;-in addition, the AddToken </cite>
+<cite>//function checks whether the token string has already been used,</cite>
+<cite>// (are there more than one "+"'s?) </cite>
+<cite>//and makes a gracious full program crash if that is not the case.</cite>
+<cite>//believe it or not, this happened more than once: quite often </cite>
+<cite>//I find myself copying+pasting syntax rules </cite></code></pre></td><td class="C_btnholder"></td></tr></table></div>
+
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm6efa94ec0f" title="Sun, 10 Jun 2012 20:01:14 +0000"></span><script type="text/javascript">WhenId('CH_zTm6efa94ec0f');</script><noscript>Jun 10, 2012 at 8:01pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn389278"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg389285"><span title="389285,63891,1023,2618,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg389285" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTmf08aaea299" title="Sun, 10 Jun 2012 20:04:15 +0000"></span><script type="text/javascript">WhenId('CH_zTmf08aaea299');</script><noscript>Jun 10, 2012 at 8:04pm UTC</noscript></div>
+<div class="dwho"><a href="/user/S_G_H/"><b>S G H</b> (2618)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i389285">
+@tition: C++ Strings are slower than C "strings" (char pointers). And, personally, I prefer C over C++'s "Out-of-the-box" functionalities. But I prefer C++ because of the class functionality.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn389285"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg389288"><span title="389288,21799,1023,7398,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg389288" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTm07b0aa5d21" title="Sun, 10 Jun 2012 20:16:50 +0000"></span><script type="text/javascript">WhenId('CH_zTm07b0aa5d21');</script><noscript>Jun 10, 2012 at 8:16pm UTC</noscript></div>
+<div class="dwho"><a href="/user/chrisname/"><b>chrisname</b> (7398)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i389288">
+@tition,<br>
+I'll take your advice. Using C shouldn't make it that much harder. I can use a stripped down, modified version of my dictionary implementation in C.<br>
+<br>
+@EssGeEich,<br>
+I think it's better to have the name rather than a number, because it allows for user defined types. It does use more data, but not very much (in most cases).<br>
+<br>
+I like C because it's very simple and I have full control. It can be a bit annoying when it's being difficult, but that applies to all languages.
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm0ea5481d23" title="Sun, 10 Jun 2012 20:18:49 +0000"></span><script type="text/javascript">WhenId('CH_zTm0ea5481d23');</script><noscript>Jun 10, 2012 at 8:18pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn389288"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg389298"><span title="389298,63891,1023,2618,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg389298" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTme986086622" title="Sun, 10 Jun 2012 20:46:34 +0000"></span><script type="text/javascript">WhenId('CH_zTme986086622');</script><noscript>Jun 10, 2012 at 8:46pm UTC</noscript></div>
+<div class="dwho"><a href="/user/S_G_H/"><b>S G H</b> (2618)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i389298">
+<table class="quote"><tr><td class="qd">I think it's better to have the name rather than a number, because it allows for user defined types.</td></tr></table><br>
+You could "bind" a user-defined type to another ID. But well, your project, your rules, and you're also right. I'm suggesting. ^
+</div>
+<div class="dhow">
+<span class="sedited">Last edited on <span id="CH_zTm30589bfdd3" title="Sun, 10 Jun 2012 20:46:51 +0000"></span><script type="text/javascript">WhenId('CH_zTm30589bfdd3');</script><noscript>Jun 10, 2012 at 8:46pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn389298"></span>
+
+</div>
+</div>
+</div>
+<div class="C_forPost" id="msg389309"><span title="389309,21799,1023,7398,0"></span>
+<div class="box">
+<div class="boxtop">
+<div class="dwhen"><a href="#msg389309" title="Link to this post"><img src="/img/link.png" width="16" height="8"></a> <span id="CH_zTme62b6671b4" title="Sun, 10 Jun 2012 21:03:14 +0000"></span><script type="text/javascript">WhenId('CH_zTme62b6671b4');</script><noscript>Jun 10, 2012 at 9:03pm UTC</noscript></div>
+<div class="dwho"><a href="/user/chrisname/"><b>chrisname</b> (7398)</a></div>
+</div>
+<div class="dwhat" colspan="2" id="CH_i389309">
+It's not that I don't appreciate suggestions, I just think it's easier that way.
+</div>
+<div class="dhow">
+<span class="dbtn" id="CH_btn389309"></span>
+
+</div>
+</div>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div class="rootbtnNew"></div><div id="CH_insNew"></div><div id="CH_reply">Topic archived. No new replies allowed.</div><div id="CH_subscription"></div><div class="rootedtNew"></div><script type="text/javascript">new for_PostList(72872,1,21799,0,'CH_PostList','CH_subscription','CH_reply','CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script></div>
+<script type="text/javascript">
+    google_ad_client = "ca-pub-1444228343479937";
+    google_ad_slot = "9701143201";
+    google_ad_width = 728;
+    google_ad_height = 90;
+</script>
+<!-- leaderboard -->
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder articles"><a href="/articles/">Articles</a></li>
+<li class="folder selected forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/forum/">Forum</a></b></h3>
+<ul>
+<li><a href="/forum/beginner/"><b>Beginners</b></a></li><li><a href="/forum/windows/"><b>Windows Programming</b></a></li><li><a href="/forum/unices/"><b>UNIX/Linux Programming</b></a></li><li><a href="/forum/general/"><b>General C++ Programming</b></a></li><li class="selected"><a href="/forum/lounge/"><b>Lounge</b></a></li><li><a href="/forum/jobs/"><b>Jobs</b></a></li></ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Fforum%2Flounge%2F72872%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function NavFor(us) {document.getElementById('I_subnav').innerHTML=us.ok?'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul><li><a href="/forum/myposts.cgi">My topics</a></li></ul></div>':'';}onSession(NavFor);ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>

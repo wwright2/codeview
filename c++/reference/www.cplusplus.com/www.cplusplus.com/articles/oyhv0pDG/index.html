@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>(By Disch) Don't write any variable larg - C++ Articles</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/v321/main.css">
+<script src="/v321/main.js" type="text/javascript"></script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1427191279638-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+</head>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="/" title="cplusplus.com"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="/articles/">Articles</a></li>
+<li class="here">(By Disch) Don't write any variable larg</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div id="I_content">
+<div class="C_art">
+<div id="I_author">Published by <b><a href="/user/Ardeshir81/" rel="author">Ardeshir81</a></b></div>
+<div id="I_date">Nov 8, 2013 (last update: Nov 8, 2013)</div>
+<h1>(By Disch) Don't write any variable larger than 1 byte to binary files</h1>
+<div id="I_score">Score: 3.4/5 (31 votes)</div>
+<div id="I_stars"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"><img src="/ico/16star-empty.png" width="16" height="16" alt="*"></div>
+<div id="I_content">
+HI everyone !<br>
+I had some problems with binary files and I created a topic and Disch did a great help and I thought it's better for that post not to be just in that topic . (link to topic : bottom of the article)<br>
+This article is a background to this one : <br>
+<A HREF="http://www.cplusplus.com/articles/DzywvCM9/">Disch's tutorial to good binary files</A>
+<br>
+In this article instead of "HOW TO write data to binary files" you will see "WHY shouldn't we write variables and data larger than 1 byte in binary files .<br>
+Here we go :<br>
+<br>
+<br>
+<br>
+<br>
+When you do a raw write of a block of memory, write() will look at the pointer you give it and blindly start copying X bytes to the file. This sort of works for POD (plain old data) types... but it utterly fails for complex types (like strings).<br>
+<br>
+Let's take a look at why.<br>
+<br>
+<STRONG>****Why you should not read/write complex non-POD structs/classes****</STRONG>
+<br>
+<br>
+<STRONG>Reason #1: Complex types may contain dynamically allocated memory or other pointers</STRONG>
+<br>
+<br>
+here's a simplistic example:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br></code></pre></td>
+<td class="source"><pre><code><var>class</var> Foo
+{
+<var>private</var>:
+    <var>int</var>* data;
+
+<var>public</var>:
+    Foo() { data = <var>new</var> <var>int</var>[10]; }
+    ~Foo() { <var>delete</var>[] data; }
+};</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+Here... our Foo class conceptually contains information for 10 ints (~40 bytes). Yet if you do sizeof(Foo)... it'll probably give you the size of one pointer (~4 bytes).<br>
+<br>
+This is because the Foo class does not contain the data it's referring to... it merely contains a pointer to it. Therefore... a naive write to a file would simply write the pointer and not the actual data.<br>
+<br>
+Attempting to read that data later would just result in having a pointer that points to random memory.<br>
+<br>
+This is similar to what is happening with strings. The string data is actually not in the string class... but rather it is allocated dynamically.<br>
+<br>
+<STRONG>#2: Non POD types may contain VTables and other "hidden" data that you absolutely must not touch</STRONG>
+<br>
+<br>
+Trivial example:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br></code></pre></td>
+<td class="source"><pre><code><var>class</var> Foo
+{
+<var>public</var>:
+    <var>virtual</var> ~Foo() { }
+    <var>int</var> x;
+};</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<br>
+sizeof(Foo) is likely going to be larger than sizeof(int) because Foo is now polymorphic... meaning it has a VTable. VTables are black magic and you absolutely must not tinker with them or you risk destroying your program.<br>
+<br>
+But again... a naive read/write doesn't acknowledge that... and will simply try to read/write the full object... vtable and all. Resulting in massive screw ups.<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+So yeah. Naive reads/writes do not work with complex types unless they are POD.<br>
+<br>
+But if you notice before I said POD types only "sort of" work. What do I mean by that?<br>
+<br>
+<STRONG>****Why you should not read/write POD structs/classes****</STRONG>
+<br>
+<br>
+Well let's take a look at another trivial example:<br>
+<br>
+<div class="auto"><table class="snippet"><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br></code></pre></td>
+<td class="source"><pre><code><var>struct</var> Foo
+{
+    <var>char</var> a;  <cite>// 1 byte</cite>
+    <var>int</var> b;   <cite>// 4 bytes</cite>
+    <var>char</var> c;  <cite>// 1 byte</cite>
+};</code></pre></td><td class="C_btnholder"></td></tr></table></div>
+<br>
+<br>
+<br>
+Here we have a POD struct. It would not suffer from any of the problems previously mentioned. I added comments to show how many bytes each individual var might take (technically this may vary, but it's typical).<br>
+<br>
+So if a struct is just a collection of all these vars... you would expect the size of the struct to be equal to the sum of all of them... right? so sizeof(Foo) would be 6?<br>
+<br>
+Well... on my machine sizeof(Foo) is 12. SURPRISE!<br>
+<br>
+What's happening is that the compiler is adding padding to the struct so that variables are aligned on certain memory boundaries. This makes accessing them faster.<br>
+<br>
+So when you do a naive, raw write to a file, it will also write the padding bytes. Of course when you read it... you'll read the padding bytes and it'll work as you'd expect.<br>
+<br>
+So why did I say it only sorta works?<br>
+<br>
+Well consider the following situation.<br>
+<br>
+- You run your program and save a bunch of files.<br>
+- You port your program to another platform and/or change or update your compiler<br>
+- This new compiler happens to assign different padding to the struct<br>
+- You run the newly compiled program and try to load the files you saved in the old version of your program<br>
+<br>
+<br>
+Since the padding changed, the data is read differently (more or less data is read, or the padding is in different spots) - so the read fails and you get garbage.<br>
+<br>
+<br>
+There are ways you can tell the compiler to leave off the padding. But that raises other problems I won't get into now. Let's just say that memory alignment is important.<br>
+<br>
+<br>
+So okay... simply put... it's not a great idea to read/write structs in full. So just reading/writing individual vars works... right?<br>
+<br>
+Well.....<br>
+<br>
+<STRONG>****Why you should not read/write any variable larger than 1 byte****</STRONG>
+<br>
+There are 2 things you have to watch out for.<br>
+<br>
+<STRONG>#1:</STRONG> ill-defined size of variables. <span class="auto"><code class="source"><var>int</var></code></span> might be 4 bytes depending on your platform/compiler... or it might be 2 bytes or it might be 8 bytes.<br>
+<br>
+So reading/writing a full <span class="auto"><code class="source"><var>int</var></code></span> suffers the same problems as the 'padding' scenario above. If you have a file saved with version X of your program, then rebuild in version Y where int suddenly changed size on you.... your file will not load any more.<br>
+<br>
+This can be solved by using the <span class="auto"><code class="source">&lt;cstdint&gt;</code></span> types like uint8_t, uint16_t, etc which all are guaranteed to have a certain byte size.<br>
+<br>
+<br>
+<STRONG>#2:</STRONG> endianness. Memory consists of a series of bytes. How an int is stored in memory is how it is stored in the file when you do a raw write. But how the int is stored in memory varies depending on the machine you're running on.<br>
+<br>
+x86/x64 machines are little endian. So if you have <span class="auto"><code class="source"><var>int</var> foo = 1;</code></span>, foo will look like this in memory:<br>
+<span class="auto"><code class="source">01 00 00 00</code></span>
+<br>
+So if you save 'foo' to a file on your x86 machine.. then hand that file off to your buddy who is running a big endian machine... he'll read it back the same way.<br>
+<br>
+However.. on a big endian machine.. <span class="auto"><code class="source">01 00 00 00</code></span> is not 1.... it's 0x1000000.. or <STRONG>16777216</STRONG>
+<br>
+So yeah... your load fails and your program explodes.<br>
+<br>
+<br>
+<br>
+This is why I make it a point to never read/write anything larger than a single byte to a binary file. Do so ensures that your file will always work.<br>
+<br>
+<br>
+<br>
+<br>
+With that in mind.... I wrote an article that explains how to do all your binary file IO with just reading/writing individual bytes. This includes how to read/write strings.<br>
+<br>
+The article is here:<br>
+<br>
+<A HREF="http://www.cplusplus.com/articles/DzywvCM9/">http://www.cplusplus.com/articles/DzywvCM9/</A>
+<br>
+<br>
+<br>
+<br>
+<br>
+And this is the original forum post made by Disch :<br>
+<A HREF="http://www.cplusplus.com/forum/beginner/108114/#msg587223">http://www.cplusplus.com/forum/beginner/108114/#msg587223</A></div></div><div id="CH_bb"></div><div id="CH_scoreapp"></div><script type="text/javascript">new Score('CH_scoreapp','/articles/score.cgi','oyhv0pDG');</script></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="/">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="/info/">Information</a></li>
+<li class="folder doc"><a href="/doc/">Tutorials</a></li>
+<li class="folder reference"><a href="/reference/">Reference</a></li>
+<li class="folder selected articles"><a href="/articles/">Articles</a></li>
+<li class="folder forum"><a href="/forum/">Forum</a></li>
+</ul>
+</div>
+<div class="sect">
+<h3><b><a href="/articles/">Articles</a></b></h3>
+<ul>
+<li><a href="/articles/algorithms/">Algorithms</a></li><li><a href="/articles/cpp11/">C++ 11</a></li><li><a href="/articles/graphics/">Graphics and multimedia</a></li><li><a href="/articles/howto/">How-To</a></li><li><a href="/articles/language/">Language Features</a></li><li><a href="/articles/linux/">Unix/Linux programming</a></li><li><a href="/articles/sourcecode/">Source Code</a></li><li><a href="/articles/standard_library/">Standard Library</a></li><li><a href="/articles/tips/">Tips and Tricks</a></li><li><a href="/articles/tools/">Tools and Libraries</a></li><li><a href="/articles/visualcpp/">Visual C++</a></li><li><a href="/articles/winapi/">Windows API</a></li></ul>
+</div>
+<div id="I_subnav"></div>
+</div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="/">Home page</a> | <a href="/privacy.do">Privacy policy</a><br>&copy; cplusplus.com, 2000-2016 - All rights reserved - <i>v3.1</i><br><a href="/contact.do?referrer=www.cplusplus.com%2Farticles%2Foyhv0pDG%2F">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+onSession(function(us) {
+		document.getElementById('I_subnav').innerHTML=
+			us.ok?
+				'<div class="sect"><h3><b><a href="/user/">'+us.user+'</a></b></h3><ul>'+
+				'<li><a href="/articles/myitems.cgi">My items</a></li>'+
+				(us.auth(32768)?'<li><a href="/articles/adminitems.cgi">Admin items</a></li>':'')+
+				'</ul></div>'
+			:'';
+	}); onSession(function (us) {
+		var el=document.getElementById('CH_bb'); el.innerHTML='';
+		if ( (us.auth(32768)) || ((us.uniqid=='4jhpfSEw')&&(us.auth(128))) ) {
+			el.appendChild(btn('Edit article','Edit this version of the article','edit','/articles/edit.cgi?a=oyhv0pDG'));
+	
+			if (us.auth(32768)) {
+				el.appendChild(btn('Delete article','Delete this article','delete','javascript:artdel()'));
+			}
+	
+		}
+	});
+	function artdel() { if (confirm('WARNING: You are about to delete this page. Confirm?')) window.location='/articles/delete.cgi?a=oyhv0pDG'; }
+	ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+</body>
+</html>
