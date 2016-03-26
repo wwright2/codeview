@@ -1,0 +1,24 @@
+New Configuration Parameters - These parameters will be added to the file tracker.conf:
+
+- Day Time Button Chirp Volume (1 - 9)
+- Night Time Button Chirp Volume (1 - 9)
+- Day Time Volume Switch Over Time - (Time format readable by both human & program)
+- Night Time Volume Switch Over Time - (Time format readable by both human & program)
+- Button Chirp Active Time - in seconds.
+  Chirp volume set to volume setting based on day or night period.
+  (Since chirp is performed ~once a second by the hardware,
+  a one second time may need to be a little longer than a second
+  in order to insure that at least one chirp is heard)
+- Button Chirp Quiet Time - in seconds.
+
+Tasks:
+
+1 - Define new configuration parameters.  See Above.
+2 - Implement Chirp On/Off duration operation as part of timer_handler() (in buttonmon.c) BSM_idle state.
+    Any other state will quiet the Chirp.
+    May need to change timer duration to allow for Chirp hardware timing support.
+    It may be possible to implement this functionality into the buttonMonitor() Thread.
+3 - Add test to determine when to change Chirp Volume - day verses night.
+4 - Add code in start up to determine which volume level is currently active - day verses night.
+5 - Change ttsStop() (in tts.c) to use current Chirp volume or remove setButtonVolume() call
+    to allow the BSM_idle state in timer_handler() to handle the Chirp. 

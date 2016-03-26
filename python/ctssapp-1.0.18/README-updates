@@ -1,0 +1,152 @@
+Software updates are done by ftp-ing an update file to the sign. There
+is software on the sign that looks for the update file, and installs
+it when it shows up. This README describes how to make the update
+package that the sign expects.
+
+The update package file is named ctssUpdatePkg-M.m.n.tar.bz2. Where
+'M.m.n' stand for the digits making up the [M]ajor, [m]inor and
+build/release [n]umber.
+
+There are two kinds of updates that can be created. One kind is just
+for development, when testing code changes. This type of update uses
+the current subversion revision number as the last component of the
+version number for the update package file. Ostensibly this shows the
+subversion revision of the files making up the package. However, it
+may contain modified files which are not in that revision. Since this
+kind of update is used by individual developers to work on their own
+code, they have to be aware of what's in it.
+
+The second kind of update is a tag/release version. For this type of
+update, the version number of the update package is extracted from the
+version number embedded in the name of the tag directory. 
+
+In order to make this distinction the packaging scripts need some
+help. The quick and dirty version is this
+
+   1. Set BUILDROOT_VER in make.conf to the version of the buildroot
+   directory to be used with this ctss version. For the trunk revision,
+   leave it blank, or put whatever you like, your mother's birthday,
+   perhaps. 
+
+   2. Set mmVersion in make.conf to the major and minor version of the
+   ctss package when creating a developer's test package
+
+   3. Edit install/installFiles.txt to list the files that need to be
+   delivered from the buildroot tree (under output/target), and where
+   they should be put on the target sign
+
+   4. run make && make export
+
+
+For the longer version, the following files drive this. 
+
+--------------------------------------------------------------------
+make.conf
+--------------------------------------------------------------------
+This file is included by all the Makefiles in the system to set
+environmental variables. It's also used by the packaging scripts to
+derive the version number for the package file. Two variables are
+there just for this purpose:
+
+BUILDROOT_VER 
+--------------
+This is the tag version of the buildroot directory used for building
+an update from a tag directory. This must be set to the directory
+holding the buildroot code used with the ctss tag directory. For
+example:
+
+$ pwd
+/home/jhalpin/dev/CTSS/tags
+
+$ ls
+buildroot-1.0.0/  buildroot-1.0.2/  ctssapp-1.0.4/  ctssapp-1.0.6/
+buildroot-1.0.1/  cepstral-1.0.0/   ctssapp-1.0.5/  demo-2011Jun05/
+
+When building ctssapp-1.0.6, buildroot-1.0.2 should be used. So, in
+the ctssapp-1.0.6 directory, the make.conf file should have
+
+BUILDROOT_VER = 1.0.2
+
+mmVersion
+----------
+This is used when building a non-tag update - for developer
+testing. It should be set to whatever major and minor number you're
+using. For example
+
+mmVersion = 1.0
+
+
+--------------------------------------------------------------------
+install/installFiles.txt
+--------------------------------------------------------------------
+This file holds a list of other files which need to be delivered to
+the target sign. This list contains only files from outside the ctss
+source tree. Normally this is the buildroot tree associated with the
+ctss build. 
+
+Each file that needs to be copied to the target sign must be listed in
+this file. The format of the file allows comments with '#' as the
+first character of the line, blank lines, and file specifications.
+
+A file specification is 
+
+<source location> <directory on sign where it should be copied>
+
+The <source location> part for a file from the buildroot tree needs to
+be under the output/target directory.
+
+Since the particular buildroot directory is not known till build time,
+the string BUILDROOT takes its place. This string will be replaced by
+the correct directory when copyFiles.sh runs. For example
+
+BUILDROOT/buildroot-2011.05/output/target/usr/bin/doUpdate.sh /usr/bin
+
+means deliver doUpdate.sh located at output/target/usr/bin in the
+buildroot directory, to /usr/bin on the target sign.
+
+
+
+--------------------------------------------------------------------
+install/copyFiles.sh
+--------------------------------------------------------------------
+More detail is needed for this file, because it's the key part of the
+whole gruesome mess.
+
+This file copies the files listed in install/installFiles.txt to the
+ctss/install directory. It also copies the installFiles.txt file and
+the install.sh script to that directory so everything needed will be
+available when the install runs.
+
+If no parameters are passed to this file from the makefile (or when
+run by hand), BUILDROOT_VER equals 'buildroot'. This is the top level
+buildroot directory for the non-tagged version (the head version). If
+a parameter is passed, it's taken to be the version in the tag name of
+the buildroot tree. 
+
+   $ install/copyFiles.sh  -> use the head revision in the trunk
+
+   $ install/copyFiles.sh 1.0.2 -> use tags/buildroot-1.0.2
+
+The getTopDir function determines whether or not the current directory
+is a tag directory or in the trunk. It gets the full path to the
+current directory from pwd, and then applies a regular expression to
+get the path excluding the current directory.
+
+The getBuildrootDir function is passed the result of getTopDir() and
+the BUILDROOT_DIR. It puts the two of them together and derives the
+fully qualified buildroot directory to use.
+
+Then it make sure the destination directories exist in the marshalling
+area, and copies files from buildroot to the marshalling area.
+
+When mkUpdatePackage.sh is run, these files will be included in the
+output.
+
+
+
+--------------------------------------------------------------------
+install.sh
+--------------------------------------------------------------------
+As of this writing, the install.sh file does little more than copy
+files from the install directory to wherever they need to be. In the
+future there may be more complex stuff that needs to be done. 

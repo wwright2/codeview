@@ -1,0 +1,12 @@
+#!/bin/bash
+
+PROGDIR="/ctss/bin"
+PROGS='monitor.sh demoDisplay generatorBusapi.py '
+
+for i in $PROGS ; do
+   echo $PROGDIR/$i
+   ps -ef |grep -v grep |grep "$PROGDIR""/$i" | awk '{print $2}' |xargs kill -9
+done
+
+# Turn hardware watchdog OFF.
+$PROGDIR/watchdog -d 

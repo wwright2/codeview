@@ -1,0 +1,17 @@
+ 158 Indiana-Hyde Park 5\\n159 Hyde Park Express 5\\n160 King Drive 5\\n162 Cottage Grove 5\\n164 South Shore Night Bus 5\\n165 Jackson Park Express 5\\n166 Harrison 5\\n167 Halsted 5\\n
+ 168 South Halsted 5\\n169 Ashland 5\\n171 Museum of S & I 5\\n172 Lincoln/Sedgwick 5\\n173 Roosevelt 5\\n174 Jeffery Express 5\\n175 Jeffery Local 5\\n176 Westchester 5\\n
+ 177 16th-18th 5\\n178 Madison 5\\n180 Cermak 5\\n181 Clark 5\\n182 Wentworth 5\\n183 South Shore Express 5\\n184 Stony Island Local 5\\n185 Stony Island Express 5\\n
+ 186 State 5\\n187 South Chicago 5\\n188 Mag Mile Express 5\\n189 South Michigan 5\\n190 35th 5\\n191 Broadway 5\\n193 Pershing 5\\n194 43rd 5\\n
+ 195 Wallace-Racine 5\\n196 47th 5\\n197 South Damen 5\\n198 Western 5\\n199 South Western 5\\n200 North Western 5\\n202 Damen 5\\n203 51st 5\\n
+ 204 Kedzie/California 5\\n205 South Kedzie 5\\n206 Pulaski 5\\n207 South Pulaski 5\\n209 Cicero 5\\n210 North Cicero/Skokie Blvd. 5\\n211 South Cicero 5\\n213 Garfield 5\\n
+ 214 55th/Austin 5\\n215 55th/Narragansett 5\\n217 Milwaukee 5\\n218 North Milwaukee 5\\n219 Laramie 5\\n220 59th/61st 5\\n221 Blue Island/26th 5\\n222 Archer 5\\n
+ 223 Archer/Harlem 5\\n224 63rd 5\\n225 West 63rd 5\\n226 Foster-Canfield 5\\n227 Grand 5\\n228 Chicago 5\\n229 67th-69th-71st 5\\n230 Northwest Highway 5\\n
+ 231 Cumberland/East River 5\\n232 Division 5\\n233 71st South Shore 5\\n234 North 5\\n235 Armitage 5\\n236 Fullerton 5\\n237 74th-75th 5\\n238 Diversey 5\\n
+ 239 Belmont 5\\n240 Montrose 5\\n241 79th 5\\n242 Irving Park 5\\n244 Lawrence 5\\n245 West Lawrence 5\\n246 Kimball-Homan 5\\n247 Peterson 5\\n
+ 248 Central 5\\n249 North Central 5\\n250 Narragansett/Ridgeland 5\\n251 87th 5\\n252 Higgins 5\\n253 Harlem 5\\n254 North Harlem 5\\n255 Austin 5\\n
+ 256 Foster 5\\n257 California/Dodge 5\\n258 South California 5\\n259 93rd-95th 5\\n260 West 95th 5\\n261 Lunt 5\\n262 Skokie 5\\n263 Avon Express 5\\n
+ 264 Jeffery Manor Express 5\\n265 West 103rd 5\\n266 East 103rd 5\\n267 Halsted/95th 5\\n268 Pullman/111th/115th 5\\n269 Vincennes/111th 5\\n270 Michigan/119th 5\\n271 Ogilvie/Wacker Express 5\\n
+ 272 Union/Wacker Express 5\\n273 Illinois Center/Ogilvie Express 5\\n274 Illinois Center/Union Express 5\\n275 Navy Pier 5\\n276 Water Tower Express 5\\n277 Jackson 5\\n278 West Loop/South Loop 5\\n279 Goose Island Express 5\\n
+ 327 Grant Park Treasures 5\\n281 Clarendon/LaSalle Express 5\\n282 Sheridan/LaSalle Express 5\\n283 Stockton/Michigan Express 5\\n284 Marine/Michigan Express 5\\n285 Wilson/Michigan Express 5\\n286 Inner Drive/Michigan Express 5\\n287 Outer Drive Express 5\\n
+ 288 Clarendon Michigan Express 5\\n289 Sheridan 5\\n290 Addison 5\\n291 Devon 5\\n292 LaSalle 5\\n293 Streeterville/Taylor 5\\n294 West 65th 5\\n296 69th-UPS Express 5\\n
+ 297 U. of Chicago/Midway 5\\n298 U. of Chicago/Hyde Park 5\\n299 U. of Chicago/Kenwood 5\\n302 University of Chicago Hosp. Exp. 5\\n333 Central/Sherman Owl 5\\n304 Central/Ridge 5\\n305 Chicago/Golf 5\\n306 Evanston Circulator 5\\n

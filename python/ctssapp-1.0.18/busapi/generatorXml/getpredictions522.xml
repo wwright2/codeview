@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bustime-response>	
+			
+				<prd>
+					<tmstmp>20110628 09:17</tmstmp>
+					<typ>A</typ>
+					<stpnm>Chicago &amp; Lamon</stpnm>
+					<stpid>522</stpid>
+					<vid>2010</vid>
+					
+					<dstp>1838</dstp>
+					<rt>66</rt>
+					<rtdir>East Bound</rtdir>
+		        	<des>Navy Pier</des>
+		        	<prdtm>20110628 09:19</prdtm>
+		        	
+				</prd>			
+			
+				<prd>
+					<tmstmp>20110628 09:17</tmstmp>
+					<typ>A</typ>
+					<stpnm>Chicago &amp; Lamon</stpnm>
+					<stpid>522</stpid>
+					<vid>1892</vid>
+					
+					<dstp>7083</dstp>
+					<rt>66</rt>
+					<rtdir>East Bound</rtdir>
+		        	<des>Navy Pier</des>
+		        	<prdtm>20110628 09:28</prdtm>
+		        	
+				</prd>			
+			
+				<prd>
+					<tmstmp>20110628 09:16</tmstmp>
+					<typ>A</typ>
+					<stpnm>Chicago &amp; Lamon</stpnm>
+					<stpid>522</stpid>
+					<vid>1439</vid>
+					
+					<dstp>18173</dstp>
+					<rt>66</rt>
+					<rtdir>East Bound</rtdir>
+		        	<des>Navy Pier</des>
+		        	<prdtm>20110628 09:36</prdtm>
+		        	
+				</prd>			
+			
+				<prd>
+					<tmstmp>20110628 09:16</tmstmp>
+					<typ>A</typ>
+					<stpnm>Chicago &amp; Lamon</stpnm>
+					<stpid>522</stpid>
+					<vid>1995</vid>
+					
+					<dstp>24824</dstp>
+					<rt>66</rt>
+					<rtdir>East Bound</rtdir>
+		        	<des>Navy Pier</des>
+		        	<prdtm>20110628 09:44</prdtm>
+		        	
+				</prd>			
+
+		</bustime-response>

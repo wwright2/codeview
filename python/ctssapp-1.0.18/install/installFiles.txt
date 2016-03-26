@@ -1,0 +1,42 @@
+#
+# Enter the names of files here that need to be included in the new
+# release. These are files that are to be replaced in the root file
+# system, for example, a new version of /etc/rc.local
+#
+# ..Works like a copy command cp src dest.
+#   source destination
+# 
+# ..We expect source to be relative to this Dir CTSS
+#
+#  -|trunk-| 
+#          |-ctss
+#          |-cepstral
+#          |-buildroot
+#
+# The first field of each line is the name of the file to be
+# installed, with the path relative to the ctss directory. The second
+# field is the full path to the file on the target file system, eg,
+# /etc
+#
+# for example, if a filename starts with a directory immediatly under
+# ctss, do not give any leading path, eg
+#
+#    system/foo.sh
+#
+# If a filename starts with a directory above ctss, give the relative
+# path starting from ctss. For exaple, if a file under buildroot is
+# wanted (which is at the same level as ctss), do
+#
+#   ../buildroot/buildroot-2011.05/scripts/post/doUpdate.sh
+#
+# No extraction from svn is done. What is on disk at the point this is
+# run is what will go into the load.
+# 
+# the buildroot directory is a special case. The version can't be
+# predicted, so just use the string BUILDROOT, and it will be replaced
+# as needed. This depends on BUILDROOT_VER begin set in make.conf
+#
+# example
+#BUILDROOT/buildroot-2011.05/output/target/usr/bin/updateStatus.sh /usr/bin
+
+/lib/libctss.so /usr/lib

@@ -1,0 +1,29 @@
+#!/bin/bash
+# -----------------------------------------------------------------
+# start-ctss
+# -----------------------------------------------------------------
+
+source /ctss/bin/ldlibrary.sh
+
+PROGS=( \
+    /ctss/bin/generatorBusapi.py \
+    /ctss/bin/demoDisplay )
+
+
+# ------
+CTSS="/ctss/bin"
+cd $CTSS
+
+# Unmute the Audio every time we boot.
+$CTSS/unmute.sh
+
+if [[ -f "$CTSS/runonce.sh" ]] ; then
+    $CTSS/runonce.sh
+fi
+
+
+#---------
+
+for (( i=0 ; i < ${#PROGS[@]} ; i=$((i + 1)) )); do
+    $CTSS/monitor.sh "${PROGS[$i]}" &
+done

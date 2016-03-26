@@ -1,0 +1,7 @@
+Number of buses, 3.
+BusStop 63rd Street & University .  West Bound.
+Next arrival, 7 minutes for route 63 and destination Kedzie.   
+Next arrival, 23 minutes for route 63 and destination Kedzie.   
+The date is Thursday May 19 2011.
+Time is 09:14 AM.
+END of TEST.

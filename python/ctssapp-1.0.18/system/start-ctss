@@ -1,0 +1,111 @@
+#!/bin/bash
+# -----------------------------------------------------------------
+# start-ctss
+# -----------------------------------------------------------------
+
+#
+# define DEBUG in the environment to get verbose syslog affects "display"
+#export DEBUG=1
+
+CTSS="/ctss/bin"
+
+# update the System date/time.
+hwclock  -u -s
+
+cd $CTSS
+
+# ---------- Include
+source $CTSS/ldlibrary.sh
+source $CTSS/ctsslib.sh
+
+# ----- Vars
+
+
+SYSCONFIG=/etc/sysconfig.sh
+
+SERIAL=1234
+COLS=128
+DATE=2012-11-03
+TIMEZONE=Chicago
+VOLUME=asdf
+BLANKTIME=400
+ARR_LEN=4
+ALRT_LEN=10
+BR_FLOOR=70
+BR_WIN=4
+MODEMTYPE=m
+
+[ -f "$SYSCONFIG" ] && . $SYSCONFIG 
+
+# ---------------------------
+# if ttyUSB found assume single carrier modem and ppp
+# else assume gateway modem wgwmonitor
+
+# Wait for usb to come up. Values in Seconds
+uptime=`cat /proc/uptime | cut -d' ' -f1 `
+buffertime=40
+
+#echo "uptime=$uptime target=$buffertime"
+
+while  float_test "$uptime < $buffertime"  ; do
+
+     # echo "uptime is lt $buffertime"
+     sleep 2
+     uptime=`cat /proc/uptime | cut -d' ' -f1 `
+
+     # OR if USB found in dmesg then exit loop.
+     if ( `dmesg | grep "ttyUSB" >/dev/null`  ) ; then
+        break;
+     fi
+done
+
+# ----------------------------
+
+# if USB modem then use pppmonitor else use wgwmonitor
+#
+if ( `dmesg | grep "ttyUSB" >/dev/null`  ) ; then
+   echo pppmonitor
+
+   PROGS=(              \
+      $CTSS/busapi.py   \
+      $CTSS/pppmonitor.sh       \
+      $CTSS/buttonmon   \
+      "$CTSS/display --cols=$COLS"      \
+      $CTSS/watchdog.sh );
+else
+   echo wgwmonitor
+   PROGS=(              \
+      $CTSS/busapi.py   \
+      $CTSS/wgwmonitor.sh       \
+      $CTSS/buttonmon   \
+      "$CTSS/display --cols=$COLS"      \
+      $CTSS/watchdog.sh );
+fi
+
+
+
+
+# -----------------------------------------------------------------------------
+
+# SERIAL number
+if [[ ! -f /config/serial-number ]] ; then
+    echo "DUMMY" > /config/serial-number
+fi
+chown luminator:luminator /config/*
+cp /config/serial-number /home/cta/serial
+chown luminator:luminator /home/cta/serial
+chmod 774 /home/cta/serial
+
+
+# Unmute the Audio every time we boot.
+$CTSS/unmute.sh
+
+if [[ -f "$CTSS/runonce.sh" ]] ; then
+    $CTSS/runonce.sh
+fi
+
+# -----------------------------------------------------------------------------
+
+for (( i=0 ; i < ${#PROGS[@]} ; i=$((i + 1)) )); do
+    $CTSS/monitor.sh "${PROGS[$i]}" >/dev/null 2>&1 &
+done

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bustime-response>	
+			
+				<prd>
+					<tmstmp>20110628 09:17</tmstmp>
+					<typ>A</typ>
+					<stpnm>North Avenue &amp; Paulina</stpnm>
+					<stpid>941</stpid>
+					<vid>6536</vid>
+					
+					<dstp>2452</dstp>
+					<rt>72</rt>
+					<rtdir>West Bound</rtdir>
+		        	<des>Harlem</des>
+		        	<prdtm>20110628 09:21</prdtm>
+		        	
+				</prd>			
+			
+				<prd>
+					<tmstmp>20110628 09:17</tmstmp>
+					<typ>A</typ>
+					<stpnm>North Avenue &amp; Paulina</stpnm>
+					<stpid>941</stpid>
+					<vid>1595</vid>
+					
+					<dstp>8635</dstp>
+					<rt>72</rt>
+					<rtdir>West Bound</rtdir>
+		        	<des>Harlem</des>
+		        	<prdtm>20110628 09:29</prdtm>
+		        	
+				</prd>			
+			
+				<prd>
+					<tmstmp>20110628 09:17</tmstmp>
+					<typ>A</typ>
+					<stpnm>North Avenue &amp; Paulina</stpnm>
+					<stpid>941</stpid>
+					<vid>1046</vid>
+					
+					<dstp>13479</dstp>
+					<rt>72</rt>
+					<rtdir>West Bound</rtdir>
+		        	<des>Harlem</des>
+		        	<prdtm>20110628 09:37</prdtm>
+		        	
+				</prd>			
+			
+				<prd>
+					<tmstmp>20110628 09:18</tmstmp>
+					<typ>A</typ>
+					<stpnm>North Avenue &amp; Paulina</stpnm>
+					<stpid>941</stpid>
+					<vid>2016</vid>
+					
+					<dstp>13563</dstp>
+					<rt>72</rt>
+					<rtdir>West Bound</rtdir>
+		        	<des>Harlem</des>
+		        	<prdtm>20110628 09:47</prdtm>
+		        	
+				</prd>			
+
+		</bustime-response>

@@ -1,0 +1,25 @@
+#!/bin/bash
+
+
+PROGDIR="/ctss/bin"
+
+#  ----------
+# muli-carrier   modem wgmonitor.sh
+# single-carrier modem pppmonitor.sh
+#  ...Try to kill both..should not cause a problem, if provisioned improperly first time.
+
+PROGS='monitor.sh buttonmon display busapi wgwmonitor.sh watchdog.sh pppmonitor.sh'
+
+for i in $PROGS ; do
+   echo $PROGDIR/$i
+   ps -ef |grep -v grep |grep "$PROGDIR""/$i" | awk '{print $2}' |xargs kill -9
+   
+   if [[ -f "/var/run/$i.pid" ]]
+   then
+      rm "/tmp/$i.pid"
+   fi
+   
+done
+
+# Turn hardware watchdog OFF.
+$PROGDIR/watchdog -d 

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bustime-response>	
+			
+				<prd>
+					<tmstmp>20110628 09:17</tmstmp>
+					<typ>A</typ>
+					<stpnm>North Avenue &amp; Paulina</stpnm>
+					<stpid>901</stpid>
+					<vid>1890</vid>
+					
+					<dstp>5517</dstp>
+					<rt>72</rt>
+					<rtdir>East Bound</rtdir>
+		        	<des>North Avenue Beach</des>
+		        	<prdtm>20110628 09:26</prdtm>
+		        	
+				</prd>			
+			
+				<prd>
+					<tmstmp>20110628 09:17</tmstmp>
+					<typ>A</typ>
+					<stpnm>North Avenue &amp; Paulina</stpnm>
+					<stpid>901</stpid>
+					<vid>1321</vid>
+					
+					<dstp>8722</dstp>
+					<rt>72</rt>
+					<rtdir>East Bound</rtdir>
+		        	<des>North Avenue Beach</des>
+		        	<prdtm>20110628 09:30</prdtm>
+		        	
+				</prd>			
+			
+				<prd>
+					<tmstmp>20110628 09:17</tmstmp>
+					<typ>A</typ>
+					<stpnm>North Avenue &amp; Paulina</stpnm>
+					<stpid>901</stpid>
+					<vid>1049</vid>
+					
+					<dstp>14008</dstp>
+					<rt>72</rt>
+					<rtdir>East Bound</rtdir>
+		        	<des>North Avenue Beach</des>
+		        	<prdtm>20110628 09:35</prdtm>
+		        	
+				</prd>			
+			
+				<prd>
+					<tmstmp>20110628 09:17</tmstmp>
+					<typ>A</typ>
+					<stpnm>North Avenue &amp; Paulina</stpnm>
+					<stpid>901</stpid>
+					<vid>1322</vid>
+					
+					<dstp>20742</dstp>
+					<rt>72</rt>
+					<rtdir>East Bound</rtdir>
+		        	<des>North Avenue Beach</des>
+		        	<prdtm>20110628 09:43</prdtm>
+		        	
+				</prd>			
+
+		</bustime-response>

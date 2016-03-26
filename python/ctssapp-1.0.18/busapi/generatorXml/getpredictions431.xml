@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bustime-response>	
+			
+				<prd>
+					<tmstmp>20110628 09:19</tmstmp>
+					<typ>A</typ>
+					<stpnm>Madison &amp; Paulina</stpnm>
+					<stpid>431</stpid>
+					<vid>2014</vid>
+					
+					<dstp>3655</dstp>
+					<rt>20</rt>
+					<rtdir>East Bound</rtdir>
+		        	<des>Michigan</des>
+		        	<prdtm>20110628 09:23</prdtm>
+		        	
+				</prd>			
+			
+				<prd>
+					<tmstmp>20110628 09:19</tmstmp>
+					<typ>A</typ>
+					<stpnm>Madison &amp; Paulina</stpnm>
+					<stpid>431</stpid>
+					<vid>1063</vid>
+					
+					<dstp>15393</dstp>
+					<rt>20</rt>
+					<rtdir>East Bound</rtdir>
+		        	<des>Michigan</des>
+		        	<prdtm>20110628 09:36</prdtm>
+		        	
+				</prd>			
+			
+				<prd>
+					<tmstmp>20110628 09:19</tmstmp>
+					<typ>A</typ>
+					<stpnm>Madison &amp; Paulina</stpnm>
+					<stpid>431</stpid>
+					<vid>1459</vid>
+					
+					<dstp>19540</dstp>
+					<rt>20</rt>
+					<rtdir>East Bound</rtdir>
+		        	<des>Michigan</des>
+		        	<prdtm>20110628 09:42</prdtm>
+		        	
+				</prd>			
+
+		</bustime-response>

@@ -1,0 +1,12 @@
+There are a couple things that have to be done for the application code to
+build. The first is that a symbolic link must be created in /usr/local, named
+ctss-tools. This link must point to the location of the
+buildroot-2011.05/output/host directory. This tells the application makefiles
+where the compiler and linker are.
+
+The second thing is that buildroot must be built before the application code,
+because the toolchain is made when buildroot is built.
+
+1) build buildroot
+2) ln -s /path/to/buildroot/buildroot-2011.05/output/host
+

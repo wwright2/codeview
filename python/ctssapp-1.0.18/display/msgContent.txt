@@ -1,0 +1,136 @@
+158 Indiana-Hyde Park 5
+159 Hyde Park Express 5
+160 King Drive 5
+162 Cottage Grove 5
+164 South Shore Night Bus 5
+165 Jackson Park Express 5
+166 Harrison 5
+167 Halsted 5
+168 South Halsted 5
+169 Ashland 5
+171 Museum of S & I 5
+172 Lincoln/Sedgwick 5
+173 Roosevelt 5
+174 Jeffery Express 5
+175 Jeffery Local 5
+176 Westchester 5
+177 16th-18th 5
+178 Madison 5
+180 Cermak 5
+181 Clark 5
+182 Wentworth 5
+183 South Shore Express 5
+184 Stony Island Local 5
+185 Stony Island Express 5
+186 State 5
+187 South Chicago 5
+188 Mag Mile Express 5
+189 South Michigan 5
+190 35th 5
+191 Broadway 5
+193 Pershing 5
+194 43rd 5
+195 Wallace-Racine 5
+196 47th 5
+197 South Damen 5
+198 Western 5
+199 South Western 5
+200 North Western 5
+202 Damen 5
+203 51st 5
+204 Kedzie/California 5
+205 South Kedzie 5
+206 Pulaski 5
+207 South Pulaski 5
+209 Cicero 5
+210 North Cicero/Skokie Blvd. 5
+211 South Cicero 5
+213 Garfield 5
+214 55th/Austin 5
+215 55th/Narragansett 5
+217 Milwaukee 5
+218 North Milwaukee 5
+219 Laramie 5
+220 59th/61st 5
+221 Blue Island/26th 5
+222 Archer 5
+223 Archer/Harlem 5
+224 63rd 5
+225 West 63rd 5
+226 Foster-Canfield 5
+227 Grand 5
+228 Chicago 5
+229 67th-69th-71st 5
+230 Northwest Highway 5
+231 Cumberland/East River 5
+232 Division 5
+233 71st South Shore 5
+234 North 5
+235 Armitage 5
+236 Fullerton 5
+237 74th-75th 5
+238 Diversey 5
+239 Belmont 5
+240 Montrose 5
+241 79th 5
+242 Irving Park 5
+244 Lawrence 5
+245 West Lawrence 5
+246 Kimball-Homan 5
+247 Peterson 5
+248 Central 5
+249 North Central 5
+250 Narragansett/Ridgeland 5
+251 87th 5
+252 Higgins 5
+253 Harlem 5
+254 North Harlem 5
+255 Austin 5
+256 Foster 5
+257 California/Dodge 5
+258 South California 5
+259 93rd-95th 5
+260 West 95th 5
+261 Lunt 5
+262 Skokie 5
+263 Avon Express 5
+264 Jeffery Manor Express 5
+265 West 103rd 5
+266 East 103rd 5
+267 Halsted/95th 5
+268 Pullman/111th/115th 5
+269 Vincennes/111th 5
+270 Michigan/119th 5
+271 Ogilvie/Wacker Express 5
+272 Union/Wacker Express 5
+273 Illinois Center/Ogilvie Express 5
+274 Illinois Center/Union Express 5
+275 Navy Pier 5
+276 Water Tower Express 5
+277 Jackson 5
+278 West Loop/South Loop 5
+279 Goose Island Express 5
+327 Grant Park Treasures 5
+281 Clarendon/LaSalle Express 5
+282 Sheridan/LaSalle Express 5
+283 Stockton/Michigan Express 5
+284 Marine/Michigan Express 5
+285 Wilson/Michigan Express 5
+286 Inner Drive/Michigan Express 5
+287 Outer Drive Express 5
+288 Clarendon Michigan Express 5
+289 Sheridan 5
+290 Addison 5
+291 Devon 5
+292 LaSalle 5
+293 Streeterville/Taylor 5
+294 West 65th 5
+296 69th-UPS Express 5
+297 U. of Chicago/Midway 5
+298 U. of Chicago/Hyde Park 5
+299 U. of Chicago/Kenwood 5
+302 University of Chicago Hosp. Exp. 5
+333 Central/Sherman Owl 5
+304 Central/Ridge 5
+305 Chicago/Golf 5
+306 Evanston Circulator 5

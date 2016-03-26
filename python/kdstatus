@@ -1,0 +1,69 @@
+#!/usr/bin/env python
+
+
+
+#remove index.html*
+#wget http://www.methode-datasolutions.co.uk -o /tmp/kdweb.txt
+#if grep -q -i error kdweb.txt ; then
+#       echo "Error found"
+#elif grep -q -i "200 OK" kdweb.txt; then
+#               echo "OK"
+#fi
+
+
+import os.path
+import re
+import sys
+import glob
+import time
+
+
+from subprocess import call
+
+class Chdir:
+        def __init__( self):
+                self.savedPath = os.getcwd()
+
+        def pushd( self, newPath):
+                os.chdir(newPath)
+
+        def popd( self ):
+                os.chdir( self.savedPath )
+
+cd = Chdir()
+cd.pushd("/tmp")
+
+for file in glob.iglob("index.*"):
+        os.remove(file)
+
+cmd = "wget  -o kdweb.txt 'http://www.methode-datasolutions.co.uk'".split()
+call(cmd)
+
+detailmsg = ""
+compressedmsg = ""
+
+file = open("/tmp/kdweb.txt", "r")
+
+for line in file:
+        if re.search("error", line):
+                print(line)
+                detailmsg=("kdweb hosted methode site is Down or mis-functioning: %s" % (line))
+                compressedmsg = "Erred"
+
+        elif re.search("HTTP request sent, awaiting response... 200 OK", line):
+                print("OK")
+                detailmsg="kdweb site is responding with OK"
+                compressedmsg = "OK"
+
+
+## date and time representation
+subject = "Kdweb Methode Website : %s " % compressedmsg
+body = "%s,  %s " % (time.strftime("%c"), detailmsg)
+
+cmd = ("powershell.exe Send-MailMessage -SmtpServer 'USCO-MAIL10.methode.local' -To 'wwright@methode
+.com' -From 'wwright@methode.com' -Subject '''%s''' -Body '''%s''' " % (subject, body))
+call(cmd.split())
+
+#kdickerson@methode.com
+
+cd.popd()

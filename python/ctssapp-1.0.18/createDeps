@@ -1,0 +1,28 @@
+#!/bin/bash
+SRCS="$1"
+CC="$2"
+CFLAGS="$3"
+VPATH="$4"
+
+ok=0
+rm .depend 2>/dev/null
+for f in $SRCS; do 
+    if [ -n "$VPATH" ]; then
+        if [ ! -f $f ];then
+            for p in $VPATH; do
+                if [ -f $p/$f ]; then
+                    f="$p/$f"
+                    ok=1
+                    break
+                fi
+
+		if [ $ok -ne 1 ]; then
+                    echo Could not find $f
+                    exit 1
+                fi
+            done
+        fi
+    fi
+
+    $CC -MM $f $CFLAGS >> .depend
+done

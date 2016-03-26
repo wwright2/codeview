@@ -1,0 +1,91 @@
+#!/usr/bin/expect -f
+
+################################################################################
+#
+# This script will perform a ping from the the wireless gateway. The ASCII
+# results are searched for number of packets received which is returned.
+# 
+################################################################################ 
+
+
+set HOST      "192.168.1.1"
+set timeout    15    ;# timeout in second(s)
+
+# --- Error(s) ---
+set ERROR_TO  -10    ;# timeout error
+set ERROR_CR  -20    ;# connection refused error 
+set ERROR_PM  -30    ;# parameter error
+set ERROR_TN  -40    ;# telnet session error
+
+# --- Status ---
+set STATUS_TN  200   ;# telnet session connected
+
+# --- usage ---
+proc usage args {
+   puts "Usage: wgwping.exp <cmds>"
+   puts " Where <cmds>:"
+   puts "  ipaddress - ip address of the target"
+}
+
+# --- parse "ping" commmand ---
+proc png { out } {
+   global ERROR_PM
+   global ERROR_TN
+   global STATUS_TN
+   # parse ping command results 
+	# get packets received
+	set bstr  	"packets transmitted, "
+	set estr  	" received, "
+	set errstr  "error:"
+
+	set rs [ expr [ string first $errstr $out ] ]
+
+	if { $rs < 0 } {
+		# process the ping results
+		set bs [ expr [ string last $bstr $out ] + [ string length $bstr ] ]
+		set es [ expr [ string last $estr $out ] - 1 ]
+		return [ string range $out $bs $es ] 
+	} else {
+		return $ERROR_PM ;# an error occurred
+	}
+}
+
+# --- execute ping command ---
+log_user 0  ;# echo off
+
+set ac       $argc 
+set a1      [ lrange $argv 0 0 ]
+set a2      [ lrange $argv 1 1 ]
+set wgwarg   "ping"
+set wgwopt   "count=4" ;# number of pings
+ 
+if { $ac == 0 } {
+	puts $ERROR_PM
+} elseif { [ string first "H" [ string toupper $a1 ] ] >= 0 } {
+	usage
+} else {
+	spawn telnet $HOST
+	expect {
+		# Gateway returns this message when ready 
+		"#>" { 
+			send "$wgwarg $a1 $wgwopt\r"
+			expect "#>"
+			set output $expect_out(buffer)
+			puts [ png $output ]
+		}
+
+		# After 30 second timeout, gateway returns this message when not ready.
+		# Cable may be disconnected/broken or gateway ethernet stack may not be up
+		"telnet: Unable to connect to remote host: Connection refused" {
+			puts $ERROR_CR
+		}
+
+		# No ethernet connection to gateway, probably not ready 
+		timeout {
+			puts $ERROR_TO
+		} 
+	}
+	send "quit"
+}
+
+log_user 1 ;# echo on

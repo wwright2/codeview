@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bustime-response>	
+			
+				<prd>
+					<tmstmp>20110628 09:18</tmstmp>
+					<typ>A</typ>
+					<stpnm>Washington &amp; Wabash</stpnm>
+					<stpid>449</stpid>
+					<vid>4200</vid>
+					
+					<dstp>1022</dstp>
+					<rt>147</rt>
+					<rtdir>North Bound</rtdir>
+		        	<des>Howard Station</des>
+		        	<prdtm>20110628 09:20</prdtm>
+		        	
+				</prd>			
+			
+				<prd>
+					<tmstmp>20110628 09:18</tmstmp>
+					<typ>A</typ>
+					<stpnm>Washington &amp; Wabash</stpnm>
+					<stpid>449</stpid>
+					<vid>1185</vid>
+					
+					<dstp>1071</dstp>
+					<rt>60</rt>
+					<rtdir>East Bound</rtdir>
+		        	<des>Randolph/Harbor Dr</des>
+		        	<prdtm>20110628 09:21</prdtm>
+		        	
+				</prd>			
+			
+				<prd>
+					<tmstmp>20110628 09:13</tmstmp>
+					<typ>A</typ>
+					<stpnm>Washington &amp; Wabash</stpnm>
+					<stpid>449</stpid>
+					<vid>1987</vid>
+					
+					<dstp>5643</dstp>
+					<rt>20</rt>
+					<rtdir>East Bound</rtdir>
+		        	<des>Illinois Center</des>
+		        	<prdtm>20110628 09:22</prdtm>
+		        	
+				</prd>			
+
+		</bustime-response>

@@ -1,0 +1,161 @@
+#!/usr/bin/expect -f
+
+################################################################################
+#
+# This script will display the mobile status of the wireless gateway. The ASCII
+# results are searched for the Signal Strength in dBM or Registration Status
+# depending on the arg passed.
+#
+#     The Signal Strength in dBM is as follows: 
+#         0 of 3 bars =>     0 dBm
+#         1 of 3 bars => ~ -94 dBm
+#         2 of 3 bars => ~ -92 dBm
+#         3 of 3 bars => ~ -64 dBm
+#
+#     The Registration Status is defined as:
+#        -1 => N/A
+#         1 => Registered (Home Network)  
+#         2 => Searching for Network...
+#         5 => Registered (Roaming)
+# 
+################################################################################ 
+
+
+set HOST      "192.168.1.1"
+set timeout    15    ;# timeout in second(s)
+
+# --- Error(s) ---
+set ERROR_TO  -10    ;# timeout error
+set ERROR_CR  -20    ;# connection refused error 
+set ERROR_PM  -30    ;# parameter error
+set ERROR_TN  -40    ;# telnet session error
+
+# --- Status ---
+set STATUS_TN  200   ;# telnet session connected
+
+# --- usage ---
+proc usage args {
+   puts "Usage: wgwsts.exp <cmds>"
+   puts " Where <cmds>:"
+   puts "  ts - Telnet Status"
+   puts "  sn - Serial Number (IMEI)"
+   puts "  id - MEID"
+   puts "  rs - Registration Status"
+   puts "  ss - Signal Strength"
+   puts "     none  - not registered : signal strength"
+   puts "             registered     : 1xRTT EVDO" 
+   puts "     1xRTT - single-carrier Radio Trans Tech"
+   puts "     EVDO  - Evolution Data Optimized"
+}
+
+# --- calculate signal strength ---
+proc ss { b1 b2 } {
+   return [ expr { $b1 * 100 / $b2 } ] ;
+} 
+
+# --- parse "display mobile" commmand ---
+proc dm { out ac a1 { a2 "" } } {
+   global ERROR_PM
+   global ERROR_TN
+   global STATUS_TN
+   # parse command results
+   if { [ string toupper $a1 ] == "SS" } {  ;# --- Signal Strength ---
+      set delm  " of "
+      if { $ac == 1 } {  
+         # --- Signal Strength not registered ---
+         if { [ dm $out $ac "RS" ] != 1 } {  ;# -- ss not registered --
+            set bs [ expr [ string last $delm $out ] - 1 ] 
+            set es [ expr [ string last $delm $out ] + [ string length $delm ] ]
+            return [ ss [ string range $out $bs $bs ] [ string range $out $es $es ] ] 
+         } else {                            ;# -- ss registered --
+            set 1xrt [ dm $out 2 $a1 "1XRTT" ]
+            set evdo [ dm $out 2 $a1 "EVDO" ]
+            return "$1xrt $evdo"
+         }
+      } else {
+         # --- Signal Strength registered ---
+         switch [ string toupper $a2 ] {
+            "1XRTT" {  ;# --- Single-Carrier Radio Transmission Technology ---
+               set bs [ expr [ string first $delm $out ] - 1 ] 
+               set es [ expr [ string first $delm $out ] + [ string length $delm ] ]
+               return [ ss [ string range $out $bs $bs ] [ string range $out $es $es ] ] 
+            }
+            "EVDO" {   ;# --- Evolution Data Optimized ---
+               set bs [ expr [ string last $delm $out ] - 1 ] 
+               set es [ expr [ string last $delm $out ] + [ string length $delm ] ]
+               return [ ss [ string range $out $bs $bs ] [ string range $out $es $es ] ] 
+            }
+            default {
+               return $ERROR_PM
+            }
+         } ;# end of switch 
+      }
+   } elseif { [ string toupper $a1 ] == "RS" } {  ;# --- Registration Status ---
+      set rsstr  "Registration Status    : "
+      set rsbstr [ expr [ string last $rsstr $out ] + [ string length $rsstr ] ] 
+      set rsestr [ string last "," [ string range $out $rsbstr [ expr $rsbstr + 3 ] ] ]
+      set rsestr [ expr $rsbstr + $rsestr - 1 ]
+      return [ string range $out $rsbstr $rsestr ]
+   } elseif { [ string toupper $a1 ] == "ID" } {  ;# --- MEID ---
+      set idstr  "Modem MEID             : "
+      set idbstr [ expr [ string last $idstr $out ] + [ string length $idstr ] ] 
+      set idestr [ expr $idbstr + 14 ] 
+      return [ string range $out $idbstr $idestr ]
+   } elseif { [ string toupper $a1 ] == "TS" } {  ;# --- Telnet Status ---
+      set tsstr "Mobile Status"
+      if { [ string first $tsstr $out ] < 0 } {
+			return $ERROR_TN
+      } else {
+         return $STATUS_TN 
+      }
+   } elseif { [ string toupper $a1 ] == "SN" } {  ;# --- Serial Number ---
+      set snstr  "Serial Number          : "
+      set snbstr [ expr [ string last $snstr $out ] + [ string length $snstr ] ] 
+      set snestr [ expr $snbstr + 15 ] 
+      return [ string range $out $snbstr $snestr ]
+   } elseif { [ string first "H" [ string toupper $a1 ] ] >= 0 } {    ;# --- Help ---
+      usage
+   } else {  ;# --- usage ---
+      return $ERROR_PM
+   }
+}
+
+# --- execute mobile status command ---
+log_user 0  ;# echo off
+
+set ac       $argc 
+set a1      [ lrange $argv 0 0 ]
+set a2      [ lrange $argv 1 1 ]
+set wgwarg   "display mobile"
+
+if { $ac == 0 } {
+	puts $ERROR_PM
+} elseif { [ string first "H" [ string toupper $a1 ] ] >= 0 } {
+   usage
+} else {
+	spawn telnet $HOST
+	expect {
+		# Gateway returns this message when ready 
+		"#>" { 
+			send "$wgwarg\r"
+			expect "#>"
+			set output $expect_out(buffer)
+			
+			puts [ dm $output $ac $a1 $a2 ]
+		}
+
+		# After 30 second timeout, gateway returns this message when not ready.
+		# Cable may be disconnected/broken or gateway ethernet stack may not be up
+		"telnet: Unable to connect to remote host: Connection refused" {
+			puts $ERROR_CR
+		}
+
+		# No ethernet connection to gateway, probably not ready 
+		timeout {
+			puts $ERROR_TO
+		} 
+	}
+	send "quit"
+}
+
+log_user 1 ;# echo on

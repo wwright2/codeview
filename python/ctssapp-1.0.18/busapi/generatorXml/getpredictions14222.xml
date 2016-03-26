@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bustime-response>	
+			
+				<prd>
+					<tmstmp>20110628 09:15</tmstmp>
+					<typ>A</typ>
+					<stpnm>Wacker (Upper) &amp; Columbus</stpnm>
+					<stpid>14222</stpid>
+					<vid>1776</vid>
+					
+					<dstp>1585</dstp>
+					<rt>123</rt>
+					<rtdir>South Bound</rtdir>
+		        	<des>Union Station</des>
+		        	<prdtm>20110628 09:18</prdtm>
+		        	
+				</prd>			
+			
+				<prd>
+					<tmstmp>20110628 09:15</tmstmp>
+					<typ>A</typ>
+					<stpnm>Wacker (Upper) &amp; Columbus</stpnm>
+					<stpid>14222</stpid>
+					<vid>4001</vid>
+					
+					<dstp>5280</dstp>
+					<rt>134</rt>
+					<rtdir>South Bound</rtdir>
+		        	<des>Adams/Wacker</des>
+		        	<prdtm>20110628 09:19</prdtm>
+		        	
+				</prd>			
+			
+				<prd>
+					<tmstmp>20110628 09:16</tmstmp>
+					<typ>A</typ>
+					<stpnm>Wacker (Upper) &amp; Columbus</stpnm>
+					<stpid>14222</stpid>
+					<vid>4192</vid>
+					
+					<dstp>6437</dstp>
+					<rt>136</rt>
+					<rtdir>South Bound</rtdir>
+		        	<des>Adams/Wacker</des>
+		        	<prdtm>20110628 09:19</prdtm>
+		        	
+				</prd>			
+			
+				<prd>
+					<tmstmp>20110628 09:16</tmstmp>
+					<typ>A</typ>
+					<stpnm>Wacker (Upper) &amp; Columbus</stpnm>
+					<stpid>14222</stpid>
+					<vid>4016</vid>
+					
+					<dstp>9564</dstp>
+					<rt>134</rt>
+					<rtdir>South Bound</rtdir>
+		        	<des>Adams/Wacker</des>
+		        	<prdtm>20110628 09:20</prdtm>
+		        	
+				</prd>			
+			
+				<prd>
+					<tmstmp>20110628 09:16</tmstmp>
+					<typ>A</typ>
+					<stpnm>Wacker (Upper) &amp; Columbus</stpnm>
+					<stpid>14222</stpid>
+					<vid>4073</vid>
+					
+					<dstp>2233</dstp>
+					<rt>6</rt>
+					<rtdir>South Bound</rtdir>
+		        	<des>79th/South Shore</des>
+		        	<prdtm>20110628 09:20</prdtm>
+		        	
+				</prd>			
+			
+				<prd>
+					<tmstmp>20110628 09:15</tmstmp>
+					<typ>A</typ>
+					<stpnm>Wacker (Upper) &amp; Columbus</stpnm>
+					<stpid>14222</stpid>
+					<vid>4170</vid>
+					
+					<dstp>6835</dstp>
+					<rt>122</rt>
+					<rtdir>South Bound</rtdir>
+		        	<des>Ogilvie Station</des>
+		        	<prdtm>20110628 09:27</prdtm>
+		        	
+				</prd>			
+			
+				<prd>
+					<tmstmp>20110628 09:16</tmstmp>
+					<typ>A</typ>
+					<stpnm>Wacker (Upper) &amp; Columbus</stpnm>
+					<stpid>14222</stpid>
+					<vid>4051</vid>
+					
+					<dstp>21130</dstp>
+					<rt>134</rt>
+					<rtdir>South Bound</rtdir>
+		        	<des>Adams/Wacker</des>
+		        	<prdtm>20110628 09:28</prdtm>
+		        	
+				</prd>			
+			
+				<prd>
+					<tmstmp>20110628 09:15</tmstmp>
+					<typ>A</typ>
+					<stpnm>Wacker (Upper) &amp; Columbus</stpnm>
+					<stpid>14222</stpid>
+					<vid>6542</vid>
+					
+					<dstp>9345</dstp>
+					<rt>123</rt>
+					<rtdir>South Bound</rtdir>
+		        	<des>Union Station</des>
+		        	<prdtm>20110628 09:32</prdtm>
+		        	
+				</prd>			
+			
+				<prd>
+					<tmstmp>20110628 09:15</tmstmp>
+					<typ>A</typ>
+					<stpnm>Wacker (Upper) &amp; Columbus</stpnm>
+					<stpid>14222</stpid>
+					<vid>4201</vid>
+					
+					<dstp>34311</dstp>
+					<rt>136</rt>
+					<rtdir>South Bound</rtdir>
+		        	<des>Adams/Wacker</des>
+		        	<prdtm>20110628 09:35</prdtm>
+		        	
+				</prd>			
+			
+				<prd>
+					<tmstmp>20110628 09:15</tmstmp>
+					<typ>A</typ>
+					<stpnm>Wacker (Upper) &amp; Columbus</stpnm>
+					<stpid>14222</stpid>
+					<vid>4026</vid>
+					
+					<dstp>33142</dstp>
+					<rt>134</rt>
+					<rtdir>South Bound</rtdir>
+		        	<des>Adams/Wacker</des>
+		        	<prdtm>20110628 09:36</prdtm>
+		        	
+				</prd>			
+			
+				<prd>
+					<tmstmp>20110628 09:12</tmstmp>
+					<typ>A</typ>
+					<stpnm>Wacker (Upper) &amp; Columbus</stpnm>
+					<stpid>14222</stpid>
+					<vid>1817</vid>
+					
+					<dstp>22441</dstp>
+					<rt>6</rt>
+					<rtdir>South Bound</rtdir>
+		        	<des>79th/South Shore</des>
+		        	<prdtm>20110628 09:40</prdtm>
+		        	
+				</prd>			
+			
+				<prd>
+					<tmstmp>20110628 09:15</tmstmp>
+					<typ>A</typ>
+					<stpnm>Wacker (Upper) &amp; Columbus</stpnm>
+					<stpid>14222</stpid>
+					<vid>4176</vid>
+					
+					<dstp>46259</dstp>
+					<rt>135</rt>
+					<rtdir>South Bound</rtdir>
+		        	<des>Adams/Wacker</des>
+		        	<prdtm>20110628 09:41</prdtm>
+		        	
+				</prd>			
+			
+				<prd>
+					<tmstmp>20110628 09:15</tmstmp>
+					<typ>A</typ>
+					<stpnm>Wacker (Upper) &amp; Columbus</stpnm>
+					<stpid>14222</stpid>
+					<vid>4191</vid>
+					
+					<dstp>34314</dstp>
+					<rt>135</rt>
+					<rtdir>South Bound</rtdir>
+		        	<des>Adams/Wacker</des>
+		        	<prdtm>20110628 09:45</prdtm>
+		        	
+				</prd>			
+
+		</bustime-response>

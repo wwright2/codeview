@@ -1,0 +1,309 @@
+
+
+busapi.py    - Runtime application deliverable.
+bustracker.c - runtime application for Audio, monitors button press. 
+
+generatorBusapi.py - EMI Test use static data to display info.
+   testcase/generatorXml  - xml files to read and send to the "display" task
+   
+   
+
+
+http://signapi.transitchicago.com/ctadiscover/btInitConfigSign.php?serialnum=DUMMY   
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<discover>
+    <time>
+        <month>8</month>
+        <day>2</day>
+        <year>2011</year>
+        <hour>2</hour>
+        <minute>26</minute>
+
+        <second>05</second>
+        <meridiem>PM</meridiem>
+    </time>
+    <settings>
+        <day_time>06:30:00</day_time>
+        <night_time>19:00:00</night_time>
+        <day_volume>6</day_volume>
+
+        <night_volume>4</night_volume>
+        <arrival_display_sec>8</arrival_display_sec>
+        <alert_display_sec>10</alert_display_sec>
+        <blank_time>2</blank_time>
+    </settings>
+</discover>
+
+http://signapi.transitchicago.com/ctadiscover/btAlertIdsSign.php?serialnum=DUMMY
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<discover>
+    <active_alert GUID="117ed0a5-5a0c-4233-8f94-de34ec38c7a9">7743</active_alert>
+    <active_alert GUID="074ad545-85dd-49a0-93fb-666f6bca08d1">9524</active_alert>
+    <active_alert GUID="eeffb850-48d9-413b-b407-24f9283aa3f7">10268</active_alert>
+    <active_alert GUID="a9a14b26-5be9-43d2-9798-e45dda0dcb22">10331</active_alert>
+    <active_alert GUID="a480bf71-b104-4e1b-a3ca-08ce20f279e7">10332</active_alert>
+
+    <active_alert GUID="b8583a9a-8ac4-4f6e-b3ed-b749294f583f">10334</active_alert>
+    <active_alert GUID="1853cb20-758c-493b-986d-371c9b7b5d12">10483</active_alert>
+    <active_alert GUID="1255df4f-bb32-46bc-bc07-701a5ed7f5bd">10488</active_alert>
+    <active_alert GUID="97bbbff1-bb30-4bf7-b01d-627082b8b524">10493</active_alert>
+    <active_alert GUID="59e4cf6d-7267-45d5-b7fd-ee7572267b5e">10651</active_alert>
+    <active_alert GUID="77feae9c-b1b7-46fa-8414-8241b779b3ea">10709</active_alert>
+
+    <active_alert GUID="922d35e3-9510-41cb-bc59-d69200992dbc">10710</active_alert>
+</discover>
+
+
+http://signapi.transitchicago.com/ctadiscover/btAlertDataSign.php?alertid=7743,9524,10268,10331,10332,10334
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<discover>
+    <alert id='7743' severity='37'>
+        <speech>Customer Alert. Route 29. Temporary Reroute. Southbound buses will operate via Grand, Clark, and Illinois, then  resum their normal  rout on State.</speech>
+        <description>Customer Alert. Route 29. Temporary Reroute. Southbound buses will operate via Grand, Clark, and Illinois, then resume their normal route on State.</description>
+    </alert>
+    <alert id='9524' severity='10'>
+        <speech>Customer Alert. Route Pink Line, Green Line, Brown Line. Chicago River Bridge Lifts. During spring and summer, the Chicago River bridges are periodically opened. Customers should expect minor delays during bridge lifts.</speech>
+
+        <description>Customer Alert. Route Pink Line, Green Line, Brown Line. Chicago River Bridge Lifts. During spring and summer, the Chicago River bridges are periodically opened. Customers should expect minor delays during bridge lifts.</description>
+    </alert>
+    <alert id='10268' severity='10'>
+        <speech>Customer Alert. Route 129. Buses Resume Normal Routing and Bus Stop Changes. A.M. Rush -buses will  resum normal routing via Dear born, Randolph, Clinton. P.M. Rush -buses will  resum normal routing via Canal, Washington, Clark.</speech>
+        <description>Customer Alert. Route 129. Buses Resume Normal Routing and Bus Stop Changes. A.M. Rush -buses will resume nrml routing via Drbrn, Randlph, Clinton. P.M. Rush -buses will resume nrml routing via Canal, Wshingtn, Clark.</description>
+    </alert>
+    <alert id='10331' severity='9'>
+
+        <speech>Customer Alert. Route 60, 124, 157, 130. Bus Stop Elimination. The eastbound bus stop located on the southwest corner at Canal and Monroe has been eliminated.
+
+</speech>
+        <description>Customer Alert. Route 60, 124, 157, 130. Bus Stop Elimination. The eastbound bus stop located on the southwest corner at Canal/Monroe has been eliminated.
+
+</description>
+    </alert>
+    <alert id='10332' severity='9'>
+        <speech>Customer Alert. Route 125, 129. Bus Stop Elimination. The northbound bus stop located on the southeast corner at Canal and Monroe has been eliminated.
+
+</speech>
+        <description>Customer Alert. Route 125, 129. Bus Stop Elimination. The northbound bus stop located on the southeast corner at Canal/Monroe has been eliminated.
+
+</description>
+
+    </alert>
+    <alert id='10334' severity='9'>
+        <speech>Customer Alert. Route 20, 56, 60, 129, 157, 19. Temporary Bus Stop Relocation. The  East Bound  bus stop located on the  South West  corner at Washington and Franklin will be temporarily relocated to the  South East  corner at Washington and Franklin.
+
+</speech>
+        <description>Customer Alert. Route 20, 56, 60, 129, 157, 19. Temporary Bus Stop Relocation. The EB bus stop located on the SW corner at Washington/Franklin will be temporarily relocated to the SE corner at Washington/Franklin.
+
+</description>
+    </alert>
+</discover>
+
+
+http://signapi.transitchicago.com/ctadiscover/btStopArrivalsSign.php?serialnum=DUMMY
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<discover>
+    <predictions>
+        <stop name="State &amp; Roosevelt" stpid="2376" type="Bus">
+            <eta>
+                <speech>Route 29 to 95th Red Line will arrive in approximately 5 minutes.</speech>
+                <id>1490</id>
+                <route>29</route>
+
+                <direction>South</direction>
+                <destination>95th Red Line</destination>
+                <minsToArrival>5</minsToArrival>
+                <fault>-1</fault>
+                <scheduled>-1</scheduled>
+                <delayed>0</delayed>
+
+            </eta>
+            <eta>
+                <speech>Route 62 to Harlem will arrive in approximately 6 minutes.</speech>
+                <id>1693</id>
+                <route>62</route>
+                <direction>South</direction>
+                <destination>Harlem</destination>
+
+                <minsToArrival>6</minsToArrival>
+                <fault>-1</fault>
+                <scheduled>-1</scheduled>
+                <delayed>0</delayed>
+            </eta>
+        </stop>
+        <stop name="Roosevelt Orange/Red/Green Line Station" stpid="16140" type="Bus">
+
+            <eta>
+                <speech>Route 130 to Ogilvie &amp; Union Stations will arrive in approximately 5 minutes.</speech>
+                <id>1703</id>
+                <route>130</route>
+                <direction>West</direction>
+                <destination>Ogilvie &amp; Union Stations</destination>
+
+                <minsToArrival>5</minsToArrival>
+                <fault>-1</fault>
+                <scheduled>-1</scheduled>
+                <delayed>0</delayed>
+            </eta>
+            <eta>
+                <speech>Route 146 to Berwyn Red Line will arrive in approximately 5 minutes.</speech>
+
+                <id>4189</id>
+                <route>146</route>
+                <direction>North</direction>
+                <destination>Berwyn Red Line</destination>
+                <minsToArrival>5</minsToArrival>
+                <fault>-1</fault>
+
+                <scheduled>-1</scheduled>
+                <delayed>0</delayed>
+            </eta>
+            <eta>
+                <speech>Route 12 to Central &amp; Harrison will arrive in approximately 9 minutes.</speech>
+                <id>1346</id>
+
+                <route>12</route>
+                <direction>West</direction>
+                <destination>Central/Harrison</destination>
+                <minsToArrival>9</minsToArrival>
+                <fault>-1</fault>
+                <scheduled>-1</scheduled>
+
+                <delayed>0</delayed>
+            </eta>
+            <eta>
+                <speech>Route 18 to 16th &amp; Cicero will arrive in approximately 20 minutes.</speech>
+                <id>1699</id>
+                <route>18</route>
+
+                <direction>West</direction>
+                <destination>16th/Cicero</destination>
+                <minsToArrival>20</minsToArrival>
+                <fault>-1</fault>
+                <scheduled>-1</scheduled>
+                <delayed>0</delayed>
+
+            </eta>
+        </stop>
+        <stop name="State &amp; Roosevelt" stpid="2353" type="Bus">
+            <eta>
+                <speech>Route 29 to Navy Pier will arrive in approximately 4 minutes.</speech>
+                <id>1967</id>
+                <route>29</route>
+
+                <direction>North</direction>
+                <destination>Navy Pier</destination>
+                <minsToArrival>4</minsToArrival>
+                <fault>-1</fault>
+                <scheduled>-1</scheduled>
+                <delayed>0</delayed>
+
+            </eta>
+            <eta>
+                <speech>Route 62 to Kinzie &amp; State will arrive in approximately 23 minutes.</speech>
+                <id>1225</id>
+                <route>62</route>
+                <direction>North</direction>
+
+                <destination>Kinzie/State</destination>
+                <minsToArrival>23</minsToArrival>
+                <fault>-1</fault>
+                <scheduled>-1</scheduled>
+                <delayed>0</delayed>
+            </eta>
+
+        </stop>
+        <stop name="Roosevelt" stpid="41400" type="Train">
+            <eta>
+                <speech>A Red line train to  will arrive shortly.</speech>
+                <id>805</id>
+                <route>Red</route>
+                <direction>North</direction>
+
+                <destination>Howard</destination>
+                <minsToArrival>2</minsToArrival>
+                <fault>0</fault>
+                <scheduled>0</scheduled>
+                <delayed>0</delayed>
+            </eta>
+
+            <eta>
+                <speech>An Orange line train to  will arrive shortly.</speech>
+                <id>713</id>
+                <route>Org</route>
+                <direction>North</direction>
+                <destination>the Loop</destination>
+
+                <minsToArrival>1</minsToArrival>
+                <fault>0</fault>
+                <scheduled>0</scheduled>
+                <delayed>0</delayed>
+            </eta>
+            <eta>
+                <speech>An Orange line train to  will arrive shortly.</speech>
+
+                <id>709</id>
+                <route>Org</route>
+                <direction>South</direction>
+                <destination>Midway</destination>
+                <minsToArrival>2</minsToArrival>
+                <fault>0</fault>
+
+                <scheduled>0</scheduled>
+                <delayed>0</delayed>
+            </eta>
+            <eta>
+                <speech>A Red line train to  will arrive shortly.</speech>
+                <id>907</id>
+                <route>Red</route>
+
+                <direction>South</direction>
+                <destination>95th/Dan Ryan</destination>
+                <minsToArrival>1</minsToArrival>
+                <fault>0</fault>
+                <scheduled>0</scheduled>
+                <delayed>0</delayed>
+
+            </eta>
+            <eta>
+                <speech>A Green line train to  will arrive in approximately 8 minutes.</speech>
+                <id>610</id>
+                <route>Grn</route>
+                <direction>North</direction>
+                <destination>Harlem/Lake</destination>
+
+                <minsToArrival>8</minsToArrival>
+                <fault>0</fault>
+                <scheduled>0</scheduled>
+                <delayed>0</delayed>
+            </eta>
+            <eta>
+                <speech>A Green line train to  will arrive in approximately 11 minutes.</speech>
+
+                <id>612</id>
+                <route>Grn</route>
+                <direction>South</direction>
+                <destination>Cottage Grove</destination>
+                <minsToArrival>11</minsToArrival>
+                <fault>0</fault>
+
+                <scheduled>0</scheduled>
+                <delayed>0</delayed>
+            </eta>
+            <eta>
+                <speech>A Green line train to  will arrive in approximately 15 minutes.</speech>
+                <id>611</id>
+                <route>Grn</route>
+
+                <direction>South</direction>
+                <destination>Ashland/63rd</destination>
+                <minsToArrival>15</minsToArrival>
+                <fault>0</fault>
+                <scheduled>0</scheduled>
+                <delayed>0</delayed>
+
+            </eta>
+        </stop>
+    </predictions>
+</discover>
+
+
